@@ -1,0 +1,575 @@
+INFO 2025-01-17 00:59:42,266 autoreload 13328 9472 Watching for file changes with StatReloader
+INFO 2025-01-17 12:12:35,641 basehttp 13328 6572 "POST /api/users/login/ HTTP/1.1" 200 95
+ERROR 2025-01-17 12:13:11,646 log 13328 6572 Internal Server Error: /api/songs/download/
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django_redis\cache.py", line 31, in _decorator
+    return method(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django_redis\cache.py", line 98, in _get
+    return self.client.get(key, default=default, version=version, client=client)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django_redis\client\default.py", line 260, in get
+    raise ConnectionInterrupted(connection=client) from e
+django_redis.exceptions.ConnectionInterrupted: Redis ConnectionError: Error 10061 connecting to 127.0.0.1:6379. No connection could be made because the target machine actively refused it.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\viewsets.py", line 124, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 416, in initial
+    self.check_throttles(request)
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 359, in check_throttles
+    if not throttle.allow_request(request, self):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\throttling.py", line 123, in allow_request
+    self.history = self.cache.get(self.key, [])
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django_redis\cache.py", line 91, in get
+    value = self._get(key, default, version, client)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django_redis\cache.py", line 38, in _decorator
+    raise e.__cause__
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django_redis\client\default.py", line 258, in get
+    value = client.get(key)
+            ^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\redis\client.py", line 1606, in get
+    return self.execute_command('GET', name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\redis\client.py", line 898, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\redis\connection.py", line 1192, in get_connection
+    connection.connect()
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\redis\connection.py", line 563, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 10061 connecting to 127.0.0.1:6379. No connection could be made because the target machine actively refused it.
+ERROR 2025-01-17 12:13:11,657 basehttp 13328 6572 "POST /api/songs/download/ HTTP/1.1" 500 152254
+INFO 2025-01-17 13:01:47,291 autoreload 10232 4292 Watching for file changes with StatReloader
+INFO 2025-01-17 13:02:38,598 autoreload 996 17224 Watching for file changes with StatReloader
+INFO 2025-01-17 13:05:05,014 autoreload 19364 1204 Watching for file changes with StatReloader
+INFO 2025-01-17 13:05:58,707 autoreload 2952 18020 Watching for file changes with StatReloader
+INFO 2025-01-17 13:06:21,383 autoreload 18620 17664 Watching for file changes with StatReloader
+INFO 2025-01-17 13:07:07,121 autoreload 11612 13352 Watching for file changes with StatReloader
+INFO 2025-01-17 13:07:59,970 autoreload 11612 13352 D:\Projects\TuneVault\tunevault\tunevault\settings.py changed, reloading.
+INFO 2025-01-17 13:08:04,559 autoreload 3300 15980 Watching for file changes with StatReloader
+INFO 2025-01-17 13:09:56,927 autoreload 6596 18076 Watching for file changes with StatReloader
+INFO 2025-01-17 13:11:00,693 autoreload 4932 10948 Watching for file changes with StatReloader
+INFO 2025-01-17 13:11:29,008 autoreload 16780 536 Watching for file changes with StatReloader
+INFO 2025-01-17 13:12:00,284 autoreload 11600 9448 Watching for file changes with StatReloader
+ERROR 2025-01-17 13:17:50,442 log 11600 11324 Internal Server Error: /api/songs/download/
+Traceback (most recent call last):
+  File "C:\Python 311\Lib\site-packages\django_redis\cache.py", line 29, in _decorator
+    return method(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django_redis\cache.py", line 99, in _get
+    return self.client.get(key, default=default, version=version, client=client)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django_redis\client\default.py", line 260, in get
+    raise ConnectionInterrupted(connection=client) from e
+django_redis.exceptions.ConnectionInterrupted: Redis ConnectionError: Error 10061 connecting to 127.0.0.1:6379. No connection could be made because the target machine actively refused it.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Python 311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\rest_framework\viewsets.py", line 124, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python 311\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python 311\Lib\site-packages\rest_framework\views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "C:\Python 311\Lib\site-packages\rest_framework\views.py", line 416, in initial
+    self.check_throttles(request)
+  File "C:\Python 311\Lib\site-packages\rest_framework\views.py", line 359, in check_throttles
+    if not throttle.allow_request(request, self):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\rest_framework\throttling.py", line 123, in allow_request
+    self.history = self.cache.get(self.key, [])
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django_redis\cache.py", line 92, in get
+    value = self._get(key, default, version, client)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django_redis\cache.py", line 36, in _decorator
+    raise e.__cause__
+  File "C:\Python 311\Lib\site-packages\django_redis\client\default.py", line 258, in get
+    value = client.get(key)
+            ^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\redis\commands\core.py", line 1822, in get
+    return self.execute_command("GET", name, keys=[name])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\redis\client.py", line 559, in execute_command
+    return self._execute_command(*args, **options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\redis\client.py", line 565, in _execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\redis\connection.py", line 1422, in get_connection
+    connection.connect()
+  File "C:\Python 311\Lib\site-packages\redis\connection.py", line 363, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 10061 connecting to 127.0.0.1:6379. No connection could be made because the target machine actively refused it.
+ERROR 2025-01-17 13:17:50,454 basehttp 11600 11324 "POST /api/songs/download/ HTTP/1.1" 500 156242
+INFO 2025-01-17 13:18:49,681 basehttp 11600 11324 "POST /api/songs/download/ HTTP/1.1" 201 254
+INFO 2025-01-17 13:19:01,796 basehttp 11600 13524 "GET /media/songs/We%20Are%20Infinite.mp3 HTTP/1.1" 200 4454252
+WARNING 2025-01-17 13:19:01,845 log 11600 13524 Not Found: /favicon.ico
+WARNING 2025-01-17 13:19:01,845 basehttp 11600 13524 "GET /favicon.ico HTTP/1.1" 404 2562
+INFO 2025-01-17 13:25:10,710 basehttp 11600 16092 "POST /api/songs/download/ HTTP/1.1" 201 211
+INFO 2025-01-17 13:25:16,289 basehttp 11600 20428 "GET /media/songs%5Cyung%20kai%20-%20blue%20(Official%20Music%20Video).mp3 HTTP/1.1" 200 5312492
+INFO 2025-01-17 13:46:49,656 autoreload 11600 9448 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-01-17 13:49:57,263 autoreload 12468 20072 Watching for file changes with StatReloader
+INFO 2025-01-17 13:50:26,866 autoreload 12468 20072 D:\Projects\TuneVault\tunevault\tunevault\settings.py changed, reloading.
+INFO 2025-01-17 13:50:32,950 autoreload 20108 20312 Watching for file changes with StatReloader
+INFO 2025-01-17 13:51:53,666 autoreload 20108 20312 D:\Projects\TuneVault\tunevault\tunevault\settings.py changed, reloading.
+INFO 2025-01-17 13:52:00,737 autoreload 14972 12480 Watching for file changes with StatReloader
+INFO 2025-01-17 13:52:05,134 autoreload 14972 12480 D:\Projects\TuneVault\tunevault\tunevault\settings.py changed, reloading.
+INFO 2025-01-17 13:52:12,713 autoreload 708 3132 Watching for file changes with StatReloader
+ERROR 2025-01-17 13:52:43,650 views 708 5388 Error during Spotify track download: column "image" of relation "songs_song" does not exist
+LINE 1: ...m", "file", "source", "spotify_id", "created_at", "image") V...
+                                                             ^
+Traceback (most recent call last):
+  File "C:\Python 311\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.UndefinedColumn: column "image" of relation "songs_song" does not exist
+LINE 1: ...m", "file", "source", "spotify_id", "created_at", "image") V...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 125, in download_spotify_track
+    song = Song.objects.create(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\db\models\query.py", line 679, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Python 311\Lib\site-packages\django\db\models\base.py", line 822, in save
+    self.save_base(
+  File "C:\Python 311\Lib\site-packages\django\db\models\base.py", line 909, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\db\models\base.py", line 1067, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\db\models\base.py", line 1108, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\db\models\query.py", line 1847, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\db\models\sql\compiler.py", line 1823, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Python 311\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Python 311\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Python 311\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: column "image" of relation "songs_song" does not exist
+LINE 1: ...m", "file", "source", "spotify_id", "created_at", "image") V...
+                                                             ^
+
+ERROR 2025-01-17 13:52:43,768 log 708 5388 Internal Server Error: /api/songs/download/
+ERROR 2025-01-17 13:52:43,768 basehttp 708 5388 "POST /api/songs/download/ HTTP/1.1" 500 223
+INFO 2025-01-17 13:54:09,426 autoreload 19448 6128 Watching for file changes with StatReloader
+INFO 2025-01-17 13:54:41,605 basehttp 19448 17828 "POST /api/songs/download/ HTTP/1.1" 201 211
+INFO 2025-01-17 15:29:03,545 basehttp 19448 11716 "POST /api/songs/download/ HTTP/1.1" 201 211
+INFO 2025-01-17 15:37:08,415 autoreload 19448 6128 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-01-17 15:37:13,449 autoreload 8048 20104 Watching for file changes with StatReloader
+INFO 2025-01-17 15:37:19,005 autoreload 8048 20104 D:\Projects\TuneVault\tunevault\songs\models.py changed, reloading.
+INFO 2025-01-17 15:37:22,784 autoreload 18944 15720 Watching for file changes with StatReloader
+INFO 2025-01-17 15:39:02,246 autoreload 11940 14364 Watching for file changes with StatReloader
+INFO 2025-01-17 15:40:51,750 autoreload 14192 17372 Watching for file changes with StatReloader
+INFO 2025-01-17 15:41:28,769 basehttp 14192 23284 "POST /api/songs/download/ HTTP/1.1" 201 323
+INFO 2025-01-17 15:43:33,078 basehttp 14192 5212 "GET /media/songs/Old%20Man%20Canyon%20-%20Phantoms%20%26%20Friends%20%5BOfficial%20Video%5D.mp3 HTTP/1.1" 200 5597036
+WARNING 2025-01-17 15:43:33,127 log 14192 5212 Not Found: /favicon.ico
+INFO 2025-01-17 15:43:33,128 basehttp 14192 5212 - Broken pipe from ('127.0.0.1', 54760)
+INFO 2025-01-17 15:58:57,800 autoreload 14192 17372 D:\Projects\TuneVault\tunevault\songs\serializers.py changed, reloading.
+INFO 2025-01-17 15:59:02,452 autoreload 20340 22572 Watching for file changes with StatReloader
+INFO 2025-01-17 16:28:48,208 autoreload 20340 22572 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-01-17 16:28:52,764 autoreload 22604 21748 Watching for file changes with StatReloader
+INFO 2025-01-17 16:29:17,239 autoreload 18356 17936 Watching for file changes with StatReloader
+ERROR 2025-01-17 16:29:38,207 views 18356 5864 Unexpected error: 'str' object has no attribute 'url'
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 49, in download
+    return self.download_youtube(url)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 98, in download_youtube
+    return Response(serializer.data, status=status.HTTP_201_CREATED)
+                    ^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\rest_framework\serializers.py", line 571, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\rest_framework\serializers.py", line 249, in data
+    self._data = self.to_representation(self.instance)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\rest_framework\serializers.py", line 538, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\rest_framework\fields.py", line 1872, in to_representation
+    return method(value)
+           ^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\tunevault\songs\serializers.py", line 19, in get_file_url
+    return self.context['request'].build_absolute_uri(obj.file.url)
+                                                      ^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'url'
+ERROR 2025-01-17 16:29:38,274 log 18356 5864 Internal Server Error: /api/songs/download/
+ERROR 2025-01-17 16:29:38,274 basehttp 18356 5864 "POST /api/songs/download/ HTTP/1.1" 500 65
+INFO 2025-01-17 16:30:38,117 autoreload 18356 17936 D:\Projects\TuneVault\tunevault\songs\serializers.py changed, reloading.
+INFO 2025-01-17 16:30:41,879 autoreload 15652 14188 Watching for file changes with StatReloader
+INFO 2025-01-17 16:34:18,140 basehttp 15652 21584 "POST /api/songs/download/ HTTP/1.1" 201 265
+INFO 2025-01-17 16:38:25,184 basehttp 15652 21988 "POST /api/songs/download/ HTTP/1.1" 201 268
+INFO 2025-01-17 16:39:33,570 basehttp 15652 5864 "POST /api/songs/download/ HTTP/1.1" 201 231
+INFO 2025-01-17 16:41:52,648 basehttp 15652 22680 "POST /api/songs/download/ HTTP/1.1" 201 231
+INFO 2025-01-17 16:51:55,515 autoreload 20688 6096 Watching for file changes with StatReloader
+ERROR 2025-01-17 16:52:30,354 views 20688 22668 Unexpected error: null value in column "artist" of relation "songs_song" violates not-null constraint
+DETAIL:  Failing row contains (21, Chezile - Beanie (Official Live Video), null, songs\Chezile - Beanie (Official Live Video).mp3, youtube, 2025-01-17 11:22:30.276028+00, 1, , null, null).
+Traceback (most recent call last):
+  File "C:\Python 311\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.NotNullViolation: null value in column "artist" of relation "songs_song" violates not-null constraint
+DETAIL:  Failing row contains (21, Chezile - Beanie (Official Live Video), null, songs\Chezile - Beanie (Official Live Video).mp3, youtube, 2025-01-17 11:22:30.276028+00, 1, , null, null).
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 49, in download
+    return self.download_youtube(url)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 89, in download_youtube
+    song = Song.objects.create(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\db\models\query.py", line 679, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Python 311\Lib\site-packages\django\db\models\base.py", line 822, in save
+    self.save_base(
+  File "C:\Python 311\Lib\site-packages\django\db\models\base.py", line 909, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\db\models\base.py", line 1067, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\db\models\base.py", line 1108, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\db\models\query.py", line 1847, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\db\models\sql\compiler.py", line 1823, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Python 311\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Python 311\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Python 311\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.IntegrityError: null value in column "artist" of relation "songs_song" violates not-null constraint
+DETAIL:  Failing row contains (21, Chezile - Beanie (Official Live Video), null, songs\Chezile - Beanie (Official Live Video).mp3, youtube, 2025-01-17 11:22:30.276028+00, 1, , null, null).
+
+ERROR 2025-01-17 16:52:30,509 log 20688 22668 Internal Server Error: /api/songs/download/
+ERROR 2025-01-17 16:52:30,510 basehttp 20688 22668 "POST /api/songs/download/ HTTP/1.1" 500 310
+INFO 2025-01-17 16:53:18,847 autoreload 20688 6096 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-01-17 16:53:22,601 autoreload 21028 22652 Watching for file changes with StatReloader
+INFO 2025-01-17 16:53:38,535 basehttp 21028 6708 "POST /api/songs/download/ HTTP/1.1" 201 231
+INFO 2025-01-17 16:56:00,834 autoreload 21028 22652 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-17 16:56:04,958 autoreload 5904 9180 Watching for file changes with StatReloader
+INFO 2025-01-17 16:56:08,987 autoreload 5904 9180 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-17 16:56:12,991 autoreload 17640 23096 Watching for file changes with StatReloader
+INFO 2025-01-17 16:56:18,445 autoreload 17640 23096 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-17 16:56:22,858 autoreload 4116 7328 Watching for file changes with StatReloader
+INFO 2025-01-17 16:56:30,825 autoreload 4116 7328 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-17 16:56:35,219 autoreload 6968 2940 Watching for file changes with StatReloader
+INFO 2025-01-17 16:57:03,631 autoreload 6968 2940 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-01-17 16:57:07,841 autoreload 15496 13176 Watching for file changes with StatReloader
+INFO 2025-01-17 16:57:23,144 autoreload 15496 13176 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-01-17 16:57:26,841 autoreload 2908 6932 Watching for file changes with StatReloader
+ERROR 2025-01-17 16:57:52,853 views 2908 22264 Unexpected error: name 'cloudinary' is not defined
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 49, in download
+    return self.download_youtube(url)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 89, in download_youtube
+    upload_result = cloudinary.uploader.upload(
+                    ^^^^^^^^^^
+NameError: name 'cloudinary' is not defined
+ERROR 2025-01-17 16:57:52,857 log 2908 22264 Internal Server Error: /api/songs/download/
+ERROR 2025-01-17 16:57:52,859 basehttp 2908 22264 "POST /api/songs/download/ HTTP/1.1" 500 62
+INFO 2025-01-17 16:58:01,301 autoreload 2908 6932 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-17 16:58:06,066 autoreload 22860 19860 Watching for file changes with StatReloader
+INFO 2025-01-17 16:58:49,118 autoreload 1980 18184 Watching for file changes with StatReloader
+INFO 2025-01-17 16:59:07,448 autoreload 1980 18184 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-17 16:59:11,874 autoreload 15812 11976 Watching for file changes with StatReloader
+ERROR 2025-01-17 16:59:26,971 views 15812 23152 Validation Error: Must supply api_key
+WARNING 2025-01-17 16:59:26,972 log 15812 23152 Bad Request: /api/songs/download/
+WARNING 2025-01-17 16:59:26,974 basehttp 15812 23152 "POST /api/songs/download/ HTTP/1.1" 400 31
+INFO 2025-01-17 16:59:51,044 autoreload 15812 11976 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-17 16:59:55,035 autoreload 16736 15696 Watching for file changes with StatReloader
+INFO 2025-01-17 17:00:35,145 autoreload 16736 15696 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-01-17 17:00:39,146 autoreload 14428 19032 Watching for file changes with StatReloader
+INFO 2025-01-17 17:00:44,558 autoreload 14428 19032 D:\Projects\TuneVault\tunevault\tunevault\settings.py changed, reloading.
+INFO 2025-01-17 17:00:48,484 autoreload 17344 21988 Watching for file changes with StatReloader
+ERROR 2025-01-17 17:01:04,223 views 17344 14820 Validation Error: Must supply api_key
+WARNING 2025-01-17 17:01:04,224 log 17344 14820 Bad Request: /api/songs/download/
+WARNING 2025-01-17 17:01:04,225 basehttp 17344 14820 "POST /api/songs/download/ HTTP/1.1" 400 31
+INFO 2025-01-17 17:02:14,955 autoreload 17344 21988 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-01-17 17:02:19,674 autoreload 7936 2512 Watching for file changes with StatReloader
+INFO 2025-01-17 17:02:24,249 autoreload 7936 2512 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-01-17 17:02:28,458 autoreload 11216 7532 Watching for file changes with StatReloader
+INFO 2025-01-17 17:02:38,959 autoreload 11216 7532 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-01-17 17:02:43,335 autoreload 20988 20040 Watching for file changes with StatReloader
+INFO 2025-01-17 17:02:59,201 autoreload 20988 20040 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-01-17 17:03:02,972 autoreload 18112 18492 Watching for file changes with StatReloader
+INFO 2025-01-17 17:03:09,619 autoreload 18112 18492 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-01-17 17:03:13,370 autoreload 21560 14472 Watching for file changes with StatReloader
+INFO 2025-01-17 17:12:45,323 autoreload 23284 15556 Watching for file changes with StatReloader
+INFO 2025-01-17 17:13:14,590 autoreload 23284 15556 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-01-17 17:13:19,214 autoreload 21348 13280 Watching for file changes with StatReloader
+INFO 2025-01-17 17:13:23,331 autoreload 21348 13280 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-17 17:13:27,164 autoreload 636 19916 Watching for file changes with StatReloader
+INFO 2025-01-17 17:15:09,965 autoreload 636 19916 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-17 17:15:13,875 autoreload 13300 13428 Watching for file changes with StatReloader
+INFO 2025-01-17 17:20:03,561 autoreload 13300 13428 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-17 17:20:08,034 autoreload 7612 11324 Watching for file changes with StatReloader
+INFO 2025-01-17 17:20:19,637 autoreload 7612 11324 D:\Projects\TuneVault\tunevault\tunevault\settings.py changed, reloading.
+INFO 2025-01-17 17:20:23,702 autoreload 3228 20308 Watching for file changes with StatReloader
+INFO 2025-01-17 17:20:41,851 autoreload 3228 20308 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-01-17 17:20:46,097 autoreload 23172 20536 Watching for file changes with StatReloader
+INFO 2025-01-17 17:21:28,918 autoreload 23172 20536 D:\Projects\TuneVault\tunevault\songs\models.py changed, reloading.
+INFO 2025-01-17 17:21:32,777 autoreload 7808 12568 Watching for file changes with StatReloader
+INFO 2025-01-17 17:21:54,061 basehttp 7808 19940 "POST /api/songs/download/ HTTP/1.1" 200 0
+INFO 2025-01-17 17:23:04,760 autoreload 7808 12568 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-17 17:23:08,862 autoreload 10388 17320 Watching for file changes with StatReloader
+INFO 2025-01-17 17:23:23,361 basehttp 10388 19644 "POST /api/songs/download/ HTTP/1.1" 200 214
+WARNING 2025-01-17 17:23:27,398 log 10388 21616 Not Found: /media/songs/Chezile
+WARNING 2025-01-17 17:23:27,398 basehttp 10388 21616 "GET /media/songs/Chezile HTTP/1.1" 404 2787
+WARNING 2025-01-17 17:23:27,479 log 10388 21616 Not Found: /favicon.ico
+INFO 2025-01-17 17:23:27,480 basehttp 10388 21616 - Broken pipe from ('127.0.0.1', 56705)
+INFO 2025-01-17 17:24:12,048 basehttp 10388 19644 - Broken pipe from ('127.0.0.1', 56695)
+INFO 2025-01-17 17:24:19,999 basehttp 10388 11968 "POST /api/songs/download/ HTTP/1.1" 200 229
+INFO 2025-01-17 18:17:27,385 basehttp 10388 15732 "POST /api/users/login/ HTTP/1.1" 200 95
+INFO 2025-01-17 18:17:30,543 basehttp 10388 15732 "POST /api/users/login/ HTTP/1.1" 200 95
+WARNING 2025-01-17 18:31:01,495 log 10388 23204 Unauthorized: /api/songs/
+WARNING 2025-01-17 18:31:01,498 log 10388 696 Unauthorized: /api/songs/
+WARNING 2025-01-17 18:31:01,498 basehttp 10388 23204 "GET /api/songs/ HTTP/1.1" 401 58
+WARNING 2025-01-17 18:31:01,500 basehttp 10388 696 "GET /api/songs/ HTTP/1.1" 401 58
+WARNING 2025-01-17 18:38:50,241 log 10388 20560 Unauthorized: /api/songs/download/
+WARNING 2025-01-17 18:38:50,242 basehttp 10388 20560 "POST /api/songs/download/ HTTP/1.1" 401 58
+WARNING 2025-01-17 18:38:55,141 log 10388 20560 Bad Request: /api/users/login/
+WARNING 2025-01-17 18:38:55,142 basehttp 10388 20560 "POST /api/users/login/ HTTP/1.1" 400 68
+WARNING 2025-01-17 18:39:07,924 log 10388 20560 Bad Request: /api/users/login/
+WARNING 2025-01-17 18:39:07,924 basehttp 10388 20560 "POST /api/users/login/ HTTP/1.1" 400 68
+INFO 2025-01-17 18:39:23,454 basehttp 10388 20560 "POST /api/users/login/ HTTP/1.1" 200 95
+WARNING 2025-01-17 18:39:23,594 log 10388 20560 Unauthorized: /api/songs/
+WARNING 2025-01-17 18:39:23,596 log 10388 23088 Unauthorized: /api/songs/
+WARNING 2025-01-17 18:39:23,596 basehttp 10388 20560 "GET /api/songs/ HTTP/1.1" 401 58
+WARNING 2025-01-17 18:39:23,597 basehttp 10388 23088 "GET /api/songs/ HTTP/1.1" 401 58
+WARNING 2025-01-17 18:39:34,655 log 10388 20560 Unauthorized: /api/songs/download/
+WARNING 2025-01-17 18:39:34,658 basehttp 10388 20560 "POST /api/songs/download/ HTTP/1.1" 401 58
+INFO 2025-01-17 18:40:02,756 basehttp 10388 20560 "POST /api/users/login/ HTTP/1.1" 200 95
+WARNING 2025-01-17 18:40:02,859 log 10388 20560 Unauthorized: /api/songs/
+WARNING 2025-01-17 18:40:02,861 log 10388 23088 Unauthorized: /api/songs/
+WARNING 2025-01-17 18:40:02,862 basehttp 10388 20560 "GET /api/songs/ HTTP/1.1" 401 58
+WARNING 2025-01-17 18:40:02,863 basehttp 10388 23088 "GET /api/songs/ HTTP/1.1" 401 58
+WARNING 2025-01-17 18:54:56,683 log 10388 16644 Unauthorized: /api/songs/download/
+WARNING 2025-01-17 18:54:56,687 basehttp 10388 16644 "POST /api/songs/download/ HTTP/1.1" 401 58
+WARNING 2025-01-17 18:56:02,412 log 10388 16644 Unauthorized: /api/songs/download/
+WARNING 2025-01-17 18:56:02,413 basehttp 10388 16644 "POST /api/songs/download/ HTTP/1.1" 401 58
+WARNING 2025-01-17 18:58:48,146 log 10388 1404 Unauthorized: /api/songs/download/
+WARNING 2025-01-17 18:58:48,148 basehttp 10388 1404 "POST /api/songs/download/ HTTP/1.1" 401 58
+WARNING 2025-01-17 19:00:00,400 log 10388 1404 Unauthorized: /api/songs/download/
+WARNING 2025-01-17 19:00:00,401 basehttp 10388 1404 "POST /api/songs/download/ HTTP/1.1" 401 58
+WARNING 2025-01-17 19:00:33,606 log 10388 1404 Unauthorized: /api/songs/download/
+WARNING 2025-01-17 19:00:33,607 basehttp 10388 1404 "POST /api/songs/download/ HTTP/1.1" 401 58
+WARNING 2025-01-17 19:00:38,660 log 10388 1404 Bad Request: /api/users/login/
+WARNING 2025-01-17 19:00:38,662 basehttp 10388 1404 "POST /api/users/login/ HTTP/1.1" 400 68
+WARNING 2025-01-17 19:00:39,018 log 10388 23468 Bad Request: /api/users/login/
+WARNING 2025-01-17 19:00:39,020 basehttp 10388 23468 "POST /api/users/login/ HTTP/1.1" 400 68
+WARNING 2025-01-17 19:00:39,204 log 10388 18888 Bad Request: /api/users/login/
+WARNING 2025-01-17 19:00:39,206 basehttp 10388 18888 "POST /api/users/login/ HTTP/1.1" 400 68
+INFO 2025-01-17 19:01:32,852 basehttp 10388 1404 "POST /api/users/login/ HTTP/1.1" 200 95
+WARNING 2025-01-17 19:01:33,118 log 10388 1404 Unauthorized: /api/songs/
+WARNING 2025-01-17 19:01:33,120 log 10388 23468 Unauthorized: /api/songs/
+WARNING 2025-01-17 19:01:33,121 basehttp 10388 1404 "GET /api/songs/ HTTP/1.1" 401 58
+WARNING 2025-01-17 19:01:33,121 basehttp 10388 23468 "GET /api/songs/ HTTP/1.1" 401 58
+WARNING 2025-01-17 19:03:04,935 log 10388 1404 Unauthorized: /api/songs/download/
+WARNING 2025-01-17 19:03:04,937 basehttp 10388 1404 "POST /api/songs/download/ HTTP/1.1" 401 58
+WARNING 2025-01-17 19:05:24,546 log 10388 17520 Unauthorized: /api/songs/download/
+WARNING 2025-01-17 19:05:24,548 basehttp 10388 17520 "POST /api/songs/download/ HTTP/1.1" 401 58
+WARNING 2025-01-17 19:06:46,043 log 10388 17520 Unauthorized: /api/songs/download/
+WARNING 2025-01-17 19:06:46,044 basehttp 10388 17520 "POST /api/songs/download/ HTTP/1.1" 401 58
+WARNING 2025-01-17 19:06:53,622 log 10388 17520 Unauthorized: /api/songs/download/
+WARNING 2025-01-17 19:06:53,623 basehttp 10388 17520 "POST /api/songs/download/ HTTP/1.1" 401 58
+WARNING 2025-01-17 19:09:51,094 log 10388 20588 Unauthorized: /api/songs/download/
+WARNING 2025-01-17 19:09:51,097 basehttp 10388 20588 "POST /api/songs/download/ HTTP/1.1" 401 58
+WARNING 2025-01-17 19:12:32,127 log 10388 20300 Unauthorized: /api/songs/download/
+WARNING 2025-01-17 19:12:32,129 basehttp 10388 20300 "POST /api/songs/download/ HTTP/1.1" 401 58
+WARNING 2025-01-17 19:16:55,824 log 10388 11984 Unauthorized: /api/songs/download/
+WARNING 2025-01-17 19:16:55,825 basehttp 10388 11984 "POST /api/songs/download/ HTTP/1.1" 401 58
+WARNING 2025-01-17 19:17:22,546 log 10388 11984 Unauthorized: /api/songs/download/
+WARNING 2025-01-17 19:17:22,548 basehttp 10388 11984 "POST /api/songs/download/ HTTP/1.1" 401 58
+WARNING 2025-01-17 19:20:23,504 log 10388 17416 Unauthorized: /api/songs/download/
+WARNING 2025-01-17 19:20:23,506 basehttp 10388 17416 "POST /api/songs/download/ HTTP/1.1" 401 58
+WARNING 2025-01-17 19:20:36,919 log 10388 17416 Unauthorized: /api/songs/download/
+WARNING 2025-01-17 19:20:36,920 basehttp 10388 17416 "POST /api/songs/download/ HTTP/1.1" 401 58
+INFO 2025-01-17 19:21:26,343 basehttp 10388 22444 "POST /api/songs/download/ HTTP/1.1" 200 214
+INFO 2025-01-17 19:22:58,987 autoreload 23444 20116 Watching for file changes with StatReloader
+WARNING 2025-01-17 19:23:02,643 log 23444 17748 Unauthorized: /api/songs/download/
+WARNING 2025-01-17 19:23:02,644 basehttp 23444 17748 "POST /api/songs/download/ HTTP/1.1" 401 58
+WARNING 2025-01-17 19:23:22,049 log 23444 17748 Unauthorized: /api/songs/download/
+WARNING 2025-01-17 19:23:22,050 basehttp 23444 17748 "POST /api/songs/download/ HTTP/1.1" 401 58
+INFO 2025-01-17 19:25:05,671 basehttp 23444 17748 "POST /api/songs/download/ HTTP/1.1" 200 194
+INFO 2025-01-17 19:30:02,153 autoreload 23444 20116 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-17 19:30:06,357 autoreload 18496 21904 Watching for file changes with StatReloader
+INFO 2025-01-17 19:31:05,191 basehttp 18496 19016 "POST /api/songs/download/ HTTP/1.1" 200 4732460
+INFO 2025-01-17 19:31:58,700 basehttp 18496 9536 "POST /api/songs/download/ HTTP/1.1" 200 22157612
+INFO 2025-01-17 19:45:40,175 autoreload 696 22224 Watching for file changes with StatReloader
+INFO 2025-01-17 19:51:04,739 basehttp 696 8048 "POST /api/songs/download/ HTTP/1.1" 200 22157612
+INFO 2025-01-17 19:55:11,187 autoreload 696 22224 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-17 19:55:15,433 autoreload 23488 7092 Watching for file changes with StatReloader
+INFO 2025-01-17 19:55:30,193 autoreload 23488 7092 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-17 19:55:34,439 autoreload 17840 21232 Watching for file changes with StatReloader
+INFO 2025-01-17 19:55:42,537 autoreload 17840 21232 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-17 19:55:47,140 autoreload 22036 14700 Watching for file changes with StatReloader
+INFO 2025-01-17 19:56:03,151 autoreload 22036 14700 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-17 19:56:07,042 autoreload 12788 1748 Watching for file changes with StatReloader
+INFO 2025-01-17 19:56:40,734 autoreload 12788 1748 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-17 19:56:44,769 autoreload 6336 8592 Watching for file changes with StatReloader
+INFO 2025-01-17 19:56:53,731 autoreload 6336 8592 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-17 19:56:57,553 autoreload 3100 21656 Watching for file changes with StatReloader
+ERROR 2025-01-17 19:57:17,039 views 3100 19452 YouTube download error: Song() got unexpected keyword arguments: 'thumbnail_url'
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 103, in download_youtube
+    song = Song.objects.create(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\db\models\query.py", line 677, in create
+    obj = self.model(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\db\models\base.py", line 567, in __init__
+    raise TypeError(
+TypeError: Song() got unexpected keyword arguments: 'thumbnail_url'
+ERROR 2025-01-17 19:57:17,047 log 3100 19452 Internal Server Error: /api/songs/download/
+ERROR 2025-01-17 19:57:17,048 basehttp 3100 19452 "POST /api/songs/download/ HTTP/1.1" 500 85
+INFO 2025-01-17 20:16:47,617 autoreload 3100 21656 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-17 20:16:51,809 autoreload 7024 16788 Watching for file changes with StatReloader
+INFO 2025-01-17 20:16:58,338 autoreload 7024 16788 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-17 20:17:02,297 autoreload 1444 22080 Watching for file changes with StatReloader
+ERROR 2025-01-17 20:17:19,459 views 1444 20800 YouTube download error: Song() got unexpected keyword arguments: 'thumbnail_url'
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 105, in download_youtube
+    song = Song.objects.create(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\db\models\query.py", line 677, in create
+    obj = self.model(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\db\models\base.py", line 567, in __init__
+    raise TypeError(
+TypeError: Song() got unexpected keyword arguments: 'thumbnail_url'
+ERROR 2025-01-17 20:17:19,463 log 1444 20800 Internal Server Error: /api/songs/download/
+ERROR 2025-01-17 20:17:19,465 basehttp 1444 20800 "POST /api/songs/download/ HTTP/1.1" 500 85
+INFO 2025-01-17 20:18:46,291 autoreload 8920 21464 Watching for file changes with StatReloader
+INFO 2025-01-17 20:19:03,639 basehttp 8920 19920 "POST /api/songs/download/ HTTP/1.1" 200 4732460
+INFO 2025-01-17 20:19:54,255 basehttp 8920 17136 "POST /api/songs/download/ HTTP/1.1" 200 8951084
+INFO 2025-01-17 20:26:00,917 basehttp 8920 20344 "POST /api/songs/download/ HTTP/1.1" 200 12758444
+INFO 2025-01-17 20:32:30,337 basehttp 8920 6172 "POST /api/songs/download/ HTTP/1.1" 200 12758444
+INFO 2025-01-17 20:33:42,483 autoreload 8920 21464 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-17 20:33:46,826 autoreload 19148 14636 Watching for file changes with StatReloader
+INFO 2025-01-17 20:33:52,159 autoreload 19148 14636 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-17 20:33:56,883 autoreload 2372 20564 Watching for file changes with StatReloader
+INFO 2025-01-17 20:34:00,947 autoreload 2372 20564 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-17 20:34:05,361 autoreload 4320 22240 Watching for file changes with StatReloader
+INFO 2025-01-17 20:34:46,786 basehttp 4320 22820 "POST /api/songs/download/ HTTP/1.1" 200 12758444
+INFO 2025-01-17 20:35:15,510 autoreload 4320 22240 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-17 20:35:19,324 autoreload 22520 23456 Watching for file changes with StatReloader
+INFO 2025-01-17 20:35:26,029 autoreload 22520 23456 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-17 20:35:30,710 autoreload 16548 22880 Watching for file changes with StatReloader
+INFO 2025-01-17 20:36:04,451 basehttp 16548 20620 "POST /api/songs/download/ HTTP/1.1" 200 12758444
+INFO 2025-01-17 20:37:39,805 basehttp 16548 11012 "POST /api/songs/download/ HTTP/1.1" 200 4732460
+INFO 2025-01-17 20:38:27,597 autoreload 16548 22880 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-17 20:38:32,100 autoreload 20644 5904 Watching for file changes with StatReloader
+INFO 2025-01-17 20:40:44,842 autoreload 20644 5904 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-17 20:40:49,171 autoreload 23256 21628 Watching for file changes with StatReloader
+INFO 2025-01-17 20:40:55,547 autoreload 23256 21628 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-17 20:40:59,536 autoreload 22200 2908 Watching for file changes with StatReloader
+INFO 2025-01-17 20:41:03,557 autoreload 22200 2908 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-17 20:41:07,604 autoreload 21688 23280 Watching for file changes with StatReloader
+INFO 2025-01-17 20:42:38,753 basehttp 21688 21900 "POST /api/songs/download/ HTTP/1.1" 200 304
+INFO 2025-01-17 20:44:06,964 autoreload 21688 23280 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-17 20:44:11,550 autoreload 22228 19596 Watching for file changes with StatReloader
+INFO 2025-01-17 20:50:09,828 autoreload 22228 19596 D:\Projects\TuneVault\tunevault\tunevault\settings.py changed, reloading.
+INFO 2025-01-17 20:50:13,755 autoreload 11608 16524 Watching for file changes with StatReloader
+INFO 2025-01-17 20:50:41,909 basehttp 11608 17772 "POST /api/songs/download/ HTTP/1.1" 200 4732460
+INFO 2025-01-17 20:52:28,859 basehttp 11608 19728 "POST /api/songs/download/ HTTP/1.1" 200 4173740

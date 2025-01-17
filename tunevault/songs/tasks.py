@@ -7,6 +7,10 @@ import logging
 from .models import Song, Playlist
 from .spotify_api import get_track_info, get_spotify_client, get_playlist_tracks
 import spotipy
+import requests
+from django.core.files import File
+from django.core.files.temp import NamedTemporaryFile
+import cloudinary.uploader
 
 logger = logging.getLogger(__name__)
 User = get_user_model()
@@ -66,6 +70,18 @@ def download_song(song_info, user_id, playlist_id=None):
             source='youtube',
             spotify_id=track_info.get('spotify_id')
         )
+
+        # Download and upload song image to Cloudinary
+        image_url = track_info.get('image_url')
+        if image_url:
+            img_temp = NamedTemporaryFile(delete=True)
+            img_temp.write(requests.get(image_url).content)
+            img_temp.flush()
+            upload_result = cloudinary.uploader.upload(img_temp.name, public_id=f"songs/{track_info['title']}")
+            song.image = upload_result['secure_url']
+
+        # Save the song object to ensure the image is stored
+        song.save()
 
         # Associate with playlist if provided
         if playlist_id:

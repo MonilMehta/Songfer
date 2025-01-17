@@ -29,13 +29,28 @@ tmpPostgres = urlparse(config("DATABASE_URL"))
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': tmpPostgres.path.replace('/', ''),
-        'USER': tmpPostgres.username,
-        'PASSWORD': tmpPostgres.password,
-        'HOST': tmpPostgres.hostname,
-        'PORT': 5432,
+        'NAME': 'tunevault',
+        'USER': 'tunevault_owner',
+        'PASSWORD': config('DB_PASS'),
+        'HOST': 'ep-patient-resonance-a19rwm71.ap-southeast-1.aws.neon.tech',
+        'PORT': '5432',
+        'OPTIONS': {
+            'sslmode': 'require',
+        },
+    },
+    'songs': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'tunevault',
+        'USER': 'tunevault_owner',
+        'PASSWORD': config('DB_PASS'),
+        'HOST': 'ep-patient-resonance-a19rwm71.ap-southeast-1.aws.neon.tech',
+        'PORT': '5432',
+        'OPTIONS': {
+            'sslmode': 'require',
+        },
     }
 }
+
 
 SPOTIFY_CLIENT_ID = config('SPOTIFY_CLIENT_ID')
 SPOTIFY_CLIENT_SECRET = config('SPOTIFY_CLIENT_SECRET')
@@ -84,6 +99,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',  # Add this line
 ]
 
 ROOT_URLCONF = 'tunevault.urls'
@@ -196,6 +212,7 @@ CACHES = {
     }
 }
 
+
 # Logging
 LOGGING = {
     'version': 1,
@@ -239,4 +256,4 @@ LOGGING = {
 
 # CORS settings
 CORS_ALLOW_ALL_ORIGINS = True  # For development only, restrict in production
-
+CORS_EXPOSE_HEADERS = ['X-Thumbnail-URL', 'X-Song-Title', 'X-Song-Artist']

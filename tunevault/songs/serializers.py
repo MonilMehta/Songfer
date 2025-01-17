@@ -7,11 +7,18 @@ class GenreSerializer(serializers.ModelSerializer):
         fields = ['id', 'name']
 
 class SongSerializer(serializers.ModelSerializer):
-    genres = GenreSerializer(many=True, read_only=True)
+    file_url = serializers.SerializerMethodField()
+    image_url = serializers.SerializerMethodField()
 
     class Meta:
         model = Song
-        fields = ['id', 'title', 'artist', 'album', 'file', 'source', 'spotify_id', 'created_at', 'genres']
+        fields = ['id', 'title', 'artist', 'album', 'file_url', 'image_url', 'source', 'created_at']
+
+    def get_file_url(self, obj):
+        return obj.file
+
+    def get_image_url(self, obj):
+        return obj.image
 
 class PlaylistSerializer(serializers.ModelSerializer):
     songs = SongSerializer(many=True, read_only=True)
