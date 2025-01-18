@@ -12,13 +12,10 @@ class SongSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Song
-        fields = ['id', 'title', 'artist', 'album', 'file_url', 'image_url', 'source', 'created_at']
+        fields = ['id', 'title', 'artist', 'album', 'song_url', 'thumbnail_url', 'source', 'created_at']
 
     def get_file_url(self, obj):
         return obj.file
-
-    def get_image_url(self, obj):
-        return obj.image
 
 class PlaylistSerializer(serializers.ModelSerializer):
     songs = SongSerializer(many=True, read_only=True)

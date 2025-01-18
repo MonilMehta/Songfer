@@ -8,12 +8,11 @@ import { useToast } from '@/hooks/use-toast'
 import WaveformAnimation from './WaveformAnimation'
 import apiCaller from '@/utils/apiCaller'
 
-export default function Hero() {
+const Hero: React.FC = () => {
   const [url, setUrl] = useState('')
   const [downloading, setDownloading] = useState(false)
   const [progress, setProgress] = useState(0)
-  const [downloadedSong, setDownloadedSong] = useState(null)
-  const [thumbnailUrl, setThumbnailUrl] = useState(null)
+  const [downloadedSong, setDownloadedSong] = useState<any>(null)
   const router = useRouter()
   const { toast } = useToast()
 
@@ -38,7 +37,6 @@ export default function Hero() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const token = localStorage.getItem('token');
-  
     if (!token) {
       toast({
         title: "Authentication Required",
@@ -48,7 +46,7 @@ export default function Hero() {
       router.push('/login');
       return;
     }
-  
+
     if (!url) {
       toast({
         title: "URL Required",
@@ -57,10 +55,10 @@ export default function Hero() {
       });
       return;
     }
-  
+
     setDownloading(true);
     setProgress(0);
-  
+
     try {
       const response = await apiCaller('songs/download/', 'POST', { url }, {
         responseType: 'blob',
@@ -68,7 +66,7 @@ export default function Hero() {
           'Accept': 'audio/mpeg, application/json',
         }
       });
-  
+
       if (response.status === 401) {
         toast({
           title: "Session Expired",
@@ -78,26 +76,34 @@ export default function Hero() {
         router.push('/login');
         return;
       }
-  
+
+      if (!response) {
+        throw new Error("No response received from the server.");
+      }
       const contentType = response.headers['content-type'];
-  
       if (contentType.includes('audio/mpeg')) {
         const contentDisposition = response.headers['content-disposition'];
         const filenameMatch = contentDisposition?.match(/filename="(.+)"/) || [];
-        const filename = filenameMatch[1] || 'download.mp3';
-  
-        // Ensure filename is passed to the download function
-        await handleDownload(response.data, filename);
-  
-        setDownloadedSong({
-          title: filename,
-          status: 'Downloaded successfully'
-        });
-  
+        const defaultFilename = filenameMatch[1] || 'download.mp3';
+      
+        // Retrieve headers
+        const songTitle = response.headers['x-song-title'] || defaultFilename;
+        const songArtist = response.headers['x-song-artist'] || 'Unknown Artist';
         const thumbnailUrl = response.headers['x-thumbnail-url'];
-        if (thumbnailUrl) {
-          setThumbnailUrl(thumbnailUrl);
-        }
+
+        // Use songTitle for the filename
+        const filename = songTitle;
+
+        // Download the file
+        await handleDownload(response.data, filename);
+
+        // Update state for UI
+        setDownloadedSong({
+          title: songTitle,
+          artist: songArtist,
+          thumbnail: thumbnailUrl,
+          status: 'Downloaded successfully',
+        });
       } else {
         const reader = new FileReader();
         reader.onload = () => {
@@ -111,9 +117,9 @@ export default function Hero() {
         };
         reader.readAsText(response.data);
       }
-  
+
       setProgress(100);
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error:', error);
       toast({
         title: "Download Failed",
@@ -124,7 +130,7 @@ export default function Hero() {
       setDownloading(false);
     }
   };
-  
+
   return (
     <div className="relative overflow-hidden bg-gradient-to-br from-background to-primary/10 py-20 sm:py-32">
       <div className="container mx-auto px-4">
@@ -179,13 +185,23 @@ export default function Hero() {
             </div>
           )}
           {downloadedSong && (
-            <div className="mt-4 text-sm text-muted-foreground">
-              <p>Last Downloaded: {downloadedSong.title}</p>
-              {thumbnailUrl && <img src={thumbnailUrl} alt="Thumbnail" className="mt-2" />}
+            <div className="border p-4 mt-4">
+              {downloadedSong.thumbnail && (
+                <img
+                  src={downloadedSong.thumbnail}
+                  alt="Song thumbnail"
+                  className="h-24 w-24 object-cover mb-2"
+                />
+              )}
+              <h2 className="font-bold">{downloadedSong.title}</h2>
+              {downloadedSong.artist && <p>Artist: {downloadedSong.artist}</p>}
+              <p>{downloadedSong.status}</p>
             </div>
           )}
         </div>
       </div>
     </div>
   );
-}
+};
+
+export default Hero;

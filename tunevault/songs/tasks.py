@@ -10,7 +10,6 @@ import spotipy
 import requests
 from django.core.files import File
 from django.core.files.temp import NamedTemporaryFile
-import cloudinary.uploader
 
 logger = logging.getLogger(__name__)
 User = get_user_model()

@@ -573,3 +573,611 @@ INFO 2025-01-17 20:50:09,828 autoreload 22228 19596 D:\Projects\TuneVault\tuneva
 INFO 2025-01-17 20:50:13,755 autoreload 11608 16524 Watching for file changes with StatReloader
 INFO 2025-01-17 20:50:41,909 basehttp 11608 17772 "POST /api/songs/download/ HTTP/1.1" 200 4732460
 INFO 2025-01-17 20:52:28,859 basehttp 11608 19728 "POST /api/songs/download/ HTTP/1.1" 200 4173740
+ERROR 2025-01-17 20:56:32,579 log 11608 13028 Internal Server Error: /api/songs/
+Traceback (most recent call last):
+  File "C:\Python 311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\rest_framework\viewsets.py", line 124, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python 311\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python 311\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\rest_framework\mixins.py", line 46, in list
+    return Response(serializer.data)
+                    ^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\rest_framework\serializers.py", line 795, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\rest_framework\serializers.py", line 249, in data
+    self._data = self.to_representation(self.instance)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\rest_framework\serializers.py", line 713, in to_representation
+    return [
+           ^
+  File "C:\Python 311\Lib\site-packages\rest_framework\serializers.py", line 714, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\rest_framework\serializers.py", line 538, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\rest_framework\fields.py", line 1872, in to_representation
+    return method(value)
+           ^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\tunevault\songs\serializers.py", line 21, in get_image_url
+    return obj.image
+           ^^^^^^^^^
+AttributeError: 'Song' object has no attribute 'image'
+ERROR 2025-01-17 20:56:32,583 log 11608 5560 Internal Server Error: /api/songs/
+Traceback (most recent call last):
+  File "C:\Python 311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\rest_framework\viewsets.py", line 124, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Python 311\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "C:\Python 311\Lib\site-packages\rest_framework\views.py", line 506, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\rest_framework\mixins.py", line 46, in list
+    return Response(serializer.data)
+                    ^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\rest_framework\serializers.py", line 795, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\rest_framework\serializers.py", line 249, in data
+    self._data = self.to_representation(self.instance)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\rest_framework\serializers.py", line 713, in to_representation
+    return [
+           ^
+  File "C:\Python 311\Lib\site-packages\rest_framework\serializers.py", line 714, in <listcomp>
+    self.child.to_representation(item) for item in iterable
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\rest_framework\serializers.py", line 538, in to_representation
+    ret[field.field_name] = field.to_representation(attribute)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\rest_framework\fields.py", line 1872, in to_representation
+    return method(value)
+           ^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\tunevault\songs\serializers.py", line 21, in get_image_url
+    return obj.image
+           ^^^^^^^^^
+AttributeError: 'Song' object has no attribute 'image'
+ERROR 2025-01-17 20:56:32,589 basehttp 11608 13028 "GET /api/songs/ HTTP/1.1" 500 147962
+ERROR 2025-01-17 20:56:32,591 basehttp 11608 5560 "GET /api/songs/ HTTP/1.1" 500 147962
+INFO 2025-01-17 21:23:15,952 autoreload 11608 16524 D:\Projects\TuneVault\tunevault\songs\serializers.py changed, reloading.
+INFO 2025-01-17 21:23:20,973 autoreload 21380 8964 Watching for file changes with StatReloader
+INFO 2025-01-17 21:23:32,912 autoreload 21380 8964 D:\Projects\TuneVault\tunevault\songs\models.py changed, reloading.
+INFO 2025-01-17 21:23:37,141 autoreload 6052 19912 Watching for file changes with StatReloader
+INFO 2025-01-17 21:34:01,398 autoreload 15672 7632 Watching for file changes with StatReloader
+ERROR 2025-01-17 21:34:59,559 views 15672 4556 YouTube download error: column "song_url" of relation "songs_song" does not exist
+LINE 1: ...ce", "spotify_id", "created_at", "thumbnail_url", "song_url"...
+                                                             ^
+Traceback (most recent call last):
+  File "C:\Python 311\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.UndefinedColumn: column "song_url" of relation "songs_song" does not exist
+LINE 1: ...ce", "spotify_id", "created_at", "thumbnail_url", "song_url"...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 104, in download_youtube
+    song = Song.objects.create(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\db\models\query.py", line 679, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Python 311\Lib\site-packages\django\db\models\base.py", line 822, in save
+    self.save_base(
+  File "C:\Python 311\Lib\site-packages\django\db\models\base.py", line 909, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\db\models\base.py", line 1067, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\db\models\base.py", line 1108, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\db\models\query.py", line 1847, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\db\models\sql\compiler.py", line 1823, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Python 311\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "C:\Python 311\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Python 311\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: column "song_url" of relation "songs_song" does not exist
+LINE 1: ...ce", "spotify_id", "created_at", "thumbnail_url", "song_url"...
+                                                             ^
+
+ERROR 2025-01-17 21:34:59,649 log 15672 4556 Internal Server Error: /api/songs/download/
+ERROR 2025-01-17 21:34:59,650 basehttp 15672 4556 "POST /api/songs/download/ HTTP/1.1" 500 241
+INFO 2025-01-17 21:35:53,909 autoreload 1512 8792 Watching for file changes with StatReloader
+INFO 2025-01-17 21:36:09,973 basehttp 1512 22624 "POST /api/songs/download/ HTTP/1.1" 200 4173740
+INFO 2025-01-17 21:40:00,948 basehttp 1512 14792 "POST /api/songs/download/ HTTP/1.1" 200 4173740
+INFO 2025-01-17 21:40:27,301 basehttp 1512 14792 "POST /api/songs/download/ HTTP/1.1" 200 4173740
+INFO 2025-01-17 21:41:58,660 basehttp 1512 14792 "POST /api/songs/download/ HTTP/1.1" 200 4173740
+INFO 2025-01-17 21:54:44,676 autoreload 1512 8792 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-17 21:54:49,108 autoreload 21324 7256 Watching for file changes with StatReloader
+INFO 2025-01-17 22:01:31,109 autoreload 21324 7256 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-17 22:01:35,196 autoreload 18748 1236 Watching for file changes with StatReloader
+INFO 2025-01-17 22:01:50,492 autoreload 18748 1236 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-17 22:01:54,622 autoreload 8704 17680 Watching for file changes with StatReloader
+INFO 2025-01-17 22:03:50,788 autoreload 18496 1524 Watching for file changes with StatReloader
+INFO 2025-01-17 22:08:48,834 autoreload 18496 1524 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-17 22:08:52,622 autoreload 22096 7324 Watching for file changes with StatReloader
+INFO 2025-01-17 22:09:04,043 autoreload 22096 7324 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-17 22:09:07,845 autoreload 22960 12788 Watching for file changes with StatReloader
+INFO 2025-01-17 22:09:14,429 autoreload 22960 12788 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-17 22:09:18,256 autoreload 20244 14684 Watching for file changes with StatReloader
+INFO 2025-01-17 22:09:27,430 autoreload 20244 14684 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-17 22:09:31,351 autoreload 23040 21344 Watching for file changes with StatReloader
+INFO 2025-01-17 22:09:46,656 autoreload 23040 21344 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-17 22:09:50,382 autoreload 20736 22448 Watching for file changes with StatReloader
+INFO 2025-01-17 22:10:15,903 autoreload 20736 22448 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-17 22:10:19,635 autoreload 20868 22984 Watching for file changes with StatReloader
+INFO 2025-01-17 22:10:29,754 autoreload 20868 22984 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-17 22:10:33,708 autoreload 6000 8880 Watching for file changes with StatReloader
+INFO 2025-01-17 22:10:38,992 autoreload 6000 8880 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-17 22:10:42,942 autoreload 1904 22044 Watching for file changes with StatReloader
+INFO 2025-01-17 22:13:51,431 autoreload 15652 23420 Watching for file changes with StatReloader
+INFO 2025-01-17 22:28:48,715 autoreload 15652 23420 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-17 22:28:53,123 autoreload 2656 7884 Watching for file changes with StatReloader
+ERROR 2025-01-17 22:29:00,619 log 2656 1316 Internal Server Error: /api/songs/download/
+Traceback (most recent call last):
+  File "C:\Python 311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\rest_framework\viewsets.py", line 116, in view
+    handler = getattr(self, action)
+              ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SongViewSet' object has no attribute 'download'
+ERROR 2025-01-17 22:29:00,622 basehttp 2656 1316 "POST /api/songs/download/ HTTP/1.1" 500 20826
+INFO 2025-01-17 22:29:20,717 autoreload 2656 7884 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-17 22:29:24,899 autoreload 4128 23316 Watching for file changes with StatReloader
+INFO 2025-01-17 22:29:32,684 autoreload 4128 23316 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-17 22:29:36,768 autoreload 20144 20076 Watching for file changes with StatReloader
+INFO 2025-01-17 22:29:48,542 autoreload 20144 20076 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-17 22:29:52,376 autoreload 11976 1316 Watching for file changes with StatReloader
+INFO 2025-01-17 22:29:56,842 autoreload 11976 1316 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-17 22:30:01,405 autoreload 23500 22056 Watching for file changes with StatReloader
+ERROR 2025-01-18 00:25:05,616 log 23500 23208 Internal Server Error: /api/songs/download/
+Traceback (most recent call last):
+  File "C:\Python 311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\rest_framework\viewsets.py", line 116, in view
+    handler = getattr(self, action)
+              ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SongViewSet' object has no attribute 'download'
+ERROR 2025-01-18 00:25:07,359 basehttp 23500 23208 "POST /api/songs/download/ HTTP/1.1" 500 20826
+ERROR 2025-01-18 00:25:16,333 log 23500 23208 Internal Server Error: /api/songs/download/
+Traceback (most recent call last):
+  File "C:\Python 311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\rest_framework\viewsets.py", line 116, in view
+    handler = getattr(self, action)
+              ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SongViewSet' object has no attribute 'download'
+ERROR 2025-01-18 00:25:16,336 basehttp 23500 23208 "POST /api/songs/download/ HTTP/1.1" 500 20826
+ERROR 2025-01-18 00:25:20,125 log 23500 23208 Internal Server Error: /api/songs/download/
+Traceback (most recent call last):
+  File "C:\Python 311\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python 311\Lib\site-packages\rest_framework\viewsets.py", line 116, in view
+    handler = getattr(self, action)
+              ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SongViewSet' object has no attribute 'download'
+ERROR 2025-01-18 00:25:20,130 basehttp 23500 23208 "POST /api/songs/download/ HTTP/1.1" 500 20826
+INFO 2025-01-18 01:14:15,668 autoreload 4196 19992 Watching for file changes with StatReloader
+INFO 2025-01-18 01:14:52,932 autoreload 4196 19992 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-01-18 01:14:55,895 autoreload 22576 7456 Watching for file changes with StatReloader
+INFO 2025-01-18 01:17:14,356 autoreload 20820 11816 Watching for file changes with StatReloader
+INFO 2025-01-18 01:19:19,235 autoreload 22352 20172 Watching for file changes with StatReloader
+INFO 2025-01-18 01:20:51,629 autoreload 22352 20172 D:\Projects\TuneVault\tunevault\tunevault\settings.py changed, reloading.
+INFO 2025-01-18 01:20:54,697 autoreload 9248 13576 Watching for file changes with StatReloader
+ERROR 2025-01-18 01:21:05,585 log 9248 5176 Internal Server Error: /api/songs/download/
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\viewsets.py", line 116, in view
+    handler = getattr(self, action)
+              ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SongViewSet' object has no attribute 'download'
+ERROR 2025-01-18 01:21:05,588 basehttp 9248 5176 "POST /api/songs/download/ HTTP/1.1" 500 20501
+INFO 2025-01-18 01:22:38,350 autoreload 9248 13576 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-18 01:22:41,868 autoreload 5776 22736 Watching for file changes with StatReloader
+INFO 2025-01-18 01:22:50,387 autoreload 5776 22736 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-18 01:22:53,594 autoreload 11848 19348 Watching for file changes with StatReloader
+INFO 2025-01-18 01:24:00,928 autoreload 11848 19348 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-18 01:24:04,263 autoreload 18768 19592 Watching for file changes with StatReloader
+ERROR 2025-01-18 01:24:35,961 views 18768 19956 Error embedding thumbnail: name 'ID3' is not defined
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 49, in embed_thumbnail_in_mp3
+    audio = MP3(mp3_file_path, ID3=ID3)
+                                   ^^^
+NameError: name 'ID3' is not defined
+INFO 2025-01-18 01:24:36,200 basehttp 18768 19956 "POST /api/songs/download/ HTTP/1.1" 200 6153452
+INFO 2025-01-18 01:25:14,322 autoreload 18768 19592 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-18 01:25:17,193 autoreload 21164 18172 Watching for file changes with StatReloader
+ERROR 2025-01-18 01:25:36,414 views 21164 21404 Error embedding thumbnail: 'Kiska Rasta Dekhe - Kishore Kumar (Reverb)' not a Frame instance
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 69, in embed_thumbnail_in_mp3
+    audio.tags['TIT2'] = title
+    ~~~~~~~~~~^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\mutagen\id3\_tags.py", line 341, in __setitem__
+    raise TypeError("%r not a Frame instance" % tag)
+TypeError: 'Kiska Rasta Dekhe - Kishore Kumar (Reverb)' not a Frame instance
+INFO 2025-01-18 01:25:36,650 basehttp 21164 21404 "POST /api/songs/download/ HTTP/1.1" 200 6153452
+ERROR 2025-01-18 01:26:12,320 views 21164 19036 Error embedding thumbnail: 'Chezile - Beanie (Official Live Video)' not a Frame instance
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 69, in embed_thumbnail_in_mp3
+    audio.tags['TIT2'] = title
+    ~~~~~~~~~~^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\mutagen\id3\_tags.py", line 341, in __setitem__
+    raise TypeError("%r not a Frame instance" % tag)
+TypeError: 'Chezile - Beanie (Official Live Video)' not a Frame instance
+INFO 2025-01-18 01:26:12,513 basehttp 21164 19036 "POST /api/songs/download/ HTTP/1.1" 200 4732460
+ERROR 2025-01-18 10:44:52,198 views 21164 7292 Error embedding thumbnail: 'Kiska Rasta Dekhe - Kishore Kumar (Reverb)' not a Frame instance
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 69, in embed_thumbnail_in_mp3
+    audio.tags['TIT2'] = title
+    ~~~~~~~~~~^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\mutagen\id3\_tags.py", line 341, in __setitem__
+    raise TypeError("%r not a Frame instance" % tag)
+TypeError: 'Kiska Rasta Dekhe - Kishore Kumar (Reverb)' not a Frame instance
+INFO 2025-01-18 10:44:52,385 basehttp 21164 7292 "POST /api/songs/download/ HTTP/1.1" 200 6153452
+ERROR 2025-01-18 11:32:39,356 views 21164 2228 Error embedding thumbnail: 'Time in a Bottle' not a Frame instance
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 69, in embed_thumbnail_in_mp3
+    audio.tags['TIT2'] = title
+    ~~~~~~~~~~^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\mutagen\id3\_tags.py", line 341, in __setitem__
+    raise TypeError("%r not a Frame instance" % tag)
+TypeError: 'Time in a Bottle' not a Frame instance
+INFO 2025-01-18 11:32:39,498 basehttp 21164 2228 "POST /api/songs/download/ HTTP/1.1" 200 3567788
+ERROR 2025-01-18 12:07:42,020 log 21164 13888 Internal Server Error: /api/songs/download/
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 279, in ensure_connection
+    self.connect()
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\postgresql\base.py", line 332, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\psycopg2\__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: could not translate host name "ep-patient-resonance-a19rwm71.ap-southeast-1.aws.neon.tech" to address: No such host is known. 
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\viewsets.py", line 124, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 414, in initial
+    self.perform_authentication(request)
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 324, in perform_authentication
+    request.user
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\request.py", line 231, in user
+    self._authenticate()
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\request.py", line 384, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\authentication.py", line 196, in authenticate
+    return self.authenticate_credentials(token)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\authentication.py", line 201, in authenticate_credentials
+    token = model.objects.select_related('user').get(key=key)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 645, in get
+    num = len(clone)
+          ^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 382, in __len__
+    self._fetch_all()
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1572, in execute_sql
+    cursor = self.connection.cursor()
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 320, in cursor
+    return self._cursor()
+           ^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 296, in _cursor
+    self.ensure_connection()
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 278, in ensure_connection
+    with self.wrap_database_errors:
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 279, in ensure_connection
+    self.connect()
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\postgresql\base.py", line 332, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\psycopg2\__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: could not translate host name "ep-patient-resonance-a19rwm71.ap-southeast-1.aws.neon.tech" to address: No such host is known. 
+
+ERROR 2025-01-18 12:07:42,044 basehttp 21164 13888 "POST /api/songs/download/ HTTP/1.1" 500 27033
+ERROR 2025-01-18 12:12:44,770 views 21164 12160 Error embedding thumbnail: 'Time in a Bottle' not a Frame instance
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 69, in embed_thumbnail_in_mp3
+    audio.tags['TIT2'] = title
+    ~~~~~~~~~~^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\mutagen\id3\_tags.py", line 341, in __setitem__
+    raise TypeError("%r not a Frame instance" % tag)
+TypeError: 'Time in a Bottle' not a Frame instance
+INFO 2025-01-18 12:12:44,923 basehttp 21164 12160 "POST /api/songs/download/ HTTP/1.1" 200 3567788
+ERROR 2025-01-18 12:13:51,333 views 21164 12160 Error embedding thumbnail: 'Time in a Bottle' not a Frame instance
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 69, in embed_thumbnail_in_mp3
+    audio.tags['TIT2'] = title
+    ~~~~~~~~~~^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\mutagen\id3\_tags.py", line 341, in __setitem__
+    raise TypeError("%r not a Frame instance" % tag)
+TypeError: 'Time in a Bottle' not a Frame instance
+INFO 2025-01-18 12:13:51,456 basehttp 21164 12160 "POST /api/songs/download/ HTTP/1.1" 200 3567788
+INFO 2025-01-18 12:14:07,759 autoreload 21164 18172 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-18 12:14:21,507 autoreload 12804 9684 Watching for file changes with StatReloader
+INFO 2025-01-18 12:17:23,975 autoreload 12804 9684 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-18 12:17:27,384 autoreload 7016 21888 Watching for file changes with StatReloader
+INFO 2025-01-18 12:17:31,976 autoreload 7016 21888 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-18 12:17:35,343 autoreload 6968 2848 Watching for file changes with StatReloader
+INFO 2025-01-18 12:17:58,935 views 6968 22368 Successfully embedded thumbnail and metadata for: D:\Projects\TuneVault\tunevault\media\songs\Time in a Bottle.mp3
+INFO 2025-01-18 12:17:59,159 basehttp 6968 22368 "POST /api/songs/download/ HTTP/1.1" 200 3614553
+INFO 2025-01-18 12:18:36,248 autoreload 6968 2848 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-18 12:18:39,839 autoreload 6784 22028 Watching for file changes with StatReloader
+INFO 2025-01-18 12:18:44,624 autoreload 6784 22028 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-18 12:18:48,229 autoreload 18396 11616 Watching for file changes with StatReloader
+INFO 2025-01-18 12:19:06,180 autoreload 18396 11616 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-18 12:19:09,413 autoreload 19572 14444 Watching for file changes with StatReloader
+INFO 2025-01-18 12:19:27,267 autoreload 19572 14444 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-18 12:19:30,489 autoreload 1220 1640 Watching for file changes with StatReloader
+INFO 2025-01-18 12:19:53,814 autoreload 1220 1640 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-18 12:19:56,931 autoreload 21448 24236 Watching for file changes with StatReloader
+INFO 2025-01-18 12:20:02,541 autoreload 21448 24236 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-18 12:20:05,689 autoreload 19052 19812 Watching for file changes with StatReloader
+INFO 2025-01-18 12:20:26,555 views 19052 15368 Successfully embedded thumbnail and metadata for: D:\Projects\TuneVault\tunevault\media\songs\Time in a Bottle.mp3
+INFO 2025-01-18 12:20:26,769 basehttp 19052 15368 "POST /api/songs/download/ HTTP/1.1" 200 3614553
+ERROR 2025-01-18 13:24:24,553 log 19052 6624 Internal Server Error: /api/songs/download/
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 279, in ensure_connection
+    self.connect()
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\postgresql\base.py", line 332, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\psycopg2\__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: could not translate host name "ep-patient-resonance-a19rwm71.ap-southeast-1.aws.neon.tech" to address: No such host is known. 
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\viewsets.py", line 124, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 414, in initial
+    self.perform_authentication(request)
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 324, in perform_authentication
+    request.user
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\request.py", line 231, in user
+    self._authenticate()
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\request.py", line 384, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\authentication.py", line 196, in authenticate
+    return self.authenticate_credentials(token)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\authentication.py", line 201, in authenticate_credentials
+    token = model.objects.select_related('user').get(key=key)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 645, in get
+    num = len(clone)
+          ^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 382, in __len__
+    self._fetch_all()
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1572, in execute_sql
+    cursor = self.connection.cursor()
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 320, in cursor
+    return self._cursor()
+           ^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 296, in _cursor
+    self.ensure_connection()
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 278, in ensure_connection
+    with self.wrap_database_errors:
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 279, in ensure_connection
+    self.connect()
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\postgresql\base.py", line 332, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\psycopg2\__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: could not translate host name "ep-patient-resonance-a19rwm71.ap-southeast-1.aws.neon.tech" to address: No such host is known. 
+
+ERROR 2025-01-18 13:24:24,566 basehttp 19052 6624 "POST /api/songs/download/ HTTP/1.1" 500 223595
+INFO 2025-01-18 13:30:54,529 autoreload 19052 19812 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-18 13:31:08,396 autoreload 20440 14372 Watching for file changes with StatReloader

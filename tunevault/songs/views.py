@@ -1,4 +1,10 @@
 import os
+from celery import shared_task
+from django.conf import settings
+from django.contrib.auth import get_user_model
+import yt_dlp
+import logging
+import os
 import yt_dlp
 from django.conf import settings
 from django.http import FileResponse
@@ -7,10 +13,10 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from django.shortcuts import get_object_or_404
-from nltk.tokenize import word_tokenize
-from nltk.corpus import stopwords
-from nltk.stem import PorterStemmer
-import nltk
+# from nltk.tokenize import word_tokenize
+# from nltk.corpus import stopwords
+# from nltk.stem import PorterStemmer
+# import nltk
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
 from .spotify_api import get_spotify_client, get_playlist_tracks, get_track_info
@@ -19,8 +25,135 @@ from celery import shared_task
 from .tasks import download_song, download_spotify_playlist
 from .models import Song, Playlist, UserMusicProfile
 from .serializers import SongSerializer, PlaylistSerializer, UserMusicProfileSerializer
+from mutagen.easyid3 import EasyID3
+from mutagen.mp3 import MP3
+from mutagen.id3 import APIC, error
+import requests
 
 logger = logging.getLogger(__name__)
+
+User = get_user_model()
+from mutagen.mp3 import MP3
+from mutagen.id3 import ID3, APIC, TIT2, TPE1, TALB, error
+
+def embed_thumbnail_in_mp3(mp3_file_path, thumbnail_url, title=None, artist=None, album=None):
+    """
+    Embeds thumbnail and metadata in MP3 file using proper ID3 frame objects
+    """
+    try:
+        # Fetch the thumbnail
+        response = requests.get(thumbnail_url)
+        response.raise_for_status()
+        thumbnail_data = response.content
+
+        # Add ID3 tag if it doesn't exist
+        try:
+            audio = MP3(mp3_file_path, ID3=ID3)
+        except error:
+            logger.info("Adding ID3 header")
+            audio = MP3(mp3_file_path)
+            audio.add_tags()
+
+        # Add metadata using proper ID3 frame objects
+        if thumbnail_data:
+            audio.tags.add(
+                APIC(
+                    encoding=3,  # UTF-8
+                    mime='image/jpeg',
+                    type=3,  # Cover (front)
+                    desc='Cover',
+                    data=thumbnail_data
+                )
+            )
+
+        # Add song metadata using proper frame objects
+        if title:
+            audio.tags.add(TIT2(encoding=3, text=title))
+        if artist:
+            audio.tags.add(TPE1(encoding=3, text=artist))
+        if album:
+            audio.tags.add(TALB(encoding=3, text=album))
+
+        audio.save()
+        logger.info(f"Successfully embedded thumbnail and metadata for: {mp3_file_path}")
+        return True
+
+    except Exception as e:
+        logger.error(f"Error embedding thumbnail: {str(e)}", exc_info=True)
+        return False
+
+@shared_task
+def download_song(song_info, user_id, playlist_id=None):
+    """
+    Celery task to download a song from Spotify or YouTube search
+    """
+    try:
+        user = User.objects.get(id=user_id)
+        
+        # Get track info
+        if isinstance(song_info, str):
+            track_info = get_track_info(song_info)
+        else:
+            track_info = song_info
+        
+        query = f"{track_info['title']} {track_info['artist']}"
+        
+        ydl_opts = {
+            'format': 'bestaudio/best',
+            'postprocessors': [{
+                'key': 'FFmpegExtractAudio',
+                'preferredcodec': 'mp3',
+                'preferredquality': '192',
+            }],
+            'outtmpl': os.path.join(settings.MEDIA_ROOT, 'songs', '%(title)s.%(ext)s'),
+            'default_search': 'ytsearch',
+            'nooverwrites': True,
+            'writethumbnail': True,
+            'no_color': True
+        }
+
+        # Download song
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            info = ydl.extract_info(f"ytsearch:{query}", download=True)['entries'][0]
+            filename = ydl.prepare_filename(info)
+            filename = os.path.splitext(filename)[0] + '.mp3'
+
+        # Get thumbnail URL
+        thumbnail_url = track_info.get('image_url') or info.get('thumbnail')
+
+        # Embed thumbnail and metadata
+        if thumbnail_url:
+            embed_thumbnail_in_mp3(
+                filename,
+                thumbnail_url,
+                title=track_info['title'],
+                artist=track_info['artist'],
+                album=track_info.get('album', 'Unknown')
+            )
+
+        # Create Song object
+        song = Song.objects.create(
+            user=user,
+            title=track_info['title'],
+            artist=track_info['artist'],
+            album=track_info.get('album', 'Unknown'),
+            file=os.path.relpath(filename, settings.MEDIA_ROOT),
+            source='spotify' if 'spotify_id' in track_info else 'youtube',
+            spotify_id=track_info.get('spotify_id'),
+            thumbnail_url=thumbnail_url
+        )
+
+        # Associate with playlist if provided
+        if playlist_id:
+            playlist = Playlist.objects.get(id=playlist_id)
+            playlist.songs.add(song)
+
+        logger.info(f"Successfully downloaded song: {song.title} by {song.artist}")
+        return song.id
+
+    except Exception as e:
+        logger.error(f"Error downloading song: {str(e)}", exc_info=True)
+        return None
 
 class SongViewSet(viewsets.ModelViewSet):
     queryset = Song.objects.all()
@@ -85,7 +218,7 @@ class SongViewSet(viewsets.ModelViewSet):
             }],
             'outtmpl': os.path.join(settings.MEDIA_ROOT, 'songs', '%(title)s.%(ext)s'),
             'verbose': True,
-            'writethumbnail': True,  # Enable thumbnail download
+            'writethumbnail': True,
         }
 
         try:
@@ -94,20 +227,29 @@ class SongViewSet(viewsets.ModelViewSet):
                 filename = ydl.prepare_filename(info)
                 filename = os.path.splitext(filename)[0] + '.mp3'
                 
-                # Format the download filename
                 formatted_filename = f"{info['title']} - {info.get('uploader', 'Unknown Artist')}.mp3"
                 formatted_filename = "".join(c for c in formatted_filename if c.isalnum() or c in (' ', '-', '.'))
-                # Get thumbnail URL
                 thumbnail_url = info.get('thumbnail')
 
-                # Store the song in the database
+                # Embed thumbnail and metadata
+                if thumbnail_url:
+                    embed_thumbnail_in_mp3(
+                        filename,
+                        thumbnail_url,
+                        title=info['title'],
+                        artist=info.get('uploader', 'Unknown Artist')
+                    )
+
                 song = Song.objects.create(
                     user=self.request.user,
                     title=info['title'],
                     artist=info.get('uploader', 'Unknown Artist'),
+                    album=info.get('album', 'Unknown'),
                     file=os.path.relpath(filename, settings.MEDIA_ROOT),
                     source='youtube',
-                    thumbnail_url=thumbnail_url
+                    spotify_id=None,
+                    thumbnail_url=thumbnail_url,
+                    song_url=url
                 )
 
                 response = FileResponse(
@@ -118,8 +260,7 @@ class SongViewSet(viewsets.ModelViewSet):
                 response['Content-Type'] = 'audio/mpeg'
                 response['X-Thumbnail-URL'] = thumbnail_url
                 response['X-Song-Title'] = info['title']
-                response['X-Song-Artist'] = info.get('uploader', 'Unknown Artist')
-                print(response)
+                response['X-Song-Artist'] = info['artist']
                 return response
 
         except Exception as e:
@@ -128,7 +269,7 @@ class SongViewSet(viewsets.ModelViewSet):
                 {'error': f'Download failed: {str(e)}'}, 
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
-        
+
     def download_spotify_track(self, url):
         try:
             track_info = get_track_info(url)
@@ -150,12 +291,20 @@ class SongViewSet(viewsets.ModelViewSet):
                 filename = ydl.prepare_filename(info)
                 filename = os.path.splitext(filename)[0] + '.mp3'
                 
-                # Format the download filename
                 formatted_filename = f"{track_info['title']} - {track_info['artist']}.mp3"
                 formatted_filename = "".join(c for c in formatted_filename if c.isalnum() or c in (' ', '-', '.'))
                 
-                # Get thumbnail URL from Spotify track info
-                thumbnail_url = track_info.get('thumbnail_url', info.get('thumbnail'))
+                thumbnail_url = track_info.get('image_url', info.get('thumbnail'))
+
+                # Embed thumbnail and metadata
+                if thumbnail_url:
+                    embed_thumbnail_in_mp3(
+                        filename,
+                        thumbnail_url,
+                        title=track_info['title'],
+                        artist=track_info['artist'],
+                        album=track_info.get('album', 'Unknown')
+                    )
 
                 song = Song.objects.create(
                     user=self.request.user,
@@ -165,7 +314,8 @@ class SongViewSet(viewsets.ModelViewSet):
                     file=os.path.relpath(filename, settings.MEDIA_ROOT),
                     source='spotify',
                     spotify_id=track_info.get('spotify_id'),
-                    thumbnail_url=thumbnail_url
+                    thumbnail_url=thumbnail_url,
+                    song_url=url
                 )
 
                 response = FileResponse(
@@ -174,9 +324,6 @@ class SongViewSet(viewsets.ModelViewSet):
                     filename=formatted_filename
                 )
                 response['Content-Type'] = 'audio/mpeg'
-                response['X-Thumbnail-URL'] = thumbnail_url
-                response['X-Song-Title'] = track_info['title']
-                response['X-Song-Artist'] = track_info['artist']
                 return response
 
         except Exception as e:
@@ -185,7 +332,6 @@ class SongViewSet(viewsets.ModelViewSet):
                 {'error': f'Download failed: {str(e)}'}, 
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
-
     def download_spotify_playlist(self, url):
         try:
             playlist_tracks = get_playlist_tracks(url)
