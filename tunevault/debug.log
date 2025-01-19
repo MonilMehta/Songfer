@@ -1181,3 +1181,115 @@ django.db.utils.OperationalError: could not translate host name "ep-patient-reso
 ERROR 2025-01-18 13:24:24,566 basehttp 19052 6624 "POST /api/songs/download/ HTTP/1.1" 500 223595
 INFO 2025-01-18 13:30:54,529 autoreload 19052 19812 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
 INFO 2025-01-18 13:31:08,396 autoreload 20440 14372 Watching for file changes with StatReloader
+INFO 2025-01-19 22:32:15,201 autoreload 5140 17416 Watching for file changes with StatReloader
+ERROR 2025-01-19 23:17:58,150 log 5140 19544 Internal Server Error: /api/songs/download/
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django_redis\cache.py", line 31, in _decorator
+    return method(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django_redis\cache.py", line 98, in _get
+    return self.client.get(key, default=default, version=version, client=client)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django_redis\client\default.py", line 260, in get
+    raise ConnectionInterrupted(connection=client) from e
+django_redis.exceptions.ConnectionInterrupted: Redis ConnectionError: Error 10061 connecting to 127.0.0.1:6379. No connection could be made because the target machine actively refused it.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\viewsets.py", line 124, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 416, in initial
+    self.check_throttles(request)
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 359, in check_throttles
+    if not throttle.allow_request(request, self):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\throttling.py", line 123, in allow_request
+    self.history = self.cache.get(self.key, [])
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django_redis\cache.py", line 91, in get
+    value = self._get(key, default, version, client)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django_redis\cache.py", line 38, in _decorator
+    raise e.__cause__
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django_redis\client\default.py", line 258, in get
+    value = client.get(key)
+            ^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\redis\client.py", line 1606, in get
+    return self.execute_command('GET', name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\redis\client.py", line 898, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\redis\connection.py", line 1192, in get_connection
+    connection.connect()
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\redis\connection.py", line 563, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 10061 connecting to 127.0.0.1:6379. No connection could be made because the target machine actively refused it.
+ERROR 2025-01-19 23:17:58,197 basehttp 5140 19544 "POST /api/songs/download/ HTTP/1.1" 500 153312
+INFO 2025-01-19 23:22:23,680 autoreload 22004 19544 Watching for file changes with StatReloader
+ERROR 2025-01-19 23:23:17,570 views 22004 22520 YouTube download error: [Errno 2] No such file or directory: 'D:\\Projects\\TuneVault\\tunevault\\media\\songs\\Downloads.mp3'
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 256, in download_youtube
+    open(filename, 'rb'),
+    ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Projects\\TuneVault\\tunevault\\media\\songs\\Downloads.mp3'
+ERROR 2025-01-19 23:23:17,625 log 22004 22520 Internal Server Error: /api/songs/download/
+ERROR 2025-01-19 23:23:17,625 basehttp 22004 22520 "POST /api/songs/download/ HTTP/1.1" 500 143
+INFO 2025-01-19 23:30:01,880 autoreload 22004 19544 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-01-19 23:30:06,755 autoreload 19488 16964 Watching for file changes with StatReloader
+INFO 2025-01-19 23:32:12,692 autoreload 19488 16964 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-01-19 23:32:15,658 autoreload 15020 6288 Watching for file changes with StatReloader
+INFO 2025-01-19 23:32:37,869 basehttp 15020 21988 "POST /api/songs/download/ HTTP/1.1" 202 125
+WARNING 2025-01-19 23:34:01,430 log 15020 1148 Not Found: /api/songs/check_status/
+WARNING 2025-01-19 23:34:01,434 basehttp 15020 1148 "POST //api/songs/check_status/?task_id=acf092ca-44f7-4114-b52d-d6c4ec2d3113 HTTP/1.1" 404 5563
+INFO 2025-01-19 23:35:51,318 autoreload 15020 6288 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-19 23:35:54,803 autoreload 23452 11356 Watching for file changes with StatReloader
+INFO 2025-01-19 23:40:42,894 autoreload 23452 11356 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-19 23:40:46,620 autoreload 7364 19580 Watching for file changes with StatReloader
+INFO 2025-01-19 23:41:27,836 autoreload 7364 19580 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-19 23:41:31,158 autoreload 11172 12420 Watching for file changes with StatReloader
+INFO 2025-01-19 23:42:55,646 autoreload 11172 12420 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-19 23:42:59,088 autoreload 17468 23252 Watching for file changes with StatReloader
+INFO 2025-01-19 23:43:03,863 autoreload 17468 23252 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-19 23:43:07,304 autoreload 12812 7960 Watching for file changes with StatReloader
+INFO 2025-01-19 23:43:19,969 autoreload 12812 7960 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-19 23:43:23,410 autoreload 8272 12584 Watching for file changes with StatReloader
+INFO 2025-01-19 23:43:29,501 autoreload 8272 12584 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-19 23:43:32,747 autoreload 22336 5340 Watching for file changes with StatReloader
+INFO 2025-01-19 23:43:38,934 autoreload 22336 5340 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-19 23:43:42,180 autoreload 13356 14552 Watching for file changes with StatReloader
+INFO 2025-01-19 23:44:03,353 autoreload 13356 14552 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-19 23:44:06,588 autoreload 7960 17060 Watching for file changes with StatReloader
+WARNING 2025-01-19 23:44:13,082 log 7960 22880 Not Found: /api/songs/check_status/
+WARNING 2025-01-19 23:44:13,083 basehttp 7960 22880 "POST //api/songs/check_status/?task_id=acf092ca-44f7-4114-b52d-d6c4ec2d3113 HTTP/1.1" 404 5563
+ERROR 2025-01-19 23:44:42,413 views 7960 22880 YouTube download error: name 'yt_dlp' is not defined
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 105, in download_youtube
+    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+         ^^^^^^
+NameError: name 'yt_dlp' is not defined
+ERROR 2025-01-19 23:44:42,438 log 7960 22880 Internal Server Error: /api/songs/download/
+ERROR 2025-01-19 23:44:42,439 basehttp 7960 22880 "POST /api/songs/download/ HTTP/1.1" 500 57
+INFO 2025-01-19 23:45:04,005 autoreload 7960 17060 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-19 23:45:07,272 autoreload 10484 17668 Watching for file changes with StatReloader
+INFO 2025-01-19 23:48:31,072 autoreload 17260 2100 Watching for file changes with StatReloader

@@ -1,159 +1,20 @@
 import os
-from celery import shared_task
-from django.conf import settings
-from django.contrib.auth import get_user_model
-import yt_dlp
-import logging
-import os
-import yt_dlp
 from django.conf import settings
 from django.http import FileResponse
+from django.shortcuts import get_object_or_404
 from rest_framework import viewsets, status, generics
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
-from django.shortcuts import get_object_or_404
-# from nltk.tokenize import word_tokenize
-# from nltk.corpus import stopwords
-# from nltk.stem import PorterStemmer
-# import nltk
-import spotipy
-from spotipy.oauth2 import SpotifyClientCredentials
-from .spotify_api import get_spotify_client, get_playlist_tracks, get_track_info
+from celery.result import AsyncResult
 import logging
-from celery import shared_task
-from .tasks import download_song, download_spotify_playlist
 from .models import Song, Playlist, UserMusicProfile
 from .serializers import SongSerializer, PlaylistSerializer, UserMusicProfileSerializer
-from mutagen.easyid3 import EasyID3
-from mutagen.mp3 import MP3
-from mutagen.id3 import APIC, error
-import requests
-
+from .tasks import download_song, download_spotify_playlist, download_youtube_playlist
+from spotipy.oauth2 import SpotifyClientCredentials
+from .spotify_api import get_spotify_client, get_playlist_tracks, get_track_info
+import yt_dlp
 logger = logging.getLogger(__name__)
-
-User = get_user_model()
-from mutagen.mp3 import MP3
-from mutagen.id3 import ID3, APIC, TIT2, TPE1, TALB, error
-
-def embed_thumbnail_in_mp3(mp3_file_path, thumbnail_url, title=None, artist=None, album=None):
-    """
-    Embeds thumbnail and metadata in MP3 file using proper ID3 frame objects
-    """
-    try:
-        # Fetch the thumbnail
-        response = requests.get(thumbnail_url)
-        response.raise_for_status()
-        thumbnail_data = response.content
-
-        # Add ID3 tag if it doesn't exist
-        try:
-            audio = MP3(mp3_file_path, ID3=ID3)
-        except error:
-            logger.info("Adding ID3 header")
-            audio = MP3(mp3_file_path)
-            audio.add_tags()
-
-        # Add metadata using proper ID3 frame objects
-        if thumbnail_data:
-            audio.tags.add(
-                APIC(
-                    encoding=3,  # UTF-8
-                    mime='image/jpeg',
-                    type=3,  # Cover (front)
-                    desc='Cover',
-                    data=thumbnail_data
-                )
-            )
-
-        # Add song metadata using proper frame objects
-        if title:
-            audio.tags.add(TIT2(encoding=3, text=title))
-        if artist:
-            audio.tags.add(TPE1(encoding=3, text=artist))
-        if album:
-            audio.tags.add(TALB(encoding=3, text=album))
-
-        audio.save()
-        logger.info(f"Successfully embedded thumbnail and metadata for: {mp3_file_path}")
-        return True
-
-    except Exception as e:
-        logger.error(f"Error embedding thumbnail: {str(e)}", exc_info=True)
-        return False
-
-@shared_task
-def download_song(song_info, user_id, playlist_id=None):
-    """
-    Celery task to download a song from Spotify or YouTube search
-    """
-    try:
-        user = User.objects.get(id=user_id)
-        
-        # Get track info
-        if isinstance(song_info, str):
-            track_info = get_track_info(song_info)
-        else:
-            track_info = song_info
-        
-        query = f"{track_info['title']} {track_info['artist']}"
-        
-        ydl_opts = {
-            'format': 'bestaudio/best',
-            'postprocessors': [{
-                'key': 'FFmpegExtractAudio',
-                'preferredcodec': 'mp3',
-                'preferredquality': '192',
-            }],
-            'outtmpl': os.path.join(settings.MEDIA_ROOT, 'songs', '%(title)s.%(ext)s'),
-            'default_search': 'ytsearch',
-            'nooverwrites': True,
-            'writethumbnail': True,
-            'no_color': True
-        }
-
-        # Download song
-        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-            info = ydl.extract_info(f"ytsearch:{query}", download=True)['entries'][0]
-            filename = ydl.prepare_filename(info)
-            filename = os.path.splitext(filename)[0] + '.mp3'
-
-        # Get thumbnail URL
-        thumbnail_url = track_info.get('image_url') or info.get('thumbnail')
-
-        # Embed thumbnail and metadata
-        if thumbnail_url:
-            embed_thumbnail_in_mp3(
-                filename,
-                thumbnail_url,
-                title=track_info['title'],
-                artist=track_info['artist'],
-                album=track_info.get('album', 'Unknown')
-            )
-
-        # Create Song object
-        song = Song.objects.create(
-            user=user,
-            title=track_info['title'],
-            artist=track_info['artist'],
-            album=track_info.get('album', 'Unknown'),
-            file=os.path.relpath(filename, settings.MEDIA_ROOT),
-            source='spotify' if 'spotify_id' in track_info else 'youtube',
-            spotify_id=track_info.get('spotify_id'),
-            thumbnail_url=thumbnail_url
-        )
-
-        # Associate with playlist if provided
-        if playlist_id:
-            playlist = Playlist.objects.get(id=playlist_id)
-            playlist.songs.add(song)
-
-        logger.info(f"Successfully downloaded song: {song.title} by {song.artist}")
-        return song.id
-
-    except Exception as e:
-        logger.error(f"Error downloading song: {str(e)}", exc_info=True)
-        return None
 
 class SongViewSet(viewsets.ModelViewSet):
     queryset = Song.objects.all()
@@ -166,49 +27,69 @@ class SongViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
 
-    def send_file_response(self, filepath, filename):
-        """Helper method to create a file response"""
-        if not os.path.exists(filepath):
-            raise FileNotFoundError(f"File not found: {filepath}")
-            
-        file_response = FileResponse(
-            open(filepath, 'rb'),
-            as_attachment=True,
-            filename=filename
-        )
-        file_response['Content-Type'] = 'audio/mpeg'
-        return file_response
-
     @action(detail=False, methods=['post'])
     def download(self, request):
+        """
+        Endpoint to handle song/playlist downloads from YouTube or Spotify
+        """
         url = request.data.get('url')
+        async_download = request.data.get('async', False)  # Optional async parameter
+        
         if not url:
             return Response({'error': 'URL is required'}, status=status.HTTP_400_BAD_REQUEST)
         
         try:
             if 'youtube.com' in url or 'youtu.be' in url:
-                return self.download_youtube(url)
+                if 'playlist' in url:
+                    if async_download:
+                        task = download_spotify_playlist.delay(url, request.user.id)
+                        return Response({
+                            'message': 'Playlist download initiated',
+                            'task_id': task.id,
+                            'status': 'processing'
+                        }, status=status.HTTP_202_ACCEPTED)
+                    else:
+                        return self.download_youtube(url)
+                else:
+                    if async_download:
+                        task = download_song.delay(url, request.user.id)
+                        return Response({
+                            'message': 'Download initiated',
+                            'task_id': task.id,
+                            'status': 'processing'
+                        }, status=status.HTTP_202_ACCEPTED)
+                    else:
+                        return self.download_youtube(url)
             elif 'spotify.com' in url:
-                if '/track/' in url:
-                    return self.download_spotify_track(url)
-                elif '/playlist/' in url:
-                    return self.download_spotify_playlist(url)
+                if '/playlist/' in url:
+                    task = download_spotify_playlist.delay(url, request.user.id)
+                    return Response({
+                        'message': 'Playlist download initiated',
+                        'task_id': task.id,
+                        'status': 'processing'
+                    }, status=status.HTTP_202_ACCEPTED)
+                else:
+                    if async_download:
+                        task = download_song.delay(url, request.user.id)
+                        return Response({
+                            'message': 'Download initiated',
+                            'task_id': task.id,
+                            'status': 'processing'
+                        }, status=status.HTTP_202_ACCEPTED)
+                    else:
+                        return self.download_spotify_track(url)
             else:
                 return Response({'error': 'Unsupported URL'}, status=status.HTTP_400_BAD_REQUEST)
-        except spotipy.SpotifyException as spotify_err:
-            logger.error(f"Spotify API Error: {spotify_err}")
-            return Response(
-                {'error': f'Spotify API Error: {str(spotify_err)}'}, 
-                status=status.HTTP_503_SERVICE_UNAVAILABLE
-            )
+
         except Exception as e:
-            logger.error(f"Unexpected error: {e}", exc_info=True)
+            logger.error(f"Download error: {e}", exc_info=True)
             return Response(
-                {'error': f'Unexpected error: {str(e)}'}, 
+                {'error': f'Download failed: {str(e)}'}, 
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
 
     def download_youtube(self, url):
+        """Direct YouTube download with streaming response"""
         ydl_opts = {
             'format': 'bestaudio/best',
             'postprocessors': [{
@@ -217,7 +98,6 @@ class SongViewSet(viewsets.ModelViewSet):
                 'preferredquality': '192',
             }],
             'outtmpl': os.path.join(settings.MEDIA_ROOT, 'songs', '%(title)s.%(ext)s'),
-            'verbose': True,
             'writethumbnail': True,
         }
 
@@ -229,16 +109,6 @@ class SongViewSet(viewsets.ModelViewSet):
                 
                 formatted_filename = f"{info['title']} - {info.get('uploader', 'Unknown Artist')}.mp3"
                 formatted_filename = "".join(c for c in formatted_filename if c.isalnum() or c in (' ', '-', '.'))
-                thumbnail_url = info.get('thumbnail')
-
-                # Embed thumbnail and metadata
-                if thumbnail_url:
-                    embed_thumbnail_in_mp3(
-                        filename,
-                        thumbnail_url,
-                        title=info['title'],
-                        artist=info.get('uploader', 'Unknown Artist')
-                    )
 
                 song = Song.objects.create(
                     user=self.request.user,
@@ -247,8 +117,7 @@ class SongViewSet(viewsets.ModelViewSet):
                     album=info.get('album', 'Unknown'),
                     file=os.path.relpath(filename, settings.MEDIA_ROOT),
                     source='youtube',
-                    spotify_id=None,
-                    thumbnail_url=thumbnail_url,
+                    thumbnail_url=info.get('thumbnail'),
                     song_url=url
                 )
 
@@ -258,9 +127,6 @@ class SongViewSet(viewsets.ModelViewSet):
                     filename=formatted_filename
                 )
                 response['Content-Type'] = 'audio/mpeg'
-                response['X-Thumbnail-URL'] = thumbnail_url
-                response['X-Song-Title'] = info['title']
-                response['X-Song-Artist'] = info['artist']
                 return response
 
         except Exception as e:
@@ -271,6 +137,7 @@ class SongViewSet(viewsets.ModelViewSet):
             )
 
     def download_spotify_track(self, url):
+        """Direct Spotify track download with streaming response"""
         try:
             track_info = get_track_info(url)
             query = f"{track_info['title']} {track_info['artist']}"
@@ -293,18 +160,6 @@ class SongViewSet(viewsets.ModelViewSet):
                 
                 formatted_filename = f"{track_info['title']} - {track_info['artist']}.mp3"
                 formatted_filename = "".join(c for c in formatted_filename if c.isalnum() or c in (' ', '-', '.'))
-                
-                thumbnail_url = track_info.get('image_url', info.get('thumbnail'))
-
-                # Embed thumbnail and metadata
-                if thumbnail_url:
-                    embed_thumbnail_in_mp3(
-                        filename,
-                        thumbnail_url,
-                        title=track_info['title'],
-                        artist=track_info['artist'],
-                        album=track_info.get('album', 'Unknown')
-                    )
 
                 song = Song.objects.create(
                     user=self.request.user,
@@ -314,7 +169,7 @@ class SongViewSet(viewsets.ModelViewSet):
                     file=os.path.relpath(filename, settings.MEDIA_ROOT),
                     source='spotify',
                     spotify_id=track_info.get('spotify_id'),
-                    thumbnail_url=thumbnail_url,
+                    thumbnail_url=track_info.get('image_url'),
                     song_url=url
                 )
 
@@ -332,32 +187,85 @@ class SongViewSet(viewsets.ModelViewSet):
                 {'error': f'Download failed: {str(e)}'}, 
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
-    def download_spotify_playlist(self, url):
+
+
+    @action(detail=False, methods=['get'])
+    def check_status(self, request):
+        """
+        Check the status of a download task
+        """
+        task_id = request.query_params.get('task_id')
+        if not task_id:
+            return Response({'error': 'task_id is required'}, status=status.HTTP_400_BAD_REQUEST)
+
         try:
-            playlist_tracks = get_playlist_tracks(url)
+            task_result = AsyncResult(task_id)
             
-            playlist = Playlist.objects.create(
-                user=self.request.user,
-                name=f"Spotify Playlist {url.split('/')[-1].split('?')[0]}",
-                source="spotify",
-                source_url=url
-            )
-
-            # Start async download for each track
-            for track in playlist_tracks:
-                download_song.delay(track, user_id=self.request.user.id, playlist_id=playlist.id)
-
-            return Response({
-                'message': 'Playlist download initiated',
-                'playlist_id': playlist.id,
-                'total_tracks': len(playlist_tracks),
-                'status': 'processing'
-            }, status=status.HTTP_202_ACCEPTED)
+            if task_result.ready():
+                if task_result.successful():
+                    result = task_result.get()
+                    if isinstance(result, int):  # Single song download
+                        song = Song.objects.get(id=result)
+                        return Response({
+                            'status': 'completed',
+                            'song_id': song.id,
+                            'title': song.title,
+                            'artist': song.artist,
+                            'download_url': request.build_absolute_uri(f'/api/songs/{song.id}/download/')
+                        })
+                    else:  # Playlist download
+                        playlist = Playlist.objects.get(id=result)
+                        return Response({
+                            'status': 'completed',
+                            'playlist_id': playlist.id,
+                            'name': playlist.name,
+                            'song_count': playlist.songs.count(),
+                            'download_url': request.build_absolute_uri(f'/api/playlists/{playlist.id}/download/')
+                        })
+                else:
+                    return Response({
+                        'status': 'failed',
+                        'error': str(task_result.result)
+                    }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            else:
+                return Response({
+                    'status': 'processing',
+                    'progress': 'in_progress'
+                })
 
         except Exception as e:
-            logger.error(f"Spotify playlist download error: {e}", exc_info=True)
+            logger.error(f"Error checking task status: {e}", exc_info=True)
             return Response(
-                {'error': f'Playlist download failed: {str(e)}'}, 
+                {'error': f'Status check failed: {str(e)}'}, 
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
+
+    @action(detail=True, methods=['get'])
+    def download_file(self, request, pk=None):
+        """
+        Download a specific song file
+        """
+        song = self.get_object()
+        file_path = os.path.join(settings.MEDIA_ROOT, song.file.name)
+        
+        if not os.path.exists(file_path):
+            return Response(
+                {'error': 'File not found'}, 
+                status=status.HTTP_404_NOT_FOUND
+            )
+
+        try:
+            response = FileResponse(
+                open(file_path, 'rb'),
+                as_attachment=True,
+                filename=f"{song.title} - {song.artist}.mp3"
+            )
+            response['Content-Type'] = 'audio/mpeg'
+            return response
+        except Exception as e:
+            logger.error(f"Error serving file: {e}", exc_info=True)
+            return Response(
+                {'error': f'File download failed: {str(e)}'}, 
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
 
@@ -387,9 +295,7 @@ class PlaylistViewSet(viewsets.ModelViewSet):
         
         return Response({
             'status': 'success',
-            'message': 'Song added to playlist',
-            'playlist_id': playlist.id,
-            'song_id': song.id
+            'message': 'Song added to playlist'
         })
 
     @action(detail=True, methods=['post'])
@@ -408,49 +314,50 @@ class PlaylistViewSet(viewsets.ModelViewSet):
         
         return Response({
             'status': 'success',
-            'message': 'Song removed from playlist',
-            'playlist_id': playlist.id,
-            'song_id': song.id
+            'message': 'Song removed from playlist'
         })
 
     @action(detail=True, methods=['get'])
     def download_all(self, request, pk=None):
+        """
+        Download all songs in a playlist as a ZIP file
+        """
         playlist = self.get_object()
-        songs = playlist.songs.all()
-        
-        if not songs.exists():
+        if not playlist.songs.exists():
             return Response(
                 {'error': 'Playlist is empty'}, 
                 status=status.HTTP_400_BAD_REQUEST
             )
 
-        # Create a ZIP file containing all songs
-        zip_filename = f'playlist_{playlist.id}.zip'
-        zip_path = os.path.join(settings.MEDIA_ROOT, 'temp', zip_filename)
-        
         try:
-            with zipfile.ZipFile(zip_path, 'w') as zip_file:
-                for song in songs:
-                    song_path = os.path.join(settings.MEDIA_ROOT, song.file.name)
-                    if os.path.exists(song_path):
-                        zip_file.write(song_path, os.path.basename(song_path))
+            # Create a ZIP file
+            import zipfile
+            import tempfile
+            
+            with tempfile.NamedTemporaryFile(suffix='.zip', delete=False) as temp_file:
+                with zipfile.ZipFile(temp_file.name, 'w') as zip_file:
+                    for song in playlist.songs.all():
+                        file_path = os.path.join(settings.MEDIA_ROOT, song.file.name)
+                        if os.path.exists(file_path):
+                            zip_file.write(
+                                file_path, 
+                                f"{song.title} - {song.artist}.mp3"
+                            )
 
-            return FileResponse(
-                open(zip_path, 'rb'),
-                as_attachment=True,
-                filename=zip_filename
-            )
+                response = FileResponse(
+                    open(temp_file.name, 'rb'),
+                    as_attachment=True,
+                    filename=f"{playlist.name}.zip"
+                )
+                response['Content-Type'] = 'application/zip'
+                return response
+
         except Exception as e:
-            logger.error(f"Playlist download error: {e}", exc_info=True)
+            logger.error(f"Error creating playlist ZIP: {e}", exc_info=True)
             return Response(
-                {'error': f'Failed to create playlist download: {str(e)}'}, 
+                {'error': f'Playlist download failed: {str(e)}'}, 
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
-        finally:
-            # Clean up the temporary ZIP file
-            if os.path.exists(zip_path):
-                os.remove(zip_path)
-
 class UserMusicProfileView(generics.RetrieveUpdateAPIView):
     serializer_class = UserMusicProfileSerializer
     permission_classes = [IsAuthenticated]
