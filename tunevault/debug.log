@@ -1293,3 +1293,234 @@ ERROR 2025-01-19 23:44:42,439 basehttp 7960 22880 "POST /api/songs/download/ HTT
 INFO 2025-01-19 23:45:04,005 autoreload 7960 17060 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
 INFO 2025-01-19 23:45:07,272 autoreload 10484 17668 Watching for file changes with StatReloader
 INFO 2025-01-19 23:48:31,072 autoreload 17260 2100 Watching for file changes with StatReloader
+INFO 2025-01-19 23:49:55,584 basehttp 17260 21384 "POST /api/songs/download/ HTTP/1.1" 200 8334188
+ERROR 2025-01-19 23:51:26,888 views 17260 18232 YouTube download error: [Errno 2] No such file or directory: 'D:\\Projects\\TuneVault\\tunevault\\media\\songs\\Downloads.mp3'
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 125, in download_youtube
+    open(filename, 'rb'),
+    ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Projects\\TuneVault\\tunevault\\media\\songs\\Downloads.mp3'
+ERROR 2025-01-19 23:51:26,891 log 17260 18232 Internal Server Error: /api/songs/download/
+ERROR 2025-01-19 23:51:26,892 basehttp 17260 18232 "POST /api/songs/download/ HTTP/1.1" 500 143
+INFO 2025-01-19 23:58:51,628 autoreload 17260 2100 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-19 23:58:54,843 autoreload 14860 23244 Watching for file changes with StatReloader
+INFO 2025-01-19 23:59:03,233 autoreload 14860 23244 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-19 23:59:07,011 autoreload 7012 23012 Watching for file changes with StatReloader
+INFO 2025-01-19 23:59:31,007 basehttp 7012 11268 "POST /api/songs/download/ HTTP/1.1" 200 8334188
+INFO 2025-01-20 00:14:56,815 autoreload 7012 23012 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-20 00:15:00,122 autoreload 11096 9560 Watching for file changes with StatReloader
+INFO 2025-01-20 00:15:08,614 autoreload 11096 9560 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-20 00:15:11,621 autoreload 22948 23016 Watching for file changes with StatReloader
+INFO 2025-01-20 00:15:16,438 autoreload 22948 23016 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-20 00:15:19,643 autoreload 19000 15212 Watching for file changes with StatReloader
+INFO 2025-01-20 00:15:23,595 basehttp 19000 22004 "POST /api/songs/download/ HTTP/1.1" 202 125
+INFO 2025-01-20 00:15:32,318 autoreload 19000 15212 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-20 00:15:35,474 autoreload 10916 22288 Watching for file changes with StatReloader
+INFO 2025-01-20 00:17:00,435 autoreload 10916 22288 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-20 00:17:04,315 autoreload 23496 23520 Watching for file changes with StatReloader
+INFO 2025-01-20 00:17:24,938 autoreload 23496 23520 D:\Projects\TuneVault\tunevault\songs\urls.py changed, reloading.
+INFO 2025-01-20 00:17:28,289 autoreload 11676 23244 Watching for file changes with StatReloader
+INFO 2025-01-20 00:20:57,038 autoreload 7592 6024 Watching for file changes with StatReloader
+INFO 2025-01-20 00:21:17,567 autoreload 7592 6024 D:\Projects\TuneVault\tunevault\songs\urls.py changed, reloading.
+INFO 2025-01-20 00:21:20,760 autoreload 21372 17068 Watching for file changes with StatReloader
+INFO 2025-01-20 00:21:30,556 autoreload 21372 17068 D:\Projects\TuneVault\tunevault\songs\urls.py changed, reloading.
+INFO 2025-01-20 00:21:34,150 autoreload 15580 1256 Watching for file changes with StatReloader
+INFO 2025-01-20 00:21:40,053 basehttp 15580 4388 "POST /api/songs/download/ HTTP/1.1" 202 125
+WARNING 2025-01-20 00:22:03,058 log 15580 4388 Method Not Allowed: /api/songs/check_status/
+WARNING 2025-01-20 00:22:03,087 basehttp 15580 4388 "POST //api/songs/check_status/?task_id=c121a469-0de3-4daf-a826-d51fc29f6b2a HTTP/1.1" 405 41
+INFO 2025-01-20 00:22:14,699 basehttp 15580 4388 "GET //api/songs/check_status/?task_id=c121a469-0de3-4daf-a826-d51fc29f6b2a HTTP/1.1" 200 48
+INFO 2025-01-20 00:22:35,785 basehttp 15580 4388 "GET //api/songs/check_status/?task_id=c121a469-0de3-4daf-a826-d51fc29f6b2a HTTP/1.1" 200 48
+INFO 2025-01-20 00:22:52,596 basehttp 15580 4388 "GET //api/songs/check_status/?task_id=c121a469-0de3-4daf-a826-d51fc29f6b2a HTTP/1.1" 200 48
+INFO 2025-01-20 00:22:54,693 basehttp 15580 4388 "GET //api/songs/check_status/?task_id=c121a469-0de3-4daf-a826-d51fc29f6b2a HTTP/1.1" 200 48
+INFO 2025-01-20 00:23:59,435 basehttp 15580 19708 "GET //api/songs/check_status/?task_id=c121a469-0de3-4daf-a826-d51fc29f6b2a HTTP/1.1" 200 48
+INFO 2025-01-20 00:24:03,416 basehttp 15580 19708 "GET //api/songs/check_status/?task_id=c121a469-0de3-4daf-a826-d51fc29f6b2a HTTP/1.1" 200 48
+INFO 2025-01-20 00:24:19,929 basehttp 15580 19708 "GET //api/songs/check_status/?task_id=c121a469-0de3-4daf-a826-d51fc29f6b2a HTTP/1.1" 200 48
+INFO 2025-01-20 00:24:40,294 basehttp 15580 19708 "POST /api/songs/download/ HTTP/1.1" 202 125
+INFO 2025-01-20 00:25:08,669 basehttp 15580 19708 "GET //api/songs/check_status/?task_id=c121a469-0de3-4daf-a826-d51fc29f6b2a HTTP/1.1" 200 48
+INFO 2025-01-20 00:25:13,801 basehttp 15580 19708 "GET /api/songs/check_status/?task_id=c121a469-0de3-4daf-a826-d51fc29f6b2a HTTP/1.1" 200 48
+INFO 2025-01-20 00:29:25,150 autoreload 15580 1256 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-20 00:29:28,297 autoreload 15020 21096 Watching for file changes with StatReloader
+INFO 2025-01-20 00:31:59,348 autoreload 15020 21096 D:\Projects\TuneVault\tunevault\songs\urls.py changed, reloading.
+INFO 2025-01-20 00:32:02,580 autoreload 20416 396 Watching for file changes with StatReloader
+ERROR 2025-01-20 00:32:11,240 views 20416 22828 YouTube download error: name 'yt_dlp' is not defined
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 103, in download_youtube
+    with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+         ^^^^^^
+NameError: name 'yt_dlp' is not defined
+ERROR 2025-01-20 00:32:11,243 log 20416 22828 Internal Server Error: /api/songs/download/
+ERROR 2025-01-20 00:32:11,244 basehttp 20416 22828 "POST /api/songs/download/ HTTP/1.1" 500 57
+INFO 2025-01-20 00:32:28,059 autoreload 20416 396 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-20 00:32:31,585 autoreload 17960 17464 Watching for file changes with StatReloader
+INFO 2025-01-20 00:32:50,669 basehttp 17960 1976 "POST /api/songs/download/ HTTP/1.1" 200 5518124
+INFO 2025-01-20 00:33:10,221 autoreload 17960 17464 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-20 00:33:13,859 autoreload 22260 17308 Watching for file changes with StatReloader
+INFO 2025-01-20 00:33:22,632 basehttp 22260 21300 "POST /api/songs/download/ HTTP/1.1" 202 125
+INFO 2025-01-20 00:34:43,385 autoreload 22260 17308 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-20 00:34:47,185 autoreload 18344 18768 Watching for file changes with StatReloader
+INFO 2025-01-20 00:36:53,629 autoreload 18344 18768 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-20 00:36:57,145 autoreload 20896 16464 Watching for file changes with StatReloader
+INFO 2025-01-20 00:37:15,817 basehttp 20896 22472 "POST /api/songs/download/ HTTP/1.1" 200 5518124
+INFO 2025-01-20 00:37:58,044 basehttp 20896 22472 "POST /api/songs/download/ HTTP/1.1" 202 103
+WARNING 2025-01-20 00:38:15,427 log 20896 22472 Method Not Allowed: /api/songs/download/
+WARNING 2025-01-20 00:38:15,428 basehttp 20896 22472 "GET //api/songs/download/?task_id=a2b12c97-324e-44e8-956b-69e7748a7b36 HTTP/1.1" 405 40
+WARNING 2025-01-20 00:38:37,866 log 20896 22472 Method Not Allowed: /api/songs/download/
+WARNING 2025-01-20 00:38:37,867 basehttp 20896 22472 "GET /api/songs/download/?task_id=a2b12c97-324e-44e8-956b-69e7748a7b36 HTTP/1.1" 405 40
+INFO 2025-01-20 00:39:42,220 autoreload 20896 16464 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-20 00:39:45,467 autoreload 17480 22116 Watching for file changes with StatReloader
+WARNING 2025-01-20 00:39:50,890 log 17480 15656 Method Not Allowed: /api/songs/download/
+WARNING 2025-01-20 00:39:50,891 basehttp 17480 15656 "GET /api/songs/download/?task_id=a2b12c97-324e-44e8-956b-69e7748a7b36 HTTP/1.1" 405 40
+ERROR 2025-01-20 00:40:27,970 views 17480 15656 Error checking task status: name 'DownloadProgress' is not defined
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 230, in check_status
+    progress = DownloadProgress.objects.filter(task_id=task_id).first()
+               ^^^^^^^^^^^^^^^^
+NameError: name 'DownloadProgress' is not defined
+ERROR 2025-01-20 00:40:27,972 log 17480 15656 Internal Server Error: /api/songs/check_status/
+ERROR 2025-01-20 00:40:27,973 basehttp 17480 15656 "GET /api/songs/check_status/?task_id=a2b12c97-324e-44e8-956b-69e7748a7b36 HTTP/1.1" 500 71
+INFO 2025-01-20 00:41:02,491 autoreload 17480 22116 D:\Projects\TuneVault\tunevault\songs\models.py changed, reloading.
+INFO 2025-01-20 00:41:39,586 autoreload 17996 18484 Watching for file changes with StatReloader
+INFO 2025-01-20 00:41:46,780 basehttp 17996 17700 "POST /api/songs/download/ HTTP/1.1" 202 103
+ERROR 2025-01-20 00:41:59,847 views 17996 17700 Error checking task status: name 'DownloadProgress' is not defined
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 230, in check_status
+    progress = DownloadProgress.objects.filter(task_id=task_id).first()
+               ^^^^^^^^^^^^^^^^
+NameError: name 'DownloadProgress' is not defined
+ERROR 2025-01-20 00:41:59,849 log 17996 17700 Internal Server Error: /api/songs/check_status/
+ERROR 2025-01-20 00:41:59,850 basehttp 17996 17700 "GET /api/songs/check_status/?task_id=2126d9e7-1ece-4b35-a244-a2e736d31131 HTTP/1.1" 500 71
+ERROR 2025-01-20 00:42:03,680 views 17996 17700 Error checking task status: name 'DownloadProgress' is not defined
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 230, in check_status
+    progress = DownloadProgress.objects.filter(task_id=task_id).first()
+               ^^^^^^^^^^^^^^^^
+NameError: name 'DownloadProgress' is not defined
+ERROR 2025-01-20 00:42:03,681 log 17996 17700 Internal Server Error: /api/songs/check_status/
+ERROR 2025-01-20 00:42:03,682 basehttp 17996 17700 "GET /api/songs/check_status/?task_id=2126d9e7-1ece-4b35-a244-a2e736d31131 HTTP/1.1" 500 71
+INFO 2025-01-20 00:42:18,106 autoreload 17996 18484 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-20 00:42:21,226 autoreload 22028 4704 Watching for file changes with StatReloader
+INFO 2025-01-20 00:42:27,883 basehttp 22028 3300 "GET /api/songs/check_status/?task_id=2126d9e7-1ece-4b35-a244-a2e736d31131 HTTP/1.1" 200 41
+INFO 2025-01-20 00:43:42,064 basehttp 22028 712 "GET /api/songs/check_status/?task_id=2126d9e7-1ece-4b35-a244-a2e736d31131 HTTP/1.1" 200 41
+INFO 2025-01-20 00:43:45,313 basehttp 22028 712 "GET /api/songs/check_status/?task_id=2126d9e7-1ece-4b35-a244-a2e736d31131 HTTP/1.1" 200 41
+INFO 2025-01-20 00:45:19,784 basehttp 22028 22776 "GET /api/songs/check_status/?task_id=2126d9e7-1ece-4b35-a244-a2e736d31131 HTTP/1.1" 200 41
+INFO 2025-01-20 00:50:17,216 autoreload 22028 4704 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-01-20 00:50:20,423 autoreload 7912 21000 Watching for file changes with StatReloader
+INFO 2025-01-20 00:52:10,950 basehttp 7912 19088 "POST /api/songs/download/ HTTP/1.1" 202 103
+INFO 2025-01-20 00:52:26,821 basehttp 7912 19088 "GET /api/songs/check_status/?task_id=fc4b0c2e-daae-4b7a-8a04-f2a718d9b73e HTTP/1.1" 200 41
+INFO 2025-01-20 00:52:29,307 basehttp 7912 19088 "GET /api/songs/check_status/?task_id=fc4b0c2e-daae-4b7a-8a04-f2a718d9b73e HTTP/1.1" 200 41
+INFO 2025-01-20 00:52:34,339 basehttp 7912 19088 "GET /api/songs/check_status/?task_id=fc4b0c2e-daae-4b7a-8a04-f2a718d9b73e HTTP/1.1" 200 41
+INFO 2025-01-20 00:52:36,444 basehttp 7912 19088 "GET /api/songs/check_status/?task_id=fc4b0c2e-daae-4b7a-8a04-f2a718d9b73e HTTP/1.1" 200 41
+INFO 2025-01-20 00:52:38,384 basehttp 7912 19088 "GET /api/songs/check_status/?task_id=fc4b0c2e-daae-4b7a-8a04-f2a718d9b73e HTTP/1.1" 200 41
+INFO 2025-01-20 00:52:40,451 basehttp 7912 19088 "GET /api/songs/check_status/?task_id=fc4b0c2e-daae-4b7a-8a04-f2a718d9b73e HTTP/1.1" 200 41
+INFO 2025-01-20 00:54:41,078 autoreload 7912 21000 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-01-20 00:54:44,401 autoreload 3820 1164 Watching for file changes with StatReloader
+INFO 2025-01-20 00:54:50,501 basehttp 3820 6912 "GET /api/songs/check_status/?task_id=fc4b0c2e-daae-4b7a-8a04-f2a718d9b73e HTTP/1.1" 200 41
+INFO 2025-01-20 00:54:54,752 basehttp 3820 6912 "POST /api/songs/download/ HTTP/1.1" 202 117
+INFO 2025-01-20 00:55:06,842 basehttp 3820 6912 "GET /api/songs/check_status/?task_id=fa615959-f240-4a03-97f2-7496d3338819 HTTP/1.1" 200 41
+INFO 2025-01-20 00:55:09,143 basehttp 3820 6912 "GET /api/songs/check_status/?task_id=fa615959-f240-4a03-97f2-7496d3338819 HTTP/1.1" 200 41
+INFO 2025-01-20 00:55:15,044 basehttp 3820 6912 "POST /api/songs/download/ HTTP/1.1" 202 117
+INFO 2025-01-20 00:55:25,428 basehttp 3820 6912 "POST /api/songs/download/ HTTP/1.1" 202 117
+INFO 2025-01-20 00:55:42,394 autoreload 3820 1164 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-01-20 00:55:45,661 autoreload 17332 22608 Watching for file changes with StatReloader
+INFO 2025-01-20 00:55:52,973 basehttp 17332 19356 "POST /api/songs/download/ HTTP/1.1" 202 117
+INFO 2025-01-20 00:55:57,081 autoreload 17332 22608 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-20 00:56:00,609 autoreload 8068 23348 Watching for file changes with StatReloader
+INFO 2025-01-20 00:56:15,745 basehttp 8068 13240 "POST /api/songs/download/ HTTP/1.1" 200 5518124
+ERROR 2025-01-20 00:57:18,474 views 8068 5704 Spotify track download error: 'SongViewSet' object has no attribute 'get_track_info'
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 77, in download_spotify_track
+    track_info = self.get_track_info(url)  # You'll need to implement this method
+                 ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SongViewSet' object has no attribute 'get_track_info'
+ERROR 2025-01-20 00:57:18,474 views 8068 5704 Download error: 'SongViewSet' object has no attribute 'get_track_info'
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 171, in download
+    return self.download_spotify_track(url)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 77, in download_spotify_track
+    track_info = self.get_track_info(url)  # You'll need to implement this method
+                 ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SongViewSet' object has no attribute 'get_track_info'
+ERROR 2025-01-20 00:57:18,474 log 8068 5704 Internal Server Error: /api/songs/download/
+ERROR 2025-01-20 00:57:18,474 basehttp 8068 5704 "POST /api/songs/download/ HTTP/1.1" 500 83
+INFO 2025-01-20 00:57:41,424 autoreload 8068 23348 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-01-20 00:57:45,161 autoreload 22776 8052 Watching for file changes with StatReloader
+INFO 2025-01-20 00:57:52,517 autoreload 22776 8052 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-01-20 00:57:55,570 autoreload 6912 21472 Watching for file changes with StatReloader
+ERROR 2025-01-20 00:58:13,330 views 6912 14940 Spotify track download error: 'SongViewSet' object has no attribute 'get_track_info'
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 77, in download_spotify_track
+    track_info = self.get_track_info(url)  # You'll need to implement this method
+                 ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SongViewSet' object has no attribute 'get_track_info'
+ERROR 2025-01-20 00:58:13,420 views 6912 14940 Download error: 'SongViewSet' object has no attribute 'get_track_info'
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 171, in download
+    return self.download_spotify_track(url)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 77, in download_spotify_track
+    track_info = self.get_track_info(url)  # You'll need to implement this method
+                 ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SongViewSet' object has no attribute 'get_track_info'
+ERROR 2025-01-20 00:58:13,421 log 6912 14940 Internal Server Error: /api/songs/download/
+ERROR 2025-01-20 00:58:13,422 basehttp 6912 14940 "POST /api/songs/download/ HTTP/1.1" 500 83
+INFO 2025-01-20 00:58:24,957 autoreload 6912 21472 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-20 00:58:27,983 autoreload 7760 7012 Watching for file changes with StatReloader
+ERROR 2025-01-20 00:58:44,804 views 7760 7080 Spotify track download error: 'SongViewSet' object has no attribute 'get_track_info'
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 79, in download_spotify_track
+    track_info = self.get_track_info(url)  # You'll need to implement this method
+                 ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SongViewSet' object has no attribute 'get_track_info'
+ERROR 2025-01-20 00:58:44,804 views 7760 7080 Download error: 'SongViewSet' object has no attribute 'get_track_info'
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 173, in download
+    return self.download_spotify_track(url)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 79, in download_spotify_track
+    track_info = self.get_track_info(url)  # You'll need to implement this method
+                 ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SongViewSet' object has no attribute 'get_track_info'
+ERROR 2025-01-20 00:58:44,804 log 7760 7080 Internal Server Error: /api/songs/download/
+ERROR 2025-01-20 00:58:44,804 basehttp 7760 7080 "POST /api/songs/download/ HTTP/1.1" 500 83
+ERROR 2025-01-20 00:58:47,026 views 7760 7080 Spotify track download error: 'SongViewSet' object has no attribute 'get_track_info'
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 79, in download_spotify_track
+    track_info = self.get_track_info(url)  # You'll need to implement this method
+                 ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SongViewSet' object has no attribute 'get_track_info'
+ERROR 2025-01-20 00:58:47,026 views 7760 7080 Download error: 'SongViewSet' object has no attribute 'get_track_info'
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 173, in download
+    return self.download_spotify_track(url)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 79, in download_spotify_track
+    track_info = self.get_track_info(url)  # You'll need to implement this method
+                 ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SongViewSet' object has no attribute 'get_track_info'
+ERROR 2025-01-20 00:58:47,026 log 7760 7080 Internal Server Error: /api/songs/download/
+ERROR 2025-01-20 00:58:47,026 basehttp 7760 7080 "POST /api/songs/download/ HTTP/1.1" 500 83
+INFO 2025-01-20 00:58:57,972 autoreload 7760 7012 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-01-20 00:59:01,332 autoreload 23252 21260 Watching for file changes with StatReloader
+INFO 2025-01-20 00:59:21,170 basehttp 23252 22520 "POST /api/songs/download/ HTTP/1.1" 200 6185708
+INFO 2025-01-20 01:00:55,231 basehttp 23252 880 "POST /api/songs/download/ HTTP/1.1" 202 112
+WARNING 2025-01-20 01:01:41,479 log 23252 880 Method Not Allowed: /api/songs/download/
+WARNING 2025-01-20 01:01:41,481 basehttp 23252 880 "GET /api/songs/download/?task_id=9bcb8238-73b9-48ec-b73d-6ae7d8bfa203 HTTP/1.1" 405 40
+INFO 2025-01-20 01:02:11,374 autoreload 22808 14416 Watching for file changes with StatReloader
+ERROR 2025-01-20 01:03:03,849 views 22808 6780 YouTube download error: [Errno 2] No such file or directory: 'D:\\Projects\\TuneVault\\tunevault\\media\\songs\\Downloads.mp3'
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 65, in download_youtube
+    open(filename, 'rb'),
+    ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Projects\\TuneVault\\tunevault\\media\\songs\\Downloads.mp3'
+ERROR 2025-01-20 01:03:03,853 views 22808 6780 Download error: [Errno 2] No such file or directory: 'D:\\Projects\\TuneVault\\tunevault\\media\\songs\\Downloads.mp3'
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 154, in download
+    return self.download_youtube(url)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 65, in download_youtube
+    open(filename, 'rb'),
+    ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Projects\\TuneVault\\tunevault\\media\\songs\\Downloads.mp3'
+ERROR 2025-01-20 01:03:03,855 log 22808 6780 Internal Server Error: /api/songs/download/
+ERROR 2025-01-20 01:03:03,856 basehttp 22808 6780 "POST /api/songs/download/ HTTP/1.1" 500 143

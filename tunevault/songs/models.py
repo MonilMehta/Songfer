@@ -97,3 +97,12 @@ class UserMusicProfile(models.Model):
         if song.genres.exists():
             for genre in song.genres.all():
                 self.favorite_genres.add(genre)
+
+class DownloadProgress(models.Model):
+    task_id = models.CharField(max_length=255, unique=True)
+    current_progress = models.IntegerField(default=0)
+    total_items = models.IntegerField(default=0)
+    current_file = models.CharField(max_length=255, blank=True)
+    started_at = models.DateTimeField(auto_now_add=True)
+    last_update = models.DateTimeField(auto_now=True)
+    estimated_completion_time = models.DateTimeField(null=True, blank=True)

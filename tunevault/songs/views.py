@@ -1,4 +1,5 @@
 import os
+import yt_dlp
 from django.conf import settings
 from django.http import FileResponse
 from django.shortcuts import get_object_or_404
@@ -8,12 +9,12 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from celery.result import AsyncResult
 import logging
-from .models import Song, Playlist, UserMusicProfile
+from .models import Song, Playlist, UserMusicProfile,DownloadProgress
 from .serializers import SongSerializer, PlaylistSerializer, UserMusicProfileSerializer
 from .tasks import download_song, download_spotify_playlist, download_youtube_playlist
-from spotipy.oauth2 import SpotifyClientCredentials
-from .spotify_api import get_spotify_client, get_playlist_tracks, get_track_info
-import yt_dlp
+from .spotify_api import get_playlist_tracks,get_spotify_client,get_track_info
+
+
 logger = logging.getLogger(__name__)
 
 class SongViewSet(viewsets.ModelViewSet):
@@ -26,67 +27,6 @@ class SongViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save(user=self.request.user)
-
-    @action(detail=False, methods=['post'])
-    def download(self, request):
-        """
-        Endpoint to handle song/playlist downloads from YouTube or Spotify
-        """
-        url = request.data.get('url')
-        async_download = request.data.get('async', False)  # Optional async parameter
-        
-        if not url:
-            return Response({'error': 'URL is required'}, status=status.HTTP_400_BAD_REQUEST)
-        
-        try:
-            if 'youtube.com' in url or 'youtu.be' in url:
-                if 'playlist' in url:
-                    if async_download:
-                        task = download_spotify_playlist.delay(url, request.user.id)
-                        return Response({
-                            'message': 'Playlist download initiated',
-                            'task_id': task.id,
-                            'status': 'processing'
-                        }, status=status.HTTP_202_ACCEPTED)
-                    else:
-                        return self.download_youtube(url)
-                else:
-                    if async_download:
-                        task = download_song.delay(url, request.user.id)
-                        return Response({
-                            'message': 'Download initiated',
-                            'task_id': task.id,
-                            'status': 'processing'
-                        }, status=status.HTTP_202_ACCEPTED)
-                    else:
-                        return self.download_youtube(url)
-            elif 'spotify.com' in url:
-                if '/playlist/' in url:
-                    task = download_spotify_playlist.delay(url, request.user.id)
-                    return Response({
-                        'message': 'Playlist download initiated',
-                        'task_id': task.id,
-                        'status': 'processing'
-                    }, status=status.HTTP_202_ACCEPTED)
-                else:
-                    if async_download:
-                        task = download_song.delay(url, request.user.id)
-                        return Response({
-                            'message': 'Download initiated',
-                            'task_id': task.id,
-                            'status': 'processing'
-                        }, status=status.HTTP_202_ACCEPTED)
-                    else:
-                        return self.download_spotify_track(url)
-            else:
-                return Response({'error': 'Unsupported URL'}, status=status.HTTP_400_BAD_REQUEST)
-
-        except Exception as e:
-            logger.error(f"Download error: {e}", exc_info=True)
-            return Response(
-                {'error': f'Download failed: {str(e)}'}, 
-                status=status.HTTP_500_INTERNAL_SERVER_ERROR
-            )
 
     def download_youtube(self, url):
         """Direct YouTube download with streaming response"""
@@ -131,15 +71,12 @@ class SongViewSet(viewsets.ModelViewSet):
 
         except Exception as e:
             logger.error(f"YouTube download error: {e}", exc_info=True)
-            return Response(
-                {'error': f'Download failed: {str(e)}'}, 
-                status=status.HTTP_500_INTERNAL_SERVER_ERROR
-            )
+            raise
 
     def download_spotify_track(self, url):
         """Direct Spotify track download with streaming response"""
         try:
-            track_info = get_track_info(url)
+            track_info = get_track_info(url)  # You'll need to implement this method
             query = f"{track_info['title']} {track_info['artist']}"
             
             ydl_opts = {
@@ -183,16 +120,106 @@ class SongViewSet(viewsets.ModelViewSet):
 
         except Exception as e:
             logger.error(f"Spotify track download error: {e}", exc_info=True)
+            raise
+
+    @action(detail=False, methods=['post'])
+    def download(self, request):
+        """
+        Endpoint to handle song/playlist downloads from YouTube or Spotify
+        """
+        url = request.data.get('url')
+        async_download = request.data.get('async', False)
+        
+        if not url:
+            return Response({'error': 'URL is required'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        try:
+            if 'youtube.com' in url or 'youtu.be' in url:
+                if 'playlist' in url:
+                    task = download_youtube_playlist.delay(url, request.user.id)
+                    return Response({
+                        'message': 'Playlist download initiated',
+                        'task_id': task.id,
+                        'status': 'processing'
+                    }, status=status.HTTP_202_ACCEPTED)
+                else:
+                    if async_download:
+                        task = download_song.delay(url, request.user.id)
+                        return Response({
+                            'message': 'Download initiated',
+                            'task_id': task.id,
+                            'status': 'processing'
+                        }, status=status.HTTP_202_ACCEPTED)
+                    else:
+                        return self.download_youtube(url)
+            
+            elif 'spotify.com' in url:
+                if '/playlist/' in url:
+                    task = download_spotify_playlist.delay(url, request.user.id)
+                    return Response({
+                        'message': 'Playlist download initiated',
+                        'task_id': task.id,
+                        'status': 'processing'
+                    }, status=status.HTTP_202_ACCEPTED)
+                else:
+                    if async_download:
+                        task = download_song.delay(url, request.user.id)
+                        return Response({
+                            'message': 'Download initiated',
+                            'task_id': task.id,
+                            'status': 'processing'
+                        }, status=status.HTTP_202_ACCEPTED)
+                    else:
+                        return self.download_spotify_track(url)
+            else:
+                return Response({'error': 'Unsupported URL'}, status=status.HTTP_400_BAD_REQUEST)
+
+        except Exception as e:
+            logger.error(f"Download error: {e}", exc_info=True)
             return Response(
                 {'error': f'Download failed: {str(e)}'}, 
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
 
+    @action(detail=False, methods=['post'])
+    def download_playlist(self, request):
+        """
+        Endpoint to initiate playlist downloads from YouTube or Spotify
+        """
+        urls = request.data.get('urls')
+        if not urls or not isinstance(urls, list):
+            return Response({'error': 'URLs are required and should be a list'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        task_ids = []
+        try:
+            for url in urls:
+                if 'youtube.com' in url or 'youtu.be' in url:
+                    task = download_youtube_playlist.delay(url, request.user.id)
+                    task_type = 'youtube_playlist'
+                elif 'spotify.com' in url and '/playlist/' in url:
+                    task = download_spotify_playlist.delay(url, request.user.id)
+                    task_type = 'spotify_playlist'
+                else:
+                    continue
+                task_ids.append({'task_id': task.id, 'type': task_type})
+
+            return Response({
+                'message': 'Playlist download initiated',
+                'tasks': task_ids,
+                'status': 'processing'
+            }, status=status.HTTP_202_ACCEPTED)
+
+        except Exception as e:
+            logger.error(f"Download error: {e}", exc_info=True)
+            return Response(
+                {'error': f'Download failed: {str(e)}'}, 
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
 
     @action(detail=False, methods=['get'])
     def check_status(self, request):
         """
-        Check the status of a download task
+        Check the status of a download task with detailed progress information
         """
         task_id = request.query_params.get('task_id')
         if not task_id:
@@ -201,37 +228,82 @@ class SongViewSet(viewsets.ModelViewSet):
         try:
             task_result = AsyncResult(task_id)
             
+            # Try to get progress information
+            progress = DownloadProgress.objects.filter(task_id=task_id).first()
+            
             if task_result.ready():
                 if task_result.successful():
                     result = task_result.get()
+                    
                     if isinstance(result, int):  # Single song download
-                        song = Song.objects.get(id=result)
-                        return Response({
-                            'status': 'completed',
-                            'song_id': song.id,
-                            'title': song.title,
-                            'artist': song.artist,
-                            'download_url': request.build_absolute_uri(f'/api/songs/{song.id}/download/')
-                        })
+                        try:
+                            song = Song.objects.get(id=result)
+                            return Response({
+                                'status': 'completed',
+                                'song_id': song.id,
+                                'title': song.title,
+                                'artist': song.artist,
+                                'file_size': os.path.getsize(os.path.join(settings.MEDIA_ROOT, song.file.name)),
+                                'download_url': request.build_absolute_uri(f'/api/songs/{song.id}/download/'),
+                                'thumbnail_url': song.thumbnail_url,
+                                'duration': song.duration,
+                            })
+                        except Song.DoesNotExist:
+                            return Response({
+                                'status': 'error',
+                                'error': 'Song not found in database'
+                            }, status=status.HTTP_404_NOT_FOUND)
+                        
                     else:  # Playlist download
-                        playlist = Playlist.objects.get(id=result)
-                        return Response({
-                            'status': 'completed',
-                            'playlist_id': playlist.id,
-                            'name': playlist.name,
-                            'song_count': playlist.songs.count(),
-                            'download_url': request.build_absolute_uri(f'/api/playlists/{playlist.id}/download/')
-                        })
+                        try:
+                            playlist = Playlist.objects.get(id=result)
+                            return Response({
+                                'status': 'completed',
+                                'playlist_id': playlist.id,
+                                'name': playlist.name,
+                                'song_count': playlist.songs.count(),
+                                'total_size': sum(os.path.getsize(os.path.join(settings.MEDIA_ROOT, song.file.name)) 
+                                                for song in playlist.songs.all()),
+                                'download_url': request.build_absolute_uri(f'/api/playlists/{playlist.id}/download/'),
+                                'songs': [{
+                                    'id': song.id,
+                                    'title': song.title,
+                                    'artist': song.artist,
+                                } for song in playlist.songs.all()]
+                            })
+                        except Playlist.DoesNotExist:
+                            return Response({
+                                'status': 'error',
+                                'error': 'Playlist not found in database'
+                            }, status=status.HTTP_404_NOT_FOUND)
                 else:
+                    error = str(task_result.result)
                     return Response({
                         'status': 'failed',
-                        'error': str(task_result.result)
+                        'error': error
                     }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
             else:
-                return Response({
+                response_data = {
                     'status': 'processing',
-                    'progress': 'in_progress'
-                })
+                    'state': task_result.state,
+                }
+                
+                # Add progress information if available
+                if progress:
+                    response_data.update({
+                        'progress': {
+                            'current': progress.current_progress,
+                            'total': progress.total_items,
+                            'percentage': round((progress.current_progress / progress.total_items * 100)
+                                              if progress.total_items > 0 else 0, 2),
+                            'current_file': progress.current_file,
+                            'started_at': progress.started_at,
+                            'last_update': progress.last_update,
+                            'estimated_time': progress.estimated_completion_time
+                        }
+                    })
+                
+                return Response(response_data)
 
         except Exception as e:
             logger.error(f"Error checking task status: {e}", exc_info=True)
@@ -239,6 +311,7 @@ class SongViewSet(viewsets.ModelViewSet):
                 {'error': f'Status check failed: {str(e)}'}, 
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
+
 
     @action(detail=True, methods=['get'])
     def download_file(self, request, pk=None):
@@ -358,6 +431,7 @@ class PlaylistViewSet(viewsets.ModelViewSet):
                 {'error': f'Playlist download failed: {str(e)}'}, 
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
+
 class UserMusicProfileView(generics.RetrieveUpdateAPIView):
     serializer_class = UserMusicProfileSerializer
     permission_classes = [IsAuthenticated]
