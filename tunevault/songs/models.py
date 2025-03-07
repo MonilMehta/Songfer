@@ -63,9 +63,10 @@ class Playlist(models.Model):
     source = models.CharField(max_length=50)  # 'spotify' or 'apple_music'
     source_url = models.URLField()
     created_at = models.DateTimeField(auto_now_add=True)
+    songs = models.ManyToManyField(Song, related_name='playlists', blank=True)
 
     def __str__(self):
-        return f"{self.name} ({self.source})"
+        return self.name
     def add_song(self, song):
         """
         Convenience method to add a song to the playlist

@@ -1524,3 +1524,981 @@ Traceback (most recent call last):
 FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Projects\\TuneVault\\tunevault\\media\\songs\\Downloads.mp3'
 ERROR 2025-01-20 01:03:03,855 log 22808 6780 Internal Server Error: /api/songs/download/
 ERROR 2025-01-20 01:03:03,856 basehttp 22808 6780 "POST /api/songs/download/ HTTP/1.1" 500 143
+INFO 2025-01-20 16:43:25,980 autoreload 13288 5272 Watching for file changes with StatReloader
+INFO 2025-01-20 16:47:59,380 autoreload 13288 5272 D:\Projects\TuneVault\tunevault\tunevault\settings.py changed, reloading.
+INFO 2025-01-20 16:48:02,994 autoreload 23000 16980 Watching for file changes with StatReloader
+INFO 2025-01-20 16:49:21,288 autoreload 23000 16980 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-01-20 16:49:24,440 autoreload 3496 23456 Watching for file changes with StatReloader
+INFO 2025-01-20 16:51:25,111 autoreload 9328 6464 Watching for file changes with StatReloader
+INFO 2025-01-22 00:19:32,064 autoreload 27940 27796 Watching for file changes with StatReloader
+INFO 2025-03-06 21:28:50,384 autoreload 18304 9512 Watching for file changes with StatReloader
+INFO 2025-03-06 21:42:18,667 basehttp 18304 3240 "POST /api/users/login/ HTTP/1.1" 200 95
+ERROR 2025-03-06 21:42:47,790 log 18304 3240 Internal Server Error: /api/songs/download/
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django_redis\cache.py", line 31, in _decorator
+    return method(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django_redis\cache.py", line 98, in _get
+    return self.client.get(key, default=default, version=version, client=client)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django_redis\client\default.py", line 260, in get
+    raise ConnectionInterrupted(connection=client) from e
+django_redis.exceptions.ConnectionInterrupted: Redis ConnectionError: Error 10061 connecting to 127.0.0.1:6379. No connection could be made because the target machine actively refused it.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\viewsets.py", line 124, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 416, in initial
+    self.check_throttles(request)
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 359, in check_throttles
+    if not throttle.allow_request(request, self):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\throttling.py", line 123, in allow_request
+    self.history = self.cache.get(self.key, [])
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django_redis\cache.py", line 91, in get
+    value = self._get(key, default, version, client)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django_redis\cache.py", line 38, in _decorator
+    raise e.__cause__
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django_redis\client\default.py", line 258, in get
+    value = client.get(key)
+            ^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\redis\client.py", line 1606, in get
+    return self.execute_command('GET', name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\redis\client.py", line 898, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\redis\connection.py", line 1192, in get_connection
+    connection.connect()
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\redis\connection.py", line 563, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 10061 connecting to 127.0.0.1:6379. No connection could be made because the target machine actively refused it.
+ERROR 2025-03-06 21:42:47,802 basehttp 18304 3240 "POST /api/songs/download/ HTTP/1.1" 500 154772
+ERROR 2025-03-06 23:38:29,038 views 18304 21040 YouTube download error: [Errno 2] No such file or directory: 'D:\\Projects\\TuneVault\\tunevault\\media\\songs\\Downloads.mp3'
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 65, in download_youtube
+    open(filename, 'rb'),
+    ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Projects\\TuneVault\\tunevault\\media\\songs\\Downloads.mp3'
+ERROR 2025-03-06 23:38:29,059 views 18304 21040 Download error: [Errno 2] No such file or directory: 'D:\\Projects\\TuneVault\\tunevault\\media\\songs\\Downloads.mp3'
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 154, in download
+    return self.download_youtube(url)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 65, in download_youtube
+    open(filename, 'rb'),
+    ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Projects\\TuneVault\\tunevault\\media\\songs\\Downloads.mp3'
+ERROR 2025-03-06 23:38:29,061 log 18304 21040 Internal Server Error: /api/songs/download/
+ERROR 2025-03-06 23:38:29,062 basehttp 18304 21040 "POST /api/songs/download/ HTTP/1.1" 500 143
+ERROR 2025-03-06 23:48:58,283 views 18304 21068 YouTube download error: [Errno 2] No such file or directory: 'D:\\Projects\\TuneVault\\tunevault\\media\\songs\\Downloads.mp3'
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 65, in download_youtube
+    open(filename, 'rb'),
+    ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Projects\\TuneVault\\tunevault\\media\\songs\\Downloads.mp3'
+ERROR 2025-03-06 23:48:58,287 views 18304 21068 Download error: [Errno 2] No such file or directory: 'D:\\Projects\\TuneVault\\tunevault\\media\\songs\\Downloads.mp3'
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 154, in download
+    return self.download_youtube(url)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 65, in download_youtube
+    open(filename, 'rb'),
+    ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Projects\\TuneVault\\tunevault\\media\\songs\\Downloads.mp3'
+ERROR 2025-03-06 23:48:58,288 log 18304 21068 Internal Server Error: /api/songs/download/
+ERROR 2025-03-06 23:48:58,288 basehttp 18304 21068 "POST /api/songs/download/ HTTP/1.1" 500 143
+INFO 2025-03-06 23:57:14,175 autoreload 11080 14552 Watching for file changes with StatReloader
+ERROR 2025-03-07 00:01:03,217 log 11080 18724 Internal Server Error: /api/songs/download/
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django_redis\cache.py", line 31, in _decorator
+    return method(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django_redis\cache.py", line 98, in _get
+    return self.client.get(key, default=default, version=version, client=client)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django_redis\client\default.py", line 260, in get
+    raise ConnectionInterrupted(connection=client) from e
+django_redis.exceptions.ConnectionInterrupted: Redis ConnectionError: Error 10061 connecting to 127.0.0.1:6379. No connection could be made because the target machine actively refused it.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\viewsets.py", line 124, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 416, in initial
+    self.check_throttles(request)
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 359, in check_throttles
+    if not throttle.allow_request(request, self):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\throttling.py", line 123, in allow_request
+    self.history = self.cache.get(self.key, [])
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django_redis\cache.py", line 91, in get
+    value = self._get(key, default, version, client)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django_redis\cache.py", line 38, in _decorator
+    raise e.__cause__
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django_redis\client\default.py", line 258, in get
+    value = client.get(key)
+            ^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\redis\client.py", line 1606, in get
+    return self.execute_command('GET', name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\redis\client.py", line 898, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\redis\connection.py", line 1192, in get_connection
+    connection.connect()
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\redis\connection.py", line 563, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 10061 connecting to 127.0.0.1:6379. No connection could be made because the target machine actively refused it.
+ERROR 2025-03-07 00:01:03,235 basehttp 11080 18724 "POST /api/songs/download/ HTTP/1.1" 500 157087
+ERROR 2025-03-07 00:01:07,201 log 11080 18724 Internal Server Error: /api/songs/download/
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django_redis\cache.py", line 31, in _decorator
+    return method(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django_redis\cache.py", line 98, in _get
+    return self.client.get(key, default=default, version=version, client=client)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django_redis\client\default.py", line 260, in get
+    raise ConnectionInterrupted(connection=client) from e
+django_redis.exceptions.ConnectionInterrupted: Redis ConnectionError: Error 10061 connecting to 127.0.0.1:6379. No connection could be made because the target machine actively refused it.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\viewsets.py", line 124, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 416, in initial
+    self.check_throttles(request)
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 359, in check_throttles
+    if not throttle.allow_request(request, self):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\throttling.py", line 123, in allow_request
+    self.history = self.cache.get(self.key, [])
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django_redis\cache.py", line 91, in get
+    value = self._get(key, default, version, client)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django_redis\cache.py", line 38, in _decorator
+    raise e.__cause__
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django_redis\client\default.py", line 258, in get
+    value = client.get(key)
+            ^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\redis\client.py", line 1606, in get
+    return self.execute_command('GET', name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\redis\client.py", line 898, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\redis\connection.py", line 1192, in get_connection
+    connection.connect()
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\redis\connection.py", line 563, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 10061 connecting to 127.0.0.1:6379. No connection could be made because the target machine actively refused it.
+ERROR 2025-03-07 00:01:07,206 basehttp 11080 18724 "POST /api/songs/download/ HTTP/1.1" 500 157087
+ERROR 2025-03-07 00:02:42,382 views 11080 18724 YouTube download error: [Errno 2] No such file or directory: 'D:\\Projects\\TuneVault\\tunevault\\media\\songs\\Downloads.mp3'
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 65, in download_youtube
+    open(filename, 'rb'),
+    ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Projects\\TuneVault\\tunevault\\media\\songs\\Downloads.mp3'
+ERROR 2025-03-07 00:02:42,388 views 11080 18724 Download error: [Errno 2] No such file or directory: 'D:\\Projects\\TuneVault\\tunevault\\media\\songs\\Downloads.mp3'
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 154, in download
+    return self.download_youtube(url)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 65, in download_youtube
+    open(filename, 'rb'),
+    ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Projects\\TuneVault\\tunevault\\media\\songs\\Downloads.mp3'
+ERROR 2025-03-07 00:02:42,388 log 11080 18724 Internal Server Error: /api/songs/download/
+ERROR 2025-03-07 00:02:42,388 basehttp 11080 18724 "POST /api/songs/download/ HTTP/1.1" 500 143
+INFO 2025-03-07 00:08:49,722 autoreload 11080 14552 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-07 00:08:53,852 autoreload 22496 772 Watching for file changes with StatReloader
+INFO 2025-03-07 00:09:32,357 autoreload 22496 772 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-07 00:09:35,861 autoreload 2012 13644 Watching for file changes with StatReloader
+INFO 2025-03-07 00:10:18,112 autoreload 2012 13644 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-07 00:10:21,635 autoreload 17176 17336 Watching for file changes with StatReloader
+INFO 2025-03-07 00:10:47,723 autoreload 17176 17336 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-07 00:10:51,415 autoreload 15900 22320 Watching for file changes with StatReloader
+INFO 2025-03-07 00:11:18,052 autoreload 15900 22320 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-03-07 00:11:21,177 autoreload 19604 13740 Watching for file changes with StatReloader
+INFO 2025-03-07 00:11:39,390 autoreload 19604 13740 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-03-07 00:11:42,747 autoreload 24344 20812 Watching for file changes with StatReloader
+ERROR 2025-03-07 00:12:57,868 views 24344 23840 YouTube download error: [Errno 2] No such file or directory: 'D:\\Projects\\TuneVault\\tunevault\\media\\songs\\Downloads.mp3'
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 92, in download_youtube
+    open(filename, 'rb'),
+    ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Projects\\TuneVault\\tunevault\\media\\songs\\Downloads.mp3'
+ERROR 2025-03-07 00:12:57,868 views 24344 23840 Download error: [Errno 2] No such file or directory: 'D:\\Projects\\TuneVault\\tunevault\\media\\songs\\Downloads.mp3'
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 200, in download
+    return self.download_youtube(url)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 92, in download_youtube
+    open(filename, 'rb'),
+    ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Projects\\TuneVault\\tunevault\\media\\songs\\Downloads.mp3'
+ERROR 2025-03-07 00:12:57,868 log 24344 23840 Internal Server Error: /api/songs/download/
+ERROR 2025-03-07 00:12:57,868 basehttp 24344 23840 "POST /api/songs/download/ HTTP/1.1" 500 143
+INFO 2025-03-07 00:13:46,840 basehttp 24344 23860 "POST /api/songs/download/ HTTP/1.1" 200 7754732
+INFO 2025-03-07 00:16:54,221 basehttp 24344 17444 "GET /api/songs/check_status/?task_id=fa615959-f240-4a03-97f2-7496d3338819 HTTP/1.1" 200 41
+INFO 2025-03-07 00:17:23,642 autoreload 17288 12432 Watching for file changes with StatReloader
+INFO 2025-03-07 00:18:16,452 basehttp 17288 18984 "POST /api/songs/download/ HTTP/1.1" 200 6185708
+INFO 2025-03-07 00:40:00,479 autoreload 17288 12432 D:\Projects\TuneVault\tunevault\songs\serializers.py changed, reloading.
+INFO 2025-03-07 00:40:03,768 autoreload 22240 18952 Watching for file changes with StatReloader
+INFO 2025-03-07 00:40:08,539 autoreload 22240 18952 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-07 00:40:11,968 autoreload 24000 2372 Watching for file changes with StatReloader
+INFO 2025-03-07 00:40:21,977 autoreload 24000 2372 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-07 00:40:25,446 autoreload 16820 8568 Watching for file changes with StatReloader
+INFO 2025-03-07 00:40:39,210 autoreload 16820 8568 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-07 00:40:42,687 autoreload 12812 14208 Watching for file changes with StatReloader
+INFO 2025-03-07 00:40:55,457 autoreload 12812 14208 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-07 00:40:58,902 autoreload 15612 7552 Watching for file changes with StatReloader
+INFO 2025-03-07 00:41:08,787 autoreload 15612 7552 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-07 00:41:12,205 autoreload 2044 2372 Watching for file changes with StatReloader
+INFO 2025-03-07 00:41:23,585 autoreload 2044 2372 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-03-07 00:41:27,270 autoreload 24060 22312 Watching for file changes with StatReloader
+INFO 2025-03-07 00:41:37,164 autoreload 24060 22312 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-03-07 00:41:40,746 autoreload 18684 22768 Watching for file changes with StatReloader
+INFO 2025-03-07 00:41:49,358 autoreload 18684 22768 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-07 00:41:52,835 autoreload 20492 9984 Watching for file changes with StatReloader
+INFO 2025-03-07 00:42:04,041 autoreload 20492 9984 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-07 00:42:07,900 autoreload 24200 3888 Watching for file changes with StatReloader
+INFO 2025-03-07 00:42:19,214 autoreload 24200 3888 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-07 00:42:22,776 autoreload 23480 19524 Watching for file changes with StatReloader
+INFO 2025-03-07 01:30:14,155 basehttp 23480 20824 "GET /api/songs/1/ HTTP/1.1" 200 361
+INFO 2025-03-07 01:37:52,249 basehttp 23480 23316 "POST /api/songs/download/ HTTP/1.1" 202 112
+INFO 2025-03-07 01:38:55,357 basehttp 23480 21828 "GET /api/songs/check_status/?task_id=f4c06a02-33d9-4a06-9651-2a62b6a0c108 HTTP/1.1" 200 41
+INFO 2025-03-07 01:39:29,423 basehttp 23480 21828 "GET /api/songs/check_status/?task_id=f4c06a02-33d9-4a06-9651-2a62b6a0c108 HTTP/1.1" 200 41
+INFO 2025-03-07 01:39:31,749 basehttp 23480 21828 "GET /api/songs/check_status/?task_id=f4c06a02-33d9-4a06-9651-2a62b6a0c108 HTTP/1.1" 200 41
+INFO 2025-03-07 01:39:49,302 autoreload 1700 21868 Watching for file changes with StatReloader
+INFO 2025-03-07 01:40:31,381 basehttp 1700 10336 "POST /api/songs/download/ HTTP/1.1" 202 112
+INFO 2025-03-07 01:41:57,156 basehttp 1700 21328 "GET /api/songs/check_status/?task_id=f4c06a02-33d9-4a06-9651-2a62b6a0c108 HTTP/1.1" 200 41
+INFO 2025-03-07 01:42:33,320 basehttp 1700 21328 "GET /api/songs/check_status/?task_id=f4c06a02-33d9-4a06-9651-2a62b6a0c108 HTTP/1.1" 200 41
+INFO 2025-03-07 01:42:53,522 autoreload 1700 21868 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-03-07 01:42:57,711 autoreload 13092 13428 Watching for file changes with StatReloader
+INFO 2025-03-07 01:43:34,661 autoreload 13092 13428 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-03-07 01:43:39,191 autoreload 21556 2228 Watching for file changes with StatReloader
+INFO 2025-03-07 01:44:02,991 autoreload 21556 2228 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-07 01:44:07,011 autoreload 16952 10416 Watching for file changes with StatReloader
+INFO 2025-03-07 01:44:21,198 autoreload 16952 10416 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-07 01:44:25,128 autoreload 24264 22224 Watching for file changes with StatReloader
+INFO 2025-03-07 01:44:46,457 autoreload 24264 22224 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-07 01:44:50,716 autoreload 10864 11108 Watching for file changes with StatReloader
+ERROR 2025-03-07 01:45:33,548 log 10864 8376 Internal Server Error: /api/songs/download/
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django_redis\cache.py", line 31, in _decorator
+    return method(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django_redis\cache.py", line 98, in _get
+    return self.client.get(key, default=default, version=version, client=client)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django_redis\client\default.py", line 260, in get
+    raise ConnectionInterrupted(connection=client) from e
+django_redis.exceptions.ConnectionInterrupted: Redis ConnectionError: Error 10061 connecting to 127.0.0.1:6379. No connection could be made because the target machine actively refused it.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\viewsets.py", line 124, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 416, in initial
+    self.check_throttles(request)
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 359, in check_throttles
+    if not throttle.allow_request(request, self):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\throttling.py", line 123, in allow_request
+    self.history = self.cache.get(self.key, [])
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django_redis\cache.py", line 91, in get
+    value = self._get(key, default, version, client)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django_redis\cache.py", line 38, in _decorator
+    raise e.__cause__
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django_redis\client\default.py", line 258, in get
+    value = client.get(key)
+            ^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\redis\client.py", line 1606, in get
+    return self.execute_command('GET', name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\redis\client.py", line 898, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\redis\connection.py", line 1192, in get_connection
+    connection.connect()
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\redis\connection.py", line 563, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 10061 connecting to 127.0.0.1:6379. No connection could be made because the target machine actively refused it.
+ERROR 2025-03-07 01:45:33,565 basehttp 10864 8376 "POST /api/songs/download/ HTTP/1.1" 500 157087
+INFO 2025-03-07 01:46:02,763 views 10864 8376 Download request received for URL: https://www.youtube.com/watch?v=SDTZ7iX4vTQ&list=PLWC-kegaLOQEGzWKfteCMWyM_MLAS6N6m&index=1
+INFO 2025-03-07 01:46:02,763 views 10864 8376 Detected YouTube playlist: https://www.youtube.com/watch?v=SDTZ7iX4vTQ&list=PLWC-kegaLOQEGzWKfteCMWyM_MLAS6N6m&index=1
+INFO 2025-03-07 01:46:03,563 views 10864 8376 Started YouTube playlist download task: 30ee272f-185f-472c-807c-a3871ad49a76
+INFO 2025-03-07 01:46:03,566 basehttp 10864 8376 "POST /api/songs/download/ HTTP/1.1" 202 224
+WARNING 2025-03-07 01:46:10,545 log 10864 17984 Unauthorized: /api/songs/check_status/
+WARNING 2025-03-07 01:46:10,546 basehttp 10864 17984 "GET /api/songs/check_status/?task_id=30ee272f-185f-472c-807c-a3871ad49a76 HTTP/1.1" 401 5494
+INFO 2025-03-07 01:46:11,042 basehttp 10864 20868 "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 3796
+INFO 2025-03-07 01:46:11,072 basehttp 10864 20868 "GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 1793
+INFO 2025-03-07 01:46:11,226 basehttp 10864 932 "GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 817
+INFO 2025-03-07 01:46:11,230 basehttp 10864 12460 "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 3426
+INFO 2025-03-07 01:46:11,236 basehttp 10864 21748 "GET /static/rest_framework/css/default.css HTTP/1.1" 200 1152
+INFO 2025-03-07 01:46:11,257 basehttp 10864 21748 "GET /static/rest_framework/js/load-ajax-form.js HTTP/1.1" 200 59
+INFO 2025-03-07 01:46:11,294 basehttp 10864 20868 "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 39680
+INFO 2025-03-07 01:46:11,296 basehttp 10864 12460 "GET /static/rest_framework/js/default.js HTTP/1.1" 200 1268
+INFO 2025-03-07 01:46:11,319 basehttp 10864 932 "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 13632
+INFO 2025-03-07 01:46:11,352 basehttp 10864 22000 "GET /static/rest_framework/js/jquery-3.7.1.min.js HTTP/1.1" 200 87533
+INFO 2025-03-07 01:46:11,395 basehttp 10864 17984 "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 121457
+INFO 2025-03-07 01:46:11,428 basehttp 10864 17984 "GET /static/rest_framework/img/grid.png HTTP/1.1" 200 1458
+WARNING 2025-03-07 01:46:11,604 log 10864 17984 Not Found: /favicon.ico
+WARNING 2025-03-07 01:46:11,605 basehttp 10864 17984 "GET /favicon.ico HTTP/1.1" 404 2832
+INFO 2025-03-07 01:46:32,602 basehttp 10864 8376 "GET /api/songs/check_status/?task_id=30ee272f-185f-472c-807c-a3871ad49a76 HTTP/1.1" 200 86
+INFO 2025-03-07 01:46:38,648 basehttp 10864 8376 "GET /api/songs/check_status/?task_id=30ee272f-185f-472c-807c-a3871ad49a76 HTTP/1.1" 200 86
+INFO 2025-03-07 01:47:04,747 views 10864 8376 Download request received for URL: https://www.youtube.com/watch?v=SDTZ7iX4vTQ&list=PLWC-kegaLOQEGzWKfteCMWyM_MLAS6N6m&index=1
+INFO 2025-03-07 01:47:04,747 views 10864 8376 Detected YouTube playlist: https://www.youtube.com/watch?v=SDTZ7iX4vTQ&list=PLWC-kegaLOQEGzWKfteCMWyM_MLAS6N6m&index=1
+INFO 2025-03-07 01:47:04,750 views 10864 8376 Started YouTube playlist download task: 3a2232f1-2655-486e-84ae-a667ab9576e0
+INFO 2025-03-07 01:47:04,751 basehttp 10864 8376 "POST /api/songs/download/ HTTP/1.1" 202 224
+INFO 2025-03-07 01:47:27,586 basehttp 10864 8376 "GET /api/songs/check_status/?task_id=30ee272f-185f-472c-807c-a3871ad49a76 HTTP/1.1" 200 86
+INFO 2025-03-07 01:49:18,146 autoreload 10864 11108 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-03-07 01:49:21,847 autoreload 10068 9720 Watching for file changes with StatReloader
+INFO 2025-03-07 01:49:38,307 autoreload 10068 9720 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-03-07 01:49:42,881 autoreload 15696 19296 Watching for file changes with StatReloader
+INFO 2025-03-07 01:50:16,921 autoreload 15696 19296 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-03-07 01:50:20,117 autoreload 22068 4188 Watching for file changes with StatReloader
+INFO 2025-03-07 01:50:36,830 autoreload 22068 4188 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-03-07 01:50:40,910 autoreload 8520 10956 Watching for file changes with StatReloader
+INFO 2025-03-07 01:50:57,049 autoreload 8520 10956 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-03-07 01:51:00,860 autoreload 23084 21100 Watching for file changes with StatReloader
+INFO 2025-03-07 01:51:23,292 autoreload 23084 21100 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-03-07 01:51:27,293 autoreload 7516 11376 Watching for file changes with StatReloader
+INFO 2025-03-07 01:51:45,933 autoreload 7516 11376 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-07 01:51:50,083 autoreload 7100 21132 Watching for file changes with StatReloader
+INFO 2025-03-07 01:52:08,253 autoreload 7100 21132 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-03-07 01:52:11,948 autoreload 8860 9632 Watching for file changes with StatReloader
+INFO 2025-03-07 01:52:19,341 autoreload 8860 9632 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-03-07 01:52:22,709 autoreload 2940 19064 Watching for file changes with StatReloader
+INFO 2025-03-07 01:52:31,767 autoreload 2940 19064 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-03-07 01:52:35,283 autoreload 16504 19020 Watching for file changes with StatReloader
+INFO 2025-03-07 02:19:46,158 views 16504 14208 Download request received for URL: https://www.youtube.com/watch?v=SDTZ7iX4vTQ&list=PLWC-kegaLOQEGzWKfteCMWyM_MLAS6N6m&index=1
+INFO 2025-03-07 02:19:46,159 views 16504 14208 Detected YouTube playlist: https://www.youtube.com/watch?v=SDTZ7iX4vTQ&list=PLWC-kegaLOQEGzWKfteCMWyM_MLAS6N6m&index=1
+INFO 2025-03-07 02:19:46,317 views 16504 14208 Started YouTube playlist download task: 86f17a70-3ecf-4c10-be6e-472512884a8b
+INFO 2025-03-07 02:19:46,319 basehttp 16504 14208 "POST /api/songs/download/ HTTP/1.1" 202 224
+INFO 2025-03-07 02:20:40,867 basehttp 16504 14208 "GET /api/songs/check_status/?task_id=86f17a70-3ecf-4c10-be6e-472512884a8b HTTP/1.1" 200 327
+INFO 2025-03-07 02:21:00,091 views 16504 14208 Download request received for URL: https://www.youtube.com/watch?v=eJnQBXmZ7Ek
+INFO 2025-03-07 02:21:00,092 views 16504 14208 Detected YouTube single video: https://www.youtube.com/watch?v=eJnQBXmZ7Ek
+INFO 2025-03-07 02:21:00,092 views 16504 14208 Starting direct YouTube download
+INFO 2025-03-07 02:21:16,155 basehttp 16504 14208 "POST /api/songs/download/ HTTP/1.1" 200 7754732
+INFO 2025-03-07 02:22:52,092 autoreload 16504 19020 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-07 02:22:56,372 autoreload 2016 21416 Watching for file changes with StatReloader
+INFO 2025-03-07 02:23:18,199 autoreload 2016 21416 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-03-07 02:23:22,479 autoreload 16280 21172 Watching for file changes with StatReloader
+INFO 2025-03-07 02:23:38,093 autoreload 16280 21172 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-03-07 02:23:42,651 autoreload 1252 21548 Watching for file changes with StatReloader
+INFO 2025-03-07 02:23:54,513 autoreload 1252 21548 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-03-07 02:23:59,940 autoreload 21016 3340 Watching for file changes with StatReloader
+INFO 2025-03-07 02:24:13,513 autoreload 21016 3340 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-07 02:24:17,341 autoreload 4288 13328 Watching for file changes with StatReloader
+INFO 2025-03-07 02:24:41,843 autoreload 4288 13328 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-03-07 02:24:46,228 autoreload 20544 23112 Watching for file changes with StatReloader
+INFO 2025-03-07 02:24:58,409 autoreload 20544 23112 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-07 02:25:02,975 autoreload 5328 11972 Watching for file changes with StatReloader
+INFO 2025-03-07 02:25:11,515 autoreload 5328 11972 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-07 02:25:16,535 autoreload 18120 19376 Watching for file changes with StatReloader
+INFO 2025-03-07 02:25:33,265 autoreload 18120 19376 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-03-07 02:25:38,100 autoreload 3612 5012 Watching for file changes with StatReloader
+INFO 2025-03-07 02:25:58,196 autoreload 3612 5012 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-03-07 02:26:02,361 autoreload 9976 14804 Watching for file changes with StatReloader
+INFO 2025-03-07 02:26:25,476 autoreload 9976 14804 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-03-07 02:26:29,494 autoreload 3720 18380 Watching for file changes with StatReloader
+INFO 2025-03-07 02:26:56,738 views 3720 21660 Download request received for URL: https://www.youtube.com/watch?v=SDTZ7iX4vTQ&list=PLWC-kegaLOQEGzWKfteCMWyM_MLAS6N6m&index=1
+INFO 2025-03-07 02:26:56,738 views 3720 21660 Detected YouTube playlist: https://www.youtube.com/watch?v=SDTZ7iX4vTQ&list=PLWC-kegaLOQEGzWKfteCMWyM_MLAS6N6m&index=1
+INFO 2025-03-07 02:26:56,739 views 3720 21660 Starting direct YouTube playlist download for user 1
+ERROR 2025-03-07 02:26:57,047 views 3720 21660 Error directly downloading playlist: download_youtube_playlist() takes 3 positional arguments but 4 were given
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 222, in download
+    playlist_id = download_youtube_playlist(None, url, user_id)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\celery\local.py", line 188, in __call__
+    return self._get_current_object()(*a, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\celery\app\task.py", line 392, in __call__
+    return self.run(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: download_youtube_playlist() takes 3 positional arguments but 4 were given
+ERROR 2025-03-07 02:26:57,288 log 3720 21660 Internal Server Error: /api/songs/download/
+ERROR 2025-03-07 02:26:57,289 basehttp 3720 21660 "POST /api/songs/download/ HTTP/1.1" 500 111
+INFO 2025-03-07 02:28:16,121 views 3720 10452 Download request received for URL: https://www.youtube.com/watch?v=SDTZ7iX4vTQ&list=PLWC-kegaLOQEGzWKfteCMWyM_MLAS6N6m&index=1
+INFO 2025-03-07 02:28:16,122 views 3720 10452 Detected YouTube playlist: https://www.youtube.com/watch?v=SDTZ7iX4vTQ&list=PLWC-kegaLOQEGzWKfteCMWyM_MLAS6N6m&index=1
+INFO 2025-03-07 02:28:16,122 views 3720 10452 Starting direct YouTube playlist download for user 1
+ERROR 2025-03-07 02:28:16,123 views 3720 10452 Error directly downloading playlist: download_youtube_playlist() takes 3 positional arguments but 4 were given
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 222, in download
+    playlist_id = download_youtube_playlist(None, url, user_id)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\celery\local.py", line 188, in __call__
+    return self._get_current_object()(*a, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\celery\app\task.py", line 392, in __call__
+    return self.run(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: download_youtube_playlist() takes 3 positional arguments but 4 were given
+ERROR 2025-03-07 02:28:16,124 log 3720 10452 Internal Server Error: /api/songs/download/
+ERROR 2025-03-07 02:28:16,125 basehttp 3720 10452 "POST /api/songs/download/ HTTP/1.1" 500 111
+INFO 2025-03-07 02:32:38,405 autoreload 3720 18380 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-03-07 02:32:53,726 autoreload 20252 3484 Watching for file changes with StatReloader
+INFO 2025-03-07 02:33:17,089 autoreload 20252 3484 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-03-07 02:33:21,543 autoreload 20812 6176 Watching for file changes with StatReloader
+INFO 2025-03-07 02:33:33,023 autoreload 20812 6176 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-07 02:33:36,524 autoreload 12096 20540 Watching for file changes with StatReloader
+INFO 2025-03-07 02:33:42,182 autoreload 12096 20540 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-07 02:33:45,660 autoreload 12132 23816 Watching for file changes with StatReloader
+INFO 2025-03-07 02:34:00,186 autoreload 12132 23816 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-03-07 02:34:04,109 autoreload 20560 2244 Watching for file changes with StatReloader
+INFO 2025-03-07 02:34:49,814 autoreload 20560 2244 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-07 02:34:54,596 autoreload 15036 20468 Watching for file changes with StatReloader
+INFO 2025-03-07 02:35:20,582 autoreload 15036 20468 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-03-07 02:35:24,201 autoreload 15240 20908 Watching for file changes with StatReloader
+INFO 2025-03-07 02:35:42,261 autoreload 15240 20908 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-07 02:35:46,737 autoreload 10800 17824 Watching for file changes with StatReloader
+INFO 2025-03-07 02:35:59,299 autoreload 10800 17824 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-07 02:36:04,308 autoreload 940 21360 Watching for file changes with StatReloader
+INFO 2025-03-07 02:36:36,157 autoreload 940 21360 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-03-07 02:36:39,857 autoreload 20848 16032 Watching for file changes with StatReloader
+INFO 2025-03-07 02:37:39,909 views 20848 10108 Download request received for URL: https://www.youtube.com/watch?v=SDTZ7iX4vTQ&list=PLWC-kegaLOQEGzWKfteCMWyM_MLAS6N6m&index=1
+INFO 2025-03-07 02:37:39,909 views 20848 10108 Detected YouTube playlist: https://www.youtube.com/watch?v=SDTZ7iX4vTQ&list=PLWC-kegaLOQEGzWKfteCMWyM_MLAS6N6m&index=1
+INFO 2025-03-07 02:37:39,910 views 20848 10108 Starting direct YouTube playlist download for user 1
+INFO 2025-03-07 02:37:39,910 tasks 20848 10108 Starting direct YouTube playlist download: https://www.youtube.com/watch?v=SDTZ7iX4vTQ&list=PLWC-kegaLOQEGzWKfteCMWyM_MLAS6N6m&index=1 for user 1
+INFO 2025-03-07 02:37:39,973 tasks 20848 10108 Extracting playlist info from: https://www.youtube.com/watch?v=SDTZ7iX4vTQ&list=PLWC-kegaLOQEGzWKfteCMWyM_MLAS6N6m&index=1
+INFO 2025-03-07 02:37:51,819 tasks 20848 10108 Found playlist: Downloads with 3 entries
+INFO 2025-03-07 02:37:51,949 tasks 20848 10108 Created playlist with ID: 2
+INFO 2025-03-07 02:37:52,038 tasks 20848 10108 Processing entry 1/3: Mac Miller - Self Care
+INFO 2025-03-07 02:37:52,119 tasks 20848 10108 Direct call to download_song with task_id: direct-1741295259.911519
+INFO 2025-03-07 02:37:52,122 tasks 20848 10108 download_song: Getting user 1
+INFO 2025-03-07 02:37:52,192 tasks 20848 10108 download_song: Using provided track info: Mac Miller - Self Care
+INFO 2025-03-07 02:37:52,192 tasks 20848 10108 download_song: Using parent progress object for task_id: direct-1741295259.911519
+INFO 2025-03-07 02:37:52,259 tasks 20848 10108 download_song: Creating temporary directory for download
+INFO 2025-03-07 02:37:52,262 tasks 20848 10108 download_song: Output path: C:\Users\monil\AppData\Local\Temp\tmplb1r17h4\Mac Miller - Self Care - Mac Miller.mp3
+INFO 2025-03-07 02:37:52,263 tasks 20848 10108 download_song: Starting audio download for: Mac Miller - Self Care
+INFO 2025-03-07 02:37:52,263 tasks 20848 10108 Downloading audio: https://www.youtube.com/watch?v=SsKT0s5J8ko to C:\Users\monil\AppData\Local\Temp\tmplb1r17h4\Mac Miller - Self Care - Mac Miller.mp3
+INFO 2025-03-07 02:38:10,079 tasks 20848 10108 download_song: Audio download complete for: Mac Miller - Self Care
+INFO 2025-03-07 02:38:10,080 tasks 20848 10108 download_song: Initial thumbnail URL from track_info: https://i.ytimg.com/vi_webp/SsKT0s5J8ko/maxresdefault.webp
+INFO 2025-03-07 02:38:10,080 tasks 20848 10108 download_song: Creating song record for: Mac Miller - Self Care
+ERROR 2025-03-07 02:38:10,085 tasks 20848 10108 download_song: Error downloading song: Song() got unexpected keyword arguments: 'duration'
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\tasks.py", line 163, in download_song_direct
+    song = Song.objects.create(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 677, in create
+    obj = self.model(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\db\models\base.py", line 567, in __init__
+    raise TypeError(
+TypeError: Song() got unexpected keyword arguments: 'duration'
+ERROR 2025-03-07 02:38:10,215 tasks 20848 10108 Error downloading song Mac Miller - Self Care: Song() got unexpected keyword arguments: 'duration'
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\tasks.py", line 293, in download_youtube_playlist_direct
+    song_id = download_song_direct(track_info, user_id, playlist.id, parent_task_id=task_id)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\tunevault\songs\tasks.py", line 163, in download_song_direct
+    song = Song.objects.create(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 677, in create
+    obj = self.model(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\db\models\base.py", line 567, in __init__
+    raise TypeError(
+TypeError: Song() got unexpected keyword arguments: 'duration'
+INFO 2025-03-07 02:38:10,219 tasks 20848 10108 Processing entry 2/3: Foster The People - Pumped Up Kicks (Official Video)
+INFO 2025-03-07 02:38:10,286 tasks 20848 10108 Direct call to download_song with task_id: direct-1741295259.911519
+INFO 2025-03-07 02:38:10,287 tasks 20848 10108 download_song: Getting user 1
+INFO 2025-03-07 02:38:10,354 tasks 20848 10108 download_song: Using provided track info: Foster The People - Pumped Up Kicks (Official Video)
+INFO 2025-03-07 02:38:10,354 tasks 20848 10108 download_song: Using parent progress object for task_id: direct-1741295259.911519
+INFO 2025-03-07 02:38:10,420 tasks 20848 10108 download_song: Creating temporary directory for download
+INFO 2025-03-07 02:38:10,422 tasks 20848 10108 download_song: Output path: C:\Users\monil\AppData\Local\Temp\tmp2oozy6kz\Foster The People - Pumped Up Kicks Official Video - FosterThePeople.mp3
+INFO 2025-03-07 02:38:10,422 tasks 20848 10108 download_song: Starting audio download for: Foster The People - Pumped Up Kicks (Official Video)
+INFO 2025-03-07 02:38:10,422 tasks 20848 10108 Downloading audio: https://www.youtube.com/watch?v=SDTZ7iX4vTQ to C:\Users\monil\AppData\Local\Temp\tmp2oozy6kz\Foster The People - Pumped Up Kicks Official Video - FosterThePeople.mp3
+INFO 2025-03-07 02:38:24,102 tasks 20848 10108 download_song: Audio download complete for: Foster The People - Pumped Up Kicks (Official Video)
+INFO 2025-03-07 02:38:24,102 tasks 20848 10108 download_song: Initial thumbnail URL from track_info: https://i.ytimg.com/vi_webp/SDTZ7iX4vTQ/maxresdefault.webp
+INFO 2025-03-07 02:38:24,103 tasks 20848 10108 download_song: Creating song record for: Foster The People - Pumped Up Kicks (Official Video)
+ERROR 2025-03-07 02:38:24,105 tasks 20848 10108 download_song: Error downloading song: Song() got unexpected keyword arguments: 'duration'
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\tasks.py", line 163, in download_song_direct
+    song = Song.objects.create(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 677, in create
+    obj = self.model(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\db\models\base.py", line 567, in __init__
+    raise TypeError(
+TypeError: Song() got unexpected keyword arguments: 'duration'
+ERROR 2025-03-07 02:38:24,107 tasks 20848 10108 Error downloading song Foster The People - Pumped Up Kicks (Official Video): Song() got unexpected keyword arguments: 'duration'
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\tasks.py", line 293, in download_youtube_playlist_direct
+    song_id = download_song_direct(track_info, user_id, playlist.id, parent_task_id=task_id)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\tunevault\songs\tasks.py", line 163, in download_song_direct
+    song = Song.objects.create(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 677, in create
+    obj = self.model(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\db\models\base.py", line 567, in __init__
+    raise TypeError(
+TypeError: Song() got unexpected keyword arguments: 'duration'
+INFO 2025-03-07 02:38:24,109 tasks 20848 10108 Processing entry 3/3: Dylan Gossett - Coal (Lyric Video)
+INFO 2025-03-07 02:38:24,174 tasks 20848 10108 Direct call to download_song with task_id: direct-1741295259.911519
+INFO 2025-03-07 02:38:24,174 tasks 20848 10108 download_song: Getting user 1
+INFO 2025-03-07 02:38:24,239 tasks 20848 10108 download_song: Using provided track info: Dylan Gossett - Coal (Lyric Video)
+INFO 2025-03-07 02:38:24,240 tasks 20848 10108 download_song: Using parent progress object for task_id: direct-1741295259.911519
+INFO 2025-03-07 02:38:24,301 tasks 20848 10108 download_song: Creating temporary directory for download
+INFO 2025-03-07 02:38:24,302 tasks 20848 10108 download_song: Output path: C:\Users\monil\AppData\Local\Temp\tmpi6g38ltl\Dylan Gossett - Coal Lyric Video - Dylan Gossett.mp3
+INFO 2025-03-07 02:38:24,303 tasks 20848 10108 download_song: Starting audio download for: Dylan Gossett - Coal (Lyric Video)
+INFO 2025-03-07 02:38:24,303 tasks 20848 10108 Downloading audio: https://www.youtube.com/watch?v=-yyTutHFUlg to C:\Users\monil\AppData\Local\Temp\tmpi6g38ltl\Dylan Gossett - Coal Lyric Video - Dylan Gossett.mp3
+INFO 2025-03-07 02:38:38,244 tasks 20848 10108 download_song: Audio download complete for: Dylan Gossett - Coal (Lyric Video)
+INFO 2025-03-07 02:38:38,245 tasks 20848 10108 download_song: Initial thumbnail URL from track_info: https://i.ytimg.com/vi_webp/-yyTutHFUlg/maxresdefault.webp
+INFO 2025-03-07 02:38:38,245 tasks 20848 10108 download_song: Creating song record for: Dylan Gossett - Coal (Lyric Video)
+ERROR 2025-03-07 02:38:38,248 tasks 20848 10108 download_song: Error downloading song: Song() got unexpected keyword arguments: 'duration'
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\tasks.py", line 163, in download_song_direct
+    song = Song.objects.create(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 677, in create
+    obj = self.model(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\db\models\base.py", line 567, in __init__
+    raise TypeError(
+TypeError: Song() got unexpected keyword arguments: 'duration'
+ERROR 2025-03-07 02:38:38,251 tasks 20848 10108 Error downloading song Dylan Gossett - Coal (Lyric Video): Song() got unexpected keyword arguments: 'duration'
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\tasks.py", line 293, in download_youtube_playlist_direct
+    song_id = download_song_direct(track_info, user_id, playlist.id, parent_task_id=task_id)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\tunevault\songs\tasks.py", line 163, in download_song_direct
+    song = Song.objects.create(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 677, in create
+    obj = self.model(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\db\models\base.py", line 567, in __init__
+    raise TypeError(
+TypeError: Song() got unexpected keyword arguments: 'duration'
+ERROR 2025-03-07 02:38:38,253 tasks 20848 10108 No songs were successfully downloaded
+ERROR 2025-03-07 02:38:38,392 tasks 20848 10108 Error downloading YouTube playlist: Failed to download any songs from the playlist
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\tasks.py", line 315, in download_youtube_playlist_direct
+    raise ValueError("Failed to download any songs from the playlist")
+ValueError: Failed to download any songs from the playlist
+ERROR 2025-03-07 02:38:38,460 views 20848 10108 Error directly downloading playlist: Failed to download any songs from the playlist
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 222, in download
+    playlist_id = download_youtube_playlist_direct(url, user_id)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\tunevault\songs\tasks.py", line 315, in download_youtube_playlist_direct
+    raise ValueError("Failed to download any songs from the playlist")
+ValueError: Failed to download any songs from the playlist
+ERROR 2025-03-07 02:38:38,463 log 20848 10108 Internal Server Error: /api/songs/download/
+ERROR 2025-03-07 02:38:38,463 basehttp 20848 10108 "POST /api/songs/download/ HTTP/1.1" 500 83
+INFO 2025-03-07 02:39:50,938 views 20848 23364 Download request received for URL: https://www.youtube.com/watch?v=eJnQBXmZ7Ek
+INFO 2025-03-07 02:39:50,939 views 20848 23364 Detected YouTube single video: https://www.youtube.com/watch?v=eJnQBXmZ7Ek
+INFO 2025-03-07 02:39:50,939 views 20848 23364 Starting direct YouTube download
+INFO 2025-03-07 02:40:08,076 basehttp 20848 23364 "POST /api/songs/download/ HTTP/1.1" 200 7754732
+INFO 2025-03-07 02:40:55,708 autoreload 20848 16032 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-03-07 02:41:00,126 autoreload 9248 23904 Watching for file changes with StatReloader
+INFO 2025-03-07 02:41:36,551 autoreload 9248 23904 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-03-07 02:41:40,427 autoreload 5280 19644 Watching for file changes with StatReloader
+INFO 2025-03-07 02:41:52,626 autoreload 5280 19644 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-03-07 02:41:57,618 autoreload 10640 8156 Watching for file changes with StatReloader
+INFO 2025-03-07 02:42:08,430 autoreload 10640 8156 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-03-07 02:42:12,117 autoreload 1292 17120 Watching for file changes with StatReloader
+INFO 2025-03-07 02:42:24,119 autoreload 1292 17120 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-03-07 02:42:27,535 autoreload 20916 3336 Watching for file changes with StatReloader
+INFO 2025-03-07 02:42:58,892 autoreload 20916 3336 D:\Projects\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-03-07 02:43:02,506 autoreload 10836 19736 Watching for file changes with StatReloader
+INFO 2025-03-07 02:43:21,316 autoreload 10836 19736 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-07 02:43:24,842 autoreload 16452 16292 Watching for file changes with StatReloader
+INFO 2025-03-07 02:43:30,008 autoreload 16452 16292 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-07 02:43:33,207 autoreload 12688 8516 Watching for file changes with StatReloader
+INFO 2025-03-07 02:47:01,666 views 12688 16708 Download request received for URL: https://www.youtube.com/watch?v=SDTZ7iX4vTQ&list=PLWC-kegaLOQEGzWKfteCMWyM_MLAS6N6m&index=1
+INFO 2025-03-07 02:47:01,667 views 12688 16708 Detected YouTube playlist: https://www.youtube.com/watch?v=SDTZ7iX4vTQ&list=PLWC-kegaLOQEGzWKfteCMWyM_MLAS6N6m&index=1
+INFO 2025-03-07 02:47:01,667 views 12688 16708 Starting direct YouTube playlist download for user 1
+INFO 2025-03-07 02:47:01,668 tasks 12688 16708 Starting direct YouTube playlist download: https://www.youtube.com/watch?v=SDTZ7iX4vTQ&list=PLWC-kegaLOQEGzWKfteCMWyM_MLAS6N6m&index=1 for user 1
+INFO 2025-03-07 02:47:01,731 tasks 12688 16708 Extracting playlist info from: https://www.youtube.com/watch?v=SDTZ7iX4vTQ&list=PLWC-kegaLOQEGzWKfteCMWyM_MLAS6N6m&index=1
+INFO 2025-03-07 02:47:12,695 tasks 12688 16708 Found playlist: Downloads with 3 entries
+INFO 2025-03-07 02:47:12,766 tasks 12688 16708 Created playlist with ID: 3
+INFO 2025-03-07 02:47:12,827 tasks 12688 16708 Processing entry 1/3: Mac Miller - Self Care
+INFO 2025-03-07 02:47:12,892 tasks 12688 16708 Direct call to download_song with task_id: direct-1741295821.668092
+INFO 2025-03-07 02:47:12,893 tasks 12688 16708 download_song: Getting user 1
+INFO 2025-03-07 02:47:12,956 tasks 12688 16708 download_song: Using provided track info: Mac Miller - Self Care
+INFO 2025-03-07 02:47:12,957 tasks 12688 16708 download_song: Using parent progress object for task_id: direct-1741295821.668092
+INFO 2025-03-07 02:47:13,024 tasks 12688 16708 download_song: Creating temporary directory for download
+INFO 2025-03-07 02:47:13,027 tasks 12688 16708 download_song: Temp path: C:\Users\monil\AppData\Local\Temp\tmp76gb9b5o\Mac Miller - Self Care - Mac Miller.mp3
+INFO 2025-03-07 02:47:13,028 tasks 12688 16708 download_song: Final media path: D:\Projects\TuneVault\tunevault\media\songs\Mac Miller - Self Care - Mac Miller.mp3
+INFO 2025-03-07 02:47:13,028 tasks 12688 16708 download_song: Starting audio download for: Mac Miller - Self Care
+INFO 2025-03-07 02:47:13,029 tasks 12688 16708 Downloading audio: https://www.youtube.com/watch?v=SsKT0s5J8ko to C:\Users\monil\AppData\Local\Temp\tmp76gb9b5o\Mac Miller - Self Care - Mac Miller.mp3
+INFO 2025-03-07 02:47:30,147 tasks 12688 16708 download_song: Audio download complete for: Mac Miller - Self Care
+INFO 2025-03-07 02:47:30,148 tasks 12688 16708 download_song: Initial thumbnail URL from track_info: https://i.ytimg.com/vi_webp/SsKT0s5J8ko/maxresdefault.webp
+INFO 2025-03-07 02:47:30,148 tasks 12688 16708 download_song: Creating song record for: Mac Miller - Self Care
+INFO 2025-03-07 02:47:30,211 tasks 12688 16708 download_song: Created song record with ID: 72
+INFO 2025-03-07 02:47:30,212 tasks 12688 16708 download_song: Saving file to media directory: Mac Miller - Self Care - Mac Miller.mp3
+INFO 2025-03-07 02:47:30,212 tasks 12688 16708 download_song: Copying from C:\Users\monil\AppData\Local\Temp\tmp76gb9b5o\Mac Miller - Self Care - Mac Miller.mp3.mp3 to D:\Projects\TuneVault\tunevault\media\songs\Mac Miller - Self Care - Mac Miller.mp3
+INFO 2025-03-07 02:47:30,284 tasks 12688 16708 download_song: File saved to: songs\Mac Miller - Self Care - Mac Miller.mp3
+INFO 2025-03-07 02:47:30,285 tasks 12688 16708 download_song: Adding song to playlist 3
+ERROR 2025-03-07 02:47:30,349 tasks 12688 16708 download_song: Error downloading song: 'Playlist' object has no attribute 'songs'
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\tasks.py", line 205, in download_song_direct
+    playlist.songs.add(song)
+    ^^^^^^^^^^^^^^
+AttributeError: 'Playlist' object has no attribute 'songs'
+ERROR 2025-03-07 02:47:30,352 tasks 12688 16708 Error downloading song Mac Miller - Self Care: 'Playlist' object has no attribute 'songs'
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\tasks.py", line 311, in download_youtube_playlist_direct
+    song_id = download_song_direct(track_info, user_id, playlist.id, parent_task_id=task_id)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\tunevault\songs\tasks.py", line 205, in download_song_direct
+    playlist.songs.add(song)
+    ^^^^^^^^^^^^^^
+AttributeError: 'Playlist' object has no attribute 'songs'
+INFO 2025-03-07 02:47:30,355 tasks 12688 16708 Processing entry 2/3: Foster The People - Pumped Up Kicks (Official Video)
+INFO 2025-03-07 02:47:30,415 tasks 12688 16708 Direct call to download_song with task_id: direct-1741295821.668092
+INFO 2025-03-07 02:47:30,415 tasks 12688 16708 download_song: Getting user 1
+INFO 2025-03-07 02:47:30,477 tasks 12688 16708 download_song: Using provided track info: Foster The People - Pumped Up Kicks (Official Video)
+INFO 2025-03-07 02:47:30,478 tasks 12688 16708 download_song: Using parent progress object for task_id: direct-1741295821.668092
+INFO 2025-03-07 02:47:30,539 tasks 12688 16708 download_song: Creating temporary directory for download
+INFO 2025-03-07 02:47:30,540 tasks 12688 16708 download_song: Temp path: C:\Users\monil\AppData\Local\Temp\tmp7ep9kh_v\Foster The People - Pumped Up Kicks Official Video - FosterThePeople.mp3
+INFO 2025-03-07 02:47:30,541 tasks 12688 16708 download_song: Final media path: D:\Projects\TuneVault\tunevault\media\songs\Foster The People - Pumped Up Kicks Official Video - FosterThePeople.mp3
+INFO 2025-03-07 02:47:30,541 tasks 12688 16708 download_song: Starting audio download for: Foster The People - Pumped Up Kicks (Official Video)
+INFO 2025-03-07 02:47:30,542 tasks 12688 16708 Downloading audio: https://www.youtube.com/watch?v=SDTZ7iX4vTQ to C:\Users\monil\AppData\Local\Temp\tmp7ep9kh_v\Foster The People - Pumped Up Kicks Official Video - FosterThePeople.mp3
+INFO 2025-03-07 02:47:44,273 tasks 12688 16708 download_song: Audio download complete for: Foster The People - Pumped Up Kicks (Official Video)
+INFO 2025-03-07 02:47:44,274 tasks 12688 16708 download_song: Initial thumbnail URL from track_info: https://i.ytimg.com/vi_webp/SDTZ7iX4vTQ/maxresdefault.webp
+INFO 2025-03-07 02:47:44,274 tasks 12688 16708 download_song: Creating song record for: Foster The People - Pumped Up Kicks (Official Video)
+INFO 2025-03-07 02:47:44,337 tasks 12688 16708 download_song: Created song record with ID: 73
+INFO 2025-03-07 02:47:44,338 tasks 12688 16708 download_song: Saving file to media directory: Foster The People - Pumped Up Kicks Official Video - FosterThePeople.mp3
+INFO 2025-03-07 02:47:44,340 tasks 12688 16708 download_song: Copying from C:\Users\monil\AppData\Local\Temp\tmp7ep9kh_v\Foster The People - Pumped Up Kicks Official Video - FosterThePeople.mp3.mp3 to D:\Projects\TuneVault\tunevault\media\songs\Foster The People - Pumped Up Kicks Official Video - FosterThePeople.mp3
+INFO 2025-03-07 02:47:44,426 tasks 12688 16708 download_song: File saved to: songs\Foster The People - Pumped Up Kicks Official Video - FosterThePeople.mp3
+INFO 2025-03-07 02:47:44,427 tasks 12688 16708 download_song: Adding song to playlist 3
+ERROR 2025-03-07 02:47:44,491 tasks 12688 16708 download_song: Error downloading song: 'Playlist' object has no attribute 'songs'
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\tasks.py", line 205, in download_song_direct
+    playlist.songs.add(song)
+    ^^^^^^^^^^^^^^
+AttributeError: 'Playlist' object has no attribute 'songs'
+ERROR 2025-03-07 02:47:44,492 tasks 12688 16708 Error downloading song Foster The People - Pumped Up Kicks (Official Video): 'Playlist' object has no attribute 'songs'
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\tasks.py", line 311, in download_youtube_playlist_direct
+    song_id = download_song_direct(track_info, user_id, playlist.id, parent_task_id=task_id)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\tunevault\songs\tasks.py", line 205, in download_song_direct
+    playlist.songs.add(song)
+    ^^^^^^^^^^^^^^
+AttributeError: 'Playlist' object has no attribute 'songs'
+INFO 2025-03-07 02:47:44,494 tasks 12688 16708 Processing entry 3/3: Dylan Gossett - Coal (Lyric Video)
+INFO 2025-03-07 02:47:44,553 tasks 12688 16708 Direct call to download_song with task_id: direct-1741295821.668092
+INFO 2025-03-07 02:47:44,555 tasks 12688 16708 download_song: Getting user 1
+INFO 2025-03-07 02:47:44,620 tasks 12688 16708 download_song: Using provided track info: Dylan Gossett - Coal (Lyric Video)
+INFO 2025-03-07 02:47:44,621 tasks 12688 16708 download_song: Using parent progress object for task_id: direct-1741295821.668092
+INFO 2025-03-07 02:47:44,687 tasks 12688 16708 download_song: Creating temporary directory for download
+INFO 2025-03-07 02:47:44,688 tasks 12688 16708 download_song: Temp path: C:\Users\monil\AppData\Local\Temp\tmpat2_py2a\Dylan Gossett - Coal Lyric Video - Dylan Gossett.mp3
+INFO 2025-03-07 02:47:44,689 tasks 12688 16708 download_song: Final media path: D:\Projects\TuneVault\tunevault\media\songs\Dylan Gossett - Coal Lyric Video - Dylan Gossett.mp3
+INFO 2025-03-07 02:47:44,689 tasks 12688 16708 download_song: Starting audio download for: Dylan Gossett - Coal (Lyric Video)
+INFO 2025-03-07 02:47:44,690 tasks 12688 16708 Downloading audio: https://www.youtube.com/watch?v=-yyTutHFUlg to C:\Users\monil\AppData\Local\Temp\tmpat2_py2a\Dylan Gossett - Coal Lyric Video - Dylan Gossett.mp3
+INFO 2025-03-07 02:47:56,881 tasks 12688 16708 download_song: Audio download complete for: Dylan Gossett - Coal (Lyric Video)
+INFO 2025-03-07 02:47:56,881 tasks 12688 16708 download_song: Initial thumbnail URL from track_info: https://i.ytimg.com/vi_webp/-yyTutHFUlg/maxresdefault.webp
+INFO 2025-03-07 02:47:56,882 tasks 12688 16708 download_song: Creating song record for: Dylan Gossett - Coal (Lyric Video)
+INFO 2025-03-07 02:47:56,945 tasks 12688 16708 download_song: Created song record with ID: 74
+INFO 2025-03-07 02:47:56,946 tasks 12688 16708 download_song: Saving file to media directory: Dylan Gossett - Coal Lyric Video - Dylan Gossett.mp3
+INFO 2025-03-07 02:47:56,947 tasks 12688 16708 download_song: Copying from C:\Users\monil\AppData\Local\Temp\tmpat2_py2a\Dylan Gossett - Coal Lyric Video - Dylan Gossett.mp3.mp3 to D:\Projects\TuneVault\tunevault\media\songs\Dylan Gossett - Coal Lyric Video - Dylan Gossett.mp3
+INFO 2025-03-07 02:47:57,014 tasks 12688 16708 download_song: File saved to: songs\Dylan Gossett - Coal Lyric Video - Dylan Gossett.mp3
+INFO 2025-03-07 02:47:57,015 tasks 12688 16708 download_song: Adding song to playlist 3
+ERROR 2025-03-07 02:47:57,078 tasks 12688 16708 download_song: Error downloading song: 'Playlist' object has no attribute 'songs'
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\tasks.py", line 205, in download_song_direct
+    playlist.songs.add(song)
+    ^^^^^^^^^^^^^^
+AttributeError: 'Playlist' object has no attribute 'songs'
+ERROR 2025-03-07 02:47:57,079 tasks 12688 16708 Error downloading song Dylan Gossett - Coal (Lyric Video): 'Playlist' object has no attribute 'songs'
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\tasks.py", line 311, in download_youtube_playlist_direct
+    song_id = download_song_direct(track_info, user_id, playlist.id, parent_task_id=task_id)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\tunevault\songs\tasks.py", line 205, in download_song_direct
+    playlist.songs.add(song)
+    ^^^^^^^^^^^^^^
+AttributeError: 'Playlist' object has no attribute 'songs'
+ERROR 2025-03-07 02:47:57,081 tasks 12688 16708 No songs were successfully downloaded
+ERROR 2025-03-07 02:47:57,205 tasks 12688 16708 Error downloading YouTube playlist: Failed to download any songs from the playlist
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\tasks.py", line 333, in download_youtube_playlist_direct
+    raise ValueError("Failed to download any songs from the playlist")
+ValueError: Failed to download any songs from the playlist
+ERROR 2025-03-07 02:47:57,271 views 12688 16708 Error directly downloading playlist: Failed to download any songs from the playlist
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 222, in download
+    playlist_id = download_youtube_playlist_direct(url, user_id)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\tunevault\songs\tasks.py", line 333, in download_youtube_playlist_direct
+    raise ValueError("Failed to download any songs from the playlist")
+ValueError: Failed to download any songs from the playlist
+ERROR 2025-03-07 02:47:57,275 log 12688 16708 Internal Server Error: /api/songs/download/
+ERROR 2025-03-07 02:47:57,276 basehttp 12688 16708 "POST /api/songs/download/ HTTP/1.1" 500 83
+INFO 2025-03-07 17:08:06,320 autoreload 18596 6292 Watching for file changes with StatReloader
+ERROR 2025-03-07 17:13:06,241 log 18596 4460 Internal Server Error: /api/songs/download/
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django_redis\cache.py", line 31, in _decorator
+    return method(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django_redis\cache.py", line 98, in _get
+    return self.client.get(key, default=default, version=version, client=client)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django_redis\client\default.py", line 260, in get
+    raise ConnectionInterrupted(connection=client) from e
+django_redis.exceptions.ConnectionInterrupted: Redis ConnectionError: Error 10061 connecting to 127.0.0.1:6379. No connection could be made because the target machine actively refused it.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\viewsets.py", line 124, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 509, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 469, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 480, in raise_uncaught_exception
+    raise exc
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 497, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 416, in initial
+    self.check_throttles(request)
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 359, in check_throttles
+    if not throttle.allow_request(request, self):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\rest_framework\throttling.py", line 123, in allow_request
+    self.history = self.cache.get(self.key, [])
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django_redis\cache.py", line 91, in get
+    value = self._get(key, default, version, client)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django_redis\cache.py", line 38, in _decorator
+    raise e.__cause__
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\django_redis\client\default.py", line 258, in get
+    value = client.get(key)
+            ^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\redis\client.py", line 1606, in get
+    return self.execute_command('GET', name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\redis\client.py", line 898, in execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\redis\connection.py", line 1192, in get_connection
+    connection.connect()
+  File "D:\Projects\TuneVault\venv\Lib\site-packages\redis\connection.py", line 563, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 10061 connecting to 127.0.0.1:6379. No connection could be made because the target machine actively refused it.
+ERROR 2025-03-07 17:13:06,254 basehttp 18596 4460 "POST /api/songs/download/ HTTP/1.1" 500 157029
+ERROR 2025-03-07 17:16:25,899 views 18596 10748 YouTube download error: [Errno 2] No such file or directory: 'D:\\Projects\\TuneVault\\tunevault\\media\\songs\\Downloads.mp3'
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 65, in download_youtube
+    open(filename, 'rb'),
+    ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Projects\\TuneVault\\tunevault\\media\\songs\\Downloads.mp3'
+ERROR 2025-03-07 17:16:25,901 views 18596 10748 Download error: [Errno 2] No such file or directory: 'D:\\Projects\\TuneVault\\tunevault\\media\\songs\\Downloads.mp3'
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 154, in download
+    return self.download_youtube(url)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 65, in download_youtube
+    open(filename, 'rb'),
+    ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Projects\\TuneVault\\tunevault\\media\\songs\\Downloads.mp3'
+ERROR 2025-03-07 17:16:25,902 log 18596 10748 Internal Server Error: /api/songs/download/
+ERROR 2025-03-07 17:16:25,903 basehttp 18596 10748 "POST /api/songs/download/ HTTP/1.1" 500 143
+INFO 2025-03-07 17:21:10,503 autoreload 18596 6292 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-07 17:21:14,978 autoreload 3756 11120 Watching for file changes with StatReloader
+ERROR 2025-03-07 17:22:05,655 views 3756 24320 YouTube download error: [Errno 2] No such file or directory: 'D:\\Projects\\TuneVault\\tunevault\\media\\songs\\Downloads.mp3'
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 65, in download_youtube
+    open(filename, 'rb'),
+    ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Projects\\TuneVault\\tunevault\\media\\songs\\Downloads.mp3'
+ERROR 2025-03-07 17:22:05,657 views 3756 24320 Download error: [Errno 2] No such file or directory: 'D:\\Projects\\TuneVault\\tunevault\\media\\songs\\Downloads.mp3'
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 154, in download
+    return self.download_youtube(url)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 65, in download_youtube
+    open(filename, 'rb'),
+    ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Projects\\TuneVault\\tunevault\\media\\songs\\Downloads.mp3'
+ERROR 2025-03-07 17:22:05,661 log 3756 24320 Internal Server Error: /api/songs/download/
+ERROR 2025-03-07 17:22:05,663 basehttp 3756 24320 "POST /api/songs/download/ HTTP/1.1" 500 143
+ERROR 2025-03-07 17:23:49,286 views 3756 20236 YouTube download error: [Errno 2] No such file or directory: 'D:\\Projects\\TuneVault\\tunevault\\media\\songs\\Downloads.mp3'
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 65, in download_youtube
+    open(filename, 'rb'),
+    ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Projects\\TuneVault\\tunevault\\media\\songs\\Downloads.mp3'
+ERROR 2025-03-07 17:23:49,288 views 3756 20236 Download error: [Errno 2] No such file or directory: 'D:\\Projects\\TuneVault\\tunevault\\media\\songs\\Downloads.mp3'
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 154, in download
+    return self.download_youtube(url)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 65, in download_youtube
+    open(filename, 'rb'),
+    ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\Projects\\TuneVault\\tunevault\\media\\songs\\Downloads.mp3'
+ERROR 2025-03-07 17:23:49,289 log 3756 20236 Internal Server Error: /api/songs/download/
+ERROR 2025-03-07 17:23:49,290 basehttp 3756 20236 "POST /api/songs/download/ HTTP/1.1" 500 143
+INFO 2025-03-07 17:27:03,180 autoreload 3756 11120 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-07 17:27:08,714 autoreload 11476 2584 Watching for file changes with StatReloader
+INFO 2025-03-07 17:27:50,406 autoreload 11476 2584 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-07 17:27:55,027 autoreload 20152 21480 Watching for file changes with StatReloader
+INFO 2025-03-07 17:28:18,105 autoreload 20152 21480 D:\Projects\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-07 17:28:22,366 autoreload 21068 21640 Watching for file changes with StatReloader
+INFO 2025-03-07 17:29:13,195 views 21068 6716 Download request received for URL: https://www.youtube.com/watch?v=SDTZ7iX4vTQ&list=PLWC-kegaLOQEGzWKfteCMWyM_MLAS6N6m&index=1
+INFO 2025-03-07 17:29:13,197 views 21068 6716 Detected YouTube URL: https://www.youtube.com/watch?v=SDTZ7iX4vTQ&list=PLWC-kegaLOQEGzWKfteCMWyM_MLAS6N6m&index=1
+INFO 2025-03-07 17:29:13,198 views 21068 6716 Starting direct YouTube download
+INFO 2025-03-07 17:29:13,198 views 21068 6716 Handling playlist download for URL: https://www.youtube.com/watch?v=SDTZ7iX4vTQ&list=PLWC-kegaLOQEGzWKfteCMWyM_MLAS6N6m&index=1
+ERROR 2025-03-07 17:30:00,230 views 21068 6716 Error handling playlist download: 'Playlist' object has no attribute 'songs'
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 188, in handle_playlist_download
+    playlist.songs.add(song)
+    ^^^^^^^^^^^^^^
+AttributeError: 'Playlist' object has no attribute 'songs'
+ERROR 2025-03-07 17:30:00,232 views 21068 6716 Download error: 'Playlist' object has no attribute 'songs'
+Traceback (most recent call last):
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 466, in download
+    return self.download_youtube(url)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 36, in download_youtube
+    return self.handle_playlist_download(url)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\TuneVault\tunevault\songs\views.py", line 188, in handle_playlist_download
+    playlist.songs.add(song)
+    ^^^^^^^^^^^^^^
+AttributeError: 'Playlist' object has no attribute 'songs'
+ERROR 2025-03-07 17:30:00,234 log 21068 6716 Internal Server Error: /api/songs/download/
+ERROR 2025-03-07 17:30:00,235 basehttp 21068 6716 "POST /api/songs/download/ HTTP/1.1" 500 71
+INFO 2025-03-07 17:33:47,780 autoreload 21068 21640 D:\Projects\TuneVault\tunevault\songs\models.py changed, reloading.
+INFO 2025-03-07 17:33:51,794 autoreload 13524 17016 Watching for file changes with StatReloader
+INFO 2025-03-07 17:42:51,945 autoreload 18408 11700 Watching for file changes with StatReloader
+INFO 2025-03-07 17:43:00,052 views 18408 20568 Download request received for URL: https://www.youtube.com/watch?v=SDTZ7iX4vTQ&list=PLWC-kegaLOQEGzWKfteCMWyM_MLAS6N6m&index=1
+INFO 2025-03-07 17:43:00,053 views 18408 20568 Detected YouTube URL: https://www.youtube.com/watch?v=SDTZ7iX4vTQ&list=PLWC-kegaLOQEGzWKfteCMWyM_MLAS6N6m&index=1
+INFO 2025-03-07 17:43:00,053 views 18408 20568 Starting direct YouTube download
+INFO 2025-03-07 17:43:00,054 views 18408 20568 Handling playlist download for URL: https://www.youtube.com/watch?v=SDTZ7iX4vTQ&list=PLWC-kegaLOQEGzWKfteCMWyM_MLAS6N6m&index=1
+INFO 2025-03-07 17:43:45,496 basehttp 18408 20568 "POST /api/songs/download/ HTTP/1.1" 200 19112388
+INFO 2025-03-07 19:43:51,837 views 18408 15748 Download request received for URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-07 19:43:51,838 views 18408 15748 Detected Spotify URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-07 19:43:51,838 views 18408 15748 Starting direct Spotify download
+INFO 2025-03-07 19:43:51,839 views 18408 15748 Handling Spotify playlist download for URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-07 19:44:24,088 basehttp 18408 15748 "POST /api/songs/download/ HTTP/1.1" 200 11467388
