@@ -7,19 +7,19 @@ from nltk.data import find
 from os import getenv
 from decouple import config
 
-def download_nltk_data():
-    try:
-        find('tokenizers/punkt')
-    except LookupError:
-        nltk.download('punkt')
+# def download_nltk_data():
+#     try:
+#         find('tokenizers/punkt')
+#     except LookupError:
+#         nltk.download('punkt')
 
-    try:
-        find('corpora/stopwords')
-    except LookupError:
-        nltk.download('stopwords')
+#     try:
+#         find('corpora/stopwords')
+#     except LookupError:
+#         nltk.download('stopwords')
 
-# Call the function to ensure the required NLTK data is available
-download_nltk_data()
+# # Call the function to ensure the required NLTK data is available
+# download_nltk_data()
 
 
 
@@ -99,7 +99,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-#    'allauth.account.middleware.AccountMiddleware',  # Add this line
+    'allauth.account.middleware.AccountMiddleware',  # Add this line
 ]
 
 ROOT_URLCONF = 'tunevault.urls'
@@ -190,20 +190,32 @@ REST_FRAMEWORK = {
     'DEFAULT_THROTTLE_RATES': {
         'anon': '100/day',
         'user': '1000/day'
-    }
+    },
+    'EXCEPTION_HANDLER': 'rest_framework.views.exception_handler',
 }
 
 # Celery Configuration
-CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0'
-CELERY_RESULT_BACKEND = 'django-db'
-CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = TIME_ZONE
 CELERY_TASK_TRACK_STARTED = True
-CELERY_TASK_TIME_LIMIT = 30 * 60  # 30 minutes
-CELERY_TASK_SOFT_TIME_LIMIT = 25 * 60  # 25 minutes
-CELERY_CHORD_UNLOCK_MAX_RETRIES = 3
+CELERY_TASK_TIME_LIMIT = 30 * 60
+
+# Define Celery Beat schedule
+from celery.schedules import crontab
+
+CELERY_BEAT_SCHEDULE = {
+    'cleanup-cache-daily': {
+        'task': 'songs.tasks.cleanup_cache',
+        'schedule': crontab(hour=2, minute=0),  # Run at 2:00 AM every day
+        'options': {
+            'expires': 3600,  # Expires after 1 hour
+        },
+    },
+}
 
 # Redis Cache
 CACHES = {

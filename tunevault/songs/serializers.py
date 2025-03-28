@@ -12,10 +12,25 @@ class SongSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Song
-        fields = ['id', 'title', 'artist', 'album', 'song_url', 'thumbnail_url', 'source', 'created_at']
+        fields = ['id', 'title', 'artist', 'album', 'song_url', 'thumbnail_url', 'source', 'created_at', 'file_url', 'image_url']
 
     def get_file_url(self, obj):
-        return obj.file
+        if obj.file:
+            request = self.context.get('request')
+            if request:
+                return request.build_absolute_uri(obj.file.url)
+        return None
+        
+    def get_image_url(self, obj):
+        if obj.thumbnail_url:
+            # If it's already a full URL, return it
+            if obj.thumbnail_url.startswith('http'):
+                return obj.thumbnail_url
+            # Otherwise, build the full URL
+            request = self.context.get('request')
+            if request:
+                return request.build_absolute_uri(obj.thumbnail_url)
+        return None
 
 class PlaylistSerializer(serializers.ModelSerializer):
     songs = SongSerializer(many=True, read_only=True)
