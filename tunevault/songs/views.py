@@ -581,19 +581,27 @@ class SongViewSet(viewsets.ModelViewSet):
                 formatted_filename = f"{track_info['title']} - {track_info['artist']}.mp3"
                 formatted_filename = "".join(c for c in formatted_filename if c.isalnum() or c in (' ', '-', '.'))
 
-                # Create a song record for the user
-                rel_path = os.path.relpath(mp3_filename, settings.MEDIA_ROOT)
-                song = Song.objects.create(
-                    user=self.request.user,
-                    title=track_info['title'],
-                    artist=track_info['artist'],
-                    album=track_info.get('album', 'Unknown'),
-                    file=rel_path,
-                    source='spotify',
-                    spotify_id=track_info.get('spotify_id'),
-                    thumbnail_url=thumbnail_url,
+                # Check if this song already exists for this user before creating a new one
+                existing_song = Song.objects.filter(
+                    user=self.request.user, 
                     song_url=url
-                )
+                ).first()
+                
+                if existing_song:
+                    song = existing_song
+                else:
+                    rel_path = os.path.relpath(mp3_filename, settings.MEDIA_ROOT)
+                    song = Song.objects.create(
+                        user=self.request.user,
+                        title=track_info['title'],
+                        artist=track_info['artist'],
+                        album=track_info.get('album', 'Unknown'),
+                        file=rel_path,
+                        source='spotify',
+                        spotify_id=track_info.get('spotify_id'),
+                        thumbnail_url=thumbnail_url,
+                        song_url=url
+                    )
                 
                 # Update user's music profile
                 try:
@@ -709,7 +717,21 @@ class SongViewSet(viewsets.ModelViewSet):
             
             for track_url in track_urls:
                 try:
-                    # Check if the song is already in cache
+                    # First check if the user already has this song
+                    existing_song = Song.objects.filter(user=request.user, song_url=track_url).first()
+                    if existing_song:
+                        # Song already exists, just add it to the playlist
+                        playlist.songs.add(existing_song)
+                        
+                        # Update progress
+                        completed_downloads += 1
+                        download_progress.current_progress = int(completed_downloads / download_progress.total_items * 100)
+                        download_progress.current_file = f"{existing_song.title} - {existing_song.artist}"
+                        download_progress.save()
+                        logger.info(f"Added existing song to playlist: {track_url}")
+                        continue
+                        
+                    # Next check if the song is already in cache
                     cached_song = SongCache.get_cached_song(track_url)
                     
                     if cached_song:
@@ -782,9 +804,16 @@ class SongViewSet(viewsets.ModelViewSet):
                                     logger.warning(f"Error updating user profile: {profile_error}")
                             else:
                                 # If song exists, just add it to the playlist
-                                song = Song.objects.get(user=request.user, song_url=track_url)
-                                playlist.songs.add(song)
-                                
+                                try:
+                                    song = Song.objects.filter(user=request.user, song_url=track_url).first()
+                                    if song:
+                                        playlist.songs.add(song)
+                                    else:
+                                        logger.warning(f"No song found with URL {track_url} for user {request.user.id}")
+                                except Exception as e:
+                                    logger.error(f"Error adding existing song to playlist: {e}")
+                                    continue
+                            
                             # Update progress
                             completed_downloads += 1
                             download_progress.current_progress = int(completed_downloads / download_progress.total_items * 100)
@@ -801,16 +830,25 @@ class SongViewSet(viewsets.ModelViewSet):
                             file_path = info_dict.get('filepath')
                             
                             if file_path:
-                                song = Song.objects.create(
-                                    user=request.user,
-                                    title=info_dict.get('title', 'Unknown Title'),
-                                    artist=info_dict.get('artist', 'Unknown'),
-                                    album=info_dict.get('album', 'Unknown'),
-                                    file=os.path.relpath(file_path, settings.MEDIA_ROOT),
-                                    thumbnail_url=info_dict.get('thumbnail'),
-                                    source='youtube',
+                                # Check if this song already exists for this user before creating a new one
+                                existing_song = Song.objects.filter(
+                                    user=request.user, 
                                     song_url=track_url
-                                )
+                                ).first()
+                                
+                                if existing_song:
+                                    song = existing_song
+                                else:
+                                    song = Song.objects.create(
+                                        user=request.user,
+                                        title=info_dict.get('title', 'Unknown Title'),
+                                        artist=info_dict.get('artist', 'Unknown'),
+                                        album=info_dict.get('album', 'Unknown'),
+                                        file=os.path.relpath(file_path, settings.MEDIA_ROOT),
+                                        thumbnail_url=info_dict.get('thumbnail'),
+                                        source='youtube',
+                                        song_url=track_url
+                                    )
                                 
                                 # Add to cache
                                 try:
@@ -905,17 +943,26 @@ class SongViewSet(viewsets.ModelViewSet):
                                                 thumbnail_url = info[key]
                                             break
                                 
-                                song = Song.objects.create(
-                                    user=request.user,
-                                    title=track_info['title'],
-                                    artist=track_info['artist'],
-                                    album=track_info.get('album', 'Unknown'),
-                                    file=os.path.relpath(mp3_filename, settings.MEDIA_ROOT),
-                                    source='spotify',
-                                    spotify_id=track_info.get('spotify_id'),
-                                    thumbnail_url=thumbnail_url,
+                                # Check if this song already exists for this user before creating a new one
+                                existing_song = Song.objects.filter(
+                                    user=request.user, 
                                     song_url=track_url
-                                )
+                                ).first()
+                                
+                                if existing_song:
+                                    song = existing_song
+                                else:
+                                    song = Song.objects.create(
+                                        user=request.user,
+                                        title=track_info['title'],
+                                        artist=track_info['artist'],
+                                        album=track_info.get('album', 'Unknown'),
+                                        file=os.path.relpath(mp3_filename, settings.MEDIA_ROOT),
+                                        source='spotify',
+                                        spotify_id=track_info.get('spotify_id'),
+                                        thumbnail_url=thumbnail_url,
+                                        song_url=track_url
+                                    )
                                 
                                 # Add to cache
                                 try:

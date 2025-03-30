@@ -6695,3 +6695,198 @@ Traceback (most recent call last):
 AttributeError: 'str' object has no attribute 'method'
 ERROR 2025-03-30 23:54:54,244 log 18768 10920 Internal Server Error: /api/songs/songs/download/
 ERROR 2025-03-30 23:54:54,245 basehttp 18768 10920 "POST /api/songs/songs/download/ HTTP/1.1" 500 67
+INFO 2025-03-30 23:55:43,832 spotify_api 18768 10920 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-30 23:55:43,832 spotify_api 18768 10920 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-30 23:55:43,832 views 18768 10920 Redirecting Spotify playlist URL to playlist download endpoint: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-30 23:55:43,832 spotify_api 18768 10920 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-30 23:55:43,832 spotify_api 18768 10920 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-30 23:55:43,832 spotify_api 18768 10920 Getting Spotify playlist info for ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-30 23:55:43,832 spotify_api 18768 10920 Creating Spotify client with credentials from settings
+INFO 2025-03-30 23:55:44,068 spotify_api 18768 10920 Successfully tested Spotify client
+INFO 2025-03-30 23:55:44,494 spotify_api 18768 10920 Extracted 3 track URLs from playlist
+ERROR 2025-03-30 23:55:44,904 views 18768 10920 Error downloading track https://open.spotify.com/track/1ApfHqjOoBmJZ0SjdjzVyA: get() returned more than one Song -- it returned 2!
+ERROR 2025-03-30 23:55:45,170 views 18768 10920 Error downloading track https://open.spotify.com/track/0dQiyqHUpnMPmHtk535VAY: get() returned more than one Song -- it returned 3!
+ERROR 2025-03-30 23:55:45,436 views 18768 10920 Error downloading track https://open.spotify.com/track/0kYBzFJ5a2Jozi6cI4y9Bp: get() returned more than one Song -- it returned 3!
+INFO 2025-03-30 23:55:45,507 basehttp 18768 10920 "POST /api/songs/songs/download/ HTTP/1.1" 206 94
+INFO 2025-03-30 23:56:04,354 views 18768 10920 Redirecting YouTube playlist URL to playlist download endpoint: https://www.youtube.com/watch?v=xH9xv0X9-Xw&list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1&pp=gAQB
+INFO 2025-03-30 23:56:04,354 utils 18768 10920 Getting YouTube playlist info for URL: https://www.youtube.com/watch?v=xH9xv0X9-Xw&list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1&pp=gAQB
+INFO 2025-03-30 23:56:04,365 utils 18768 10920 Extracted YouTube playlist ID: PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-03-30 23:56:04,365 utils 18768 10920 Using formatted playlist URL: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-03-30 23:56:04,402 utils 18768 10920 Extracting playlist info from: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-03-30 23:56:05,521 utils 18768 10920 Successfully extracted info for playlist: tunevault with 2 tracks
+INFO 2025-03-30 23:56:05,728 utils 18768 10920 Attempting to download from YouTube: https://www.youtube.com/watch?v=xH9xv0X9-Xw
+INFO 2025-03-30 23:56:13,838 views 18768 10920 Added YouTube song to cache from playlist: https://www.youtube.com/watch?v=xH9xv0X9-Xw
+INFO 2025-03-30 23:56:14,172 utils 18768 10920 Attempting to download from YouTube: https://www.youtube.com/watch?v=jI-w4gvkCkQ
+INFO 2025-03-30 23:56:23,355 utils 18768 10920 Successfully downloaded with primary method: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\media\songs\Twista - Slow Jamz (Feat. Kanye West & Jamie Foxx).mp3
+INFO 2025-03-30 23:56:24,079 views 18768 10920 Added YouTube song to cache from playlist: https://www.youtube.com/watch?v=jI-w4gvkCkQ
+INFO 2025-03-30 23:56:24,502 basehttp 18768 10920 "POST /api/songs/songs/download/ HTTP/1.1" 200 114
+INFO 2025-03-30 23:56:28,819 views 18768 10920 Redirecting YouTube playlist URL to playlist download endpoint: https://www.youtube.com/watch?v=xH9xv0X9-Xw&list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1&pp=gAQB
+INFO 2025-03-30 23:56:28,820 utils 18768 10920 Getting YouTube playlist info for URL: https://www.youtube.com/watch?v=xH9xv0X9-Xw&list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1&pp=gAQB
+INFO 2025-03-30 23:56:28,821 utils 18768 10920 Extracted YouTube playlist ID: PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-03-30 23:56:28,821 utils 18768 10920 Using formatted playlist URL: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-03-30 23:56:28,858 utils 18768 10920 Extracting playlist info from: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-03-30 23:56:29,690 utils 18768 10920 Successfully extracted info for playlist: tunevault with 2 tracks
+ERROR 2025-03-30 23:56:30,081 views 18768 10920 Error downloading track https://www.youtube.com/watch?v=xH9xv0X9-Xw: get() returned more than one Song -- it returned 2!
+ERROR 2025-03-30 23:56:30,347 views 18768 10920 Error downloading track https://www.youtube.com/watch?v=jI-w4gvkCkQ: get() returned more than one Song -- it returned 2!
+INFO 2025-03-30 23:56:30,402 basehttp 18768 10920 "POST /api/songs/songs/download/ HTTP/1.1" 206 86
+INFO 2025-03-30 23:58:47,973 autoreload 18768 7940 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 23:58:52,377 autoreload 24464 12456 Watching for file changes with StatReloader
+INFO 2025-03-30 23:59:02,338 autoreload 24464 12456 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 23:59:06,243 autoreload 23588 14252 Watching for file changes with StatReloader
+INFO 2025-03-30 23:59:13,562 autoreload 23588 14252 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 23:59:17,758 autoreload 22296 2324 Watching for file changes with StatReloader
+INFO 2025-03-30 23:59:19,933 basehttp 22296 18672 - Broken pipe from ('127.0.0.1', 56030)
+INFO 2025-03-30 23:59:20,628 basehttp 22296 27092 "GET /admin/songs/song/ HTTP/1.1" 200 49154
+INFO 2025-03-30 23:59:21,292 basehttp 22296 27092 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+WARNING 2025-03-30 23:59:21,323 log 22296 27092 Not Found: /favicon.ico
+INFO 2025-03-30 23:59:21,324 basehttp 22296 27092 - Broken pipe from ('127.0.0.1', 56031)
+INFO 2025-03-30 23:59:26,690 autoreload 22296 2324 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 23:59:31,056 autoreload 25188 9424 Watching for file changes with StatReloader
+INFO 2025-03-30 23:59:38,183 basehttp 25188 14124 "POST /admin/songs/song/ HTTP/1.1" 200 35981
+INFO 2025-03-30 23:59:43,928 basehttp 25188 14124 "POST /admin/songs/song/ HTTP/1.1" 302 0
+INFO 2025-03-30 23:59:43,946 autoreload 25188 9424 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 23:59:48,219 autoreload 27560 15728 Watching for file changes with StatReloader
+INFO 2025-03-30 23:59:51,449 autoreload 27560 15728 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 23:59:54,898 autoreload 664 14144 Watching for file changes with StatReloader
+INFO 2025-03-31 00:00:02,278 basehttp 664 16424 "GET /admin/songs/song/ HTTP/1.1" 200 33942
+INFO 2025-03-31 00:00:02,449 autoreload 664 14144 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 00:00:07,077 autoreload 11860 16964 Watching for file changes with StatReloader
+INFO 2025-03-31 00:00:08,393 basehttp 11860 8216 "GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+INFO 2025-03-31 00:00:14,768 basehttp 11860 8216 "POST /admin/songs/song/ HTTP/1.1" 200 23803
+INFO 2025-03-31 00:00:18,793 basehttp 11860 8216 "POST /admin/songs/song/ HTTP/1.1" 302 0
+INFO 2025-03-31 00:00:19,619 basehttp 11860 8216 "GET /admin/songs/song/ HTTP/1.1" 200 14901
+INFO 2025-03-31 00:00:20,299 basehttp 11860 8216 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-03-31 00:00:23,689 basehttp 11860 8216 "GET /admin/songs/playlist/ HTTP/1.1" 200 24623
+INFO 2025-03-31 00:00:24,415 basehttp 11860 8216 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-03-31 00:00:31,292 basehttp 11860 8216 "POST /admin/songs/playlist/ HTTP/1.1" 200 19350
+INFO 2025-03-31 00:00:34,491 basehttp 11860 8216 "POST /admin/songs/playlist/ HTTP/1.1" 302 0
+INFO 2025-03-31 00:00:35,397 basehttp 11860 8216 "GET /admin/songs/playlist/ HTTP/1.1" 200 14933
+INFO 2025-03-31 00:00:36,138 basehttp 11860 8216 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-03-31 00:00:39,070 basehttp 11860 8216 "GET /admin/songs/usermusicprofile/ HTTP/1.1" 200 16209
+INFO 2025-03-31 00:00:39,735 basehttp 11860 8216 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-03-31 00:00:43,364 basehttp 11860 8216 "GET /admin/songs/usermusicprofile/1/change/ HTTP/1.1" 200 20056
+INFO 2025-03-31 00:00:43,413 basehttp 11860 23276 "GET /static/admin/js/calendar.js HTTP/1.1" 304 0
+INFO 2025-03-31 00:00:43,415 basehttp 11860 18832 "GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 304 0
+INFO 2025-03-31 00:00:43,415 basehttp 11860 8216 "GET /static/admin/css/forms.css HTTP/1.1" 200 8794
+INFO 2025-03-31 00:00:43,427 basehttp 11860 4100 "GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+INFO 2025-03-31 00:00:43,430 basehttp 11860 11828 "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+INFO 2025-03-31 00:00:43,437 basehttp 11860 8216 "GET /static/admin/css/widgets.css HTTP/1.1" 200 11564
+INFO 2025-03-31 00:00:44,012 basehttp 11860 26656 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-03-31 00:00:44,028 basehttp 11860 8216 "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 581
+INFO 2025-03-31 00:00:44,076 basehttp 11860 26656 "GET /static/admin/img/icon-clock.svg HTTP/1.1" 200 677
+INFO 2025-03-31 00:00:44,076 basehttp 11860 8216 "GET /static/admin/img/icon-calendar.svg HTTP/1.1" 200 1086
+INFO 2025-03-31 00:00:49,937 basehttp 11860 8216 "GET /admin/songs/usermusicprofile/1/delete/ HTTP/1.1" 200 14871
+INFO 2025-03-31 00:00:52,282 basehttp 11860 8216 "POST /admin/songs/usermusicprofile/1/delete/ HTTP/1.1" 302 0
+INFO 2025-03-31 00:00:53,117 basehttp 11860 8216 "GET /admin/songs/usermusicprofile/ HTTP/1.1" 200 15047
+INFO 2025-03-31 00:00:53,824 basehttp 11860 8216 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-03-31 00:00:56,871 basehttp 11860 8216 "GET /admin/songs/songcache/ HTTP/1.1" 200 17643
+INFO 2025-03-31 00:00:57,538 basehttp 11860 8216 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-03-31 00:01:05,604 basehttp 11860 8216 "POST /admin/songs/songcache/ HTTP/1.1" 200 15675
+INFO 2025-03-31 00:01:08,427 basehttp 11860 8216 "POST /admin/songs/songcache/ HTTP/1.1" 302 0
+INFO 2025-03-31 00:01:09,269 basehttp 11860 8216 "GET /admin/songs/songcache/ HTTP/1.1" 200 14946
+INFO 2025-03-31 00:01:09,916 basehttp 11860 8216 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-03-31 00:01:19,424 views 11860 16588 Redirecting YouTube playlist URL to playlist download endpoint: https://www.youtube.com/watch?v=xH9xv0X9-Xw&list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1&pp=gAQB
+INFO 2025-03-31 00:01:19,425 utils 11860 16588 Getting YouTube playlist info for URL: https://www.youtube.com/watch?v=xH9xv0X9-Xw&list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1&pp=gAQB
+INFO 2025-03-31 00:01:19,425 utils 11860 16588 Extracted YouTube playlist ID: PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-03-31 00:01:19,426 utils 11860 16588 Using formatted playlist URL: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-03-31 00:01:19,597 utils 11860 16588 Extracting playlist info from: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-03-31 00:01:21,346 utils 11860 16588 Successfully extracted info for playlist: tunevault with 2 tracks
+INFO 2025-03-31 00:01:21,616 utils 11860 16588 Attempting to download from YouTube: https://www.youtube.com/watch?v=xH9xv0X9-Xw
+INFO 2025-03-31 00:01:29,858 views 11860 16588 Added YouTube song to cache from playlist: https://www.youtube.com/watch?v=xH9xv0X9-Xw
+INFO 2025-03-31 00:01:30,278 utils 11860 16588 Attempting to download from YouTube: https://www.youtube.com/watch?v=jI-w4gvkCkQ
+INFO 2025-03-31 00:01:40,209 utils 11860 16588 Successfully downloaded with primary method: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\media\songs\Twista - Slow Jamz (Feat. Kanye West & Jamie Foxx).mp3
+INFO 2025-03-31 00:01:40,698 views 11860 16588 Added YouTube song to cache from playlist: https://www.youtube.com/watch?v=jI-w4gvkCkQ
+INFO 2025-03-31 00:01:41,068 basehttp 11860 16588 "POST /api/songs/songs/download/ HTTP/1.1" 200 114
+INFO 2025-03-31 00:01:58,352 views 11860 16588 Redirecting YouTube playlist URL to playlist download endpoint: https://www.youtube.com/watch?v=xH9xv0X9-Xw&list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1&pp=gAQB
+INFO 2025-03-31 00:01:58,353 utils 11860 16588 Getting YouTube playlist info for URL: https://www.youtube.com/watch?v=xH9xv0X9-Xw&list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1&pp=gAQB
+INFO 2025-03-31 00:01:58,353 utils 11860 16588 Extracted YouTube playlist ID: PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-03-31 00:01:58,354 utils 11860 16588 Using formatted playlist URL: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-03-31 00:01:58,427 utils 11860 16588 Extracting playlist info from: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-03-31 00:01:59,562 utils 11860 16588 Successfully extracted info for playlist: tunevault with 2 tracks
+INFO 2025-03-31 00:01:59,991 views 11860 16588 Added existing song to playlist: https://www.youtube.com/watch?v=xH9xv0X9-Xw
+INFO 2025-03-31 00:02:00,292 views 11860 16588 Added existing song to playlist: https://www.youtube.com/watch?v=jI-w4gvkCkQ
+INFO 2025-03-31 00:02:00,429 basehttp 11860 16588 "POST /api/songs/songs/download/ HTTP/1.1" 200 114
+INFO 2025-03-31 00:02:13,885 spotify_api 11860 16588 Extracting Spotify ID from URL: https://open.spotify.com/track/4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:02:13,885 spotify_api 11860 16588 Extracted Spotify track ID: 4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:02:14,027 spotify_api 11860 16588 Extracting Spotify ID from URL: https://open.spotify.com/track/4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:02:14,028 spotify_api 11860 16588 Extracted Spotify track ID: 4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:02:14,028 views 11860 16588 Getting info for Spotify track ID: ('track', '4A7eOIbt19Wk5OXjVxE3SI')
+ERROR 2025-03-31 00:02:14,029 views 11860 16588 Spotify track download error: name 'get_spotify_track_info' is not defined
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 526, in download_spotify_track
+    track_info = get_spotify_track_info(spotify_id)
+                 ^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'get_spotify_track_info' is not defined
+ERROR 2025-03-31 00:02:14,213 log 11860 16588 Internal Server Error: /api/songs/songs/download/
+ERROR 2025-03-31 00:02:14,214 basehttp 11860 16588 "POST /api/songs/songs/download/ HTTP/1.1" 500 87
+INFO 2025-03-31 00:02:19,507 spotify_api 11860 16588 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-31 00:02:19,508 spotify_api 11860 16588 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-31 00:02:19,509 views 11860 16588 Redirecting Spotify playlist URL to playlist download endpoint: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-31 00:02:19,509 spotify_api 11860 16588 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-31 00:02:19,510 spotify_api 11860 16588 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-31 00:02:19,510 spotify_api 11860 16588 Getting Spotify playlist info for ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-31 00:02:19,511 spotify_api 11860 16588 Creating Spotify client with credentials from settings
+INFO 2025-03-31 00:02:19,700 spotify_api 11860 16588 Successfully tested Spotify client
+INFO 2025-03-31 00:02:20,493 spotify_api 11860 16588 Extracted 3 track URLs from playlist
+INFO 2025-03-31 00:02:20,754 spotify_api 11860 16588 Extracting Spotify ID from URL: https://open.spotify.com/track/1ApfHqjOoBmJZ0SjdjzVyA
+INFO 2025-03-31 00:02:20,755 spotify_api 11860 16588 Extracted Spotify track ID: 1ApfHqjOoBmJZ0SjdjzVyA
+INFO 2025-03-31 00:02:20,756 spotify_api 11860 16588 Getting info for Spotify track ID: 1ApfHqjOoBmJZ0SjdjzVyA
+INFO 2025-03-31 00:02:20,756 spotify_api 11860 16588 Creating Spotify client with credentials from settings
+INFO 2025-03-31 00:02:20,945 spotify_api 11860 16588 Successfully tested Spotify client
+INFO 2025-03-31 00:02:21,245 spotify_api 11860 16588 Got track info: Yeh Raaten Yeh Mausam by Sanam
+INFO 2025-03-31 00:02:32,272 views 11860 16588 Added Spotify song to cache from playlist: https://open.spotify.com/track/1ApfHqjOoBmJZ0SjdjzVyA
+INFO 2025-03-31 00:02:32,653 spotify_api 11860 16588 Extracting Spotify ID from URL: https://open.spotify.com/track/0dQiyqHUpnMPmHtk535VAY
+INFO 2025-03-31 00:02:32,653 spotify_api 11860 16588 Extracted Spotify track ID: 0dQiyqHUpnMPmHtk535VAY
+INFO 2025-03-31 00:02:32,655 spotify_api 11860 16588 Getting info for Spotify track ID: 0dQiyqHUpnMPmHtk535VAY
+INFO 2025-03-31 00:02:32,655 spotify_api 11860 16588 Creating Spotify client with credentials from settings
+INFO 2025-03-31 00:02:32,829 spotify_api 11860 16588 Successfully tested Spotify client
+INFO 2025-03-31 00:02:33,113 spotify_api 11860 16588 Got track info: Tennu Le by omer inayat
+INFO 2025-03-31 00:02:41,049 views 11860 16588 Added Spotify song to cache from playlist: https://open.spotify.com/track/0dQiyqHUpnMPmHtk535VAY
+INFO 2025-03-31 00:02:41,421 spotify_api 11860 16588 Extracting Spotify ID from URL: https://open.spotify.com/track/0kYBzFJ5a2Jozi6cI4y9Bp
+INFO 2025-03-31 00:02:41,422 spotify_api 11860 16588 Extracted Spotify track ID: 0kYBzFJ5a2Jozi6cI4y9Bp
+INFO 2025-03-31 00:02:41,422 spotify_api 11860 16588 Getting info for Spotify track ID: 0kYBzFJ5a2Jozi6cI4y9Bp
+INFO 2025-03-31 00:02:41,423 spotify_api 11860 16588 Creating Spotify client with credentials from settings
+INFO 2025-03-31 00:02:41,595 spotify_api 11860 16588 Successfully tested Spotify client
+INFO 2025-03-31 00:02:41,904 spotify_api 11860 16588 Got track info: Jo Tere Sang by Jeet Gannguli
+INFO 2025-03-31 00:02:55,913 views 11860 16588 Added Spotify song to cache from playlist: https://open.spotify.com/track/0kYBzFJ5a2Jozi6cI4y9Bp
+INFO 2025-03-31 00:02:56,299 basehttp 11860 16588 "POST /api/songs/songs/download/ HTTP/1.1" 200 122
+INFO 2025-03-31 00:03:08,541 spotify_api 11860 16588 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-31 00:03:08,542 spotify_api 11860 16588 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-31 00:03:08,542 views 11860 16588 Redirecting Spotify playlist URL to playlist download endpoint: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-31 00:03:08,543 spotify_api 11860 16588 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-31 00:03:08,543 spotify_api 11860 16588 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-31 00:03:08,543 spotify_api 11860 16588 Getting Spotify playlist info for ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-31 00:03:08,543 spotify_api 11860 16588 Creating Spotify client with credentials from settings
+INFO 2025-03-31 00:03:08,717 spotify_api 11860 16588 Successfully tested Spotify client
+INFO 2025-03-31 00:03:09,061 spotify_api 11860 16588 Extracted 3 track URLs from playlist
+INFO 2025-03-31 00:03:09,514 views 11860 16588 Added existing song to playlist: https://open.spotify.com/track/1ApfHqjOoBmJZ0SjdjzVyA
+INFO 2025-03-31 00:03:09,825 views 11860 16588 Added existing song to playlist: https://open.spotify.com/track/0dQiyqHUpnMPmHtk535VAY
+INFO 2025-03-31 00:03:10,134 views 11860 16588 Added existing song to playlist: https://open.spotify.com/track/0kYBzFJ5a2Jozi6cI4y9Bp
+INFO 2025-03-31 00:03:10,255 basehttp 11860 16588 "POST /api/songs/songs/download/ HTTP/1.1" 200 122
+WARNING 2025-03-31 00:03:17,061 log 11860 16588 Too Many Requests: /api/songs/songs/download/
+WARNING 2025-03-31 00:03:17,062 basehttp 11860 16588 "POST /api/songs/songs/download/ HTTP/1.1" 429 97
+INFO 2025-03-31 00:03:36,272 basehttp 11860 12148 "GET /admin/users/customuser/ HTTP/1.1" 200 16318
+INFO 2025-03-31 00:03:36,888 basehttp 11860 12148 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+WARNING 2025-03-31 00:03:36,925 log 11860 12148 Not Found: /favicon.ico
+INFO 2025-03-31 00:03:36,926 basehttp 11860 12148 - Broken pipe from ('127.0.0.1', 59334)
+INFO 2025-03-31 00:03:46,396 basehttp 11860 23384 - Broken pipe from ('127.0.0.1', 59339)
+INFO 2025-03-31 00:03:53,401 basehttp 11860 20392 "GET /admin/users/customuser/1/change/ HTTP/1.1" 200 40812
+INFO 2025-03-31 00:03:54,015 basehttp 11860 20392 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-03-31 00:04:07,380 basehttp 11860 20392 "POST /admin/users/customuser/1/change/ HTTP/1.1" 302 0
+INFO 2025-03-31 00:04:08,217 basehttp 11860 20392 "GET /admin/users/customuser/ HTTP/1.1" 200 16521
+INFO 2025-03-31 00:04:08,814 basehttp 11860 20392 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+WARNING 2025-03-31 00:04:08,841 log 11860 20392 Not Found: /favicon.ico
+INFO 2025-03-31 00:04:08,842 basehttp 11860 20392 - Broken pipe from ('127.0.0.1', 59350)
+INFO 2025-03-31 00:04:16,238 spotify_api 11860 16588 Extracting Spotify ID from URL: https://open.spotify.com/track/4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:04:16,238 spotify_api 11860 16588 Extracted Spotify track ID: 4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:04:16,365 spotify_api 11860 16588 Extracting Spotify ID from URL: https://open.spotify.com/track/4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:04:16,366 spotify_api 11860 16588 Extracted Spotify track ID: 4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:04:16,366 views 11860 16588 Getting info for Spotify track ID: ('track', '4A7eOIbt19Wk5OXjVxE3SI')
+ERROR 2025-03-31 00:04:16,367 views 11860 16588 Spotify track download error: name 'get_spotify_track_info' is not defined
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 526, in download_spotify_track
+    track_info = get_spotify_track_info(spotify_id)
+                 ^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'get_spotify_track_info' is not defined
+ERROR 2025-03-31 00:04:16,375 log 11860 16588 Internal Server Error: /api/songs/songs/download/
+ERROR 2025-03-31 00:04:16,376 basehttp 11860 16588 "POST /api/songs/songs/download/ HTTP/1.1" 500 87
