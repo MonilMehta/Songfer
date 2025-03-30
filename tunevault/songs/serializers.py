@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Song, Playlist, UserMusicProfile, Genre, DownloadProgress
+from .models import Song, Playlist, UserMusicProfile, Genre, DownloadProgress, SongPlay
 
 class GenreSerializer(serializers.ModelSerializer):
     class Meta:
@@ -51,4 +51,11 @@ class DownloadProgressSerializer(serializers.ModelSerializer):
         model = DownloadProgress
         fields = ['task_id', 'total_items', 'current_progress', 'current_file', 
                  'started_at', 'last_update', 'estimated_completion_time']
+
+class SongPlaySerializer(serializers.ModelSerializer):
+    song = SongSerializer(read_only=True)
+    
+    class Meta:
+        model = SongPlay
+        fields = ['id', 'song', 'timestamp', 'duration', 'completed', 'device_info']
 

@@ -5679,3 +5679,947 @@ INFO 2025-03-30 19:49:34,361 spotify_api 9512 3160 Extracting Spotify ID from UR
 INFO 2025-03-30 19:49:34,361 spotify_api 9512 3160 Extracted Spotify track ID: 64BbK9SFKH2jk86U3dGj2P
 INFO 2025-03-30 19:49:34,447 views 9512 3160 Found existing song with URL https://open.spotify.com/track/64BbK9SFKH2jk86U3dGj2P, serving directly
 INFO 2025-03-30 19:49:34,620 basehttp 9512 3160 "POST /api/songs/songs/download/ HTTP/1.1" 200 6185708
+WARNING 2025-03-30 20:39:55,478 log 9512 4432 Not Found: /api/user/recommendations/
+WARNING 2025-03-30 20:39:55,478 basehttp 9512 4432 "GET /api/user/recommendations/ HTTP/1.1" 404 3412
+INFO 2025-03-30 20:40:15,589 autoreload 9512 5572 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\tunevault\urls.py changed, reloading.
+INFO 2025-03-30 20:40:20,080 autoreload 3036 6664 Watching for file changes with StatReloader
+INFO 2025-03-30 20:40:28,974 autoreload 3036 6664 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\tunevault\urls.py changed, reloading.
+INFO 2025-03-30 20:40:32,633 autoreload 4860 6216 Watching for file changes with StatReloader
+WARNING 2025-03-30 20:40:39,457 log 4860 22616 Unauthorized: /api/user/recommendations/
+WARNING 2025-03-30 20:40:39,459 basehttp 4860 22616 "GET /api/user/recommendations/ HTTP/1.1" 401 27
+WARNING 2025-03-30 20:40:44,945 log 4860 22616 Not Found: /api/users/login/
+WARNING 2025-03-30 20:40:44,945 basehttp 4860 22616 "POST /api/users/login/ HTTP/1.1" 404 15763
+WARNING 2025-03-30 20:40:49,613 log 4860 22616 Not Found: /api/user/login/
+WARNING 2025-03-30 20:40:49,613 basehttp 4860 22616 "POST /api/user/login/ HTTP/1.1" 404 15760
+INFO 2025-03-30 20:41:02,599 autoreload 4860 6216 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\tunevault\urls.py changed, reloading.
+INFO 2025-03-30 20:41:06,461 autoreload 16828 15204 Watching for file changes with StatReloader
+INFO 2025-03-30 20:41:10,857 autoreload 16828 15204 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\urls.py changed, reloading.
+INFO 2025-03-30 20:41:14,619 autoreload 6764 25808 Watching for file changes with StatReloader
+WARNING 2025-03-30 20:41:37,365 log 6764 18548 Not Found: /api/users/login/
+WARNING 2025-03-30 20:41:37,365 basehttp 6764 18548 "POST /api/users/login/ HTTP/1.1" 404 4318
+INFO 2025-03-30 20:42:21,788 autoreload 6764 25808 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\tunevault\urls.py changed, reloading.
+INFO 2025-03-30 20:42:26,103 autoreload 2956 21948 Watching for file changes with StatReloader
+INFO 2025-03-30 20:42:30,073 basehttp 2956 24184 "POST /api/users/login/ HTTP/1.1" 200 95
+WARNING 2025-03-30 20:42:43,187 log 2956 24184 Not Found: /api/user/recommendations/
+WARNING 2025-03-30 20:42:43,187 basehttp 2956 24184 "GET /api/user/recommendations/ HTTP/1.1" 404 3412
+WARNING 2025-03-30 20:42:50,227 log 2956 24184 Not Found: /api/users/recommendations/
+WARNING 2025-03-30 20:42:50,235 basehttp 2956 24184 "GET /api/users/recommendations/ HTTP/1.1" 404 4352
+INFO 2025-03-30 20:43:11,798 views 2956 24184 Getting recommendations for user: 1
+INFO 2025-03-30 20:43:13,872 csv_recommender 2956 24184 CSV Recommender initialized successfully
+ERROR 2025-03-30 20:43:14,042 csv_recommender 2956 24184 Error in get_hybrid_recommendations: SpotifyMultiCSVRecommender.get_recommendations() got an unexpected keyword argument 'limit'
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\csv_recommender.py", line 403, in get_hybrid_recommendations
+    song_recommendations = recommender.get_recommendations(song.title, limit=20)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: SpotifyMultiCSVRecommender.get_recommendations() got an unexpected keyword argument 'limit'
+INFO 2025-03-30 20:43:15,467 basehttp 2956 24184 "GET /api/songs/recommendations/ HTTP/1.1" 200 3086
+WARNING 2025-03-30 20:46:29,904 log 2956 17176 Not Found: /api/playlists/
+WARNING 2025-03-30 20:46:29,910 basehttp 2956 17176 "GET /api/playlists/ HTTP/1.1" 404 3379
+INFO 2025-03-30 20:46:38,372 basehttp 2956 17176 "GET /api/songs/playlists/ HTTP/1.1" 200 20168
+INFO 2025-03-30 20:46:51,249 basehttp 2956 17176 "GET /api/songs/playlists/18/download_all/ HTTP/1.1" 200 22
+INFO 2025-03-30 20:47:21,291 spotify_api 2956 17176 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-30 20:47:21,299 spotify_api 2956 17176 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-30 20:47:21,299 views 2956 17176 Redirecting Spotify playlist URL to playlist download endpoint: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-30 20:47:21,299 spotify_api 2956 17176 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-30 20:47:21,307 spotify_api 2956 17176 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-30 20:47:21,307 spotify_api 2956 17176 Getting Spotify playlist info for ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-30 20:47:21,307 spotify_api 2956 17176 Creating Spotify client with credentials from settings
+INFO 2025-03-30 20:47:21,886 spotify_api 2956 17176 Successfully tested Spotify client
+INFO 2025-03-30 20:47:22,404 spotify_api 2956 17176 Extracted 3 track URLs from playlist
+INFO 2025-03-30 20:47:23,179 views 2956 17176 Added cached song to playlist: https://open.spotify.com/track/1ApfHqjOoBmJZ0SjdjzVyA
+INFO 2025-03-30 20:47:23,749 views 2956 17176 Added cached song to playlist: https://open.spotify.com/track/0dQiyqHUpnMPmHtk535VAY
+INFO 2025-03-30 20:47:24,352 views 2956 17176 Added cached song to playlist: https://open.spotify.com/track/0kYBzFJ5a2Jozi6cI4y9Bp
+INFO 2025-03-30 20:47:24,502 basehttp 2956 17176 "POST /api/songs/songs/download/ HTTP/1.1" 200 122
+INFO 2025-03-30 20:49:02,899 basehttp 2956 9184 "GET /api/songs/playlists/19/download_all/ HTTP/1.1" 200 22
+INFO 2025-03-30 20:49:44,135 basehttp 2956 9184 "GET /api/songs/playlists/19/download_all/ HTTP/1.1" 200 22
+INFO 2025-03-30 20:50:20,083 basehttp 2956 9184 "GET /api/songs/playlists/19/download_all/ HTTP/1.1" 200 22
+INFO 2025-03-30 20:50:29,769 basehttp 2956 9184 "GET /api/songs/playlists/19/download_all/ HTTP/1.1" 200 22
+INFO 2025-03-30 20:52:55,455 views 2956 17464 Redirecting YouTube playlist URL to playlist download endpoint: https://www.youtube.com/watch?v=xH9xv0X9-Xw&list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-03-30 20:52:55,495 utils 2956 17464 Getting YouTube playlist info for URL: https://www.youtube.com/watch?v=xH9xv0X9-Xw&list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+ERROR 2025-03-30 20:52:59,183 utils 2956 17464 No videos found in playlist: https://www.youtube.com/watch?v=xH9xv0X9-Xw&list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+ERROR 2025-03-30 20:52:59,190 utils 2956 17464 Unexpected error getting YouTube playlist info: No videos found in playlist
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\utils.py", line 350, in get_youtube_playlist_info
+    raise ValueError("No videos found in playlist")
+ValueError: No videos found in playlist
+ERROR 2025-03-30 20:52:59,200 views 2956 17464 Playlist download error: 'function' object has no attribute 'retry'
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\utils.py", line 350, in get_youtube_playlist_info
+    raise ValueError("No videos found in playlist")
+ValueError: No videos found in playlist
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\utils.py", line 61, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\utils.py", line 379, in get_youtube_playlist_info
+    raise YouTubeAPIError(f"Unexpected YouTube error: {str(e)}", original_error=e)
+songs.utils.YouTubeAPIError: Unexpected YouTube error: No videos found in playlist
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 651, in download_playlist
+    playlist_info = get_playlist_info(url)
+                    ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\spotify_api.py", line 228, in get_playlist_info
+    return get_youtube_playlist_info(playlist_url)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\retrying.py", line 56, in wrapped_f
+    return Retrying(*dargs, **dkw).call(f, *args, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\retrying.py", line 257, in call
+    return attempt.get(self._wrap_exception)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\retrying.py", line 301, in get
+    six.reraise(self.value[0], self.value[1], self.value[2])
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\six.py", line 724, in reraise
+    raise value
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\retrying.py", line 251, in call
+    attempt = Attempt(fn(*args, **kwargs), attempt_number, False)
+                      ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\utils.py", line 66, in wrapper
+    f"Attempt {wrapper.retry.statistics['attempt_number']} of {max_attempts}."
+               ^^^^^^^^^^^^^
+AttributeError: 'function' object has no attribute 'retry'
+ERROR 2025-03-30 20:52:59,331 log 2956 17464 Internal Server Error: /api/songs/songs/download/
+ERROR 2025-03-30 20:52:59,331 basehttp 2956 17464 "POST /api/songs/songs/download/ HTTP/1.1" 500 54
+INFO 2025-03-30 20:54:13,499 views 2956 22056 Redirecting YouTube playlist URL to playlist download endpoint: https://www.youtube.com/watch?v=xH9xv0X9-Xw&list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-03-30 20:54:13,499 utils 2956 22056 Getting YouTube playlist info for URL: https://www.youtube.com/watch?v=xH9xv0X9-Xw&list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+ERROR 2025-03-30 20:54:14,855 utils 2956 22056 No videos found in playlist: https://www.youtube.com/watch?v=xH9xv0X9-Xw&list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+ERROR 2025-03-30 20:54:14,861 utils 2956 22056 Unexpected error getting YouTube playlist info: No videos found in playlist
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\utils.py", line 350, in get_youtube_playlist_info
+    raise ValueError("No videos found in playlist")
+ValueError: No videos found in playlist
+ERROR 2025-03-30 20:54:14,869 views 2956 22056 Playlist download error: 'function' object has no attribute 'retry'
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\utils.py", line 350, in get_youtube_playlist_info
+    raise ValueError("No videos found in playlist")
+ValueError: No videos found in playlist
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\utils.py", line 61, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\utils.py", line 379, in get_youtube_playlist_info
+    raise YouTubeAPIError(f"Unexpected YouTube error: {str(e)}", original_error=e)
+songs.utils.YouTubeAPIError: Unexpected YouTube error: No videos found in playlist
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 651, in download_playlist
+    playlist_info = get_playlist_info(url)
+                    ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\spotify_api.py", line 228, in get_playlist_info
+    return get_youtube_playlist_info(playlist_url)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\retrying.py", line 56, in wrapped_f
+    return Retrying(*dargs, **dkw).call(f, *args, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\retrying.py", line 257, in call
+    return attempt.get(self._wrap_exception)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\retrying.py", line 301, in get
+    six.reraise(self.value[0], self.value[1], self.value[2])
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\six.py", line 724, in reraise
+    raise value
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\retrying.py", line 251, in call
+    attempt = Attempt(fn(*args, **kwargs), attempt_number, False)
+                      ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\utils.py", line 66, in wrapper
+    f"Attempt {wrapper.retry.statistics['attempt_number']} of {max_attempts}."
+               ^^^^^^^^^^^^^
+AttributeError: 'function' object has no attribute 'retry'
+ERROR 2025-03-30 20:54:14,885 log 2956 22056 Internal Server Error: /api/songs/songs/download/
+ERROR 2025-03-30 20:54:14,893 basehttp 2956 22056 "POST /api/songs/songs/download/ HTTP/1.1" 500 54
+INFO 2025-03-30 21:15:59,758 autoreload 2956 21948 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 21:16:04,828 autoreload 13708 25156 Watching for file changes with StatReloader
+INFO 2025-03-30 21:16:17,408 autoreload 13708 25156 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\utils.py changed, reloading.
+INFO 2025-03-30 21:16:22,581 autoreload 23564 12140 Watching for file changes with StatReloader
+INFO 2025-03-30 21:16:26,880 autoreload 23564 12140 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\utils.py changed, reloading.
+INFO 2025-03-30 21:16:31,853 autoreload 20488 9356 Watching for file changes with StatReloader
+INFO 2025-03-30 21:16:43,596 views 20488 21044 Redirecting YouTube playlist URL to playlist download endpoint: https://www.youtube.com/watch?v=xH9xv0X9-Xw&list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-03-30 21:16:43,596 utils 20488 21044 Getting YouTube playlist info for URL: https://www.youtube.com/watch?v=xH9xv0X9-Xw&list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+ERROR 2025-03-30 21:16:46,852 utils 20488 21044 No videos found in playlist: https://www.youtube.com/watch?v=xH9xv0X9-Xw&list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+ERROR 2025-03-30 21:16:47,383 utils 20488 21044 Unexpected error getting YouTube playlist info: No videos found in playlist
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\utils.py", line 365, in get_youtube_playlist_info
+    raise ValueError("No videos found in playlist")
+ValueError: No videos found in playlist
+WARNING 2025-03-30 21:16:47,394 utils 20488 21044 Retrying get_youtube_playlist_info due to YouTubeAPIError: Unexpected YouTube error: No videos found in playlist. Attempt 1 of 3.
+INFO 2025-03-30 21:16:47,394 utils 20488 21044 Waiting 1.00 seconds before retry...
+INFO 2025-03-30 21:16:48,397 utils 20488 21044 Getting YouTube playlist info for URL: https://www.youtube.com/watch?v=xH9xv0X9-Xw&list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+ERROR 2025-03-30 21:16:50,433 utils 20488 21044 No videos found in playlist: https://www.youtube.com/watch?v=xH9xv0X9-Xw&list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+ERROR 2025-03-30 21:16:50,442 utils 20488 21044 Unexpected error getting YouTube playlist info: No videos found in playlist
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\utils.py", line 365, in get_youtube_playlist_info
+    raise ValueError("No videos found in playlist")
+ValueError: No videos found in playlist
+WARNING 2025-03-30 21:16:50,453 utils 20488 21044 Retrying get_youtube_playlist_info due to YouTubeAPIError: Unexpected YouTube error: No videos found in playlist. Attempt 2 of 3.
+INFO 2025-03-30 21:16:50,459 utils 20488 21044 Waiting 2.00 seconds before retry...
+INFO 2025-03-30 21:16:52,461 utils 20488 21044 Getting YouTube playlist info for URL: https://www.youtube.com/watch?v=xH9xv0X9-Xw&list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+ERROR 2025-03-30 21:16:54,073 utils 20488 21044 No videos found in playlist: https://www.youtube.com/watch?v=xH9xv0X9-Xw&list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+ERROR 2025-03-30 21:16:54,075 utils 20488 21044 Unexpected error getting YouTube playlist info: No videos found in playlist
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\utils.py", line 365, in get_youtube_playlist_info
+    raise ValueError("No videos found in playlist")
+ValueError: No videos found in playlist
+WARNING 2025-03-30 21:16:54,081 utils 20488 21044 Retrying get_youtube_playlist_info due to YouTubeAPIError: Unexpected YouTube error: No videos found in playlist. Attempt 3 of 3.
+ERROR 2025-03-30 21:16:54,081 utils 20488 21044 Maximum retry attempts (3) reached for get_youtube_playlist_info
+ERROR 2025-03-30 21:16:54,086 views 20488 21044 Playlist download error: Unexpected YouTube error: No videos found in playlist
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\utils.py", line 365, in get_youtube_playlist_info
+    raise ValueError("No videos found in playlist")
+ValueError: No videos found in playlist
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 651, in download_playlist
+    playlist_info = get_playlist_info(url)
+                    ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\spotify_api.py", line 228, in get_playlist_info
+    return get_youtube_playlist_info(playlist_url)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\utils.py", line 61, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\utils.py", line 394, in get_youtube_playlist_info
+    raise YouTubeAPIError(f"Unexpected YouTube error: {str(e)}", original_error=e)
+songs.utils.YouTubeAPIError: Unexpected YouTube error: No videos found in playlist
+ERROR 2025-03-30 21:16:54,103 log 20488 21044 Internal Server Error: /api/songs/songs/download/
+ERROR 2025-03-30 21:16:54,105 basehttp 20488 21044 "POST /api/songs/songs/download/ HTTP/1.1" 500 65
+INFO 2025-03-30 21:17:48,291 views 20488 20428 Redirecting YouTube playlist URL to playlist download endpoint: https://www.youtube.com/watch?v=WQnAxOQxQIU&list=PLNMTXgsQnLlCAYdQGh3sVAvun2hWZ_a6x
+INFO 2025-03-30 21:17:48,291 utils 20488 20428 Getting YouTube playlist info for URL: https://www.youtube.com/watch?v=WQnAxOQxQIU&list=PLNMTXgsQnLlCAYdQGh3sVAvun2hWZ_a6x
+ERROR 2025-03-30 21:17:50,364 utils 20488 20428 No videos found in playlist: https://www.youtube.com/watch?v=WQnAxOQxQIU&list=PLNMTXgsQnLlCAYdQGh3sVAvun2hWZ_a6x
+ERROR 2025-03-30 21:17:50,372 utils 20488 20428 Unexpected error getting YouTube playlist info: No videos found in playlist
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\utils.py", line 365, in get_youtube_playlist_info
+    raise ValueError("No videos found in playlist")
+ValueError: No videos found in playlist
+WARNING 2025-03-30 21:17:50,372 utils 20488 20428 Retrying get_youtube_playlist_info due to YouTubeAPIError: Unexpected YouTube error: No videos found in playlist. Attempt 4 of 3.
+ERROR 2025-03-30 21:17:50,379 utils 20488 20428 Maximum retry attempts (3) reached for get_youtube_playlist_info
+ERROR 2025-03-30 21:17:50,380 views 20488 20428 Playlist download error: Unexpected YouTube error: No videos found in playlist
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\utils.py", line 365, in get_youtube_playlist_info
+    raise ValueError("No videos found in playlist")
+ValueError: No videos found in playlist
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 651, in download_playlist
+    playlist_info = get_playlist_info(url)
+                    ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\spotify_api.py", line 228, in get_playlist_info
+    return get_youtube_playlist_info(playlist_url)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\utils.py", line 61, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\utils.py", line 394, in get_youtube_playlist_info
+    raise YouTubeAPIError(f"Unexpected YouTube error: {str(e)}", original_error=e)
+songs.utils.YouTubeAPIError: Unexpected YouTube error: No videos found in playlist
+ERROR 2025-03-30 21:17:50,390 log 20488 20428 Internal Server Error: /api/songs/songs/download/
+ERROR 2025-03-30 21:17:50,397 basehttp 20488 20428 "POST /api/songs/songs/download/ HTTP/1.1" 500 65
+INFO 2025-03-30 21:18:08,686 spotify_api 20488 20428 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-30 21:18:08,686 spotify_api 20488 20428 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-30 21:18:08,690 views 20488 20428 Redirecting Spotify playlist URL to playlist download endpoint: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-30 21:18:08,691 spotify_api 20488 20428 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-30 21:18:08,691 spotify_api 20488 20428 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-30 21:18:08,691 spotify_api 20488 20428 Getting Spotify playlist info for ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-30 21:18:08,694 spotify_api 20488 20428 Creating Spotify client with credentials from settings
+INFO 2025-03-30 21:18:08,986 spotify_api 20488 20428 Successfully tested Spotify client
+INFO 2025-03-30 21:18:09,491 spotify_api 20488 20428 Extracted 3 track URLs from playlist
+INFO 2025-03-30 21:18:10,259 views 20488 20428 Added cached song to playlist: https://open.spotify.com/track/1ApfHqjOoBmJZ0SjdjzVyA
+INFO 2025-03-30 21:18:10,822 views 20488 20428 Added cached song to playlist: https://open.spotify.com/track/0dQiyqHUpnMPmHtk535VAY
+INFO 2025-03-30 21:18:11,393 views 20488 20428 Added cached song to playlist: https://open.spotify.com/track/0kYBzFJ5a2Jozi6cI4y9Bp
+INFO 2025-03-30 21:18:11,529 basehttp 20488 20428 "POST /api/songs/songs/download/ HTTP/1.1" 200 122
+ERROR 2025-03-30 21:18:23,164 views 20488 20428 Error creating playlist ZIP: name 'zipfile' is not defined
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 1230, in download_all
+    with zipfile.ZipFile(zip_path, 'w') as zip_file:
+         ^^^^^^^
+NameError: name 'zipfile' is not defined. Did you mean: 'tempfile'? Or did you forget to import 'zipfile'
+ERROR 2025-03-30 21:18:23,172 log 20488 20428 Internal Server Error: /api/songs/playlists/20/download_all/
+ERROR 2025-03-30 21:18:23,185 basehttp 20488 20428 "GET /api/songs/playlists/20/download_all/ HTTP/1.1" 500 67
+WARNING 2025-03-30 21:18:55,192 log 20488 20428 Not Found: /api/songs/song-download/
+WARNING 2025-03-30 21:18:55,192 basehttp 20488 20428 "POST /api/songs/song-download/ HTTP/1.1" 404 15040
+WARNING 2025-03-30 21:19:07,568 log 20488 20428 Not Found: /api/songs/download/
+WARNING 2025-03-30 21:19:07,569 basehttp 20488 20428 "POST /api/songs/download/ HTTP/1.1" 404 15025
+WARNING 2025-03-30 21:19:16,563 log 20488 20428 Unauthorized: /api/songs/songs/download/
+WARNING 2025-03-30 21:19:16,565 basehttp 20488 20428 "POST /api/songs/songs/download/ HTTP/1.1" 401 27
+INFO 2025-03-30 21:19:29,311 views 20488 20428 Found existing song with URL https://www.youtube.com/watch?v=eJnQBXmZ7Ek, serving directly
+ERROR 2025-03-30 21:19:29,311 views 20488 20428 Download error: 'str' object has no attribute 'method'
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 199, in download
+    return self.download_youtube(url, format)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 59, in wrapped_view
+    if is_ratelimited(
+       ^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django_ratelimit\core.py", line 153, in is_ratelimited
+    usage = get_usage(request, group, fn, key, rate, method, increment)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django_ratelimit\core.py", line 169, in get_usage
+    if not _method_match(request, method):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django_ratelimit\core.py", line 93, in _method_match
+    return request.method in [m.upper() for m in method]
+           ^^^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'method'
+ERROR 2025-03-30 21:19:29,342 log 20488 20428 Internal Server Error: /api/songs/songs/download/
+ERROR 2025-03-30 21:19:29,342 basehttp 20488 20428 "POST /api/songs/songs/download/ HTTP/1.1" 500 67
+INFO 2025-03-30 21:20:48,377 spotify_api 20488 27072 Extracting Spotify ID from URL: https://open.spotify.com/track/4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-30 21:20:48,379 spotify_api 20488 27072 Extracted Spotify track ID: 4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-30 21:20:48,521 spotify_api 20488 27072 Extracting Spotify ID from URL: https://open.spotify.com/track/4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-30 21:20:48,523 spotify_api 20488 27072 Extracted Spotify track ID: 4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-30 21:20:48,523 spotify_api 20488 27072 Getting info for Spotify track ID: 4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-30 21:20:48,525 spotify_api 20488 27072 Creating Spotify client with credentials from settings
+INFO 2025-03-30 21:20:48,712 spotify_api 20488 27072 Successfully tested Spotify client
+INFO 2025-03-30 21:20:49,149 spotify_api 20488 27072 Got track info: Har Kisi Ko (From "Boss) by Arijit Singh
+INFO 2025-03-30 21:20:49,151 views 20488 27072 Got Spotify track info: {'title': 'Har Kisi Ko (From "Boss)', 'artist': 'Arijit Singh', 'album': 'Love Dose Arijit Singh', 'spotify_id': '4A7eOIbt19Wk5OXjVxE3SI', 'image_url': 'https://i.scdn.co/image/ab67616d0000b2732d2263486e48ab1b41ae2466', 'year': '2016', 'genre': 'hindi pop'}
+INFO 2025-03-30 21:20:49,154 views 20488 27072 Searching YouTube for: Har Kisi Ko (From "Boss) Arijit Singh
+INFO 2025-03-30 21:20:49,299 views 20488 27072 Downloading using YouTube search: ytsearch:Har Kisi Ko (From "Boss) Arijit Singh
+ERROR 2025-03-30 21:21:10,585 views 20488 27072 Spotify track download error: value too long for type character varying(100)
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.StringDataRightTruncation: value too long for type character varying(100)
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 564, in download_spotify_track
+    song = Song.objects.create(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 679, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\base.py", line 892, in save
+    self.save_base(
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\base.py", line 998, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\base.py", line 1161, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\base.py", line 1202, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 1847, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1836, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\sentry_sdk\utils.py", line 1783, in runner
+    return sentry_patched_function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\__init__.py", line 651, in execute
+    result = real_execute(self, sql, params)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.DataError: value too long for type character varying(100)
+
+ERROR 2025-03-30 21:21:10,635 log 20488 27072 Internal Server Error: /api/songs/songs/download/
+ERROR 2025-03-30 21:21:10,635 basehttp 20488 27072 "POST /api/songs/songs/download/ HTTP/1.1" 500 91
+INFO 2025-03-30 21:22:12,098 autoreload 20488 9356 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 21:22:19,310 autoreload 26336 1400 Watching for file changes with StatReloader
+INFO 2025-03-30 21:22:24,657 autoreload 26336 1400 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 21:22:30,620 autoreload 2912 22272 Watching for file changes with StatReloader
+INFO 2025-03-30 21:22:41,477 autoreload 2912 22272 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 21:22:47,931 autoreload 4052 8952 Watching for file changes with StatReloader
+INFO 2025-03-30 21:23:16,470 autoreload 4052 8952 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 21:23:22,868 autoreload 22788 27424 Watching for file changes with StatReloader
+INFO 2025-03-30 21:23:39,568 autoreload 22788 27424 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\models.py changed, reloading.
+INFO 2025-03-30 21:23:45,046 autoreload 7564 18188 Watching for file changes with StatReloader
+INFO 2025-03-30 21:24:11,866 autoreload 7564 18188 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 21:24:19,069 autoreload 6016 8892 Watching for file changes with StatReloader
+INFO 2025-03-30 21:24:34,746 autoreload 6016 8892 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\models.py changed, reloading.
+INFO 2025-03-30 21:24:41,275 autoreload 13564 18176 Watching for file changes with StatReloader
+INFO 2025-03-30 21:24:54,464 autoreload 13564 18176 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 21:25:01,424 autoreload 15436 21016 Watching for file changes with StatReloader
+INFO 2025-03-30 21:25:13,396 autoreload 15436 21016 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 21:25:20,426 autoreload 23372 4600 Watching for file changes with StatReloader
+INFO 2025-03-30 21:28:43,994 autoreload 25368 23000 Watching for file changes with StatReloader
+INFO 2025-03-30 21:29:29,569 autoreload 25368 23000 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 21:29:36,688 autoreload 17184 19824 Watching for file changes with StatReloader
+INFO 2025-03-30 21:30:31,914 autoreload 27496 4580 Watching for file changes with StatReloader
+INFO 2025-03-30 21:32:06,936 autoreload 27496 4580 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\serializers.py changed, reloading.
+INFO 2025-03-30 21:32:13,365 autoreload 19440 14080 Watching for file changes with StatReloader
+INFO 2025-03-30 21:32:50,677 autoreload 19440 14080 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\utils.py changed, reloading.
+INFO 2025-03-30 21:32:57,021 autoreload 17288 6816 Watching for file changes with StatReloader
+INFO 2025-03-30 21:35:19,808 autoreload 4112 12608 Watching for file changes with StatReloader
+INFO 2025-03-30 21:35:25,188 spotify_api 4112 1400 Extracting Spotify ID from URL: https://open.spotify.com/track/4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-30 21:35:25,190 spotify_api 4112 1400 Extracted Spotify track ID: 4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-30 21:35:25,330 spotify_api 4112 1400 Extracting Spotify ID from URL: https://open.spotify.com/track/4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-30 21:35:25,345 spotify_api 4112 1400 Extracted Spotify track ID: 4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-30 21:35:25,347 spotify_api 4112 1400 Getting info for Spotify track ID: 4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-30 21:35:25,348 spotify_api 4112 1400 Creating Spotify client with credentials from settings
+INFO 2025-03-30 21:35:25,648 spotify_api 4112 1400 Successfully tested Spotify client
+INFO 2025-03-30 21:35:26,104 spotify_api 4112 1400 Got track info: Har Kisi Ko (From "Boss) by Arijit Singh
+INFO 2025-03-30 21:35:34,694 views 4112 1400 Found YouTube URL for Spotify track: https://www.youtube.com/watch?v=WtgGzgcNHNk
+INFO 2025-03-30 21:35:52,722 utils 4112 1400 Title: Har Kisi Ko (From "Boss), Artist: Arijit Singh, Album: Love Dose Arijit Singh, Genre: hindi pop
+INFO 2025-03-30 21:35:52,728 utils 4112 1400 Loaded existing ID3 tags
+INFO 2025-03-30 21:35:52,728 utils 4112 1400 Downloading thumbnail from URL: https://i.scdn.co/image/ab67616d0000b2732d2263486e48ab1b41ae2466
+INFO 2025-03-30 21:35:52,852 utils 4112 1400 Downloaded thumbnail: 137173 bytes
+INFO 2025-03-30 21:35:52,938 utils 4112 1400 Adding album art, MIME type: image/jpeg
+INFO 2025-03-30 21:35:53,102 utils 4112 1400 Verification: 7 tags were written
+INFO 2025-03-30 21:35:53,668 models 4112 1400 Added song to cache: https://open.spotify.com/track/4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-30 21:35:54,190 basehttp 4112 1400 "POST /api/songs/songs/download/ HTTP/1.1" 200 9491139
+INFO 2025-03-30 21:37:21,228 spotify_api 4112 17376 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-30 21:37:21,229 spotify_api 4112 17376 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-30 21:37:21,230 views 4112 17376 Redirecting Spotify playlist URL to playlist download endpoint: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-30 21:37:21,232 spotify_api 4112 17376 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-30 21:37:21,232 spotify_api 4112 17376 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-30 21:37:21,232 spotify_api 4112 17376 Getting Spotify playlist info for ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-30 21:37:21,232 spotify_api 4112 17376 Creating Spotify client with credentials from settings
+INFO 2025-03-30 21:37:21,498 spotify_api 4112 17376 Successfully tested Spotify client
+INFO 2025-03-30 21:37:21,918 spotify_api 4112 17376 Extracted 3 track URLs from playlist
+ERROR 2025-03-30 21:37:22,201 views 4112 17376 Error downloading track https://open.spotify.com/track/1ApfHqjOoBmJZ0SjdjzVyA: 'SongCache' object has no attribute 'metadata'
+ERROR 2025-03-30 21:37:22,840 views 4112 17376 Error downloading track https://open.spotify.com/track/0dQiyqHUpnMPmHtk535VAY: 'SongCache' object has no attribute 'metadata'
+ERROR 2025-03-30 21:37:22,988 views 4112 17376 Error downloading track https://open.spotify.com/track/0kYBzFJ5a2Jozi6cI4y9Bp: 'SongCache' object has no attribute 'metadata'
+INFO 2025-03-30 21:37:23,129 basehttp 4112 17376 "POST /api/songs/songs/download/ HTTP/1.1" 200 122
+WARNING 2025-03-30 21:37:35,378 log 4112 17376 Not Found: /api/songs/playlists/21/download_all/
+WARNING 2025-03-30 21:37:35,378 basehttp 4112 17376 "GET /api/songs/playlists/21/download_all/ HTTP/1.1" 404 15075
+WARNING 2025-03-30 21:37:46,658 log 4112 17376 Not Found: /api/songs/songs/playlists/21/download_all/
+WARNING 2025-03-30 21:37:46,665 basehttp 4112 17376 "GET /api/songs/songs/playlists/21/download_all/ HTTP/1.1" 404 15093
+INFO 2025-03-30 21:38:32,219 views 4112 17376 Found existing song with URL https://www.youtube.com/watch?v=eJnQBXmZ7Ek, serving directly
+ERROR 2025-03-30 21:38:32,219 views 4112 17376 Download error: 'str' object has no attribute 'method'
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 233, in download
+    return self.download_youtube(url, format)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 67, in wrapped_view
+    if is_ratelimited(
+       ^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django_ratelimit\core.py", line 153, in is_ratelimited
+    usage = get_usage(request, group, fn, key, rate, method, increment)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django_ratelimit\core.py", line 169, in get_usage
+    if not _method_match(request, method):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django_ratelimit\core.py", line 93, in _method_match
+    return request.method in [m.upper() for m in method]
+           ^^^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'method'
+ERROR 2025-03-30 21:38:32,238 log 4112 17376 Internal Server Error: /api/songs/songs/download/
+ERROR 2025-03-30 21:38:32,241 basehttp 4112 17376 "POST /api/songs/songs/download/ HTTP/1.1" 500 67
+INFO 2025-03-30 21:40:03,736 autoreload 4112 12608 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 21:40:10,253 autoreload 6560 15108 Watching for file changes with StatReloader
+INFO 2025-03-30 21:40:20,901 autoreload 6560 15108 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\urls.py changed, reloading.
+INFO 2025-03-30 21:40:26,725 autoreload 2424 19916 Watching for file changes with StatReloader
+INFO 2025-03-30 21:40:38,721 autoreload 2424 19916 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 21:40:44,902 autoreload 6980 25124 Watching for file changes with StatReloader
+INFO 2025-03-30 21:41:18,082 autoreload 6980 25124 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 21:41:24,200 autoreload 11508 11420 Watching for file changes with StatReloader
+WARNING 2025-03-30 21:41:47,866 log 11508 23844 Not Found: /api/songs/playlists/21/download_all/
+WARNING 2025-03-30 21:41:47,866 basehttp 11508 23844 "GET /api/songs/playlists/21/download_all/ HTTP/1.1" 404 15384
+WARNING 2025-03-30 21:42:14,485 log 11508 23844 Not Found: /api/songs/download_playlist/21/
+WARNING 2025-03-30 21:42:14,485 basehttp 11508 23844 "GET /api/songs/download_playlist/21/ HTTP/1.1" 404 15369
+WARNING 2025-03-30 21:42:17,527 log 11508 23844 Not Found: /api/songs/download_playlist/21
+WARNING 2025-03-30 21:42:17,527 basehttp 11508 23844 "GET /api/songs/download_playlist/21 HTTP/1.1" 404 15366
+WARNING 2025-03-30 21:43:13,014 log 11508 23844 Not Found: /api/playlists/21/download_all/
+WARNING 2025-03-30 21:43:13,014 basehttp 11508 23844 "GET /api/playlists/21/download_all/ HTTP/1.1" 404 3427
+WARNING 2025-03-30 21:43:31,229 log 11508 23844 Not Found: /api/playlist/21/download_all/
+WARNING 2025-03-30 21:43:31,229 basehttp 11508 23844 "GET /api/playlist/21/download_all/ HTTP/1.1" 404 3424
+WARNING 2025-03-30 21:43:36,899 log 11508 23844 Not Found: /api/playlists/21/download-all/
+WARNING 2025-03-30 21:43:36,899 basehttp 11508 23844 "GET /api/playlists/21/download-all/ HTTP/1.1" 404 3427
+WARNING 2025-03-30 21:43:56,808 log 11508 23844 Not Found: /api/playlists/21/download-all/
+WARNING 2025-03-30 21:43:56,808 basehttp 11508 23844 "GET /api/playlists/21/download-all/ HTTP/1.1" 404 3427
+WARNING 2025-03-30 21:44:28,029 log 11508 23844 Bad Request: /api/songs/playlists/21/download-all/
+WARNING 2025-03-30 21:44:28,036 basehttp 11508 23844 "GET /api/songs/playlists/21/download-all/ HTTP/1.1" 400 32
+INFO 2025-03-30 21:44:35,019 spotify_api 11508 23844 Extracting Spotify ID from URL: https://open.spotify.com/track/0kYBzFJ5a2Jozi6cI4y9Bp
+INFO 2025-03-30 21:44:35,019 spotify_api 11508 23844 Extracted Spotify track ID: 0kYBzFJ5a2Jozi6cI4y9Bp
+INFO 2025-03-30 21:44:35,019 spotify_api 11508 23844 Getting info for Spotify track ID: 0kYBzFJ5a2Jozi6cI4y9Bp
+INFO 2025-03-30 21:44:35,019 spotify_api 11508 23844 Creating Spotify client with credentials from settings
+INFO 2025-03-30 21:44:35,223 spotify_api 11508 23844 Successfully tested Spotify client
+INFO 2025-03-30 21:44:35,684 spotify_api 11508 23844 Got track info: Jo Tere Sang by Jeet Gannguli
+INFO 2025-03-30 21:44:58,067 spotify_api 11508 23844 Extracting Spotify ID from URL: https://open.spotify.com/track/0dQiyqHUpnMPmHtk535VAY
+INFO 2025-03-30 21:44:58,067 spotify_api 11508 23844 Extracted Spotify track ID: 0dQiyqHUpnMPmHtk535VAY
+INFO 2025-03-30 21:44:58,067 spotify_api 11508 23844 Getting info for Spotify track ID: 0dQiyqHUpnMPmHtk535VAY
+INFO 2025-03-30 21:44:58,067 spotify_api 11508 23844 Creating Spotify client with credentials from settings
+INFO 2025-03-30 21:44:58,413 spotify_api 11508 23844 Successfully tested Spotify client
+INFO 2025-03-30 21:44:58,831 spotify_api 11508 23844 Got track info: Tennu Le by omer inayat
+INFO 2025-03-30 21:45:14,015 spotify_api 11508 23844 Extracting Spotify ID from URL: https://open.spotify.com/track/1ApfHqjOoBmJZ0SjdjzVyA
+INFO 2025-03-30 21:45:14,015 spotify_api 11508 23844 Extracted Spotify track ID: 1ApfHqjOoBmJZ0SjdjzVyA
+INFO 2025-03-30 21:45:14,015 spotify_api 11508 23844 Getting info for Spotify track ID: 1ApfHqjOoBmJZ0SjdjzVyA
+INFO 2025-03-30 21:45:14,015 spotify_api 11508 23844 Creating Spotify client with credentials from settings
+INFO 2025-03-30 21:45:14,269 spotify_api 11508 23844 Successfully tested Spotify client
+INFO 2025-03-30 21:45:14,743 spotify_api 11508 23844 Got track info: Yeh Raaten Yeh Mausam by Sanam
+ERROR 2025-03-30 21:45:29,611 views 11508 23844 Error in download_all: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\Dell\\AppData\\Local\\Temp\\tmpeyktt_vk\\tunevault testing_1743351329.zip'
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\Dell\\AppData\\Local\\Temp\\tmpeyktt_vk\\tunevault testing_1743351329.zip'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 1103, in download_all
+    with tempfile.TemporaryDirectory() as temp_dir:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\tempfile.py", line 946, in __exit__
+    self.cleanup()
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\tempfile.py", line 950, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\tempfile.py", line 930, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\tempfile.py", line 905, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\Dell\\AppData\\Local\\Temp\\tmpeyktt_vk\\tunevault testing_1743351329.zip'
+ERROR 2025-03-30 21:45:29,957 log 11508 23844 Internal Server Error: /api/songs/playlists/20/download-all/
+ERROR 2025-03-30 21:45:29,957 basehttp 11508 23844 "GET /api/songs/playlists/20/download-all/ HTTP/1.1" 500 232
+INFO 2025-03-30 21:45:40,918 spotify_api 11508 12172 Extracting Spotify ID from URL: https://open.spotify.com/track/0kYBzFJ5a2Jozi6cI4y9Bp
+INFO 2025-03-30 21:45:40,918 spotify_api 11508 12172 Extracted Spotify track ID: 0kYBzFJ5a2Jozi6cI4y9Bp
+INFO 2025-03-30 21:45:40,918 spotify_api 11508 12172 Getting info for Spotify track ID: 0kYBzFJ5a2Jozi6cI4y9Bp
+INFO 2025-03-30 21:45:40,918 spotify_api 11508 12172 Creating Spotify client with credentials from settings
+INFO 2025-03-30 21:45:41,156 spotify_api 11508 12172 Successfully tested Spotify client
+INFO 2025-03-30 21:45:41,507 spotify_api 11508 12172 Got track info: Jo Tere Sang by Jeet Gannguli
+INFO 2025-03-30 21:45:51,995 views 11508 5408 Found existing song with URL https://www.youtube.com/watch?v=eJnQBXmZ7Ek, serving directly
+ERROR 2025-03-30 21:45:51,995 views 11508 5408 Download error: 'str' object has no attribute 'method'
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 227, in download
+    return self.download_youtube(url, format)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 73, in wrapped_view
+    if is_ratelimited(
+       ^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django_ratelimit\core.py", line 153, in is_ratelimited
+    usage = get_usage(request, group, fn, key, rate, method, increment)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django_ratelimit\core.py", line 169, in get_usage
+    if not _method_match(request, method):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django_ratelimit\core.py", line 93, in _method_match
+    return request.method in [m.upper() for m in method]
+           ^^^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'method'
+ERROR 2025-03-30 21:45:52,026 log 11508 5408 Internal Server Error: /api/songs/songs/download/
+ERROR 2025-03-30 21:45:52,034 basehttp 11508 5408 "POST /api/songs/songs/download/ HTTP/1.1" 500 67
+INFO 2025-03-30 21:46:00,157 spotify_api 11508 12172 Extracting Spotify ID from URL: https://open.spotify.com/track/0dQiyqHUpnMPmHtk535VAY
+INFO 2025-03-30 21:46:00,157 spotify_api 11508 12172 Extracted Spotify track ID: 0dQiyqHUpnMPmHtk535VAY
+INFO 2025-03-30 21:46:00,157 spotify_api 11508 12172 Getting info for Spotify track ID: 0dQiyqHUpnMPmHtk535VAY
+INFO 2025-03-30 21:46:00,157 spotify_api 11508 12172 Creating Spotify client with credentials from settings
+INFO 2025-03-30 21:46:00,457 spotify_api 11508 12172 Successfully tested Spotify client
+INFO 2025-03-30 21:46:00,819 spotify_api 11508 12172 Got track info: Tennu Le by omer inayat
+INFO 2025-03-30 21:46:13,862 spotify_api 11508 12172 Extracting Spotify ID from URL: https://open.spotify.com/track/1ApfHqjOoBmJZ0SjdjzVyA
+INFO 2025-03-30 21:46:13,862 spotify_api 11508 12172 Extracted Spotify track ID: 1ApfHqjOoBmJZ0SjdjzVyA
+INFO 2025-03-30 21:46:13,862 spotify_api 11508 12172 Getting info for Spotify track ID: 1ApfHqjOoBmJZ0SjdjzVyA
+INFO 2025-03-30 21:46:13,862 spotify_api 11508 12172 Creating Spotify client with credentials from settings
+INFO 2025-03-30 21:46:14,192 spotify_api 11508 12172 Successfully tested Spotify client
+INFO 2025-03-30 21:46:14,595 spotify_api 11508 12172 Got track info: Yeh Raaten Yeh Mausam by Sanam
+ERROR 2025-03-30 21:46:20,860 views 11508 12172 Error downloading Spotify song https://open.spotify.com/track/1ApfHqjOoBmJZ0SjdjzVyA: [0;31mERROR:[0m unable to download video data: HTTP Error 403: Forbidden
+ERROR 2025-03-30 21:46:21,069 views 11508 12172 Error in download_all: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\Dell\\AppData\\Local\\Temp\\tmp3wefwgqq\\tunevault testing_1743351380.zip'
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\Dell\\AppData\\Local\\Temp\\tmp3wefwgqq\\tunevault testing_1743351380.zip'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 1103, in download_all
+    with tempfile.TemporaryDirectory() as temp_dir:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\tempfile.py", line 946, in __exit__
+    self.cleanup()
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\tempfile.py", line 950, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\tempfile.py", line 930, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\tempfile.py", line 905, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\Dell\\AppData\\Local\\Temp\\tmp3wefwgqq\\tunevault testing_1743351380.zip'
+ERROR 2025-03-30 21:46:21,097 log 11508 12172 Internal Server Error: /api/songs/playlists/20/download-all/
+INFO 2025-03-30 21:46:21,103 basehttp 11508 12172 - Broken pipe from ('127.0.0.1', 55303)
+INFO 2025-03-30 23:16:09,954 spotify_api 11508 8728 Extracting Spotify ID from URL: https://open.spotify.com/track/0kYBzFJ5a2Jozi6cI4y9Bp
+INFO 2025-03-30 23:16:09,955 spotify_api 11508 8728 Extracted Spotify track ID: 0kYBzFJ5a2Jozi6cI4y9Bp
+INFO 2025-03-30 23:16:09,955 spotify_api 11508 8728 Getting info for Spotify track ID: 0kYBzFJ5a2Jozi6cI4y9Bp
+INFO 2025-03-30 23:16:09,958 spotify_api 11508 8728 Creating Spotify client with credentials from settings
+INFO 2025-03-30 23:16:10,500 spotify_api 11508 8728 Successfully tested Spotify client
+INFO 2025-03-30 23:16:10,912 spotify_api 11508 8728 Got track info: Jo Tere Sang by Jeet Gannguli
+INFO 2025-03-30 23:16:24,368 spotify_api 11508 8728 Extracting Spotify ID from URL: https://open.spotify.com/track/0dQiyqHUpnMPmHtk535VAY
+INFO 2025-03-30 23:16:24,369 spotify_api 11508 8728 Extracted Spotify track ID: 0dQiyqHUpnMPmHtk535VAY
+INFO 2025-03-30 23:16:24,369 spotify_api 11508 8728 Getting info for Spotify track ID: 0dQiyqHUpnMPmHtk535VAY
+INFO 2025-03-30 23:16:24,369 spotify_api 11508 8728 Creating Spotify client with credentials from settings
+INFO 2025-03-30 23:16:24,640 spotify_api 11508 8728 Successfully tested Spotify client
+INFO 2025-03-30 23:16:25,009 spotify_api 11508 8728 Got track info: Tennu Le by omer inayat
+INFO 2025-03-30 23:16:35,180 spotify_api 11508 8728 Extracting Spotify ID from URL: https://open.spotify.com/track/1ApfHqjOoBmJZ0SjdjzVyA
+INFO 2025-03-30 23:16:35,182 spotify_api 11508 8728 Extracted Spotify track ID: 1ApfHqjOoBmJZ0SjdjzVyA
+INFO 2025-03-30 23:16:35,182 spotify_api 11508 8728 Getting info for Spotify track ID: 1ApfHqjOoBmJZ0SjdjzVyA
+INFO 2025-03-30 23:16:35,183 spotify_api 11508 8728 Creating Spotify client with credentials from settings
+INFO 2025-03-30 23:16:35,369 spotify_api 11508 8728 Successfully tested Spotify client
+INFO 2025-03-30 23:16:35,647 spotify_api 11508 8728 Got track info: Yeh Raaten Yeh Mausam by Sanam
+ERROR 2025-03-30 23:16:44,623 views 11508 8728 Error in download_all: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\Dell\\AppData\\Local\\Temp\\tmps8iih05o\\tunevault testing_1743356804.zip'
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\Dell\\AppData\\Local\\Temp\\tmps8iih05o\\tunevault testing_1743356804.zip'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 1103, in download_all
+    with tempfile.TemporaryDirectory() as temp_dir:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\tempfile.py", line 946, in __exit__
+    self.cleanup()
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\tempfile.py", line 950, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\tempfile.py", line 930, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\tempfile.py", line 905, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\Dell\\AppData\\Local\\Temp\\tmps8iih05o\\tunevault testing_1743356804.zip'
+ERROR 2025-03-30 23:16:44,636 log 11508 8728 Internal Server Error: /api/songs/playlists/20/download-all/
+ERROR 2025-03-30 23:16:44,637 basehttp 11508 8728 "GET /api/songs/playlists/20/download-all/ HTTP/1.1" 500 232
+INFO 2025-03-30 23:19:56,966 autoreload 11508 11420 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\urls.py changed, reloading.
+INFO 2025-03-30 23:20:01,915 autoreload 2984 19368 Watching for file changes with StatReloader
+INFO 2025-03-30 23:20:50,449 autoreload 2984 19368 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 23:20:54,244 autoreload 12004 2312 Watching for file changes with StatReloader
+INFO 2025-03-30 23:21:02,056 autoreload 12004 2312 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 23:21:05,706 autoreload 12188 21080 Watching for file changes with StatReloader
+INFO 2025-03-30 23:21:33,088 autoreload 12188 21080 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 23:21:37,064 autoreload 21740 22404 Watching for file changes with StatReloader
+INFO 2025-03-30 23:22:07,736 autoreload 21740 22404 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 23:22:11,636 autoreload 10136 22356 Watching for file changes with StatReloader
+INFO 2025-03-30 23:22:51,343 autoreload 10136 22356 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 23:22:54,939 autoreload 26076 24160 Watching for file changes with StatReloader
+INFO 2025-03-30 23:24:11,311 autoreload 19236 26240 Watching for file changes with StatReloader
+INFO 2025-03-30 23:25:34,485 autoreload 19236 26240 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 23:25:38,181 autoreload 12228 11028 Watching for file changes with StatReloader
+INFO 2025-03-30 23:25:41,541 autoreload 12228 11028 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 23:25:45,229 autoreload 8832 3424 Watching for file changes with StatReloader
+INFO 2025-03-30 23:26:47,787 spotify_api 8832 8968 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-30 23:26:47,787 spotify_api 8832 8968 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-30 23:26:47,787 views 8832 8968 Redirecting Spotify playlist URL to playlist download endpoint: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-30 23:26:47,787 spotify_api 8832 8968 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-30 23:26:47,787 spotify_api 8832 8968 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-30 23:26:47,787 spotify_api 8832 8968 Getting Spotify playlist info for ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-30 23:26:47,787 spotify_api 8832 8968 Creating Spotify client with credentials from settings
+INFO 2025-03-30 23:26:48,004 spotify_api 8832 8968 Successfully tested Spotify client
+INFO 2025-03-30 23:26:48,402 spotify_api 8832 8968 Extracted 3 track URLs from playlist
+INFO 2025-03-30 23:26:49,137 views 8832 8968 Added cached song to playlist: https://open.spotify.com/track/1ApfHqjOoBmJZ0SjdjzVyA
+INFO 2025-03-30 23:26:49,673 views 8832 8968 Added cached song to playlist: https://open.spotify.com/track/0dQiyqHUpnMPmHtk535VAY
+INFO 2025-03-30 23:26:50,217 views 8832 8968 Added cached song to playlist: https://open.spotify.com/track/0kYBzFJ5a2Jozi6cI4y9Bp
+INFO 2025-03-30 23:26:50,349 basehttp 8832 8968 "POST /api/songs/songs/download/ HTTP/1.1" 200 122
+INFO 2025-03-30 23:27:11,346 views 8832 8968 Using cached song for URL: https://open.spotify.com/track/0kYBzFJ5a2Jozi6cI4y9Bp
+WARNING 2025-03-30 23:27:11,347 views 8832 8968 File not found for song 140, need to download
+INFO 2025-03-30 23:27:11,348 spotify_api 8832 8968 Extracting Spotify ID from URL: https://open.spotify.com/track/0kYBzFJ5a2Jozi6cI4y9Bp
+INFO 2025-03-30 23:27:11,348 spotify_api 8832 8968 Extracted Spotify track ID: 0kYBzFJ5a2Jozi6cI4y9Bp
+INFO 2025-03-30 23:27:11,348 spotify_api 8832 8968 Getting info for Spotify track ID: 0kYBzFJ5a2Jozi6cI4y9Bp
+INFO 2025-03-30 23:27:11,349 spotify_api 8832 8968 Creating Spotify client with credentials from settings
+INFO 2025-03-30 23:27:11,532 spotify_api 8832 8968 Successfully tested Spotify client
+INFO 2025-03-30 23:27:11,815 spotify_api 8832 8968 Got track info: Jo Tere Sang by Jeet Gannguli
+INFO 2025-03-30 23:27:25,607 models 8832 8968 Added song to cache: https://open.spotify.com/track/0kYBzFJ5a2Jozi6cI4y9Bp
+INFO 2025-03-30 23:27:25,741 views 8832 8968 Using cached song for URL: https://open.spotify.com/track/0dQiyqHUpnMPmHtk535VAY
+WARNING 2025-03-30 23:27:25,741 views 8832 8968 File not found for song 139, need to download
+INFO 2025-03-30 23:27:25,741 spotify_api 8832 8968 Extracting Spotify ID from URL: https://open.spotify.com/track/0dQiyqHUpnMPmHtk535VAY
+INFO 2025-03-30 23:27:25,741 spotify_api 8832 8968 Extracted Spotify track ID: 0dQiyqHUpnMPmHtk535VAY
+INFO 2025-03-30 23:27:25,741 spotify_api 8832 8968 Getting info for Spotify track ID: 0dQiyqHUpnMPmHtk535VAY
+INFO 2025-03-30 23:27:25,741 spotify_api 8832 8968 Creating Spotify client with credentials from settings
+INFO 2025-03-30 23:27:25,932 spotify_api 8832 8968 Successfully tested Spotify client
+INFO 2025-03-30 23:27:26,243 spotify_api 8832 8968 Got track info: Tennu Le by omer inayat
+INFO 2025-03-30 23:27:37,097 models 8832 8968 Added song to cache: https://open.spotify.com/track/0dQiyqHUpnMPmHtk535VAY
+INFO 2025-03-30 23:27:37,239 views 8832 8968 Using cached song for URL: https://open.spotify.com/track/1ApfHqjOoBmJZ0SjdjzVyA
+WARNING 2025-03-30 23:27:37,241 views 8832 8968 File not found for song 138, need to download
+INFO 2025-03-30 23:27:37,243 spotify_api 8832 8968 Extracting Spotify ID from URL: https://open.spotify.com/track/1ApfHqjOoBmJZ0SjdjzVyA
+INFO 2025-03-30 23:27:37,243 spotify_api 8832 8968 Extracted Spotify track ID: 1ApfHqjOoBmJZ0SjdjzVyA
+INFO 2025-03-30 23:27:37,244 spotify_api 8832 8968 Getting info for Spotify track ID: 1ApfHqjOoBmJZ0SjdjzVyA
+INFO 2025-03-30 23:27:37,245 spotify_api 8832 8968 Creating Spotify client with credentials from settings
+INFO 2025-03-30 23:27:37,403 spotify_api 8832 8968 Successfully tested Spotify client
+INFO 2025-03-30 23:27:37,698 spotify_api 8832 8968 Got track info: Yeh Raaten Yeh Mausam by Sanam
+ERROR 2025-03-30 23:27:42,742 views 8832 8968 Error downloading Spotify song https://open.spotify.com/track/1ApfHqjOoBmJZ0SjdjzVyA: [0;31mERROR:[0m unable to download video data: HTTP Error 403: Forbidden
+ERROR 2025-03-30 23:27:43,027 views 8832 8968 Error in download_all: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\Dell\\AppData\\Local\\Temp\\tmpkbqt5_k6\\tunevault testing_1743357462.zip'
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\Dell\\AppData\\Local\\Temp\\tmpkbqt5_k6\\tunevault testing_1743357462.zip'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 1054, in download_all
+    with tempfile.TemporaryDirectory() as temp_dir:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\tempfile.py", line 946, in __exit__
+    self.cleanup()
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\tempfile.py", line 950, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\tempfile.py", line 930, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\tempfile.py", line 905, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\Dell\\AppData\\Local\\Temp\\tmpkbqt5_k6\\tunevault testing_1743357462.zip'
+ERROR 2025-03-30 23:27:43,058 log 8832 8968 Internal Server Error: /api/songs/playlists/22/download-all/
+ERROR 2025-03-30 23:27:43,065 basehttp 8832 8968 "GET /api/songs/playlists/22/download-all/ HTTP/1.1" 500 232
+INFO 2025-03-30 23:28:00,709 autoreload 8832 3424 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 23:28:04,510 autoreload 2984 21420 Watching for file changes with StatReloader
+INFO 2025-03-30 23:29:37,023 autoreload 2984 21420 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 23:29:40,248 autoreload 8736 24048 Watching for file changes with StatReloader
+INFO 2025-03-30 23:29:42,429 autoreload 8736 24048 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 23:29:46,006 autoreload 7336 14744 Watching for file changes with StatReloader
+INFO 2025-03-30 23:30:43,788 autoreload 7336 14744 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 23:30:47,622 autoreload 4424 3956 Watching for file changes with StatReloader
+INFO 2025-03-30 23:30:56,323 autoreload 4424 3956 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 23:31:00,054 autoreload 20816 21692 Watching for file changes with StatReloader
+INFO 2025-03-30 23:31:05,454 autoreload 20816 21692 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 23:31:09,174 autoreload 5132 11632 Watching for file changes with StatReloader
+INFO 2025-03-30 23:33:10,897 autoreload 5132 11632 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 23:33:14,836 autoreload 11964 7832 Watching for file changes with StatReloader
+INFO 2025-03-30 23:34:02,417 autoreload 11964 7832 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 23:34:06,071 autoreload 25076 20512 Watching for file changes with StatReloader
+INFO 2025-03-30 23:34:52,725 autoreload 25076 20512 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 23:34:56,490 autoreload 8864 17940 Watching for file changes with StatReloader
+INFO 2025-03-30 23:35:01,304 basehttp 8864 13928 "GET /api/songs/playlists/22/download-all/ HTTP/1.1" 200 13773114
+INFO 2025-03-30 23:35:44,125 autoreload 8864 17940 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 23:35:48,208 autoreload 12400 21092 Watching for file changes with StatReloader
+INFO 2025-03-30 23:36:13,946 spotify_api 12400 26148 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-30 23:36:13,946 spotify_api 12400 26148 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-30 23:36:13,946 views 12400 26148 Redirecting Spotify playlist URL to playlist download endpoint: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-30 23:36:13,946 spotify_api 12400 26148 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-30 23:36:13,959 spotify_api 12400 26148 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-30 23:36:13,959 spotify_api 12400 26148 Getting Spotify playlist info for ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-30 23:36:13,959 spotify_api 12400 26148 Creating Spotify client with credentials from settings
+INFO 2025-03-30 23:36:14,196 spotify_api 12400 26148 Successfully tested Spotify client
+INFO 2025-03-30 23:36:14,596 spotify_api 12400 26148 Extracted 3 track URLs from playlist
+ERROR 2025-03-30 23:36:14,929 views 12400 26148 Error downloading track https://open.spotify.com/track/1ApfHqjOoBmJZ0SjdjzVyA: 'SongCache' object has no attribute 'metadata'
+ERROR 2025-03-30 23:36:15,250 views 12400 26148 Error downloading track https://open.spotify.com/track/0dQiyqHUpnMPmHtk535VAY: 'SongCache' object has no attribute 'metadata'
+ERROR 2025-03-30 23:36:15,381 views 12400 26148 Error downloading track https://open.spotify.com/track/0kYBzFJ5a2Jozi6cI4y9Bp: 'SongCache' object has no attribute 'metadata'
+INFO 2025-03-30 23:36:15,528 basehttp 12400 26148 "POST /api/songs/songs/download/ HTTP/1.1" 200 122
+INFO 2025-03-30 23:36:23,328 autoreload 12400 21092 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\urls.py changed, reloading.
+INFO 2025-03-30 23:36:27,068 autoreload 14612 22740 Watching for file changes with StatReloader
+INFO 2025-03-30 23:36:44,699 spotify_api 14612 26372 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-30 23:36:44,699 spotify_api 14612 26372 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-30 23:36:44,699 views 14612 26372 Redirecting Spotify playlist URL to playlist download endpoint: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-30 23:36:44,699 spotify_api 14612 26372 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-30 23:36:44,699 spotify_api 14612 26372 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-30 23:36:44,699 spotify_api 14612 26372 Getting Spotify playlist info for ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-30 23:36:44,699 spotify_api 14612 26372 Creating Spotify client with credentials from settings
+INFO 2025-03-30 23:36:44,872 spotify_api 14612 26372 Successfully tested Spotify client
+INFO 2025-03-30 23:36:45,251 spotify_api 14612 26372 Extracted 3 track URLs from playlist
+ERROR 2025-03-30 23:36:45,535 views 14612 26372 Error downloading track https://open.spotify.com/track/1ApfHqjOoBmJZ0SjdjzVyA: 'SongCache' object has no attribute 'metadata'
+ERROR 2025-03-30 23:36:45,859 views 14612 26372 Error downloading track https://open.spotify.com/track/0dQiyqHUpnMPmHtk535VAY: 'SongCache' object has no attribute 'metadata'
+ERROR 2025-03-30 23:36:45,992 views 14612 26372 Error downloading track https://open.spotify.com/track/0kYBzFJ5a2Jozi6cI4y9Bp: 'SongCache' object has no attribute 'metadata'
+INFO 2025-03-30 23:36:46,127 basehttp 14612 26372 "POST /api/songs/songs/download/ HTTP/1.1" 200 122
+WARNING 2025-03-30 23:36:54,260 log 14612 26372 Bad Request: /api/songs/playlists/24/download-all/
+WARNING 2025-03-30 23:36:54,262 basehttp 14612 26372 "GET /api/songs/playlists/24/download-all/ HTTP/1.1" 400 29
+WARNING 2025-03-30 23:38:45,090 log 14612 3740 Not Found: /api/songs/download/
+WARNING 2025-03-30 23:38:45,092 basehttp 14612 3740 "POST /api/songs/download/ HTTP/1.1" 404 15334
+INFO 2025-03-30 23:38:50,798 views 14612 3740 Redirecting YouTube playlist URL to playlist download endpoint: https://www.youtube.com/watch?v=WXBKxUOiwfA&list=PLe426MjbxWRU0iW79BLOiOgY7b9rrPTko
+INFO 2025-03-30 23:38:50,798 utils 14612 3740 Getting YouTube playlist info for URL: https://www.youtube.com/watch?v=WXBKxUOiwfA&list=PLe426MjbxWRU0iW79BLOiOgY7b9rrPTko
+ERROR 2025-03-30 23:38:53,049 utils 14612 3740 No videos found in playlist: https://www.youtube.com/watch?v=WXBKxUOiwfA&list=PLe426MjbxWRU0iW79BLOiOgY7b9rrPTko
+ERROR 2025-03-30 23:38:53,053 utils 14612 3740 Unexpected error getting YouTube playlist info: No videos found in playlist
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\utils.py", line 362, in get_youtube_playlist_info
+    raise ValueError("No videos found in playlist")
+ValueError: No videos found in playlist
+WARNING 2025-03-30 23:38:53,062 utils 14612 3740 Retrying get_youtube_playlist_info due to YouTubeAPIError: Unexpected YouTube error: No videos found in playlist. Attempt 1 of 3.
+INFO 2025-03-30 23:38:53,063 utils 14612 3740 Waiting 1.00 seconds before retry...
+INFO 2025-03-30 23:38:54,064 utils 14612 3740 Getting YouTube playlist info for URL: https://www.youtube.com/watch?v=WXBKxUOiwfA&list=PLe426MjbxWRU0iW79BLOiOgY7b9rrPTko
+ERROR 2025-03-30 23:38:55,584 utils 14612 3740 No videos found in playlist: https://www.youtube.com/watch?v=WXBKxUOiwfA&list=PLe426MjbxWRU0iW79BLOiOgY7b9rrPTko
+ERROR 2025-03-30 23:38:55,589 utils 14612 3740 Unexpected error getting YouTube playlist info: No videos found in playlist
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\utils.py", line 362, in get_youtube_playlist_info
+    raise ValueError("No videos found in playlist")
+ValueError: No videos found in playlist
+WARNING 2025-03-30 23:38:55,597 utils 14612 3740 Retrying get_youtube_playlist_info due to YouTubeAPIError: Unexpected YouTube error: No videos found in playlist. Attempt 2 of 3.
+INFO 2025-03-30 23:38:55,598 utils 14612 3740 Waiting 2.00 seconds before retry...
+INFO 2025-03-30 23:38:57,600 utils 14612 3740 Getting YouTube playlist info for URL: https://www.youtube.com/watch?v=WXBKxUOiwfA&list=PLe426MjbxWRU0iW79BLOiOgY7b9rrPTko
+ERROR 2025-03-30 23:38:59,357 utils 14612 3740 No videos found in playlist: https://www.youtube.com/watch?v=WXBKxUOiwfA&list=PLe426MjbxWRU0iW79BLOiOgY7b9rrPTko
+ERROR 2025-03-30 23:38:59,361 utils 14612 3740 Unexpected error getting YouTube playlist info: No videos found in playlist
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\utils.py", line 362, in get_youtube_playlist_info
+    raise ValueError("No videos found in playlist")
+ValueError: No videos found in playlist
+WARNING 2025-03-30 23:38:59,364 utils 14612 3740 Retrying get_youtube_playlist_info due to YouTubeAPIError: Unexpected YouTube error: No videos found in playlist. Attempt 3 of 3.
+ERROR 2025-03-30 23:38:59,365 utils 14612 3740 Maximum retry attempts (3) reached for get_youtube_playlist_info
+ERROR 2025-03-30 23:38:59,367 views 14612 3740 Playlist download error: Unexpected YouTube error: No videos found in playlist
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\utils.py", line 362, in get_youtube_playlist_info
+    raise ValueError("No videos found in playlist")
+ValueError: No videos found in playlist
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 672, in download_playlist
+    playlist_info = get_playlist_info(url)
+                    ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\spotify_api.py", line 228, in get_playlist_info
+    return get_youtube_playlist_info(playlist_url)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\utils.py", line 62, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\utils.py", line 391, in get_youtube_playlist_info
+    raise YouTubeAPIError(f"Unexpected YouTube error: {str(e)}", original_error=e)
+songs.utils.YouTubeAPIError: Unexpected YouTube error: No videos found in playlist
+ERROR 2025-03-30 23:38:59,379 log 14612 3740 Internal Server Error: /api/songs/songs/download/
+ERROR 2025-03-30 23:38:59,381 basehttp 14612 3740 "POST /api/songs/songs/download/ HTTP/1.1" 500 65
+INFO 2025-03-30 23:40:00,338 autoreload 14612 22740 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\models.py changed, reloading.
+INFO 2025-03-30 23:40:04,314 autoreload 17304 6624 Watching for file changes with StatReloader
+INFO 2025-03-30 23:41:01,597 autoreload 17304 6624 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 23:41:06,176 autoreload 13908 18708 Watching for file changes with StatReloader
+INFO 2025-03-30 23:41:34,600 autoreload 13908 18708 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\utils.py changed, reloading.
+INFO 2025-03-30 23:41:37,971 autoreload 7996 8304 Watching for file changes with StatReloader
+INFO 2025-03-30 23:42:24,164 autoreload 7288 2600 Watching for file changes with StatReloader
+INFO 2025-03-30 23:42:32,718 views 7288 5972 Redirecting YouTube playlist URL to playlist download endpoint: https://www.youtube.com/watch?v=WXBKxUOiwfA&list=PLe426MjbxWRU0iW79BLOiOgY7b9rrPTko
+INFO 2025-03-30 23:42:32,718 utils 7288 5972 Getting YouTube playlist info for URL: https://www.youtube.com/watch?v=WXBKxUOiwfA&list=PLe426MjbxWRU0iW79BLOiOgY7b9rrPTko
+INFO 2025-03-30 23:42:32,718 utils 7288 5972 Extracted YouTube playlist ID: PLe426MjbxWRU0iW79BLOiOgY7b9rrPTko
+INFO 2025-03-30 23:42:32,718 utils 7288 5972 Using formatted playlist URL: https://www.youtube.com/playlist?list=PLe426MjbxWRU0iW79BLOiOgY7b9rrPTko
+INFO 2025-03-30 23:42:32,838 utils 7288 5972 Extracting playlist info from: https://www.youtube.com/playlist?list=PLe426MjbxWRU0iW79BLOiOgY7b9rrPTko
+INFO 2025-03-30 23:42:34,316 utils 7288 5972 Successfully extracted info for playlist: songs k-pop :3 with 18 tracks
+WARNING 2025-03-30 23:42:43,070 views 7288 5972 Error adding YouTube song to cache from playlist: Invalid field name(s) for model SongCache: 'local_path'.
+WARNING 2025-03-30 23:42:53,134 views 7288 5972 Error adding YouTube song to cache from playlist: Invalid field name(s) for model SongCache: 'local_path'.
+WARNING 2025-03-30 23:43:03,049 views 7288 5972 Error adding YouTube song to cache from playlist: Invalid field name(s) for model SongCache: 'local_path'.
+WARNING 2025-03-30 23:43:13,655 views 7288 5972 Error adding YouTube song to cache from playlist: Invalid field name(s) for model SongCache: 'local_path'.
+INFO 2025-03-30 23:43:26,126 autoreload 12464 23744 Watching for file changes with StatReloader
+INFO 2025-03-30 23:44:13,609 views 12464 6292 Redirecting YouTube playlist URL to playlist download endpoint: https://www.youtube.com/watch?v=xH9xv0X9-Xw&list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1&pp=gAQB
+INFO 2025-03-30 23:44:13,611 utils 12464 6292 Getting YouTube playlist info for URL: https://www.youtube.com/watch?v=xH9xv0X9-Xw&list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1&pp=gAQB
+INFO 2025-03-30 23:44:13,611 utils 12464 6292 Extracted YouTube playlist ID: PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-03-30 23:44:13,612 utils 12464 6292 Using formatted playlist URL: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-03-30 23:44:13,750 utils 12464 6292 Extracting playlist info from: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-03-30 23:44:15,412 utils 12464 6292 Successfully extracted info for playlist: tunevault with 2 tracks
+WARNING 2025-03-30 23:44:23,806 views 12464 6292 Error adding YouTube song to cache from playlist: Invalid field name(s) for model SongCache: 'local_path'.
+WARNING 2025-03-30 23:44:34,856 views 12464 6292 Error adding YouTube song to cache from playlist: Invalid field name(s) for model SongCache: 'local_path'.
+INFO 2025-03-30 23:44:35,258 basehttp 12464 6292 "POST /api/songs/songs/download/ HTTP/1.1" 200 114
+INFO 2025-03-30 23:45:07,182 basehttp 12464 6292 "GET /api/songs/playlists/26/download-all/ HTTP/1.1" 200 8349058
+INFO 2025-03-30 23:45:47,842 spotify_api 12464 6292 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-30 23:45:47,843 spotify_api 12464 6292 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-30 23:45:47,843 views 12464 6292 Redirecting Spotify playlist URL to playlist download endpoint: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-30 23:45:47,844 spotify_api 12464 6292 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-30 23:45:47,845 spotify_api 12464 6292 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-30 23:45:47,845 spotify_api 12464 6292 Getting Spotify playlist info for ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-30 23:45:47,845 spotify_api 12464 6292 Creating Spotify client with credentials from settings
+INFO 2025-03-30 23:45:48,034 spotify_api 12464 6292 Successfully tested Spotify client
+INFO 2025-03-30 23:45:48,386 spotify_api 12464 6292 Extracted 3 track URLs from playlist
+WARNING 2025-03-30 23:45:48,657 views 12464 6292 Cached file not found for https://open.spotify.com/track/1ApfHqjOoBmJZ0SjdjzVyA, will download again
+ERROR 2025-03-30 23:45:48,658 views 12464 6292 Error downloading track https://open.spotify.com/track/1ApfHqjOoBmJZ0SjdjzVyA: Cached file not found
+WARNING 2025-03-30 23:45:48,925 views 12464 6292 Cached file not found for https://open.spotify.com/track/0dQiyqHUpnMPmHtk535VAY, will download again
+ERROR 2025-03-30 23:45:48,926 views 12464 6292 Error downloading track https://open.spotify.com/track/0dQiyqHUpnMPmHtk535VAY: Cached file not found
+WARNING 2025-03-30 23:45:49,054 views 12464 6292 Cached file not found for https://open.spotify.com/track/0kYBzFJ5a2Jozi6cI4y9Bp, will download again
+ERROR 2025-03-30 23:45:49,055 views 12464 6292 Error downloading track https://open.spotify.com/track/0kYBzFJ5a2Jozi6cI4y9Bp: Cached file not found
+INFO 2025-03-30 23:45:49,120 basehttp 12464 6292 "POST /api/songs/songs/download/ HTTP/1.1" 206 94
+INFO 2025-03-30 23:46:25,043 basehttp 12464 14164 "GET /admin/ HTTP/1.1" 200 17447
+INFO 2025-03-30 23:46:25,118 basehttp 12464 25532 "GET /static/admin/js/theme.js HTTP/1.1" 304 0
+INFO 2025-03-30 23:46:25,123 basehttp 12464 25532 "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 304 0
+INFO 2025-03-30 23:46:25,363 basehttp 12464 17052 "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2804
+INFO 2025-03-30 23:46:25,373 basehttp 12464 14164 "GET /static/admin/css/base.css HTTP/1.1" 200 22092
+INFO 2025-03-30 23:46:25,391 basehttp 12464 24204 "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+INFO 2025-03-30 23:46:25,400 basehttp 12464 8584 "GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+INFO 2025-03-30 23:46:25,400 basehttp 12464 22944 "GET /static/admin/css/responsive.css HTTP/1.1" 200 17972
+INFO 2025-03-30 23:46:25,421 basehttp 12464 22944 "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+INFO 2025-03-30 23:46:25,421 basehttp 12464 14164 "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+WARNING 2025-03-30 23:46:25,427 log 12464 14164 Not Found: /favicon.ico
+INFO 2025-03-30 23:46:26,022 basehttp 12464 14164 - Broken pipe from ('127.0.0.1', 54630)
+INFO 2025-03-30 23:46:56,631 autoreload 12464 23744 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\admin.py changed, reloading.
+INFO 2025-03-30 23:46:59,933 autoreload 27596 22948 Watching for file changes with StatReloader
+INFO 2025-03-30 23:47:02,676 autoreload 27596 22948 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\admin.py changed, reloading.
+INFO 2025-03-30 23:47:05,974 autoreload 8348 21048 Watching for file changes with StatReloader
+INFO 2025-03-30 23:47:11,100 autoreload 8348 21048 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\admin.py changed, reloading.
+INFO 2025-03-30 23:47:14,558 autoreload 18940 1368 Watching for file changes with StatReloader
+INFO 2025-03-30 23:47:16,283 basehttp 18940 23564 "GET /admin/ HTTP/1.1" 200 18055
+INFO 2025-03-30 23:47:20,225 basehttp 18940 23564 "GET /admin/songs/songcache/ HTTP/1.1" 200 17312
+INFO 2025-03-30 23:47:20,280 basehttp 18940 18400 "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 304 0
+INFO 2025-03-30 23:47:20,293 basehttp 18940 18492 "GET /static/admin/js/jquery.init.js HTTP/1.1" 304 0
+INFO 2025-03-30 23:47:20,293 basehttp 18940 17856 "GET /static/admin/js/core.js HTTP/1.1" 304 0
+INFO 2025-03-30 23:47:20,293 basehttp 18940 18400 "GET /static/admin/js/actions.js HTTP/1.1" 304 0
+INFO 2025-03-30 23:47:20,293 basehttp 18940 27060 "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 304 0
+INFO 2025-03-30 23:47:20,293 basehttp 18940 18492 "GET /static/admin/js/urlify.js HTTP/1.1" 304 0
+INFO 2025-03-30 23:47:20,304 basehttp 18940 17856 "GET /static/admin/js/prepopulate.js HTTP/1.1" 304 0
+INFO 2025-03-30 23:47:20,305 basehttp 18940 18400 "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 304 0
+INFO 2025-03-30 23:47:20,307 basehttp 18940 27060 "GET /static/admin/js/filters.js HTTP/1.1" 304 0
+INFO 2025-03-30 23:47:20,394 basehttp 18940 23564 "GET /static/admin/css/changelists.css HTTP/1.1" 200 6878
+INFO 2025-03-30 23:47:20,949 basehttp 18940 22332 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-03-30 23:47:20,982 basehttp 18940 23564 "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+INFO 2025-03-30 23:47:53,030 basehttp 18940 23564 "POST /admin/songs/songcache/ HTTP/1.1" 200 15500
+INFO 2025-03-30 23:47:53,087 basehttp 18940 23564 "GET /static/admin/js/cancel.js HTTP/1.1" 200 884
+INFO 2025-03-30 23:47:56,146 basehttp 18940 23564 - Broken pipe from ('127.0.0.1', 54917)
+INFO 2025-03-30 23:47:56,914 basehttp 18940 22332 "GET /admin/songs/songcache/4/change/ HTTP/1.1" 302 0
+INFO 2025-03-30 23:47:57,696 basehttp 18940 22332 "GET /admin/ HTTP/1.1" 200 19676
+INFO 2025-03-30 23:47:57,742 basehttp 18940 18492 "GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 200 392
+INFO 2025-03-30 23:47:57,742 basehttp 18940 22332 "GET /static/admin/img/icon-alert.svg HTTP/1.1" 200 504
+INFO 2025-03-30 23:48:02,137 basehttp 18940 22332 "GET /admin/songs/songcache/ HTTP/1.1" 200 14805
+INFO 2025-03-30 23:48:02,787 basehttp 18940 22332 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-03-30 23:48:06,477 spotify_api 18940 17780 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-30 23:48:06,478 spotify_api 18940 17780 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-30 23:48:06,478 views 18940 17780 Redirecting Spotify playlist URL to playlist download endpoint: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-30 23:48:06,480 spotify_api 18940 17780 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-30 23:48:06,480 spotify_api 18940 17780 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-30 23:48:06,481 spotify_api 18940 17780 Getting Spotify playlist info for ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-30 23:48:06,481 spotify_api 18940 17780 Creating Spotify client with credentials from settings
+INFO 2025-03-30 23:48:06,667 spotify_api 18940 17780 Successfully tested Spotify client
+INFO 2025-03-30 23:48:07,051 spotify_api 18940 17780 Extracted 3 track URLs from playlist
+INFO 2025-03-30 23:48:07,250 spotify_api 18940 17780 Extracting Spotify ID from URL: https://open.spotify.com/track/1ApfHqjOoBmJZ0SjdjzVyA
+INFO 2025-03-30 23:48:07,250 spotify_api 18940 17780 Extracted Spotify track ID: 1ApfHqjOoBmJZ0SjdjzVyA
+INFO 2025-03-30 23:48:07,250 spotify_api 18940 17780 Getting info for Spotify track ID: 1ApfHqjOoBmJZ0SjdjzVyA
+INFO 2025-03-30 23:48:07,250 spotify_api 18940 17780 Creating Spotify client with credentials from settings
+INFO 2025-03-30 23:48:07,420 spotify_api 18940 17780 Successfully tested Spotify client
+INFO 2025-03-30 23:48:07,711 spotify_api 18940 17780 Got track info: Yeh Raaten Yeh Mausam by Sanam
+ERROR 2025-03-30 23:48:14,713 views 18940 17780 Error downloading Spotify track https://open.spotify.com/track/1ApfHqjOoBmJZ0SjdjzVyA: [0;31mERROR:[0m unable to download video data: HTTP Error 403: Forbidden
+INFO 2025-03-30 23:48:14,914 spotify_api 18940 17780 Extracting Spotify ID from URL: https://open.spotify.com/track/0dQiyqHUpnMPmHtk535VAY
+INFO 2025-03-30 23:48:14,914 spotify_api 18940 17780 Extracted Spotify track ID: 0dQiyqHUpnMPmHtk535VAY
+INFO 2025-03-30 23:48:14,914 spotify_api 18940 17780 Getting info for Spotify track ID: 0dQiyqHUpnMPmHtk535VAY
+INFO 2025-03-30 23:48:14,914 spotify_api 18940 17780 Creating Spotify client with credentials from settings
+INFO 2025-03-30 23:48:15,082 spotify_api 18940 17780 Successfully tested Spotify client
+INFO 2025-03-30 23:48:15,391 spotify_api 18940 17780 Got track info: Tennu Le by omer inayat
+WARNING 2025-03-30 23:48:23,493 views 18940 17780 Error adding Spotify song to cache from playlist: Invalid field name(s) for model SongCache: 'local_path'.
+INFO 2025-03-30 23:48:23,880 spotify_api 18940 17780 Extracting Spotify ID from URL: https://open.spotify.com/track/0kYBzFJ5a2Jozi6cI4y9Bp
+INFO 2025-03-30 23:48:23,880 spotify_api 18940 17780 Extracted Spotify track ID: 0kYBzFJ5a2Jozi6cI4y9Bp
+INFO 2025-03-30 23:48:23,880 spotify_api 18940 17780 Getting info for Spotify track ID: 0kYBzFJ5a2Jozi6cI4y9Bp
+INFO 2025-03-30 23:48:23,880 spotify_api 18940 17780 Creating Spotify client with credentials from settings
+INFO 2025-03-30 23:48:24,081 spotify_api 18940 17780 Successfully tested Spotify client
+INFO 2025-03-30 23:48:24,380 spotify_api 18940 17780 Got track info: Jo Tere Sang by Jeet Gannguli
+WARNING 2025-03-30 23:48:38,103 views 18940 17780 Error adding Spotify song to cache from playlist: Invalid field name(s) for model SongCache: 'local_path'.
+INFO 2025-03-30 23:48:38,498 basehttp 18940 17780 "POST /api/songs/songs/download/ HTTP/1.1" 200 122

@@ -1,6 +1,13 @@
 from django.db import models
 from django.conf import settings
-from django.db.models import Count, Q
+from django.db.models import Count, Q, Sum, Avg
+from django.urls import reverse
+import os
+import logging
+from django.utils import timezone
+from datetime import timedelta
+
+logger = logging.getLogger(__name__)
 
     
 class Genre(models.Model):
@@ -11,20 +18,59 @@ class Genre(models.Model):
 
 
 class Song(models.Model):
+    """Model for a song uploaded by a user"""
+    
+    STATUS_CHOICES = (
+        ('processing', 'Processing'),
+        ('ready', 'Ready'),
+        ('error', 'Error'),
+    )
+    
+    SOURCE_CHOICES = (
+        ('upload', 'File Upload'),
+        ('youtube', 'YouTube'),
+        ('spotify', 'Spotify'),
+        ('other', 'Other'),
+    )
+    
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='songs')
-    title = models.CharField(max_length=255)
-    artist = models.CharField(max_length=255)
-    album = models.CharField(max_length=255, blank=True)
-    file = models.FileField(upload_to='songs/')
-    source = models.CharField(max_length=50)  # e.g., 'youtube', 'spotify', 'apple_music'
-    spotify_id = models.CharField(max_length=255, blank=True, null=True)
+    title = models.CharField(max_length=255)  # Increase from 100 if it was 100 before
+    artist = models.CharField(max_length=255)  # Increase from 100 if it was 100 before
+    album = models.CharField(max_length=255, blank=True, null=True)  # Increase from 100 if it was 100 before
+    genre = models.CharField(max_length=100, blank=True, null=True)
+    year = models.IntegerField(blank=True, null=True)
+    file = models.FileField(upload_to='songs/', blank=True, null=True)
+    waveform = models.JSONField(blank=True, null=True)
+    duration = models.FloatField(blank=True, null=True)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='processing')
     created_at = models.DateTimeField(auto_now_add=True)
-    genres = models.ManyToManyField(Genre, related_name='songs', blank=True)
-    thumbnail_url = models.URLField(blank=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    plays = models.PositiveIntegerField(default=0)
+    source = models.CharField(max_length=20, choices=SOURCE_CHOICES, default='upload')
     song_url = models.URLField(blank=True, null=True)
-
+    youtube_id = models.CharField(max_length=20, blank=True, null=True)
+    spotify_id = models.CharField(max_length=50, blank=True, null=True)
+    thumbnail_url = models.URLField(blank=True, null=True)
+    is_public = models.BooleanField(default=False)
+    
+    # Add a field to indicate if this is a favorite
+    is_favorite = models.BooleanField(default=False)
+    
+    # Add lyrics field
+    lyrics = models.TextField(blank=True, null=True)
+    
+    # Add metadata fields
+    metadata = models.JSONField(blank=True, null=True)
+    
+    class Meta:
+        ordering = ['-created_at']
+    
     def __str__(self):
         return f"{self.title} - {self.artist}"
+    
+    def get_absolute_url(self):
+        return reverse('song-detail', args=[str(self.id)])
+    
     @classmethod
     def get_user_top_artists(cls, user, limit=5):
         """
@@ -48,8 +94,6 @@ class Song(models.Model):
         
         if user_profile and user_profile.last_recommendation_generated:
             # Only update recommendations if it's been more than a day
-            from django.utils import timezone
-            from datetime import timedelta
             update_needed = (timezone.now() - user_profile.last_recommendation_generated) > timedelta(days=1)
             
         # Update recommendations if needed
@@ -128,94 +172,91 @@ class DownloadProgress(models.Model):
     estimated_completion_time = models.DateTimeField(null=True, blank=True)
 
 class SongCache(models.Model):
-    """
-    Cache for downloaded songs to avoid re-downloading
-    """
+    """Cache for downloaded songs to avoid repeated downloads"""
     song_url = models.URLField(unique=True)
-    local_path = models.FileField(upload_to='cache/')
+    file_path = models.CharField(max_length=255)
     file_size = models.PositiveIntegerField(default=0)
+    title = models.CharField(max_length=255, blank=True, null=True)
+    artist = models.CharField(max_length=255, blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    accessed_at = models.DateTimeField(auto_now=True)
     expires_at = models.DateTimeField()
-    last_accessed = models.DateTimeField(auto_now=True)
-    download_count = models.PositiveIntegerField(default=0)
-    metadata = models.JSONField(default=dict, blank=True)
+    metadata = models.JSONField(default=dict, blank=True, null=True)
     
     def __str__(self):
-        return f"Cache for {self.song_url}"
-    
-    def save(self, *args, **kwargs):
-        """Add expiration time if not set"""
-        if not self.expires_at:
-            from django.utils import timezone
-            from datetime import timedelta
-            self.expires_at = timezone.now() + timedelta(hours=8)
-        super().save(*args, **kwargs)
-    
-    def update_access(self):
-        """Update the access time and counter"""
-        self.download_count += 1
-        self.save(update_fields=['download_count', 'last_accessed'])
-    
-    @classmethod
-    def cleanup_expired(cls):
-        """
-        Delete expired cache entries and their files
-        """
-        import os
-        from django.utils import timezone
-        from django.conf import settings
-        
-        expired = cls.objects.filter(expires_at__lt=timezone.now())
-        count = 0
-        
-        for cache_entry in expired:
-            try:
-                # Get absolute path to file
-                full_path = os.path.join(settings.MEDIA_ROOT, cache_entry.local_path.name)
-                if os.path.exists(full_path):
-                    os.remove(full_path)
-                    count += 1
-                    
-                # Check for thumbnail files with the same base name
-                base_path = os.path.splitext(full_path)[0]
-                for ext in ['jpg', 'png', 'webp']:
-                    thumb_path = f"{base_path}.{ext}"
-                    if os.path.exists(thumb_path):
-                        os.remove(thumb_path)
-            except Exception as e:
-                import logging
-                logger = logging.getLogger(__name__)
-                logger.error(f"Error deleting cached file: {e}")
-        
-        # Delete the database entries
-        expired.delete()
-        return count
+        return f"Cache: {self.song_url}"
     
     @classmethod
     def get_cached_song(cls, url):
-        """
-        Get the cached song file for a given URL if it exists and is not expired
-        """
-        from django.utils import timezone
-        
+        """Get a song from cache if it exists and is not expired"""
         try:
             cache = cls.objects.get(song_url=url, expires_at__gt=timezone.now())
-            cache.update_access()
+            # Update accessed time
+            cache.accessed_at = timezone.now()
+            cache.save(update_fields=['accessed_at'])
             return cache
         except cls.DoesNotExist:
             return None
+    
+    @classmethod
+    def add_to_cache(cls, url, file_path, title=None, artist=None, expires_days=7):
+        """Add a song to the cache"""
+        try:
+            # Get file size
+            full_path = os.path.join(settings.MEDIA_ROOT, file_path)
+            file_size = os.path.getsize(full_path) if os.path.exists(full_path) else 0
+            
+            # Create or update cache entry
+            cls.objects.update_or_create(
+                song_url=url,
+                defaults={
+                    'file_path': file_path,
+                    'file_size': file_size,
+                    'title': title,
+                    'artist': artist,
+                    'expires_at': timezone.now() + timedelta(days=expires_days)
+                }
+            )
+            logger.info(f"Added song to cache: {url}")
+            return True
         except Exception as e:
-            import logging
-            logger = logging.getLogger(__name__)
-            logger.error(f"Error retrieving cache entry: {e}")
-            return None
+            logger.error(f"Error adding song to cache: {str(e)}", exc_info=True)
+            return False
+    
+    @classmethod
+    def clean_expired(cls):
+        """Delete expired cache entries"""
+        expired = cls.objects.filter(expires_at__lt=timezone.now())
+        count = expired.count()
+        
+        # Get paths to delete
+        paths_to_delete = []
+        for cache in expired:
+            try:
+                full_path = os.path.join(settings.MEDIA_ROOT, cache.file_path)
+                if os.path.exists(full_path):
+                    paths_to_delete.append(full_path)
+            except Exception:
+                pass
+        
+        # Delete database records
+        expired.delete()
+        
+        # Delete files
+        for path in paths_to_delete:
+            try:
+                os.unlink(path)
+            except Exception:
+                pass
+        
+        return count
 
 class SongPlay(models.Model):
     """
     Track each time a song is played
     """
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='song_plays')
-    song = models.ForeignKey(Song, on_delete=models.CASCADE, related_name='plays')
+    song = models.ForeignKey(Song, on_delete=models.CASCADE, related_name='song_plays')
     timestamp = models.DateTimeField(auto_now_add=True)
     duration = models.PositiveIntegerField(default=0, help_text="Duration of play in seconds")
     completed = models.BooleanField(default=False, help_text="Whether the song was played to completion")
@@ -261,8 +302,6 @@ class UserAnalytics(models.Model):
     @classmethod
     def record_play(cls, user, duration):
         """Record a song play in today's analytics"""
-        from django.utils import timezone
-        
         today = timezone.now().date()
         analytics, created = cls.objects.get_or_create(
             user=user, 
@@ -281,8 +320,6 @@ class UserAnalytics(models.Model):
     @classmethod
     def record_download(cls, user):
         """Record a song download in today's analytics"""
-        from django.utils import timezone
-        
         today = timezone.now().date()
         analytics, created = cls.objects.get_or_create(
             user=user, 
@@ -300,9 +337,6 @@ class UserAnalytics(models.Model):
     @classmethod
     def get_user_stats(cls, user, days=30):
         """Get user statistics for the last N days"""
-        from django.utils import timezone
-        from django.db.models import Sum, Avg
-        
         end_date = timezone.now().date()
         start_date = end_date - timezone.timedelta(days=days)
         

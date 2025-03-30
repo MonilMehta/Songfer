@@ -9,6 +9,7 @@ import time
 from functools import wraps
 from retrying import retry
 import sentry_sdk
+import yt_dlp
 
 logger = logging.getLogger(__name__)
 
@@ -50,28 +51,43 @@ def retry_external_api(
     """
     def retry_decorator(func):
         @wraps(func)
-        @retry(
-            retry_on_exception=lambda exc: isinstance(exc, retry_on_exceptions),
-            stop_max_attempt_number=max_attempts,
-            wait_exponential_multiplier=wait_exponential_multiplier,
-            wait_exponential_max=wait_exponential_max
-        )
         def wrapper(*args, **kwargs):
-            try:
-                return func(*args, **kwargs)
-            except retry_on_exceptions as e:
-                # Log the error
-                logger.warning(
-                    f"Retrying {func.__name__} due to {e.__class__.__name__}: {str(e)}. "
-                    f"Attempt {wrapper.retry.statistics['attempt_number']} of {max_attempts}."
-                )
-                # Re-raise the exception for the retry mechanism
-                raise
-            except Exception as e:
-                # Capture unexpected errors in Sentry
-                sentry_sdk.capture_exception(e)
-                logger.error(f"Unexpected error in {func.__name__}: {str(e)}", exc_info=True)
-                raise
+            # Initialize attempt counter
+            if not hasattr(wrapper, 'attempt_count'):
+                wrapper.attempt_count = 0
+                
+            for attempt in range(max_attempts):
+                wrapper.attempt_count += 1
+                try:
+                    return func(*args, **kwargs)
+                except retry_on_exceptions as e:
+                    # Log the error
+                    logger.warning(
+                        f"Retrying {func.__name__} due to {e.__class__.__name__}: {str(e)}. "
+                        f"Attempt {wrapper.attempt_count} of {max_attempts}."
+                    )
+                    
+                    # If this is the last attempt, raise the exception
+                    if wrapper.attempt_count >= max_attempts:
+                        logger.error(f"Maximum retry attempts ({max_attempts}) reached for {func.__name__}")
+                        raise
+                        
+                    # Otherwise, wait before retrying
+                    wait_time = min(
+                        wait_exponential_multiplier * (2 ** (wrapper.attempt_count - 1)),
+                        wait_exponential_max
+                    ) / 1000.0  # Convert to seconds
+                    
+                    logger.info(f"Waiting {wait_time:.2f} seconds before retry...")
+                    time.sleep(wait_time)
+                except Exception as e:
+                    # Capture unexpected errors in Sentry
+                    sentry_sdk.capture_exception(e)
+                    logger.error(f"Unexpected error in {func.__name__}: {str(e)}", exc_info=True)
+                    raise
+                    
+            # This should not be reached due to the raise in the last attempt
+            return None
         return wrapper
     return retry_decorator
 
@@ -102,8 +118,6 @@ def download_from_youtube(url, output_path, **options):
     """
     Download audio from YouTube with error handling and retry
     """
-    import yt_dlp
-    
     try:
         with yt_dlp.YoutubeDL(options) as ydl:
             return ydl.extract_info(url, download=True)
@@ -322,33 +336,95 @@ def download_thumbnail(url):
 @youtube_api_retry
 def get_youtube_playlist_info(playlist_url):
     """
-    Extract information from a YouTube playlist URL including title, description and track URLs.
+    Get information about a YouTube playlist
+    
+    Args:
+        playlist_url (str): URL to YouTube playlist
+        
+    Returns:
+        dict: Playlist information including tracks
     """
     import yt_dlp
+    import os
+    import re
     
     logger.info(f"Getting YouTube playlist info for URL: {playlist_url}")
     
+    # Extract playlist ID if present
+    playlist_id = None
+    if 'list=' in playlist_url:
+        match = re.search(r'list=([a-zA-Z0-9_-]+)', playlist_url)
+        if match:
+            playlist_id = match.group(1)
+            logger.info(f"Extracted YouTube playlist ID: {playlist_id}")
+            
+            # If we have a playlist ID, ensure we're using the proper URL format
+            if not playlist_url.startswith('https://www.youtube.com/playlist'):
+                playlist_url = f"https://www.youtube.com/playlist?list={playlist_id}"
+                logger.info(f"Using formatted playlist URL: {playlist_url}")
+    
     try:
-        # Configure yt-dlp to extract playlist info without downloading
+        # Options for extracting playlist info
         ydl_opts = {
-            'quiet': True,
-            'extract_flat': True,  # Do not download videos
-            'skip_download': True,  # Do not download videos
-            'no_warnings': False,
+            'extract_flat': True,  # Don't download the videos
+            'quiet': True,  # Don't print messages to stdout
+            'simulate': True,  # Don't download
+            'skip_download': True,  # Don't download the videos
             'ignoreerrors': True,  # Skip unavailable videos
+            'no_warnings': True,  # Don't show warnings
         }
         
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            logger.info(f"Extracting playlist info from: {playlist_url}")
             info = ydl.extract_info(playlist_url, download=False)
             
             if not info:
                 logger.error(f"Failed to extract playlist info from URL: {playlist_url}")
-                raise ValueError("Could not extract playlist information")
+                raise ValueError("Could not extract playlist information, please check the URL is correct")
+                
+            # If it's not a playlist but a single video, handle that as well
+            if info.get('_type') != 'playlist':
+                logger.info(f"URL {playlist_url} is a single video, not a playlist. Creating single-track playlist.")
+                # Create a single-track playlist info
+                playlist_info = {
+                    'title': f"Single Track: {info.get('title', 'YouTube Video')}",
+                    'description': info.get('description', ''),
+                    'owner': info.get('uploader', 'Unknown'),
+                    'image_url': info.get('thumbnail'),
+                    'track_count': 1,
+                    'track_urls': [info.get('webpage_url') or playlist_url]
+                }
+                return playlist_info
                 
             if not info.get('entries'):
                 logger.error(f"No videos found in playlist: {playlist_url}")
-                raise ValueError("No videos found in playlist")
-                
+                # Try an alternative approach for playlist retrieval
+                try:
+                    # Modify options to try a different approach
+                    alt_ydl_opts = {
+                        'extract_flat': 'in_playlist',
+                        'quiet': True,
+                        'simulate': True,
+                        'skip_download': True,
+                        'ignoreerrors': True,
+                        'no_warnings': True,
+                        'playlistrandom': False,  # Don't randomize playlist order
+                        'playlistend': 100,  # Limit to first 100 videos to avoid timeout
+                    }
+                    
+                    with yt_dlp.YoutubeDL(alt_ydl_opts) as alt_ydl:
+                        logger.info(f"Trying alternative approach for playlist: {playlist_url}")
+                        alt_info = alt_ydl.extract_info(playlist_url, download=False)
+                        
+                        if alt_info and alt_info.get('entries'):
+                            logger.info(f"Alternative approach succeeded for playlist: {playlist_url}")
+                            info = alt_info
+                        else:
+                            raise ValueError("No videos found in playlist, please check if the playlist is private or has been deleted")
+                except Exception as alt_e:
+                    logger.error(f"Alternative approach also failed: {str(alt_e)}")
+                    raise ValueError("No videos found in playlist, please check if the playlist is private or has been deleted")
+            
             # Create result dictionary
             playlist_info = {
                 'title': info.get('title', 'YouTube Playlist'),
@@ -362,12 +438,15 @@ def get_youtube_playlist_info(playlist_url):
             # Extract individual track URLs
             for entry in info.get('entries', []):
                 if entry:
-                    track_url = entry.get('url') or entry.get('webpage_url')
+                    track_url = entry.get('url') or entry.get('webpage_url') or entry.get('original_url')
                     if track_url:
                         playlist_info['track_urls'].append(track_url)
             
-            logger.info(f"Successfully extracted info for playlist: {playlist_info['title']} "
-                       f"with {playlist_info['track_count']} tracks")
+            if not playlist_info['track_urls']:
+                logger.warning(f"No valid track URLs extracted from playlist: {playlist_url}")
+            else:
+                logger.info(f"Successfully extracted info for playlist: {playlist_info['title']} "
+                           f"with {len(playlist_info['track_urls'])} tracks")
             
             return playlist_info
             
