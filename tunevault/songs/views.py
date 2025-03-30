@@ -18,6 +18,9 @@ from .recommendation import get_hybrid_recommendations, update_user_recommendati
 from .csv_recommender import get_hybrid_recommendations, get_csv_recommender
 from django.utils import timezone
 from datetime import timedelta
+from rest_framework.views import APIView
+from .recommendation import get_hybrid_recommendations, update_user_recommendations
+from .csv_recommender import get_hybrid_recommendations, get_csv_recommender
 
 
 logger = logging.getLogger(__name__)
@@ -384,183 +387,71 @@ class SongViewSet(viewsets.ModelViewSet):
                         return self.download_youtube(url)
             
             elif 'spotify.com' in url:
-                # Check if it's a Spotify playlist or a track
                 if '/playlist/' in url:
                     logger.info(f"Detected Spotify playlist: {url}")
                     
-                    # For playlists, we need to check if the user has enough downloads remaining
+                    # For debugging, let's start the task directly here without using celery
                     try:
-                        import spotipy
-                        from spotipy.oauth2 import SpotifyClientCredentials
-                        
-                        # Get Spotify client credentials from settings
-                        client_id = settings.SPOTIFY_CLIENT_ID
-                        client_secret = settings.SPOTIFY_CLIENT_SECRET
-                        
-                        client_credentials_manager = SpotifyClientCredentials(client_id=client_id, client_secret=client_secret)
-                        sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
-                        
-                        # Extract playlist ID from URL
-                        playlist_id = url.split('/')[-1].split('?')[0]
-                        
-                        # Get playlist tracks
-                        playlist = sp.playlist(playlist_id)
-                        tracks_count = len(playlist['tracks']['items'])
-                        
-                        if tracks_count > downloads_remaining:
-                            return Response({
-                                'error': 'Not enough downloads remaining',
-                                'message': f'This playlist has {tracks_count} songs but you only have {downloads_remaining} downloads remaining today',
-                                'is_subscribed': user.is_subscription_active(),
-                                'downloads_remaining': downloads_remaining,
-                                'tracks_in_playlist': tracks_count,
-                                'upgrade_message': 'Upgrade to premium for 30 downloads per day' if not user.is_subscription_active() else None
-                            }, status=status.HTTP_429_TOO_MANY_REQUESTS)
-                    except Exception as e:
-                        logger.warning(f"Error checking Spotify playlist size: {e}")
-                        # Continue anyway if we can't check the size
-                    
-                    # Start the Spotify playlist download
-                    try:
+                        from .tasks import download_spotify_playlist_direct
+                        # Get the user id
                         user_id = request.user.id
-                        logger.info(f"Starting Spotify playlist download for user {user_id}")
+                        logger.info(f"Starting direct Spotify playlist download for user {user_id}")
                         
-                        # Download the playlist
-                        playlist_id = download_spotify_playlist(url, user_id)
+                        # Start the task directly using the direct function
+                        playlist_id = download_spotify_playlist_direct(url, user_id)
                         
-                        return Response({
-                            'status': 'processing',
-                            'message': 'Spotify playlist download started',
-                            'playlist_id': playlist_id,
-                            'downloads_remaining': user.get_downloads_remaining()
-                        })
-                    except Exception as e:
-                        logger.error(f"Error downloading Spotify playlist: {e}", exc_info=True)
-                        return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-                else:
-                    # It's a single Spotify track
-                    # Check cache first
-                    cached_song = SongCache.get_cached_song(url)
-                    
-                    if cached_song:
-                        logger.info(f"Using cached version for Spotify URL: {url}")
+                        logger.info(f"Spotify playlist download completed with playlist ID: {playlist_id}")
                         
-                        # Check if this user already has this song
-                        existing_song = Song.objects.filter(user=user, song_url=url).first()
-                        if existing_song:
-                            # User already has this song - just return it
-                            return Response({
-                                'status': 'completed',
-                                'from_cache': True,
-                                'already_owned': True,
-                                'song_id': existing_song.id,
-                                'title': existing_song.title,
-                                'artist': existing_song.artist,
-                                'file_size': os.path.getsize(os.path.join(settings.MEDIA_ROOT, existing_song.file.name)) if os.path.exists(os.path.join(settings.MEDIA_ROOT, existing_song.file.name)) else 0,
-                                'download_url': request.build_absolute_uri(f'/api/songs/{existing_song.id}/download_file/'),
-                                'thumbnail_url': existing_song.thumbnail_url,
-                                'image_url': request.build_absolute_uri(existing_song.thumbnail_url) if existing_song.thumbnail_url and not existing_song.thumbnail_url.startswith('http') else existing_song.thumbnail_url,
-                                'downloads_remaining': user.get_downloads_remaining()
-                            })
-                        
-                        # Create a new song entry for this user from the cached data
+                        # Return the playlist details
                         try:
-                            metadata = cached_song.metadata
-                            song = Song.objects.create(
-                                user=user,
-                                title=metadata.get('title', 'Unknown Title'),
-                                artist=metadata.get('artist', 'Unknown Artist'),
-                                album=metadata.get('album', 'Unknown'),
-                                file=cached_song.local_path,  # Use the cached file
-                                source=metadata.get('source', 'cache'),
-                                spotify_id=metadata.get('spotify_id'),
-                                thumbnail_url=metadata.get('thumbnail_url'),
-                                song_url=url
-                            )
-                            
-                            # Increment the user's download count
-                            user.increment_download_count()
-                            
-                            # Return the song info
+                            playlist = Playlist.objects.get(id=playlist_id)
                             return Response({
                                 'status': 'completed',
-                                'from_cache': True,
-                                'song_id': song.id,
-                                'title': song.title,
-                                'artist': song.artist,
-                                'file_size': cached_song.file_size,
-                                'download_url': request.build_absolute_uri(f'/api/songs/{song.id}/download_file/'),
-                                'thumbnail_url': song.thumbnail_url,
-                                'image_url': request.build_absolute_uri(song.thumbnail_url) if song.thumbnail_url and not song.thumbnail_url.startswith('http') else song.thumbnail_url,
-                                'downloads_remaining': user.get_downloads_remaining()
-                            })
-                        except Exception as e:
-                            logger.error(f"Error creating song from cache: {e}", exc_info=True)
-                            # Fall through to regular download if cache creation fails
-                    
-                    # If not cached, start a new download
-                    try:
-                        # Start the task
-                        user_id = request.user.id
-                        logger.info(f"Starting Spotify track download for user {user_id}")
-                        
-                        # Extract Spotify ID
-                        spotify_id = url.split('/')[-1].split('?')[0]
-                        
-                        # Get song details from Spotify API
-                        import spotipy
-                        from spotipy.oauth2 import SpotifyClientCredentials
-                        
-                        # Get Spotify client credentials from settings
-                        client_id = settings.SPOTIFY_CLIENT_ID
-                        client_secret = settings.SPOTIFY_CLIENT_SECRET
-                        
-                        client_credentials_manager = SpotifyClientCredentials(client_id=client_id, client_secret=client_secret)
-                        sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
-                        
-                        track = sp.track(spotify_id)
-                        
-                        # Check if song already exists for this user
-                        existing_song = Song.objects.filter(user=user, spotify_id=spotify_id).first()
-                        if existing_song:
+                                'message': 'Playlist download complete',
+                                'playlist_id': playlist.id,
+                                'name': playlist.name,
+                                'song_count': playlist.songs.count(),
+                                'download_url': request.build_absolute_uri(f'/api/playlists/{playlist.id}/download_all/'),
+                            }, status=status.HTTP_200_OK)
+                        except Playlist.DoesNotExist:
                             return Response({
-                                'status': 'completed',
-                                'already_exists': True,
-                                'song_id': existing_song.id,
-                                'title': existing_song.title,
-                                'artist': existing_song.artist,
-                                'download_url': request.build_absolute_uri(f'/api/songs/{existing_song.id}/download_file/'),
-                                'thumbnail_url': existing_song.thumbnail_url,
-                                'downloads_remaining': user.get_downloads_remaining()
-                            })
+                                'status': 'error',
+                                'error': 'Playlist not found after download'
+                            }, status=status.HTTP_404_NOT_FOUND)
                         
-                        # Create a task_id for tracking
-                        task_id = download_song.delay(url, user_id)
-                        
-                        # Create a download progress entry
-                        progress = DownloadProgress.objects.create(
-                            user=user,
-                            task_id=str(task_id),
-                            title=track['name'],
-                            artist=", ".join([artist['name'] for artist in track['artists']]),
-                            thumbnail_url=track['album']['images'][0]['url'] if track['album']['images'] else None,
-                            status='processing'
-                        )
-                        
-                        # Return initial response
-                        return Response({
-                            'status': 'processing',
-                            'message': 'Download started',
-                            'task_id': str(task_id),
-                            'progress_id': progress.id,
-                            'title': track['name'],
-                            'artist': ", ".join([artist['name'] for artist in track['artists']]),
-                            'thumbnail_url': track['album']['images'][0]['url'] if track['album']['images'] else None,
-                            'downloads_remaining': user.get_downloads_remaining()
-                        })
                     except Exception as e:
-                        logger.error(f"Error starting Spotify download: {e}", exc_info=True)
-                        return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+                        logger.error(f"Error directly downloading Spotify playlist: {str(e)}", exc_info=True)
+                        error_message = str(e)
+                        if "No tracks found" in error_message:
+                            return Response({
+                                'error': 'No tracks found in the Spotify playlist. Please check the URL and try again.'
+                            }, status=status.HTTP_400_BAD_REQUEST)
+                        elif "Could not extract playlist info" in error_message:
+                            return Response({
+                                'error': 'Could not extract Spotify playlist information. Please check the URL and try again.'
+                            }, status=status.HTTP_400_BAD_REQUEST)
+                        elif "Failed to download any songs" in error_message:
+                            return Response({
+                                'error': 'Could not download any songs from the Spotify playlist. Please try again later.'
+                            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+                        else:
+                            return Response({
+                                'error': f'Spotify playlist download failed: {error_message}'
+                            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+                else:
+                    logger.info(f"Detected Spotify track: {url}")
+                    if async_download:
+                        task = download_song.delay(url, request.user.id)
+                        logger.info(f"Started async Spotify download task: {task.id}")
+                        return Response({
+                            'message': 'Download initiated',
+                            'task_id': task.id,
+                            'status': 'processing',
+                            'check_status_url': request.build_absolute_uri(f'/api/songs/check_status/?task_id={task.id}')
+                        }, status=status.HTTP_202_ACCEPTED)
+                    else:
+                        logger.info(f"Starting direct Spotify download")
+                        return self.download_spotify_track(url)
             else:
                 logger.warning(f"Unsupported URL: {url}")
                 return Response({'error': 'Unsupported URL'}, status=status.HTTP_400_BAD_REQUEST)

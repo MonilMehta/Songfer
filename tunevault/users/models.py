@@ -2,8 +2,19 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils import timezone
 from datetime import datetime, timedelta
+from django.utils import timezone
+from datetime import datetime, timedelta
 
 class CustomUser(AbstractUser):
+    # Subscription fields
+    subscribed = models.BooleanField(default=False, help_text="Whether the user has a premium subscription")
+    subscription_start = models.DateTimeField(null=True, blank=True, help_text="When the subscription started")
+    subscription_end = models.DateTimeField(null=True, blank=True, help_text="When the subscription will end")
+    
+    # Download tracking
+    last_download_reset = models.DateTimeField(default=timezone.now, help_text="When the download count was last reset")
+    daily_downloads = models.PositiveIntegerField(default=0, help_text="Number of downloads today")
+    
     # Subscription fields
     subscribed = models.BooleanField(default=False, help_text="Whether the user has a premium subscription")
     subscription_start = models.DateTimeField(null=True, blank=True, help_text="When the subscription started")
