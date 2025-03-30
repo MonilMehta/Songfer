@@ -407,14 +407,16 @@ class SongViewSet(viewsets.ModelViewSet):
                         'source': 'youtube',
                     }
                     
-                    # Create or update cache entry
+                    # Create or update cache entry with metadata in the JSON field
                     SongCache.objects.update_or_create(
                         song_url=url,
                         defaults={
-                            'local_path': cache_path,
+                            'file_path': cache_path,
                             'file_size': file_size,
                             'expires_at': timezone.now() + timedelta(days=7),  # Cache for 7 days
-                            'metadata': metadata
+                            'metadata': metadata,
+                            'title': song.title,     # Store these for backward compatibility
+                            'artist': song.artist
                         }
                     )
                     logger.info(f"Added song to cache: {url}")
@@ -629,14 +631,16 @@ class SongViewSet(viewsets.ModelViewSet):
                         'spotify_id': song.spotify_id
                     }
                     
-                    # Create or update cache entry
+                    # Create or update cache entry with metadata in the JSON field
                     SongCache.objects.update_or_create(
                         song_url=url,
                         defaults={
-                            'local_path': cache_path,
+                            'file_path': cache_path,
                             'file_size': file_size,
                             'expires_at': timezone.now() + timedelta(days=7),  # Cache for 7 days
-                            'metadata': metadata
+                            'metadata': metadata,
+                            'title': song.title,     # Store these for backward compatibility
+                            'artist': song.artist
                         }
                     )
                     logger.info(f"Added song to cache: {url}")
@@ -838,8 +842,7 @@ class SongViewSet(viewsets.ModelViewSet):
                                     SongCache.objects.update_or_create(
                                         song_url=track_url,
                                         defaults={
-                                            'local_path': cache_path,
-                                            'file_path': cache_path,  # For backward compatibility
+                                            'file_path': cache_path,
                                             'file_size': file_size,
                                             'expires_at': timezone.now() + timedelta(days=7),  # Cache for 7 days
                                             'metadata': metadata,
@@ -941,14 +944,16 @@ class SongViewSet(viewsets.ModelViewSet):
                                         'spotify_id': song.spotify_id
                                     }
                                     
-                                    # Create or update cache entry
+                                    # Create or update cache entry with metadata in the JSON field
                                     SongCache.objects.update_or_create(
                                         song_url=track_url,
                                         defaults={
-                                            'local_path': cache_path,
+                                            'file_path': cache_path,
                                             'file_size': file_size,
                                             'expires_at': timezone.now() + timedelta(days=7),  # Cache for 7 days
-                                            'metadata': metadata
+                                            'metadata': metadata,
+                                            'title': song.title,     # Store these for backward compatibility
+                                            'artist': song.artist
                                         }
                                     )
                                     logger.info(f"Added Spotify song to cache from playlist: {track_url}")

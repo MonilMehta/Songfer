@@ -6623,3 +6623,75 @@ INFO 2025-03-30 23:48:24,081 spotify_api 18940 17780 Successfully tested Spotify
 INFO 2025-03-30 23:48:24,380 spotify_api 18940 17780 Got track info: Jo Tere Sang by Jeet Gannguli
 WARNING 2025-03-30 23:48:38,103 views 18940 17780 Error adding Spotify song to cache from playlist: Invalid field name(s) for model SongCache: 'local_path'.
 INFO 2025-03-30 23:48:38,498 basehttp 18940 17780 "POST /api/songs/songs/download/ HTTP/1.1" 200 122
+INFO 2025-03-30 23:50:45,043 autoreload 18940 1368 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\utils.py changed, reloading.
+INFO 2025-03-30 23:50:49,512 autoreload 3956 17360 Watching for file changes with StatReloader
+INFO 2025-03-30 23:51:00,852 autoreload 3956 17360 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 23:51:05,778 autoreload 27080 20192 Watching for file changes with StatReloader
+INFO 2025-03-30 23:53:08,723 autoreload 18768 7940 Watching for file changes with StatReloader
+INFO 2025-03-30 23:53:13,389 spotify_api 18768 10920 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-30 23:53:13,390 spotify_api 18768 10920 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-30 23:53:13,390 views 18768 10920 Redirecting Spotify playlist URL to playlist download endpoint: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-30 23:53:13,391 spotify_api 18768 10920 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-30 23:53:13,391 spotify_api 18768 10920 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-30 23:53:13,391 spotify_api 18768 10920 Getting Spotify playlist info for ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-30 23:53:13,391 spotify_api 18768 10920 Creating Spotify client with credentials from settings
+INFO 2025-03-30 23:53:13,588 spotify_api 18768 10920 Successfully tested Spotify client
+INFO 2025-03-30 23:53:13,947 spotify_api 18768 10920 Extracted 3 track URLs from playlist
+INFO 2025-03-30 23:53:14,148 spotify_api 18768 10920 Extracting Spotify ID from URL: https://open.spotify.com/track/1ApfHqjOoBmJZ0SjdjzVyA
+INFO 2025-03-30 23:53:14,150 spotify_api 18768 10920 Extracted Spotify track ID: 1ApfHqjOoBmJZ0SjdjzVyA
+INFO 2025-03-30 23:53:14,150 spotify_api 18768 10920 Getting info for Spotify track ID: 1ApfHqjOoBmJZ0SjdjzVyA
+INFO 2025-03-30 23:53:14,151 spotify_api 18768 10920 Creating Spotify client with credentials from settings
+INFO 2025-03-30 23:53:14,325 spotify_api 18768 10920 Successfully tested Spotify client
+INFO 2025-03-30 23:53:14,611 spotify_api 18768 10920 Got track info: Yeh Raaten Yeh Mausam by Sanam
+INFO 2025-03-30 23:53:26,943 views 18768 10920 Added Spotify song to cache from playlist: https://open.spotify.com/track/1ApfHqjOoBmJZ0SjdjzVyA
+INFO 2025-03-30 23:53:27,275 spotify_api 18768 10920 Extracting Spotify ID from URL: https://open.spotify.com/track/0dQiyqHUpnMPmHtk535VAY
+INFO 2025-03-30 23:53:27,276 spotify_api 18768 10920 Extracted Spotify track ID: 0dQiyqHUpnMPmHtk535VAY
+INFO 2025-03-30 23:53:27,277 spotify_api 18768 10920 Getting info for Spotify track ID: 0dQiyqHUpnMPmHtk535VAY
+INFO 2025-03-30 23:53:27,277 spotify_api 18768 10920 Creating Spotify client with credentials from settings
+INFO 2025-03-30 23:53:27,460 spotify_api 18768 10920 Successfully tested Spotify client
+INFO 2025-03-30 23:53:27,755 spotify_api 18768 10920 Got track info: Tennu Le by omer inayat
+INFO 2025-03-30 23:53:36,891 views 18768 10920 Added Spotify song to cache from playlist: https://open.spotify.com/track/0dQiyqHUpnMPmHtk535VAY
+INFO 2025-03-30 23:53:37,211 spotify_api 18768 10920 Extracting Spotify ID from URL: https://open.spotify.com/track/0kYBzFJ5a2Jozi6cI4y9Bp
+INFO 2025-03-30 23:53:37,211 spotify_api 18768 10920 Extracted Spotify track ID: 0kYBzFJ5a2Jozi6cI4y9Bp
+INFO 2025-03-30 23:53:37,211 spotify_api 18768 10920 Getting info for Spotify track ID: 0kYBzFJ5a2Jozi6cI4y9Bp
+INFO 2025-03-30 23:53:37,221 spotify_api 18768 10920 Creating Spotify client with credentials from settings
+INFO 2025-03-30 23:53:37,401 spotify_api 18768 10920 Successfully tested Spotify client
+INFO 2025-03-30 23:53:37,694 spotify_api 18768 10920 Got track info: Jo Tere Sang by Jeet Gannguli
+INFO 2025-03-30 23:53:51,815 views 18768 10920 Added Spotify song to cache from playlist: https://open.spotify.com/track/0kYBzFJ5a2Jozi6cI4y9Bp
+INFO 2025-03-30 23:53:52,258 basehttp 18768 10920 "POST /api/songs/songs/download/ HTTP/1.1" 200 122
+INFO 2025-03-30 23:54:09,406 basehttp 18768 10920 "GET /api/songs/playlists/29/download-all/ HTTP/1.1" 200 18440628
+INFO 2025-03-30 23:54:36,998 spotify_api 18768 10920 Extracting Spotify ID from URL: https://open.spotify.com/track/4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-30 23:54:36,998 spotify_api 18768 10920 Extracted Spotify track ID: 4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-30 23:54:37,069 views 18768 10920 Found existing song with URL https://open.spotify.com/track/4A7eOIbt19Wk5OXjVxE3SI, serving directly
+INFO 2025-03-30 23:54:37,139 spotify_api 18768 10920 Extracting Spotify ID from URL: https://open.spotify.com/track/4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-30 23:54:37,140 spotify_api 18768 10920 Extracted Spotify track ID: 4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-30 23:54:37,141 views 18768 10920 Getting info for Spotify track ID: ('track', '4A7eOIbt19Wk5OXjVxE3SI')
+ERROR 2025-03-30 23:54:37,141 views 18768 10920 Spotify track download error: name 'get_spotify_track_info' is not defined
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 526, in download_spotify_track
+    track_info = get_spotify_track_info(spotify_id)
+                 ^^^^^^^^^^^^^^^^^^^^^^
+NameError: name 'get_spotify_track_info' is not defined
+ERROR 2025-03-30 23:54:37,298 log 18768 10920 Internal Server Error: /api/songs/songs/download/
+ERROR 2025-03-30 23:54:37,300 basehttp 18768 10920 "POST /api/songs/songs/download/ HTTP/1.1" 500 87
+INFO 2025-03-30 23:54:54,233 views 18768 10920 Found existing song with URL https://www.youtube.com/watch?v=eJnQBXmZ7Ek, serving directly
+ERROR 2025-03-30 23:54:54,234 views 18768 10920 Download error: 'str' object has no attribute 'method'
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 201, in download
+    return self.download_youtube(url, format)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 61, in wrapped_view
+    if is_ratelimited(
+       ^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django_ratelimit\core.py", line 153, in is_ratelimited
+    usage = get_usage(request, group, fn, key, rate, method, increment)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django_ratelimit\core.py", line 169, in get_usage
+    if not _method_match(request, method):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django_ratelimit\core.py", line 93, in _method_match
+    return request.method in [m.upper() for m in method]
+           ^^^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'method'
+ERROR 2025-03-30 23:54:54,244 log 18768 10920 Internal Server Error: /api/songs/songs/download/
+ERROR 2025-03-30 23:54:54,245 basehttp 18768 10920 "POST /api/songs/songs/download/ HTTP/1.1" 500 67
