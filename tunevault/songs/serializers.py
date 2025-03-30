@@ -32,6 +32,10 @@ class SongSerializer(serializers.ModelSerializer):
                 return request.build_absolute_uri(obj.thumbnail_url)
         return None
 
+class ArtistSerializer(serializers.Serializer):
+    artist = serializers.CharField()
+    count = serializers.IntegerField()
+
 class PlaylistSerializer(serializers.ModelSerializer):
     songs = SongSerializer(many=True, read_only=True)
 

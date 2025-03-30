@@ -7483,3 +7483,189 @@ WARNING 2025-03-31 00:49:01,425 log 27072 17404 Not Found: /api/top-artists/
 WARNING 2025-03-31 00:49:01,425 basehttp 27072 17404 "GET /api/top-artists/ HTTP/1.1" 404 3385
 WARNING 2025-03-31 00:49:06,562 log 27072 17404 Not Found: /api/users/top-artists/
 WARNING 2025-03-31 00:49:06,563 basehttp 27072 17404 "GET /api/users/top-artists/ HTTP/1.1" 404 4340
+ERROR 2025-03-31 00:49:52,037 log 27072 17404 Internal Server Error: /api/songs/user/top-artists/
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\fields.py", line 437, in get_attribute
+    return get_attribute(instance, self.source_attrs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\fields.py", line 102, in get_attribute
+    instance = instance[attr]
+               ~~~~~~~~^^^^^^
+KeyError: 'title'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\views.py", line 94, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\generics.py", line 203, in get
+    return self.list(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\mixins.py", line 46, in list
+    return Response(serializer.data)
+                    ^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\serializers.py", line 797, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\serializers.py", line 251, in data
+    self._data = self.to_representation(self.instance)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\serializers.py", line 716, in to_representation
+    self.child.to_representation(item) for item in iterable
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\serializers.py", line 527, in to_representation
+    attribute = field.get_attribute(instance)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\fields.py", line 470, in get_attribute
+    raise type(exc)(msg)
+KeyError: "Got KeyError when attempting to get a value for field `title` on serializer `SongSerializer`.\nThe serializer field might be named incorrectly and not match any attribute or key on the `dict` instance.\nOriginal exception text was: 'title'."
+ERROR 2025-03-31 00:49:52,053 basehttp 27072 17404 "GET /api/songs/user/top-artists/ HTTP/1.1" 500 149897
+WARNING 2025-03-31 01:06:27,373 log 27072 25856 Not Found: /api/user/music-profile
+WARNING 2025-03-31 01:06:27,373 basehttp 27072 25856 "GET /api/user/music-profile HTTP/1.1" 404 3403
+INFO 2025-03-31 01:06:55,289 views 27072 25856 User has 8 songs
+INFO 2025-03-31 01:06:55,354 views 27072 25856 User has 4 songs with Spotify IDs
+INFO 2025-03-31 01:06:55,489 views 27072 25856 Sample user songs: [{'spotify_id': '4A7eOIbt19Wk5OXjVxE3SI', 'title': 'Har Kisi Ko From Boss', 'artist': 'Arijit Singh'}, {'spotify_id': '0kYBzFJ5a2Jozi6cI4y9Bp', 'title': 'Jo Tere Sang', 'artist': 'Jeet Gannguli'}, {'spotify_id': '0dQiyqHUpnMPmHtk535VAY', 'title': 'Tennu Le', 'artist': 'omer inayat'}, {'spotify_id': '1ApfHqjOoBmJZ0SjdjzVyA', 'title': 'Yeh Raaten Yeh Mausam', 'artist': 'Sanam'}]
+INFO 2025-03-31 01:06:55,490 views 27072 25856 Getting CSV recommendations for user: 1 with limit: 10
+INFO 2025-03-31 01:06:56,429 csv_recommender 27072 25856 CSV Recommender initialized successfully
+ERROR 2025-03-31 01:06:56,561 csv_recommender 27072 25856 Error in get_hybrid_recommendations: SpotifyMultiCSVRecommender.get_recommendations() got an unexpected keyword argument 'limit'
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\csv_recommender.py", line 403, in get_hybrid_recommendations
+    song_recommendations = recommender.get_recommendations(song.title, limit=20)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: SpotifyMultiCSVRecommender.get_recommendations() got an unexpected keyword argument 'limit'
+INFO 2025-03-31 01:06:56,585 views 27072 25856 Got 10 recommendations from CSV data
+INFO 2025-03-31 01:06:57,961 basehttp 27072 25856 "GET /api/songs/recommendations/ HTTP/1.1" 200 3665
+INFO 2025-03-31 01:08:14,227 basehttp 27072 14756 "GET /api/songs/playlists/ HTTP/1.1" 200 9947
+WARNING 2025-03-31 01:08:26,113 log 27072 14756 Not Found: /api/songs/1/
+WARNING 2025-03-31 01:08:26,114 basehttp 27072 14756 "GET /api/songs/1/ HTTP/1.1" 404 15312
+INFO 2025-03-31 01:08:33,417 basehttp 27072 14756 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-03-31 01:08:44,458 basehttp 27072 14756 "GET /api/songs/songs/ HTTP/1.1" 200 7618
+WARNING 2025-03-31 01:09:00,598 log 27072 14756 Not Found: /api/user/music-profile
+WARNING 2025-03-31 01:09:00,598 basehttp 27072 14756 "GET /api/user/music-profile HTTP/1.1" 404 3403
+WARNING 2025-03-31 01:09:06,906 log 27072 14756 Not Found: /api/songs/user/music-profile
+WARNING 2025-03-31 01:09:06,907 basehttp 27072 14756 "GET /api/songs/user/music-profile HTTP/1.1" 404 15360
+INFO 2025-03-31 01:09:18,340 basehttp 27072 14756 "GET /api/songs/user/profile HTTP/1.1" 301 0
+INFO 2025-03-31 01:09:19,037 basehttp 27072 4124 "GET /api/songs/user/profile/ HTTP/1.1" 200 93
+INFO 2025-03-31 01:09:48,991 basehttp 27072 4124 "GET /api/songs/user/stats HTTP/1.1" 301 0
+INFO 2025-03-31 01:09:51,789 basehttp 27072 21352 "GET /api/songs/user/stats/ HTTP/1.1" 200 2604
+ERROR 2025-03-31 01:10:36,203 log 27072 21352 Internal Server Error: /api/songs/user/top-artists/
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\fields.py", line 437, in get_attribute
+    return get_attribute(instance, self.source_attrs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\fields.py", line 102, in get_attribute
+    instance = instance[attr]
+               ~~~~~~~~^^^^^^
+KeyError: 'title'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\views.py", line 94, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\generics.py", line 203, in get
+    return self.list(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\mixins.py", line 46, in list
+    return Response(serializer.data)
+                    ^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\serializers.py", line 797, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\serializers.py", line 251, in data
+    self._data = self.to_representation(self.instance)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\serializers.py", line 716, in to_representation
+    self.child.to_representation(item) for item in iterable
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\serializers.py", line 527, in to_representation
+    attribute = field.get_attribute(instance)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\fields.py", line 470, in get_attribute
+    raise type(exc)(msg)
+KeyError: "Got KeyError when attempting to get a value for field `title` on serializer `SongSerializer`.\nThe serializer field might be named incorrectly and not match any attribute or key on the `dict` instance.\nOriginal exception text was: 'title'."
+ERROR 2025-03-31 01:10:36,209 basehttp 27072 21352 "GET /api/songs/user/top-artists/ HTTP/1.1" 500 149813
+INFO 2025-03-31 01:11:22,798 autoreload 27072 17828 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 01:11:27,410 autoreload 892 6704 Watching for file changes with StatReloader
+INFO 2025-03-31 01:11:39,987 autoreload 892 6704 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\serializers.py changed, reloading.
+INFO 2025-03-31 01:11:43,495 autoreload 20392 13976 Watching for file changes with StatReloader
+INFO 2025-03-31 01:11:49,752 autoreload 20392 13976 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 01:11:53,695 autoreload 4968 9648 Watching for file changes with StatReloader
+INFO 2025-03-31 01:12:10,534 autoreload 4968 9648 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\models.py changed, reloading.
+INFO 2025-03-31 01:12:14,270 autoreload 17528 24716 Watching for file changes with StatReloader
+INFO 2025-03-31 01:12:25,418 autoreload 17528 24716 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 01:12:29,869 autoreload 8956 12144 Watching for file changes with StatReloader
+INFO 2025-03-31 01:12:50,322 autoreload 8956 12144 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 01:12:55,060 autoreload 17876 26692 Watching for file changes with StatReloader
+INFO 2025-03-31 01:13:48,323 basehttp 17876 23628 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 172
+INFO 2025-03-31 01:13:57,709 basehttp 17876 23628 "GET /api/songs/user/stats HTTP/1.1" 301 0
+INFO 2025-03-31 01:14:00,651 basehttp 17876 22008 "GET /api/songs/user/stats/ HTTP/1.1" 200 2586
+INFO 2025-03-31 01:14:15,119 basehttp 17876 22008 "GET /api/songs/user/profile HTTP/1.1" 301 0
+INFO 2025-03-31 01:14:15,814 basehttp 17876 7272 "GET /api/songs/user/profile/ HTTP/1.1" 200 175
+INFO 2025-03-31 01:14:42,995 views 17876 7272 Found existing song with URL https://www.youtube.com/watch?v=pieUX7Skbk0, serving directly
+WARNING 2025-03-31 01:14:42,995 views 17876 7272 Rate limit check skipped - invalid request object: <class 'str'>
+INFO 2025-03-31 01:14:43,122 views 17876 7272 Using cached version for URL: https://www.youtube.com/watch?v=pieUX7Skbk0
+INFO 2025-03-31 01:14:43,358 basehttp 17876 7272 "POST /api/songs/songs/download/ HTTP/1.1" 200 3987692
+INFO 2025-03-31 01:15:40,480 autoreload 17876 26692 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 01:15:44,255 autoreload 12364 15064 Watching for file changes with StatReloader
+INFO 2025-03-31 01:16:19,609 autoreload 12364 15064 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 01:16:24,685 autoreload 11828 5668 Watching for file changes with StatReloader
+INFO 2025-03-31 01:16:34,731 autoreload 11828 5668 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 01:16:38,982 autoreload 16508 25248 Watching for file changes with StatReloader
+INFO 2025-03-31 01:16:48,817 autoreload 16508 25248 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 01:16:53,827 autoreload 21120 25272 Watching for file changes with StatReloader
+INFO 2025-03-31 01:19:32,822 views 21120 548 Found existing song with URL https://www.youtube.com/watch?v=pieUX7Skbk0, serving directly
+INFO 2025-03-31 01:19:32,953 views 21120 548 Using cached version for URL: https://www.youtube.com/watch?v=pieUX7Skbk0
+INFO 2025-03-31 01:19:33,142 basehttp 21120 548 "POST /api/songs/songs/download/ HTTP/1.1" 200 3987692
+INFO 2025-03-31 01:19:47,058 basehttp 21120 548 "GET /api/songs/user/profile HTTP/1.1" 301 0
+INFO 2025-03-31 01:19:47,832 basehttp 21120 8892 "GET /api/songs/user/profile/ HTTP/1.1" 200 175
+INFO 2025-03-31 01:20:58,727 views 21120 8892 Added song to cache: https://www.youtube.com/watch?v=CULF9lXH87w
+INFO 2025-03-31 01:20:58,993 basehttp 21120 8892 "POST /api/songs/songs/download/ HTTP/1.1" 200 7751276
+INFO 2025-03-31 01:23:14,843 basehttp 21120 22944 "GET /api/songs/user/profile HTTP/1.1" 301 0
+INFO 2025-03-31 01:23:16,033 basehttp 21120 23092 "GET /api/songs/user/profile/ HTTP/1.1" 200 175

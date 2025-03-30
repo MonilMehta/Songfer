@@ -18,7 +18,7 @@ from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from celery.result import AsyncResult
 from .models import Song, Playlist, UserMusicProfile,DownloadProgress, SongCache, SongPlay, UserAnalytics
-from .serializers import SongSerializer, PlaylistSerializer, UserMusicProfileSerializer
+from .serializers import SongSerializer, PlaylistSerializer, UserMusicProfileSerializer, ArtistSerializer
 from .tasks import download_song, download_spotify_playlist, download_youtube_playlist
 from .spotify_api import get_playlist_tracks, get_spotify_client, get_track_info, get_playlist_info, extract_spotify_id
 from rest_framework.views import APIView
@@ -243,11 +243,27 @@ class SongViewSet(viewsets.ModelViewSet):
                         return response
                         
             # If we get here, the song doesn't exist yet or the file is missing
+            # Apply rate limiting for external services
+            from django_ratelimit.core import is_ratelimited
+            if is_ratelimited(
+                request=request,
+                group='download',
+                key='ip',
+                rate='10/hour',
+                method='ALL',
+                increment=True
+            ):
+                logger.warning(f"Rate limit exceeded for {request.path} from {request.META.get('REMOTE_ADDR')}")
+                return HttpResponse("Rate limit exceeded. Please try again later.", status=429)
+                
             # Determine source based on URL and download
             if 'youtube.com' in url or 'youtu.be' in url:
-                return self.download_youtube(url, format)
+                # Instead of passing the request which causes confusion, we use our own implementation
+                # that doesn't rely on the custom_ratelimit decorator
+                return self._download_youtube(url, format)
             elif 'spotify.com' in url:
-                return self.download_spotify_track(url, format)
+                # Similarly for Spotify
+                return self._download_spotify_track(url, format)
             else:
                 return Response(
                     {'error': 'Unsupported URL. Only YouTube and Spotify URLs are supported.'},
@@ -260,9 +276,8 @@ class SongViewSet(viewsets.ModelViewSet):
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
 
-    @custom_ratelimit(group='download', key='ip', rate='10/hour', method='ALL')
     @youtube_api_retry
-    def download_youtube(self, url, output_format=None):
+    def _download_youtube(self, url, output_format=None):
         """Direct YouTube download with streaming response"""
         # Initialize variables for file cleanup
         temp_dir = None
@@ -503,7 +518,7 @@ class SongViewSet(viewsets.ModelViewSet):
                     pass
 
     @spotify_api_retry
-    def download_spotify_track(self, url, output_format=None):
+    def _download_spotify_track(self, url, output_format=None):
         """Direct Spotify track download with streaming response"""
         # Initialize variables for file cleanup
         temp_dir = None
@@ -1499,12 +1514,28 @@ class UserMusicProfileView(generics.RetrieveUpdateAPIView):
 
     def get_object(self):
         return UserMusicProfile.objects.get_or_create(user=self.request.user)[0]
+        
+    def retrieve(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+        
+        # Add additional user info to response
+        data = serializer.data
+        data.update({
+            'username': request.user.username,
+            'total_songs': Song.objects.filter(user=request.user).count(),
+            'downloads_remaining': request.user.get_downloads_remaining(),
+            'is_premium': request.user.is_subscription_active()
+        })
+        
+        return Response(data)
 
 class UserTopArtistsView(generics.ListAPIView):
-    serializer_class = SongSerializer
+    serializer_class = ArtistSerializer
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
+        # Get top artists data
         return Song.get_user_top_artists(self.request.user)
 
 class UserRecommendationsView(generics.ListAPIView):
@@ -1699,6 +1730,12 @@ class UserStatsView(APIView):
             hour_idx = entry['hour']
             if 0 <= hour_idx < 24:  # Ensure valid hour
                 hours[hour_idx]['count'] = entry['count']
+        
+        # Get favorite genres safely
+        try:
+            favorite_genres = [g.name for g in request.user.get_favorite_genres()]
+        except (AttributeError, Exception):
+            favorite_genres = []
                 
         # Combine all results
         response_data = {
@@ -1711,7 +1748,7 @@ class UserStatsView(APIView):
             'stats': stats,
             'top_songs': list(top_songs),
             'time_of_day': hours,
-            'favorite_genres': [g.name for g in request.user.get_favorite_genres()]
+            'favorite_genres': favorite_genres
         }
         
         return Response(response_data)

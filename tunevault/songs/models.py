@@ -382,15 +382,34 @@ class UserAnalytics(models.Model):
             date__lte=end_date
         )
         
+        # Initialize default stats with zeros instead of null values
+        default_stats = {
+            'total_plays': 0,
+            'total_time': 0,
+            'total_downloads': 0,
+            'avg_daily_plays': 0,
+            'avg_daily_time': 0,
+            'avg_daily_downloads': 0
+        }
+        
         # Calculate aggregated stats
-        stats = analytics.aggregate(
-            total_plays=Sum('songs_played'),
-            total_time=Sum('listening_time'),
-            total_downloads=Sum('songs_downloaded'),
-            avg_daily_plays=Avg('songs_played'),
-            avg_daily_time=Avg('listening_time'),
-            avg_daily_downloads=Avg('songs_downloaded')
-        )
+        if analytics.exists():
+            stats = analytics.aggregate(
+                total_plays=Sum('songs_played'),
+                total_time=Sum('listening_time'),
+                total_downloads=Sum('songs_downloaded'),
+                avg_daily_plays=Avg('songs_played'),
+                avg_daily_time=Avg('listening_time'),
+                avg_daily_downloads=Avg('songs_downloaded')
+            )
+            
+            # Replace any None values with zeros
+            for key in default_stats:
+                if stats[key] is None:
+                    stats[key] = 0
+        else:
+            # No analytics data, use zeros
+            stats = default_stats
         
         # Add day-by-day data for charts
         day_data = []
