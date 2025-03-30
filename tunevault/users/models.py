@@ -15,14 +15,9 @@ class CustomUser(AbstractUser):
     last_download_reset = models.DateTimeField(default=timezone.now, help_text="When the download count was last reset")
     daily_downloads = models.PositiveIntegerField(default=0, help_text="Number of downloads today")
     
-    # Subscription fields
-    subscribed = models.BooleanField(default=False, help_text="Whether the user has a premium subscription")
-    subscription_start = models.DateTimeField(null=True, blank=True, help_text="When the subscription started")
-    subscription_end = models.DateTimeField(null=True, blank=True, help_text="When the subscription will end")
-    
-    # Download tracking
-    last_download_reset = models.DateTimeField(default=timezone.now, help_text="When the download count was last reset")
-    daily_downloads = models.PositiveIntegerField(default=0, help_text="Number of downloads today")
+    # Analytics fields
+    last_seen = models.DateTimeField(null=True, blank=True, help_text="When the user was last active")
+    total_listen_time = models.PositiveIntegerField(default=0, help_text="Total time spent listening in seconds")
     
     # If you want to add any additional fields specific to users, you can do so here
     # For example:
@@ -163,3 +158,99 @@ class CustomUser(AbstractUser):
             return max(0, 30 - self.daily_downloads)
         
         return max(0, 5 - self.daily_downloads)
+        
+    def update_last_seen(self):
+        """
+        Update the last seen timestamp for the user
+        """
+        self.last_seen = timezone.now()
+        self.save(update_fields=['last_seen'])
+        
+    def record_listen_time(self, seconds):
+        """
+        Record time spent listening to music
+        """
+        self.total_listen_time += max(0, seconds)  # Ensure non-negative
+        self.save(update_fields=['total_listen_time'])
+        
+    def get_listening_stats(self):
+        """
+        Get detailed listening statistics
+        """
+        from songs.models import Song, SongPlay
+        from django.db.models import Count, Sum, Avg
+        
+        # Get total songs played
+        total_plays = SongPlay.objects.filter(user=self).count()
+        
+        # Get total unique songs played
+        unique_songs = SongPlay.objects.filter(user=self).values('song').distinct().count()
+        
+        # Get average listening time per song
+        avg_listen_time = SongPlay.objects.filter(user=self).aggregate(
+            avg_time=Avg('duration')
+        )['avg_time'] or 0
+        
+        # Get most played song
+        most_played = SongPlay.objects.filter(user=self).values(
+            'song__title', 'song__artist'
+        ).annotate(
+            play_count=Count('id')
+        ).order_by('-play_count').first()
+        
+        # Get favorite time of day (morning, afternoon, evening, night)
+        from django.db.models.functions import ExtractHour
+        
+        hour_counts = SongPlay.objects.filter(user=self).annotate(
+            hour=ExtractHour('timestamp')
+        ).values('hour').annotate(count=Count('id')).order_by('-count')
+        
+        # Define time periods
+        time_periods = {
+            'morning': 0,
+            'afternoon': 0,
+            'evening': 0,
+            'night': 0
+        }
+        
+        for entry in hour_counts:
+            hour = entry['hour']
+            count = entry['count']
+            
+            if 5 <= hour < 12:
+                time_periods['morning'] += count
+            elif 12 <= hour < 17:
+                time_periods['afternoon'] += count
+            elif 17 <= hour < 21:
+                time_periods['evening'] += count
+            else:
+                time_periods['night'] += count
+                
+        favorite_time = max(time_periods.items(), key=lambda x: x[1])[0] if time_periods else None
+        
+        return {
+            'total_plays': total_plays,
+            'unique_songs': unique_songs,
+            'total_listen_time': self.total_listen_time,
+            'average_listen_time': round(avg_listen_time, 2),
+            'most_played': most_played,
+            'favorite_time': favorite_time,
+            'time_periods': time_periods,
+            'subscription_status': 'active' if self.is_subscription_active() else 'inactive'
+        }
+    
+    def bulk_increment_download_count(self, count=1):
+        """
+        Increment the user's daily download count by a specified amount
+        
+        Args:
+            count (int): Number of downloads to add
+        """
+        # Reset daily downloads if it's a new day
+        self._reset_daily_downloads_if_needed()
+        
+        # Increment the count
+        self.daily_downloads += count
+        self.save(update_fields=['daily_downloads'])
+        
+        return self.daily_downloads

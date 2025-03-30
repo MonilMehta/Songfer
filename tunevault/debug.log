@@ -4942,3 +4942,740 @@ Traceback (most recent call last):
 TypeError: SpotifyMultiCSVRecommender.get_recommendations() got an unexpected keyword argument 'limit'
 INFO 2025-03-08 01:04:48,319 basehttp 13228 19516 "GET /api/user/recommendations/ HTTP/1.1" 200 3086
 INFO 2025-03-30 12:51:55,778 autoreload 14660 2496 Watching for file changes with StatReloader
+INFO 2025-03-30 13:48:25,806 autoreload 14660 2496 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\tasks.py changed, reloading.
+INFO 2025-03-30 13:48:29,829 autoreload 2216 8816 Watching for file changes with StatReloader
+INFO 2025-03-30 13:57:49,436 autoreload 2216 8816 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\tunevault\settings.py changed, reloading.
+INFO 2025-03-30 14:09:48,724 autoreload 27080 4204 Watching for file changes with StatReloader
+WARNING 2025-03-30 14:14:16,148 log 27080 15176 Not Found: /api/songs/download/
+WARNING 2025-03-30 14:14:16,158 basehttp 27080 15176 "POST /api/songs/download/ HTTP/1.1" 404 15045
+WARNING 2025-03-30 14:15:38,422 log 27080 7668 Not Found: /api/songs/song-download/
+WARNING 2025-03-30 14:15:38,432 basehttp 27080 7668 "POST /api/songs/song-download/ HTTP/1.1" 404 15060
+INFO 2025-03-30 15:49:35,939 autoreload 6856 18888 Watching for file changes with StatReloader
+WARNING 2025-03-30 15:50:16,838 log 6856 23644 Not Found: /api/songs/download/
+WARNING 2025-03-30 15:50:16,838 basehttp 6856 23644 "POST /api/songs/download/ HTTP/1.1" 404 15045
+INFO 2025-03-30 15:51:03,499 autoreload 6856 18888 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\tunevault\settings.py changed, reloading.
+INFO 2025-03-30 15:51:09,571 autoreload 17176 1240 Watching for file changes with StatReloader
+INFO 2025-03-30 15:51:20,313 autoreload 17176 1240 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\urls.py changed, reloading.
+INFO 2025-03-30 15:51:26,418 autoreload 6372 27448 Watching for file changes with StatReloader
+ERROR 2025-03-30 15:51:34,300 log 6372 26440 Internal Server Error: /api/songs/download/
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.UndefinedColumn: column users_customuser.last_seen does not exist
+LINE 1: ...oad_reset", "users_customuser"."daily_downloads", "users_cus...
+                                                             ^
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\views.py", line 94, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\__init__.py", line 331, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 330, in perform_authentication
+    request.user
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\request.py", line 232, in user
+    self._authenticate()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\authentication.py", line 196, in authenticate
+    return self.authenticate_credentials(token)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\authentication.py", line 201, in authenticate_credentials
+    token = model.objects.select_related('user').get(key=key)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 645, in get
+    num = len(clone)
+          ^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 382, in __len__
+    self._fetch_all()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1574, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\sentry_sdk\utils.py", line 1783, in runner
+    return sentry_patched_function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\__init__.py", line 651, in execute
+    result = real_execute(self, sql, params)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.ProgrammingError: column users_customuser.last_seen does not exist
+LINE 1: ...oad_reset", "users_customuser"."daily_downloads", "users_cus...
+                                                             ^
+
+ERROR 2025-03-30 15:51:34,335 basehttp 6372 26440 "POST /api/songs/download/ HTTP/1.1" 500 214807
+INFO 2025-03-30 15:52:27,845 autoreload 16240 464 Watching for file changes with StatReloader
+ERROR 2025-03-30 15:52:35,217 log 16240 4428 Internal Server Error: /api/songs/download/
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django_redis\cache.py", line 29, in _decorator
+    return method(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django_redis\cache.py", line 99, in _get
+    return self.client.get(key, default=default, version=version, client=client)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django_redis\client\default.py", line 260, in get
+    raise ConnectionInterrupted(connection=client) from e
+django_redis.exceptions.ConnectionInterrupted: Redis ConnectionError: Error 10061 connecting to 127.0.0.1:6379. No connection could be made because the target machine actively refused it.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\views.py", line 94, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\__init__.py", line 331, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 422, in initial
+    self.check_throttles(request)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 365, in check_throttles
+    if not throttle.allow_request(request, self):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\throttling.py", line 123, in allow_request
+    self.history = self.cache.get(self.key, [])
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django_redis\cache.py", line 92, in get
+    value = self._get(key, default, version, client)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django_redis\cache.py", line 36, in _decorator
+    raise e.__cause__
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django_redis\client\default.py", line 258, in get
+    value = client.get(key)
+            ^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\redis\commands\core.py", line 1822, in get
+    return self.execute_command("GET", name, keys=[name])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\redis\_sync_common.py", line 103, in sentry_patched_execute_command
+    value = old_execute_command(self, name, *args, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\redis\client.py", line 559, in execute_command
+    return self._execute_command(*args, **options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\redis\client.py", line 565, in _execute_command
+    conn = self.connection or pool.get_connection(command_name, **options)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\redis\connection.py", line 1422, in get_connection
+    connection.connect()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\redis\connection.py", line 363, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 10061 connecting to 127.0.0.1:6379. No connection could be made because the target machine actively refused it.
+ERROR 2025-03-30 15:52:35,249 basehttp 16240 4428 "POST /api/songs/download/ HTTP/1.1" 500 177447
+ERROR 2025-03-30 15:53:21,057 log 16240 4428 Internal Server Error: /api/songs/download/
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\views.py", line 94, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 52, in wrapped_view
+    return ip_ratelimited(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django_ratelimit\decorators.py", line 19, in _wrapped
+    ratelimited = is_ratelimited(request=request, group=group, fn=fn,
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django_ratelimit\core.py", line 153, in is_ratelimited
+    usage = get_usage(request, group, fn, key, rate, method, increment)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django_ratelimit\core.py", line 169, in get_usage
+    if not _method_match(request, method):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django_ratelimit\core.py", line 93, in _method_match
+    return request.method in [m.upper() for m in method]
+           ^^^^^^^^^^^^^^
+AttributeError: 'SongViewSet' object has no attribute 'method'
+ERROR 2025-03-30 15:53:21,084 basehttp 16240 4428 "POST /api/songs/download/ HTTP/1.1" 500 125719
+INFO 2025-03-30 15:54:01,865 autoreload 16240 464 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\urls.py changed, reloading.
+INFO 2025-03-30 15:54:07,229 autoreload 26728 21580 Watching for file changes with StatReloader
+INFO 2025-03-30 15:54:26,317 autoreload 26728 21580 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\urls.py changed, reloading.
+INFO 2025-03-30 15:54:31,412 autoreload 13500 3964 Watching for file changes with StatReloader
+ERROR 2025-03-30 15:54:38,868 log 13500 26540 Internal Server Error: /api/songs/download/
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\views.py", line 94, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 52, in wrapped_view
+    return ip_ratelimited(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django_ratelimit\decorators.py", line 19, in _wrapped
+    ratelimited = is_ratelimited(request=request, group=group, fn=fn,
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django_ratelimit\core.py", line 153, in is_ratelimited
+    usage = get_usage(request, group, fn, key, rate, method, increment)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django_ratelimit\core.py", line 169, in get_usage
+    if not _method_match(request, method):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django_ratelimit\core.py", line 93, in _method_match
+    return request.method in [m.upper() for m in method]
+           ^^^^^^^^^^^^^^
+AttributeError: 'SongViewSet' object has no attribute 'method'
+ERROR 2025-03-30 15:54:38,904 basehttp 13500 26540 "POST /api/songs/download/ HTTP/1.1" 500 125719
+INFO 2025-03-30 15:54:47,952 autoreload 13500 3964 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\urls.py changed, reloading.
+INFO 2025-03-30 15:54:53,484 autoreload 1684 18848 Watching for file changes with StatReloader
+ERROR 2025-03-30 15:55:11,861 log 1684 21296 Internal Server Error: /api/songs/download/
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\views.py", line 94, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 52, in wrapped_view
+    return ip_ratelimited(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django_ratelimit\decorators.py", line 19, in _wrapped
+    ratelimited = is_ratelimited(request=request, group=group, fn=fn,
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django_ratelimit\core.py", line 153, in is_ratelimited
+    usage = get_usage(request, group, fn, key, rate, method, increment)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django_ratelimit\core.py", line 169, in get_usage
+    if not _method_match(request, method):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django_ratelimit\core.py", line 93, in _method_match
+    return request.method in [m.upper() for m in method]
+           ^^^^^^^^^^^^^^
+AttributeError: 'SongViewSet' object has no attribute 'method'
+ERROR 2025-03-30 15:55:11,886 basehttp 1684 21296 "POST /api/songs/download/ HTTP/1.1" 500 125719
+ERROR 2025-03-30 15:55:24,985 log 1684 21296 Internal Server Error: /api/songs/download/
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\views.py", line 94, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 52, in wrapped_view
+    return ip_ratelimited(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django_ratelimit\decorators.py", line 19, in _wrapped
+    ratelimited = is_ratelimited(request=request, group=group, fn=fn,
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django_ratelimit\core.py", line 153, in is_ratelimited
+    usage = get_usage(request, group, fn, key, rate, method, increment)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django_ratelimit\core.py", line 169, in get_usage
+    if not _method_match(request, method):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django_ratelimit\core.py", line 93, in _method_match
+    return request.method in [m.upper() for m in method]
+           ^^^^^^^^^^^^^^
+AttributeError: 'SongViewSet' object has no attribute 'method'
+ERROR 2025-03-30 15:55:25,010 basehttp 1684 21296 "POST /api/songs/download/ HTTP/1.1" 500 125719
+INFO 2025-03-30 15:56:09,296 autoreload 1684 18848 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 15:56:15,839 autoreload 26660 19096 Watching for file changes with StatReloader
+INFO 2025-03-30 15:56:24,019 autoreload 26660 19096 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 15:56:30,329 autoreload 25260 2840 Watching for file changes with StatReloader
+INFO 2025-03-30 15:56:37,297 autoreload 25260 2840 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\urls.py changed, reloading.
+INFO 2025-03-30 15:56:42,742 autoreload 21004 22520 Watching for file changes with StatReloader
+INFO 2025-03-30 15:56:55,461 autoreload 21004 22520 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\urls.py changed, reloading.
+INFO 2025-03-30 15:57:00,850 autoreload 16768 15256 Watching for file changes with StatReloader
+WARNING 2025-03-30 15:57:05,620 log 16768 21664 Not Found: /api/songs/download/
+WARNING 2025-03-30 15:57:05,620 basehttp 16768 21664 "POST /api/songs/download/ HTTP/1.1" 404 15045
+INFO 2025-03-30 15:57:14,197 spotify_api 16768 21664 Creating Spotify client with credentials from settings
+INFO 2025-03-30 15:57:14,753 spotify_api 16768 21664 Successfully tested Spotify client
+INFO 2025-03-30 15:57:36,299 basehttp 16768 21664 "POST /api/songs/songs/download/ HTTP/1.1" 200 6185708
+INFO 2025-03-30 15:57:52,126 spotify_api 16768 21664 Creating Spotify client with credentials from settings
+INFO 2025-03-30 15:57:52,387 spotify_api 16768 21664 Successfully tested Spotify client
+INFO 2025-03-30 15:58:08,456 basehttp 16768 21664 "POST /api/songs/songs/download/ HTTP/1.1" 200 6185708
+INFO 2025-03-30 15:59:17,461 autoreload 16768 15256 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 15:59:28,519 autoreload 20984 13784 Watching for file changes with StatReloader
+INFO 2025-03-30 16:00:30,415 autoreload 20984 13784 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 16:00:39,484 autoreload 25912 22560 Watching for file changes with StatReloader
+INFO 2025-03-30 16:01:05,653 autoreload 25912 22560 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 16:01:12,229 autoreload 18492 13768 Watching for file changes with StatReloader
+INFO 2025-03-30 16:01:18,181 autoreload 18492 13768 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 16:01:24,602 autoreload 10500 13772 Watching for file changes with StatReloader
+INFO 2025-03-30 16:02:07,626 autoreload 10500 13772 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 16:02:14,616 autoreload 21380 4100 Watching for file changes with StatReloader
+INFO 2025-03-30 18:18:38,560 views 21380 5456 Found existing song with URL https://open.spotify.com/track/64BbK9SFKH2jk86U3dGj2P, serving directly
+INFO 2025-03-30 18:18:38,798 basehttp 21380 5456 "POST /api/songs/songs/download/ HTTP/1.1" 200 6185708
+INFO 2025-03-30 18:18:49,427 views 21380 5456 Found existing song with URL https://open.spotify.com/track/64BbK9SFKH2jk86U3dGj2P, serving directly
+INFO 2025-03-30 18:18:49,474 basehttp 21380 5456 "POST /api/songs/songs/download/ HTTP/1.1" 200 6185708
+WARNING 2025-03-30 18:40:51,107 log 21380 18756 Not Found: /api/songs/download/
+WARNING 2025-03-30 18:40:51,109 basehttp 21380 18756 "POST /api/songs/download/ HTTP/1.1" 404 15045
+INFO 2025-03-30 18:41:03,762 spotify_api 21380 18756 Creating Spotify client with credentials from settings
+INFO 2025-03-30 18:41:04,133 spotify_api 21380 18756 Successfully tested Spotify client
+ERROR 2025-03-30 18:41:04,453 views 21380 18756 Spotify track download error: http status: 404, code: -1 - https://api.spotify.com/v1/tracks/21y0yK08j1UzYu4ro06wfL:
+ Resource not found, reason: None
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\spotipy\client.py", line 274, in _internal_call
+    response.raise_for_status()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\requests\models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://api.spotify.com/v1/tracks/21y0yK08j1UzYu4ro06wfL
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 483, in download_spotify_track
+    track_info = get_track_info(url)  # You'll need to implement this method
+                 ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\spotify_api.py", line 112, in get_track_info
+    track = sp.track(track_id)
+            ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\spotipy\client.py", line 372, in track
+    return self._get("tracks/" + trid, market=market)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\spotipy\client.py", line 324, in _get
+    return self._internal_call("GET", url, payload, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\spotipy\client.py", line 294, in _internal_call
+    raise SpotifyException(
+spotipy.exceptions.SpotifyException: http status: 404, code: -1 - https://api.spotify.com/v1/tracks/21y0yK08j1UzYu4ro06wfL:
+ Resource not found, reason: None
+ERROR 2025-03-30 18:41:04,481 views 21380 18756 Download error: http status: 404, code: -1 - https://api.spotify.com/v1/tracks/21y0yK08j1UzYu4ro06wfL:
+ Resource not found, reason: None
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\spotipy\client.py", line 274, in _internal_call
+    response.raise_for_status()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\requests\models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://api.spotify.com/v1/tracks/21y0yK08j1UzYu4ro06wfL
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 186, in download
+    return self.download_spotify_track(url, format)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 483, in download_spotify_track
+    track_info = get_track_info(url)  # You'll need to implement this method
+                 ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\spotify_api.py", line 112, in get_track_info
+    track = sp.track(track_id)
+            ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\spotipy\client.py", line 372, in track
+    return self._get("tracks/" + trid, market=market)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\spotipy\client.py", line 324, in _get
+    return self._internal_call("GET", url, payload, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\spotipy\client.py", line 294, in _internal_call
+    raise SpotifyException(
+spotipy.exceptions.SpotifyException: http status: 404, code: -1 - https://api.spotify.com/v1/tracks/21y0yK08j1UzYu4ro06wfL:
+ Resource not found, reason: None
+ERROR 2025-03-30 18:41:04,491 log 21380 18756 Internal Server Error: /api/songs/songs/download/
+ERROR 2025-03-30 18:41:04,492 basehttp 21380 18756 "POST /api/songs/songs/download/ HTTP/1.1" 500 150
+INFO 2025-03-30 19:16:12,011 autoreload 21380 4100 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 19:16:17,376 autoreload 6176 23152 Watching for file changes with StatReloader
+INFO 2025-03-30 19:16:49,061 autoreload 6176 23152 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\spotify_api.py changed, reloading.
+INFO 2025-03-30 19:16:52,571 autoreload 6408 1244 Watching for file changes with StatReloader
+INFO 2025-03-30 19:17:10,832 autoreload 6408 1244 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\utils.py changed, reloading.
+INFO 2025-03-30 19:17:14,385 autoreload 20652 17912 Watching for file changes with StatReloader
+INFO 2025-03-30 19:17:41,289 autoreload 20652 17912 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\utils.py changed, reloading.
+INFO 2025-03-30 19:17:44,966 autoreload 22132 11848 Watching for file changes with StatReloader
+INFO 2025-03-30 19:17:58,185 autoreload 22132 11848 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 19:18:02,289 autoreload 19280 1700 Watching for file changes with StatReloader
+INFO 2025-03-30 19:18:46,554 spotify_api 19280 26512 Creating Spotify client with credentials from settings
+INFO 2025-03-30 19:18:46,751 spotify_api 19280 26512 Successfully tested Spotify client
+ERROR 2025-03-30 19:18:47,016 views 19280 26512 Spotify track download error: http status: 404, code: -1 - https://api.spotify.com/v1/tracks/21y0yK08j1UzYu4ro06wfL:
+ Resource not found, reason: None
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\spotipy\client.py", line 274, in _internal_call
+    response.raise_for_status()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\requests\models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://api.spotify.com/v1/tracks/21y0yK08j1UzYu4ro06wfL
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 486, in download_spotify_track
+    track_info = get_track_info(url)
+                 ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\spotify_api.py", line 112, in get_track_info
+    track = sp.track(track_id)
+            ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\spotipy\client.py", line 372, in track
+    return self._get("tracks/" + trid, market=market)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\spotipy\client.py", line 324, in _get
+    return self._internal_call("GET", url, payload, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\spotipy\client.py", line 294, in _internal_call
+    raise SpotifyException(
+spotipy.exceptions.SpotifyException: http status: 404, code: -1 - https://api.spotify.com/v1/tracks/21y0yK08j1UzYu4ro06wfL:
+ Resource not found, reason: None
+ERROR 2025-03-30 19:18:47,036 views 19280 26512 Download error: http status: 404, code: -1 - https://api.spotify.com/v1/tracks/21y0yK08j1UzYu4ro06wfL:
+ Resource not found, reason: None
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\spotipy\client.py", line 274, in _internal_call
+    response.raise_for_status()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\requests\models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://api.spotify.com/v1/tracks/21y0yK08j1UzYu4ro06wfL
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 186, in download
+    return self.download_spotify_track(url, format)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 486, in download_spotify_track
+    track_info = get_track_info(url)
+                 ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\spotify_api.py", line 112, in get_track_info
+    track = sp.track(track_id)
+            ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\spotipy\client.py", line 372, in track
+    return self._get("tracks/" + trid, market=market)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\spotipy\client.py", line 324, in _get
+    return self._internal_call("GET", url, payload, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\spotipy\client.py", line 294, in _internal_call
+    raise SpotifyException(
+spotipy.exceptions.SpotifyException: http status: 404, code: -1 - https://api.spotify.com/v1/tracks/21y0yK08j1UzYu4ro06wfL:
+ Resource not found, reason: None
+ERROR 2025-03-30 19:18:47,048 log 19280 26512 Internal Server Error: /api/songs/songs/download/
+ERROR 2025-03-30 19:18:47,050 basehttp 19280 26512 "POST /api/songs/songs/download/ HTTP/1.1" 500 150
+INFO 2025-03-30 19:19:06,449 autoreload 7688 22996 Watching for file changes with StatReloader
+INFO 2025-03-30 19:19:27,824 spotify_api 7688 21428 Creating Spotify client with credentials from settings
+INFO 2025-03-30 19:19:28,009 spotify_api 7688 21428 Successfully tested Spotify client
+ERROR 2025-03-30 19:19:28,425 views 7688 21428 Spotify track download error: http status: 404, code: -1 - https://api.spotify.com/v1/tracks/21y0yK08j1UzYu4ro06wfL:
+ Resource not found, reason: None
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\spotipy\client.py", line 274, in _internal_call
+    response.raise_for_status()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\requests\models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://api.spotify.com/v1/tracks/21y0yK08j1UzYu4ro06wfL
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 486, in download_spotify_track
+    track_info = get_track_info(url)
+                 ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\spotify_api.py", line 112, in get_track_info
+    track = sp.track(track_id)
+            ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\spotipy\client.py", line 372, in track
+    return self._get("tracks/" + trid, market=market)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\spotipy\client.py", line 324, in _get
+    return self._internal_call("GET", url, payload, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\spotipy\client.py", line 294, in _internal_call
+    raise SpotifyException(
+spotipy.exceptions.SpotifyException: http status: 404, code: -1 - https://api.spotify.com/v1/tracks/21y0yK08j1UzYu4ro06wfL:
+ Resource not found, reason: None
+ERROR 2025-03-30 19:19:28,449 views 7688 21428 Download error: http status: 404, code: -1 - https://api.spotify.com/v1/tracks/21y0yK08j1UzYu4ro06wfL:
+ Resource not found, reason: None
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\spotipy\client.py", line 274, in _internal_call
+    response.raise_for_status()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\requests\models.py", line 1024, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: https://api.spotify.com/v1/tracks/21y0yK08j1UzYu4ro06wfL
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 186, in download
+    return self.download_spotify_track(url, format)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 486, in download_spotify_track
+    track_info = get_track_info(url)
+                 ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\spotify_api.py", line 112, in get_track_info
+    track = sp.track(track_id)
+            ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\spotipy\client.py", line 372, in track
+    return self._get("tracks/" + trid, market=market)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\spotipy\client.py", line 324, in _get
+    return self._internal_call("GET", url, payload, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\spotipy\client.py", line 294, in _internal_call
+    raise SpotifyException(
+spotipy.exceptions.SpotifyException: http status: 404, code: -1 - https://api.spotify.com/v1/tracks/21y0yK08j1UzYu4ro06wfL:
+ Resource not found, reason: None
+ERROR 2025-03-30 19:19:28,470 log 7688 21428 Internal Server Error: /api/songs/songs/download/
+ERROR 2025-03-30 19:19:28,472 basehttp 7688 21428 "POST /api/songs/songs/download/ HTTP/1.1" 500 150
+INFO 2025-03-30 19:20:40,592 autoreload 7688 22996 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\spotify_api.py changed, reloading.
+INFO 2025-03-30 19:20:44,439 autoreload 16600 7288 Watching for file changes with StatReloader
+INFO 2025-03-30 19:21:17,431 autoreload 16600 7288 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\spotify_api.py changed, reloading.
+INFO 2025-03-30 19:21:21,052 autoreload 18700 20172 Watching for file changes with StatReloader
+INFO 2025-03-30 19:21:45,754 autoreload 18700 20172 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 19:21:49,720 autoreload 14252 6160 Watching for file changes with StatReloader
+INFO 2025-03-30 19:22:30,110 autoreload 14252 6160 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 19:22:33,748 autoreload 25556 13928 Watching for file changes with StatReloader
+INFO 2025-03-30 19:22:37,077 autoreload 25556 13928 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 19:22:40,380 autoreload 25136 12660 Watching for file changes with StatReloader
+INFO 2025-03-30 19:26:38,251 spotify_api 25136 5240 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-30 19:26:38,252 spotify_api 25136 5240 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-30 19:26:38,252 views 25136 5240 Redirecting Spotify playlist URL to playlist download endpoint: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-30 19:26:38,253 spotify_api 25136 5240 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-30 19:26:38,253 spotify_api 25136 5240 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-30 19:26:38,254 spotify_api 25136 5240 Getting Spotify playlist info for ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-30 19:26:38,254 spotify_api 25136 5240 Creating Spotify client with credentials from settings
+INFO 2025-03-30 19:26:38,457 spotify_api 25136 5240 Successfully tested Spotify client
+INFO 2025-03-30 19:26:38,876 spotify_api 25136 5240 Extracted 3 track URLs from playlist
+ERROR 2025-03-30 19:26:38,877 views 25136 5240 Playlist download error: Playlist() got unexpected keyword arguments: 'title', 'description'
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 661, in download_playlist
+    playlist = Playlist.objects.create(
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 677, in create
+    obj = self.model(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\base.py", line 567, in __init__
+    raise TypeError(
+TypeError: Playlist() got unexpected keyword arguments: 'title', 'description'
+ERROR 2025-03-30 19:26:39,078 log 25136 5240 Internal Server Error: /api/songs/songs/download/
+ERROR 2025-03-30 19:26:39,081 basehttp 25136 5240 "POST /api/songs/songs/download/ HTTP/1.1" 500 79
+INFO 2025-03-30 19:29:04,070 autoreload 25136 12660 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 19:29:09,359 autoreload 876 23556 Watching for file changes with StatReloader
+INFO 2025-03-30 19:34:12,396 spotify_api 876 23000 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-30 19:34:12,398 spotify_api 876 23000 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-30 19:34:12,398 views 876 23000 Redirecting Spotify playlist URL to playlist download endpoint: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-30 19:34:12,398 spotify_api 876 23000 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-30 19:34:12,398 spotify_api 876 23000 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-30 19:34:12,398 spotify_api 876 23000 Getting Spotify playlist info for ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-30 19:34:12,398 spotify_api 876 23000 Creating Spotify client with credentials from settings
+INFO 2025-03-30 19:34:12,618 spotify_api 876 23000 Successfully tested Spotify client
+INFO 2025-03-30 19:34:12,998 spotify_api 876 23000 Extracted 3 track URLs from playlist
+ERROR 2025-03-30 19:34:13,121 views 876 23000 Playlist download error: DownloadProgress() got unexpected keyword arguments: 'user', 'playlist', 'total_tracks', 'completed_tracks', 'status'
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 669, in download_playlist
+    download_progress = DownloadProgress.objects.create(
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 677, in create
+    obj = self.model(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\base.py", line 567, in __init__
+    raise TypeError(
+TypeError: DownloadProgress() got unexpected keyword arguments: 'user', 'playlist', 'total_tracks', 'completed_tracks', 'status'
+ERROR 2025-03-30 19:34:13,642 log 876 23000 Internal Server Error: /api/songs/songs/download/
+ERROR 2025-03-30 19:34:13,662 basehttp 876 23000 "POST /api/songs/songs/download/ HTTP/1.1" 500 129
+INFO 2025-03-30 19:34:52,694 autoreload 876 23556 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 19:34:57,048 autoreload 20348 13596 Watching for file changes with StatReloader
+INFO 2025-03-30 19:35:05,851 autoreload 20348 13596 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 19:35:09,640 autoreload 10456 24704 Watching for file changes with StatReloader
+INFO 2025-03-30 19:35:20,914 autoreload 10456 24704 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 19:35:25,510 autoreload 22248 27476 Watching for file changes with StatReloader
+INFO 2025-03-30 19:36:08,734 autoreload 22248 27476 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 19:36:12,966 autoreload 14008 24088 Watching for file changes with StatReloader
+INFO 2025-03-30 19:36:51,712 spotify_api 14008 9220 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-30 19:36:51,712 spotify_api 14008 9220 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-30 19:36:51,712 views 14008 9220 Redirecting Spotify playlist URL to playlist download endpoint: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-30 19:36:51,712 spotify_api 14008 9220 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-30 19:36:51,712 spotify_api 14008 9220 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-30 19:36:51,712 spotify_api 14008 9220 Getting Spotify playlist info for ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-30 19:36:51,712 spotify_api 14008 9220 Creating Spotify client with credentials from settings
+INFO 2025-03-30 19:36:51,912 spotify_api 14008 9220 Successfully tested Spotify client
+INFO 2025-03-30 19:36:52,293 spotify_api 14008 9220 Extracted 3 track URLs from playlist
+INFO 2025-03-30 19:36:52,530 spotify_api 14008 9220 Extracting Spotify ID from URL: https://open.spotify.com/track/1ApfHqjOoBmJZ0SjdjzVyA
+INFO 2025-03-30 19:36:52,530 spotify_api 14008 9220 Extracted Spotify track ID: 1ApfHqjOoBmJZ0SjdjzVyA
+INFO 2025-03-30 19:36:52,531 spotify_api 14008 9220 Getting info for Spotify track ID: 1ApfHqjOoBmJZ0SjdjzVyA
+INFO 2025-03-30 19:36:52,531 spotify_api 14008 9220 Creating Spotify client with credentials from settings
+INFO 2025-03-30 19:36:52,714 spotify_api 14008 9220 Successfully tested Spotify client
+INFO 2025-03-30 19:36:52,995 spotify_api 14008 9220 Got track info: Yeh Raaten Yeh Mausam by Sanam
+INFO 2025-03-30 19:37:04,782 views 14008 9220 Added Spotify song to cache from playlist: https://open.spotify.com/track/1ApfHqjOoBmJZ0SjdjzVyA
+INFO 2025-03-30 19:37:05,410 spotify_api 14008 9220 Extracting Spotify ID from URL: https://open.spotify.com/track/0dQiyqHUpnMPmHtk535VAY
+INFO 2025-03-30 19:37:05,411 spotify_api 14008 9220 Extracted Spotify track ID: 0dQiyqHUpnMPmHtk535VAY
+INFO 2025-03-30 19:37:05,411 spotify_api 14008 9220 Getting info for Spotify track ID: 0dQiyqHUpnMPmHtk535VAY
+INFO 2025-03-30 19:37:05,412 spotify_api 14008 9220 Creating Spotify client with credentials from settings
+INFO 2025-03-30 19:37:05,611 spotify_api 14008 9220 Successfully tested Spotify client
+INFO 2025-03-30 19:37:05,896 spotify_api 14008 9220 Got track info: Tennu Le by omer inayat
+INFO 2025-03-30 19:37:19,239 views 14008 9220 Added Spotify song to cache from playlist: https://open.spotify.com/track/0dQiyqHUpnMPmHtk535VAY
+INFO 2025-03-30 19:37:19,833 spotify_api 14008 9220 Extracting Spotify ID from URL: https://open.spotify.com/track/0kYBzFJ5a2Jozi6cI4y9Bp
+INFO 2025-03-30 19:37:19,833 spotify_api 14008 9220 Extracted Spotify track ID: 0kYBzFJ5a2Jozi6cI4y9Bp
+INFO 2025-03-30 19:37:19,833 spotify_api 14008 9220 Getting info for Spotify track ID: 0kYBzFJ5a2Jozi6cI4y9Bp
+INFO 2025-03-30 19:37:19,835 spotify_api 14008 9220 Creating Spotify client with credentials from settings
+INFO 2025-03-30 19:37:20,031 spotify_api 14008 9220 Successfully tested Spotify client
+INFO 2025-03-30 19:37:20,335 spotify_api 14008 9220 Got track info: Jo Tere Sang by Jeet Gannguli
+INFO 2025-03-30 19:37:35,070 views 14008 9220 Added Spotify song to cache from playlist: https://open.spotify.com/track/0kYBzFJ5a2Jozi6cI4y9Bp
+ERROR 2025-03-30 19:37:35,648 views 14008 9220 Playlist download error: CustomUser.increment_download_count() got an unexpected keyword argument 'count'
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 915, in download_playlist
+    request.user.increment_download_count(count=completed_downloads)
+TypeError: CustomUser.increment_download_count() got an unexpected keyword argument 'count'
+ERROR 2025-03-30 19:37:35,782 log 14008 9220 Internal Server Error: /api/songs/songs/download/
+ERROR 2025-03-30 19:37:35,784 basehttp 14008 9220 "POST /api/songs/songs/download/ HTTP/1.1" 500 92
+INFO 2025-03-30 19:38:36,533 autoreload 14008 24088 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 19:38:40,770 autoreload 12560 1544 Watching for file changes with StatReloader
+INFO 2025-03-30 19:39:03,352 autoreload 12560 1544 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\users\models.py changed, reloading.
+INFO 2025-03-30 19:39:06,966 autoreload 21960 6924 Watching for file changes with StatReloader
+INFO 2025-03-30 19:39:20,070 autoreload 21960 6924 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-30 19:39:24,294 autoreload 25532 20972 Watching for file changes with StatReloader
+INFO 2025-03-30 19:40:01,394 spotify_api 25532 14404 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-30 19:40:01,394 spotify_api 25532 14404 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-30 19:40:01,394 views 25532 14404 Redirecting Spotify playlist URL to playlist download endpoint: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-30 19:40:01,394 spotify_api 25532 14404 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-30 19:40:01,394 spotify_api 25532 14404 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-30 19:40:01,394 spotify_api 25532 14404 Getting Spotify playlist info for ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-30 19:40:01,394 spotify_api 25532 14404 Creating Spotify client with credentials from settings
+INFO 2025-03-30 19:40:01,629 spotify_api 25532 14404 Successfully tested Spotify client
+INFO 2025-03-30 19:40:02,476 spotify_api 25532 14404 Extracted 3 track URLs from playlist
+INFO 2025-03-30 19:40:03,244 views 25532 14404 Added cached song to playlist: https://open.spotify.com/track/1ApfHqjOoBmJZ0SjdjzVyA
+INFO 2025-03-30 19:40:03,776 views 25532 14404 Added cached song to playlist: https://open.spotify.com/track/0dQiyqHUpnMPmHtk535VAY
+INFO 2025-03-30 19:40:04,307 views 25532 14404 Added cached song to playlist: https://open.spotify.com/track/0kYBzFJ5a2Jozi6cI4y9Bp
+INFO 2025-03-30 19:40:04,453 basehttp 25532 14404 "POST /api/songs/songs/download/ HTTP/1.1" 200 122
+WARNING 2025-03-30 19:40:22,909 log 25532 14404 Not Found: /api/playlists/18/download_all/
+WARNING 2025-03-30 19:40:22,910 basehttp 25532 14404 "GET /api/playlists/18/download_all/ HTTP/1.1" 404 3427
+INFO 2025-03-30 19:40:34,717 basehttp 25532 14404 "GET /api/songs/playlists/18/download_all/ HTTP/1.1" 200 18440628
+INFO 2025-03-30 19:49:14,521 autoreload 25532 20972 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\urls.py changed, reloading.
+INFO 2025-03-30 19:49:17,943 autoreload 9512 5572 Watching for file changes with StatReloader
+INFO 2025-03-30 19:49:34,361 spotify_api 9512 3160 Extracting Spotify ID from URL: https://open.spotify.com/track/64BbK9SFKH2jk86U3dGj2P
+INFO 2025-03-30 19:49:34,361 spotify_api 9512 3160 Extracted Spotify track ID: 64BbK9SFKH2jk86U3dGj2P
+INFO 2025-03-30 19:49:34,447 views 9512 3160 Found existing song with URL https://open.spotify.com/track/64BbK9SFKH2jk86U3dGj2P, serving directly
+INFO 2025-03-30 19:49:34,620 basehttp 9512 3160 "POST /api/songs/songs/download/ HTTP/1.1" 200 6185708

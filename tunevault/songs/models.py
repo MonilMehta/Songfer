@@ -209,3 +209,152 @@ class SongCache(models.Model):
             logger = logging.getLogger(__name__)
             logger.error(f"Error retrieving cache entry: {e}")
             return None
+
+class SongPlay(models.Model):
+    """
+    Track each time a song is played
+    """
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='song_plays')
+    song = models.ForeignKey(Song, on_delete=models.CASCADE, related_name='plays')
+    timestamp = models.DateTimeField(auto_now_add=True)
+    duration = models.PositiveIntegerField(default=0, help_text="Duration of play in seconds")
+    completed = models.BooleanField(default=False, help_text="Whether the song was played to completion")
+    device_info = models.JSONField(default=dict, blank=True, help_text="Information about the device used to play the song")
+    
+    class Meta:
+        ordering = ['-timestamp']
+        indexes = [
+            models.Index(fields=['user', 'timestamp']),
+            models.Index(fields=['song', 'timestamp']),
+        ]
+    
+    def __str__(self):
+        return f"{self.user.username} played {self.song.title} for {self.duration}s"
+    
+    def save(self, *args, **kwargs):
+        """Update user's total listen time when saving a song play"""
+        is_new = self.pk is None
+        super().save(*args, **kwargs)
+        
+        if is_new:
+            # Update user's total listen time
+            self.user.record_listen_time(self.duration)
+            
+class UserAnalytics(models.Model):
+    """
+    Daily aggregated analytics for user activity
+    """
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='daily_analytics')
+    date = models.DateField()
+    songs_played = models.PositiveIntegerField(default=0)
+    listening_time = models.PositiveIntegerField(default=0, help_text="Total listening time in seconds")
+    songs_downloaded = models.PositiveIntegerField(default=0)
+    downloads_available = models.PositiveIntegerField(default=0, help_text="Downloads available for the day")
+    
+    class Meta:
+        unique_together = ['user', 'date']
+        ordering = ['-date']
+    
+    def __str__(self):
+        return f"Analytics for {self.user.username} on {self.date}"
+    
+    @classmethod
+    def record_play(cls, user, duration):
+        """Record a song play in today's analytics"""
+        from django.utils import timezone
+        
+        today = timezone.now().date()
+        analytics, created = cls.objects.get_or_create(
+            user=user, 
+            date=today,
+            defaults={
+                'downloads_available': 30 if user.is_subscription_active() else 5,
+            }
+        )
+        
+        analytics.songs_played += 1
+        analytics.listening_time += duration
+        analytics.save(update_fields=['songs_played', 'listening_time'])
+        
+        return analytics
+    
+    @classmethod
+    def record_download(cls, user):
+        """Record a song download in today's analytics"""
+        from django.utils import timezone
+        
+        today = timezone.now().date()
+        analytics, created = cls.objects.get_or_create(
+            user=user, 
+            date=today,
+            defaults={
+                'downloads_available': 30 if user.is_subscription_active() else 5,
+            }
+        )
+        
+        analytics.songs_downloaded += 1
+        analytics.save(update_fields=['songs_downloaded'])
+        
+        return analytics
+        
+    @classmethod
+    def get_user_stats(cls, user, days=30):
+        """Get user statistics for the last N days"""
+        from django.utils import timezone
+        from django.db.models import Sum, Avg
+        
+        end_date = timezone.now().date()
+        start_date = end_date - timezone.timedelta(days=days)
+        
+        # Get analytics for the specified period
+        analytics = cls.objects.filter(
+            user=user,
+            date__gte=start_date,
+            date__lte=end_date
+        )
+        
+        # Calculate aggregated stats
+        stats = analytics.aggregate(
+            total_plays=Sum('songs_played'),
+            total_time=Sum('listening_time'),
+            total_downloads=Sum('songs_downloaded'),
+            avg_daily_plays=Avg('songs_played'),
+            avg_daily_time=Avg('listening_time'),
+            avg_daily_downloads=Avg('songs_downloaded')
+        )
+        
+        # Add day-by-day data for charts
+        day_data = []
+        current = start_date
+        while current <= end_date:
+            day_stats = analytics.filter(date=current).first()
+            
+            if day_stats:
+                day_data.append({
+                    'date': current.strftime('%Y-%m-%d'),
+                    'plays': day_stats.songs_played,
+                    'time': day_stats.listening_time,
+                    'downloads': day_stats.songs_downloaded
+                })
+            else:
+                day_data.append({
+                    'date': current.strftime('%Y-%m-%d'),
+                    'plays': 0,
+                    'time': 0,
+                    'downloads': 0
+                })
+            
+            current += timezone.timedelta(days=1)
+        
+        # Combine the results
+        result = {
+            'summary': stats,
+            'daily_data': day_data,
+            'period': {
+                'start': start_date.strftime('%Y-%m-%d'),
+                'end': end_date.strftime('%Y-%m-%d'),
+                'days': days
+            }
+        }
+        
+        return result

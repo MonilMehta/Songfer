@@ -84,6 +84,7 @@ INSTALLED_APPS = [
     'youtube_dl',
     'corsheaders',
     'django_celery_results',
+    'drf_yasg',
     
     # Local apps
     'users',
@@ -273,3 +274,43 @@ LOGGING = {
 # CORS settings
 CORS_ALLOW_ALL_ORIGINS = True  # For development only, restrict in production
 CORS_EXPOSE_HEADERS = ['X-Thumbnail-URL', 'X-Song-Title', 'X-Song-Artist']
+
+# Swagger settings
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header'
+        }
+    },
+    'USE_SESSION_AUTH': True,
+    'DEFAULT_INFO': 'tunevault.urls.api_info',
+    'OPERATIONS_SORTER': 'alpha',
+    'TAGS_SORTER': 'alpha',
+    'VALIDATOR_URL': None,
+}
+
+# Sentry configuration for error monitoring
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+from sentry_sdk.integrations.celery import CeleryIntegration
+
+sentry_sdk.init(
+    dsn="",  # Add your Sentry DSN when deployed
+    integrations=[
+        DjangoIntegration(),
+        CeleryIntegration(),
+    ],
+    traces_sample_rate=0.1,
+    send_default_pii=True
+)
+
+# Rate limiting settings
+RATELIMIT_USE_CACHE = 'default'
+RATELIMIT_VIEW = 'songs.views.ratelimited_error'
+RATELIMIT_ENABLE = True
+
+# Format support
+SUPPORTED_AUDIO_FORMATS = ['mp3', 'aac']
+DEFAULT_AUDIO_FORMAT = 'mp3'

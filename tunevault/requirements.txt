@@ -43,3 +43,12 @@ urllib3
 vine
 wcwidth
 youtube-dl
+# Added packages
+drf-yasg  # Swagger/OpenAPI documentation
+pytest  # Testing
+pytest-django # Django test integration
+django-ratelimit  # IP-based rate limiting
+sentry-sdk  # Error monitoring
+pytest-celery  # Celery test integration
+retrying # Retry mechanism for external API calls
+mutagen  # Audio metadata handling for multiple formats
