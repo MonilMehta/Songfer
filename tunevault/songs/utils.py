@@ -10,8 +10,48 @@ from functools import wraps
 from retrying import retry
 import sentry_sdk
 import yt_dlp
+import re
+import urllib.parse
 
 logger = logging.getLogger(__name__)
+
+def sanitize_filename(filename, max_length=95):
+    """
+    Sanitize a filename to make it safe for filesystem and database.
+    
+    Args:
+        filename (str): The filename to sanitize
+        max_length (int): Maximum length of the filename (default: 95)
+        
+    Returns:
+        str: Sanitized filename
+    """
+    if not filename:
+        return "unknown_file"
+        
+    # Convert to plain ASCII characters
+    filename = filename.encode('ascii', 'ignore').decode('ascii')
+    
+    # Keep only alphanumeric, spaces, dashes, dots
+    filename = re.sub(r'[^a-zA-Z0-9 \-\._]', '', filename)
+    
+    # Replace multiple spaces with a single space
+    filename = re.sub(r'\s+', ' ', filename)
+    
+    # Truncate to maximum length
+    if len(filename) > max_length:
+        base, ext = os.path.splitext(filename)
+        max_base_length = max_length - len(ext)
+        if max_base_length > 0:
+            filename = base[:max_base_length] + ext
+        else:
+            filename = filename[:max_length]
+    
+    # Ensure filename isn't empty after sanitization
+    if not filename.strip():
+        return "unknown_file"
+        
+    return filename.strip()
 
 # External API error handling
 class ExternalAPIError(Exception):
@@ -480,44 +520,81 @@ def download_youtube_util(url, output_path=None):
     songs_dir = os.path.join(output_path, 'songs')
     os.makedirs(songs_dir, exist_ok=True)
     
-    # Format-specific paths
-    base_output_template = os.path.join(songs_dir, '%(title)s.%(ext)s')
+    # Format-specific paths - use video ID as filename to avoid Unicode issues
+    safe_template = os.path.join(songs_dir, '%(id)s.%(ext)s')
     
     try:
-        # Basic options for downloading audio
-        ydl_opts = {
-            'format': 'bestaudio/best',
-            'postprocessors': [{
-                'key': 'FFmpegExtractAudio',
-                'preferredcodec': 'mp3',
-                'preferredquality': '192',
-            }],
-            'outtmpl': base_output_template,
-            'writethumbnail': True,
-            'noplaylist': True,  # Only download the single video, not the playlist
-            'quiet': False,
-            'verbose': False
-        }
-        
         # First attempt with normal method
         try:
             logger.info(f"Attempting to download from YouTube: {url}")
-            with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-                info = ydl.extract_info(url, download=True)
-                filename = ydl.prepare_filename(info)
-                base_filename = os.path.splitext(filename)[0]
-                mp3_filename = base_filename + '.mp3'
+            with yt_dlp.YoutubeDL({'quiet': True, 'no_warnings': True}) as ydl:
+                # First just extract info to get video ID and title
+                info = ydl.extract_info(url, download=False)
+                video_id = info.get('id', 'unknown')
+                title = sanitize_filename(info.get('title', 'Unknown Title'))
+                artist = sanitize_filename(info.get('uploader', 'Unknown Artist'))
+                
+                # Now download with the sanitized info
+                ydl_opts = {
+                    'format': 'bestaudio/best',
+                    'postprocessors': [{
+                        'key': 'FFmpegExtractAudio',
+                        'preferredcodec': 'mp3',
+                        'preferredquality': '192',
+                    }],
+                    'outtmpl': os.path.join(songs_dir, f"{video_id}"),
+                    'writethumbnail': True,
+                    'noplaylist': True
+                }
+                
+                with yt_dlp.YoutubeDL(ydl_opts) as ydl2:
+                    ydl2.download([url])
+                
+                # The output file will be based on the video ID
+                mp3_filename = os.path.join(songs_dir, f"{video_id}.mp3")
                 
                 if os.path.exists(mp3_filename):
                     logger.info(f"Successfully downloaded with primary method: {mp3_filename}")
                 else:
                     raise ValueError(f"MP3 file not created after download")
+                    
+                # Create a properly named file for returning to user and for future reference
+                proper_filename = f"{title} - {artist}.mp3"
+                proper_path = os.path.join(songs_dir, proper_filename)
+                
+                # Copy the file to the proper name if different
+                if mp3_filename != proper_path:
+                    import shutil
+                    shutil.copy2(mp3_filename, proper_path)
+                
+                # Look for thumbnail
+                thumbnail_url = info.get('thumbnail')
+                thumbnail_path = None
+                
+                # Try to find the thumbnail file
+                for ext in ['jpg', 'png', 'webp']:
+                    thumbnail_possible = os.path.join(songs_dir, f"{video_id}.{ext}")
+                    if os.path.exists(thumbnail_possible):
+                        thumbnail_path = thumbnail_possible
+                        break
+                
+                # Return information about the downloaded file
+                return {
+                    'title': title,
+                    'artist': artist,
+                    'album': sanitize_filename(info.get('album', 'Unknown')),
+                    'filepath': proper_path,
+                    'thumbnail': thumbnail_url,
+                    'duration': info.get('duration'),
+                    'url': url
+                }
+                
         except Exception as primary_error:
-            # If the primary method fails with 403 or other errors, try alternative method
+            # If the primary method fails, try alternative method
             logger.warning(f"Primary download method failed: {str(primary_error)}")
             logger.info("Trying alternative download method...")
             
-            # Alternative method: Use a different format option and user-agent
+            # Alternative method with simpler output template
             alt_ydl_opts = {
                 'format': 'bestaudio/best',
                 'postprocessors': [{
@@ -525,85 +602,32 @@ def download_youtube_util(url, output_path=None):
                     'preferredcodec': 'mp3',
                     'preferredquality': '192',
                 }],
-                'outtmpl': base_output_template,
+                'outtmpl': os.path.join(songs_dir, 'youtube_%(id)s'),
                 'writethumbnail': True,
                 'noplaylist': True,
-                # Use a mobile user agent
                 'http_headers': {
                     'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1',
                 },
-                # Additional options to try to bypass restrictions
                 'nocheckcertificate': True,
                 'geo_bypass': True,
-                'quiet': False
             }
             
             with yt_dlp.YoutubeDL(alt_ydl_opts) as ydl:
                 info = ydl.extract_info(url, download=True)
-                filename = ydl.prepare_filename(info)
-                base_filename = os.path.splitext(filename)[0]
-                mp3_filename = base_filename + '.mp3'
+                video_id = info.get('id', 'unknown')
+                mp3_filename = os.path.join(songs_dir, f"youtube_{video_id}.mp3")
                 
-                if not os.path.exists(mp3_filename):
-                    # If still failing, try one more method with different network options
-                    logger.warning(f"Alternative method also failed, trying final method...")
-                    
-                    final_ydl_opts = {
-                        'format': 'bestaudio',
-                        'postprocessors': [{
-                            'key': 'FFmpegExtractAudio',
-                            'preferredcodec': 'mp3',
-                            'preferredquality': '128',
-                        }],
-                        'outtmpl': base_output_template,
-                        'writethumbnail': True,
-                        'noplaylist': True,
-                        'http_headers': {
-                            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36',
-                        },
-                        'socket_timeout': 30,
-                        'retries': 10,
-                        'nocheckcertificate': True,
-                        'geo_bypass': True,
-                        'quiet': False
-                    }
-                    
-                    with yt_dlp.YoutubeDL(final_ydl_opts) as ydl:
-                        info = ydl.extract_info(url, download=True)
-                        filename = ydl.prepare_filename(info)
-                        base_filename = os.path.splitext(filename)[0]
-                        mp3_filename = base_filename + '.mp3'
-        
-        # Check if the MP3 file exists
-        if not os.path.exists(mp3_filename):
-            raise ValueError(f"MP3 file not created: {mp3_filename}")
-        
-        # Try to find the thumbnail
-        thumbnail_url = info.get('thumbnail')
-        thumbnail_path = None
-        
-        # Check for local thumbnail files
-        for ext in ['jpg', 'png', 'webp']:
-            possible_path = f"{base_filename}.{ext}"
-            if os.path.exists(possible_path):
-                thumbnail_path = possible_path
-                # Make it a web-accessible URL if it's within the media directory
-                if settings.MEDIA_ROOT in os.path.abspath(possible_path):
-                    rel_path = os.path.relpath(possible_path, settings.MEDIA_ROOT)
-                    thumbnail_url = f"/media/{rel_path}"
-                break
-        
-        # Return information about the downloaded file
-        return {
-            'title': info.get('title', 'Unknown Title'),
-            'artist': info.get('uploader', 'Unknown Artist'),
-            'album': info.get('album', 'Unknown'),
-            'filepath': mp3_filename,
-            'thumbnail': thumbnail_url,
-            'duration': info.get('duration'),
-            'url': url
-        }
-        
+                # Return information about the downloaded file, but with sanitized title
+                return {
+                    'title': sanitize_filename(info.get('title', 'Unknown Title')),
+                    'artist': sanitize_filename(info.get('uploader', 'Unknown Artist')),
+                    'album': sanitize_filename(info.get('album', 'Unknown')),
+                    'filepath': mp3_filename,
+                    'thumbnail': info.get('thumbnail'),
+                    'duration': info.get('duration'),
+                    'url': url
+                }
+            
     except yt_dlp.utils.DownloadError as e:
         logger.error(f"YouTube download error: {str(e)}", exc_info=True)
         raise YouTubeAPIError(f"YouTube download error: {str(e)}", original_error=e)

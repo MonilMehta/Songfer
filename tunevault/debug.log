@@ -6890,3 +6890,596 @@ Traceback (most recent call last):
 NameError: name 'get_spotify_track_info' is not defined
 ERROR 2025-03-31 00:04:16,375 log 11860 16588 Internal Server Error: /api/songs/songs/download/
 ERROR 2025-03-31 00:04:16,376 basehttp 11860 16588 "POST /api/songs/songs/download/ HTTP/1.1" 500 87
+INFO 2025-03-31 00:05:02,591 autoreload 11860 16964 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 00:05:06,962 autoreload 11520 292 Watching for file changes with StatReloader
+INFO 2025-03-31 00:05:30,328 basehttp 11520 23860 "GET /admin/users/customuser/1/change/ HTTP/1.1" 200 40811
+INFO 2025-03-31 00:05:30,959 basehttp 11520 23860 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-03-31 00:06:17,405 spotify_api 11520 7768 Extracting Spotify ID from URL: https://open.spotify.com/track/4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:06:17,417 spotify_api 11520 7768 Extracted Spotify track ID: 4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:06:17,543 spotify_api 11520 7768 Extracting Spotify ID from URL: https://open.spotify.com/track/4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:06:17,544 spotify_api 11520 7768 Extracted Spotify track ID: 4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:06:17,544 views 11520 7768 Getting info for Spotify track ID: ('track', '4A7eOIbt19Wk5OXjVxE3SI')
+INFO 2025-03-31 00:06:17,545 spotify_api 11520 7768 Extracting Spotify ID from URL: https://open.spotify.com/track/4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:06:17,546 spotify_api 11520 7768 Extracted Spotify track ID: 4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:06:17,546 spotify_api 11520 7768 Getting info for Spotify track ID: 4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:06:17,546 spotify_api 11520 7768 Creating Spotify client with credentials from settings
+INFO 2025-03-31 00:06:17,755 spotify_api 11520 7768 Successfully tested Spotify client
+INFO 2025-03-31 00:06:18,082 spotify_api 11520 7768 Got track info: Har Kisi Ko (From "Boss) by Arijit Singh
+INFO 2025-03-31 00:06:18,082 views 11520 7768 Got track info: Har Kisi Ko (From "Boss) by Arijit Singh
+INFO 2025-03-31 00:06:18,298 views 11520 7768 Downloading using YouTube search: ytsearch:Har Kisi Ko (From "Boss) Arijit Singh
+ERROR 2025-03-31 00:06:35,672 views 11520 7768 Spotify track download error: value too long for type character varying(100)
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.StringDataRightTruncation: value too long for type character varying(100)
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 594, in download_spotify_track
+    song = Song.objects.create(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 679, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\base.py", line 892, in save
+    self.save_base(
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\base.py", line 998, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\base.py", line 1161, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\base.py", line 1202, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 1847, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1836, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\sentry_sdk\utils.py", line 1783, in runner
+    return sentry_patched_function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\__init__.py", line 651, in execute
+    result = real_execute(self, sql, params)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.DataError: value too long for type character varying(100)
+
+ERROR 2025-03-31 00:06:35,806 log 11520 7768 Internal Server Error: /api/songs/songs/download/
+ERROR 2025-03-31 00:06:35,817 basehttp 11520 7768 "POST /api/songs/songs/download/ HTTP/1.1" 500 91
+INFO 2025-03-31 00:07:42,081 spotify_api 11520 13708 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-31 00:07:42,082 spotify_api 11520 13708 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-31 00:07:42,083 views 11520 13708 Redirecting Spotify playlist URL to playlist download endpoint: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-31 00:07:42,083 spotify_api 11520 13708 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-31 00:07:42,085 spotify_api 11520 13708 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-31 00:07:42,085 spotify_api 11520 13708 Getting Spotify playlist info for ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-31 00:07:42,085 spotify_api 11520 13708 Creating Spotify client with credentials from settings
+INFO 2025-03-31 00:07:42,277 spotify_api 11520 13708 Successfully tested Spotify client
+ERROR 2025-03-31 00:07:47,283 spotify_api 11520 13708 Error getting Spotify playlist info: HTTPSConnectionPool(host='api.spotify.com', port=443): Read timed out. (read timeout=5)
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\urllib3\connectionpool.py", line 534, in _make_request
+    response = conn.getresponse()
+               ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\urllib3\connection.py", line 516, in getresponse
+    httplib_response = super().getresponse()
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\stdlib.py", line 131, in getresponse
+    rv = real_getresponse(self, *args, **kwargs)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\http\client.py", line 1430, in getresponse
+    response.begin()
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\http\client.py", line 331, in begin
+    version, status, reason = self._read_status()
+                              ^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\http\client.py", line 292, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\socket.py", line 720, in readinto
+    return self._sock.recv_into(b)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\ssl.py", line 1251, in recv_into
+    return self.read(nbytes, buffer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\ssl.py", line 1103, in read
+    return self._sslobj.read(len, buffer)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TimeoutError: The read operation timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\requests\adapters.py", line 667, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\urllib3\connectionpool.py", line 841, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\spotipy\util.py", line 171, in increment
+    return super().increment(method,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\urllib3\util\retry.py", line 474, in increment
+    raise reraise(type(error), error, _stacktrace)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\urllib3\util\util.py", line 39, in reraise
+    raise value
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\urllib3\connectionpool.py", line 787, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\urllib3\connectionpool.py", line 536, in _make_request
+    self._raise_timeout(err=e, url=url, timeout_value=read_timeout)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\urllib3\connectionpool.py", line 367, in _raise_timeout
+    raise ReadTimeoutError(
+urllib3.exceptions.ReadTimeoutError: HTTPSConnectionPool(host='api.spotify.com', port=443): Read timed out. (read timeout=5)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\spotify_api.py", line 190, in get_playlist_info
+    playlist_data = sp.playlist(playlist_id)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\spotipy\client.py", line 668, in playlist
+    return self._get(
+           ^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\spotipy\client.py", line 324, in _get
+    return self._internal_call("GET", url, payload, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\spotipy\client.py", line 269, in _internal_call
+    response = self._session.request(
+               ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\requests\adapters.py", line 713, in send
+    raise ReadTimeout(e, request=request)
+requests.exceptions.ReadTimeout: HTTPSConnectionPool(host='api.spotify.com', port=443): Read timed out. (read timeout=5)
+ERROR 2025-03-31 00:07:47,417 views 11520 13708 Failed to get playlist info: HTTPSConnectionPool(host='api.spotify.com', port=443): Read timed out. (read timeout=5)
+WARNING 2025-03-31 00:07:47,423 log 11520 13708 Bad Request: /api/songs/songs/download/
+WARNING 2025-03-31 00:07:47,424 basehttp 11520 13708 "POST /api/songs/songs/download/ HTTP/1.1" 400 135
+INFO 2025-03-31 00:07:53,779 spotify_api 11520 13708 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-31 00:07:53,779 spotify_api 11520 13708 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-31 00:07:53,779 views 11520 13708 Redirecting Spotify playlist URL to playlist download endpoint: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-31 00:07:53,779 spotify_api 11520 13708 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-31 00:07:53,779 spotify_api 11520 13708 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-31 00:07:53,791 spotify_api 11520 13708 Getting Spotify playlist info for ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-31 00:07:53,791 spotify_api 11520 13708 Creating Spotify client with credentials from settings
+INFO 2025-03-31 00:07:53,995 spotify_api 11520 13708 Successfully tested Spotify client
+INFO 2025-03-31 00:07:54,456 spotify_api 11520 13708 Extracted 3 track URLs from playlist
+INFO 2025-03-31 00:07:54,898 views 11520 13708 Added existing song to playlist: https://open.spotify.com/track/1ApfHqjOoBmJZ0SjdjzVyA
+INFO 2025-03-31 00:07:55,197 views 11520 13708 Added existing song to playlist: https://open.spotify.com/track/0dQiyqHUpnMPmHtk535VAY
+INFO 2025-03-31 00:07:55,489 views 11520 13708 Added existing song to playlist: https://open.spotify.com/track/0kYBzFJ5a2Jozi6cI4y9Bp
+INFO 2025-03-31 00:07:55,619 basehttp 11520 13708 "POST /api/songs/songs/download/ HTTP/1.1" 200 122
+INFO 2025-03-31 00:09:07,741 autoreload 11520 292 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 00:09:12,011 autoreload 26656 13668 Watching for file changes with StatReloader
+INFO 2025-03-31 00:09:23,866 autoreload 26656 13668 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 00:09:28,780 autoreload 6524 9732 Watching for file changes with StatReloader
+INFO 2025-03-31 00:09:33,912 autoreload 6524 9732 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 00:09:37,889 autoreload 18668 10164 Watching for file changes with StatReloader
+INFO 2025-03-31 00:09:45,749 autoreload 18668 10164 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 00:09:51,072 autoreload 11008 1776 Watching for file changes with StatReloader
+INFO 2025-03-31 00:10:50,933 spotify_api 11008 5064 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-31 00:10:50,934 spotify_api 11008 5064 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-31 00:10:50,935 views 11008 5064 Redirecting Spotify playlist URL to playlist download endpoint: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-31 00:10:50,935 spotify_api 11008 5064 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-31 00:10:50,936 spotify_api 11008 5064 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-31 00:10:50,936 spotify_api 11008 5064 Getting Spotify playlist info for ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-31 00:10:50,936 spotify_api 11008 5064 Creating Spotify client with credentials from settings
+INFO 2025-03-31 00:10:51,139 spotify_api 11008 5064 Successfully tested Spotify client
+INFO 2025-03-31 00:10:51,531 spotify_api 11008 5064 Extracted 3 track URLs from playlist
+INFO 2025-03-31 00:10:51,991 views 11008 5064 Added existing song to playlist: https://open.spotify.com/track/1ApfHqjOoBmJZ0SjdjzVyA
+INFO 2025-03-31 00:10:52,321 views 11008 5064 Added existing song to playlist: https://open.spotify.com/track/0dQiyqHUpnMPmHtk535VAY
+INFO 2025-03-31 00:10:52,732 views 11008 5064 Added existing song to playlist: https://open.spotify.com/track/0kYBzFJ5a2Jozi6cI4y9Bp
+INFO 2025-03-31 00:10:52,863 basehttp 11008 5064 - Broken pipe from ('127.0.0.1', 59935)
+INFO 2025-03-31 00:10:58,476 spotify_api 11008 22500 Extracting Spotify ID from URL: https://open.spotify.com/track/4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:10:58,476 spotify_api 11008 22500 Extracted Spotify track ID: 4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:10:58,599 spotify_api 11008 22500 Extracting Spotify ID from URL: https://open.spotify.com/track/4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:10:58,600 spotify_api 11008 22500 Extracted Spotify track ID: 4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:10:58,600 views 11008 22500 Getting info for Spotify track ID: ('track', '4A7eOIbt19Wk5OXjVxE3SI')
+INFO 2025-03-31 00:10:58,601 spotify_api 11008 22500 Extracting Spotify ID from URL: https://open.spotify.com/track/4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:10:58,601 spotify_api 11008 22500 Extracted Spotify track ID: 4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:10:58,601 spotify_api 11008 22500 Getting info for Spotify track ID: 4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:10:58,602 spotify_api 11008 22500 Creating Spotify client with credentials from settings
+INFO 2025-03-31 00:10:58,813 spotify_api 11008 22500 Successfully tested Spotify client
+INFO 2025-03-31 00:10:59,139 spotify_api 11008 22500 Got track info: Har Kisi Ko (From "Boss) by Arijit Singh
+INFO 2025-03-31 00:10:59,140 views 11008 22500 Got track info: Har Kisi Ko From Boss by Arijit Singh
+INFO 2025-03-31 00:10:59,244 views 11008 22500 Downloading using YouTube search: ytsearch:Har Kisi Ko From Boss Arijit Singh
+ERROR 2025-03-31 00:11:16,831 views 11008 22500 Spotify track download error: value too long for type character varying(100)
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.StringDataRightTruncation: value too long for type character varying(100)
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 622, in download_spotify_track
+    song = Song.objects.create(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 679, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\base.py", line 892, in save
+    self.save_base(
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\base.py", line 998, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\base.py", line 1161, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\base.py", line 1202, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 1847, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1836, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\sentry_sdk\utils.py", line 1783, in runner
+    return sentry_patched_function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\__init__.py", line 651, in execute
+    result = real_execute(self, sql, params)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.DataError: value too long for type character varying(100)
+
+ERROR 2025-03-31 00:11:17,131 log 11008 22500 Internal Server Error: /api/songs/songs/download/
+ERROR 2025-03-31 00:11:17,132 basehttp 11008 22500 "POST /api/songs/songs/download/ HTTP/1.1" 500 91
+INFO 2025-03-31 00:11:52,240 autoreload 11008 1776 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\models.py changed, reloading.
+INFO 2025-03-31 00:11:56,312 autoreload 10408 14392 Watching for file changes with StatReloader
+INFO 2025-03-31 00:12:12,868 autoreload 10408 14392 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 00:12:17,072 autoreload 19644 19724 Watching for file changes with StatReloader
+INFO 2025-03-31 00:12:32,387 autoreload 19644 19724 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 00:12:36,479 autoreload 1228 2020 Watching for file changes with StatReloader
+INFO 2025-03-31 00:12:40,322 autoreload 1228 2020 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 00:12:44,154 autoreload 20492 13264 Watching for file changes with StatReloader
+INFO 2025-03-31 00:12:53,403 autoreload 20492 13264 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 00:12:57,455 autoreload 27128 25320 Watching for file changes with StatReloader
+INFO 2025-03-31 00:13:01,214 autoreload 27128 25320 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 00:13:05,188 autoreload 21808 14224 Watching for file changes with StatReloader
+INFO 2025-03-31 00:13:13,006 spotify_api 21808 23196 Extracting Spotify ID from URL: https://open.spotify.com/track/4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:13:13,006 spotify_api 21808 23196 Extracted Spotify track ID: 4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:13:13,123 spotify_api 21808 23196 Extracting Spotify ID from URL: https://open.spotify.com/track/4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:13:13,123 spotify_api 21808 23196 Extracted Spotify track ID: 4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:13:13,123 views 21808 23196 Getting info for Spotify track ID: ('track', '4A7eOIbt19Wk5OXjVxE3SI')
+INFO 2025-03-31 00:13:13,137 spotify_api 21808 23196 Extracting Spotify ID from URL: https://open.spotify.com/track/4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:13:13,139 spotify_api 21808 23196 Extracted Spotify track ID: 4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:13:13,139 spotify_api 21808 23196 Getting info for Spotify track ID: 4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:13:13,144 spotify_api 21808 23196 Creating Spotify client with credentials from settings
+INFO 2025-03-31 00:13:13,464 spotify_api 21808 23196 Successfully tested Spotify client
+INFO 2025-03-31 00:13:13,806 spotify_api 21808 23196 Got track info: Har Kisi Ko (From "Boss) by Arijit Singh
+INFO 2025-03-31 00:13:13,806 views 21808 23196 Got track info: Har Kisi Ko From Boss by Arijit Singh
+INFO 2025-03-31 00:13:13,969 views 21808 23196 Downloading using YouTube search: ytsearch:Har Kisi Ko From Boss Arijit Singh
+ERROR 2025-03-31 00:13:31,924 views 21808 23196 Spotify track download error: value too long for type character varying(100)
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.StringDataRightTruncation: value too long for type character varying(100)
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 625, in download_spotify_track
+    song = Song.objects.create(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 679, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\models.py", line 149, in save
+    super(Song, self).save(*args, **kwargs)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\base.py", line 892, in save
+    self.save_base(
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\base.py", line 998, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\base.py", line 1161, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\base.py", line 1202, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 1847, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1836, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\sentry_sdk\utils.py", line 1783, in runner
+    return sentry_patched_function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\__init__.py", line 651, in execute
+    result = real_execute(self, sql, params)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.DataError: value too long for type character varying(100)
+
+ERROR 2025-03-31 00:13:32,100 log 21808 23196 Internal Server Error: /api/songs/songs/download/
+ERROR 2025-03-31 00:13:32,103 basehttp 21808 23196 "POST /api/songs/songs/download/ HTTP/1.1" 500 91
+INFO 2025-03-31 00:14:19,786 autoreload 21808 14224 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\utils.py changed, reloading.
+INFO 2025-03-31 00:14:23,835 autoreload 3788 14636 Watching for file changes with StatReloader
+INFO 2025-03-31 00:14:32,230 autoreload 3788 14636 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 00:14:37,180 autoreload 18636 19800 Watching for file changes with StatReloader
+INFO 2025-03-31 00:14:47,661 autoreload 18636 19800 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 00:14:52,505 autoreload 2696 18788 Watching for file changes with StatReloader
+INFO 2025-03-31 00:15:07,549 autoreload 2696 18788 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\utils.py changed, reloading.
+INFO 2025-03-31 00:15:11,392 autoreload 6932 20652 Watching for file changes with StatReloader
+INFO 2025-03-31 00:15:39,793 autoreload 6932 20652 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\utils.py changed, reloading.
+INFO 2025-03-31 00:15:44,682 autoreload 8248 19216 Watching for file changes with StatReloader
+INFO 2025-03-31 00:15:55,223 autoreload 8248 19216 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\models.py changed, reloading.
+INFO 2025-03-31 00:15:59,799 autoreload 18192 16376 Watching for file changes with StatReloader
+INFO 2025-03-31 00:18:39,244 autoreload 23588 24692 Watching for file changes with StatReloader
+INFO 2025-03-31 00:18:50,784 spotify_api 23588 22140 Extracting Spotify ID from URL: https://open.spotify.com/track/4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:18:50,785 spotify_api 23588 22140 Extracted Spotify track ID: 4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:18:50,907 spotify_api 23588 22140 Extracting Spotify ID from URL: https://open.spotify.com/track/4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:18:50,908 spotify_api 23588 22140 Extracted Spotify track ID: 4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:18:50,908 views 23588 22140 Getting info for Spotify track ID: ('track', '4A7eOIbt19Wk5OXjVxE3SI')
+INFO 2025-03-31 00:18:50,909 spotify_api 23588 22140 Extracting Spotify ID from URL: https://open.spotify.com/track/4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:18:50,909 spotify_api 23588 22140 Extracted Spotify track ID: 4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:18:50,910 spotify_api 23588 22140 Getting info for Spotify track ID: 4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:18:50,910 spotify_api 23588 22140 Creating Spotify client with credentials from settings
+INFO 2025-03-31 00:18:51,263 spotify_api 23588 22140 Successfully tested Spotify client
+INFO 2025-03-31 00:18:51,589 spotify_api 23588 22140 Got track info: Har Kisi Ko (From "Boss) by Arijit Singh
+INFO 2025-03-31 00:18:51,591 views 23588 22140 Got track info: Har Kisi Ko From Boss by Arijit Singh
+INFO 2025-03-31 00:18:51,898 views 23588 22140 Downloading using YouTube search: ytsearch:Har Kisi Ko From Boss Arijit Singh
+ERROR 2025-03-31 00:19:05,762 views 23588 22140 Spotify track download error: value too long for type character varying(100)
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.StringDataRightTruncation: value too long for type character varying(100)
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 628, in download_spotify_track
+    song = Song.objects.create(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 679, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\models.py", line 156, in save
+    super(Song, self).save(*args, **kwargs)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\base.py", line 892, in save
+    self.save_base(
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\base.py", line 998, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\base.py", line 1161, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\base.py", line 1202, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 1847, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1836, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\sentry_sdk\utils.py", line 1783, in runner
+    return sentry_patched_function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\__init__.py", line 651, in execute
+    result = real_execute(self, sql, params)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.DataError: value too long for type character varying(100)
+
+ERROR 2025-03-31 00:19:05,954 log 23588 22140 Internal Server Error: /api/songs/songs/download/
+ERROR 2025-03-31 00:19:05,955 basehttp 23588 22140 "POST /api/songs/songs/download/ HTTP/1.1" 500 91
+INFO 2025-03-31 00:20:59,338 autoreload 23588 24692 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 00:21:03,783 autoreload 25392 7344 Watching for file changes with StatReloader
+INFO 2025-03-31 00:21:48,251 autoreload 9332 24800 Watching for file changes with StatReloader
+INFO 2025-03-31 00:22:44,208 spotify_api 9332 19808 Extracting Spotify ID from URL: https://open.spotify.com/track/4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:22:44,209 spotify_api 9332 19808 Extracted Spotify track ID: 4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:22:44,338 spotify_api 9332 19808 Extracting Spotify ID from URL: https://open.spotify.com/track/4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:22:44,338 spotify_api 9332 19808 Extracted Spotify track ID: 4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:22:44,339 views 9332 19808 Getting info for Spotify track ID: ('track', '4A7eOIbt19Wk5OXjVxE3SI')
+INFO 2025-03-31 00:22:44,339 spotify_api 9332 19808 Extracting Spotify ID from URL: https://open.spotify.com/track/4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:22:44,339 spotify_api 9332 19808 Extracted Spotify track ID: 4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:22:44,340 spotify_api 9332 19808 Getting info for Spotify track ID: 4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:22:44,340 spotify_api 9332 19808 Creating Spotify client with credentials from settings
+INFO 2025-03-31 00:22:44,526 spotify_api 9332 19808 Successfully tested Spotify client
+INFO 2025-03-31 00:22:44,881 spotify_api 9332 19808 Got track info: Har Kisi Ko (From "Boss) by Arijit Singh
+INFO 2025-03-31 00:22:44,882 views 9332 19808 Got track info: Har Kisi Ko From Boss by Arijit Singh
+INFO 2025-03-31 00:22:44,975 views 9332 19808 Downloading using YouTube search: ytsearch:Har Kisi Ko From Boss Arijit Singh
+INFO 2025-03-31 00:23:03,160 views 9332 19808 Downloaded file to: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\media\songs\titles.mp3
+WARNING 2025-03-31 00:23:05,796 views 9332 19808 Error updating user profile: 'Song' object has no attribute 'genres'
+INFO 2025-03-31 00:23:06,232 views 9332 19808 Added song to cache: https://open.spotify.com/track/4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:23:06,328 basehttp 9332 19808 "POST /api/songs/songs/download/ HTTP/1.1" 200 4193900
+ERROR 2025-03-31 00:23:27,740 views 9332 19808 Download error: 'str' object has no attribute 'method'
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 229, in download
+    return self.download_youtube(url, format)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 65, in wrapped_view
+    if is_ratelimited(
+       ^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django_ratelimit\core.py", line 153, in is_ratelimited
+    usage = get_usage(request, group, fn, key, rate, method, increment)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django_ratelimit\core.py", line 169, in get_usage
+    if not _method_match(request, method):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django_ratelimit\core.py", line 93, in _method_match
+    return request.method in [m.upper() for m in method]
+           ^^^^^^^^^^^^^^
+AttributeError: 'str' object has no attribute 'method'
+ERROR 2025-03-31 00:23:27,882 log 9332 19808 Internal Server Error: /api/songs/songs/download/
+ERROR 2025-03-31 00:23:27,883 basehttp 9332 19808 "POST /api/songs/songs/download/ HTTP/1.1" 500 67
+INFO 2025-03-31 00:24:25,233 autoreload 9332 24800 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 00:25:14,175 autoreload 2244 23084 Watching for file changes with StatReloader
+INFO 2025-03-31 00:25:54,815 autoreload 2244 23084 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 00:25:59,774 autoreload 16744 7140 Watching for file changes with StatReloader
+INFO 2025-03-31 00:26:29,418 autoreload 16744 7140 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 00:26:33,417 autoreload 25000 22892 Watching for file changes with StatReloader
+INFO 2025-03-31 00:26:52,111 autoreload 25000 22892 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 00:26:56,487 autoreload 9820 25856 Watching for file changes with StatReloader
+WARNING 2025-03-31 00:27:29,054 views 9820 2156 Rate limit check skipped - invalid request object: <class 'str'>
+INFO 2025-03-31 00:27:41,118 views 9820 2156 Added song to cache: https://www.youtube.com/watch?v=eJnQBXmZ7Ek
+ERROR 2025-03-31 00:27:41,328 views 9820 2156 YouTube download error: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\Dell\\AppData\\Local\\Temp\\tmppjdhzrwb\\download-1743361049.mp3'
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\shutil.py", line 633, in _rmtree_unsafe
+    os.unlink(fullname)
+PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\Dell\\AppData\\Local\\Temp\\tmppjdhzrwb\\download-1743361049.mp3'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 337, in download_youtube
+    with tempfile.TemporaryDirectory() as temp_dir:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\tempfile.py", line 946, in __exit__
+    self.cleanup()
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\tempfile.py", line 950, in cleanup
+    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\tempfile.py", line 930, in _rmtree
+    _shutil.rmtree(name, onexc=onexc)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\shutil.py", line 781, in rmtree
+    return _rmtree_unsafe(path, onexc)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\shutil.py", line 635, in _rmtree_unsafe
+    onexc(os.unlink, fullname, err)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2544.0_x64__qbz5n2kfra8p0\Lib\tempfile.py", line 905, in onexc
+    _os.unlink(path)
+PermissionError: [WinError 32] The process cannot access the file because it is being used by another process: 'C:\\Users\\Dell\\AppData\\Local\\Temp\\tmppjdhzrwb\\download-1743361049.mp3'
+ERROR 2025-03-31 00:27:43,338 log 9820 2156 Internal Server Error: /api/songs/songs/download/
+ERROR 2025-03-31 00:27:43,338 basehttp 9820 2156 "POST /api/songs/songs/download/ HTTP/1.1" 500 214
+INFO 2025-03-31 00:28:14,382 spotify_api 9820 2156 Extracting Spotify ID from URL: https://open.spotify.com/track/4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:28:14,383 spotify_api 9820 2156 Extracted Spotify track ID: 4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:28:14,446 views 9820 2156 Found existing song with URL https://open.spotify.com/track/4A7eOIbt19Wk5OXjVxE3SI, serving directly
+INFO 2025-03-31 00:28:14,572 views 9820 2156 Using cached version for Spotify URL: https://open.spotify.com/track/4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:28:14,672 basehttp 9820 2156 "POST /api/songs/songs/download/ HTTP/1.1" 200 4193900
+INFO 2025-03-31 00:28:43,403 autoreload 9820 25856 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 00:28:50,226 autoreload 11136 23908 Watching for file changes with StatReloader
+INFO 2025-03-31 00:29:32,439 autoreload 11136 23908 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 00:29:37,608 autoreload 23612 18036 Watching for file changes with StatReloader
+INFO 2025-03-31 00:30:31,104 autoreload 23612 18036 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 00:30:36,858 autoreload 23432 23984 Watching for file changes with StatReloader
+INFO 2025-03-31 00:31:07,799 views 23432 16376 Found existing song with URL https://www.youtube.com/watch?v=eJnQBXmZ7Ek, serving directly
+WARNING 2025-03-31 00:31:07,800 views 23432 16376 Rate limit check skipped - invalid request object: <class 'str'>
+INFO 2025-03-31 00:31:07,928 views 23432 16376 Using cached version for URL: https://www.youtube.com/watch?v=eJnQBXmZ7Ek
+ERROR 2025-03-31 00:31:08,327 basehttp 23432 16376 "POST /api/songs/songs/download/ HTTP/1.1" 500 59
+INFO 2025-03-31 00:31:17,834 views 23432 16376 Found existing song with URL https://www.youtube.com/watch?v=eJnQBXmZ7Ek, serving directly
+WARNING 2025-03-31 00:31:17,834 views 23432 16376 Rate limit check skipped - invalid request object: <class 'str'>
+INFO 2025-03-31 00:31:17,967 views 23432 16376 Using cached version for URL: https://www.youtube.com/watch?v=eJnQBXmZ7Ek
+ERROR 2025-03-31 00:31:18,035 basehttp 23432 16376 "POST /api/songs/songs/download/ HTTP/1.1" 500 59
+INFO 2025-03-31 00:32:10,008 autoreload 23432 23984 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 00:32:14,372 autoreload 14536 4796 Watching for file changes with StatReloader
+INFO 2025-03-31 00:32:35,968 autoreload 14536 4796 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 00:32:40,146 autoreload 27140 21888 Watching for file changes with StatReloader
+INFO 2025-03-31 00:32:44,996 autoreload 27140 21888 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 00:32:49,093 autoreload 19916 9524 Watching for file changes with StatReloader
+INFO 2025-03-31 00:33:08,802 autoreload 19916 9524 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 00:33:14,896 autoreload 696 21064 Watching for file changes with StatReloader
+INFO 2025-03-31 00:33:39,424 autoreload 696 21064 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 00:33:43,806 autoreload 27072 17828 Watching for file changes with StatReloader
+INFO 2025-03-31 00:35:48,297 views 27072 19312 Found existing song with URL https://www.youtube.com/watch?v=eJnQBXmZ7Ek, serving directly
+WARNING 2025-03-31 00:35:48,298 views 27072 19312 Rate limit check skipped - invalid request object: <class 'str'>
+INFO 2025-03-31 00:35:48,429 views 27072 19312 Using cached version for URL: https://www.youtube.com/watch?v=eJnQBXmZ7Ek
+INFO 2025-03-31 00:35:48,690 basehttp 27072 19312 "POST /api/songs/songs/download/ HTTP/1.1" 200 7754732
+WARNING 2025-03-31 00:36:48,152 views 27072 19312 Rate limit check skipped - invalid request object: <class 'str'>
+INFO 2025-03-31 00:36:57,099 views 27072 19312 Added song to cache: https://www.youtube.com/watch?v=pieUX7Skbk0
+INFO 2025-03-31 00:36:57,169 basehttp 27072 19312 "POST /api/songs/songs/download/ HTTP/1.1" 200 3987692
+INFO 2025-03-31 00:48:51,014 spotify_api 27072 17404 Extracting Spotify ID from URL: https://open.spotify.com/track/4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:48:51,014 spotify_api 27072 17404 Extracted Spotify track ID: 4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:48:51,091 views 27072 17404 Found existing song with URL https://open.spotify.com/track/4A7eOIbt19Wk5OXjVxE3SI, serving directly
+INFO 2025-03-31 00:48:51,234 views 27072 17404 Using cached version for Spotify URL: https://open.spotify.com/track/4A7eOIbt19Wk5OXjVxE3SI
+INFO 2025-03-31 00:48:51,351 basehttp 27072 17404 "POST /api/songs/songs/download/ HTTP/1.1" 200 4193900
+WARNING 2025-03-31 00:49:01,425 log 27072 17404 Not Found: /api/top-artists/
+WARNING 2025-03-31 00:49:01,425 basehttp 27072 17404 "GET /api/top-artists/ HTTP/1.1" 404 3385
+WARNING 2025-03-31 00:49:06,562 log 27072 17404 Not Found: /api/users/top-artists/
+WARNING 2025-03-31 00:49:06,563 basehttp 27072 17404 "GET /api/users/top-artists/ HTTP/1.1" 404 4340

@@ -29,7 +29,11 @@ from django.http import HttpResponse
 from django_ratelimit.decorators import ratelimit
 from django_ratelimit.exceptions import Ratelimited
 from functools import wraps
-from .utils import youtube_api_retry, spotify_api_retry, download_from_youtube, convert_audio_format, download_youtube_util
+from .utils import (
+    youtube_api_retry, spotify_api_retry, download_from_youtube, 
+    convert_audio_format, download_youtube_util, sanitize_filename
+)
+from django.utils.text import Truncator
 
 
 logger = logging.getLogger(__name__)
@@ -54,40 +58,79 @@ def custom_ratelimit(group=None, key=None, rate=None, method=None, block=True):
                 viewset_instance = args[0]
                 request = args[1]
                 
+                # Make sure request is actually a request object and not a string
+                if not hasattr(request, 'method'):
+                    # If it's not a request object, just proceed with the view
+                    logger.warning(f"Rate limit check skipped - invalid request object: {type(request)}")
+                    return view_func(*args, **kwargs)
+                
                 # Apply rate limiting directly
                 from django_ratelimit.core import is_ratelimited
                 
                 # Check if rate limited
-                if is_ratelimited(
-                    request=request,
-                    group=group or 'default',
-                    key=key or 'ip',
-                    rate=rate,
-                    method=method or 'ALL',
-                    increment=True
-                ):
-                    if block:
-                        # Rate limit exceeded
-                        logger.warning(f"Rate limit exceeded for {request.path} from {request.META.get('REMOTE_ADDR')}")
-                        return HttpResponse("Rate limit exceeded. Please try again later.", status=429)
+                try:
+                    if is_ratelimited(
+                        request=request,
+                        group=group or 'default',
+                        key=key or 'ip',
+                        rate=rate,
+                        method=method or 'ALL',
+                        increment=True
+                    ):
+                        if block:
+                            # Rate limit exceeded
+                            logger.warning(f"Rate limit exceeded for {request.path} from {request.META.get('REMOTE_ADDR')}")
+                            return HttpResponse("Rate limit exceeded. Please try again later.", status=429)
+                except Exception as e:
+                    # Log the error but don't block the request
+                    logger.error(f"Error in rate limiting: {e}")
                 
                 # Not rate limited, proceed with the view
                 return view_func(*args, **kwargs)
             else:
                 # This is a regular function view, use the standard decorator
-                # Apply IP-based rate limiting
-                ip_ratelimited = ratelimit(
-                    key=key or 'ip',
-                    rate=rate,
-                    method=method or 'ALL',
-                    block=block,
-                    group=group or 'default'
-                )(view_func)
-                
-                return ip_ratelimited(*args, **kwargs)
+                try:
+                    # Apply IP-based rate limiting
+                    ip_ratelimited = ratelimit(
+                        key=key or 'ip',
+                        rate=rate,
+                        method=method or 'ALL',
+                        block=block,
+                        group=group or 'default'
+                    )(view_func)
+                    
+                    return ip_ratelimited(*args, **kwargs)
+                except Exception as e:
+                    # Log the error but don't block the request
+                    logger.error(f"Error in rate limiting: {e}")
+                    return view_func(*args, **kwargs)
                 
         return wrapped_view
     return decorator
+
+def sanitize_for_db(text, max_length=95):
+    """
+    Sanitize text for database storage, ensuring it doesn't exceed max_length
+    and removing problematic characters.
+    """
+    if not text:
+        return ""
+    
+    # Convert to string if not already
+    text = str(text)
+    
+    # Remove special characters that might cause issues
+    sanitized = "".join(c for c in text if c.isalnum() or c in (' ', '-', '.', ',', ':', ';', '&', "'", '/', '_'))
+    
+    # Truncate to max_length
+    if len(sanitized) > max_length:
+        sanitized = Truncator(sanitized).chars(max_length) 
+    
+    # Ensure not empty after sanitization (only if input wasn't empty)
+    if text and not sanitized.strip():
+        return "Unknown"
+        
+    return sanitized.strip()
 
 class SongViewSet(viewsets.ModelViewSet):
     queryset = Song.objects.all()
@@ -163,11 +206,13 @@ class SongViewSet(viewsets.ModelViewSet):
                 if os.path.exists(file_path):
                     # If format matches or no conversion needed
                     if format == 'mp3' or os.path.splitext(file_path)[1][1:] == format:
-                        # Serve the existing file directly
+                        # Serve the existing file directly - let FileResponse manage the file handle
+                        filename = f"{existing_song.title} - {existing_song.artist}.{os.path.splitext(file_path)[1][1:]}"
+                        filename = sanitize_filename(filename)
                         response = FileResponse(
                             open(file_path, 'rb'),
                             as_attachment=True,
-                            filename=f"{existing_song.title} - {existing_song.artist}.{os.path.splitext(file_path)[1][1:]}"
+                            filename=filename
                         )
                         response['Content-Type'] = f'audio/{os.path.splitext(file_path)[1][1:]}'
                         return response
@@ -177,7 +222,9 @@ class SongViewSet(viewsets.ModelViewSet):
                         converted_path = convert_audio_format(file_path, format)
                         
                         # Update the song's file path if it doesn't already exist
-                        new_relative_path = os.path.join('songs', f"{existing_song.title} - {existing_song.artist}.{format}")
+                        new_filename = f"{existing_song.title} - {existing_song.artist}.{format}"
+                        new_filename = sanitize_filename(new_filename)
+                        new_relative_path = os.path.join('songs', new_filename)
                         new_absolute_path = os.path.join(settings.MEDIA_ROOT, new_relative_path)
                         
                         # Copy the converted file to the media directory if needed
@@ -188,9 +235,9 @@ class SongViewSet(viewsets.ModelViewSet):
                         
                         # Serve the converted file
                         response = FileResponse(
-                            open(converted_path, 'rb'),
+                            open(new_absolute_path, 'rb'),
                             as_attachment=True,
-                            filename=f"{existing_song.title} - {existing_song.artist}.{format}"
+                            filename=new_filename
                         )
                         response['Content-Type'] = f'audio/{format}'
                         return response
@@ -217,228 +264,250 @@ class SongViewSet(viewsets.ModelViewSet):
     @youtube_api_retry
     def download_youtube(self, url, output_format=None):
         """Direct YouTube download with streaming response"""
-        # Check if this is a playlist URL
-        if 'playlist' in url or 'list=' in url:
-            # Redirect to the async playlist download
-            task = download_youtube_playlist.delay(url, self.request.user.id)
-            return Response({
-                'message': 'Playlist download initiated',
-                'task_id': task.id,
-                'status': 'processing'
-            }, status=status.HTTP_202_ACCEPTED)
-            
-        # Check if the song is in cache
-        cached_song = SongCache.get_cached_song(url)
-        if cached_song:
-            logger.info(f"Using cached version for URL: {url}")
-            
-            # Get the cached file path
-            cached_file_path = os.path.join(settings.MEDIA_ROOT, cached_song.local_path.name)
-            
-            # Get metadata from cache
-            metadata = cached_song.metadata or {}
-            title = metadata.get('title', 'Unknown Title')
-            artist = metadata.get('artist', 'Unknown Artist')
-            album = metadata.get('album', 'Unknown Album')
-            
-            # Check if we need format conversion
-            if output_format != 'mp3' and os.path.splitext(cached_file_path)[1][1:] != output_format:
-                # Convert the format
-                logger.info(f"Converting cached song from {os.path.splitext(cached_file_path)[1][1:]} to {output_format}")
-                final_filename = convert_audio_format(cached_file_path, output_format)
-            else:
-                final_filename = cached_file_path
-                
-            # Create a song entry for this user if they don't already have it
-            if not Song.objects.filter(user=self.request.user, song_url=url).exists():
-                # Create the song record
-                song = Song.objects.create(
-                    user=self.request.user,
-                    title=title,
-                    artist=artist,
-                    album=album,
-                    file=os.path.relpath(final_filename, settings.MEDIA_ROOT) if os.path.exists(final_filename) else cached_song.local_path,
-                    source='youtube',
-                    thumbnail_url=metadata.get('thumbnail_url'),
-                    song_url=url
-                )
-                
-                # Update user's music profile
-                try:
-                    profile, created = UserMusicProfile.objects.get_or_create(user=self.request.user)
-                    profile.update_profile(song)
-                except Exception as profile_error:
-                    logger.warning(f"Error updating user profile: {profile_error}")
-                
-                # Increment download count
-                self.request.user.increment_download_count()
-            
-            # Serve the file
-            formatted_filename = f"{title} - {artist}.{output_format}"
-            formatted_filename = "".join(c for c in formatted_filename if c.isalnum() or c in (' ', '-', '.'))
-            
-            response = FileResponse(
-                open(final_filename, 'rb'),
-                as_attachment=True,
-                filename=formatted_filename
-            )
-            response['Content-Type'] = f'audio/{output_format}'
-            return response
+        # Initialize variables for file cleanup
+        temp_dir = None
         
-        # If not in cache, proceed with downloading
         try:
-            # Create temp directory for download
-            with tempfile.TemporaryDirectory() as temp_dir:
-                # Generate a temporary filename
-                temp_filename = os.path.join(temp_dir, f"download-{int(time.time())}")
+            # Check if this is a playlist URL
+            if 'playlist' in url or 'list=' in url:
+                # Redirect to the async playlist download
+                task = download_youtube_playlist.delay(url, self.request.user.id)
+                return Response({
+                    'message': 'Playlist download initiated',
+                    'task_id': task.id,
+                    'status': 'processing'
+                }, status=status.HTTP_202_ACCEPTED)
                 
-                # Define download options
-                ydl_opts = {
-                    'format': 'bestaudio/best',
-                    'postprocessors': [{
-                        'key': 'FFmpegExtractAudio',
-                        'preferredcodec': 'mp3',
-                        'preferredquality': '192',
-                    }],
-                    'outtmpl': temp_filename,
-                    'writethumbnail': True,
-                    'noplaylist': True,  # Only download the single video, not the playlist
-                }
-
-                # Download the file using our retry-enabled function
-                info = download_from_youtube(url, temp_filename, **ydl_opts)
+            # Check if the song is in cache
+            cached_song = SongCache.get_cached_song(url)
+            if cached_song:
+                logger.info(f"Using cached version for URL: {url}")
                 
-                # The actual file has .mp3 extension added by the postprocessor
-                temp_mp3_filename = temp_filename + '.mp3'
+                # Get the cached file path
+                cached_file_path = os.path.join(settings.MEDIA_ROOT, cached_song.local_path.name if hasattr(cached_song, 'local_path') else cached_song.file_path)
                 
-                # Convert to requested format if different from mp3
-                if output_format != 'mp3':
-                    final_filename = convert_audio_format(temp_mp3_filename, output_format)
+                # Get metadata from cache
+                metadata = cached_song.metadata or {}
+                title = metadata.get('title', 'Unknown Title')
+                artist = metadata.get('artist', 'Unknown Artist')
+                album = metadata.get('album', 'Unknown Album')
+                
+                # Check if we need format conversion
+                if output_format != 'mp3' and os.path.splitext(cached_file_path)[1][1:] != output_format:
+                    # Convert the format
+                    logger.info(f"Converting cached song from {os.path.splitext(cached_file_path)[1][1:]} to {output_format}")
+                    final_filename = convert_audio_format(cached_file_path, output_format)
                 else:
-                    final_filename = temp_mp3_filename
-                
-                # Get thumbnail path - first check for local files
-                thumbnail_path = None
-                for ext in ['jpg', 'png', 'webp']:
-                    possible_path = f"{temp_filename}.{ext}"
-                    if os.path.exists(possible_path):
-                        thumbnail_path = possible_path
-                        break
-                
-                # Create destination paths
-                formatted_filename = f"{info['title']} - {info.get('uploader', 'Unknown Artist')}.{output_format}"
-                formatted_filename = "".join(c for c in formatted_filename if c.isalnum() or c in (' ', '-', '.'))
-                
-                # Copy to media directory
-                media_dir = os.path.join(settings.MEDIA_ROOT, 'songs')
-                os.makedirs(media_dir, exist_ok=True)
-                media_path = os.path.join(media_dir, formatted_filename)
-                
-                import shutil
-                shutil.copy2(final_filename, media_path)
-                
-                # Copy thumbnail if it exists
-                thumbnail_url = None
-                if thumbnail_path:
-                    thumb_filename = f"{info['title']} - {info.get('uploader', 'Unknown Artist')}.{os.path.splitext(thumbnail_path)[1][1:]}"
-                    thumb_filename = "".join(c for c in thumb_filename if c.isalnum() or c in (' ', '-', '.'))
-                    thumb_media_path = os.path.join(media_dir, thumb_filename)
-                    shutil.copy2(thumbnail_path, thumb_media_path)
-                    thumbnail_url = f"/media/songs/{thumb_filename}"
-                
-                # If no local thumbnail, try to get from info
-                if not thumbnail_url:
-                    for key in ['thumbnail', 'thumbnails']:
-                        if key in info and info[key]:
-                            if isinstance(info[key], list) and len(info[key]) > 0:
-                                thumbnail_url = info[key][0].get('url')
-                            else:
-                                thumbnail_url = info[key]
-                            break
-                
-                # Create the song record
-                song = Song.objects.create(
-                    user=self.request.user,
-                    title=info['title'],
-                    artist=info.get('uploader', 'Unknown Artist'),
-                    album=info.get('album', 'Unknown'),
-                    file=os.path.join('songs', formatted_filename),
-                    source='youtube',
-                    thumbnail_url=thumbnail_url,
-                    song_url=url
-                )
-
-                # Update user's music profile
-                try:
-                    profile, created = UserMusicProfile.objects.get_or_create(user=self.request.user)
-                    profile.update_profile(song)
-                except Exception as profile_error:
-                    logger.warning(f"Error updating user profile: {profile_error}")
-
-                # Increment download count
-                self.request.user.increment_download_count()
-                
-                # Add to cache for future use
-                try:
-                    cache_path = os.path.join('cache', formatted_filename)
-                    cache_full_path = os.path.join(settings.MEDIA_ROOT, cache_path)
+                    final_filename = cached_file_path
                     
-                    # Make sure the cache directory exists
-                    os.makedirs(os.path.dirname(cache_full_path), exist_ok=True)
+                # Create a song entry for this user if they don't already have it
+                if not Song.objects.filter(user=self.request.user, song_url=url).exists():
+                    # Create the song record
+                    rel_path = os.path.relpath(final_filename, settings.MEDIA_ROOT) if os.path.exists(final_filename) else cached_song.file_path
+                    rel_path = sanitize_filename(rel_path, max_length=95)
                     
-                    # Copy the file to the cache directory if it's not already there
-                    if not os.path.exists(cache_full_path):
-                        shutil.copy2(final_filename, cache_full_path)
-                    
-                    # Create cache entry
-                    from django.core.files.base import File
-                    from django.utils import timezone
-                    from datetime import timedelta
-                    
-                    # Calculate file size
-                    file_size = os.path.getsize(final_filename)
-                    
-                    # Prepare metadata
-                    metadata = {
-                        'title': info['title'],
-                        'artist': info.get('uploader', 'Unknown Artist'),
-                        'album': info.get('album', 'Unknown'),
-                        'thumbnail_url': thumbnail_url,
-                        'source': 'youtube',
-                    }
-                    
-                    # Create or update cache entry with metadata in the JSON field
-                    SongCache.objects.update_or_create(
-                        song_url=url,
-                        defaults={
-                            'file_path': cache_path,
-                            'file_size': file_size,
-                            'expires_at': timezone.now() + timedelta(days=7),  # Cache for 7 days
-                            'metadata': metadata,
-                            'title': song.title,     # Store these for backward compatibility
-                            'artist': song.artist
-                        }
+                    song = Song.objects.create(
+                        user=self.request.user,
+                        title=sanitize_for_db(title),
+                        artist=sanitize_for_db(artist),
+                        album=sanitize_for_db(album),
+                        file=rel_path,
+                        source='youtube',
+                        thumbnail_url=sanitize_for_db(metadata.get('thumbnail_url', ''), max_length=190),
+                        song_url=url
                     )
-                    logger.info(f"Added song to cache: {url}")
-                except Exception as cache_error:
-                    logger.warning(f"Error adding song to cache: {cache_error}")
-
-                # Return streaming response
+                    
+                    # Update user's music profile
+                    try:
+                        profile, created = UserMusicProfile.objects.get_or_create(user=self.request.user)
+                        profile.update_profile(song)
+                    except Exception as profile_error:
+                        logger.warning(f"Error updating user profile: {profile_error}")
+                    
+                    # Increment download count
+                    self.request.user.increment_download_count()
+                
+                # Serve the file - We'll use Django's FileResponse which manages closing the file
+                formatted_filename = f"{title} - {artist}.{output_format}"
+                formatted_filename = sanitize_filename(formatted_filename)
+                
+                # Important: Let Django's FileResponse manage the file handle
                 response = FileResponse(
                     open(final_filename, 'rb'),
                     as_attachment=True,
                     filename=formatted_filename
                 )
-                response['Content-Type'] = f'audio/{output_format}'
+                response['Content-Type'] = f'audio/{output_format or "mp3"}'
                 return response
+            
+            # If not in cache, proceed with downloading
+            # Create temp directory for download
+            temp_dir = tempfile.mkdtemp()
+            # Generate a temporary filename
+            temp_filename = os.path.join(temp_dir, f"download-{int(time.time())}")
+            
+            # Define download options
+            ydl_opts = {
+                'format': 'bestaudio/best',
+                'postprocessors': [{
+                    'key': 'FFmpegExtractAudio',
+                    'preferredcodec': 'mp3',
+                    'preferredquality': '192',
+                }],
+                'outtmpl': temp_filename,
+                'writethumbnail': True,
+                'noplaylist': True,  # Only download the single video, not the playlist
+            }
 
+            # Download the file using our retry-enabled function
+            info = download_from_youtube(url, temp_filename, **ydl_opts)
+            
+            # The actual file has .mp3 extension added by the postprocessor
+            temp_mp3_filename = temp_filename + '.mp3'
+            
+            # Convert to requested format if different from mp3
+            if output_format and output_format != 'mp3':
+                final_filename = convert_audio_format(temp_mp3_filename, output_format)
+            else:
+                final_filename = temp_mp3_filename
+            
+            # Get thumbnail path - first check for local files
+            thumbnail_path = None
+            for ext in ['jpg', 'png', 'webp']:
+                possible_path = f"{temp_filename}.{ext}"
+                if os.path.exists(possible_path):
+                    thumbnail_path = possible_path
+                    break
+            
+            # Create destination paths
+            formatted_filename = f"{info['title']} - {info.get('uploader', 'Unknown Artist')}.{output_format or 'mp3'}"
+            formatted_filename = sanitize_filename(formatted_filename)
+            
+            # Copy to media directory
+            media_dir = os.path.join(settings.MEDIA_ROOT, 'songs')
+            os.makedirs(media_dir, exist_ok=True)
+            media_path = os.path.join(media_dir, formatted_filename)
+            
+            import shutil
+            shutil.copy2(final_filename, media_path)
+            
+            # Copy thumbnail if it exists
+            thumbnail_url = None
+            if thumbnail_path:
+                thumb_filename = f"{info['title']} - {info.get('uploader', 'Unknown Artist')}.{os.path.splitext(thumbnail_path)[1][1:]}"
+                thumb_filename = sanitize_filename(thumb_filename)
+                thumb_media_path = os.path.join(media_dir, thumb_filename)
+                shutil.copy2(thumbnail_path, thumb_media_path)
+                thumbnail_url = f"/media/songs/{thumb_filename}"
+            
+            # If no local thumbnail, try to get from info
+            if not thumbnail_url:
+                for key in ['thumbnail', 'thumbnails']:
+                    if key in info and info[key]:
+                        if isinstance(info[key], list) and len(info[key]) > 0:
+                            thumbnail_url = info[key][0].get('url')
+                        else:
+                            thumbnail_url = info[key]
+                        break
+            
+            # Create the song record
+            rel_path = os.path.join('songs', formatted_filename)
+            rel_path = sanitize_filename(rel_path, max_length=95)
+            
+            song = Song.objects.create(
+                user=self.request.user,
+                title=sanitize_for_db(info['title']),
+                artist=sanitize_for_db(info.get('uploader', 'Unknown Artist')),
+                album=sanitize_for_db(info.get('album', 'Unknown')),
+                file=rel_path,
+                source='youtube',
+                thumbnail_url=sanitize_for_db(thumbnail_url, max_length=190) if thumbnail_url else None,
+                song_url=url
+            )
+
+            # Update user's music profile
+            try:
+                profile, created = UserMusicProfile.objects.get_or_create(user=self.request.user)
+                profile.update_profile(song)
+            except Exception as profile_error:
+                logger.warning(f"Error updating user profile: {profile_error}")
+
+            # Increment download count
+            self.request.user.increment_download_count()
+            
+            # Add to cache for future use
+            try:
+                cache_path = os.path.join('cache', formatted_filename)
+                cache_full_path = os.path.join(settings.MEDIA_ROOT, cache_path)
+                
+                # Make sure the cache directory exists
+                os.makedirs(os.path.dirname(cache_full_path), exist_ok=True)
+                
+                # Copy the file to the cache directory if it's not already there
+                if not os.path.exists(cache_full_path):
+                    shutil.copy2(final_filename, cache_full_path)
+                
+                # Create cache entry
+                from django.utils import timezone
+                from datetime import timedelta
+                
+                # Calculate file size
+                file_size = os.path.getsize(final_filename)
+                
+                # Prepare metadata
+                metadata = {
+                    'title': info['title'],
+                    'artist': info.get('uploader', 'Unknown Artist'),
+                    'album': info.get('album', 'Unknown'),
+                    'thumbnail_url': thumbnail_url,
+                    'source': 'youtube',
+                }
+                
+                # Create or update cache entry with metadata in the JSON field
+                SongCache.objects.update_or_create(
+                    song_url=url,
+                    defaults={
+                        'file_path': cache_path,
+                        'file_size': file_size,
+                        'expires_at': timezone.now() + timedelta(days=7),  # Cache for 7 days
+                        'metadata': metadata,
+                        'title': song.title,     # Store these for backward compatibility
+                        'artist': song.artist
+                    }
+                )
+                logger.info(f"Added song to cache: {url}")
+            except Exception as cache_error:
+                logger.warning(f"Error adding song to cache: {cache_error}")
+                
+            # Return streaming response - serve from media directory to avoid temp cleanup issues
+            response = FileResponse(
+                open(media_path, 'rb'),
+                as_attachment=True,
+                filename=formatted_filename
+            )
+            response['Content-Type'] = f'audio/{output_format or "mp3"}'
+            return response
+                
         except Exception as e:
             logger.error(f"YouTube download error: {e}", exc_info=True)
-            raise
+            return Response(
+                {'error': f'Download failed: {str(e)}'}, 
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
+        finally:
+            # Clean up resources
+            if temp_dir and os.path.exists(temp_dir):
+                try:
+                    shutil.rmtree(temp_dir, ignore_errors=True)
+                except:
+                    pass
 
     @spotify_api_retry
     def download_spotify_track(self, url, output_format=None):
         """Direct Spotify track download with streaming response"""
+        # Initialize variables for file cleanup
+        temp_dir = None
+        
         try:
             # Check if the song is in cache
             cached_song = SongCache.get_cached_song(url)
@@ -446,7 +515,7 @@ class SongViewSet(viewsets.ModelViewSet):
                 logger.info(f"Using cached version for Spotify URL: {url}")
                 
                 # Get the cached file path
-                cached_path = cached_song.local_path
+                cached_path = cached_song.local_path if hasattr(cached_song, 'local_path') else cached_song.file_path
                 if isinstance(cached_path, str):
                     cached_file_path = os.path.join(settings.MEDIA_ROOT, cached_path)
                 else:
@@ -476,15 +545,16 @@ class SongViewSet(viewsets.ModelViewSet):
                     if not Song.objects.filter(user=self.request.user, song_url=url).exists():
                         # Create the song record with proper file path
                         rel_path = os.path.relpath(final_filename, settings.MEDIA_ROOT)
+                        rel_path = sanitize_filename(rel_path, max_length=95)
                         song = Song.objects.create(
                             user=self.request.user,
-                            title=title,
-                            artist=artist,
-                            album=album,
+                            title=sanitize_for_db(title),
+                            artist=sanitize_for_db(artist),
+                            album=sanitize_for_db(album),
                             file=rel_path,
                             source='spotify',
                             spotify_id=spotify_id,
-                            thumbnail_url=metadata.get('thumbnail_url'),
+                            thumbnail_url=sanitize_for_db(metadata.get('thumbnail_url', ''), max_length=190),
                             song_url=url
                         )
                         
@@ -500,8 +570,9 @@ class SongViewSet(viewsets.ModelViewSet):
                     
                     # Serve the file
                     formatted_filename = f"{title} - {artist}.{output_format or 'mp3'}"
-                    formatted_filename = "".join(c for c in formatted_filename if c.isalnum() or c in (' ', '-', '.'))
+                    formatted_filename = sanitize_filename(formatted_filename)
                     
+                    # Let Django's FileResponse manage the file handle
                     response = FileResponse(
                         open(final_filename, 'rb'),
                         as_attachment=True,
@@ -523,17 +594,27 @@ class SongViewSet(viewsets.ModelViewSet):
             logger.info(f"Getting info for Spotify track ID: {spotify_id}")
             
             # Get track info from Spotify
-            track_info = get_spotify_track_info(spotify_id)
+            track_info = get_track_info(url)
             if not track_info:
                 return Response(
                     {'error': 'Failed to get track info from Spotify'}, 
                     status=status.HTTP_500_INTERNAL_SERVER_ERROR
                 )
             
+            # Sanitize track info fields for the database
+            track_info['title'] = sanitize_for_db(track_info['title'])
+            track_info['artist'] = sanitize_for_db(track_info['artist'])
+            if 'album' in track_info:
+                track_info['album'] = sanitize_for_db(track_info['album'])
+            
             logger.info(f"Got track info: {track_info['title']} by {track_info['artist']}")
             
             # Build a search query for YouTube
             query = f"{track_info['title']} {track_info['artist']}"
+            
+            # Create a temporary directory that we'll clean up manually
+            temp_dir = tempfile.mkdtemp()
+            temp_filename = os.path.join(temp_dir, sanitize_filename('download-{int(time.time())}'))
             
             # Download from YouTube using yt-dlp
             ydl_opts = {
@@ -543,7 +624,7 @@ class SongViewSet(viewsets.ModelViewSet):
                     'preferredcodec': 'mp3',
                     'preferredquality': '192',
                 }],
-                'outtmpl': os.path.join(settings.MEDIA_ROOT, 'songs', '%(title)s.%(ext)s'),
+                'outtmpl': temp_filename,
                 'writethumbnail': True,
             }
 
@@ -579,7 +660,15 @@ class SongViewSet(viewsets.ModelViewSet):
                 
                 # Create a proper formatted filename for the final file
                 formatted_filename = f"{track_info['title']} - {track_info['artist']}.mp3"
-                formatted_filename = "".join(c for c in formatted_filename if c.isalnum() or c in (' ', '-', '.'))
+                formatted_filename = sanitize_filename(formatted_filename)
+                
+                # Copy to media directory to avoid temp directory issues
+                media_dir = os.path.join(settings.MEDIA_ROOT, 'songs')
+                os.makedirs(media_dir, exist_ok=True)
+                media_path = os.path.join(media_dir, formatted_filename)
+                
+                import shutil
+                shutil.copy2(mp3_filename, media_path)
 
                 # Check if this song already exists for this user before creating a new one
                 existing_song = Song.objects.filter(
@@ -590,16 +679,24 @@ class SongViewSet(viewsets.ModelViewSet):
                 if existing_song:
                     song = existing_song
                 else:
-                    rel_path = os.path.relpath(mp3_filename, settings.MEDIA_ROOT)
+                    rel_path = os.path.join('songs', formatted_filename)
+                    # Sanitize the file path to ensure it doesn't exceed DB limits
+                    rel_path = sanitize_filename(rel_path, max_length=95)
+                    
+                    # Ensure thumbnail URL doesn't exceed the DB limits
+                    if thumbnail_url and len(thumbnail_url) > 190:
+                        logger.warning(f"Thumbnail URL too long, truncating: {thumbnail_url[:50]}...")
+                        thumbnail_url = sanitize_for_db(thumbnail_url, max_length=190)
+                    
                     song = Song.objects.create(
                         user=self.request.user,
-                        title=track_info['title'],
-                        artist=track_info['artist'],
-                        album=track_info.get('album', 'Unknown'),
+                        title=sanitize_for_db(track_info['title']),
+                        artist=sanitize_for_db(track_info['artist']),
+                        album=sanitize_for_db(track_info.get('album', 'Unknown')),
                         file=rel_path,
                         source='spotify',
                         spotify_id=track_info.get('spotify_id'),
-                        thumbnail_url=thumbnail_url,
+                        thumbnail_url=sanitize_for_db(thumbnail_url, max_length=190) if thumbnail_url else None,
                         song_url=url
                     )
                 
@@ -623,18 +720,23 @@ class SongViewSet(viewsets.ModelViewSet):
                     os.makedirs(os.path.dirname(cache_full_path), exist_ok=True)
                     
                     # Copy the file to the cache directory with the proper name
-                    import shutil
                     shutil.copy2(mp3_filename, cache_full_path)
                     
                     # Calculate file size
                     file_size = os.path.getsize(mp3_filename)
+                    
+                    # Ensure thumbnail URL is valid for database
+                    if thumbnail_url and len(thumbnail_url) > 190:
+                        # Truncate long URLs or set to empty if invalid
+                        logger.warning(f"Thumbnail URL too long, truncating: {thumbnail_url[:50]}...")
+                        thumbnail_url = sanitize_for_db(thumbnail_url, max_length=190)
                     
                     # Prepare metadata
                     metadata = {
                         'title': song.title,
                         'artist': song.artist,
                         'album': song.album,
-                        'thumbnail_url': song.thumbnail_url,
+                        'thumbnail_url': thumbnail_url,
                         'source': 'spotify',
                         'spotify_id': song.spotify_id
                     }
@@ -645,19 +747,19 @@ class SongViewSet(viewsets.ModelViewSet):
                         defaults={
                             'file_path': cache_path,
                             'file_size': file_size,
-                            'expires_at': timezone.now() + timedelta(days=7),  # Cache for 7 days
-                            'metadata': metadata,
-                            'title': song.title,     # Store these for backward compatibility
-                            'artist': song.artist
+                            'title': song.title,
+                            'artist': song.artist,
+                            'expires_at': timezone.now() + timedelta(days=7),
+                            'metadata': metadata
                         }
                     )
                     logger.info(f"Added song to cache: {url}")
-                except Exception as cache_error:
-                    logger.warning(f"Error adding song to cache: {cache_error}")
-
-                # Return the file with the proper filename
+                except Exception as e:
+                    logger.warning(f"Error adding song to cache: {str(e)}")
+                
+                # Serve the file from the permanent media location
                 response = FileResponse(
-                    open(mp3_filename, 'rb'),
+                    open(media_path, 'rb'),
                     as_attachment=True,
                     filename=formatted_filename
                 )
@@ -667,9 +769,16 @@ class SongViewSet(viewsets.ModelViewSet):
         except Exception as e:
             logger.error(f"Spotify track download error: {e}", exc_info=True)
             return Response(
-                {'error': f'Spotify track download failed: {str(e)}'},
+                {'error': f'Download failed: {str(e)}'}, 
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
+        finally:
+            # Clean up temp directory if it exists
+            if temp_dir and os.path.exists(temp_dir):
+                try:
+                    shutil.rmtree(temp_dir, ignore_errors=True)
+                except:
+                    pass
 
     @action(detail=False, methods=['post'])
     @custom_ratelimit(key='user', rate='3/d')
@@ -789,7 +898,7 @@ class SongViewSet(viewsets.ModelViewSet):
                                     file=cached_file_path,
                                     source='playlist',
                                     spotify_id=metadata.get('spotify_id'),
-                                    thumbnail_url=metadata.get('thumbnail_url'),
+                                    thumbnail_url=sanitize_for_db(metadata.get('thumbnail_url', ''), max_length=190),
                                     song_url=track_url
                                 )
                                 
@@ -841,11 +950,11 @@ class SongViewSet(viewsets.ModelViewSet):
                                 else:
                                     song = Song.objects.create(
                                         user=request.user,
-                                        title=info_dict.get('title', 'Unknown Title'),
-                                        artist=info_dict.get('artist', 'Unknown'),
-                                        album=info_dict.get('album', 'Unknown'),
+                                        title=sanitize_for_db(info_dict.get('title', 'Unknown Title')),
+                                        artist=sanitize_for_db(info_dict.get('artist', 'Unknown')),
+                                        album=sanitize_for_db(info_dict.get('album', 'Unknown')),
                                         file=os.path.relpath(file_path, settings.MEDIA_ROOT),
-                                        thumbnail_url=info_dict.get('thumbnail'),
+                                        thumbnail_url=sanitize_for_db(info_dict.get('thumbnail', ''), max_length=190),
                                         source='youtube',
                                         song_url=track_url
                                     )
@@ -853,7 +962,7 @@ class SongViewSet(viewsets.ModelViewSet):
                                 # Add to cache
                                 try:
                                     formatted_filename = f"{song.title} - {song.artist}.mp3"
-                                    formatted_filename = "".join(c for c in formatted_filename if c.isalnum() or c in (' ', '-', '.'))
+                                    formatted_filename = sanitize_filename(formatted_filename)
                                     cache_path = os.path.join('cache', formatted_filename)
                                     cache_full_path = os.path.join(settings.MEDIA_ROOT, cache_path)
                                     
@@ -954,20 +1063,20 @@ class SongViewSet(viewsets.ModelViewSet):
                                 else:
                                     song = Song.objects.create(
                                         user=request.user,
-                                        title=track_info['title'],
-                                        artist=track_info['artist'],
-                                        album=track_info.get('album', 'Unknown'),
+                                        title=sanitize_for_db(track_info['title']),
+                                        artist=sanitize_for_db(track_info['artist']),
+                                        album=sanitize_for_db(track_info.get('album', 'Unknown')),
                                         file=os.path.relpath(mp3_filename, settings.MEDIA_ROOT),
                                         source='spotify',
                                         spotify_id=track_info.get('spotify_id'),
-                                        thumbnail_url=thumbnail_url,
+                                        thumbnail_url=sanitize_for_db(thumbnail_url, max_length=190),
                                         song_url=track_url
                                     )
                                 
                                 # Add to cache
                                 try:
-                                    formatted_filename = f"{song.title} - {song.artist}.mp3"
-                                    formatted_filename = "".join(c for c in formatted_filename if c.isalnum() or c in (' ', '-', '.'))
+                                    formatted_filename = f"{track_info['title']} - {track_info['artist']}.mp3"
+                                    formatted_filename = sanitize_filename(formatted_filename)
                                     cache_path = os.path.join('cache', formatted_filename)
                                     cache_full_path = os.path.join(settings.MEDIA_ROOT, cache_path)
                                     
@@ -981,12 +1090,18 @@ class SongViewSet(viewsets.ModelViewSet):
                                     # Calculate file size
                                     file_size = os.path.getsize(mp3_filename)
                                     
+                                    # Ensure thumbnail URL is valid for database
+                                    if thumbnail_url and len(thumbnail_url) > 190:
+                                        # Truncate long URLs or set to empty if invalid
+                                        logger.warning(f"Thumbnail URL too long, truncating: {thumbnail_url[:50]}...")
+                                        thumbnail_url = sanitize_for_db(thumbnail_url, max_length=190)
+                                    
                                     # Prepare metadata
                                     metadata = {
                                         'title': song.title,
                                         'artist': song.artist,
                                         'album': song.album,
-                                        'thumbnail_url': song.thumbnail_url,
+                                        'thumbnail_url': thumbnail_url,
                                         'source': 'spotify',
                                         'spotify_id': song.spotify_id
                                     }
@@ -1248,7 +1363,7 @@ class SongViewSet(viewsets.ModelViewSet):
                         if os.path.exists(file_path):
                             # Use a clean filename for the ZIP entry
                             clean_filename = f"{song.title} - {song.artist}.mp3"
-                            clean_filename = "".join(c for c in clean_filename if c.isalnum() or c in (' ', '-', '.'))
+                            clean_filename = sanitize_filename(clean_filename)
                             zip_file.write(file_path, clean_filename)
                 
                 # Return the ZIP file
@@ -1360,7 +1475,7 @@ class PlaylistViewSet(viewsets.ModelViewSet):
                         if os.path.exists(file_path):
                             # Use a clean filename for the ZIP entry
                             clean_filename = f"{song.title} - {song.artist}.mp3"
-                            clean_filename = "".join(c for c in clean_filename if c.isalnum() or c in (' ', '-', '.'))
+                            clean_filename = sanitize_filename(clean_filename)
                             zip_file.write(file_path, clean_filename)
                 
                 # Read file content into memory and return
@@ -1426,12 +1541,12 @@ class UserRecommendationsView(generics.ListAPIView):
                     try:
                         song = Song.objects.create(
                             user=self.request.user,
-                            title=rec['title'],
-                            artist=rec['artist'],
-                            album=rec.get('album', 'Unknown'),
+                            title=sanitize_for_db(rec['title']),
+                            artist=sanitize_for_db(rec['artist']),
+                            album=sanitize_for_db(rec.get('album', 'Unknown')),
                             source='csv_data',
                             spotify_id=rec['spotify_id'],
-                            thumbnail_url=rec.get('image_url')
+                            thumbnail_url=sanitize_for_db(rec.get('image_url', ''), max_length=190)
                         )
                         songs.append(song.id)
                     except Exception as e:
@@ -1513,12 +1628,12 @@ class RecommendationsAPIView(APIView):
                     try:
                         song = Song.objects.create(
                             user=request.user,
-                            title=rec['title'],
-                            artist=rec['artist'],
-                            album=rec.get('album', 'Unknown'),
+                            title=sanitize_for_db(rec['title']),
+                            artist=sanitize_for_db(rec['artist']),
+                            album=sanitize_for_db(rec.get('album', 'Unknown')),
                             source='csv_data',
                             spotify_id=rec['spotify_id'],
-                            thumbnail_url=rec.get('image_url')
+                            thumbnail_url=sanitize_for_db(rec.get('image_url', ''), max_length=190)
                         )
                         songs.append(song)
                     except Exception as e:

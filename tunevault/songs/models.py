@@ -6,6 +6,7 @@ import os
 import logging
 from django.utils import timezone
 from datetime import timedelta
+from django.utils.text import Truncator
 
 logger = logging.getLogger(__name__)
 
@@ -120,6 +121,40 @@ class Song(models.Model):
         # Get Song objects for these Spotify IDs
         return cls.objects.filter(spotify_id__in=spotify_ids)[:limit]
 
+    def save(self, *args, **kwargs):
+        """Truncate fields if necessary before saving"""
+        # Truncate text fields to their max lengths
+        if self.title and len(self.title) > 250:
+            self.title = Truncator(self.title).chars(250)
+            
+        if self.artist and len(self.artist) > 250:
+            self.artist = Truncator(self.artist).chars(250)
+            
+        if self.album and len(self.album) > 250:
+            self.album = Truncator(self.album).chars(250)
+            
+        if self.genre and len(self.genre) > 95:
+            self.genre = Truncator(self.genre).chars(95)
+            
+        if self.source and len(self.source) > 18:
+            self.source = Truncator(self.source).chars(18)
+            
+        if self.youtube_id and len(self.youtube_id) > 18:
+            self.youtube_id = Truncator(self.youtube_id).chars(18)
+            
+        if self.spotify_id and len(self.spotify_id) > 45:
+            self.spotify_id = Truncator(self.spotify_id).chars(45)
+            
+        # Sanitize any Unicode characters in URLs
+        if self.thumbnail_url:
+            # ASCII-only version
+            self.thumbnail_url = self.thumbnail_url.encode('ascii', 'ignore').decode('ascii')
+            if len(self.thumbnail_url) > 190:
+                self.thumbnail_url = Truncator(self.thumbnail_url).chars(190)
+                
+        # Call the parent save method
+        super(Song, self).save(*args, **kwargs)
+
 class Playlist(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
@@ -158,7 +193,7 @@ class UserMusicProfile(models.Model):
         self.save()
         
         # Automatically update favorite genres if song has genres
-        if song.genres.exists():
+        if hasattr(song, 'genres') and hasattr(song.genres, 'exists') and song.genres.exists():
             for genre in song.genres.all():
                 self.favorite_genres.add(genre)
 
