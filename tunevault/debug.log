@@ -8612,3 +8612,109 @@ INFO 2025-03-31 13:59:35,156 views 3156 16032 Got 10 recommendations
 INFO 2025-03-31 13:59:36,524 basehttp 3156 16032 "GET /api/songs/recommendations/ HTTP/1.1" 200 2429
 INFO 2025-03-31 14:00:34,572 autoreload 3156 25976 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\recommendation.py changed, reloading.
 INFO 2025-03-31 14:00:38,434 autoreload 22588 17908 Watching for file changes with StatReloader
+INFO 2025-03-31 14:03:04,240 autoreload 22588 17908 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 14:03:08,049 autoreload 18936 10776 Watching for file changes with StatReloader
+INFO 2025-03-31 14:06:30,792 autoreload 18936 10776 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\users\views.py changed, reloading.
+INFO 2025-03-31 14:06:34,062 autoreload 22068 22848 Watching for file changes with StatReloader
+INFO 2025-03-31 14:07:30,442 autoreload 22068 22848 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\tunevault\settings.py changed, reloading.
+INFO 2025-03-31 14:07:32,899 autoreload 27068 4592 Watching for file changes with StatReloader
+INFO 2025-03-31 14:08:49,493 autoreload 14404 21612 Watching for file changes with StatReloader
+INFO 2025-03-31 14:09:43,564 autoreload 14404 21612 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\tunevault\settings.py changed, reloading.
+INFO 2025-03-31 14:09:46,846 autoreload 17272 3640 Watching for file changes with StatReloader
+INFO 2025-03-31 14:10:16,534 autoreload 18776 10748 Watching for file changes with StatReloader
+INFO 2025-03-31 14:10:50,890 autoreload 18776 10748 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\tunevault\settings.py changed, reloading.
+INFO 2025-03-31 14:10:54,258 autoreload 18240 15856 Watching for file changes with StatReloader
+INFO 2025-03-31 14:14:20,459 autoreload 18240 15856 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\users\views.py changed, reloading.
+INFO 2025-03-31 14:14:23,831 autoreload 20412 15372 Watching for file changes with StatReloader
+INFO 2025-03-31 14:14:30,300 autoreload 20412 15372 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\tunevault\settings.py changed, reloading.
+INFO 2025-03-31 14:14:33,452 autoreload 8412 5744 Watching for file changes with StatReloader
+INFO 2025-03-31 14:14:43,270 autoreload 8412 5744 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\users\admin.py changed, reloading.
+INFO 2025-03-31 14:14:46,104 autoreload 21004 20384 Watching for file changes with StatReloader
+INFO 2025-03-31 14:21:32,917 autoreload 21004 20384 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\tunevault\settings.py changed, reloading.
+INFO 2025-03-31 14:21:36,398 autoreload 8600 3980 Watching for file changes with StatReloader
+INFO 2025-03-31 14:21:40,667 autoreload 8600 3980 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\tunevault\settings.py changed, reloading.
+INFO 2025-03-31 14:21:44,621 autoreload 27452 5708 Watching for file changes with StatReloader
+INFO 2025-03-31 14:32:08,571 autoreload 27452 5708 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\tunevault\settings.py changed, reloading.
+INFO 2025-03-31 14:32:13,000 autoreload 9412 18012 Watching for file changes with StatReloader
+INFO 2025-03-31 14:33:33,038 autoreload 9412 18012 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\tunevault\settings.py changed, reloading.
+INFO 2025-03-31 14:33:36,690 autoreload 17188 24708 Watching for file changes with StatReloader
+INFO 2025-03-31 14:33:52,826 autoreload 17188 24708 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\tunevault\settings.py changed, reloading.
+INFO 2025-03-31 14:33:56,320 autoreload 10956 8412 Watching for file changes with StatReloader
+INFO 2025-03-31 14:34:07,810 autoreload 10956 8412 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\tunevault\settings.py changed, reloading.
+INFO 2025-03-31 14:34:11,459 autoreload 8392 2996 Watching for file changes with StatReloader
+INFO 2025-03-31 14:35:09,996 autoreload 8392 2996 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\tunevault\settings.py changed, reloading.
+INFO 2025-03-31 14:35:13,975 autoreload 13616 22628 Watching for file changes with StatReloader
+INFO 2025-03-31 14:35:35,736 autoreload 13616 22628 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\tunevault\settings.py changed, reloading.
+INFO 2025-03-31 14:35:39,507 autoreload 14028 8632 Watching for file changes with StatReloader
+INFO 2025-03-31 14:35:53,327 autoreload 14028 8632 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\tunevault\settings.py changed, reloading.
+INFO 2025-03-31 14:35:56,851 autoreload 21932 27132 Watching for file changes with StatReloader
+INFO 2025-03-31 14:36:26,649 autoreload 21932 27132 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\tunevault\settings.py changed, reloading.
+INFO 2025-03-31 14:36:30,714 autoreload 1212 14416 Watching for file changes with StatReloader
+INFO 2025-03-31 14:36:53,019 autoreload 1212 14416 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\tunevault\settings.py changed, reloading.
+INFO 2025-03-31 14:36:56,736 autoreload 19192 6260 Watching for file changes with StatReloader
+INFO 2025-03-31 14:37:03,086 autoreload 19192 6260 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\tunevault\settings.py changed, reloading.
+INFO 2025-03-31 14:37:06,747 autoreload 26836 14404 Watching for file changes with StatReloader
+INFO 2025-03-31 14:47:20,808 basehttp 26836 22792 "GET /api/users/google-login HTTP/1.1" 301 0
+WARNING 2025-03-31 14:47:23,164 log 26836 21580 Method Not Allowed: /api/users/google-login/
+WARNING 2025-03-31 14:47:23,164 basehttp 26836 21580 "GET /api/users/google-login/ HTTP/1.1" 405 5661
+INFO 2025-03-31 14:47:23,567 basehttp 26836 24316 "GET /static/rest_framework/css/prettify.css HTTP/1.1" 200 817
+INFO 2025-03-31 14:47:23,568 basehttp 26836 2392 "GET /static/rest_framework/css/bootstrap-tweaks.css HTTP/1.1" 200 3426
+INFO 2025-03-31 14:47:23,570 basehttp 26836 5184 "GET /static/rest_framework/css/default.css HTTP/1.1" 200 1152
+INFO 2025-03-31 14:47:23,580 basehttp 26836 21580 "GET /static/rest_framework/css/bootstrap.min.css HTTP/1.1" 200 121457
+INFO 2025-03-31 14:47:23,602 basehttp 26836 15128 "GET /static/rest_framework/js/ajax-form.js HTTP/1.1" 200 3796
+INFO 2025-03-31 14:47:23,606 basehttp 26836 24316 "GET /static/rest_framework/js/csrf.js HTTP/1.1" 200 1793
+INFO 2025-03-31 14:47:23,615 basehttp 26836 21580 "GET /static/rest_framework/js/default.js HTTP/1.1" 200 1268
+INFO 2025-03-31 14:47:23,623 basehttp 26836 5184 "GET /static/rest_framework/js/prettify-min.js HTTP/1.1" 200 13632
+INFO 2025-03-31 14:47:23,628 basehttp 26836 15128 "GET /static/rest_framework/js/load-ajax-form.js HTTP/1.1" 200 59
+INFO 2025-03-31 14:47:23,632 basehttp 26836 24316 "GET /static/rest_framework/img/grid.png HTTP/1.1" 200 1458
+INFO 2025-03-31 14:47:23,636 basehttp 26836 8576 "GET /static/rest_framework/js/jquery-3.7.1.min.js HTTP/1.1" 200 87533
+INFO 2025-03-31 14:47:23,640 basehttp 26836 2392 "GET /static/rest_framework/js/bootstrap.min.js HTTP/1.1" 200 39680
+WARNING 2025-03-31 14:47:27,426 log 26836 21580 Method Not Allowed: /api/users/google-login/
+WARNING 2025-03-31 14:47:27,427 basehttp 26836 21580 "GET /api/users/google-login/ HTTP/1.1" 405 5661
+WARNING 2025-03-31 14:47:27,524 log 26836 21580 Not Found: /favicon.ico
+INFO 2025-03-31 14:47:27,525 basehttp 26836 21580 - Broken pipe from ('127.0.0.1', 60125)
+INFO 2025-03-31 14:48:38,066 autoreload 26836 14404 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\tunevault\settings.py changed, reloading.
+INFO 2025-03-31 14:48:41,687 autoreload 18684 13576 Watching for file changes with StatReloader
+INFO 2025-03-31 14:49:03,385 autoreload 18684 13576 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\users\views.py changed, reloading.
+INFO 2025-03-31 14:49:07,089 autoreload 24552 24896 Watching for file changes with StatReloader
+INFO 2025-03-31 14:52:50,214 basehttp 24552 1436 "GET /admin/users/customuser/1/change/ HTTP/1.1" 200 40812
+INFO 2025-03-31 14:52:50,415 basehttp 24552 21796 - Broken pipe from ('127.0.0.1', 60559)
+INFO 2025-03-31 14:52:50,876 basehttp 24552 1436 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+WARNING 2025-03-31 14:52:50,920 log 24552 1436 Not Found: /favicon.ico
+INFO 2025-03-31 14:52:50,920 basehttp 24552 1436 - Broken pipe from ('127.0.0.1', 60546)
+INFO 2025-03-31 14:52:55,321 basehttp 24552 21432 "GET /admin/socialaccount/socialaccount/ HTTP/1.1" 200 15756
+INFO 2025-03-31 14:52:55,969 basehttp 24552 21432 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-03-31 14:52:55,982 basehttp 24552 21432 "GET /static/admin/img/search.svg HTTP/1.1" 200 458
+INFO 2025-03-31 14:52:56,001 basehttp 24552 21432 "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 581
+INFO 2025-03-31 14:52:58,745 basehttp 24552 21432 "GET /admin/socialaccount/socialaccount/add/ HTTP/1.1" 200 17725
+INFO 2025-03-31 14:52:59,405 basehttp 24552 21432 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+WARNING 2025-03-31 14:52:59,492 log 24552 21432 Not Found: /favicon.ico
+INFO 2025-03-31 14:52:59,495 basehttp 24552 21432 - Broken pipe from ('127.0.0.1', 60564)
+INFO 2025-03-31 14:53:02,014 basehttp 24552 16032 "GET /admin/socialaccount/socialaccount/ HTTP/1.1" 200 15756
+WARNING 2025-03-31 14:53:02,100 log 24552 16032 Not Found: /favicon.ico
+INFO 2025-03-31 14:53:02,102 basehttp 24552 16032 - Broken pipe from ('127.0.0.1', 60577)
+WARNING 2025-03-31 14:53:17,504 log 24552 4012 Not Found: /api/users/accounts/google/login//
+WARNING 2025-03-31 14:53:18,082 basehttp 24552 4012 "GET /api/users/accounts/google/login// HTTP/1.1" 404 4650
+WARNING 2025-03-31 14:53:21,044 log 24552 4012 Not Found: /api/users/accounts/google/login/
+WARNING 2025-03-31 14:53:21,046 basehttp 24552 4012 "GET /api/users/accounts/google/login/ HTTP/1.1" 404 4647
+WARNING 2025-03-31 14:53:23,461 log 24552 4012 Not Found: /api/accounts/google/login/
+WARNING 2025-03-31 14:53:23,462 basehttp 24552 4012 "GET /api/accounts/google/login/ HTTP/1.1" 404 3415
+INFO 2025-03-31 14:53:31,993 basehttp 24552 4012 "GET /accounts/google/login/ HTTP/1.1" 200 1980
+INFO 2025-03-31 14:53:34,447 basehttp 24552 4012 "POST /accounts/google/login/ HTTP/1.1" 302 0
+INFO 2025-03-31 14:54:11,952 autoreload 24552 24896 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\users\urls.py changed, reloading.
+INFO 2025-03-31 14:54:15,753 autoreload 26508 25460 Watching for file changes with StatReloader
+INFO 2025-03-31 14:54:30,686 autoreload 26508 25460 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\users\views.py changed, reloading.
+INFO 2025-03-31 14:54:34,215 autoreload 2468 27456 Watching for file changes with StatReloader
+INFO 2025-03-31 15:00:41,859 basehttp 2468 22288 "POST /accounts/google/login/ HTTP/1.1" 302 0
+INFO 2025-03-31 15:03:37,958 basehttp 2468 3544 "POST /accounts/google/login/ HTTP/1.1" 302 0
+INFO 2025-03-31 15:03:46,679 basehttp 2468 3544 "GET /accounts/google/login/callback/?state=HSy3HgrU4awWzdi5&code=4%2F0AQSTgQEUY50FIjEYqVBNQozPaDA0_iAl3-X7DQ7-7KnJj0wBtmppF5ZqOVkh8SIc8ghSPg&scope=email+profile+openid+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&authuser=0&prompt=consent HTTP/1.1" 302 0
+WARNING 2025-03-31 15:03:46,700 log 2468 3544 Not Found: /
+WARNING 2025-03-31 15:03:46,701 basehttp 2468 3544 "GET / HTTP/1.1" 404 3319
+INFO 2025-03-31 15:04:32,524 autoreload 2468 27456 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\users\views.py changed, reloading.
+INFO 2025-03-31 15:04:36,193 autoreload 4840 12456 Watching for file changes with StatReloader
+INFO 2025-03-31 15:04:44,077 autoreload 4840 12456 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\tunevault\urls.py changed, reloading.
+INFO 2025-03-31 15:04:47,694 autoreload 19632 25468 Watching for file changes with StatReloader
+INFO 2025-03-31 15:04:52,008 autoreload 19632 25468 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\tunevault\settings.py changed, reloading.
+INFO 2025-03-31 15:04:55,618 autoreload 11108 20268 Watching for file changes with StatReloader
+INFO 2025-03-31 15:05:45,441 autoreload 11108 20268 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\tunevault\urls.py changed, reloading.
+INFO 2025-03-31 15:05:49,206 autoreload 18236 22856 Watching for file changes with StatReloader
