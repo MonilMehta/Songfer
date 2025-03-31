@@ -371,7 +371,7 @@ class SongViewSet(viewsets.ModelViewSet):
             # Create temp directory for download
             temp_dir = tempfile.mkdtemp()
             # Generate a temporary filename
-            temp_filename = os.path.join(temp_dir, f"download-{int(time.time())}")
+            temp_filename = os.path.join(temp_dir, sanitize_filename(f'download-{int(time.time())}'))
             
             # Define download options
             ydl_opts = {
@@ -653,7 +653,7 @@ class SongViewSet(viewsets.ModelViewSet):
             
             # Create a temporary directory that we'll clean up manually
             temp_dir = tempfile.mkdtemp()
-            temp_filename = os.path.join(temp_dir, sanitize_filename('download-{int(time.time())}'))
+            temp_filename = os.path.join(temp_dir, sanitize_filename(f'download-{int(time.time())}'))
             
             # Download from YouTube using yt-dlp
             ydl_opts = {

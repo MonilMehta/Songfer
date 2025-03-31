@@ -8050,3 +8050,115 @@ ERROR 2025-03-31 11:44:44,804 basehttp 11668 2572 "POST /api/songs/songs/downloa
 INFO 2025-03-31 11:45:33,570 views 11668 3224 Found existing song with URL https://www.youtube.com/watch?v=_lMlsPQJs6U, serving directly
 INFO 2025-03-31 11:45:33,696 views 11668 3224 Using cached version for URL: https://www.youtube.com/watch?v=_lMlsPQJs6U
 INFO 2025-03-31 11:45:34,031 basehttp 11668 3224 "POST /api/songs/songs/download/ HTTP/1.1" 200 5314220
+INFO 2025-03-31 11:47:05,022 autoreload 11668 11660 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 11:47:10,665 autoreload 21232 21004 Watching for file changes with StatReloader
+INFO 2025-03-31 11:47:16,339 autoreload 21232 21004 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 11:47:22,475 autoreload 14652 1204 Watching for file changes with StatReloader
+INFO 2025-03-31 11:48:32,880 spotify_api 14652 9288 Extracting Spotify ID from URL: https://open.spotify.com/track/3VYzbU22BooAROigHHwycs?si=0ad955a5edba433e
+INFO 2025-03-31 11:48:32,880 spotify_api 14652 9288 Extracted Spotify track ID: 3VYzbU22BooAROigHHwycs
+INFO 2025-03-31 11:48:33,011 spotify_api 14652 9288 Extracting Spotify ID from URL: https://open.spotify.com/track/3VYzbU22BooAROigHHwycs?si=0ad955a5edba433e
+INFO 2025-03-31 11:48:33,011 spotify_api 14652 9288 Extracted Spotify track ID: 3VYzbU22BooAROigHHwycs
+INFO 2025-03-31 11:48:33,011 views 14652 9288 Getting info for Spotify track ID: ('track', '3VYzbU22BooAROigHHwycs')
+INFO 2025-03-31 11:48:33,011 spotify_api 14652 9288 Extracting Spotify ID from URL: https://open.spotify.com/track/3VYzbU22BooAROigHHwycs?si=0ad955a5edba433e
+INFO 2025-03-31 11:48:33,011 spotify_api 14652 9288 Extracted Spotify track ID: 3VYzbU22BooAROigHHwycs
+INFO 2025-03-31 11:48:33,011 spotify_api 14652 9288 Getting info for Spotify track ID: 3VYzbU22BooAROigHHwycs
+INFO 2025-03-31 11:48:33,019 spotify_api 14652 9288 Creating Spotify client with credentials from settings
+INFO 2025-03-31 11:48:33,247 spotify_api 14652 9288 Successfully tested Spotify client
+INFO 2025-03-31 11:48:33,665 spotify_api 14652 9288 Got track info: Swimming Pools (Drank) - Extended Version by Kendrick Lamar
+INFO 2025-03-31 11:48:33,666 views 14652 9288 Got track info: Swimming Pools Drank - Extended Version by Kendrick Lamar
+INFO 2025-03-31 11:48:33,813 views 14652 9288 Downloading using YouTube search: ytsearch:Swimming Pools Drank - Extended Version Kendrick Lamar
+INFO 2025-03-31 11:48:50,074 views 14652 9288 Downloaded file to: C:\Users\Dell\AppData\Local\Temp\tmprquag93f\download-1743401913.mp3
+INFO 2025-03-31 11:48:50,189 utils 14652 9288 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\media\songs\Swimming Pools Drank - Extended Version - Kendrick Lamar.mp3
+INFO 2025-03-31 11:48:50,189 utils 14652 9288 Title: Swimming Pools Drank - Extended Version, Artist: Kendrick Lamar, Album: good kid, m.A.A.d city, Genre: hip hop
+INFO 2025-03-31 11:48:50,205 utils 14652 9288 Loaded existing ID3 tags
+INFO 2025-03-31 11:48:50,269 utils 14652 9288 Downloading thumbnail from URL: https://i.scdn.co/image/ab67616d0000b2732cd55246d935a8a77cb4859e
+INFO 2025-03-31 11:48:50,351 utils 14652 9288 Downloaded thumbnail: 129199 bytes
+INFO 2025-03-31 11:48:50,351 utils 14652 9288 Detected image type: jpeg
+INFO 2025-03-31 11:48:50,351 utils 14652 9288 Adding album art, MIME type: image/jpeg
+INFO 2025-03-31 11:48:50,351 utils 14652 9288 Successfully added album art to ID3 tags
+INFO 2025-03-31 11:48:50,367 utils 14652 9288 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\media\songs\Swimming Pools Drank - Extended Version - Kendrick Lamar.mp3
+INFO 2025-03-31 11:48:50,375 utils 14652 9288 Verification: 8 tags were written, has_cover=True
+INFO 2025-03-31 11:48:51,043 views 14652 9288 Added song to cache: https://open.spotify.com/track/3VYzbU22BooAROigHHwycs?si=0ad955a5edba433e
+INFO 2025-03-31 11:48:51,384 basehttp 14652 9288 "POST /api/songs/songs/download/ HTTP/1.1" 200 7670506
+INFO 2025-03-31 11:52:05,821 spotify_api 14652 8008 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-31 11:52:05,823 spotify_api 14652 8008 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-31 11:52:05,824 views 14652 8008 Redirecting Spotify playlist URL to playlist download endpoint: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-31 11:52:05,824 spotify_api 14652 8008 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-03-31 11:52:05,825 spotify_api 14652 8008 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-31 11:52:05,826 spotify_api 14652 8008 Getting Spotify playlist info for ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-03-31 11:52:05,827 spotify_api 14652 8008 Creating Spotify client with credentials from settings
+INFO 2025-03-31 11:52:06,042 spotify_api 14652 8008 Successfully tested Spotify client
+INFO 2025-03-31 11:52:06,541 spotify_api 14652 8008 Extracted 3 track URLs from playlist
+INFO 2025-03-31 11:52:07,071 views 14652 8008 Added existing song to playlist: https://open.spotify.com/track/1ApfHqjOoBmJZ0SjdjzVyA
+INFO 2025-03-31 11:52:07,409 views 14652 8008 Added existing song to playlist: https://open.spotify.com/track/0dQiyqHUpnMPmHtk535VAY
+INFO 2025-03-31 11:52:07,740 views 14652 8008 Added existing song to playlist: https://open.spotify.com/track/0kYBzFJ5a2Jozi6cI4y9Bp
+INFO 2025-03-31 11:52:07,878 basehttp 14652 8008 "POST /api/songs/songs/download/ HTTP/1.1" 200 122
+INFO 2025-03-31 11:52:23,267 basehttp 14652 8008 "GET /api/songs/playlists/39/download-all/ HTTP/1.1" 200 18440628
+INFO 2025-03-31 11:56:17,122 views 14652 20444 Redirecting YouTube playlist URL to playlist download endpoint: https://www.youtube.com/watch?v=xH9xv0X9-Xw&list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1&pp=gAQB
+INFO 2025-03-31 11:56:17,122 utils 14652 20444 Getting YouTube playlist info for URL: https://www.youtube.com/watch?v=xH9xv0X9-Xw&list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1&pp=gAQB
+INFO 2025-03-31 11:56:17,122 utils 14652 20444 Extracted YouTube playlist ID: PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-03-31 11:56:17,128 utils 14652 20444 Using formatted playlist URL: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-03-31 11:56:17,263 utils 14652 20444 Extracting playlist info from: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-03-31 11:56:19,184 utils 14652 20444 Successfully extracted info for playlist: tunevault with 2 tracks
+INFO 2025-03-31 11:56:19,659 views 14652 20444 Added existing song to playlist: https://www.youtube.com/watch?v=xH9xv0X9-Xw
+INFO 2025-03-31 11:56:19,982 views 14652 20444 Added existing song to playlist: https://www.youtube.com/watch?v=jI-w4gvkCkQ
+INFO 2025-03-31 11:56:20,128 basehttp 14652 20444 "POST /api/songs/songs/download/ HTTP/1.1" 200 114
+INFO 2025-03-31 11:56:48,755 spotify_api 14652 20444 Extracting Spotify ID from URL: https://open.spotify.com/track/2tpWsVSb9UEmDRxAl1zhX1?si=ebc97b99059c448d
+INFO 2025-03-31 11:56:48,765 spotify_api 14652 20444 Extracted Spotify track ID: 2tpWsVSb9UEmDRxAl1zhX1
+INFO 2025-03-31 11:56:48,887 spotify_api 14652 20444 Extracting Spotify ID from URL: https://open.spotify.com/track/2tpWsVSb9UEmDRxAl1zhX1?si=ebc97b99059c448d
+INFO 2025-03-31 11:56:48,887 spotify_api 14652 20444 Extracted Spotify track ID: 2tpWsVSb9UEmDRxAl1zhX1
+INFO 2025-03-31 11:56:48,887 views 14652 20444 Getting info for Spotify track ID: ('track', '2tpWsVSb9UEmDRxAl1zhX1')
+INFO 2025-03-31 11:56:48,887 spotify_api 14652 20444 Extracting Spotify ID from URL: https://open.spotify.com/track/2tpWsVSb9UEmDRxAl1zhX1?si=ebc97b99059c448d
+INFO 2025-03-31 11:56:48,887 spotify_api 14652 20444 Extracted Spotify track ID: 2tpWsVSb9UEmDRxAl1zhX1
+INFO 2025-03-31 11:56:48,895 spotify_api 14652 20444 Getting info for Spotify track ID: 2tpWsVSb9UEmDRxAl1zhX1
+INFO 2025-03-31 11:56:48,895 spotify_api 14652 20444 Creating Spotify client with credentials from settings
+INFO 2025-03-31 11:56:49,179 spotify_api 14652 20444 Successfully tested Spotify client
+INFO 2025-03-31 11:56:49,584 spotify_api 14652 20444 Got track info: Counting Stars by OneRepublic
+INFO 2025-03-31 11:56:49,584 views 14652 20444 Got track info: Counting Stars by OneRepublic
+INFO 2025-03-31 11:56:49,722 views 14652 20444 Downloading using YouTube search: ytsearch:Counting Stars OneRepublic
+INFO 2025-03-31 11:57:08,344 views 14652 20444 Downloaded file to: C:\Users\Dell\AppData\Local\Temp\tmp110lwrr6\download-1743402409.mp3
+INFO 2025-03-31 11:57:08,483 utils 14652 20444 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\media\songs\Counting Stars - OneRepublic.mp3
+INFO 2025-03-31 11:57:08,491 utils 14652 20444 Title: Counting Stars, Artist: OneRepublic, Album: Native, Genre: soft pop
+INFO 2025-03-31 11:57:08,500 utils 14652 20444 Loaded existing ID3 tags
+INFO 2025-03-31 11:57:08,573 utils 14652 20444 Found matching song in database: Counting Stars by OneRepublic
+INFO 2025-03-31 11:57:08,573 utils 14652 20444 Using thumbnail URL from database: https://i.scdn.co/image/ab67616d0000b273726d48d93d02e1271774f023
+INFO 2025-03-31 11:57:08,573 utils 14652 20444 Downloading thumbnail from URL: https://i.scdn.co/image/ab67616d0000b273726d48d93d02e1271774f023
+INFO 2025-03-31 11:57:08,647 utils 14652 20444 Downloaded thumbnail: 128294 bytes
+INFO 2025-03-31 11:57:08,655 utils 14652 20444 Detected image type: jpeg
+INFO 2025-03-31 11:57:08,655 utils 14652 20444 Adding album art, MIME type: image/jpeg
+INFO 2025-03-31 11:57:08,655 utils 14652 20444 Successfully added album art to ID3 tags
+INFO 2025-03-31 11:57:08,671 utils 14652 20444 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\media\songs\Counting Stars - OneRepublic.mp3
+INFO 2025-03-31 11:57:08,687 utils 14652 20444 Verification: 8 tags were written, has_cover=True
+INFO 2025-03-31 11:57:09,326 views 14652 20444 Added song to cache: https://open.spotify.com/track/2tpWsVSb9UEmDRxAl1zhX1?si=ebc97b99059c448d
+INFO 2025-03-31 11:57:09,485 basehttp 14652 20444 "POST /api/songs/songs/download/ HTTP/1.1" 200 6930915
+INFO 2025-03-31 11:58:21,860 spotify_api 14652 5456 Extracting Spotify ID from URL: https://open.spotify.com/track/1AWQoqb9bSvzTjaLralEkT?si=1c2d4b3bd7f445aa
+INFO 2025-03-31 11:58:21,860 spotify_api 14652 5456 Extracted Spotify track ID: 1AWQoqb9bSvzTjaLralEkT
+INFO 2025-03-31 11:58:21,988 spotify_api 14652 5456 Extracting Spotify ID from URL: https://open.spotify.com/track/1AWQoqb9bSvzTjaLralEkT?si=1c2d4b3bd7f445aa
+INFO 2025-03-31 11:58:21,997 spotify_api 14652 5456 Extracted Spotify track ID: 1AWQoqb9bSvzTjaLralEkT
+INFO 2025-03-31 11:58:21,997 views 14652 5456 Getting info for Spotify track ID: ('track', '1AWQoqb9bSvzTjaLralEkT')
+INFO 2025-03-31 11:58:21,997 spotify_api 14652 5456 Extracting Spotify ID from URL: https://open.spotify.com/track/1AWQoqb9bSvzTjaLralEkT?si=1c2d4b3bd7f445aa
+INFO 2025-03-31 11:58:21,997 spotify_api 14652 5456 Extracted Spotify track ID: 1AWQoqb9bSvzTjaLralEkT
+INFO 2025-03-31 11:58:21,997 spotify_api 14652 5456 Getting info for Spotify track ID: 1AWQoqb9bSvzTjaLralEkT
+INFO 2025-03-31 11:58:21,997 spotify_api 14652 5456 Creating Spotify client with credentials from settings
+INFO 2025-03-31 11:58:22,208 spotify_api 14652 5456 Successfully tested Spotify client
+INFO 2025-03-31 11:58:22,672 spotify_api 14652 5456 Got track info: Rock Your Body by Justin Timberlake
+INFO 2025-03-31 11:58:22,672 views 14652 5456 Got track info: Rock Your Body by Justin Timberlake
+INFO 2025-03-31 11:58:22,826 views 14652 5456 Downloading using YouTube search: ytsearch:Rock Your Body Justin Timberlake
+INFO 2025-03-31 11:58:40,626 views 14652 5456 Downloaded file to: C:\Users\Dell\AppData\Local\Temp\tmpfhbwjx0i\download-1743402502.mp3
+INFO 2025-03-31 11:58:40,706 utils 14652 5456 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\media\songs\Rock Your Body - Justin Timberlake.mp3
+INFO 2025-03-31 11:58:40,707 utils 14652 5456 Title: Rock Your Body, Artist: Justin Timberlake, Album: Justified, Genre: Unknown
+INFO 2025-03-31 11:58:40,722 utils 14652 5456 Loaded existing ID3 tags
+INFO 2025-03-31 11:58:40,788 utils 14652 5456 Downloading thumbnail from URL: https://i.scdn.co/image/ab67616d0000b273346a5742374ab4cf9ed32dee
+INFO 2025-03-31 11:58:40,853 utils 14652 5456 Downloaded thumbnail: 83876 bytes
+INFO 2025-03-31 11:58:40,861 utils 14652 5456 Detected image type: jpeg
+INFO 2025-03-31 11:58:40,862 utils 14652 5456 Adding album art, MIME type: image/jpeg
+INFO 2025-03-31 11:58:40,862 utils 14652 5456 Successfully added album art to ID3 tags
+INFO 2025-03-31 11:58:40,873 utils 14652 5456 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\media\songs\Rock Your Body - Justin Timberlake.mp3
+INFO 2025-03-31 11:58:40,888 utils 14652 5456 Verification: 8 tags were written, has_cover=True
+INFO 2025-03-31 11:58:41,565 views 14652 5456 Added song to cache: https://open.spotify.com/track/1AWQoqb9bSvzTjaLralEkT?si=1c2d4b3bd7f445aa
+INFO 2025-03-31 11:58:41,734 basehttp 14652 5456 "POST /api/songs/songs/download/ HTTP/1.1" 200 7238813
+INFO 2025-03-31 11:59:34,750 basehttp 14652 25368 "GET /api/songs/songs/ HTTP/1.1" 200 12477
+INFO 2025-03-31 11:59:45,110 basehttp 14652 25368 "GET /api/songs/playlists/ HTTP/1.1" 200 13129
+INFO 2025-03-31 11:59:52,015 basehttp 14652 25368 "GET /api/songs/user/profile HTTP/1.1" 301 0
+INFO 2025-03-31 11:59:52,863 basehttp 14652 2108 "GET /api/songs/user/profile/ HTTP/1.1" 200 176
+INFO 2025-03-31 12:00:04,535 basehttp 14652 2108 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 200
