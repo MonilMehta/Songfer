@@ -1730,102 +1730,32 @@ class RecommendationsAPIView(APIView):
             
             logger.info(f"Got {len(recommendations_data)} recommendations")
             
-            # Convert recommendations to Song objects if they don't exist yet
+            # Do not convert recommendations to Song objects anymore, just use them as-is
             songs = []
             for rec in recommendations_data:
                 if 'spotify_id' not in rec:
                     logger.warning(f"Missing spotify_id in recommendation: {rec}")
                     continue
-                    
-                # Check if song already exists
-                existing = Song.objects.filter(spotify_id=rec['spotify_id']).first()
-                if existing:
-                    songs.append(existing)
-                else:
-                    # Create new song
-                    try:
-                        song = Song.objects.create(
-                            user=request.user,
-                            title=sanitize_for_db(rec['title']),
-                            artist=sanitize_for_db(rec['artist']),
-                            album=sanitize_for_db(rec.get('album', 'Unknown')),
-                            source='recommendation',
-                            spotify_id=rec['spotify_id'],
-                            thumbnail_url=sanitize_for_db(rec.get('image_url', ''), max_length=190),
-                            year=rec.get('year'),
-                            genre=rec.get('genre', 'Unknown')
-                        )
-                        songs.append(song)
-                        
-                        # Download the song if it has a spotify_id and save thumbnail to ID3
-                        if rec.get('image_url') and rec['spotify_id']:
-                            # Start a background task to download and process the thumbnail
-                            from threading import Thread
-                            
-                            def process_thumbnail():
-                                try:
-                                    # Find the corresponding MP3 file in media directory
-                                    mp3_filename = None
-                                    if song.file:
-                                        mp3_filename = os.path.join(settings.MEDIA_ROOT, song.file.name)
-                                    
-                                    # If file doesn't exist in media, try to find it in Spotify 
-                                    # or download placeholder
-                                    if not mp3_filename or not os.path.exists(mp3_filename):
-                                        # Create songs directory if it doesn't exist
-                                        songs_dir = os.path.join(settings.MEDIA_ROOT, 'songs')
-                                        os.makedirs(songs_dir, exist_ok=True)
-                                        
-                                        # Create an empty file with appropriate title
-                                        safe_title = sanitize_filename(f"{song.title} - {song.artist}")
-                                        mp3_filename = os.path.join(songs_dir, f"{safe_title}.mp3")
-                                        
-                                        # Create an empty MP3 file
-                                        # We'll only add metadata if a song is actually downloaded later
-                                        if not os.path.exists(mp3_filename):
-                                            with open(mp3_filename, 'wb') as f:
-                                                f.write(b'')  # Empty MP3 file
-                                                
-                                            # Save file path to song
-                                            rel_path = os.path.join('songs', f"{safe_title}.mp3")
-                                            song.file = rel_path
-                                            song.save(update_fields=['file'])
-                                    
-                                    if mp3_filename and os.path.exists(mp3_filename):
-                                        # Embed the metadata and thumbnail
-                                        embed_metadata(
-                                            mp3_path=mp3_filename,
-                                            title=song.title,
-                                            artist=song.artist,
-                                            album=song.album,
-                                            thumbnail_url=rec.get('image_url', ''),
-                                            year=rec.get('year'),
-                                            genre=rec.get('genre', 'Unknown'),
-                                            album_artist=rec.get('album_artist', song.artist),
-                                            spotify_id=song.spotify_id
-                                        )
-                                        logger.info(f"Embedded metadata and thumbnail for recommendation: {song.title}")
-                                except Exception as e:
-                                    logger.error(f"Error processing thumbnail for recommendation: {e}", exc_info=True)
-                            
-                            # Start background thread to process thumbnail without blocking main request
-                            Thread(target=process_thumbnail).start()
-                        
-                    except Exception as e:
-                        logger.error(f"Error creating song from recommendation: {e}", exc_info=True)
-            
-            # Serialize the recommendations
-            serializer = SongSerializer(songs, many=True, context={'request': request})
+                
+                # Add some fields that the frontend might expect
+                rec['source'] = 'csv_data'
+                rec['created_at'] = timezone.now().isoformat()
+                rec['song_url'] = None
+                rec['file_url'] = None
+                if 'image_url' in rec:
+                    rec['thumbnail_url'] = rec['image_url']
+                
+                songs.append(rec)
             
             return Response({
                 'success': True,
                 'message': f'Found {len(songs)} recommendations',
-                'recommendations': serializer.data,
+                'recommendations': songs,
                 'debug_info': {
                     'user_songs_count': user_songs.count(),
                     'spotify_songs_count': spotify_songs.count(),
                     'recommendations_count': len(recommendations_data),
-                    'songs_created': len(songs),
+                    'songs_created': 0,  # We don't create songs anymore
                     'recommendation_source': 'recommendation_system'
                 }
             })

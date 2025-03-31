@@ -8718,3 +8718,371 @@ INFO 2025-03-31 15:04:52,008 autoreload 19632 25468 C:\Users\Dell\Monil\Apps\cod
 INFO 2025-03-31 15:04:55,618 autoreload 11108 20268 Watching for file changes with StatReloader
 INFO 2025-03-31 15:05:45,441 autoreload 11108 20268 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\tunevault\urls.py changed, reloading.
 INFO 2025-03-31 15:05:49,206 autoreload 18236 22856 Watching for file changes with StatReloader
+INFO 2025-03-31 15:07:49,970 views 18236 15876 User has 46 songs
+INFO 2025-03-31 15:07:50,035 views 18236 15876 User has 37 songs with Spotify IDs
+INFO 2025-03-31 15:07:50,156 views 18236 15876 Sample user songs: [{'spotify_id': '6X7qcg95CAeJpTjtg1wooM', 'title': '&burn with Vince Staples', 'artist': "'Billie Eilish', 'Vince Staples'"}, {'spotify_id': '0c5qAIcNy3jNIxmZXllp4V', 'title': 'Ride', 'artist': "'King Von'"}, {'spotify_id': '7sd72KZS8D59g5NmhxyHpJ', 'title': 'Toast', 'artist': "'Koffee'"}, {'spotify_id': '2INhKpUdzh7v0j041gZNsz', 'title': 'DHL', 'artist': "'Frank Ocean'"}, {'spotify_id': '2ISSQPb9LHHiV6ng2NXosL', 'title': 'Beautiful Now', 'artist': "'Zedd', 'Jon Bellion'"}]
+INFO 2025-03-31 15:07:50,156 views 18236 15876 Getting recommendations for user: 1 with limit: 10
+WARNING 2025-03-31 15:07:50,679 recommendation 18236 15876 Skipping bad row in Music.csv
+WARNING 2025-03-31 15:07:51,122 recommendation 18236 15876 Skipped 1 bad rows while loading Music.csv
+INFO 2025-03-31 15:07:51,122 recommendation 18236 15876 Loaded Music.csv dataset
+INFO 2025-03-31 15:07:51,180 recommendation 18236 15876 Created synthetic ids
+WARNING 2025-03-31 15:07:51,181 recommendation 18236 15876 No artist column found, using default
+WARNING 2025-03-31 15:07:51,182 recommendation 18236 15876 No popularity data, assigning random values
+ERROR 2025-03-31 15:07:51,236 recommendation 18236 15876 Error preparing data: 'name'
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\pandas\core\indexes\base.py", line 3805, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\\_libs\\hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\\_libs\\hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'name'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\recommendation.py", line 175, in _prepare_data
+    self.name_to_index = {name: i for i, name in enumerate(self.data['name'].values)}
+                                                           ~~~~~~~~~^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\pandas\core\frame.py", line 4102, in __getitem__
+    indexer = self.columns.get_loc(key)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\pandas\core\indexes\base.py", line 3812, in get_loc
+    raise KeyError(key) from err
+KeyError: 'name'
+ERROR 2025-03-31 15:07:51,437 recommendation 18236 15876 Error initializing Music Recommender: 'name'
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\pandas\core\indexes\base.py", line 3805, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\\_libs\\hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\\_libs\\hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'name'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\recommendation.py", line 118, in __init__
+    self._prepare_data()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\recommendation.py", line 175, in _prepare_data
+    self.name_to_index = {name: i for i, name in enumerate(self.data['name'].values)}
+                                                           ~~~~~~~~~^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\pandas\core\frame.py", line 4102, in __getitem__
+    indexer = self.columns.get_loc(key)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\pandas\core\indexes\base.py", line 3812, in get_loc
+    raise KeyError(key) from err
+KeyError: 'name'
+ERROR 2025-03-31 15:07:51,473 recommendation 18236 15876 Failed to initialize recommender: 'name'
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\pandas\core\indexes\base.py", line 3805, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\\_libs\\hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\\_libs\\hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'name'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\recommendation.py", line 598, in get_recommender
+    _recommender = MusicRecommender()
+                   ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\recommendation.py", line 118, in __init__
+    self._prepare_data()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\recommendation.py", line 175, in _prepare_data
+    self.name_to_index = {name: i for i, name in enumerate(self.data['name'].values)}
+                                                           ~~~~~~~~~^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\pandas\core\frame.py", line 4102, in __getitem__
+    indexer = self.columns.get_loc(key)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\pandas\core\indexes\base.py", line 3812, in get_loc
+    raise KeyError(key) from err
+KeyError: 'name'
+INFO 2025-03-31 15:07:51,683 views 18236 15876 Got 5 recommendations
+INFO 2025-03-31 15:07:52,104 basehttp 18236 15876 "GET /api/songs/recommendations/ HTTP/1.1" 200 1901
+INFO 2025-03-31 15:08:19,958 autoreload 18236 22856 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\tunevault\settings.py changed, reloading.
+INFO 2025-03-31 15:08:23,304 autoreload 7624 8016 Watching for file changes with StatReloader
+INFO 2025-03-31 15:09:22,282 autoreload 7624 8016 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\recommendation.py changed, reloading.
+INFO 2025-03-31 15:09:26,178 autoreload 14124 23684 Watching for file changes with StatReloader
+INFO 2025-03-31 15:10:01,123 views 14124 10632 User has 46 songs
+INFO 2025-03-31 15:10:01,181 views 14124 10632 User has 37 songs with Spotify IDs
+INFO 2025-03-31 15:10:01,297 views 14124 10632 Sample user songs: [{'spotify_id': '6X7qcg95CAeJpTjtg1wooM', 'title': '&burn with Vince Staples', 'artist': "'Billie Eilish', 'Vince Staples'"}, {'spotify_id': '0c5qAIcNy3jNIxmZXllp4V', 'title': 'Ride', 'artist': "'King Von'"}, {'spotify_id': '7sd72KZS8D59g5NmhxyHpJ', 'title': 'Toast', 'artist': "'Koffee'"}, {'spotify_id': '2INhKpUdzh7v0j041gZNsz', 'title': 'DHL', 'artist': "'Frank Ocean'"}, {'spotify_id': '2ISSQPb9LHHiV6ng2NXosL', 'title': 'Beautiful Now', 'artist': "'Zedd', 'Jon Bellion'"}]
+INFO 2025-03-31 15:10:01,297 views 14124 10632 Getting recommendations for user: 1 with limit: 10
+WARNING 2025-03-31 15:10:01,714 recommendation 14124 10632 Skipping bad row in Music.csv
+WARNING 2025-03-31 15:10:02,215 recommendation 14124 10632 Skipped 1 bad rows while loading Music.csv
+INFO 2025-03-31 15:10:02,215 recommendation 14124 10632 Loaded Music.csv dataset
+INFO 2025-03-31 15:10:02,258 recommendation 14124 10632 Available columns in dataset: ['Mood (feat. iann dior)', '24kGoldn', '3tjFYV6RSFtuktYl3ZtYcq', 'https://p.scdn.co/mp3-preview/45cb08fdb67744ab7f1f172bb750e9c10415c37a?cid=50179b9e0a064ad09ffb159682151c22', 'https://i.scdn.co/image/ab67616d0000b273ff8c985ecb3b7c5f847be357', '0.7', '0.722', '-3.5580000000000003', '0.0369', '0.221', '0.0', '0.272', '0.7559999999999999', '0.11826941176470593', '0.7315882352941177', '0.6812352941176469', '1.627058823529412e-06', '0.15999999999999998', '0.12376470588235294', '0.5668235294117645']
+WARNING 2025-03-31 15:10:02,277 recommendation 14124 10632 No name column found, using placeholder names
+INFO 2025-03-31 15:10:02,292 recommendation 14124 10632 Created synthetic ids
+WARNING 2025-03-31 15:10:02,295 recommendation 14124 10632 No artist column found, using default
+WARNING 2025-03-31 15:10:02,295 recommendation 14124 10632 No popularity data, assigning random values
+ERROR 2025-03-31 15:10:02,314 recommendation 14124 10632 No valid features found in dataset
+ERROR 2025-03-31 15:10:02,498 recommendation 14124 10632 Error preparing data: No valid features found in dataset
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\recommendation.py", line 212, in _prepare_data
+    raise ValueError("No valid features found in dataset")
+ValueError: No valid features found in dataset
+ERROR 2025-03-31 15:10:02,510 recommendation 14124 10632 Error initializing Music Recommender: No valid features found in dataset
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\recommendation.py", line 118, in __init__
+    self._prepare_data()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\recommendation.py", line 212, in _prepare_data
+    raise ValueError("No valid features found in dataset")
+ValueError: No valid features found in dataset
+ERROR 2025-03-31 15:10:02,515 recommendation 14124 10632 Failed to initialize recommender: No valid features found in dataset
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\recommendation.py", line 616, in get_recommender
+    _recommender = MusicRecommender()
+                   ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\recommendation.py", line 118, in __init__
+    self._prepare_data()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\recommendation.py", line 212, in _prepare_data
+    raise ValueError("No valid features found in dataset")
+ValueError: No valid features found in dataset
+INFO 2025-03-31 15:10:02,698 views 14124 10632 Got 5 recommendations
+INFO 2025-03-31 15:10:03,168 basehttp 14124 10632 "GET /api/songs/recommendations/ HTTP/1.1" 200 1901
+INFO 2025-03-31 15:11:23,006 autoreload 14124 23684 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\recommendation.py changed, reloading.
+INFO 2025-03-31 15:11:27,115 autoreload 27312 3780 Watching for file changes with StatReloader
+INFO 2025-03-31 15:11:41,927 views 27312 16728 User has 46 songs
+INFO 2025-03-31 15:11:41,987 views 27312 16728 User has 37 songs with Spotify IDs
+INFO 2025-03-31 15:11:42,181 views 27312 16728 Sample user songs: [{'spotify_id': '6X7qcg95CAeJpTjtg1wooM', 'title': '&burn with Vince Staples', 'artist': "'Billie Eilish', 'Vince Staples'"}, {'spotify_id': '0c5qAIcNy3jNIxmZXllp4V', 'title': 'Ride', 'artist': "'King Von'"}, {'spotify_id': '7sd72KZS8D59g5NmhxyHpJ', 'title': 'Toast', 'artist': "'Koffee'"}, {'spotify_id': '2INhKpUdzh7v0j041gZNsz', 'title': 'DHL', 'artist': "'Frank Ocean'"}, {'spotify_id': '2ISSQPb9LHHiV6ng2NXosL', 'title': 'Beautiful Now', 'artist': "'Zedd', 'Jon Bellion'"}]
+INFO 2025-03-31 15:11:42,181 views 27312 16728 Getting recommendations for user: 1 with limit: 10
+INFO 2025-03-31 15:11:42,181 recommendation 27312 16728 Skipping Music.csv due to invalid format, using data.csv directly
+INFO 2025-03-31 15:11:44,522 recommendation 27312 16728 Loaded data.csv dataset
+INFO 2025-03-31 15:11:44,562 recommendation 27312 16728 Available columns in dataset: ['valence', 'year', 'acousticness', 'artists', 'danceability', 'duration_ms', 'energy', 'explicit', 'id', 'instrumentalness', 'key', 'liveness', 'loudness', 'mode', 'name', 'popularity', 'release_date', 'speechiness', 'tempo']
+INFO 2025-03-31 15:11:44,652 recommendation 27312 16728 Using features: ['acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'loudness', 'speechiness', 'tempo', 'valence']
+INFO 2025-03-31 15:11:44,693 recommendation 27312 16728 Prepared data with 170653 songs and 9 features
+INFO 2025-03-31 15:11:45,742 recommendation 27312 16728 Built song clusters successfully
+INFO 2025-03-31 15:11:45,742 recommendation 27312 16728 Music Recommender initialized successfully
+INFO 2025-03-31 15:11:46,020 views 27312 16728 Got 10 recommendations
+INFO 2025-03-31 15:11:47,401 basehttp 27312 16728 "GET /api/songs/recommendations/ HTTP/1.1" 200 2519
+INFO 2025-03-31 15:12:27,937 views 27312 16728 User has 56 songs
+INFO 2025-03-31 15:12:28,004 views 27312 16728 User has 47 songs with Spotify IDs
+INFO 2025-03-31 15:12:28,153 views 27312 16728 Sample user songs: [{'spotify_id': '0Dfctnkk9xIikDKJ06uwzo', 'title': "She's So Nice", 'artist': "'Pink Guy'"}, {'spotify_id': '16Of7eeW44kt0a1M0nitHM', 'title': 'You Make Me Feel... feat. Sabi', 'artist': "'Cobra Starship', 'Sabi'"}, {'spotify_id': '5mkRGTbm3BwPzNQL9oBV9e', 'title': 'Lost in You', 'artist': "'khai dreams'"}, {'spotify_id': '4g27tVPyGHi38dczFoJZZy', 'title': 'All These Niggas feat. Lil Durk', 'artist': "'King Von', 'Lil Durk'"}, {'spotify_id': '03XjE0nqkkQvktjlRXmsV6', 'title': 'nineteen', 'artist': "'Lil Peep'"}]
+INFO 2025-03-31 15:12:28,153 views 27312 16728 Getting recommendations for user: 1 with limit: 10
+INFO 2025-03-31 15:12:28,373 views 27312 16728 Got 10 recommendations
+INFO 2025-03-31 15:12:29,656 basehttp 27312 16728 "GET /api/songs/recommendations/ HTTP/1.1" 200 2535
+INFO 2025-03-31 15:12:39,288 views 27312 16728 User has 65 songs
+INFO 2025-03-31 15:12:39,359 views 27312 16728 User has 56 songs with Spotify IDs
+INFO 2025-03-31 15:12:39,487 views 27312 16728 Sample user songs: [{'spotify_id': '3CpoeW0cZSDzIRv5z34F87', 'title': 'Sing For The Moment', 'artist': "'Eminem'"}, {'spotify_id': '4zxpssj8DyrfZcEUSUiNxG', 'title': 'Ring Ring with Rvssian feat. Clever', 'artist': "'Juice WRLD', 'Rvssian', 'Clever'"}, {'spotify_id': '00GOPLxW4PGQuUYdPJh8K1', 'title': 'IV. Sweatpants', 'artist': "'Childish Gambino'"}, {'spotify_id': '4mbb7hmfDR6M9cQaLdYSFd', 'title': 'Ferrari', 'artist': "'Anuel AA', 'Lil Wayne'"}, {'spotify_id': '4ByEFOBuLXpCqvO1kw8Wdm', 'title': 'I Just Died In Your Arms', 'artist': "'Cutting Crew'"}]
+INFO 2025-03-31 15:12:39,487 views 27312 16728 Getting recommendations for user: 1 with limit: 10
+INFO 2025-03-31 15:12:39,714 views 27312 16728 Got 10 recommendations
+INFO 2025-03-31 15:12:41,130 basehttp 27312 16728 "GET /api/songs/recommendations/ HTTP/1.1" 200 2480
+INFO 2025-03-31 15:12:57,125 basehttp 27312 1204 "GET /admin/songs/usermusicprofile/ HTTP/1.1" 302 0
+INFO 2025-03-31 15:12:58,043 basehttp 27312 1204 "GET /admin/login/?next=/admin/songs/usermusicprofile/ HTTP/1.1" 200 3858
+INFO 2025-03-31 15:12:58,190 basehttp 27312 1204 "GET /static/admin/css/login.css HTTP/1.1" 200 951
+INFO 2025-03-31 15:12:58,211 basehttp 27312 1204 "GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+INFO 2025-03-31 15:13:06,847 basehttp 27312 1204 "POST /admin/login/?next=/admin/songs/usermusicprofile/ HTTP/1.1" 200 3881
+INFO 2025-03-31 15:13:14,661 basehttp 27312 1204 "POST /admin/login/?next=/admin/songs/usermusicprofile/ HTTP/1.1" 200 3881
+INFO 2025-03-31 15:13:19,996 basehttp 27312 1204 "POST /admin/login/?next=/admin/songs/usermusicprofile/ HTTP/1.1" 200 3881
+INFO 2025-03-31 15:13:29,146 basehttp 27312 1204 "POST /admin/login/?next=/admin/songs/usermusicprofile/ HTTP/1.1" 200 3881
+INFO 2025-03-31 15:13:43,683 basehttp 27312 1204 "POST /admin/login/?next=/admin/songs/usermusicprofile/ HTTP/1.1" 200 3881
+INFO 2025-03-31 15:13:50,057 basehttp 27312 1204 "POST /admin/login/?next=/admin/songs/usermusicprofile/ HTTP/1.1" 200 3881
+INFO 2025-03-31 15:13:58,699 basehttp 27312 1204 "POST /admin/login/?next=/admin/songs/usermusicprofile/ HTTP/1.1" 200 3881
+INFO 2025-03-31 15:14:11,903 basehttp 27312 1204 "POST /admin/login/?next=/admin/songs/usermusicprofile/ HTTP/1.1" 200 3881
+INFO 2025-03-31 15:14:16,730 basehttp 27312 1204 "POST /admin/login/?next=/admin/songs/usermusicprofile/ HTTP/1.1" 302 0
+INFO 2025-03-31 15:14:17,613 basehttp 27312 1204 "GET /admin/songs/usermusicprofile/ HTTP/1.1" 200 16209
+INFO 2025-03-31 15:14:18,283 basehttp 27312 1204 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+WARNING 2025-03-31 15:14:18,336 log 27312 1204 Not Found: /favicon.ico
+INFO 2025-03-31 15:14:18,347 basehttp 27312 1204 - Broken pipe from ('127.0.0.1', 62181)
+INFO 2025-03-31 15:14:21,083 basehttp 27312 20872 "GET /admin/songs/usermusicprofile/2/change/ HTTP/1.1" 200 20056
+INFO 2025-03-31 15:14:21,151 basehttp 27312 17192 - Broken pipe from ('127.0.0.1', 62295)
+INFO 2025-03-31 15:14:21,182 basehttp 27312 5244 - Broken pipe from ('127.0.0.1', 62294)
+INFO 2025-03-31 15:14:21,758 basehttp 27312 20872 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-03-31 15:14:38,168 basehttp 27312 20872 "GET /admin/users/customuser/ HTTP/1.1" 200 16580
+ERROR 2025-03-31 15:14:39,776 log 27312 20872 Internal Server Error: /admin/jsi18n/
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\contrib\sessions\backends\base.py", line 244, in _get_session
+    return self._session_cache
+           ^^^^^^^^^^^^^^^^^^^
+AttributeError: 'SessionStore' object has no attribute '_session_cache'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 279, in ensure_connection
+    self.connect()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\sentry_sdk\utils.py", line 1783, in runner
+    return sentry_patched_function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\__init__.py", line 690, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\backends\postgresql\base.py", line 332, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\psycopg2\__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: could not translate host name "ep-patient-resonance-a19rwm71.ap-southeast-1.aws.neon.tech" to address: No such host is known. 
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\views.py", line 94, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\contrib\admin\sites.py", line 260, in wrapper
+    return self.admin_view(view, cacheable)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\utils\decorators.py", line 188, in _view_wrapper
+    result = _process_exception(request, e)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\utils\decorators.py", line 186, in _view_wrapper
+    response = view_func(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\contrib\admin\sites.py", line 229, in inner
+    if not self.has_permission(request):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\contrib\admin\sites.py", line 202, in has_permission
+    return request.user.is_active and request.user.is_staff
+           ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\utils\functional.py", line 251, in inner
+    self._setup()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\utils\functional.py", line 404, in _setup
+    self._wrapped = self._setupfunc()
+                    ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\contrib\auth\middleware.py", line 37, in <lambda>
+    request.user = SimpleLazyObject(lambda: get_user(request))
+                                            ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\contrib\auth\middleware.py", line 17, in get_user
+    request._cached_user = auth.get_user(request)
+                           ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\contrib\auth\__init__.py", line 209, in get_user
+    user_id = _get_user_session_key(request)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\contrib\auth\__init__.py", line 62, in _get_user_session_key
+    return get_user_model()._meta.pk.to_python(request.session[SESSION_KEY])
+                                               ~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\contrib\sessions\backends\base.py", line 55, in __getitem__
+    return self._session[key]
+           ^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\contrib\sessions\backends\base.py", line 249, in _get_session
+    self._session_cache = self.load()
+                          ^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\contrib\sessions\backends\db.py", line 55, in load
+    s = self._get_session_from_db()
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\contrib\sessions\backends\db.py", line 34, in _get_session_from_db
+    return self.model.objects.get(
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 645, in get
+    num = len(clone)
+          ^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 382, in __len__
+    self._fetch_all()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1572, in execute_sql
+    cursor = self.connection.cursor()
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 320, in cursor
+    return self._cursor()
+           ^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 296, in _cursor
+    self.ensure_connection()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 278, in ensure_connection
+    with self.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 279, in ensure_connection
+    self.connect()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\sentry_sdk\utils.py", line 1783, in runner
+    return sentry_patched_function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\__init__.py", line 690, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\backends\postgresql\base.py", line 332, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\psycopg2\__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: could not translate host name "ep-patient-resonance-a19rwm71.ap-southeast-1.aws.neon.tech" to address: No such host is known. 
+
+ERROR 2025-03-31 15:14:39,814 basehttp 27312 20872 "GET /admin/jsi18n/ HTTP/1.1" 500 273868
+WARNING 2025-03-31 15:14:39,887 log 27312 20872 Not Found: /favicon.ico
+INFO 2025-03-31 15:14:39,899 basehttp 27312 20872 - Broken pipe from ('127.0.0.1', 62289)
+INFO 2025-03-31 15:14:49,769 basehttp 27312 9800 "GET /admin/users/customuser/1/change/ HTTP/1.1" 200 40812
+INFO 2025-03-31 15:14:50,425 basehttp 27312 9800 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+WARNING 2025-03-31 15:14:50,456 log 27312 9800 Not Found: /favicon.ico
+INFO 2025-03-31 15:14:51,072 basehttp 27312 9800 - Broken pipe from ('127.0.0.1', 62319)
+INFO 2025-03-31 15:15:24,618 views 27312 3804 User has 75 songs
+INFO 2025-03-31 15:15:24,676 views 27312 3804 User has 66 songs with Spotify IDs
+INFO 2025-03-31 15:15:24,818 views 27312 3804 Sample user songs: [{'spotify_id': '124NFj84ppZ5pAxTuVQYCQ', 'title': 'Take Care', 'artist': "'Drake', 'Rihanna'"}, {'spotify_id': '0UFDKFqW2oGspYeYqo9wjA', 'title': 'Bleed It Out', 'artist': "'Linkin Park'"}, {'spotify_id': '7uKcScNXuO3MWw6LowBjW1', 'title': 'One, Two Step feat. Missy Elliott', 'artist': "'Ciara', 'Missy Elliott'"}, {'spotify_id': '7brQHA2CgQpcMBiOlfiXYb', 'title': 'Afraid', 'artist': "'The Neighbourhood'"}, {'spotify_id': '5nexAvWNhwg51EavnDgViy', 'title': 'Toxic', 'artist': "'Kehlani'"}]
+INFO 2025-03-31 15:15:24,818 views 27312 3804 Getting recommendations for user: 1 with limit: 10
+INFO 2025-03-31 15:15:25,076 views 27312 3804 Got 10 recommendations
+INFO 2025-03-31 15:15:26,659 basehttp 27312 3804 "GET /api/songs/recommendations/ HTTP/1.1" 200 2465
+INFO 2025-03-31 15:18:26,415 autoreload 27312 3780 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\recommendation.py changed, reloading.
+INFO 2025-03-31 15:18:30,737 autoreload 12800 27316 Watching for file changes with StatReloader
+INFO 2025-03-31 15:19:17,136 autoreload 12800 27316 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 15:19:20,868 autoreload 7136 11928 Watching for file changes with StatReloader
+INFO 2025-03-31 15:19:28,811 autoreload 7136 11928 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 15:19:32,518 autoreload 6632 17084 Watching for file changes with StatReloader
+INFO 2025-03-31 15:19:43,852 autoreload 6632 17084 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\models.py changed, reloading.
+INFO 2025-03-31 15:19:47,459 autoreload 18484 10492 Watching for file changes with StatReloader
+INFO 2025-03-31 15:20:18,953 views 18484 27140 User has 85 songs
+INFO 2025-03-31 15:20:19,024 views 18484 27140 User has 76 songs with Spotify IDs
+INFO 2025-03-31 15:20:19,159 views 18484 27140 Sample user songs: [{'spotify_id': '7fQox8Ere1HDm0jhSnsFHu', 'title': 'Obey with YUNGBLUD', 'artist': "'Bring Me The Horizon', 'YUNGBLUD'"}, {'spotify_id': '1jo3TwNGCXfNdB5uba3ZVv', 'title': 'Killshot', 'artist': "'Eminem'"}, {'spotify_id': '02iYJG3KLBJODa5JkQ4O6y', 'title': 'hooligan', 'artist': "'Baby Keem'"}, {'spotify_id': '4IowQDUOzUvNtp72HMDcKO', 'title': 'Love Sosa', 'artist': "'Chief Keef'"}, {'spotify_id': '6cZH4rX1KTt1aJ3Ql6Ynja', 'title': 'Me and My Guitar', 'artist': "'A Boogie Wit da Hoodie'"}]
+INFO 2025-03-31 15:20:19,159 views 18484 27140 Getting recommendations for user: 1 with limit: 10
+INFO 2025-03-31 15:20:19,159 recommendation 18484 27140 Skipping Music.csv due to invalid format, using data.csv directly
+INFO 2025-03-31 15:20:22,163 recommendation 18484 27140 Loaded data.csv dataset
+INFO 2025-03-31 15:20:22,270 recommendation 18484 27140 Available columns in dataset: ['valence', 'year', 'acousticness', 'artists', 'danceability', 'duration_ms', 'energy', 'explicit', 'id', 'instrumentalness', 'key', 'liveness', 'loudness', 'mode', 'name', 'popularity', 'release_date', 'speechiness', 'tempo']
+INFO 2025-03-31 15:20:22,466 recommendation 18484 27140 Using features: ['acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'loudness', 'speechiness', 'tempo', 'valence']
+INFO 2025-03-31 15:20:22,562 recommendation 18484 27140 Prepared data with 170653 songs and 9 features
+INFO 2025-03-31 15:20:24,899 recommendation 18484 27140 Built song clusters successfully
+INFO 2025-03-31 15:20:24,899 recommendation 18484 27140 Music Recommender initialized successfully
+INFO 2025-03-31 15:20:25,207 views 18484 27140 Got 10 recommendations
+INFO 2025-03-31 15:20:25,347 basehttp 18484 27140 "GET /api/songs/recommendations/ HTTP/1.1" 200 2973
+INFO 2025-03-31 15:20:40,743 views 18484 27140 User has 85 songs
+INFO 2025-03-31 15:20:40,810 views 18484 27140 User has 76 songs with Spotify IDs
+INFO 2025-03-31 15:20:40,938 views 18484 27140 Sample user songs: [{'spotify_id': '7fQox8Ere1HDm0jhSnsFHu', 'title': 'Obey with YUNGBLUD', 'artist': "'Bring Me The Horizon', 'YUNGBLUD'"}, {'spotify_id': '1jo3TwNGCXfNdB5uba3ZVv', 'title': 'Killshot', 'artist': "'Eminem'"}, {'spotify_id': '02iYJG3KLBJODa5JkQ4O6y', 'title': 'hooligan', 'artist': "'Baby Keem'"}, {'spotify_id': '4IowQDUOzUvNtp72HMDcKO', 'title': 'Love Sosa', 'artist': "'Chief Keef'"}, {'spotify_id': '6cZH4rX1KTt1aJ3Ql6Ynja', 'title': 'Me and My Guitar', 'artist': "'A Boogie Wit da Hoodie'"}]
+INFO 2025-03-31 15:20:40,947 views 18484 27140 Getting recommendations for user: 1 with limit: 10
+INFO 2025-03-31 15:20:41,206 views 18484 27140 Got 10 recommendations
+INFO 2025-03-31 15:20:41,331 basehttp 18484 27140 "GET /api/songs/recommendations/ HTTP/1.1" 200 2965

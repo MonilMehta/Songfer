@@ -81,30 +81,14 @@ class MusicRecommender:
             # Load datasets
             datasets_path = os.path.join(settings.BASE_DIR, 'songs', 'datasets')
             
-            # Try loading Music.csv first (newer dataset)
-            try:
-                # Custom function to handle bad lines
-                bad_rows = []
-                def log_bad_line(bad_line):
-                    bad_rows.append(len(bad_rows) + 1)
-                    if len(bad_rows) <= 5:  # Only log first 5 bad rows to avoid spamming logs
-                        self.logger.warning(f"Skipping bad row in Music.csv")
-                    return
-
-                self.data = pd.read_csv(os.path.join(datasets_path, 'Music.csv'), 
-                                       on_bad_lines=log_bad_line,  # Log bad lines with our custom function
-                                       engine='python')      # Use the python engine which is more forgiving
-                
-                if bad_rows:
-                    self.logger.warning(f"Skipped {len(bad_rows)} bad rows while loading Music.csv")
-                self.logger.info("Loaded Music.csv dataset")
-            except Exception as e:
-                self.logger.warning(f"Could not load Music.csv: {e}")
-                # Fallback to data.csv
-                self.data = pd.read_csv(os.path.join(datasets_path, 'data.csv'),
-                                      on_bad_lines='skip',
-                                      engine='python')
-                self.logger.info("Loaded data.csv dataset")
+            # Skip Music.csv as it has an invalid format with song titles as column names
+            self.logger.info("Skipping Music.csv due to invalid format, using data.csv directly")
+            
+            # Load data.csv which has the correct format
+            self.data = pd.read_csv(os.path.join(datasets_path, 'data.csv'),
+                                   on_bad_lines='skip',
+                                   engine='python')
+            self.logger.info("Loaded data.csv dataset")
             
             # Load genre and year data
             self.genre_data = pd.read_csv(os.path.join(datasets_path, 'data_by_genres.csv'),
@@ -125,14 +109,19 @@ class MusicRecommender:
     def _prepare_data(self):
         """Prepare the data for recommendation"""
         try:
+            # First, print available columns to diagnose the issue
+            self.logger.info(f"Available columns in dataset: {list(self.data.columns)}")
+            
             # Map common column names to standardized versions (for compatibility)
             column_mapping = {
                 'name': 'name',
-                'artist': 'artists',  # Music.csv uses 'artist', we standardize to 'artists'
+                'title': 'name',        # Music.csv might use 'title' instead of 'name'
+                'track_name': 'name',   # Another possible column name
+                'artist': 'artists',    # Music.csv uses 'artist', we standardize to 'artists'
                 'artists': 'artists',
-                'spotify_id': 'id',   # Music.csv uses 'spotify_id', we standardize to 'id'
+                'spotify_id': 'id',     # Music.csv uses 'spotify_id', we standardize to 'id'
                 'id': 'id',
-                'img': 'image_url',   # Music.csv uses 'img', we map to 'image_url'
+                'img': 'image_url',     # Music.csv uses 'img', we map to 'image_url'
                 'release_date': 'year'
             }
             
@@ -143,6 +132,19 @@ class MusicRecommender:
                     self.logger.info(f"Mapped column {std_col} to {mapping_col}")
             
             # Create required columns if missing
+            if 'name' not in self.data.columns:
+                # Try to find any column that might contain song names
+                possible_name_columns = ['track_name', 'title', 'track', 'song_name']
+                for col in possible_name_columns:
+                    if col in self.data.columns:
+                        self.data['name'] = self.data[col]
+                        self.logger.info(f"Using {col} as name")
+                        break
+                else:
+                    # If no name column found, create one from the filename or index
+                    self.data['name'] = [f"Unknown Song {i}" for i in range(len(self.data))]
+                    self.logger.warning("No name column found, using placeholder names")
+            
             if 'id' not in self.data.columns:
                 if 'spotify_id' in self.data.columns:
                     self.data['id'] = self.data['spotify_id']
@@ -705,8 +707,6 @@ def update_user_recommendations(user):
     """
     Update user's recommendations and store them
     """
-    from .models import Song
-    
     try:
         # Get recommendations using the hybrid recommender
         recommendations = get_hybrid_recommendations(user)
@@ -714,30 +714,14 @@ def update_user_recommendations(user):
         if not recommendations:
             return False
         
-        # Create Song objects for recommendations (if they don't exist)
-        songs_created = 0
-        for rec in recommendations:
-            # Check if song already exists
-            if not Song.objects.filter(spotify_id=rec['spotify_id']).exists():
-                Song.objects.create(
-                    user=user,  # Assign to the user
-                    title=rec['title'],
-                    artist=rec['artist'],
-                    album=rec.get('album', 'Unknown'),
-                    source='recommendation',
-                    spotify_id=rec['spotify_id'],
-                    thumbnail_url=rec.get('image_url'),
-                    genre=rec.get('genre', 'Unknown')
-                )
-                songs_created += 1
-        
-        # Update user's last recommendation time
+        # We don't create Song objects for recommendations anymore
+        # Just update user's last recommendation time
         if hasattr(user, 'music_profile'):
             user.music_profile.last_recommendation_generated = datetime.now()
             user.music_profile.save(update_fields=['last_recommendation_generated'])
         
-        logger.info(f"Created {songs_created} recommendation songs for user {user.id}")
-        return True
+        logger.info(f"Got {len(recommendations)} recommendations for user {user.id}")
+        return recommendations
         
     except Exception as e:
         logger.error(f"Error updating recommendations: {e}")

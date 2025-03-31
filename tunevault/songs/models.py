@@ -85,7 +85,8 @@ class Song(models.Model):
     @classmethod
     def recommend_songs(cls, user, limit=10):
         """
-        Recommend songs based on user's download history
+        Recommend songs based on user's download history.
+        Returns a list of recommendation dictionaries, not Song objects.
         """
         from .recommendation import get_hybrid_recommendations, update_user_recommendations
         
@@ -97,29 +98,21 @@ class Song(models.Model):
             # Only update recommendations if it's been more than a day
             update_needed = (timezone.now() - user_profile.last_recommendation_generated) > timedelta(days=1)
             
-        # Update recommendations if needed
-        if update_needed:
-            update_user_recommendations(user)
-        
         # Get user's recent downloads
         user_songs = cls.objects.filter(user=user).order_by('-created_at')[:5]
         
         # If user has no songs, return empty queryset
         if not user_songs:
-            return cls.objects.none()
+            return []
             
-        # Get recommendations based on Spotify IDs
+        # Get recommendations based on user's songs
         recommendations = get_hybrid_recommendations(user, limit)
         
         if not recommendations:
-            # If no recommendations, just return popular songs
-            return cls.objects.exclude(user=user).order_by('?')[:limit]
-            
-        # Get Spotify IDs from recommendations
-        spotify_ids = [rec['spotify_id'] for rec in recommendations]
+            # If no recommendations, just return an empty list
+            return []
         
-        # Get Song objects for these Spotify IDs
-        return cls.objects.filter(spotify_id__in=spotify_ids)[:limit]
+        return recommendations
 
     def save(self, *args, **kwargs):
         """Truncate fields if necessary before saving"""
