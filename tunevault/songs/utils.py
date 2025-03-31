@@ -240,7 +240,7 @@ def convert_audio_format(input_path, output_format=None):
         logger.error(f"Error converting audio: {str(e)}", exc_info=True)
         raise
 
-def embed_metadata(mp3_path, title, artist, album='Unknown', genre='Unknown', thumbnail_url=None, year=None):
+def embed_metadata(mp3_path, title, artist, album='Unknown', genre='Unknown', thumbnail_url=None, year=None, composer=None, album_artist=None, spotify_id=None, youtube_id=None):
     """
     Embeds metadata into an MP3 file using ID3 tags.
     
@@ -252,15 +252,56 @@ def embed_metadata(mp3_path, title, artist, album='Unknown', genre='Unknown', th
         genre (str): Genre (default: 'Unknown')
         thumbnail_url (str): URL of the thumbnail image (default: None)
         year (str): Release year (default: None)
+        composer (str): Song composer (default: None)
+        album_artist (str): Album-wide artist (default: None)
+        spotify_id (str): Spotify ID for the track (default: None)
+        youtube_id (str): YouTube ID for the video (default: None)
     
     Returns:
         bool: True if successful, False otherwise
     """
+    # Import necessary modules at the top level of the function
+    import os
+    import tempfile
+    import shutil
+    from subprocess import call
+    from mutagen.id3 import TCOM, TPE2, TYER
+    from PIL import Image
+    from io import BytesIO
+    import imghdr
+    import requests
+    
     try:
         # Ensure the file actually exists
         if not os.path.exists(mp3_path):
             logger.error(f"File not found: {mp3_path}")
             return False
+            
+        # Check if the file is empty or too small to be a valid MP3
+        if os.path.getsize(mp3_path) < 128:  # At minimum an MP3 should have an ID3 tag
+            logger.warning(f"File is too small to be a valid MP3: {mp3_path}. Size: {os.path.getsize(mp3_path)} bytes")
+            
+            # Try to create a minimal valid MP3 file
+            try:
+                # Generate a silent MP3 file using ffmpeg
+                temp_dir = tempfile.mkdtemp()
+                silent_mp3 = os.path.join(temp_dir, "silent.mp3")
+                
+                # Generate 1 second of silence
+                call(['ffmpeg', '-f', 'lavfi', '-i', 'anullsrc=r=44100:cl=mono', 
+                      '-t', '1', '-q:a', '9', '-acodec', 'libmp3lame', silent_mp3], 
+                     stdout=tempfile.devnull, stderr=tempfile.devnull)
+                
+                # Copy the silent MP3 to the destination
+                shutil.copy2(silent_mp3, mp3_path)
+                
+                # Clean up temp files
+                shutil.rmtree(temp_dir, ignore_errors=True)
+                
+                logger.info(f"Created minimal valid MP3 file at: {mp3_path}")
+            except Exception as e:
+                logger.error(f"Failed to create minimal valid MP3: {e}")
+                return False
             
         logger.info(f"Embedding metadata in {mp3_path}")
         logger.info(f"Title: {title}, Artist: {artist}, Album: {album}, Genre: {genre}")
@@ -280,53 +321,323 @@ def embed_metadata(mp3_path, title, artist, album='Unknown', genre='Unknown', th
         audio['TALB'] = TALB(encoding=3, text=album)
         audio['TCON'] = TCON(encoding=3, text=genre)
         
-        # Add release year if provided
+        # Add release year - using the appropriate tag based on ID3 version
         if year:
-            audio['TDRC'] = TDRC(encoding=3, text=str(year))
+            try:
+                # Try both v2.3 and v2.4 year tags
+                audio['TDRC'] = TDRC(encoding=3, text=str(year))  # v2.4
+                audio['TYER'] = TYER(encoding=3, text=str(year))  # v2.3
+            except Exception as e:
+                logger.warning(f"Error setting year tag: {e}")
+        
+        # Add composer if provided
+        if composer:
+            try:
+                audio['TCOM'] = TCOM(encoding=3, text=composer)
+            except Exception as e:
+                logger.warning(f"Error setting composer tag: {e}")
+                
+        # Add album artist if provided
+        if album_artist:
+            try:
+                audio['TPE2'] = TPE2(encoding=3, text=album_artist)
+            except Exception as e:
+                logger.warning(f"Error setting album artist tag: {e}")
+        
+        # Prepare image data
+        image_data = None
         
         # Add album art if thumbnail URL is provided
         if thumbnail_url:
-            # Download thumbnail
-            image_data = None
+            # First check database for the song if possible
+            from django.apps import apps
             
-            if thumbnail_url.startswith('/media/'):
-                # Local file
-                thumbnail_path = os.path.join(settings.MEDIA_ROOT, thumbnail_url.replace('/media/', ''))
-                logger.info(f"Looking for local thumbnail: {thumbnail_path}")
-                if os.path.exists(thumbnail_path):
-                    with open(thumbnail_path, 'rb') as f:
-                        image_data = f.read()
-                    logger.info(f"Found local thumbnail: {thumbnail_path}")
-                else:
-                    logger.warning(f"Thumbnail file not found: {thumbnail_path}")
-            else:
-                # Remote URL
-                try:
-                    logger.info(f"Downloading thumbnail from URL: {thumbnail_url}")
-                    response = requests.get(thumbnail_url, timeout=10)
-                    response.raise_for_status()
-                    image_data = response.content
-                    logger.info(f"Downloaded thumbnail: {len(image_data)} bytes")
-                except requests.exceptions.RequestException as e:
-                    logger.warning(f"Failed to download thumbnail from {thumbnail_url}: {e}")
-            
-            # Add album art if we have image data
-            if image_data:
-                # Determine MIME type
-                import imghdr
-                img_type = imghdr.what(None, h=image_data[:32])
-                mime_type = f"image/{img_type}" if img_type else "image/jpeg"
+            try:
+                # Try to find the song in the database first
+                Song = apps.get_model('songs', 'Song')
+                song = Song.objects.filter(
+                    title__icontains=title,
+                    artist__icontains=artist,
+                    thumbnail_url__isnull=False
+                ).first()
                 
-                logger.info(f"Adding album art, MIME type: {mime_type}")
-                audio['APIC'] = APIC(
-                    encoding=3,
-                    mime=mime_type,
-                    type=3,  # Cover (front)
-                    desc='Cover',
-                    data=image_data
-                )
+                if song and song.thumbnail_url:
+                    logger.info(f"Found matching song in database: {song.title} by {song.artist}")
+                    thumbnail_url = song.thumbnail_url
+                    logger.info(f"Using thumbnail URL from database: {thumbnail_url}")
+            except Exception as e:
+                logger.warning(f"Error checking database: {e}")
+                
+            # Now check the Music.csv file in datasets directory
+            if not thumbnail_url or 'unknown' in thumbnail_url.lower():
+                try:
+                    import csv
+                    
+                    # Path to the new Music.csv file
+                    music_csv_path = os.path.join(settings.BASE_DIR, 'tunevault', 'songs', 'datasets', 'Music.csv')
+                    
+                    if os.path.exists(music_csv_path):
+                        logger.info(f"Checking Music.csv file for thumbnail: {music_csv_path}")
+                        
+                        with open(music_csv_path, 'r', encoding='utf-8-sig') as csvfile:
+                            reader = csv.DictReader(csvfile)
+                            
+                            # Clean the search terms
+                            clean_title = title.lower().strip()
+                            clean_artist = artist.lower().strip()
+                            
+                            # Check each row for a matching song
+                            for row in reader:
+                                # Skip empty rows
+                                if not row:
+                                    continue
+                                    
+                                # First try to match by spotify_id if available (most reliable method)
+                                if spotify_id and row.get('spotify_id') and spotify_id == row.get('spotify_id'):
+                                    logger.info(f"Found exact spotify_id match in Music.csv: {spotify_id}")
+                                    img_url = row.get('img')
+                                    if img_url and len(img_url) > 5:  # Basic validation
+                                        thumbnail_url = img_url
+                                        logger.info(f"Using thumbnail URL from Music.csv (spotify match): {thumbnail_url}")
+                                        break
+                                
+                                # Get name and artist from the row
+                                row_title = row.get('name', '').lower().strip()
+                                row_artist = row.get('artist', '').lower().strip()
+                                
+                                # Check for text matches
+                                title_match = (row_title in clean_title or clean_title in row_title)
+                                artist_match = (row_artist in clean_artist or clean_artist in row_artist)
+                                
+                                # If we have a title+artist match, use the img URL
+                                if title_match and artist_match:
+                                    img_url = row.get('img')
+                                    if img_url and len(img_url) > 5:  # Basic validation
+                                        logger.info(f"Found matching song in Music.csv: {row_title} by {row_artist}")
+                                        thumbnail_url = img_url
+                                        logger.info(f"Using thumbnail URL from Music.csv (name/artist match): {thumbnail_url}")
+                                        break
+                    else:
+                        logger.warning(f"Music.csv file not found at: {music_csv_path}")
+                except Exception as e:
+                    logger.warning(f"Error checking Music.csv file: {e}")
+                    
+            # Download the thumbnail data
+            if thumbnail_url:
+                if thumbnail_url.startswith('/media/'):
+                    # Local file
+                    thumbnail_path = os.path.join(settings.MEDIA_ROOT, thumbnail_url.replace('/media/', ''))
+                    logger.info(f"Looking for local thumbnail: {thumbnail_path}")
+                    if os.path.exists(thumbnail_path):
+                        with open(thumbnail_path, 'rb') as f:
+                            image_data = f.read()
+                        logger.info(f"Found local thumbnail: {thumbnail_path}")
+                    else:
+                        logger.warning(f"Thumbnail file not found: {thumbnail_path}")
+                else:
+                    # Remote URL
+                    try:
+                        logger.info(f"Downloading thumbnail from URL: {thumbnail_url}")
+                        headers = {
+                            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'
+                        }
+                        
+                        # Check if URL is a webp image and try to convert it directly from the source
+                        if 'webp' in thumbnail_url.lower():
+                            logger.info("Detected webp image in URL, will handle special conversion")
+                            
+                            # Download the webp image
+                            response = requests.get(thumbnail_url, timeout=10, headers=headers)
+                            response.raise_for_status()
+                            webp_data = response.content
+                            
+                            # Create a temporary directory for conversion
+                            temp_dir = tempfile.mkdtemp()
+                            webp_path = os.path.join(temp_dir, "image.webp")
+                            jpg_path = os.path.join(temp_dir, "image.jpg")
+                            
+                            # Save the webp image to disk
+                            with open(webp_path, 'wb') as f:
+                                f.write(webp_data)
+                            
+                            # Try conversion with pillow first
+                            try:
+                                img = Image.open(BytesIO(webp_data))
+                                if img.mode != 'RGB':
+                                    img = img.convert('RGB')
+                                img.save(jpg_path, 'JPEG', quality=90)
+                                
+                                # Read the converted JPEG
+                                with open(jpg_path, 'rb') as f:
+                                    image_data = f.read()
+                                    
+                                logger.info(f"Successfully converted webp to JPEG with Pillow: {len(image_data)} bytes")
+                            except Exception as pillow_error:
+                                logger.warning(f"Pillow webp conversion failed: {pillow_error}")
+                                
+                                # Try ffmpeg as fallback
+                                try:
+                                    call(['ffmpeg', '-i', webp_path, '-qscale:v', '2', jpg_path], 
+                                         stdout=tempfile.devnull, stderr=tempfile.devnull)
+                                    
+                                    if os.path.exists(jpg_path):
+                                        with open(jpg_path, 'rb') as f:
+                                            image_data = f.read()
+                                        logger.info(f"Successfully converted webp to JPEG with ffmpeg: {len(image_data)} bytes")
+                                    else:
+                                        logger.warning("FFmpeg webp conversion failed")
+                                        # Fall back to original webp data
+                                        image_data = webp_data
+                                except Exception as ffmpeg_error:
+                                    logger.warning(f"FFmpeg webp conversion failed: {ffmpeg_error}")
+                                    # Fall back to original webp data
+                                    image_data = webp_data
+                            
+                            # Clean up temporary files
+                            shutil.rmtree(temp_dir, ignore_errors=True)
+                        else:
+                            # Regular image download
+                            response = requests.get(thumbnail_url, timeout=10, headers=headers)
+                            response.raise_for_status()
+                            image_data = response.content
+                            
+                        logger.info(f"Downloaded thumbnail: {len(image_data)} bytes")
+                    except requests.exceptions.RequestException as e:
+                        logger.warning(f"Failed to download thumbnail from {thumbnail_url}: {e}")
         
-        # Save the changes - important to write to the file
+        # Add album art if we have image data
+        if image_data:
+            try:
+                # Determine MIME type
+                img_type = imghdr.what(None, h=image_data[:32])
+                logger.info(f"Detected image type: {img_type}")
+                
+                # Convert to JPEG if it's not already JPEG to avoid the 'unknown mimetype' issue
+                if img_type and img_type.lower() not in ['jpeg', 'jpg']:
+                    logger.info(f"Converting image from {img_type} to JPEG")
+                    try:
+                        # Create a temporary file to save the image
+                        temp_dir = tempfile.mkdtemp()
+                        temp_img_path = os.path.join(temp_dir, "temp_img.jpg")
+                        
+                        # Save the image data to a temporary file
+                        with open(temp_img_path + ".tmp", 'wb') as f:
+                            f.write(image_data)
+                        
+                        # Open with Pillow and convert to JPEG
+                        img = Image.open(BytesIO(image_data))
+                        if img.mode != 'RGB':
+                            img = img.convert('RGB')
+                        img.save(temp_img_path, format='JPEG', quality=90)
+                        
+                        # Read the converted image
+                        with open(temp_img_path, 'rb') as f:
+                            image_data = f.read()
+                            
+                        # Clean up temporary files
+                        shutil.rmtree(temp_dir, ignore_errors=True)
+                        
+                        logger.info(f"Successfully converted image to JPEG: {len(image_data)} bytes")
+                        img_type = 'jpeg'
+                    except Exception as e:
+                        logger.warning(f"Error converting image with Pillow: {e}")
+                        
+                        # Try alternative conversion with ffmpeg if Pillow fails
+                        try:
+                            logger.info("Attempting conversion with ffmpeg")
+                            temp_dir = tempfile.mkdtemp()
+                            temp_in = os.path.join(temp_dir, f"input.{img_type or 'bin'}")
+                            temp_out = os.path.join(temp_dir, "output.jpg")
+                            
+                            # Write the input file
+                            with open(temp_in, 'wb') as f:
+                                f.write(image_data)
+                            
+                            # Convert using ffmpeg
+                            call(['ffmpeg', '-i', temp_in, '-q:v', '2', temp_out], 
+                                 stdout=tempfile.devnull, stderr=tempfile.devnull)
+                            
+                            # Read the converted file
+                            if os.path.exists(temp_out):
+                                with open(temp_out, 'rb') as f:
+                                    image_data = f.read()
+                                logger.info(f"Successfully converted image with ffmpeg: {len(image_data)} bytes")
+                                img_type = 'jpeg'
+                            else:
+                                logger.warning("FFmpeg conversion failed to create output file")
+                            
+                            # Clean up
+                            shutil.rmtree(temp_dir, ignore_errors=True)
+                        except Exception as ffmpeg_error:
+                            logger.warning(f"FFmpeg conversion also failed: {ffmpeg_error}")
+                
+                # Force JPEG MIME type for compatibility with all players
+                mime_type = "image/jpeg"
+                
+                if image_data:
+                    logger.info(f"Adding album art, MIME type: {mime_type}")
+                    # Create APIC frame with version 3 encoding for wide compatibility
+                    audio['APIC'] = APIC(
+                        encoding=3,           # UTF-8
+                        mime=mime_type,       # Always use image/jpeg
+                        type=3,               # Cover (front)
+                        desc='Cover',
+                        data=image_data
+                    )
+                    logger.info("Successfully added album art to ID3 tags")
+                else:
+                    logger.warning("No image data available after conversion attempts")
+            except Exception as e:
+                logger.warning(f"Error processing image: {e}")
+        
+        # If no image data but we have a YouTube ID, try to get a thumbnail directly from YouTube
+        elif youtube_id:
+            try:
+                # Construct YouTube thumbnail URL
+                yt_thumbnail_url = f"https://img.youtube.com/vi/{youtube_id}/maxresdefault.jpg"
+                logger.info(f"Trying to get thumbnail directly from YouTube: {yt_thumbnail_url}")
+                
+                headers = {
+                    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36'
+                }
+                
+                response = requests.get(yt_thumbnail_url, timeout=10, headers=headers)
+                if response.status_code == 200 and len(response.content) > 1000:  # Ensure it's not a placeholder
+                    image_data = response.content
+                    logger.info(f"Successfully downloaded YouTube thumbnail: {len(image_data)} bytes")
+                    
+                    # Add the thumbnail to the ID3 tags
+                    audio['APIC'] = APIC(
+                        encoding=3,           # UTF-8
+                        mime="image/jpeg",     # YouTube thumbnails are JPEG
+                        type=3,               # Cover (front)
+                        desc='Cover',
+                        data=image_data
+                    )
+                    logger.info("Successfully added YouTube thumbnail to ID3 tags")
+                else:
+                    # Try alternative thumbnail URL
+                    yt_thumbnail_url = f"https://img.youtube.com/vi/{youtube_id}/hqdefault.jpg"
+                    logger.info(f"Trying alternative YouTube thumbnail: {yt_thumbnail_url}")
+                    
+                    response = requests.get(yt_thumbnail_url, timeout=10, headers=headers)
+                    if response.status_code == 200 and len(response.content) > 1000:
+                        image_data = response.content
+                        logger.info(f"Successfully downloaded alternative YouTube thumbnail: {len(image_data)} bytes")
+                        
+                        # Add the thumbnail to the ID3 tags
+                        audio['APIC'] = APIC(
+                            encoding=3,           # UTF-8
+                            mime="image/jpeg",     # YouTube thumbnails are JPEG
+                            type=3,               # Cover (front)
+                            desc='Cover',
+                            data=image_data
+                        )
+                        logger.info("Successfully added alternative YouTube thumbnail to ID3 tags")
+            except Exception as e:
+                logger.warning(f"Error getting YouTube thumbnail: {e}")
+        
+        # Save the changes - important to write to the file - use ID3v2.3 for compatibility
         audio.save(mp3_path, v2_version=3)
         logger.info(f"Successfully saved ID3 tags to {mp3_path}")
         
@@ -334,7 +645,8 @@ def embed_metadata(mp3_path, title, artist, album='Unknown', genre='Unknown', th
         try:
             verification = ID3(mp3_path)
             tag_count = len(verification)
-            logger.info(f"Verification: {tag_count} tags were written")
+            has_cover = 'APIC:Cover' in verification or 'APIC:' in verification
+            logger.info(f"Verification: {tag_count} tags were written, has_cover={has_cover}")
         except Exception as e:
             logger.warning(f"Could not verify tags: {e}")
         

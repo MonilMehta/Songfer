@@ -196,8 +196,8 @@ REST_FRAMEWORK = {
 }
 
 # Celery Configuration
-CELERY_BROKER_URL = 'redis://localhost:6379/0'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_BROKER_URL = 'redis://default:Rh3mejxoZ1eRjMvtFnQWl79HezdWnKZV@redis-18712.crce182.ap-south-1-1.ec2.redns.redis-cloud.com:18712'
+CELERY_RESULT_BACKEND = 'redis://default:Rh3mejxoZ1eRjMvtFnQWl79HezdWnKZV@redis-18712.crce182.ap-south-1-1.ec2.redns.redis-cloud.com:18712'
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
@@ -222,7 +222,7 @@ CELERY_BEAT_SCHEDULE = {
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/0",
+        "LOCATION": "redis://default:Rh3mejxoZ1eRjMvtFnQWl79HezdWnKZV@redis-18712.crce182.ap-south-1-1.ec2.redns.redis-cloud.com:18712",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
         }

@@ -31,7 +31,7 @@ from django_ratelimit.exceptions import Ratelimited
 from functools import wraps
 from .utils import (
     youtube_api_retry, spotify_api_retry, download_from_youtube, 
-    convert_audio_format, download_youtube_util, sanitize_filename
+    convert_audio_format, download_youtube_util, sanitize_filename, embed_metadata
 )
 from django.utils.text import Truncator
 
@@ -318,8 +318,20 @@ class SongViewSet(viewsets.ModelViewSet):
                 # Create a song entry for this user if they don't already have it
                 if not Song.objects.filter(user=self.request.user, song_url=url).exists():
                     # Create the song record
-                    rel_path = os.path.relpath(final_filename, settings.MEDIA_ROOT) if os.path.exists(final_filename) else cached_song.file_path
+                    rel_path = os.path.join('songs', final_filename)
                     rel_path = sanitize_filename(rel_path, max_length=95)
+                    
+                    # Embed metadata including thumbnail into the MP3 file
+                    embed_metadata(
+                        mp3_path=final_filename,
+                        title=title,
+                        artist=artist,
+                        album=album,
+                        thumbnail_url=metadata.get('thumbnail_url', ''),
+                        year=metadata.get('upload_date', '')[:4] if metadata.get('upload_date') else None,
+                        album_artist=metadata.get('channel', metadata.get('artist', 'Unknown Artist')),
+                        youtube_id=metadata.get('id')
+                    )
                     
                     song = Song.objects.create(
                         user=self.request.user,
@@ -428,6 +440,18 @@ class SongViewSet(viewsets.ModelViewSet):
             # Create the song record
             rel_path = os.path.join('songs', formatted_filename)
             rel_path = sanitize_filename(rel_path, max_length=95)
+            
+            # Embed metadata including thumbnail into the MP3 file
+            embed_metadata(
+                mp3_path=media_path,
+                title=info['title'],
+                artist=info.get('uploader', 'Unknown Artist'),
+                album=info.get('album', 'Unknown'),
+                thumbnail_url=thumbnail_url,
+                year=info.get('upload_date', '')[:4] if info.get('upload_date') else None,
+                album_artist=info.get('channel', info.get('uploader', 'Unknown Artist')),
+                youtube_id=info.get('id')
+            )
             
             song = Song.objects.create(
                 user=self.request.user,
@@ -698,10 +722,18 @@ class SongViewSet(viewsets.ModelViewSet):
                     # Sanitize the file path to ensure it doesn't exceed DB limits
                     rel_path = sanitize_filename(rel_path, max_length=95)
                     
-                    # Ensure thumbnail URL doesn't exceed the DB limits
-                    if thumbnail_url and len(thumbnail_url) > 190:
-                        logger.warning(f"Thumbnail URL too long, truncating: {thumbnail_url[:50]}...")
-                        thumbnail_url = sanitize_for_db(thumbnail_url, max_length=190)
+                    # Embed metadata including thumbnail into the MP3 file
+                    embed_metadata(
+                        mp3_path=media_path,
+                        title=track_info['title'],
+                        artist=track_info['artist'],
+                        album=track_info.get('album', 'Unknown'),
+                        thumbnail_url=thumbnail_url,
+                        year=track_info.get('year'),
+                        genre=track_info.get('genre', 'Unknown'),
+                        album_artist=track_info.get('album_artist', track_info['artist']),
+                        spotify_id=track_info.get('spotify_id')
+                    )
                     
                     song = Song.objects.create(
                         user=self.request.user,
@@ -711,7 +743,7 @@ class SongViewSet(viewsets.ModelViewSet):
                         file=rel_path,
                         source='spotify',
                         spotify_id=track_info.get('spotify_id'),
-                        thumbnail_url=sanitize_for_db(thumbnail_url, max_length=190) if thumbnail_url else None,
+                        thumbnail_url=sanitize_for_db(thumbnail_url, max_length=190),
                         song_url=url
                     )
                 
@@ -1577,9 +1609,68 @@ class UserRecommendationsView(generics.ListAPIView):
                             album=sanitize_for_db(rec.get('album', 'Unknown')),
                             source='csv_data',
                             spotify_id=rec['spotify_id'],
-                            thumbnail_url=sanitize_for_db(rec.get('image_url', ''), max_length=190)
+                            thumbnail_url=sanitize_for_db(rec.get('image_url', ''), max_length=190),
+                            year=rec.get('year'),
+                            genre=rec.get('genre', 'Unknown'),
+                            album_artist=rec.get('album_artist', rec['artist']),
+                            youtube_id=rec.get('id')
                         )
                         songs.append(song.id)
+                        
+                        # Download the song if it has a spotify_id and save thumbnail to ID3
+                        if rec.get('image_url') and rec['spotify_id']:
+                            # Start a background task to download and process the thumbnail
+                            from threading import Thread
+                            
+                            def process_thumbnail():
+                                try:
+                                    # Find the corresponding MP3 file in media directory
+                                    mp3_filename = None
+                                    if song.file:
+                                        mp3_filename = os.path.join(settings.MEDIA_ROOT, song.file.name)
+                                    
+                                    # If file doesn't exist in media, try to find it in Spotify 
+                                    # or download placeholder
+                                    if not mp3_filename or not os.path.exists(mp3_filename):
+                                        # Create songs directory if it doesn't exist
+                                        songs_dir = os.path.join(settings.MEDIA_ROOT, 'songs')
+                                        os.makedirs(songs_dir, exist_ok=True)
+                                        
+                                        # Create an empty file with appropriate title
+                                        safe_title = sanitize_filename(f"{song.title} - {song.artist}")
+                                        mp3_filename = os.path.join(songs_dir, f"{safe_title}.mp3")
+                                        
+                                        # Create an empty MP3 file
+                                        # We'll only add metadata if a song is actually downloaded later
+                                        if not os.path.exists(mp3_filename):
+                                            with open(mp3_filename, 'wb') as f:
+                                                f.write(b'')  # Empty MP3 file
+                                                
+                                            # Save file path to song
+                                            rel_path = os.path.join('songs', f"{safe_title}.mp3")
+                                            song.file = rel_path
+                                            song.save(update_fields=['file'])
+                                    
+                                    if mp3_filename and os.path.exists(mp3_filename):
+                                        # Embed the metadata and thumbnail
+                                        embed_metadata(
+                                            mp3_path=mp3_filename,
+                                            title=song.title,
+                                            artist=song.artist,
+                                            album=song.album,
+                                            thumbnail_url=rec.get('image_url', ''),
+                                            year=rec.get('year'),
+                                            genre=rec.get('genre', 'Unknown'),
+                                            album_artist=rec.get('album_artist', song.artist),
+                                            spotify_id=song.spotify_id
+                                        )
+                                        logger.info(f"Embedded metadata and thumbnail for CSV song: {song.title}")
+                                except Exception as e:
+                                    logger.error(f"Error processing thumbnail for CSV song: {e}", exc_info=True)
+                            
+                            # Start background thread to process thumbnail without blocking main request
+                            Thread(target=process_thumbnail).start()
+                        
                     except Exception as e:
                         logger.error(f"Error creating song from recommendation: {e}", exc_info=True)
             
@@ -1664,9 +1755,68 @@ class RecommendationsAPIView(APIView):
                             album=sanitize_for_db(rec.get('album', 'Unknown')),
                             source='csv_data',
                             spotify_id=rec['spotify_id'],
-                            thumbnail_url=sanitize_for_db(rec.get('image_url', ''), max_length=190)
+                            thumbnail_url=sanitize_for_db(rec.get('image_url', ''), max_length=190),
+                            year=rec.get('year'),
+                            genre=rec.get('genre', 'Unknown'),
+                            album_artist=rec.get('album_artist', rec['artist']),
+                            youtube_id=rec.get('id')
                         )
                         songs.append(song)
+                        
+                        # Download the song if it has a spotify_id and save thumbnail to ID3
+                        if rec.get('image_url') and rec['spotify_id']:
+                            # Start a background task to download and process the thumbnail
+                            from threading import Thread
+                            
+                            def process_thumbnail():
+                                try:
+                                    # Find the corresponding MP3 file in media directory
+                                    mp3_filename = None
+                                    if song.file:
+                                        mp3_filename = os.path.join(settings.MEDIA_ROOT, song.file.name)
+                                    
+                                    # If file doesn't exist in media, try to find it in Spotify 
+                                    # or download placeholder
+                                    if not mp3_filename or not os.path.exists(mp3_filename):
+                                        # Create songs directory if it doesn't exist
+                                        songs_dir = os.path.join(settings.MEDIA_ROOT, 'songs')
+                                        os.makedirs(songs_dir, exist_ok=True)
+                                        
+                                        # Create an empty file with appropriate title
+                                        safe_title = sanitize_filename(f"{song.title} - {song.artist}")
+                                        mp3_filename = os.path.join(songs_dir, f"{safe_title}.mp3")
+                                        
+                                        # Create an empty MP3 file
+                                        # We'll only add metadata if a song is actually downloaded later
+                                        if not os.path.exists(mp3_filename):
+                                            with open(mp3_filename, 'wb') as f:
+                                                f.write(b'')  # Empty MP3 file
+                                                
+                                            # Save file path to song
+                                            rel_path = os.path.join('songs', f"{safe_title}.mp3")
+                                            song.file = rel_path
+                                            song.save(update_fields=['file'])
+                                    
+                                    if mp3_filename and os.path.exists(mp3_filename):
+                                        # Embed the metadata and thumbnail
+                                        embed_metadata(
+                                            mp3_path=mp3_filename,
+                                            title=song.title,
+                                            artist=song.artist,
+                                            album=song.album,
+                                            thumbnail_url=rec.get('image_url', ''),
+                                            year=rec.get('year'),
+                                            genre=rec.get('genre', 'Unknown'),
+                                            album_artist=rec.get('album_artist', song.artist),
+                                            spotify_id=song.spotify_id
+                                        )
+                                        logger.info(f"Embedded metadata and thumbnail for CSV song: {song.title}")
+                                except Exception as e:
+                                    logger.error(f"Error processing thumbnail for CSV song: {e}", exc_info=True)
+                            
+                            # Start background thread to process thumbnail without blocking main request
+                            Thread(target=process_thumbnail).start()
+                        
                     except Exception as e:
                         logger.error(f"Error creating song from recommendation: {e}", exc_info=True)
             
