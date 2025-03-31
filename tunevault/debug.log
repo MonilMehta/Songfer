@@ -9086,3 +9086,13 @@ INFO 2025-03-31 15:20:40,938 views 18484 27140 Sample user songs: [{'spotify_id'
 INFO 2025-03-31 15:20:40,947 views 18484 27140 Getting recommendations for user: 1 with limit: 10
 INFO 2025-03-31 15:20:41,206 views 18484 27140 Got 10 recommendations
 INFO 2025-03-31 15:20:41,331 basehttp 18484 27140 "GET /api/songs/recommendations/ HTTP/1.1" 200 2965
+INFO 2025-03-31 15:21:00,594 autoreload 18484 10492 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\recommendation.py changed, reloading.
+INFO 2025-03-31 15:21:04,516 autoreload 15436 9000 Watching for file changes with StatReloader
+INFO 2025-03-31 15:21:35,653 views 15436 632 Found existing song with URL https://www.youtube.com/watch?v=_lMlsPQJs6U, serving directly
+INFO 2025-03-31 15:21:35,834 views 15436 632 Using cached version for URL: https://www.youtube.com/watch?v=_lMlsPQJs6U
+INFO 2025-03-31 15:21:36,340 basehttp 15436 632 "POST /api/songs/songs/download/ HTTP/1.1" 200 5314220
+INFO 2025-03-31 15:22:51,502 autoreload 15436 9000 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\tunevault\settings.py changed, reloading.
+INFO 2025-03-31 15:22:55,630 autoreload 13820 25948 Watching for file changes with StatReloader
+INFO 2025-03-31 15:22:59,921 autoreload 13820 25948 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\tunevault\settings.py changed, reloading.
+INFO 2025-03-31 15:23:04,237 autoreload 8684 9144 Watching for file changes with StatReloader
+INFO 2025-03-31 15:23:26,600 autoreload 22044 25668 Watching for file changes with StatReloader

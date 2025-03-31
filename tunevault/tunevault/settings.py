@@ -186,9 +186,8 @@ SOCIALACCOUNT_PROVIDERS = {
 
 # Django allauth config
 ACCOUNT_EMAIL_VERIFICATION = 'none'  # Set to 'mandatory' in production
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
-ACCOUNT_USERNAME_REQUIRED = True  # Keep username for compatibility with your existing code
+ACCOUNT_SIGNUP_FIELDS = ['email*', 'username*', 'password1*', 'password2*']
+ACCOUNT_LOGIN_METHODS = {'email'}
 
 # Login/logout URLs
 LOGIN_REDIRECT_URL = '/'
