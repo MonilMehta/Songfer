@@ -22,8 +22,7 @@ from .serializers import SongSerializer, PlaylistSerializer, UserMusicProfileSer
 from .tasks import download_song, download_spotify_playlist, download_youtube_playlist
 from .spotify_api import get_playlist_tracks, get_spotify_client, get_track_info, get_playlist_info, extract_spotify_id
 from rest_framework.views import APIView
-from .recommendation import get_hybrid_recommendations, update_user_recommendations
-from .csv_recommender import get_hybrid_recommendations, get_csv_recommender
+from .recommendation import get_hybrid_recommendations, update_user_recommendations, get_recommender
 from django.utils import timezone
 from django.http import HttpResponse
 from django_ratelimit.decorators import ratelimit
@@ -1581,8 +1580,7 @@ class UserRecommendationsView(generics.ListAPIView):
         try:
             logger.info(f"Getting recommendations for user: {self.request.user.id}")
             
-            # Get recommendations using CSV-based recommender
-            from .csv_recommender import get_hybrid_recommendations
+            # Get recommendations using the recommender
             recommendations = get_hybrid_recommendations(self.request.user, limit=10)
             
             if not recommendations:
@@ -1607,13 +1605,11 @@ class UserRecommendationsView(generics.ListAPIView):
                             title=sanitize_for_db(rec['title']),
                             artist=sanitize_for_db(rec['artist']),
                             album=sanitize_for_db(rec.get('album', 'Unknown')),
-                            source='csv_data',
+                            source='recommendation',
                             spotify_id=rec['spotify_id'],
                             thumbnail_url=sanitize_for_db(rec.get('image_url', ''), max_length=190),
                             year=rec.get('year'),
-                            genre=rec.get('genre', 'Unknown'),
-                            album_artist=rec.get('album_artist', rec['artist']),
-                            youtube_id=rec.get('id')
+                            genre=rec.get('genre', 'Unknown')
                         )
                         songs.append(song.id)
                         
@@ -1664,9 +1660,9 @@ class UserRecommendationsView(generics.ListAPIView):
                                             album_artist=rec.get('album_artist', song.artist),
                                             spotify_id=song.spotify_id
                                         )
-                                        logger.info(f"Embedded metadata and thumbnail for CSV song: {song.title}")
+                                        logger.info(f"Embedded metadata and thumbnail for recommendation: {song.title}")
                                 except Exception as e:
-                                    logger.error(f"Error processing thumbnail for CSV song: {e}", exc_info=True)
+                                    logger.error(f"Error processing thumbnail for recommendation: {e}", exc_info=True)
                             
                             # Start background thread to process thumbnail without blocking main request
                             Thread(target=process_thumbnail).start()
@@ -1714,13 +1710,13 @@ class RecommendationsAPIView(APIView):
                 sample_songs = list(spotify_songs.values('spotify_id', 'title', 'artist')[:5])
                 logger.info(f"Sample user songs: {sample_songs}")
             
-            logger.info(f"Getting CSV recommendations for user: {request.user.id} with limit: {limit}")
+            logger.info(f"Getting recommendations for user: {request.user.id} with limit: {limit}")
             
-            # Get recommendations from CSV recommender
+            # Get recommendations
             recommendations_data = get_hybrid_recommendations(request.user, limit)
             
             if not recommendations_data:
-                logger.warning("No recommendations returned from CSV recommender")
+                logger.warning("No recommendations returned from recommender")
                 return Response({
                     'success': True,
                     'message': 'No recommendations available. Try downloading some songs first.',
@@ -1732,7 +1728,7 @@ class RecommendationsAPIView(APIView):
                     }
                 })
             
-            logger.info(f"Got {len(recommendations_data)} recommendations from CSV data")
+            logger.info(f"Got {len(recommendations_data)} recommendations")
             
             # Convert recommendations to Song objects if they don't exist yet
             songs = []
@@ -1753,13 +1749,11 @@ class RecommendationsAPIView(APIView):
                             title=sanitize_for_db(rec['title']),
                             artist=sanitize_for_db(rec['artist']),
                             album=sanitize_for_db(rec.get('album', 'Unknown')),
-                            source='csv_data',
+                            source='recommendation',
                             spotify_id=rec['spotify_id'],
                             thumbnail_url=sanitize_for_db(rec.get('image_url', ''), max_length=190),
                             year=rec.get('year'),
-                            genre=rec.get('genre', 'Unknown'),
-                            album_artist=rec.get('album_artist', rec['artist']),
-                            youtube_id=rec.get('id')
+                            genre=rec.get('genre', 'Unknown')
                         )
                         songs.append(song)
                         
@@ -1810,9 +1804,9 @@ class RecommendationsAPIView(APIView):
                                             album_artist=rec.get('album_artist', song.artist),
                                             spotify_id=song.spotify_id
                                         )
-                                        logger.info(f"Embedded metadata and thumbnail for CSV song: {song.title}")
+                                        logger.info(f"Embedded metadata and thumbnail for recommendation: {song.title}")
                                 except Exception as e:
-                                    logger.error(f"Error processing thumbnail for CSV song: {e}", exc_info=True)
+                                    logger.error(f"Error processing thumbnail for recommendation: {e}", exc_info=True)
                             
                             # Start background thread to process thumbnail without blocking main request
                             Thread(target=process_thumbnail).start()
@@ -1825,14 +1819,14 @@ class RecommendationsAPIView(APIView):
             
             return Response({
                 'success': True,
-                'message': f'Found {len(songs)} recommendations using CSV data',
+                'message': f'Found {len(songs)} recommendations',
                 'recommendations': serializer.data,
                 'debug_info': {
                     'user_songs_count': user_songs.count(),
                     'spotify_songs_count': spotify_songs.count(),
                     'recommendations_count': len(recommendations_data),
                     'songs_created': len(songs),
-                    'recommendation_source': 'csv_dataset'
+                    'recommendation_source': 'recommendation_system'
                 }
             })
             

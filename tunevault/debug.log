@@ -8162,3 +8162,453 @@ INFO 2025-03-31 11:59:45,110 basehttp 14652 25368 "GET /api/songs/playlists/ HTT
 INFO 2025-03-31 11:59:52,015 basehttp 14652 25368 "GET /api/songs/user/profile HTTP/1.1" 301 0
 INFO 2025-03-31 11:59:52,863 basehttp 14652 2108 "GET /api/songs/user/profile/ HTTP/1.1" 200 176
 INFO 2025-03-31 12:00:04,535 basehttp 14652 2108 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 200
+INFO 2025-03-31 12:04:49,221 basehttp 14652 5272 "GET /admin/ HTTP/1.1" 200 19361
+INFO 2025-03-31 12:04:49,322 basehttp 14652 12456 "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2804
+INFO 2025-03-31 12:04:49,343 basehttp 14652 12456 "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 304 0
+INFO 2025-03-31 12:04:49,344 basehttp 14652 5272 "GET /static/admin/css/base.css HTTP/1.1" 200 22092
+INFO 2025-03-31 12:04:49,344 basehttp 14652 11148 "GET /static/admin/js/theme.js HTTP/1.1" 304 0
+INFO 2025-03-31 12:04:49,353 basehttp 14652 21548 "GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+INFO 2025-03-31 12:04:49,358 basehttp 14652 24204 "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+INFO 2025-03-31 12:04:49,361 basehttp 14652 14080 "GET /static/admin/css/responsive.css HTTP/1.1" 200 17972
+INFO 2025-03-31 12:04:49,392 basehttp 14652 24204 "GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 200 392
+INFO 2025-03-31 12:04:49,413 basehttp 14652 5272 "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+INFO 2025-03-31 12:04:49,413 basehttp 14652 14080 "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+INFO 2025-03-31 12:04:57,776 basehttp 14652 5272 "GET /admin/users/customuser/ HTTP/1.1" 200 16318
+INFO 2025-03-31 12:04:57,851 basehttp 14652 12456 "GET /static/admin/js/jquery.init.js HTTP/1.1" 304 0
+INFO 2025-03-31 12:04:57,855 basehttp 14652 11148 "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 304 0
+INFO 2025-03-31 12:04:57,855 basehttp 14652 24204 "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 304 0
+INFO 2025-03-31 12:04:57,855 basehttp 14652 21548 "GET /static/admin/js/core.js HTTP/1.1" 304 0
+INFO 2025-03-31 12:04:57,876 basehttp 14652 12456 "GET /static/admin/js/actions.js HTTP/1.1" 304 0
+INFO 2025-03-31 12:04:57,876 basehttp 14652 11148 "GET /static/admin/js/urlify.js HTTP/1.1" 304 0
+INFO 2025-03-31 12:04:57,880 basehttp 14652 24204 "GET /static/admin/js/prepopulate.js HTTP/1.1" 304 0
+INFO 2025-03-31 12:04:57,885 basehttp 14652 21548 "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 304 0
+INFO 2025-03-31 12:04:57,885 basehttp 14652 12456 "GET /static/admin/js/filters.js HTTP/1.1" 304 0
+INFO 2025-03-31 12:04:57,889 basehttp 14652 5272 "GET /static/admin/css/changelists.css HTTP/1.1" 200 6878
+INFO 2025-03-31 12:04:58,514 basehttp 14652 14080 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-03-31 12:04:58,547 basehttp 14652 5272 "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+WARNING 2025-03-31 12:04:58,571 log 14652 5272 Not Found: /favicon.ico
+INFO 2025-03-31 12:04:58,575 basehttp 14652 5272 - Broken pipe from ('127.0.0.1', 61827)
+INFO 2025-03-31 12:05:09,099 basehttp 14652 14080 "GET /admin/users/customuser/1/change/ HTTP/1.1" 200 40812
+INFO 2025-03-31 12:05:09,171 basehttp 14652 21548 "GET /static/admin/js/calendar.js HTTP/1.1" 304 0
+INFO 2025-03-31 12:05:09,179 basehttp 14652 8664 "GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 304 0
+INFO 2025-03-31 12:05:09,195 basehttp 14652 14080 "GET /static/admin/css/forms.css HTTP/1.1" 200 8794
+INFO 2025-03-31 12:05:09,206 basehttp 14652 12456 "GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+INFO 2025-03-31 12:05:09,206 basehttp 14652 11148 "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+INFO 2025-03-31 12:05:09,224 basehttp 14652 14080 "GET /static/admin/css/widgets.css HTTP/1.1" 200 11564
+INFO 2025-03-31 12:05:09,766 basehttp 14652 24204 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+WARNING 2025-03-31 12:05:09,851 log 14652 14080 Not Found: /favicon.ico
+INFO 2025-03-31 12:05:09,856 basehttp 14652 14080 - Broken pipe from ('127.0.0.1', 61833)
+INFO 2025-03-31 12:05:09,968 basehttp 14652 12456 "GET /static/admin/img/icon-clock.svg HTTP/1.1" 200 677
+INFO 2025-03-31 12:05:09,971 basehttp 14652 24204 "GET /static/admin/img/icon-calendar.svg HTTP/1.1" 200 1086
+INFO 2025-03-31 12:05:58,121 spotify_api 14652 24708 Extracting Spotify ID from URL: https://open.spotify.com/track/6WzRpISELf3YglGAh7TXcG?si=44b8aa4924984041
+INFO 2025-03-31 12:05:58,121 spotify_api 14652 24708 Extracted Spotify track ID: 6WzRpISELf3YglGAh7TXcG
+INFO 2025-03-31 12:05:58,257 spotify_api 14652 24708 Extracting Spotify ID from URL: https://open.spotify.com/track/6WzRpISELf3YglGAh7TXcG?si=44b8aa4924984041
+INFO 2025-03-31 12:05:58,265 spotify_api 14652 24708 Extracted Spotify track ID: 6WzRpISELf3YglGAh7TXcG
+INFO 2025-03-31 12:05:58,265 views 14652 24708 Getting info for Spotify track ID: ('track', '6WzRpISELf3YglGAh7TXcG')
+INFO 2025-03-31 12:05:58,265 spotify_api 14652 24708 Extracting Spotify ID from URL: https://open.spotify.com/track/6WzRpISELf3YglGAh7TXcG?si=44b8aa4924984041
+INFO 2025-03-31 12:05:58,265 spotify_api 14652 24708 Extracted Spotify track ID: 6WzRpISELf3YglGAh7TXcG
+INFO 2025-03-31 12:05:58,265 spotify_api 14652 24708 Getting info for Spotify track ID: 6WzRpISELf3YglGAh7TXcG
+INFO 2025-03-31 12:05:58,265 spotify_api 14652 24708 Creating Spotify client with credentials from settings
+INFO 2025-03-31 12:05:58,553 spotify_api 14652 24708 Successfully tested Spotify client
+INFO 2025-03-31 12:05:58,962 spotify_api 14652 24708 Got track info: Popular (with Playboi Carti & Madonna) - From The Idol Vol. 1 (Music from the HBO Original Series) by The Weeknd
+INFO 2025-03-31 12:05:58,962 views 14652 24708 Got track info: Popular with Playboi Carti & Madonna - From The Idol Vol. 1 Music from the HBO Original Series by The Weeknd
+INFO 2025-03-31 12:05:59,102 views 14652 24708 Downloading using YouTube search: ytsearch:Popular with Playboi Carti & Madonna - From The Idol Vol. 1 Music from the HBO Original Series The Weeknd
+INFO 2025-03-31 12:06:16,575 views 14652 24708 Downloaded file to: C:\Users\Dell\AppData\Local\Temp\tmprpdro8mc\download-1743402958.mp3
+INFO 2025-03-31 12:06:16,658 utils 14652 24708 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\media\songs\Popular with Playboi Carti Madonna - From The Idol Vol. 1 Music from the HBO Original Serie.mp3
+INFO 2025-03-31 12:06:16,658 utils 14652 24708 Title: Popular with Playboi Carti & Madonna - From The Idol Vol. 1 Music from the HBO Original Series, Artist: The Weeknd, Album: Popular Music from the HBO Original Series, Genre: Unknown
+INFO 2025-03-31 12:06:16,732 utils 14652 24708 Loaded existing ID3 tags
+INFO 2025-03-31 12:06:16,806 utils 14652 24708 Downloading thumbnail from URL: https://i.scdn.co/image/ab67616d0000b2734c8f092adc59b4bf4212389d
+INFO 2025-03-31 12:06:16,905 utils 14652 24708 Downloaded thumbnail: 91397 bytes
+INFO 2025-03-31 12:06:16,905 utils 14652 24708 Detected image type: jpeg
+INFO 2025-03-31 12:06:16,905 utils 14652 24708 Adding album art, MIME type: image/jpeg
+INFO 2025-03-31 12:06:16,905 utils 14652 24708 Successfully added album art to ID3 tags
+INFO 2025-03-31 12:06:16,922 utils 14652 24708 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\media\songs\Popular with Playboi Carti Madonna - From The Idol Vol. 1 Music from the HBO Original Serie.mp3
+INFO 2025-03-31 12:06:16,941 utils 14652 24708 Verification: 8 tags were written, has_cover=True
+INFO 2025-03-31 12:06:17,606 views 14652 24708 Added song to cache: https://open.spotify.com/track/6WzRpISELf3YglGAh7TXcG?si=44b8aa4924984041
+INFO 2025-03-31 12:06:17,722 basehttp 14652 24708 "POST /api/songs/songs/download/ HTTP/1.1" 200 5633849
+INFO 2025-03-31 12:06:35,811 basehttp 14652 24204 "GET /admin/users/customuser/1/change/ HTTP/1.1" 200 40812
+INFO 2025-03-31 12:06:36,455 basehttp 14652 24204 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+WARNING 2025-03-31 12:06:36,534 log 14652 24204 Not Found: /favicon.ico
+INFO 2025-03-31 12:06:36,536 basehttp 14652 24204 - Broken pipe from ('127.0.0.1', 61831)
+INFO 2025-03-31 12:06:45,092 basehttp 14652 24708 "GET /api/songs/user/profile HTTP/1.1" 301 0
+INFO 2025-03-31 12:06:45,918 basehttp 14652 8232 "GET /api/songs/user/profile/ HTTP/1.1" 200 176
+WARNING 2025-03-31 12:06:55,790 log 14652 8232 Unauthorized: /api/songs/recommendations/
+WARNING 2025-03-31 12:06:55,790 basehttp 14652 8232 "GET /api/songs/recommendations/ HTTP/1.1" 401 27
+INFO 2025-03-31 12:07:11,597 views 14652 8232 User has 26 songs
+INFO 2025-03-31 12:07:11,665 views 14652 8232 User has 17 songs with Spotify IDs
+INFO 2025-03-31 12:07:11,793 views 14652 8232 Sample user songs: [{'spotify_id': '6WzRpISELf3YglGAh7TXcG', 'title': 'Popular with Playboi Carti & Madonna - From The Idol Vol. 1 Music from the HBO Original Series', 'artist': 'The Weeknd'}, {'spotify_id': '1AWQoqb9bSvzTjaLralEkT', 'title': 'Rock Your Body', 'artist': 'Justin Timberlake'}, {'spotify_id': '2tpWsVSb9UEmDRxAl1zhX1', 'title': 'Counting Stars', 'artist': 'OneRepublic'}, {'spotify_id': '3VYzbU22BooAROigHHwycs', 'title': 'Swimming Pools Drank - Extended Version', 'artist': 'Kendrick Lamar'}, {'spotify_id': '2tpWsVSb9UEmDRxAl1zhX1', 'title': 'Counting Stars', 'artist': 'OneRepublic'}]
+INFO 2025-03-31 12:07:11,793 views 14652 8232 Getting CSV recommendations for user: 1 with limit: 10
+INFO 2025-03-31 12:07:13,765 csv_recommender 14652 8232 CSV Recommender initialized successfully
+ERROR 2025-03-31 12:07:13,894 csv_recommender 14652 8232 Error in get_hybrid_recommendations: SpotifyMultiCSVRecommender.get_recommendations() got an unexpected keyword argument 'limit'
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\csv_recommender.py", line 403, in get_hybrid_recommendations
+    song_recommendations = recommender.get_recommendations(song.title, limit=20)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: SpotifyMultiCSVRecommender.get_recommendations() got an unexpected keyword argument 'limit'
+INFO 2025-03-31 12:07:14,302 views 14652 8232 Got 10 recommendations from CSV data
+INFO 2025-03-31 12:07:15,089 basehttp 14652 8232 "GET /api/songs/recommendations/ HTTP/1.1" 200 3804
+INFO 2025-03-31 13:22:00,636 autoreload 14652 1204 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\recommendation.py changed, reloading.
+INFO 2025-03-31 13:22:38,444 autoreload 16880 2184 Watching for file changes with StatReloader
+INFO 2025-03-31 13:22:49,989 views 16880 24864 User has 26 songs
+INFO 2025-03-31 13:22:50,058 views 16880 24864 User has 17 songs with Spotify IDs
+INFO 2025-03-31 13:22:50,206 views 16880 24864 Sample user songs: [{'spotify_id': '6WzRpISELf3YglGAh7TXcG', 'title': 'Popular with Playboi Carti & Madonna - From The Idol Vol. 1 Music from the HBO Original Series', 'artist': 'The Weeknd'}, {'spotify_id': '1AWQoqb9bSvzTjaLralEkT', 'title': 'Rock Your Body', 'artist': 'Justin Timberlake'}, {'spotify_id': '2tpWsVSb9UEmDRxAl1zhX1', 'title': 'Counting Stars', 'artist': 'OneRepublic'}, {'spotify_id': '3VYzbU22BooAROigHHwycs', 'title': 'Swimming Pools Drank - Extended Version', 'artist': 'Kendrick Lamar'}, {'spotify_id': '2tpWsVSb9UEmDRxAl1zhX1', 'title': 'Counting Stars', 'artist': 'OneRepublic'}]
+INFO 2025-03-31 13:22:50,206 views 16880 24864 Getting CSV recommendations for user: 1 with limit: 10
+INFO 2025-03-31 13:22:50,787 csv_recommender 16880 24864 CSV Recommender initialized successfully
+ERROR 2025-03-31 13:22:50,921 csv_recommender 16880 24864 Error in get_hybrid_recommendations: SpotifyMultiCSVRecommender.get_recommendations() got an unexpected keyword argument 'limit'
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\csv_recommender.py", line 403, in get_hybrid_recommendations
+TypeError: SpotifyMultiCSVRecommender.get_recommendations() got an unexpected keyword argument 'limit'
+INFO 2025-03-31 13:22:52,559 views 16880 24864 Got 10 recommendations from CSV data
+INFO 2025-03-31 13:22:53,407 basehttp 16880 24864 "GET /api/songs/recommendations/ HTTP/1.1" 200 3804
+INFO 2025-03-31 13:26:36,975 autoreload 16880 2184 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\recommendation.py changed, reloading.
+INFO 2025-03-31 13:26:40,805 autoreload 10252 4900 Watching for file changes with StatReloader
+INFO 2025-03-31 13:27:14,330 autoreload 10252 4900 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\recommendation.py changed, reloading.
+INFO 2025-03-31 13:27:17,847 autoreload 11688 12636 Watching for file changes with StatReloader
+INFO 2025-03-31 13:30:07,688 autoreload 11688 12636 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\recommendation.py changed, reloading.
+INFO 2025-03-31 13:30:11,262 autoreload 8104 7592 Watching for file changes with StatReloader
+INFO 2025-03-31 13:30:42,601 views 8104 15828 User has 26 songs
+INFO 2025-03-31 13:30:42,675 views 8104 15828 User has 17 songs with Spotify IDs
+INFO 2025-03-31 13:30:42,808 views 8104 15828 Sample user songs: [{'spotify_id': '6WzRpISELf3YglGAh7TXcG', 'title': 'Popular with Playboi Carti & Madonna - From The Idol Vol. 1 Music from the HBO Original Series', 'artist': 'The Weeknd'}, {'spotify_id': '1AWQoqb9bSvzTjaLralEkT', 'title': 'Rock Your Body', 'artist': 'Justin Timberlake'}, {'spotify_id': '2tpWsVSb9UEmDRxAl1zhX1', 'title': 'Counting Stars', 'artist': 'OneRepublic'}, {'spotify_id': '3VYzbU22BooAROigHHwycs', 'title': 'Swimming Pools Drank - Extended Version', 'artist': 'Kendrick Lamar'}, {'spotify_id': '2tpWsVSb9UEmDRxAl1zhX1', 'title': 'Counting Stars', 'artist': 'OneRepublic'}]
+INFO 2025-03-31 13:30:42,808 views 8104 15828 Getting CSV recommendations for user: 1 with limit: 10
+INFO 2025-03-31 13:30:43,381 csv_recommender 8104 15828 CSV Recommender initialized successfully
+ERROR 2025-03-31 13:30:43,508 csv_recommender 8104 15828 Error in get_hybrid_recommendations: SpotifyMultiCSVRecommender.get_recommendations() got an unexpected keyword argument 'limit'
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\csv_recommender.py", line 403, in get_hybrid_recommendations
+TypeError: SpotifyMultiCSVRecommender.get_recommendations() got an unexpected keyword argument 'limit'
+INFO 2025-03-31 13:30:43,636 views 8104 15828 Got 10 recommendations from CSV data
+INFO 2025-03-31 13:30:44,402 basehttp 8104 15828 "GET /api/songs/recommendations/ HTTP/1.1" 200 3804
+INFO 2025-03-31 13:31:51,537 autoreload 8104 7592 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\recommendation.py changed, reloading.
+INFO 2025-03-31 13:31:54,976 autoreload 16348 17436 Watching for file changes with StatReloader
+INFO 2025-03-31 13:33:15,272 autoreload 16348 17436 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\recommendation.py changed, reloading.
+INFO 2025-03-31 13:33:18,489 autoreload 16192 4596 Watching for file changes with StatReloader
+INFO 2025-03-31 13:33:43,511 autoreload 16192 4596 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 13:33:46,890 autoreload 27216 112 Watching for file changes with StatReloader
+INFO 2025-03-31 13:34:04,604 autoreload 27216 112 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 13:34:08,288 autoreload 3180 18208 Watching for file changes with StatReloader
+INFO 2025-03-31 13:34:21,558 autoreload 3180 18208 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 13:34:25,148 autoreload 18908 23056 Watching for file changes with StatReloader
+INFO 2025-03-31 13:34:37,291 autoreload 18908 23056 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 13:34:40,794 autoreload 3228 9744 Watching for file changes with StatReloader
+INFO 2025-03-31 13:34:54,263 autoreload 3228 9744 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 13:34:57,729 autoreload 11208 10332 Watching for file changes with StatReloader
+INFO 2025-03-31 13:35:03,284 autoreload 11208 10332 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 13:35:06,841 autoreload 26756 14492 Watching for file changes with StatReloader
+INFO 2025-03-31 13:35:14,416 autoreload 26756 14492 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 13:35:17,881 autoreload 19400 7264 Watching for file changes with StatReloader
+INFO 2025-03-31 13:35:28,816 autoreload 19400 7264 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 13:35:32,321 autoreload 16992 16404 Watching for file changes with StatReloader
+INFO 2025-03-31 13:35:35,435 autoreload 16992 16404 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 13:35:39,445 autoreload 21680 12784 Watching for file changes with StatReloader
+INFO 2025-03-31 13:36:06,771 autoreload 21680 12784 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 13:36:10,350 autoreload 26288 27480 Watching for file changes with StatReloader
+INFO 2025-03-31 13:36:13,423 autoreload 26288 27480 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 13:36:16,591 autoreload 23588 21176 Watching for file changes with StatReloader
+INFO 2025-03-31 13:36:25,140 views 23588 1372 User has 26 songs
+INFO 2025-03-31 13:36:25,203 views 23588 1372 User has 17 songs with Spotify IDs
+INFO 2025-03-31 13:36:25,319 views 23588 1372 Sample user songs: [{'spotify_id': '6WzRpISELf3YglGAh7TXcG', 'title': 'Popular with Playboi Carti & Madonna - From The Idol Vol. 1 Music from the HBO Original Series', 'artist': 'The Weeknd'}, {'spotify_id': '1AWQoqb9bSvzTjaLralEkT', 'title': 'Rock Your Body', 'artist': 'Justin Timberlake'}, {'spotify_id': '2tpWsVSb9UEmDRxAl1zhX1', 'title': 'Counting Stars', 'artist': 'OneRepublic'}, {'spotify_id': '3VYzbU22BooAROigHHwycs', 'title': 'Swimming Pools Drank - Extended Version', 'artist': 'Kendrick Lamar'}, {'spotify_id': '2tpWsVSb9UEmDRxAl1zhX1', 'title': 'Counting Stars', 'artist': 'OneRepublic'}]
+INFO 2025-03-31 13:36:25,319 views 23588 1372 Getting recommendations for user: 1 with limit: 10
+INFO 2025-03-31 13:36:25,620 recommendation 23588 1372 Loaded Music.csv dataset
+WARNING 2025-03-31 13:36:25,641 recommendation 23588 1372 Missing features in dataset: ['tempo']
+INFO 2025-03-31 13:36:25,658 recommendation 23588 1372 Prepared data with features: ['acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'loudness', 'speechiness', 'valence']
+INFO 2025-03-31 13:36:25,659 recommendation 23588 1372 Music Recommender initialized successfully
+ERROR 2025-03-31 13:36:26,354 recommendation 23588 1372 Spotify API error: http status: 404, code: -1 - https://api.spotify.com/v1/recommendations?limit=20&seed_tracks=6WzRpISELf3YglGAh7TXcG:
+ None, reason: None
+ERROR 2025-03-31 13:36:26,354 recommendation 23588 1372 Error getting content-based recommendations: MusicRecommender.find_similar_songs() got an unexpected keyword argument 'limit'
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\recommendation.py", line 196, in get_content_based_recommendations
+    similar_songs = self.find_similar_songs(track_id, limit=20)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: MusicRecommender.find_similar_songs() got an unexpected keyword argument 'limit'
+ERROR 2025-03-31 13:36:26,504 recommendation 23588 1372 Spotify API error: http status: 404, code: -1 - https://api.spotify.com/v1/recommendations?limit=20&seed_tracks=1AWQoqb9bSvzTjaLralEkT:
+ None, reason: None
+ERROR 2025-03-31 13:36:26,504 recommendation 23588 1372 Error getting content-based recommendations: MusicRecommender.find_similar_songs() got an unexpected keyword argument 'limit'
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\recommendation.py", line 196, in get_content_based_recommendations
+    similar_songs = self.find_similar_songs(track_id, limit=20)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: MusicRecommender.find_similar_songs() got an unexpected keyword argument 'limit'
+ERROR 2025-03-31 13:36:26,637 recommendation 23588 1372 Spotify API error: http status: 404, code: -1 - https://api.spotify.com/v1/recommendations?limit=20&seed_tracks=2tpWsVSb9UEmDRxAl1zhX1:
+ None, reason: None
+ERROR 2025-03-31 13:36:26,637 recommendation 23588 1372 Error getting content-based recommendations: MusicRecommender.find_similar_songs() got an unexpected keyword argument 'limit'
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\recommendation.py", line 196, in get_content_based_recommendations
+    similar_songs = self.find_similar_songs(track_id, limit=20)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: MusicRecommender.find_similar_songs() got an unexpected keyword argument 'limit'
+ERROR 2025-03-31 13:36:26,770 recommendation 23588 1372 Spotify API error: http status: 404, code: -1 - https://api.spotify.com/v1/recommendations?limit=20&seed_tracks=3VYzbU22BooAROigHHwycs:
+ None, reason: None
+ERROR 2025-03-31 13:36:26,784 recommendation 23588 1372 Error getting content-based recommendations: MusicRecommender.find_similar_songs() got an unexpected keyword argument 'limit'
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\recommendation.py", line 196, in get_content_based_recommendations
+    similar_songs = self.find_similar_songs(track_id, limit=20)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: MusicRecommender.find_similar_songs() got an unexpected keyword argument 'limit'
+INFO 2025-03-31 13:36:26,853 views 23588 1372 Got 5 recommendations
+INFO 2025-03-31 13:36:27,294 basehttp 23588 1372 "GET /api/songs/recommendations/ HTTP/1.1" 200 1901
+INFO 2025-03-31 13:36:47,424 views 23588 1372 Found existing song with URL https://www.youtube.com/watch?v=_lMlsPQJs6U, serving directly
+INFO 2025-03-31 13:36:47,622 views 23588 1372 Using cached version for URL: https://www.youtube.com/watch?v=_lMlsPQJs6U
+INFO 2025-03-31 13:36:47,907 basehttp 23588 1372 "POST /api/songs/songs/download/ HTTP/1.1" 200 5314220
+INFO 2025-03-31 13:37:22,274 autoreload 23588 21176 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 13:37:25,812 autoreload 23012 5292 Watching for file changes with StatReloader
+INFO 2025-03-31 13:37:28,845 autoreload 23012 5292 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 13:37:32,490 autoreload 12780 18624 Watching for file changes with StatReloader
+INFO 2025-03-31 13:37:41,211 autoreload 12780 18624 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 13:37:44,810 autoreload 8716 12680 Watching for file changes with StatReloader
+INFO 2025-03-31 13:37:47,958 autoreload 8716 12680 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 13:37:51,459 autoreload 2008 15696 Watching for file changes with StatReloader
+INFO 2025-03-31 13:45:27,927 autoreload 2008 15696 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\recommendation.py changed, reloading.
+INFO 2025-03-31 13:45:32,063 autoreload 13496 19176 Watching for file changes with StatReloader
+INFO 2025-03-31 13:47:40,486 recommendation 23952 112 Loaded Music.csv dataset
+ERROR 2025-03-31 13:47:40,511 recommendation 23952 112 Error preparing data: 'id'
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\pandas\core\indexes\base.py", line 3805, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\\_libs\\hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\\_libs\\hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'id'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\recommendation.py", line 113, in _prepare_data
+    self.id_to_index = {id: i for i, id in enumerate(self.data['id'].values)}
+                                                     ~~~~~~~~~^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\pandas\core\frame.py", line 4102, in __getitem__
+    indexer = self.columns.get_loc(key)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\pandas\core\indexes\base.py", line 3812, in get_loc
+    raise KeyError(key) from err
+KeyError: 'id'
+ERROR 2025-03-31 13:47:40,740 recommendation 23952 112 Error initializing Music Recommender: 'id'
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\pandas\core\indexes\base.py", line 3805, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "index.pyx", line 167, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 196, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas\\_libs\\hashtable_class_helper.pxi", line 7081, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas\\_libs\\hashtable_class_helper.pxi", line 7089, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'id'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\recommendation.py", line 99, in __init__
+    self._prepare_data()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\recommendation.py", line 113, in _prepare_data
+    self.id_to_index = {id: i for i, id in enumerate(self.data['id'].values)}
+                                                     ~~~~~~~~~^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\pandas\core\frame.py", line 4102, in __getitem__
+    indexer = self.columns.get_loc(key)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\pandas\core\indexes\base.py", line 3812, in get_loc
+    raise KeyError(key) from err
+KeyError: 'id'
+INFO 2025-03-31 13:51:42,354 autoreload 21204 22948 Watching for file changes with StatReloader
+INFO 2025-03-31 13:52:24,212 views 21204 10660 User has 26 songs
+INFO 2025-03-31 13:52:24,275 views 21204 10660 User has 17 songs with Spotify IDs
+INFO 2025-03-31 13:52:24,713 views 21204 10660 Sample user songs: [{'spotify_id': '6WzRpISELf3YglGAh7TXcG', 'title': 'Popular with Playboi Carti & Madonna - From The Idol Vol. 1 Music from the HBO Original Series', 'artist': 'The Weeknd'}, {'spotify_id': '1AWQoqb9bSvzTjaLralEkT', 'title': 'Rock Your Body', 'artist': 'Justin Timberlake'}, {'spotify_id': '2tpWsVSb9UEmDRxAl1zhX1', 'title': 'Counting Stars', 'artist': 'OneRepublic'}, {'spotify_id': '3VYzbU22BooAROigHHwycs', 'title': 'Swimming Pools Drank - Extended Version', 'artist': 'Kendrick Lamar'}, {'spotify_id': '2tpWsVSb9UEmDRxAl1zhX1', 'title': 'Counting Stars', 'artist': 'OneRepublic'}]
+INFO 2025-03-31 13:52:24,714 views 21204 10660 Getting recommendations for user: 1 with limit: 10
+WARNING 2025-03-31 13:52:24,722 recommendation 21204 10660 Could not load Music.csv: Error tokenizing data. C error: Expected 20 fields in line 9, saw 39
+
+INFO 2025-03-31 13:52:25,684 recommendation 21204 10660 Loaded data.csv dataset
+INFO 2025-03-31 13:52:25,818 recommendation 21204 10660 Using features: ['acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'loudness', 'speechiness', 'tempo', 'valence']
+INFO 2025-03-31 13:52:25,871 recommendation 21204 10660 Prepared data with 170653 songs and 9 features
+INFO 2025-03-31 13:52:27,136 recommendation 21204 10660 Built song clusters successfully
+INFO 2025-03-31 13:52:27,138 recommendation 21204 10660 Music Recommender initialized successfully
+WARNING 2025-03-31 13:52:27,283 recommendation 21204 10660 Song '6WzRpISELf3YglGAh7TXcG' not found or clustering unavailable
+WARNING 2025-03-31 13:52:27,416 recommendation 21204 10660 Song '2tpWsVSb9UEmDRxAl1zhX1' not found or clustering unavailable
+WARNING 2025-03-31 13:52:27,496 recommendation 21204 10660 Song '3VYzbU22BooAROigHHwycs' not found or clustering unavailable
+INFO 2025-03-31 13:52:27,666 views 21204 10660 Got 10 recommendations
+ERROR 2025-03-31 13:52:27,735 views 21204 10660 Error creating song from recommendation: Song() got unexpected keyword arguments: 'album_artist'
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 1749, in get
+    song = Song.objects.create(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 677, in create
+    obj = self.model(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\base.py", line 567, in __init__
+    raise TypeError(
+TypeError: Song() got unexpected keyword arguments: 'album_artist'
+ERROR 2025-03-31 13:52:28,190 views 21204 10660 Error creating song from recommendation: Song() got unexpected keyword arguments: 'album_artist'
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 1749, in get
+    song = Song.objects.create(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 677, in create
+    obj = self.model(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\base.py", line 567, in __init__
+    raise TypeError(
+TypeError: Song() got unexpected keyword arguments: 'album_artist'
+ERROR 2025-03-31 13:52:28,271 views 21204 10660 Error creating song from recommendation: Song() got unexpected keyword arguments: 'album_artist'
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 1749, in get
+    song = Song.objects.create(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 677, in create
+    obj = self.model(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\base.py", line 567, in __init__
+    raise TypeError(
+TypeError: Song() got unexpected keyword arguments: 'album_artist'
+ERROR 2025-03-31 13:52:28,350 views 21204 10660 Error creating song from recommendation: Song() got unexpected keyword arguments: 'album_artist'
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 1749, in get
+    song = Song.objects.create(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 677, in create
+    obj = self.model(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\base.py", line 567, in __init__
+    raise TypeError(
+TypeError: Song() got unexpected keyword arguments: 'album_artist'
+ERROR 2025-03-31 13:52:28,429 views 21204 10660 Error creating song from recommendation: Song() got unexpected keyword arguments: 'album_artist'
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 1749, in get
+    song = Song.objects.create(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 677, in create
+    obj = self.model(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\base.py", line 567, in __init__
+    raise TypeError(
+TypeError: Song() got unexpected keyword arguments: 'album_artist'
+ERROR 2025-03-31 13:52:28,511 views 21204 10660 Error creating song from recommendation: Song() got unexpected keyword arguments: 'album_artist'
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 1749, in get
+    song = Song.objects.create(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 677, in create
+    obj = self.model(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\base.py", line 567, in __init__
+    raise TypeError(
+TypeError: Song() got unexpected keyword arguments: 'album_artist'
+ERROR 2025-03-31 13:52:28,598 views 21204 10660 Error creating song from recommendation: Song() got unexpected keyword arguments: 'album_artist'
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 1749, in get
+    song = Song.objects.create(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 677, in create
+    obj = self.model(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\base.py", line 567, in __init__
+    raise TypeError(
+TypeError: Song() got unexpected keyword arguments: 'album_artist'
+ERROR 2025-03-31 13:52:28,682 views 21204 10660 Error creating song from recommendation: Song() got unexpected keyword arguments: 'album_artist'
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 1749, in get
+    song = Song.objects.create(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 677, in create
+    obj = self.model(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\base.py", line 567, in __init__
+    raise TypeError(
+TypeError: Song() got unexpected keyword arguments: 'album_artist'
+ERROR 2025-03-31 13:52:28,762 views 21204 10660 Error creating song from recommendation: Song() got unexpected keyword arguments: 'album_artist'
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 1749, in get
+    song = Song.objects.create(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 677, in create
+    obj = self.model(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\base.py", line 567, in __init__
+    raise TypeError(
+TypeError: Song() got unexpected keyword arguments: 'album_artist'
+ERROR 2025-03-31 13:52:28,842 views 21204 10660 Error creating song from recommendation: Song() got unexpected keyword arguments: 'album_artist'
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py", line 1749, in get
+    song = Song.objects.create(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 677, in create
+    obj = self.model(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\venv\Lib\site-packages\django\db\models\base.py", line 567, in __init__
+    raise TypeError(
+TypeError: Song() got unexpected keyword arguments: 'album_artist'
+INFO 2025-03-31 13:52:28,997 basehttp 21204 10660 "GET /api/songs/recommendations/ HTTP/1.1" 200 228
+INFO 2025-03-31 13:53:35,538 autoreload 21204 22948 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 13:53:39,412 autoreload 24628 24328 Watching for file changes with StatReloader
+INFO 2025-03-31 13:53:42,947 autoreload 24628 24328 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-03-31 13:53:46,485 autoreload 464 7768 Watching for file changes with StatReloader
+INFO 2025-03-31 13:54:42,881 autoreload 464 7768 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\recommendation.py changed, reloading.
+INFO 2025-03-31 13:54:46,716 autoreload 25472 14628 Watching for file changes with StatReloader
+INFO 2025-03-31 13:55:02,406 autoreload 25472 14628 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\recommendation.py changed, reloading.
+INFO 2025-03-31 13:55:06,267 autoreload 4496 22768 Watching for file changes with StatReloader
+INFO 2025-03-31 13:55:36,938 views 4496 13432 User has 26 songs
+INFO 2025-03-31 13:55:37,008 views 4496 13432 User has 17 songs with Spotify IDs
+INFO 2025-03-31 13:55:37,137 views 4496 13432 Sample user songs: [{'spotify_id': '6WzRpISELf3YglGAh7TXcG', 'title': 'Popular with Playboi Carti & Madonna - From The Idol Vol. 1 Music from the HBO Original Series', 'artist': 'The Weeknd'}, {'spotify_id': '1AWQoqb9bSvzTjaLralEkT', 'title': 'Rock Your Body', 'artist': 'Justin Timberlake'}, {'spotify_id': '2tpWsVSb9UEmDRxAl1zhX1', 'title': 'Counting Stars', 'artist': 'OneRepublic'}, {'spotify_id': '3VYzbU22BooAROigHHwycs', 'title': 'Swimming Pools Drank - Extended Version', 'artist': 'Kendrick Lamar'}, {'spotify_id': '2tpWsVSb9UEmDRxAl1zhX1', 'title': 'Counting Stars', 'artist': 'OneRepublic'}]
+INFO 2025-03-31 13:55:37,137 views 4496 13432 Getting recommendations for user: 1 with limit: 10
+WARNING 2025-03-31 13:55:37,137 recommendation 4496 13432 Could not load Music.csv: Error tokenizing data. C error: Expected 20 fields in line 9, saw 39
+
+INFO 2025-03-31 13:55:37,740 recommendation 4496 13432 Loaded data.csv dataset
+INFO 2025-03-31 13:55:37,822 recommendation 4496 13432 Using features: ['acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'loudness', 'speechiness', 'tempo', 'valence']
+INFO 2025-03-31 13:55:37,874 recommendation 4496 13432 Prepared data with 170653 songs and 9 features
+INFO 2025-03-31 13:55:38,789 recommendation 4496 13432 Built song clusters successfully
+INFO 2025-03-31 13:55:38,790 recommendation 4496 13432 Music Recommender initialized successfully
+WARNING 2025-03-31 13:55:39,005 recommendation 4496 13432 Song '6WzRpISELf3YglGAh7TXcG' not found or clustering unavailable, using popular songs
+WARNING 2025-03-31 13:55:39,138 recommendation 4496 13432 Song '2tpWsVSb9UEmDRxAl1zhX1' not found or clustering unavailable, using popular songs
+WARNING 2025-03-31 13:55:39,263 recommendation 4496 13432 Song '3VYzbU22BooAROigHHwycs' not found or clustering unavailable, using popular songs
+INFO 2025-03-31 13:55:39,374 views 4496 13432 Got 10 recommendations
+INFO 2025-03-31 13:55:40,875 basehttp 4496 13432 "GET /api/songs/recommendations/ HTTP/1.1" 200 2574
+INFO 2025-03-31 13:58:06,869 autoreload 4496 22768 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\recommendation.py changed, reloading.
+INFO 2025-03-31 13:58:10,840 autoreload 14380 9676 Watching for file changes with StatReloader
+INFO 2025-03-31 13:58:19,593 autoreload 14380 9676 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\recommendation.py changed, reloading.
+INFO 2025-03-31 13:58:23,301 autoreload 26944 10300 Watching for file changes with StatReloader
+INFO 2025-03-31 13:58:30,842 autoreload 26944 10300 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\recommendation.py changed, reloading.
+INFO 2025-03-31 13:58:34,792 autoreload 20508 13460 Watching for file changes with StatReloader
+INFO 2025-03-31 13:58:49,183 autoreload 20508 13460 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\recommendation.py changed, reloading.
+INFO 2025-03-31 13:58:52,543 autoreload 8632 6576 Watching for file changes with StatReloader
+INFO 2025-03-31 13:58:56,882 autoreload 8632 6576 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\recommendation.py changed, reloading.
+INFO 2025-03-31 13:59:00,165 autoreload 3156 25976 Watching for file changes with StatReloader
+INFO 2025-03-31 13:59:30,051 views 3156 16032 User has 36 songs
+INFO 2025-03-31 13:59:30,112 views 3156 16032 User has 27 songs with Spotify IDs
+INFO 2025-03-31 13:59:30,238 views 3156 16032 Sample user songs: [{'spotify_id': '5y7DaS3jAc9eZzcSOoUIwU', 'title': 'Una Locura', 'artist': "'Ozuna', 'J Balvin', 'Chencho Corleone'"}, {'spotify_id': '1xQ6trAsedVPCdbtDAmk0c', 'title': 'Savage Love Laxed - Siren Beat', 'artist': "'Jawsh 685', 'Jason Derulo'"}, {'spotify_id': '27ycaQnQAxaPiyeg3nr2aB', 'title': 'Midnight Sky', 'artist': "'Miley Cyrus'"}, {'spotify_id': '4HYDUMY0xSpeBr0AMY9cUz', 'title': 'La Curiosidad', 'artist': "'Jay Wheeler', 'DJ Nelson', 'Myke Towers'"}, {'spotify_id': '4xqrdfXkTW4T0RauPLv3WA', 'title': 'Heather', 'artist': "'Conan Gray'"}]
+INFO 2025-03-31 13:59:30,238 views 3156 16032 Getting recommendations for user: 1 with limit: 10
+WARNING 2025-03-31 13:59:30,571 recommendation 3156 16032 Could not load Music.csv: MusicRecommender.__init__.<locals>.log_bad_line() missing 2 required positional arguments: 'line' and 'bad_line'
+INFO 2025-03-31 13:59:33,377 recommendation 3156 16032 Loaded data.csv dataset
+INFO 2025-03-31 13:59:33,577 recommendation 3156 16032 Using features: ['acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'loudness', 'speechiness', 'tempo', 'valence']
+INFO 2025-03-31 13:59:33,630 recommendation 3156 16032 Prepared data with 170653 songs and 9 features
+INFO 2025-03-31 13:59:34,848 recommendation 3156 16032 Built song clusters successfully
+INFO 2025-03-31 13:59:34,851 recommendation 3156 16032 Music Recommender initialized successfully
+INFO 2025-03-31 13:59:35,156 views 3156 16032 Got 10 recommendations
+INFO 2025-03-31 13:59:36,524 basehttp 3156 16032 "GET /api/songs/recommendations/ HTTP/1.1" 200 2429
+INFO 2025-03-31 14:00:34,572 autoreload 3156 25976 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\recommendation.py changed, reloading.
+INFO 2025-03-31 14:00:38,434 autoreload 22588 17908 Watching for file changes with StatReloader
