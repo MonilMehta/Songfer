@@ -1,205 +1,182 @@
 "use client";
-import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { useRouter } from 'next/navigation'
-import { useToast } from '@/hooks/use-toast'
-import WaveformAnimation from './WaveformAnimation'
-import apiCaller from '@/utils/apiCaller'
+import { useEffect } from 'react'
+import { motion, useScroll, useTransform, stagger, useAnimate } from 'framer-motion'
+import { ChevronDown, Disc } from 'lucide-react'
+import Floating, { FloatingElement } from '@/components/ui/parallax-floating'
+import { ButtonCta } from '@/components/ui/button-shiny'
+
+// Album cover images for the parallax effect
+const albumCovers = [
+  {
+    url: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=2070&auto=format&fit=crop",
+    title: "Vinyl Record",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?q=80&w=2070&auto=format&fit=crop",
+    title: "Music Studio",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=2070&auto=format&fit=crop",
+    title: "Headphones",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=2070&auto=format&fit=crop",
+    title: "Vinyl Collection",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?q=80&w=2070&auto=format&fit=crop",
+    title: "Music Equipment",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=2070&auto=format&fit=crop",
+    title: "Audio Device",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=2070&auto=format&fit=crop",
+    title: "Record Player",
+  },
+  {
+    url: "https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?q=80&w=2070&auto=format&fit=crop",
+    title: "Studio Microphone",
+  },
+]
 
 const Hero: React.FC = () => {
-  const [url, setUrl] = useState('')
-  const [downloading, setDownloading] = useState(false)
-  const [progress, setProgress] = useState(0)
-  const [downloadedSong, setDownloadedSong] = useState<any>(null)
-  const router = useRouter()
-  const { toast } = useToast()
+  const { scrollY } = useScroll()
+  const y = useTransform(scrollY, [0, 500], [0, 150])
+  const opacity = useTransform(scrollY, [0, 300], [1, 0])
+  const [scope, animate] = useAnimate()
 
   useEffect(() => {
-    const token = localStorage.getItem('token')
-    if (!token) {
-      router.push('/login')
+    animate("img", { opacity: [0, 1] }, { duration: 0.5, delay: stagger(0.15) })
+  }, [animate])
+
+  const scrollToDownload = () => {
+    const downloadSection = document.getElementById('download-section')
+    if (downloadSection) {
+      downloadSection.scrollIntoView({ behavior: 'smooth' })
     }
-  }, [router])
-
-  const handleDownload = async (blob: Blob, filename: string) => {
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = filename;
-    document.body.appendChild(a);
-    a.click();
-    window.URL.revokeObjectURL(url);
-    document.body.removeChild(a);
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const token = localStorage.getItem('token');
-    if (!token) {
-      toast({
-        title: "Authentication Required",
-        description: "Please login to download songs.",
-        variant: "destructive"
-      });
-      router.push('/login');
-      return;
-    }
-
-    if (!url) {
-      toast({
-        title: "URL Required",
-        description: "Please enter a YouTube or Spotify URL.",
-        variant: "destructive"
-      });
-      return;
-    }
-
-    setDownloading(true);
-    setProgress(0);
-
-    try {
-      const response = await apiCaller('songs/download/', 'POST', { url }, {
-        responseType: 'blob',
-        headers: {
-          'Accept': 'audio/mpeg, application/json',
-        }
-      });
-
-      if (response.status === 401) {
-        toast({
-          title: "Session Expired",
-          description: "Please login again.",
-          variant: "destructive"
-        });
-        router.push('/login');
-        return;
-      }
-
-      if (!response) {
-        throw new Error("No response received from the server.");
-      }
-      const contentType = response.headers['content-type'];
-      if (contentType.includes('audio/mpeg')) {
-        const contentDisposition = response.headers['content-disposition'];
-        const filenameMatch = contentDisposition?.match(/filename="(.+)"/) || [];
-        const defaultFilename = filenameMatch[1] || 'download.mp3';
-      
-        // Retrieve headers
-        const songTitle = response.headers['x-song-title'] || defaultFilename;
-        const songArtist = response.headers['x-song-artist'] || 'Unknown Artist';
-        const thumbnailUrl = response.headers['x-thumbnail-url'];
-
-        // Use songTitle for the filename
-        const filename = songTitle;
-
-        // Download the file
-        await handleDownload(response.data, filename);
-
-        // Update state for UI
-        setDownloadedSong({
-          title: songTitle,
-          artist: songArtist,
-          thumbnail: thumbnailUrl,
-          status: 'Downloaded successfully',
-        });
-      } else {
-        const reader = new FileReader();
-        reader.onload = () => {
-          const data = JSON.parse(reader.result as string);
-          if (data.message) {
-            toast({
-              title: "Download Started",
-              description: data.message,
-            });
-          }
-        };
-        reader.readAsText(response.data);
-      }
-
-      setProgress(100);
-    } catch (error: any) {
-      console.error('Error:', error);
-      toast({
-        title: "Download Failed",
-        description: error.message || "An error occurred while downloading the song.",
-        variant: "destructive"
-      });
-    } finally {
-      setDownloading(false);
-    }
-  };
+  }
 
   return (
-    <div className="relative overflow-hidden bg-gradient-to-br from-background to-primary/10 py-20 sm:py-32">
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col items-center text-center">
-          <motion.h1
-            className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight mb-6"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+    <div className="relative h-screen overflow-hidden bg-gradient-to-b from-background to-background/80" ref={scope}>
+      {/* Parallax Album Covers */}
+      <Floating sensitivity={-1} className="overflow-hidden">
+        <FloatingElement depth={0.5} className="top-[8%] left-[11%]">
+          <motion.img
+            initial={{ opacity: 0 }}
+            src={albumCovers[0].url}
+            alt={albumCovers[0].title}
+            className="w-16 h-16 md:w-32 md:h-32 object-cover rounded-lg shadow-xl hover:scale-105 duration-200 cursor-pointer transition-transform"
+          />
+        </FloatingElement>
+        <FloatingElement depth={1} className="top-[10%] left-[32%]">
+          <motion.img
+            initial={{ opacity: 0 }}
+            src={albumCovers[1].url}
+            alt={albumCovers[1].title}
+            className="w-20 h-20 md:w-28 md:h-28 object-cover rounded-lg shadow-xl hover:scale-105 duration-200 cursor-pointer transition-transform"
+          />
+        </FloatingElement>
+        <FloatingElement depth={2} className="top-[2%] left-[53%]">
+          <motion.img
+            initial={{ opacity: 0 }}
+            src={albumCovers[2].url}
+            alt={albumCovers[2].title}
+            className="w-28 h-40 md:w-44 md:h-58 object-cover rounded-lg shadow-xl hover:scale-105 duration-200 cursor-pointer transition-transform"
+          />
+        </FloatingElement>
+        <FloatingElement depth={1} className="top-[4%] left-[83%]">
+          <motion.img
+            initial={{ opacity: 0 }}
+            src={albumCovers[3].url}
+            alt={albumCovers[3].title}
+            className="w-24 h-24 md:w-36 md:h-36 object-cover rounded-lg shadow-xl hover:scale-105 duration-200 cursor-pointer transition-transform"
+          />
+        </FloatingElement>
+
+        <FloatingElement depth={1} className="top-[40%] left-[2%]">
+          <motion.img
+            initial={{ opacity: 0 }}
+            src={albumCovers[4].url}
+            alt={albumCovers[4].title}
+            className="w-28 h-28 md:w-36 md:h-36 object-cover rounded-lg shadow-xl hover:scale-105 duration-200 cursor-pointer transition-transform"
+          />
+        </FloatingElement>
+        <FloatingElement depth={2} className="top-[70%] left-[77%]">
+          <motion.img
+            initial={{ opacity: 0 }}
+            src={albumCovers[5].url}
+            alt={albumCovers[5].title}
+            className="w-28 h-28 md:w-36 md:h-48 object-cover rounded-lg shadow-xl hover:scale-105 duration-200 cursor-pointer transition-transform"
+          />
+        </FloatingElement>
+
+        <FloatingElement depth={4} className="top-[73%] left-[15%]">
+          <motion.img
+            initial={{ opacity: 0 }}
+            src={albumCovers[6].url}
+            alt={albumCovers[6].title}
+            className="w-40 md:w-52 h-full object-cover rounded-lg shadow-xl hover:scale-105 duration-200 cursor-pointer transition-transform"
+          />
+        </FloatingElement>
+        <FloatingElement depth={1} className="top-[78%] left-[50%]">
+          <motion.img
+            initial={{ opacity: 0 }}
+            src={albumCovers[7].url}
+            alt={albumCovers[7].title}
+            className="w-24 h-24 md:w-32 md:h-32 object-cover rounded-lg shadow-xl hover:scale-105 duration-200 cursor-pointer transition-transform"
+          />
+        </FloatingElement>
+      </Floating>
+
+      {/* Hero Content */}
+      <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-4">
+        <motion.h1 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/60"
+        >
+          TuneVault
+        </motion.h1>
+        <motion.p 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 text-muted-foreground max-w-2xl"
+        >
+          Your personal music treasure trove. Download, organize, and enjoy your favorite tracks.
+        </motion.p>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="w-full max-w-md mx-auto"
+        >
+          <ButtonCta
+            label="Try Free Download Now" 
+            onClick={scrollToDownload}
+            className="w-fit mx-auto px-8 py-3 flex items-center justify-center gap-2"
           >
-            Unlock Your{' '}
-            <span className="bg-gradient-to-r from-primary to-purple-600 text-transparent bg-clip-text">
-              Musical Vault
-            </span>
-          </motion.h1>
-          <motion.p
-            className="text-xl text-muted-foreground mb-8 max-w-2xl"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-          >
-            Download, discover, and enjoy your favorite tunes from YouTube and Spotify. Your personal music treasure trove awaits!
-          </motion.p>
-          <div className="w-full max-w-2xl mb-8">
-            <WaveformAnimation />
-          </div>
-          <motion.form
-            onSubmit={handleSubmit}
-            className="flex flex-col sm:flex-row gap-4 w-full max-w-2xl"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <Input
-              placeholder="Enter YouTube or Spotify URL"
-              value={url}
-              onChange={(e) => setUrl(e.target.value)}
-              className="flex-grow"
-            />
-            <Button type="submit" size="lg" disabled={downloading}>
-              {downloading ? 'Downloading...' : 'Start Downloading'}
-            </Button>
-          </motion.form>
-          {downloading && (
-            <div className="w-full max-w-2xl mt-4">
-              <div className="h-2 bg-gray-200 rounded">
-                <div
-                  className="h-2 bg-blue-500 rounded"
-                  style={{ width: `${progress}%` }}
-                ></div>
-              </div>
-            </div>
-          )}
-          {downloadedSong && (
-            <div className="border p-4 mt-4">
-              {downloadedSong.thumbnail && (
-                <img
-                  src={downloadedSong.thumbnail}
-                  alt="Song thumbnail"
-                  className="h-24 w-24 object-cover mb-2"
-                />
-              )}
-              <h2 className="font-bold">{downloadedSong.title}</h2>
-              {downloadedSong.artist && <p>Artist: {downloadedSong.artist}</p>}
-              <p>{downloadedSong.status}</p>
-            </div>
-          )}
-        </div>
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+              className="inline-flex mr-2"
+            >
+              <Disc size={20} className="text-white" />
+            </motion.div>
+          </ButtonCta>
+        </motion.div>
       </div>
+
+      {/* Scroll Down Indicator */}
+      <motion.div 
+        style={{ opacity }}
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 cursor-pointer"
+        onClick={scrollToDownload}
+      >
+        <ChevronDown className="w-8 h-8 animate-bounce" />
+      </motion.div>
     </div>
   );
 };

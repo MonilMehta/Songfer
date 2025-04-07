@@ -9103,3 +9103,51 @@ WARNING 2025-04-07 23:44:18,397 log 16952 17348 Unauthorized: /api/songs/
 WARNING 2025-04-07 23:44:18,397 basehttp 16952 17348 "GET /api/songs/ HTTP/1.1" 401 27
 WARNING 2025-04-07 23:44:19,048 log 16952 9416 Unauthorized: /api/songs/
 WARNING 2025-04-07 23:44:19,052 basehttp 16952 9416 "GET /api/songs/ HTTP/1.1" 401 27
+WARNING 2025-04-08 00:08:08,439 log 16952 18392 Unauthorized: /api/songs/
+WARNING 2025-04-08 00:08:08,439 basehttp 16952 18392 "GET /api/songs/ HTTP/1.1" 401 27
+WARNING 2025-04-08 00:08:09,042 log 16952 7612 Unauthorized: /api/songs/
+WARNING 2025-04-08 00:08:09,043 basehttp 16952 7612 "GET /api/songs/ HTTP/1.1" 401 27
+INFO 2025-04-08 00:25:25,239 autoreload 16952 19340 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-04-08 00:25:32,754 autoreload 18868 13512 Watching for file changes with StatReloader
+INFO 2025-04-08 00:25:41,700 autoreload 18868 13512 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\urls.py changed, reloading.
+INFO 2025-04-08 00:25:47,163 autoreload 21132 2684 Watching for file changes with StatReloader
+INFO 2025-04-08 00:36:41,016 autoreload 21132 2684 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-04-08 00:36:48,745 autoreload 19196 10756 Watching for file changes with StatReloader
+INFO 2025-04-08 00:36:59,635 autoreload 19196 10756 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\urls.py changed, reloading.
+INFO 2025-04-08 00:37:04,303 autoreload 21536 17308 Watching for file changes with StatReloader
+INFO 2025-04-08 00:37:18,695 autoreload 21536 17308 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-04-08 00:37:24,359 autoreload 16860 17680 Watching for file changes with StatReloader
+WARNING 2025-04-08 00:45:56,873 log 16860 16820 Unauthorized: /api/songs/
+WARNING 2025-04-08 00:45:56,877 basehttp 16860 16820 "GET /api/songs/ HTTP/1.1" 401 27
+WARNING 2025-04-08 00:45:56,976 log 16860 20080 Unauthorized: /api/songs/
+WARNING 2025-04-08 00:45:56,977 basehttp 16860 20080 "GET /api/songs/ HTTP/1.1" 401 27
+WARNING 2025-04-08 01:16:37,385 log 16860 12156 Not Found: /api/public-download/
+WARNING 2025-04-08 01:16:37,385 basehttp 16860 12156 "POST /api/public-download/ HTTP/1.1" 404 3398
+WARNING 2025-04-08 01:16:47,141 log 16860 12156 Not Found: /api/public-download/
+WARNING 2025-04-08 01:16:47,170 basehttp 16860 12156 "POST /api/public-download/ HTTP/1.1" 404 3398
+WARNING 2025-04-08 01:17:52,101 log 16860 12156 Not Found: /api/public-download/
+WARNING 2025-04-08 01:17:52,104 basehttp 16860 12156 "POST /api/public-download/ HTTP/1.1" 404 3398
+WARNING 2025-04-08 01:18:03,792 log 16860 12156 Not Found: /api/songs/song/public-download/
+WARNING 2025-04-08 01:18:03,801 basehttp 16860 12156 "POST /api/songs/song/public-download/ HTTP/1.1" 404 17334
+WARNING 2025-04-08 01:18:29,683 log 16860 12156 Unauthorized: /api/songs/songs/public-download/
+WARNING 2025-04-08 01:18:29,685 basehttp 16860 12156 "POST /api/songs/songs/public-download/ HTTP/1.1" 401 58
+INFO 2025-04-08 01:20:46,468 autoreload 16860 17680 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-04-08 01:20:54,996 autoreload 23144 18356 Watching for file changes with StatReloader
+WARNING 2025-04-08 01:21:09,402 log 23144 6928 Unauthorized: /api/songs/songs/public-download/
+WARNING 2025-04-08 01:21:09,402 basehttp 23144 6928 "POST /api/songs/songs/public-download/ HTTP/1.1" 401 58
+INFO 2025-04-08 01:21:34,379 autoreload 23144 18356 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-04-08 01:21:39,863 autoreload 6692 2552 Watching for file changes with StatReloader
+INFO 2025-04-08 01:21:47,024 autoreload 6692 2552 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-04-08 01:21:53,866 autoreload 15568 19648 Watching for file changes with StatReloader
+WARNING 2025-04-08 01:21:59,791 log 15568 7420 Unauthorized: /api/songs/songs/public-download/
+WARNING 2025-04-08 01:21:59,805 basehttp 15568 7420 "POST /api/songs/songs/public-download/ HTTP/1.1" 401 58
+INFO 2025-04-08 01:22:10,448 autoreload 15568 19648 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-04-08 01:22:16,953 autoreload 21532 23688 Watching for file changes with StatReloader
+WARNING 2025-04-08 01:22:20,293 log 21532 18260 Unauthorized: /api/songs/songs/public-download/
+WARNING 2025-04-08 01:22:20,312 basehttp 21532 18260 "POST /api/songs/songs/public-download/ HTTP/1.1" 401 58
+INFO 2025-04-08 01:22:33,077 autoreload 21532 23688 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\songs\views.py changed, reloading.
+INFO 2025-04-08 01:22:39,998 autoreload 21348 9748 Watching for file changes with StatReloader
+WARNING 2025-04-08 01:22:43,629 log 21348 15164 Unauthorized: /api/songs/songs/public-download/
+WARNING 2025-04-08 01:22:43,629 basehttp 21348 15164 "POST /api/songs/songs/public-download/ HTTP/1.1" 401 58
+WARNING 2025-04-08 01:22:59,836 log 21348 15164 Unauthorized: /api/songs/songs/public-download/
+WARNING 2025-04-08 01:22:59,837 basehttp 21348 15164 "POST /api/songs/songs/public-download/ HTTP/1.1" 401 58

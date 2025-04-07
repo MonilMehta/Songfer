@@ -146,6 +146,192 @@ class SongViewSet(viewsets.ModelViewSet):
         context = super().get_serializer_context()
         return context
 
+    @action(detail=True, methods=['get'], permission_classes=[])
+    @ratelimit(key='ip', rate='5/10m', block=True)
+    def public_download(self, request, pk=None):
+        """
+        Public endpoint to download a song without authentication.
+        Rate limited to prevent abuse.
+        
+        """
+        self.permission_classes = []
+        self.check_permissions(request)
+        print(f"Public download requested for song ID: {pk}")
+        try:
+            # Get the song by ID without user filter since this is a public endpoint
+            song = get_object_or_404(Song, id=pk)
+            file_path = os.path.join(settings.MEDIA_ROOT, song.file.name)
+            
+            if not os.path.exists(file_path):
+                logger.warning(f"Public download requested for missing file: {file_path}")
+                return Response(
+                    {'error': 'File not found'}, 
+                    status=status.HTTP_404_NOT_FOUND
+                )
+
+            # Log the download attempt with IP for monitoring
+            ip_address = request.META.get('REMOTE_ADDR', 'unknown')
+            logger.info(f"Public download requested for song {pk} from IP {ip_address}")
+            
+            # Serve the file
+            filename = f"{song.title} - {song.artist}.mp3"
+            filename = sanitize_filename(filename)
+            response = FileResponse(
+                open(file_path, 'rb'),
+                as_attachment=True,
+                filename=filename
+            )
+            response['Content-Type'] = 'audio/mpeg'
+            return response
+            
+        except Exception as e:
+            logger.error(f"Error in public_download: {e}", exc_info=True)
+            return Response(
+                {'error': 'Download failed'}, 
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
+            
+    @action(detail=False, methods=['post'], permission_classes=[])
+    @ratelimit(key='ip', rate='5/10m', block=True)
+    def public_download_by_url(self, request):
+        """
+        Public endpoint to download a song by URL without authentication.
+        Rate limited to prevent abuse.
+        """
+        # Override permission check explicitly for this method
+        self.permission_classes = []
+        self.check_permissions(request)
+        
+        
+        url = request.data.get('url')
+        output_format = request.data.get('format', 'mp3')
+        print(f"Public download by URL requested: {url}")
+        
+        if not url:
+            return Response(
+                {'error': 'URL is required'}, 
+                status=status.HTTP_400_BAD_REQUEST
+            )
+            
+        # Validate format
+        if output_format not in settings.SUPPORTED_AUDIO_FORMATS:
+            return Response(
+                {'error': f'Unsupported format. Supported formats: {", ".join(settings.SUPPORTED_AUDIO_FORMATS)}'}, 
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        try:
+            # Log the download attempt with IP for monitoring
+            ip_address = request.META.get('REMOTE_ADDR', 'unknown')
+            logger.info(f"Public download by URL requested for {url} from IP {ip_address}")
+            
+            # Check if the song with this URL already exists in the database (for any user)
+            existing_song = Song.objects.filter(song_url=url).first()
+            
+            if existing_song:
+                # We found the song, serve it
+                file_path = os.path.join(settings.MEDIA_ROOT, existing_song.file.name)
+                
+                if not os.path.exists(file_path):
+                    # File is missing, need to download again or return error
+                    logger.warning(f"Public download requested for missing file: {file_path}")
+                    return Response(
+                        {'error': 'File not found'}, 
+                        status=status.HTTP_404_NOT_FOUND
+                    )
+                
+                # Check if we need to convert format
+                if output_format != 'mp3' and os.path.splitext(file_path)[1][1:] != output_format:
+                    # Convert the format
+                    logger.info(f"Converting song from {os.path.splitext(file_path)[1][1:]} to {output_format}")
+                    final_filename = convert_audio_format(file_path, output_format)
+                else:
+                    final_filename = file_path
+                
+                # Serve the file
+                filename = f"{existing_song.title} - {existing_song.artist}.{output_format}"
+                filename = sanitize_filename(filename)
+                response = FileResponse(
+                    open(final_filename, 'rb'),
+                    as_attachment=True,
+                    filename=filename
+                )
+                response['Content-Type'] = f'audio/{output_format}'
+                return response
+            
+            # Song not in database, check cache
+            cached_song = SongCache.get_cached_song(url)
+            if cached_song:
+                logger.info(f"Using cached version for URL: {url}")
+                
+                # Get the cached file path
+                cached_path = cached_song.local_path if hasattr(cached_song, 'local_path') else cached_song.file_path
+                if isinstance(cached_path, str):
+                    cached_file_path = os.path.join(settings.MEDIA_ROOT, cached_path)
+                else:
+                    cached_file_path = os.path.join(settings.MEDIA_ROOT, cached_path.name)
+                
+                # Get metadata from cache
+                metadata = cached_song.metadata or {}
+                title = metadata.get('title', 'Unknown Title')
+                artist = metadata.get('artist', 'Unknown Artist')
+                
+                # Check if file exists
+                if not os.path.exists(cached_file_path):
+                    # File missing from cache, cannot serve
+                    logger.warning(f"Public download cached file not found: {cached_file_path}")
+                    return Response(
+                        {'error': 'File not found'}, 
+                        status=status.HTTP_404_NOT_FOUND
+                    )
+                
+                # Check if we need format conversion
+                if output_format != 'mp3' and os.path.splitext(cached_file_path)[1][1:] != output_format:
+                    # Convert the format
+                    logger.info(f"Converting cached song from {os.path.splitext(cached_file_path)[1][1:]} to {output_format}")
+                    final_filename = convert_audio_format(cached_file_path, output_format)
+                else:
+                    final_filename = cached_file_path
+                
+                # Serve the file
+                formatted_filename = f"{title} - {artist}.{output_format}"
+                formatted_filename = sanitize_filename(formatted_filename)
+                
+                response = FileResponse(
+                    open(final_filename, 'rb'),
+                    as_attachment=True,
+                    filename=formatted_filename
+                )
+                response['Content-Type'] = f'audio/{output_format}'
+                return response
+            
+            # Neither song in database nor cache, need to download
+            # For public users, we'll limit this to avoid abuse
+            if 'spotify.com' in url:
+                # Handle Spotify URLs
+                result = self._download_spotify_track(url, output_format)
+                
+                # Since _download_spotify_track returns a Response object, we can just return it
+                return result
+            elif 'youtube.com' in url or 'youtu.be' in url:
+                # Handle YouTube URLs
+                result = self._download_youtube(url, output_format)
+                
+                # Since _download_youtube returns a Response object, we can just return it
+                return result
+            else:
+                return Response(
+                    {'error': 'Unsupported URL. Only YouTube and Spotify URLs are supported.'},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+            
+        except Exception as e:
+            logger.error(f"Error in public_download_by_url: {e}", exc_info=True)
+            return Response(
+                {'error': 'Download failed'}, 
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
+
     @custom_ratelimit(group='download', key='ip', rate='30/hour', method='ALL')
     @action(detail=False, methods=['post'], url_path='download')
     def download(self, request):
@@ -419,7 +605,7 @@ class SongViewSet(viewsets.ModelViewSet):
             
             # Copy thumbnail if it exists
             thumbnail_url = None
-            if thumbnail_path:
+            if (thumbnail_path):
                 thumb_filename = f"{info['title']} - {info.get('uploader', 'Unknown Artist')}.{os.path.splitext(thumbnail_path)[1][1:]}"
                 thumb_filename = sanitize_filename(thumb_filename)
                 thumb_media_path = os.path.join(media_dir, thumb_filename)

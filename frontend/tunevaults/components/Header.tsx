@@ -2,7 +2,7 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { motion } from 'framer-motion'
-import { Moon, Sun, Github } from 'lucide-react'
+import { Moon, Sun, Github, Disc } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
 import {
@@ -12,34 +12,49 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 
-const RotatingDisk = () => (
+const RotatingVinylDisc = () => (
   <motion.div
-    className="w-8 h-8 bg-primary rounded-full mr-2"
+    className="relative w-8 h-8 mr-2 flex items-center justify-center"
     animate={{ rotate: 360 }}
-    transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-  />
+    transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+  >
+    <Disc className="w-full h-full text-primary" />
+    <motion.div 
+      className="absolute inset-0 w-2 h-2 bg-background rounded-full m-auto"
+      animate={{ scale: [1, 1.1, 1] }}
+      transition={{ duration: 2, repeat: Infinity }}
+    />
+  </motion.div>
 )
 
 export default function Header() {
   const { theme, setTheme } = useTheme()
   const [isloggedin, setisloggedin] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
     const token = localStorage.getItem('token')
     setisloggedin(!!token)
+
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   return (
-    <header className="bg-background border-b sticky top-0 z-10">
-      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+    <header className={`bg-background/80 backdrop-blur-sm border-b sticky top-0 z-50 transition-all duration-300 ${isScrolled ? 'py-2' : 'py-4'}`}>
+      <div className="container mx-auto px-4 flex justify-between items-center">
         <Link href="/" className="text-2xl font-bold text-primary flex items-center">
-          <RotatingDisk />
-          TuneVault
+          <RotatingVinylDisc />
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/60">TuneVault</span>
         </Link>
-        <nav className="flex items-center space-x-4">
+        <nav className="flex items-center space-x-2 md:space-x-4">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="icon">
+              <Button variant="ghost" size="icon" className="h-9 w-9 rounded-full">
                 <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
                 <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
                 <span className="sr-only">Toggle theme</span>
@@ -58,22 +73,22 @@ export default function Header() {
             </DropdownMenuContent>
           </DropdownMenu>
           <Link href="https://github.com/yourusername/tunevault" target="_blank" rel="noopener noreferrer">
-            <Button variant="outline" size="icon">
+            <Button variant="ghost" size="icon" className="h-9 w-9 rounded-full">
               <Github className="h-[1.2rem] w-[1.2rem]" />
               <span className="sr-only">GitHub</span>
             </Button>
           </Link>
           {isloggedin ? (
             <Link href="/dashboard">
-              <Button variant="ghost">Dashboard</Button>
+              <Button variant="default" size="sm" className="ml-2">Dashboard</Button>
             </Link>
           ) : (
             <>
               <Link href="/login">
-                <Button variant="ghost">Login</Button>
+                <Button variant="ghost" size="sm">Login</Button>
               </Link>
               <Link href="/signup">
-                <Button>Sign Up</Button>
+                <Button variant="default" size="sm" className="bg-primary hover:bg-primary/90">Sign Up</Button>
               </Link>
             </>
           )}

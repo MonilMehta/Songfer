@@ -1,11 +1,229 @@
+"use client";
+
+import { useState, useEffect } from 'react';
 import Hero from '@/components/Hero'
 import FeatureCard from '@/components/FeatureCard'
-import { Download, Music, Headphones, Zap, Share2, Lock } from 'lucide-react'
+import { Download, Music, Headphones, Zap, Share2, Lock, Disc } from 'lucide-react'
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { useToast } from '@/hooks/use-toast';
+import Cookies from 'js-cookie';
+import { ButtonCta } from '@/components/ui/button-shiny';
+import { Cover } from '@/components/ui/cover';
+import { motion } from 'framer-motion';
 
 export default function Home() {
+  const [url, setUrl] = useState('');
+  const [downloading, setDownloading] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [downloadedSong, setDownloadedSong] = useState<any>(null);
+  const [format, setFormat] = useState<'mp3' | 'aac'>('mp3');
+  const { toast } = useToast();
+
+  const handleDownload = async (blob: Blob, filename: string) => {
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
+    document.body.removeChild(a);
+  };
+
+  const handlePublicDownload = async () => {
+    if (!url) {
+      toast({
+        title: "URL Required",
+        description: "Please enter a YouTube or Spotify URL.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    const songsDownloaded = Cookies.get('songsDownloaded');
+    if (songsDownloaded) {
+      toast({
+        title: "Download Limit Reached",
+        description: "Please wait 5 minutes before downloading another song.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    setDownloading(true);
+    setProgress(0);
+    setDownloadedSong(null);
+
+    const interval = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 95) {
+          clearInterval(interval);
+          return 95;
+        }
+        return prev + 5;
+      });
+    }, 200);
+
+    try {
+      const response = await fetch('http://localhost:8000/api/songs/songs/public-download/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ url, format }),
+      });
+
+      clearInterval(interval);
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => ({ message: `HTTP error! status: ${response.status}` }));
+        throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+      }
+
+      const contentType = response.headers.get('content-type');
+      if (contentType && contentType.includes('audio/')) {
+        const contentDisposition = response.headers.get('content-disposition');
+        const filenameMatch = contentDisposition?.match(/filename="(.+?)"(?:;|$)/) || [];
+        const defaultFilename = `download.${format}`;
+        
+        const songTitleHeader = response.headers.get('x-song-title');
+        const songArtistHeader = response.headers.get('x-song-artist');
+        const thumbnailUrlHeader = response.headers.get('x-thumbnail-url');
+
+        const songTitle = songTitleHeader || (filenameMatch[1] ? filenameMatch[1].replace(/\.[^/.]+$/, "") : 'Downloaded Song');
+        const filename = filenameMatch[1] || `${songTitle}.${format}`;
+        const songArtist = songArtistHeader || 'Unknown Artist';
+        const thumbnailUrl = thumbnailUrlHeader;
+
+        const blob = await response.blob();
+        setProgress(100);
+        await handleDownload(blob, filename);
+
+        setDownloadedSong({
+          title: songTitle,
+          artist: songArtist,
+          thumbnail: thumbnailUrl,
+          status: 'Downloaded successfully!',
+        });
+
+        Cookies.set('songsDownloaded', '1', { expires: 5 / (24 * 60) });
+        setUrl('');
+
+      } else {
+        const data = await response.json();
+        throw new Error(data.message || "Received an unexpected response from the server.");
+      }
+
+    } catch (error: any) {
+      clearInterval(interval);
+      setProgress(0);
+      console.error('Error:', error);
+      toast({
+        title: "Download Failed",
+        description: error.message || "An error occurred.",
+        variant: "destructive"
+      });
+    } finally {
+      setDownloading(false);
+    }
+  };
+
   return (
     <div>
       <Hero />
+
+      <div id="download-section" className="py-16 sm:py-24 bg-background">
+        <div className="container mx-auto px-4 text-center">
+          <Cover className="inline-block mb-4">
+            <h2 className="text-3xl sm:text-4xl font-bold text-primary">
+              Ultra-Fast Music Downloads
+            </h2>
+          </Cover>
+          <p className="text-lg sm:text-xl text-muted-foreground mb-8 max-w-3xl mx-auto">
+            Experience our seamless interface. Simply paste your Spotify or YouTube URL below to try out one free download on us!
+          </p>
+
+          <div className="w-full max-w-lg mx-auto bg-card p-6 rounded-lg shadow-lg border">
+            <div className="flex flex-col sm:flex-row gap-2 mb-4">
+              <Input
+                placeholder="Enter YouTube or Spotify URL"
+                value={url}
+                onChange={(e) => setUrl(e.target.value)}
+                className="flex-grow"
+                disabled={downloading}
+              />
+              <div className="flex gap-2 justify-center sm:justify-start">
+                <Button
+                  variant={format === 'mp3' ? 'default' : 'outline'}
+                  size="sm"
+                  onClick={() => setFormat('mp3')}
+                  className="w-20"
+                  disabled={downloading}
+                >
+                  MP3
+                </Button>
+                <Button
+                  variant={format === 'aac' ? 'default' : 'outline'}
+                  size="sm"
+                  onClick={() => setFormat('aac')}
+                  className="w-20"
+                  disabled={downloading}
+                >
+                  AAC
+                </Button>
+              </div>
+            </div>
+
+            <ButtonCta
+              label={downloading ? "Processing..." : "Download Your Free Song"}
+              onClick={handlePublicDownload}
+              disabled={downloading}
+              className="w-full"
+            />
+
+            {downloading && (
+              <div className="mt-4 w-full">
+                <div className="h-2 bg-gray-700 rounded-full overflow-hidden">
+                  <motion.div
+                    className="h-2 bg-primary rounded-full"
+                    initial={{ width: 0 }}
+                    animate={{ width: `${progress}%` }}
+                    transition={{ duration: 0.5 }}
+                  />
+                </div>
+                <p className="text-sm text-muted-foreground mt-2">
+                  {progress < 100 ? `Downloading... ${Math.round(progress)}%` : 'Preparing download...'}
+                </p>
+              </div>
+            )}
+
+            {downloadedSong && (
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mt-6 p-4 border rounded-lg bg-background/80 backdrop-blur-sm shadow-inner"
+              >
+                <div className="flex flex-col sm:flex-row items-center gap-4">
+                  {downloadedSong.thumbnail && (
+                    <img
+                      src={downloadedSong.thumbnail}
+                      alt="Song thumbnail"
+                      className="h-20 w-20 object-cover rounded-md border"
+                    />
+                  )}
+                  <div className="text-center sm:text-left">
+                    <h3 className="font-semibold text-lg text-foreground">{downloadedSong.title}</h3>
+                    {downloadedSong.artist && <p className="text-sm text-muted-foreground">{downloadedSong.artist}</p>}
+                    <p className="text-sm text-green-500 mt-1">{downloadedSong.status}</p>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </div>
+        </div>
+      </div>
+
       <div className="container mx-auto px-4 py-12">
         <h2 className="text-3xl font-semibold mb-8 text-center">Amazing Features</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
