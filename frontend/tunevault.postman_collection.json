@@ -1,0 +1,508 @@
+{
+	"info": {
+		"_postman_id": "6950b408-99af-4814-9803-11b056c857fe",
+		"name": "tunevault",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38646384"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"username\":\"testuser\", \"email\":\"testuser@example.com\", \"password\":\"testpassword123\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/users/register/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"users",
+						"register",
+						""
+					]
+				},
+				"description": "Generated from cURL: curl -X POST http://localhost:8000/api/users/register/ \\\n     -H \"Content-Type: application/json\" \\\n     -d '{\"username\":\"testuser\", \"email\":\"testuser@example.com\", \"password\":\"testpassword123\"}'"
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"username\":\"testuser\", \"password\":\"testpassword123\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/users/login/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"users",
+						"login",
+						""
+					]
+				},
+				"description": "Generated from cURL: curl -X POST http://localhost:8000/api/users/login/ \\\n     -H \"Content-Type: application/json\" \\\n     -d '{\"username\":\"testuser\", \"password\":\"testpassword123\"}'"
+			},
+			"response": []
+		},
+		{
+			"name": "Download Youtube Song",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Token {{token}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"url\":\"https://www.youtube.com/watch?v=_lMlsPQJs6U\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/songs/songs/download/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"songs",
+						"songs",
+						"download",
+						""
+					]
+				},
+				"description": "Generated from cURL: curl -X POST http://localhost:8000/api/songs/download/ \\\n     -H \"Content-Type: application/json\" \\\n     -H \"Authorization: Token YOUR_AUTH_TOKEN_HERE\" \\\n     -d '{\"url\":\"https://www.youtube.com/watch?v=dQw4w9WgXcQ\"}'"
+			},
+			"response": []
+		},
+		{
+			"name": "Spotify Download single",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var template = `\r",
+							"<style type=\"text/css\">\r",
+							"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}\r",
+							"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}\r",
+							"    .tftable tr {background-color:#ffffff;}\r",
+							"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}\r",
+							"    .tftable tr:hover {background-color:#e0ffff;}\r",
+							"</style>\r",
+							"\r",
+							"<table class=\"tftable\" border=\"1\">\r",
+							"    <tr>\r",
+							"        <th>Status</th>\r",
+							"        <th>Content-Type</th>\r",
+							"        <th>Response</th>\r",
+							"    </tr>\r",
+							"    <tr>\r",
+							"        <td>{{response.Status}}</td>\r",
+							"        <td>{{response[\"Content-Type\"]}}</td>\r",
+							"        <td>{{response}}</td>\r",
+							"    </tr>\r",
+							"</table>\r",
+							"`;\r",
+							"\r",
+							"function constructVisualizerPayload() {\r",
+							"    var response = {\r",
+							"        Status: 200,\r",
+							"        \"Content-Type\": \"audio/mpeg\",\r",
+							"        Response: \"null\"\r",
+							"    };\r",
+							"    return { response: response };\r",
+							"}\r",
+							"\r",
+							"pm.visualizer.set(template, constructVisualizerPayload());"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Token 1135352946d316da7463ced0148b50c0c3ffb120"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"url\": \"https://open.spotify.com/track/6WzRpISELf3YglGAh7TXcG?si=44b8aa4924984041\",\n    \"format\": \"aac\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/songs/songs/download/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"songs",
+						"songs",
+						"download",
+						""
+					]
+				},
+				"description": "Generated from cURL: curl -X POST \\\n  http://localhost:8000/api/songs/download/ \\\n  -H 'Content-Type: application/json' \\\n  -H 'Authorization: Token YOUR_AUTH_TOKEN_HERE' \\\n  -d '{\n    \"url\": \"https://open.spotify.com/track/45J4avUb9Ni0bnETYaYFVJ?si=3668ead65af048d9\"\n}'"
+			},
+			"response": []
+		},
+		{
+			"name": "Playlist Spotify",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Token 1135352946d316da7463ced0148b50c0c3ffb120"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"url\": \"https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c\",\n    \"format\":\"mp3\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/songs/songs/download/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"songs",
+						"songs",
+						"download",
+						""
+					]
+				},
+				"description": "Generated from cURL: curl -X POST \\\n  http://localhost:8000/api/songs/download/ \\\n  -H 'Content-Type: application/json' \\\n  -H 'Authorization: Token YOUR_AUTH_TOKEN_HERE' \\\n  -d '{\n    \"url\": \"https://open.spotify.com/track/45J4avUb9Ni0bnETYaYFVJ?si=3668ead65af048d9\"\n}'"
+			},
+			"response": []
+		},
+		{
+			"name": "Playlist Youtube",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "Token 1135352946d316da7463ced0148b50c0c3ffb120"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"url\": \"https://www.youtube.com/watch?v=xH9xv0X9-Xw&list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1&pp=gAQB\",\n    \"format\":\"mp3\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/songs/songs/download/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"songs",
+						"songs",
+						"download",
+						""
+					]
+				},
+				"description": "Generated from cURL: curl -X POST \\\n  http://localhost:8000/api/songs/download/ \\\n  -H 'Content-Type: application/json' \\\n  -H 'Authorization: Token YOUR_AUTH_TOKEN_HERE' \\\n  -d '{\n    \"url\": \"https://open.spotify.com/track/45J4avUb9Ni0bnETYaYFVJ?si=3668ead65af048d9\"\n}'"
+			},
+			"response": []
+		},
+		{
+			"name": "Download Playlist Actual",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "token 1135352946d316da7463ced0148b50c0c3ffb120",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/songs/playlists/39/download-all/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"songs",
+						"playlists",
+						"39",
+						"download-all",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get user songs downloaded",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 1135352946d316da7463ced0148b50c0c3ffb120"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/songs/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"songs",
+						""
+					]
+				},
+				"description": "Generated from cURL: curl -X GET http://localhost:8000/api/songs/ \\\n     -H \"Authorization: Token YOUR_AUTH_TOKEN\""
+			},
+			"response": []
+		},
+		{
+			"name": "get single songs",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 1135352946d316da7463ced0148b50c0c3ffb120"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/songs/songs/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"songs",
+						"songs",
+						""
+					]
+				},
+				"description": "Generated from cURL: curl -X GET http://localhost:8000/api/songs/1/ \\\n     -H \"Authorization: Token YOUR_AUTH_TOKEN\""
+			},
+			"response": []
+		},
+		{
+			"name": "get playlist downloaded",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 1135352946d316da7463ced0148b50c0c3ffb120"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/songs/playlists/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"songs",
+						"playlists",
+						""
+					]
+				},
+				"description": "Generated from cURL: curl -X GET http://localhost:8000/api/playlists/ \\\n     -H \"Authorization: Token YOUR_AUTH_TOKEN\""
+			},
+			"response": []
+		},
+		{
+			"name": "User Profile",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 1135352946d316da7463ced0148b50c0c3ffb120"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/songs/user/profile",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"songs",
+						"user",
+						"profile"
+					]
+				},
+				"description": "Generated from cURL: curl -X GET http://localhost:8000/api/profile/ \\\n     -H \"Authorization: Token YOUR_AUTH_TOKEN\""
+			},
+			"response": []
+		},
+		{
+			"name": "User top artists",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token 1135352946d316da7463ced0148b50c0c3ffb120"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/songs/user/top-artists/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"songs",
+						"user",
+						"top-artists",
+						""
+					]
+				},
+				"description": "Generated from cURL: curl -X GET http://localhost:8000/api/top-artists/ \\\n     -H \"Authorization: Token YOUR_AUTH_TOKEN\""
+			},
+			"response": []
+		},
+		{
+			"name": "Reco",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Token {{token}}"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/api/songs/recommendations/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"songs",
+						"recommendations",
+						""
+					]
+				},
+				"description": "Generated from cURL: curl -X GET http://localhost:8000/api/recommendations/ \\\n  -H \"Authorization: Bearer YOUR_AUTH_TOKEN\" \\\n  -H \"Content-Type: application/json\""
+			},
+			"response": []
+		}
+	]
+}

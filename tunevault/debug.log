@@ -9096,3 +9096,10 @@ INFO 2025-03-31 15:22:55,630 autoreload 13820 25948 Watching for file changes wi
 INFO 2025-03-31 15:22:59,921 autoreload 13820 25948 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\TuneVault\tunevault\tunevault\settings.py changed, reloading.
 INFO 2025-03-31 15:23:04,237 autoreload 8684 9144 Watching for file changes with StatReloader
 INFO 2025-03-31 15:23:26,600 autoreload 22044 25668 Watching for file changes with StatReloader
+INFO 2025-04-07 22:40:01,332 autoreload 16952 19340 Watching for file changes with StatReloader
+WARNING 2025-04-07 23:25:22,669 log 16952 18508 Not Found: /api/songs/download/
+WARNING 2025-04-07 23:25:22,674 basehttp 16952 18508 "POST /api/songs/download/ HTTP/1.1" 404 15334
+WARNING 2025-04-07 23:44:18,397 log 16952 17348 Unauthorized: /api/songs/
+WARNING 2025-04-07 23:44:18,397 basehttp 16952 17348 "GET /api/songs/ HTTP/1.1" 401 27
+WARNING 2025-04-07 23:44:19,048 log 16952 9416 Unauthorized: /api/songs/
+WARNING 2025-04-07 23:44:19,052 basehttp 16952 9416 "GET /api/songs/ HTTP/1.1" 401 27
