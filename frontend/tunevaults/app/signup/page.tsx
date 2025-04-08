@@ -6,32 +6,105 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
-import { Eye, EyeOff } from 'lucide-react'
+import { Eye, EyeOff, AlertCircle } from 'lucide-react'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import apiCaller from '@/utils/apiCaller'
 import VinylPlayer from '@/components/custom/VinylPlayer'
+import { Alert, AlertDescription } from '@/components/ui/alert'
 
 export default function SignUp() {
+  const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
+  const [error, setError] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
+
+  const validateForm = () => {
+    // Reset error
+    setError('')
+    
+    // Check if all fields are filled
+    if (!username || !email || !password) {
+      setError('All fields are required')
+      return false
+    }
+    
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(email)) {
+      setError('Please enter a valid email address')
+      return false
+    }
+    
+    // Validate password strength
+    if (password.length < 8) {
+      setError('Password must be at least 8 characters long')
+      return false
+    }
+    
+    // Check for password complexity
+    const hasUpperCase = /[A-Z]/.test(password)
+    const hasLowerCase = /[a-z]/.test(password)
+    const hasNumbers = /\d/.test(password)
+    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password)
+    
+    if (!(hasUpperCase && hasLowerCase && hasNumbers && hasSpecialChar)) {
+      setError('Password must contain uppercase, lowercase, numbers, and special characters')
+      return false
+    }
+    
+    return true
+  }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    
+    // Validate form
+    if (!validateForm()) {
+      return
+    }
+    
+    setIsLoading(true)
+    
     try {
-      // TODO: Implement sign-up logic with the API
-      const response = await apiCaller('users/register/', 'POST', { email, password })
+      const response = await apiCaller('users/register/', 'POST', { 
+        username, 
+        email, 
+        password 
+      })
       
       if (response && response.status === 201) {
         // Redirect to login page after successful sign-up
         router.push('/login')
       } else {
-        console.error('Failed to sign up')
+        setError('Failed to sign up. Please try again.')
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error:', error)
+      
+      // Handle specific error messages from the API
+      if (error.response) {
+        const data = error.response.data
+        
+        if (data.username) {
+          setError(`Username error: ${data.username.join(', ')}`)
+        } else if (data.email) {
+          setError(`Email error: ${data.email.join(', ')}`)
+        } else if (data.password) {
+          setError(`Password error: ${data.password.join(', ')}`)
+        } else if (data.detail) {
+          setError(data.detail)
+        } else {
+          setError('An error occurred during sign up. Please try again.')
+        }
+      } else {
+        setError('Network error. Please check your connection and try again.')
+      }
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -57,7 +130,26 @@ export default function SignUp() {
           </CardDescription>
         </CardHeader>
         <CardContent>
+          {error && (
+            <Alert variant="destructive" className="mb-4">
+              <AlertCircle className="h-4 w-4" />
+              <AlertDescription>{error}</AlertDescription>
+            </Alert>
+          )}
+          
           <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="username">Username</Label>
+              <Input
+                id="username"
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+                placeholder="Choose a username"
+                disabled={isLoading}
+              />
+            </div>
             <div className="space-y-2">
               <Label htmlFor="email">Email</Label>
               <Input
@@ -67,6 +159,7 @@ export default function SignUp() {
                 onChange={(e) => setEmail(e.target.value)}
                 required
                 placeholder="Enter your email"
+                disabled={isLoading}
               />
             </div>
             <div className="space-y-2">
@@ -79,18 +172,23 @@ export default function SignUp() {
                   onChange={(e) => setPassword(e.target.value)}
                   required
                   placeholder="Create a password"
+                  disabled={isLoading}
                 />
                 <button
                   type="button"
                   className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
                   onClick={() => setShowPassword(!showPassword)}
+                  disabled={isLoading}
                 >
                   {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                 </button>
               </div>
+              <p className="text-xs text-muted-foreground mt-1">
+                Password must be at least 8 characters and include uppercase, lowercase, numbers, and special characters.
+              </p>
             </div>
-            <Button type="submit" className="w-full">
-              Sign Up
+            <Button type="submit" className="w-full" disabled={isLoading}>
+              {isLoading ? 'Signing up...' : 'Sign Up'}
             </Button>
           </form>
           
@@ -107,6 +205,7 @@ export default function SignUp() {
             variant="outline" 
             className="w-full" 
             onClick={handleGoogleSignIn}
+            disabled={isLoading}
           >
             <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24">
               <path

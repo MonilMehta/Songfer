@@ -22,9 +22,10 @@ interface SongCardProps {
     cover_url?: string
     download_url?: string
   }
+  onDownload?: (song: any) => void
 }
 
-export default function SongCard({ song }: SongCardProps) {
+export default function SongCard({ song, onDownload }: SongCardProps) {
   const [isPlaying, setIsPlaying] = useState(false)
   const [isDownloading, setIsDownloading] = useState(false)
 
@@ -39,6 +40,12 @@ export default function SongCard({ song }: SongCardProps) {
       setIsDownloading(true)
       // Here you would implement actual download functionality
       console.log('Downloading song:', song.title)
+      
+      // If onDownload prop is provided, call it with the song
+      if (onDownload) {
+        onDownload(song)
+        return
+      }
       
       // Simulate download delay
       await new Promise(resolve => setTimeout(resolve, 1000))
@@ -98,34 +105,33 @@ export default function SongCard({ song }: SongCardProps) {
         <Button 
           variant="outline" 
           size="sm" 
-          className="w-full mr-2"
+          className="flex items-center gap-1"
           onClick={handleDownload}
           disabled={isDownloading}
         >
           {isDownloading ? (
-            <span className="flex items-center">
-              <span className="mr-2 h-3 w-3 animate-spin rounded-full border-2 border-primary border-t-transparent"></span>
-              Downloading...
-            </span>
+            <>
+              <div className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent"></div>
+              <span>Downloading...</span>
+            </>
           ) : (
             <>
-              <Download className="mr-2 h-4 w-4" />
-              Download
+              <Download className="h-4 w-4" />
+              <span>Download</span>
             </>
           )}
         </Button>
         
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" size="icon" className="h-8 w-8">
+            <Button variant="ghost" size="icon">
               <MoreVertical className="h-4 w-4" />
-              <span className="sr-only">More options</span>
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuItem>Add to playlist</DropdownMenuItem>
+            <DropdownMenuItem>Add to Playlist</DropdownMenuItem>
             <DropdownMenuItem>Share</DropdownMenuItem>
-            <DropdownMenuItem className="text-destructive">Delete</DropdownMenuItem>
+            <DropdownMenuItem>View Details</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
       </CardFooter>

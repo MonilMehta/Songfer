@@ -9,7 +9,11 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Youtube, Music, Loader2 } from 'lucide-react'
 import apiCaller from '@/utils/apiCaller'
 
-export default function DownloadForm() {
+interface DownloadFormProps {
+  onDownload?: (song: any) => void
+}
+
+export default function DownloadForm({ onDownload }: DownloadFormProps) {
   const [url, setUrl] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
@@ -41,6 +45,23 @@ export default function DownloadForm() {
       if (response && response.status === 200) {
         setSuccess('Song downloaded successfully!')
         setUrl('')
+        
+        // Create a song object from the response
+        const songData = {
+          id: response.data.id || Date.now(),
+          title: response.data.title || 'Downloaded Song',
+          artist: response.data.artist || 'Unknown Artist',
+          album: response.data.album,
+          duration: response.data.duration,
+          cover_url: response.data.cover_url,
+          download_url: response.data.download_url,
+          download_date: new Date().toISOString()
+        }
+        
+        // Call onDownload prop if provided
+        if (onDownload) {
+          onDownload(songData)
+        }
       } else {
         throw new Error('Failed to download song')
       }
@@ -98,11 +119,7 @@ export default function DownloadForm() {
       </CardContent>
       <CardFooter className="flex flex-col items-start">
         <div className="text-xs text-muted-foreground">
-          <p>Supported formats:</p>
-          <ul className="list-disc list-inside mt-1">
-            <li>YouTube videos and playlists</li>
-            <li>Spotify tracks and playlists</li>
-          </ul>
+          Supported platforms: YouTube, Spotify
         </div>
       </CardFooter>
     </Card>
