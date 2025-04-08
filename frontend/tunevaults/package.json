@@ -19,6 +19,7 @@
     "@tsparticles/slim": "^3.8.1",
     "@types/js-cookie": "^3.0.6",
     "axios": "^1.7.9",
+    "canvas-confetti": "^1.9.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^11.18.2",
