@@ -29,12 +29,12 @@ const RotatingVinylDisc = () => (
 
 export default function Header() {
   const { theme, setTheme } = useTheme()
-  const [isloggedin, setisloggedin] = useState(false)
+  const [isloggedin, setisloggedin] = useState<string | undefined>(undefined)
   const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
     const token = localStorage.getItem('token')
-    setisloggedin(!!token)
+    setisloggedin(token ? 'true' : undefined)
 
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10)

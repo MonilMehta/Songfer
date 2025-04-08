@@ -17,7 +17,7 @@ export default function ClientWrapper({ children }: ClientWrapperProps) {
 
   return (
     <>
-      {isValidElement(children) && cloneElement(children, { isloggedin })}
+      {isValidElement(children) && cloneElement(children, { isloggedin: isloggedin.toString() })}
     </>
   )
 }

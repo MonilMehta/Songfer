@@ -1,8 +1,7 @@
 "use client";
 
 import { useState, useEffect } from 'react';
-import Hero from '@/components/Hero'
-import FeatureCard from '@/components/FeatureCard'
+import Hero from '@/components/custom/Hero'
 import { Download, Music, Headphones, Zap, Share2, Lock, Disc } from 'lucide-react'
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -11,6 +10,8 @@ import Cookies from 'js-cookie';
 import { ButtonCta } from '@/components/ui/button-shiny';
 import { Cover } from '@/components/ui/cover';
 import { motion } from 'framer-motion';
+import { BentoDemo } from '@/components/custom/Bento';
+import Navbar from '@/components/custom/Navbar';
 
 export default function Home() {
   const [url, setUrl] = useState('');
@@ -131,6 +132,7 @@ export default function Home() {
 
   return (
     <div>
+      <Navbar />
       <Hero />
 
       <div id="download-section" className="py-16 sm:py-24 bg-background">
@@ -144,7 +146,7 @@ export default function Home() {
             Experience our seamless interface. Simply paste your Spotify or YouTube URL below to try out one free download on us!
           </p>
 
-          <div className="w-full max-w-lg mx-auto bg-card p-6 rounded-lg shadow-lg border">
+          <div className="w-full max-w-lg mx-auto bg-card p-6 rounded-lg shadow-lg border hover-light-mode">
             <div className="flex flex-col sm:flex-row gap-2 mb-4">
               <Input
                 placeholder="Enter YouTube or Spotify URL"
@@ -224,40 +226,9 @@ export default function Home() {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 py-12">
+      <div id="features" className="container mx-auto px-4 py-16">
         <h2 className="text-3xl font-semibold mb-8 text-center">Amazing Features</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <FeatureCard
-            title="Download Music"
-            description="Easily download your favorite tracks from YouTube and Spotify."
-            icon={<Download className="w-6 h-6" />}
-          />
-          <FeatureCard
-            title="Discover New Tunes"
-            description="Get personalized recommendations based on your music taste."
-            icon={<Music className="w-6 h-6" />}
-          />
-          <FeatureCard
-            title="Offline Listening"
-            description="Enjoy your downloaded music anytime, anywhere, even without an internet connection."
-            icon={<Headphones className="w-6 h-6" />}
-          />
-          <FeatureCard
-            title="Lightning Fast"
-            description="Experience rapid downloads and smooth performance."
-            icon={<Zap className="w-6 h-6" />}
-          />
-          <FeatureCard
-            title="Share Playlists"
-            description="Create and share your curated playlists with friends."
-            icon={<Share2 className="w-6 h-6" />}
-          />
-          <FeatureCard
-            title="Secure Storage"
-            description="Your music library is securely stored on your device."
-            icon={<Lock className="w-6 h-6" />}
-          />
-        </div>
+        <BentoDemo />
       </div>
     </div>
   )
