@@ -1,26 +1,47 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import apiCaller from '@/utils/apiCaller'
-import SongCard from '@/components/custom/SongCard'
-import DownloadForm from '@/components/custom/DownloadForm'
-import { DownloadsRemainingCard, PremiumBadge } from '@/components/custom/StatsCard'
-import { Music, Download, Clock, DollarSign, Sparkles } from 'lucide-react'
+import { useState, useEffect } from 'react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { SongCard } from '@/components/song-card'
+import { DownloadForm } from '@/components/download-form'
+import { DownloadsRemainingCard } from '@/components/downloads-remaining-card'
+import { PremiumBadge } from '@/components/premium-badge'
+import { Music, Download, History } from 'lucide-react'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
+import { useToast } from '@/hooks/use-toast'
 import Link from 'next/link'
-import { motion, AnimatePresence } from 'framer-motion'
 
 interface Song {
-  id: number
+  id: string
   title: string
   artist: string
   album?: string
-  duration?: string
+  duration: string
+  thumbnail: string
   cover_url?: string
   download_url?: string
-  download_date?: string
+}
+
+interface Playlist {
+  id: string
+  name: string
+  creator: string
+  trackCount: number
+  thumbnail: string
+}
+
+interface PreviewData {
+  type: 'song' | 'playlist'
+  data: Song | Playlist
+  platform: 'youtube' | 'spotify'
+  url: string
+}
+
+interface DownloadProgress {
+  id: string
+  progress: number
+  message?: string
 }
 
 interface UserStats {
@@ -32,8 +53,9 @@ interface UserStats {
 
 export default function Dashboard() {
   const [songs, setSongs] = useState<Song[]>([])
-  const [recommendations, setRecommendations] = useState<Song[]>([])
-  const [activeDownloads, setActiveDownloads] = useState<Song[]>([])
+  const [topArtists, setTopArtists] = useState([])
+  const [recommendations, setRecommendations] = useState([])
+  const [downloadProgress, setDownloadProgress] = useState<DownloadProgress | null>(null)
   const [userStats, setUserStats] = useState<UserStats>({
     downloadsRemaining: 10,
     isPremium: false,
@@ -41,218 +63,289 @@ export default function Dashboard() {
     savingsAmount: 0
   })
   const [isLoading, setIsLoading] = useState(true)
+  const [preview, setPreview] = useState<PreviewData | null>(null)
+  const [isPreviewLoading, setIsPreviewLoading] = useState(false)
+  const [isDownloading, setIsDownloading] = useState(false)
+  const { toast } = useToast()
 
   useEffect(() => {
-    const fetchData = async () => {
+    // Fetch user's downloaded songs and stats
+    const fetchUserData = async () => {
       try {
-        // Fetch user stats
-        const isPremiumUser = localStorage.getItem('isPremium') === 'true'
-        setUserStats({
-          downloadsRemaining: isPremiumUser ? 50 : 10,
-          isPremium: isPremiumUser,
-          totalDownloads: 5,
-          savingsAmount: 25
-        })
-
-        // Fetch downloaded songs
-        const songsResponse = await apiCaller('songs/', 'GET')
-        if (songsResponse && songsResponse.status === 200) {
-          setSongs(songsResponse.data)
-        }
-
-        // Mock recommendations data
-        setRecommendations([
-          {
-            id: 101,
-            title: "Recommended Song 1",
-            artist: "Artist 1",
-            cover_url: "https://via.placeholder.com/150"
-          },
-          {
-            id: 102,
-            title: "Recommended Song 2",
-            artist: "Artist 2",
-            cover_url: "https://via.placeholder.com/150"
-          }
-        ])
+        setIsLoading(true);
         
-        setIsLoading(false)
+        const token = localStorage.getItem('token');
+        if (!token) {
+          console.error("No authentication token found");
+          toast({
+            title: "Authentication Error",
+            description: "Please log in again to access your data",
+            variant: "destructive"
+          });
+          return;
+        }
+        
+        const authHeaders = {
+          'Authorization': `Token ${token}`,
+          'Content-Type': 'application/json'
+        };
+        
+        // Fetch downloaded songs
+        const songsResponse = await fetch('http://localhost:8000/api/songs/', {
+          headers: authHeaders
+        });
+        
+        if (!songsResponse.ok) throw new Error('Failed to fetch songs');
+        const songsData = await songsResponse.json();
+        setSongs(songsData);
+        
+        // Fetch top artists
+        const artistsResponse = await fetch('http://localhost:8000/api/songs/user/top-artists/', {
+          headers: authHeaders
+        });
+        
+        if (!artistsResponse.ok) throw new Error('Failed to fetch top artists');
+        const artistsData = await artistsResponse.json();
+        setTopArtists(artistsData);
+        
+        // Fetch recommendations
+        const recommendationsResponse = await fetch('http://localhost:8000/api/songs/recommendations/', {
+          headers: authHeaders
+        });
+        
+        if (!recommendationsResponse.ok) throw new Error('Failed to fetch recommendations');
+        const recommendationsData = await recommendationsResponse.json();
+        setRecommendations(recommendationsData);
+        
+        // In a real app, you would fetch user stats from your backend
+        // For now using placeholder values
+        setUserStats({
+          downloadsRemaining: 10,
+          isPremium: false,
+          totalDownloads: songsData.length || 0,
+          savingsAmount: 0
+        });
       } catch (error) {
-        console.error('Error fetching data:', error)
-        setIsLoading(false)
+        console.error("Error fetching data:", error);
+        toast({
+          title: "Error",
+          description: `Failed to load data: ${error instanceof Error ? error.message : 'Unknown error'}`,
+          variant: "destructive"
+        });
+      } finally {
+        setIsLoading(false);
       }
-    }
+    };
 
-    fetchData()
-  }, [])
+    fetchUserData();
+  }, [toast]);
 
-  const handleDownload = (song: Song) => {
-    setActiveDownloads(prev => [...prev, song])
+  const handlePreviewFetch = async (url: string) => {
+    if (!url) return;
     
-    setTimeout(() => {
-      setActiveDownloads(prev => prev.filter(s => s.id !== song.id))
-      setSongs(prev => [song, ...prev])
+    setIsPreviewLoading(true);
+    setPreview(null);
+    
+    try {
+      // Call the backend to fetch the preview information
+      const response = await fetch(`http://localhost:8000/api/songs/preview/?url=${encodeURIComponent(url)}`);
+      
+      if (!response.ok) {
+        throw new Error('Failed to fetch preview');
+      }
+      
+      const previewData = await response.json();
+      
+      // Determine if it's a song or playlist based on the response structure
+      const isPlaylist = previewData.type === 'playlist';
+      
+      setPreview({
+        type: isPlaylist ? 'playlist' : 'song',
+        platform: previewData.platform || (url.includes('spotify') ? 'spotify' : 'youtube'),
+        data: previewData,
+        url: url
+      });
+    } catch (error) {
+      console.error("Error fetching preview:", error);
+      toast({
+        title: "Preview Failed",
+        description: error instanceof Error ? error.message : "Could not fetch preview information",
+        variant: "destructive"
+      });
+    } finally {
+      setIsPreviewLoading(false);
+    }
+  };
+
+  const handleDownload = async (url: string, format: string) => {
+    console.log(`Dashboard handling download for: ${url} with format: ${format}`);
+    
+    setIsDownloading(true);
+    
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        throw new Error('Authentication required');
+      }
+      
+      const response = await fetch('http://localhost:8000/api/songs/songs/download/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Token ${token}`,
+        },
+        body: JSON.stringify({ url, format }),
+      });
+      
+      if (!response.ok) {
+        throw new Error(`Download failed: ${response.status}`);
+      }
+      
+      toast({
+        title: "Download Successful",
+        description: "Your song has been added to your library",
+      });
       
       setUserStats(prev => ({
         ...prev,
-        downloadsRemaining: prev.downloadsRemaining - 1,
-        totalDownloads: prev.totalDownloads + 1,
-        savingsAmount: prev.savingsAmount + 5
-      }))
-    }, 3000)
-  }
+        downloadsRemaining: Math.max(0, prev.downloadsRemaining - 1),
+        totalDownloads: prev.totalDownloads + 1
+      }));
+      
+      fetchSongs();
+      
+    } catch (error) {
+      console.error('Download error:', error);
+      toast({
+        title: "Download Failed",
+        description: error instanceof Error ? error.message : "An error occurred",
+        variant: "destructive"
+      });
+    } finally {
+      setIsDownloading(false);
+    }
+  };
 
-  if (isLoading) {
-    return (
-      <div className="flex items-center justify-center min-h-[80vh]">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
-      </div>
-    )
+  const fetchSongs = async () => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) return;
+      
+      const response = await fetch('http://localhost:8000/api/songs/', {
+        headers: {
+          'Authorization': `Token ${token}`,
+          'Content-Type': 'application/json'
+        }
+      });
+      
+      if (response.ok) {
+        const data = await response.json();
+        setSongs(data);
+      }
+    } catch (error) {
+      console.error("Error fetching songs:", error);
+    }
+  };
+
+  const renderTotalDownloads = (isPremium: boolean) => {
+    return isPremium ? "Unlimited" : 10;
+  };
+
+  const handleUrlSubmit = async (url: string, format: string) => {
+    if (!url) return;
+    
+    console.log(`Downloading from URL: ${url} with format: ${format}`);
+    
+    setUserStats(prev => ({
+      ...prev,
+      downloadsRemaining: Math.max(0, prev.downloadsRemaining - 1),
+      totalDownloads: prev.totalDownloads + 1
+    }));
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-background/80">
-      <div className="container mx-auto px-4 py-8">
-        <h1 className="text-4xl font-bold mb-8 text-primary">Dashboard</h1>
-        
-        {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          <Card className="bg-card/50 backdrop-blur-sm">
-            <DownloadsRemainingCard 
-              downloadsRemaining={userStats.downloadsRemaining} 
-              isPremium={userStats.isPremium} 
-            />
-          </Card>
-          <Card className="bg-card/50 backdrop-blur-sm">
-            <PremiumBadge isPremium={userStats.isPremium} />
-          </Card>
-          
-          <Card className="bg-card/50 backdrop-blur-sm">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Songs Downloaded</CardTitle>
-              <Music className="h-4 w-4 text-muted-foreground" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">{userStats.totalDownloads}</div>
-              <p className="text-xs text-muted-foreground">
-                Total songs in your library
+    <div className="container mx-auto p-6 space-y-6">
+      {!userStats.isPremium && (
+        <div className="bg-gradient-to-r from-primary/10 to-primary/5 p-6 rounded-lg mb-8">
+          <div className="flex flex-col md:flex-row items-center justify-between">
+            <div>
+              <h3 className="text-xl font-bold">Upgrade to Premium</h3>
+              <p className="text-muted-foreground mt-1">
+                Get unlimited downloads and exclusive features
               </p>
-            </CardContent>
-          </Card>
-          
-          <Card className="bg-card/50 backdrop-blur-sm">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium">Money Saved</CardTitle>
-              <DollarSign className="h-4 w-4 text-muted-foreground" />
-            </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">${userStats.savingsAmount}</div>
-              <p className="text-xs text-muted-foreground">
-                Estimated savings from downloads
-              </p>
-            </CardContent>
-          </Card>
-        </div>
-        
-        {/* Download Form */}
-        <div className="mb-12">
-          <h2 className="text-2xl font-bold mb-4">Download New Songs</h2>
-          <Card className="bg-card/50 backdrop-blur-sm">
-            <DownloadForm onDownload={handleDownload} />
-          </Card>
-        </div>
-        
-        {/* Active Downloads */}
-        <AnimatePresence>
-          {activeDownloads.length > 0 && (
-            <motion.div 
-              className="mb-12"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              <h2 className="text-2xl font-bold mb-4">Active Downloads</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                {activeDownloads.map((song) => (
-                  <div key={song.id} className="relative">
-                    <SongCard song={song} />
-                    <div className="absolute inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center rounded-lg">
-                      <div className="text-white text-center">
-                        <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-white mx-auto mb-2"></div>
-                        <p>Downloading...</p>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-        
-        {/* Recommendations */}
-        <div className="mb-12">
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="text-2xl font-bold">Recommendations</h2>
-            <Button variant="outline" size="sm">
-              <Sparkles className="h-4 w-4 mr-2" />
-              More
+            </div>
+            <Button className="mt-4 md:mt-0" asChild>
+              <Link href="/pricing">View Plans</Link>
             </Button>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {recommendations.map((song) => (
-              <SongCard key={song.id} song={song} onDownload={() => handleDownload(song)} />
-            ))}
-          </div>
         </div>
+      )}
+
+      <div className="grid gap-4 md:grid-cols-2">
+        <DownloadsRemainingCard
+          downloadsRemaining={userStats.downloadsRemaining}
+          totalDownloads={renderTotalDownloads(userStats.isPremium)}
+        />
+        <PremiumBadge
+          isPremium={userStats.isPremium}
+          savingsAmount={userStats.savingsAmount}
+        />
+      </div>
+
+      <Tabs defaultValue="download" className="space-y-4">
+        <TabsList className="grid w-full grid-cols-2">
+          <TabsTrigger value="download">
+            <Download className="w-4 h-4 mr-2" />
+            Download
+          </TabsTrigger>
+          <TabsTrigger value="songs">
+            <History className="w-4 h-4 mr-2" />
+            My Downloads
+          </TabsTrigger>
+        </TabsList>
         
-        {/* Downloaded Songs */}
-        <div className="mb-12">
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="text-2xl font-bold">My Downloads</h2>
-            <Button variant="outline" size="sm">
-              <Music className="h-4 w-4 mr-2" />
-              View All
-            </Button>
-          </div>
-          {songs.length > 0 ? (
+        <TabsContent value="download" className="space-y-6">
+          <Card>
+            <CardHeader>
+              <CardTitle>Download Music</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <DownloadForm 
+                onDownload={handleDownload}
+                isLoading={isLoading || isDownloading}
+                isPremium={userStats.isPremium}
+              />
+            </CardContent>
+          </Card>
+        </TabsContent>
+        
+        <TabsContent value="songs">
+          {isLoading ? (
+            <div className="flex items-center justify-center h-40">
+              <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-primary"></div>
+            </div>
+          ) : songs.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {songs.map((song) => (
-                <SongCard key={song.id} song={song} />
+                <SongCard
+                  key={song.id}
+                  song={song}
+                />
               ))}
             </div>
           ) : (
-            <Card className="bg-card/50 backdrop-blur-sm">
-              <div className="flex flex-col items-center justify-center py-12 text-center">
+            <Card>
+              <CardContent className="flex flex-col items-center justify-center py-12 text-center">
                 <Music className="h-12 w-12 text-muted-foreground mb-4" />
-                <h3 className="text-lg font-medium">No songs yet</h3>
+                <h3 className="text-lg font-medium">No downloads yet</h3>
                 <p className="text-sm text-muted-foreground mt-1">
                   Download your first song to get started
                 </p>
-              </div>
+              </CardContent>
             </Card>
           )}
-        </div>
-        
-        {/* Upgrade Banner */}
-        {!userStats.isPremium && (
-          <Card className="mb-8 bg-gradient-to-r from-primary/5 to-primary/10">
-            <div className="flex flex-col md:flex-row items-center justify-between p-6">
-              <div>
-                <h3 className="text-xl font-bold">Upgrade to Premium</h3>
-                <p className="text-muted-foreground mt-1">
-                  Get unlimited downloads and exclusive features
-                </p>
-              </div>
-              <Link href="/pricing" className="mt-4 md:mt-0">
-                <Button>
-                  View Plans
-                </Button>
-              </Link>
-            </div>
-          </Card>
-        )}
-      </div>
+        </TabsContent>
+      </Tabs>
     </div>
   )
 }
-

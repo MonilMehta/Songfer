@@ -1,30 +1,90 @@
-WARNING 2025-04-08 16:27:22,980 log 7544 15148 Bad Request: /api/users/login/
-WARNING 2025-04-08 16:27:22,986 basehttp 7544 15148 "POST /api/users/login/ HTTP/1.1" 400 68
-WARNING 2025-04-08 16:27:23,933 log 7544 18916 Bad Request: /api/users/login/
-WARNING 2025-04-08 16:27:23,937 basehttp 7544 18916 "POST /api/users/login/ HTTP/1.1" 400 68
-WARNING 2025-04-08 16:27:31,897 log 7544 15148 Bad Request: /api/users/login/
-WARNING 2025-04-08 16:27:31,964 basehttp 7544 15148 "POST /api/users/login/ HTTP/1.1" 400 68
-INFO 2025-04-08 16:33:30,124 basehttp 7544 1164 "POST /api/users/register/ HTTP/1.1" 200 120
-WARNING 2025-04-08 16:33:40,466 log 7544 1164 Bad Request: /api/users/register/
-WARNING 2025-04-08 16:33:40,466 basehttp 7544 1164 "POST /api/users/register/ HTTP/1.1" 400 58
-INFO 2025-04-08 16:34:07,081 basehttp 7544 1164 "POST /api/users/login/ HTTP/1.1" 200 96
-INFO 2025-04-08 16:34:10,158 basehttp 7544 1164 "POST /api/users/login/ HTTP/1.1" 200 96
-INFO 2025-04-08 16:34:12,454 basehttp 7544 1164 "GET /api/songs/ HTTP/1.1" 200 107
-INFO 2025-04-08 16:34:12,586 basehttp 7544 12040 "GET /api/songs/ HTTP/1.1" 200 107
-INFO 2025-04-08 16:51:03,243 basehttp 7544 2744 "GET /api/songs/ HTTP/1.1" 200 107
-INFO 2025-04-08 16:51:03,843 basehttp 7544 14428 "GET /api/songs/ HTTP/1.1" 200 107
-INFO 2025-04-08 17:34:13,673 basehttp 7544 11500 "GET /api/songs/ HTTP/1.1" 200 107
-INFO 2025-04-08 17:34:13,760 basehttp 7544 9244 "GET /api/songs/ HTTP/1.1" 200 107
-INFO 2025-04-08 17:44:02,653 basehttp 7544 14956 "POST /api/users/login/ HTTP/1.1" 200 96
-INFO 2025-04-08 17:44:03,731 basehttp 7544 16572 "GET /api/songs/ HTTP/1.1" 200 107
-INFO 2025-04-08 17:44:03,738 basehttp 7544 14956 "GET /api/songs/ HTTP/1.1" 200 107
-INFO 2025-04-08 17:50:31,553 basehttp 7544 8672 "GET /api/songs/ HTTP/1.1" 200 107
-INFO 2025-04-08 17:50:31,553 basehttp 7544 15040 "GET /api/songs/ HTTP/1.1" 200 107
-INFO 2025-04-08 17:52:33,416 basehttp 7544 16528 "GET /api/songs/ HTTP/1.1" 200 107
-INFO 2025-04-08 17:52:33,454 basehttp 7544 15812 "GET /api/songs/ HTTP/1.1" 200 107
-INFO 2025-04-08 17:52:58,967 basehttp 7544 16528 "GET /api/songs/ HTTP/1.1" 200 107
-INFO 2025-04-08 17:52:59,026 basehttp 7544 15812 "GET /api/songs/ HTTP/1.1" 200 107
-INFO 2025-04-08 17:53:34,691 basehttp 7544 16528 "GET /api/songs/ HTTP/1.1" 200 107
-INFO 2025-04-08 17:53:34,759 basehttp 7544 15812 "GET /api/songs/ HTTP/1.1" 200 107
-INFO 2025-04-08 17:54:01,418 basehttp 7544 16528 "GET /api/songs/ HTTP/1.1" 200 107
-INFO 2025-04-08 17:54:01,508 basehttp 7544 15812 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-08 23:48:47,549 autoreload 14548 14096 Watching for file changes with StatReloader
+INFO 2025-04-08 23:52:29,608 basehttp 14548 22504 "POST /api/users/login/ HTTP/1.1" 200 96
+INFO 2025-04-08 23:52:33,339 basehttp 14548 13868 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-08 23:52:34,535 basehttp 14548 22504 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-08 23:53:57,599 utils 14548 13868 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Damien Rice - Cheers darlin - Izabela wirkowska.mp3
+INFO 2025-04-08 23:53:58,012 utils 14548 13868 Loaded existing ID3 tags
+INFO 2025-04-08 23:53:58,101 utils 14548 13868 Looking for local thumbnail: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs/Damien Rice - Cheers darlin - Izabela wirkowska.webp
+INFO 2025-04-08 23:53:58,109 utils 14548 13868 Found local thumbnail: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs/Damien Rice - Cheers darlin - Izabela wirkowska.webp
+INFO 2025-04-08 23:53:58,109 utils 14548 13868 Detected image type: webp
+INFO 2025-04-08 23:53:58,109 utils 14548 13868 Converting image from webp to JPEG
+INFO 2025-04-08 23:53:58,738 utils 14548 13868 Successfully converted image to JPEG: 48644 bytes
+INFO 2025-04-08 23:53:58,746 utils 14548 13868 Adding album art, MIME type: image/jpeg
+INFO 2025-04-08 23:53:58,746 utils 14548 13868 Successfully added album art to ID3 tags
+INFO 2025-04-08 23:53:58,794 utils 14548 13868 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Damien Rice - Cheers darlin - Izabela wirkowska.mp3
+INFO 2025-04-08 23:53:58,802 utils 14548 13868 Verification: 8 tags were written, has_cover=True
+INFO 2025-04-08 23:54:02,026 views 14548 13868 Added song to cache: https://www.youtube.com/watch?v=GzKFEx-wsJo
+INFO 2025-04-08 23:54:02,287 basehttp 14548 13868 "POST /api/songs/songs/download/ HTTP/1.1" 200 8466310
+INFO 2025-04-09 00:01:00,253 basehttp 14548 3060 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-09 00:01:00,474 basehttp 14548 20312 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-09 00:01:32,995 basehttp 14548 3060 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-09 00:01:33,209 basehttp 14548 20312 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-09 05:39:08,884 autoreload 19420 6320 Watching for file changes with StatReloader
+INFO 2025-04-09 05:55:03,462 utils 19420 12032 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Rehna Tu Lyrical Delhi 6 Abhishek Bachchan Sonam Kapoor A R Rahman Benny Dayal Tanvi - T-Se.mp3
+INFO 2025-04-09 05:55:03,462 utils 19420 12032 Title: Rehna Tu Lyrical | Delhi 6 | Abhishek Bachchan, Sonam Kapoor | A R Rahman, Benny Dayal, Tanvi, Artist: T-Series, Album: Unknown, Genre: Unknown
+INFO 2025-04-09 05:55:03,477 utils 19420 12032 Loaded existing ID3 tags
+INFO 2025-04-09 05:55:03,558 utils 19420 12032 Looking for local thumbnail: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs/Rehna Tu Lyrical Delhi 6 Abhishek Bachchan Sonam Kapoor A R Rahman Benny Dayal Tanvi - T-S.webp
+INFO 2025-04-09 05:55:03,572 utils 19420 12032 Found local thumbnail: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs/Rehna Tu Lyrical Delhi 6 Abhishek Bachchan Sonam Kapoor A R Rahman Benny Dayal Tanvi - T-S.webp
+INFO 2025-04-09 05:55:03,572 utils 19420 12032 Detected image type: webp
+INFO 2025-04-09 05:55:03,572 utils 19420 12032 Converting image from webp to JPEG
+INFO 2025-04-09 05:55:04,829 utils 19420 12032 Successfully converted image to JPEG: 198551 bytes
+INFO 2025-04-09 05:55:04,829 utils 19420 12032 Adding album art, MIME type: image/jpeg
+INFO 2025-04-09 05:55:04,833 utils 19420 12032 Successfully added album art to ID3 tags
+INFO 2025-04-09 05:55:04,943 utils 19420 12032 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Rehna Tu Lyrical Delhi 6 Abhishek Bachchan Sonam Kapoor A R Rahman Benny Dayal Tanvi - T-Se.mp3
+INFO 2025-04-09 05:55:04,981 utils 19420 12032 Verification: 8 tags were written, has_cover=True
+INFO 2025-04-09 05:55:05,821 views 19420 12032 Added song to cache: https://www.youtube.com/watch?v=ZYGyuaEU2aA
+INFO 2025-04-09 05:55:06,506 basehttp 19420 12032 "POST /api/songs/songs/download/ HTTP/1.1" 200 10339117
+INFO 2025-04-09 05:55:16,783 views 19420 12032 Found existing song with URL https://www.youtube.com/watch?v=ZYGyuaEU2aA, serving directly
+INFO 2025-04-09 05:55:17,177 views 19420 12032 Using cached version for URL: https://www.youtube.com/watch?v=ZYGyuaEU2aA
+INFO 2025-04-09 05:55:17,573 basehttp 19420 12032 "POST /api/songs/songs/download/ HTTP/1.1" 200 10129004
+INFO 2025-04-09 05:55:26,434 views 19420 12032 Found existing song with URL https://www.youtube.com/watch?v=ZYGyuaEU2aA, serving directly
+INFO 2025-04-09 05:55:26,574 views 19420 12032 Using cached version for URL: https://www.youtube.com/watch?v=ZYGyuaEU2aA
+INFO 2025-04-09 05:55:26,984 basehttp 19420 12032 "POST /api/songs/songs/download/ HTTP/1.1" 200 10129004
+INFO 2025-04-09 06:00:40,014 views 19420 21592 Found existing song with URL https://www.youtube.com/watch?v=ZYGyuaEU2aA, serving directly
+INFO 2025-04-09 06:00:40,181 views 19420 21592 Using cached version for URL: https://www.youtube.com/watch?v=ZYGyuaEU2aA
+INFO 2025-04-09 06:00:40,355 basehttp 19420 21592 "POST /api/songs/songs/download/ HTTP/1.1" 200 10129004
+INFO 2025-04-09 06:01:22,582 views 19420 21592 Found existing song with URL https://www.youtube.com/watch?v=ZYGyuaEU2aA, serving directly
+INFO 2025-04-09 06:01:22,740 views 19420 21592 Using cached version for URL: https://www.youtube.com/watch?v=ZYGyuaEU2aA
+INFO 2025-04-09 06:01:22,924 basehttp 19420 21592 "POST /api/songs/songs/download/ HTTP/1.1" 200 10129004
+INFO 2025-04-09 06:12:39,381 views 19420 12164 Found existing song with URL https://www.youtube.com/watch?v=ZYGyuaEU2aA, serving directly
+INFO 2025-04-09 06:12:39,549 views 19420 12164 Using cached version for URL: https://www.youtube.com/watch?v=ZYGyuaEU2aA
+INFO 2025-04-09 06:12:39,706 basehttp 19420 12164 "POST /api/songs/songs/download/ HTTP/1.1" 200 10129004
+INFO 2025-04-09 06:13:02,505 utils 19420 12164 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Dark is the Night - Soviet WW2 Song - Patriotic Archive II.mp3
+INFO 2025-04-09 06:13:02,506 utils 19420 12164 Title: Dark is the Night - Soviet WW2 Song, Artist: Patriotic Archive II, Album: Unknown, Genre: Unknown
+INFO 2025-04-09 06:13:02,507 utils 19420 12164 Loaded existing ID3 tags
+INFO 2025-04-09 06:13:02,603 utils 19420 12164 Looking for local thumbnail: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs/Dark is the Night - Soviet WW2 Song - Patriotic Archive II.webp
+INFO 2025-04-09 06:13:02,613 utils 19420 12164 Found local thumbnail: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs/Dark is the Night - Soviet WW2 Song - Patriotic Archive II.webp
+INFO 2025-04-09 06:13:02,614 utils 19420 12164 Detected image type: webp
+INFO 2025-04-09 06:13:02,614 utils 19420 12164 Converting image from webp to JPEG
+INFO 2025-04-09 06:13:02,628 utils 19420 12164 Successfully converted image to JPEG: 32917 bytes
+INFO 2025-04-09 06:13:02,628 utils 19420 12164 Adding album art, MIME type: image/jpeg
+INFO 2025-04-09 06:13:02,628 utils 19420 12164 Successfully added album art to ID3 tags
+INFO 2025-04-09 06:13:02,635 utils 19420 12164 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Dark is the Night - Soviet WW2 Song - Patriotic Archive II.mp3
+INFO 2025-04-09 06:13:02,637 utils 19420 12164 Verification: 8 tags were written, has_cover=True
+INFO 2025-04-09 06:13:03,462 views 19420 12164 Added song to cache: https://www.youtube.com/watch?v=75P0QGi3RO0
+INFO 2025-04-09 06:13:03,497 basehttp 19420 12164 "POST /api/songs/songs/download/ HTTP/1.1" 200 4080736
+INFO 2025-04-09 06:19:39,438 spotify_api 19420 18816 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-04-09 06:19:39,438 spotify_api 19420 18816 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-09 06:19:39,439 views 19420 18816 Redirecting Spotify playlist URL to playlist download endpoint: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-04-09 06:19:39,439 spotify_api 19420 18816 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL?si=c51c27d3045d480c
+INFO 2025-04-09 06:19:39,439 spotify_api 19420 18816 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-09 06:19:39,440 spotify_api 19420 18816 Getting Spotify playlist info for ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-09 06:19:39,440 spotify_api 19420 18816 Creating Spotify client with credentials from settings
+INFO 2025-04-09 06:19:39,922 spotify_api 19420 18816 Successfully tested Spotify client
+INFO 2025-04-09 06:19:40,335 spotify_api 19420 18816 Extracted 3 track URLs from playlist
+INFO 2025-04-09 06:19:40,928 views 19420 18816 Added existing song to playlist: https://open.spotify.com/track/1ApfHqjOoBmJZ0SjdjzVyA
+INFO 2025-04-09 06:19:41,311 views 19420 18816 Added existing song to playlist: https://open.spotify.com/track/0dQiyqHUpnMPmHtk535VAY
+INFO 2025-04-09 06:19:41,690 views 19420 18816 Added existing song to playlist: https://open.spotify.com/track/0kYBzFJ5a2Jozi6cI4y9Bp
+INFO 2025-04-09 06:19:41,845 basehttp 19420 18816 "POST /api/songs/songs/download/ HTTP/1.1" 200 122
+WARNING 2025-04-09 06:23:41,686 log 19420 18240 Unauthorized: /api/songs/
+WARNING 2025-04-09 06:23:41,689 basehttp 19420 18240 "GET /api/songs/ HTTP/1.1" 401 58
+WARNING 2025-04-09 06:23:41,727 log 19420 18240 Unauthorized: /api/songs/
+WARNING 2025-04-09 06:23:41,743 basehttp 19420 18240 "GET /api/songs/ HTTP/1.1" 401 58
+WARNING 2025-04-09 06:23:47,495 log 19420 18240 Unauthorized: /api/songs/
+WARNING 2025-04-09 06:23:47,495 basehttp 19420 18240 "GET /api/songs/ HTTP/1.1" 401 58
+WARNING 2025-04-09 06:23:47,495 log 19420 18704 Unauthorized: /api/songs/
+WARNING 2025-04-09 06:23:47,495 basehttp 19420 18704 "GET /api/songs/ HTTP/1.1" 401 58
+WARNING 2025-04-09 06:23:59,019 log 19420 18240 Unauthorized: /api/songs/
+WARNING 2025-04-09 06:23:59,029 log 19420 18704 Unauthorized: /api/songs/
+WARNING 2025-04-09 06:23:59,029 basehttp 19420 18240 "GET /api/songs/ HTTP/1.1" 401 58
+WARNING 2025-04-09 06:23:59,029 basehttp 19420 18704 "GET /api/songs/ HTTP/1.1" 401 58
