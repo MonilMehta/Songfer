@@ -6,6 +6,8 @@ import { Button } from '@/components/ui/button'
 import { SongPreview } from '@/components/song-preview'
 import { useToast } from '@/hooks/use-toast'
 import Link from 'next/link'
+import { motion } from 'framer-motion'
+import { Progress } from '@/components/ui/progress'
 
 interface DownloadFormProps {
   onDownload: (url: string, format: string) => void
@@ -180,7 +182,16 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
       
       if (videoInfo.platform === 'youtube') {
         const ytData = await fetchYouTubeData(videoInfo.id, videoInfo.isPlaylist, videoInfo.playlistId);
-        setPreview(ytData);
+        const previewData: PreviewData = {
+          title: ytData.title,
+          artist: ytData.artist,
+          thumbnail: ytData.thumbnail,
+          platform: 'youtube',
+          isPlaylist: ytData.isPlaylist,
+          songCount: ytData.songCount ? Number(ytData.songCount) : undefined,
+          url: url
+        };
+        setPreview(previewData);
       } else if (videoInfo.platform === 'spotify') {
         // For Spotify, we create placeholders based on track vs playlist
         setPreview({
@@ -363,57 +374,84 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
   }
 
   return (
-    <div className="w-full max-w-md mx-auto space-y-6">
-      {!isPremium && (
-        <div className="bg-gradient-to-r from-primary/10 to-primary/5 p-6 rounded-lg mb-8">
-          <div className="flex flex-col md:flex-row items-center justify-between">
-            <div>
-              <h3 className="text-xl font-bold">Upgrade to Premium</h3>
-              <p className="text-muted-foreground mt-1">
-                Get unlimited downloads and exclusive features
-              </p>
-            </div>
-            <Button className="mt-4 md:mt-0" asChild>
-              <Link href="/pricing">View Plans</Link>
+    <div className="space-y-6">
+      <div className="space-y-4">
+        <div className="flex flex-col space-y-2">
+          <label htmlFor="url" className="text-sm font-medium">
+            Enter YouTube or Spotify URL
+          </label>
+          <div className="flex space-x-2">
+            <Input
+              id="url"
+              placeholder="https://www.youtube.com/watch?v=..."
+              value={url}
+              onChange={(e) => setUrl(e.target.value)}
+              disabled={isLoading || isDownloading}
+              className="flex-1"
+            />
+            <Button 
+              onClick={handleButtonClick} 
+              disabled={!url || isLoading || isDownloading}
+              className="shrink-0"
+            >
+              {isDownloading ? `Downloading... ${downloadProgress}%` : 
+                isLoading ? 'Processing...' : 
+                isPreviewLoading ? 'Loading Preview...' : 
+                preview ? (downloadComplete ? 'Save to Device' : 'Start Download') : 'Preview'}
             </Button>
           </div>
         </div>
-      )}
 
-      <div className="space-y-4">
-        <Input
-          type="text"
-          placeholder="Paste YouTube or Spotify URL here"
-          value={url}
-          onChange={(e) => setUrl(e.target.value)}
-          disabled={isLoading || isPreviewLoading || isDownloading}
-          className="w-full"
-        />
-        <Button
-          onClick={handleButtonClick}
-          disabled={isLoading || isPreviewLoading || isDownloading || !url}
-          className="w-full"
-        >
-          {isDownloading ? `Downloading... ${downloadProgress}%` : 
-            isLoading ? 'Processing...' : 
-            isPreviewLoading ? 'Loading Preview...' : 
-            preview ? (downloadComplete ? 'Save to Device' : 'Start Download') : 'Preview'}
-        </Button>
+        {/* Download Progress Bar */}
+        {isDownloading && (
+          <motion.div 
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="space-y-2"
+          >
+            <div className="flex justify-between text-sm">
+              <span>Downloading...</span>
+              <span>{downloadProgress}%</span>
+            </div>
+            <Progress 
+              value={downloadProgress} 
+              className="h-2 bg-muted [&>div]:bg-gradient-to-r [&>div]:from-primary [&>div]:to-primary/80"
+            />
+            <p className="text-xs text-muted-foreground">
+              {downloadProgress < 100 
+                ? "Please wait while we process your download" 
+                : "Download complete! Click the button above to save to your device"}
+            </p>
+          </motion.div>
+        )}
       </div>
 
       <div className="flex items-center justify-center space-x-4 text-sm text-muted-foreground">
-        <div className="flex items-center">
+        <motion.div 
+          className="flex items-center"
+          whileHover={{ scale: 1.05 }}
+          transition={{ type: "spring", stiffness: 400, damping: 10 }}
+        >
           <Youtube className="w-4 h-4 mr-1 text-red-500" />
           <span>YouTube</span>
-        </div>
-        <div className="flex items-center">
+        </motion.div>
+        <motion.div 
+          className="flex items-center"
+          whileHover={{ scale: 1.05 }}
+          transition={{ type: "spring", stiffness: 400, damping: 10 }}
+        >
           <Music className="w-4 h-4 mr-1 text-green-500" />
           <span>Spotify</span>
-        </div>
-        <div className="flex items-center">
+        </motion.div>
+        <motion.div 
+          className="flex items-center"
+          whileHover={{ scale: 1.05 }}
+          transition={{ type: "spring", stiffness: 400, damping: 10 }}
+        >
           <ListMusic className="w-4 h-4 mr-1 text-blue-500" />
           <span>Playlists</span>
-        </div>
+        </motion.div>
       </div>
 
       <Tabs value={format} onValueChange={setFormat} className="w-full">
@@ -427,15 +465,21 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
       <audio ref={audioRef} style={{ display: 'none' }} controls />
 
       {preview && (
-        <SongPreview
-          {...preview}
-          onDownload={downloadComplete && downloadedFile ? saveToDevice : handleDownloadMedia}
-          onPlay={playAudio}
-          isLoading={isDownloading}
-          downloadProgress={downloadProgress}
-          downloadComplete={downloadComplete}
-          canPlay={downloadComplete && downloadedFile !== null && !preview.isPlaylist}
-        />
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+        >
+          <SongPreview
+            data={preview}
+            onDownload={downloadComplete && downloadedFile ? saveToDevice : handleDownloadMedia}
+            onPlay={playAudio}
+            isLoading={isDownloading}
+            downloadProgress={downloadProgress}
+            downloadComplete={downloadComplete}
+            canPlay={downloadComplete && downloadedFile !== null && !preview.isPlaylist}
+          />
+        </motion.div>
       )}
     </div>
   )

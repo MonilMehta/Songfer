@@ -88,3 +88,52 @@ WARNING 2025-04-09 06:23:59,019 log 19420 18240 Unauthorized: /api/songs/
 WARNING 2025-04-09 06:23:59,029 log 19420 18704 Unauthorized: /api/songs/
 WARNING 2025-04-09 06:23:59,029 basehttp 19420 18240 "GET /api/songs/ HTTP/1.1" 401 58
 WARNING 2025-04-09 06:23:59,029 basehttp 19420 18704 "GET /api/songs/ HTTP/1.1" 401 58
+INFO 2025-04-11 22:08:08,140 autoreload 8936 10904 Watching for file changes with StatReloader
+INFO 2025-04-11 22:28:46,308 autoreload 23908 16188 Watching for file changes with StatReloader
+INFO 2025-04-12 19:44:44,449 autoreload 6940 11484 Watching for file changes with StatReloader
+INFO 2025-04-12 19:46:13,410 basehttp 6940 8804 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-12 19:46:13,421 basehttp 6940 11072 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-12 19:46:15,002 views 6940 11072 User has 3 songs
+INFO 2025-04-12 19:46:15,019 views 6940 8804 User has 3 songs
+INFO 2025-04-12 19:46:15,160 views 6940 11072 User has 0 songs with Spotify IDs
+INFO 2025-04-12 19:46:15,160 views 6940 8804 User has 0 songs with Spotify IDs
+INFO 2025-04-12 19:46:15,366 views 6940 11072 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-12 19:46:15,366 views 6940 8804 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-12 19:46:15,366 recommendation 6940 11072 Skipping Music.csv due to invalid format, using data.csv directly
+INFO 2025-04-12 19:46:15,366 recommendation 6940 8804 Skipping Music.csv due to invalid format, using data.csv directly
+INFO 2025-04-12 19:46:21,653 recommendation 6940 8804 Loaded data.csv dataset
+INFO 2025-04-12 19:46:21,702 recommendation 6940 11072 Loaded data.csv dataset
+INFO 2025-04-12 19:46:21,850 recommendation 6940 11072 Available columns in dataset: ['valence', 'year', 'acousticness', 'artists', 'danceability', 'duration_ms', 'energy', 'explicit', 'id', 'instrumentalness', 'key', 'liveness', 'loudness', 'mode', 'name', 'popularity', 'release_date', 'speechiness', 'tempo']
+INFO 2025-04-12 19:46:21,859 recommendation 6940 8804 Available columns in dataset: ['valence', 'year', 'acousticness', 'artists', 'danceability', 'duration_ms', 'energy', 'explicit', 'id', 'instrumentalness', 'key', 'liveness', 'loudness', 'mode', 'name', 'popularity', 'release_date', 'speechiness', 'tempo']
+INFO 2025-04-12 19:46:22,095 recommendation 6940 8804 Using features: ['acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'loudness', 'speechiness', 'tempo', 'valence']
+INFO 2025-04-12 19:46:22,110 recommendation 6940 11072 Using features: ['acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'loudness', 'speechiness', 'tempo', 'valence']
+INFO 2025-04-12 19:46:22,201 recommendation 6940 11072 Prepared data with 170653 songs and 9 features
+INFO 2025-04-12 19:46:22,201 recommendation 6940 8804 Prepared data with 170653 songs and 9 features
+INFO 2025-04-12 19:46:24,390 recommendation 6940 8804 Built song clusters successfully
+INFO 2025-04-12 19:46:24,398 recommendation 6940 11072 Built song clusters successfully
+INFO 2025-04-12 19:46:24,399 recommendation 6940 8804 Music Recommender initialized successfully
+INFO 2025-04-12 19:46:24,402 recommendation 6940 11072 Music Recommender initialized successfully
+INFO 2025-04-12 19:46:25,170 views 6940 11072 Got 10 recommendations
+INFO 2025-04-12 19:46:25,170 views 6940 8804 Got 10 recommendations
+INFO 2025-04-12 19:46:25,539 basehttp 6940 11072 "GET /api/songs/recommendations/ HTTP/1.1" 200 3019
+INFO 2025-04-12 19:46:25,549 basehttp 6940 8804 "GET /api/songs/recommendations/ HTTP/1.1" 200 2930
+INFO 2025-04-12 19:46:27,024 basehttp 6940 11072 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 120
+INFO 2025-04-12 19:46:27,148 basehttp 6940 8804 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 120
+INFO 2025-04-12 19:47:41,379 utils 6940 11072 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Billy Joel - Vienna Official Video - Billy Joel.mp3
+INFO 2025-04-12 19:47:41,381 utils 6940 11072 Title: Billy Joel - Vienna (Official Video), Artist: Billy Joel, Album: Unknown, Genre: Unknown
+INFO 2025-04-12 19:47:41,392 utils 6940 11072 Loaded existing ID3 tags
+INFO 2025-04-12 19:47:41,592 utils 6940 11072 Looking for local thumbnail: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs/Billy Joel - Vienna Official Video - Billy Joel.webp
+INFO 2025-04-12 19:47:41,601 utils 6940 11072 Found local thumbnail: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs/Billy Joel - Vienna Official Video - Billy Joel.webp
+INFO 2025-04-12 19:47:41,605 utils 6940 11072 Detected image type: webp
+INFO 2025-04-12 19:47:41,605 utils 6940 11072 Converting image from webp to JPEG
+INFO 2025-04-12 19:47:42,820 utils 6940 11072 Successfully converted image to JPEG: 158328 bytes
+INFO 2025-04-12 19:47:42,823 utils 6940 11072 Adding album art, MIME type: image/jpeg
+INFO 2025-04-12 19:47:42,823 utils 6940 11072 Successfully added album art to ID3 tags
+INFO 2025-04-12 19:47:42,885 utils 6940 11072 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Billy Joel - Vienna Official Video - Billy Joel.mp3
+INFO 2025-04-12 19:47:42,911 utils 6940 11072 Verification: 8 tags were written, has_cover=True
+INFO 2025-04-12 19:47:44,696 views 6940 11072 Added song to cache: https://www.youtube.com/watch?v=3jL4S4X97sQ
+INFO 2025-04-12 19:47:44,976 basehttp 6940 11072 "POST /api/songs/songs/download/ HTTP/1.1" 200 5355225
+INFO 2025-04-12 19:47:46,448 views 6940 11072 Found existing song with URL https://www.youtube.com/watch?v=3jL4S4X97sQ, serving directly
+INFO 2025-04-12 19:47:46,811 views 6940 11072 Using cached version for URL: https://www.youtube.com/watch?v=3jL4S4X97sQ
+INFO 2025-04-12 19:47:47,084 basehttp 6940 11072 "POST /api/songs/songs/download/ HTTP/1.1" 200 5190380
+INFO 2025-04-12 19:47:49,042 basehttp 6940 8804 "GET /api/songs/ HTTP/1.1" 200 107
