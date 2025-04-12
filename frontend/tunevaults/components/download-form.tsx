@@ -23,6 +23,7 @@ interface PreviewData {
   isPlaylist: boolean
   songCount?: number
   url: string
+  id: string
 }
 
 export function DownloadForm({ onDownload, isLoading, isPremium = false }: DownloadFormProps) {
@@ -111,7 +112,8 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
             platform: 'youtube' as const,
             isPlaylist: true,
             songCount: 'Multiple', // We don't know exactly how many
-            url
+            url,
+            id: playlistId
           };
         }
         
@@ -123,7 +125,8 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
           platform: 'youtube' as const,
           isPlaylist: true,
           songCount: 'Multiple',
-          url
+          url,
+          id: playlistId
         };
       } else {
         // Single video
@@ -141,7 +144,8 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
           thumbnail: `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`,
           platform: 'youtube' as const,
           isPlaylist: false,
-          url
+          url,
+          id: videoId
         };
       }
     } catch (error) {
@@ -154,7 +158,38 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
         platform: 'youtube' as const,
         isPlaylist,
         songCount: isPlaylist ? 'Multiple' : undefined,
-        url
+        url,
+        id: isPlaylist && playlistId ? playlistId : videoId
+      };
+    }
+  }
+
+  // Add function to fetch Spotify data
+  const fetchSpotifyData = async (id: string, isPlaylist: boolean) => {
+    try {
+      // Placeholder for actual Spotify API integration
+      // In a real implementation, you would call your backend to get Spotify data
+      return {
+        title: isPlaylist ? 'Spotify Playlist' : 'Spotify Track',
+        artist: isPlaylist ? 'Various Artists' : 'Spotify Artist',
+        thumbnail: `/placeholder-spotify-${isPlaylist ? 'playlist' : 'track'}.jpg`,
+        platform: 'spotify' as const,
+        isPlaylist,
+        songCount: isPlaylist ? 'Multiple' : undefined,
+        url,
+        id
+      };
+    } catch (error) {
+      console.error('Error fetching Spotify data:', error);
+      return {
+        title: isPlaylist ? 'Spotify Playlist' : 'Spotify Track',
+        artist: 'Unknown',
+        thumbnail: `/placeholder-spotify-${isPlaylist ? 'playlist' : 'track'}.jpg`,
+        platform: 'spotify' as const,
+        isPlaylist,
+        songCount: isPlaylist ? 'Multiple' : undefined,
+        url,
+        id
       };
     }
   }
@@ -189,19 +224,22 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
           platform: 'youtube',
           isPlaylist: ytData.isPlaylist,
           songCount: ytData.songCount ? Number(ytData.songCount) : undefined,
-          url: url
+          url: url,
+          id: ytData.id
         };
         setPreview(previewData);
       } else if (videoInfo.platform === 'spotify') {
-        // For Spotify, we create placeholders based on track vs playlist
+        // Fetch Spotify data
+        const spotifyData = await fetchSpotifyData(videoInfo.id, videoInfo.isPlaylist);
         setPreview({
-          title: videoInfo.isPlaylist ? 'Spotify Playlist' : 'Spotify Track',
-          artist: videoInfo.isPlaylist ? 'Various Artists' : 'Spotify Artist',
-          thumbnail: '/default-song-cover.jpg',
+          title: spotifyData.title,
+          artist: spotifyData.artist,
+          thumbnail: spotifyData.thumbnail,
           platform: 'spotify',
           isPlaylist: videoInfo.isPlaylist,
           songCount: videoInfo.isPlaylist ? 'Multiple' : undefined,
-          url
+          url,
+          id: videoInfo.id
         });
       }
       
@@ -373,114 +411,220 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
     }
   }
 
+  // Add function to render YouTube embed
+  const renderYouTubeEmbed = (id: string, isPlaylist: boolean) => {
+    if (isPlaylist) {
+      return (
+        <iframe 
+          className="w-full aspect-video rounded-md"
+          src={`https://www.youtube.com/embed/videoseries?list=${id}`}
+          title="YouTube playlist player" 
+          allowFullScreen
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        ></iframe>
+      );
+    } else {
+      return (
+        <iframe 
+          className="w-full aspect-video rounded-md"
+          src={`https://www.youtube.com/embed/${id}`}
+          title="YouTube video player" 
+          allowFullScreen
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        ></iframe>
+      );
+    }
+  };
+
+  // Add function to render Spotify embed
+  const renderSpotifyEmbed = (id: string, isPlaylist: boolean) => {
+    if (isPlaylist) {
+      return (
+        <iframe 
+          className="w-full rounded-md"
+          style={{ height: '380px' }}
+          src={`https://open.spotify.com/embed/playlist/${id}`} 
+          title="Spotify playlist player"
+          allowFullScreen
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"
+        ></iframe>
+      );
+    } else {
+      return (
+        <iframe 
+          className="w-full rounded-md" 
+          style={{ height: '80px' }}
+          src={`https://open.spotify.com/embed/track/${id}`} 
+          title="Spotify track player"
+          allowFullScreen
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"
+        ></iframe>
+      );
+    }
+  };
+
   return (
     <div className="space-y-6">
-      <div className="space-y-4">
-        <div className="flex flex-col space-y-2">
-          <label htmlFor="url" className="text-sm font-medium">
-            Enter YouTube or Spotify URL
-          </label>
+      <Tabs defaultValue="youtube" className="w-full">
+        <TabsList className="grid w-full grid-cols-2">
+          <TabsTrigger value="youtube" className="flex items-center space-x-2">
+            <Youtube className="h-4 w-4" /> <span>YouTube</span>
+          </TabsTrigger>
+          <TabsTrigger value="spotify" className="flex items-center space-x-2">
+            <Music className="h-4 w-4" /> <span>Spotify</span>
+          </TabsTrigger>
+        </TabsList>
+        
+        <TabsContent value="youtube" className="space-y-4">
           <div className="flex space-x-2">
             <Input
-              id="url"
-              placeholder="https://www.youtube.com/watch?v=..."
+              placeholder="Paste YouTube URL here..."
               value={url}
               onChange={(e) => setUrl(e.target.value)}
-              disabled={isLoading || isDownloading}
+              disabled={isPreviewLoading || isDownloading}
               className="flex-1"
             />
             <Button 
-              onClick={handleButtonClick} 
-              disabled={!url || isLoading || isDownloading}
-              className="shrink-0"
+              onClick={handlePreview} 
+              disabled={isPreviewLoading || !url}
+              variant="outline"
             >
-              {isDownloading ? `Downloading... ${downloadProgress}%` : 
-                isLoading ? 'Processing...' : 
-                isPreviewLoading ? 'Loading Preview...' : 
-                preview ? (downloadComplete ? 'Save to Device' : 'Start Download') : 'Preview'}
+              {isPreviewLoading ? 'Loading...' : 'Preview'}
             </Button>
           </div>
-        </div>
-
-        {/* Download Progress Bar */}
-        {isDownloading && (
-          <motion.div 
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="space-y-2"
-          >
-            <div className="flex justify-between text-sm">
-              <span>Downloading...</span>
-              <span>{downloadProgress}%</span>
+          
+          {preview && preview.platform === 'youtube' && (
+            <div className="space-y-4">
+              <div className="preview-container">
+                {renderYouTubeEmbed(preview.id, preview.isPlaylist)}
+              </div>
+              
+              <div className="space-y-2">
+                <h3 className="font-semibold text-lg">{preview.title}</h3>
+                <p className="text-sm text-muted-foreground">{preview.artist}</p>
+                {preview.isPlaylist && <p className="text-sm text-muted-foreground">Type: Playlist</p>}
+                
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">Format</label>
+                  <select 
+                    className="w-full p-2 rounded-md border border-input bg-background"
+                    value={format}
+                    onChange={(e) => setFormat(e.target.value)}
+                    disabled={isDownloading}
+                  >
+                    <option value="mp3">MP3</option>
+                    <option value="aac">AAC</option>
+                    <option value="wav">WAV</option>
+                    <option value="flac">FLAC</option>
+                  </select>
+                </div>
+              </div>
+              
+              <Button 
+                className="w-full" 
+                onClick={() => onDownload(url, format)}
+                disabled={isLoading || isDownloading}
+              >
+                {isDownloading ? 'Downloading...' : 'Download'}
+              </Button>
+              
+              {isDownloading && (
+                <div className="w-full rounded-full h-2 bg-secondary overflow-hidden">
+                  <div 
+                    className="bg-primary h-full transition-all duration-300"
+                    style={{ width: `${downloadProgress}%` }}
+                  ></div>
+                </div>
+              )}
+              
+              {isDownloading && (
+                <p className="text-sm text-center text-muted-foreground">
+                  {downloadProgress < 100 
+                    ? `Downloading... ${downloadProgress}%` 
+                    : 'Processing... Almost ready!'}
+                </p>
+              )}
             </div>
-            <Progress 
-              value={downloadProgress} 
-              className="h-2 bg-muted [&>div]:bg-gradient-to-r [&>div]:from-primary [&>div]:to-primary/80"
+          )}
+        </TabsContent>
+        
+        <TabsContent value="spotify" className="space-y-4">
+          <div className="flex space-x-2">
+            <Input
+              placeholder="Paste Spotify URL here..."
+              value={url}
+              onChange={(e) => setUrl(e.target.value)}
+              disabled={isPreviewLoading || isDownloading}
+              className="flex-1"
             />
-            <p className="text-xs text-muted-foreground">
-              {downloadProgress < 100 
-                ? "Please wait while we process your download" 
-                : "Download complete! Click the button above to save to your device"}
-            </p>
-          </motion.div>
-        )}
-      </div>
-
-      <div className="flex items-center justify-center space-x-4 text-sm text-muted-foreground">
-        <motion.div 
-          className="flex items-center"
-          whileHover={{ scale: 1.05 }}
-          transition={{ type: "spring", stiffness: 400, damping: 10 }}
-        >
-          <Youtube className="w-4 h-4 mr-1 text-red-500" />
-          <span>YouTube</span>
-        </motion.div>
-        <motion.div 
-          className="flex items-center"
-          whileHover={{ scale: 1.05 }}
-          transition={{ type: "spring", stiffness: 400, damping: 10 }}
-        >
-          <Music className="w-4 h-4 mr-1 text-green-500" />
-          <span>Spotify</span>
-        </motion.div>
-        <motion.div 
-          className="flex items-center"
-          whileHover={{ scale: 1.05 }}
-          transition={{ type: "spring", stiffness: 400, damping: 10 }}
-        >
-          <ListMusic className="w-4 h-4 mr-1 text-blue-500" />
-          <span>Playlists</span>
-        </motion.div>
-      </div>
-
-      <Tabs value={format} onValueChange={setFormat} className="w-full">
-        <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="mp3">MP3</TabsTrigger>
-          <TabsTrigger value="aac">AAC</TabsTrigger>
-        </TabsList>
+            <Button 
+              onClick={handlePreview} 
+              disabled={isPreviewLoading || !url}
+              variant="outline"
+            >
+              {isPreviewLoading ? 'Loading...' : 'Preview'}
+            </Button>
+          </div>
+          
+          {preview && preview.platform === 'spotify' && (
+            <div className="space-y-4">
+              <div className="preview-container">
+                {renderSpotifyEmbed(preview.id, preview.isPlaylist)}
+              </div>
+              
+              <div className="space-y-2">
+                <h3 className="font-semibold text-lg">{preview.title}</h3>
+                <p className="text-sm text-muted-foreground">{preview.artist}</p>
+                {preview.isPlaylist && <p className="text-sm text-muted-foreground">Type: Playlist</p>}
+                
+                <div className="space-y-2">
+                  <label className="text-sm font-medium">Format</label>
+                  <select 
+                    className="w-full p-2 rounded-md border border-input bg-background"
+                    value={format}
+                    onChange={(e) => setFormat(e.target.value)}
+                    disabled={isDownloading}
+                  >
+                    <option value="mp3">MP3</option>
+                    <option value="aac">AAC</option>
+                    <option value="wav">WAV</option>
+                    <option value="flac">FLAC</option>
+                  </select>
+                </div>
+              </div>
+              
+              <Button 
+                className="w-full" 
+                onClick={() => onDownload(url, format)}
+                disabled={isLoading || isDownloading}
+              >
+                {isDownloading ? 'Downloading...' : 'Download'}
+              </Button>
+              
+              {isDownloading && (
+                <div className="w-full rounded-full h-2 bg-secondary overflow-hidden">
+                  <div 
+                    className="bg-primary h-full transition-all duration-300"
+                    style={{ width: `${downloadProgress}%` }}
+                  ></div>
+                </div>
+              )}
+              
+              {isDownloading && (
+                <p className="text-sm text-center text-muted-foreground">
+                  {downloadProgress < 100 
+                    ? `Downloading... ${downloadProgress}%` 
+                    : 'Processing... Almost ready!'}
+                </p>
+              )}
+            </div>
+          )}
+        </TabsContent>
       </Tabs>
-
-      {/* Hidden audio element for playback */}
-      <audio ref={audioRef} style={{ display: 'none' }} controls />
-
-      {preview && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-        >
-          <SongPreview
-            data={preview}
-            onDownload={downloadComplete && downloadedFile ? saveToDevice : handleDownloadMedia}
-            onPlay={playAudio}
-            isLoading={isDownloading}
-            downloadProgress={downloadProgress}
-            downloadComplete={downloadComplete}
-            canPlay={downloadComplete && downloadedFile !== null && !preview.isPlaylist}
-          />
-        </motion.div>
-      )}
+      
+      <audio ref={audioRef} hidden></audio>
     </div>
   )
 } 
