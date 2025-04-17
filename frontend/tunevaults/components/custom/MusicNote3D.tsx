@@ -4,7 +4,7 @@ import { useFrame } from '@react-three/fiber'
 import { Box, Sphere, Cylinder } from '@react-three/drei'
 
 export default function MusicNote3D() {
-  const groupRef = useRef()
+  const groupRef = useRef(undefined)
 
   useFrame((state, delta) => {
     if (groupRef.current) {

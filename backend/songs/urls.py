@@ -17,6 +17,8 @@ urlpatterns = [
     path('user/profile/', views.UserMusicProfileView.as_view(), name='user-profile'),
     path('user/stats/', views.UserStatsView.as_view(), name='user-stats'),
     path('user/top-artists/', views.UserTopArtistsView.as_view(), name='user-top-artists'),
+    path('user/favorite-genres/', views.FavoriteGenresDistributionView.as_view(), name='favorite-genres'),
+    path('user/top-countries/', views.TopCountriesView.as_view(), name='top-countries'),
     path('record-play/', views.RecordPlayView.as_view(), name='record-play'),
     # Add explicit download_all URL pattern
     path('playlists/<int:pk>/download-all/', views.PlaylistViewSet.as_view({'get': 'download_all'}), name='playlist-download-all'),

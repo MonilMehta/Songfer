@@ -217,6 +217,14 @@ def download_song_direct(song_info, user_id, playlist_id=None, parent_task_id=No
             except Exception as profile_error:
                 logger.warning(f"download_song: Error updating user profile: {profile_error}")
 
+            # Record download in analytics
+            try:
+                from .models import UserAnalytics
+                UserAnalytics.record_download(user)
+                logger.info(f"download_song: Recorded download in analytics for song: {song.id}")
+            except Exception as analytics_error:
+                logger.warning(f"download_song: Error recording download in analytics: {analytics_error}")
+
             # Update progress to 100% if this is a standalone task
             if not parent_task_id and progress:
                 logger.info(f"download_song: Marking task as complete")
@@ -366,6 +374,14 @@ def download_song(self, url, user_id):
                 
                 # Increment the user's download count
                 user.increment_download_count()
+                
+                # Record download in analytics
+                try:
+                    from .models import UserAnalytics
+                    UserAnalytics.record_download(user)
+                    logger.info(f"Recorded download in analytics for song: {song.id}")
+                except Exception as analytics_error:
+                    logger.warning(f"Error recording download in analytics: {analytics_error}")
                 
                 # Cache the song for future use
                 try:

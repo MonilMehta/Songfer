@@ -89,12 +89,12 @@ class CustomUser(AbstractUser):
         # Reset daily downloads if it's a new day
         self._reset_daily_downloads_if_needed()
         
-        # Subscribed users have a limit of 30 downloads per day
+        # Subscribed users have a limit of 50 downloads per day
         if self.is_subscription_active():
-            return self.daily_downloads < 30
+            return self.daily_downloads < 50
             
-        # Non-subscribed users are limited to 5 downloads per day
-        return self.daily_downloads < 5
+        # Non-subscribed users are limited to 15 downloads per day
+        return self.daily_downloads < 15
     
     def increment_download_count(self):
         """
@@ -155,9 +155,9 @@ class CustomUser(AbstractUser):
         self._reset_daily_downloads_if_needed()
         
         if self.is_subscription_active():
-            return max(0, 30 - self.daily_downloads)
+            return max(0, 50 - self.daily_downloads)
         
-        return max(0, 5 - self.daily_downloads)
+        return max(0, 15 - self.daily_downloads)
         
     def update_last_seen(self):
         """

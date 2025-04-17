@@ -263,7 +263,11 @@ class SongViewSet(viewsets.ModelViewSet):
             cached_song = SongCache.get_cached_song(url)
             if cached_song:
                 logger.info(f"Using cached version for URL: {url}")
-                
+                # Record download in analytics for cached song
+                try:
+                    UserAnalytics.record_download(request.user)
+                except Exception as analytics_error:
+                    logger.warning(f"Error recording download in analytics: {analytics_error}")
                 # Get the cached file path
                 cached_path = cached_song.local_path if hasattr(cached_song, 'local_path') else cached_song.file_path
                 if isinstance(cached_path, str):
@@ -482,7 +486,11 @@ class SongViewSet(viewsets.ModelViewSet):
             cached_song = SongCache.get_cached_song(url)
             if cached_song:
                 logger.info(f"Using cached version for URL: {url}")
-                
+                # Record download in analytics for cached song
+                try:
+                    UserAnalytics.record_download(self.request.user)
+                except Exception as analytics_error:
+                    logger.warning(f"Error recording download in analytics: {analytics_error}")
                 # Get the cached file path
                 cached_file_path = os.path.join(settings.MEDIA_ROOT, cached_song.local_path.name if hasattr(cached_song, 'local_path') else cached_song.file_path)
                 
@@ -538,6 +546,12 @@ class SongViewSet(viewsets.ModelViewSet):
                     
                     # Increment download count
                     self.request.user.increment_download_count()
+                    
+                    # Record download in analytics
+                    try:
+                        UserAnalytics.record_download(self.request.user)
+                    except Exception as analytics_error:
+                        logger.warning(f"Error recording download in analytics: {analytics_error}")
                 
                 # Serve the file - We'll use Django's FileResponse which manages closing the file
                 formatted_filename = f"{title} - {artist}.{output_format}"
@@ -737,7 +751,11 @@ class SongViewSet(viewsets.ModelViewSet):
             cached_song = SongCache.get_cached_song(url)
             if cached_song:
                 logger.info(f"Using cached version for Spotify URL: {url}")
-                
+                # Record download in analytics for cached song
+                try:
+                    UserAnalytics.record_download(self.request.user)
+                except Exception as analytics_error:
+                    logger.warning(f"Error recording download in analytics: {analytics_error}")
                 # Get the cached file path
                 cached_path = cached_song.local_path if hasattr(cached_song, 'local_path') else cached_song.file_path
                 if isinstance(cached_path, str):
@@ -942,6 +960,12 @@ class SongViewSet(viewsets.ModelViewSet):
                 # Increment download count
                 self.request.user.increment_download_count()
                 
+                # Record download in analytics
+                try:
+                    UserAnalytics.record_download(self.request.user)
+                except Exception as analytics_error:
+                    logger.warning(f"Error recording download in analytics: {analytics_error}")
+                
                 # Add to cache for future use (with properly formatted filename)
                 try:
                     # Create properly named file in cache directory
@@ -979,8 +1003,6 @@ class SongViewSet(viewsets.ModelViewSet):
                         defaults={
                             'file_path': cache_path,
                             'file_size': file_size,
-                            'title': song.title,
-                            'artist': song.artist,
                             'expires_at': timezone.now() + timedelta(days=7),
                             'metadata': metadata
                         }
@@ -1387,6 +1409,13 @@ class SongViewSet(viewsets.ModelViewSet):
                 
             # Increment download count for each successful track
             request.user.bulk_increment_download_count(completed_downloads)
+            
+            # Record all downloads in analytics
+            try:
+                for _ in range(completed_downloads):
+                    UserAnalytics.record_download(request.user)
+            except Exception as analytics_error:
+                logger.warning(f"Error recording downloads in analytics: {analytics_error}")
 
             return Response({
                 "message": f"Playlist '{playlist_title}' downloaded successfully",
@@ -1753,7 +1782,34 @@ class UserTopArtistsView(generics.ListAPIView):
 
     def get_queryset(self):
         # Get top artists data
-        return Song.get_user_top_artists(self.request.user)
+        top_artists = Song.get_user_top_artists(self.request.user)
+        
+        # Enhance with data from Global Music Artists CSV
+        enhanced_artists = []
+        
+        for artist_data in top_artists:
+            artist_name = artist_data['artist']
+            count = artist_data['count']
+            
+            # Get additional artist info from CSV
+            from .utils import get_artist_info
+            artist_info = get_artist_info(artist_name)
+            
+            if artist_info:
+                # Add the count from the original query
+                artist_info['count'] = count
+                enhanced_artists.append(artist_info)
+            else:
+                # If not found in CSV, keep original data with default values
+                enhanced_artists.append({
+                    'artist': artist_name,
+                    'count': count,
+                    'artist_img': "https://media.istockphoto.com/id/1298261537/vector/blank-man-profile-head-icon-placeholder.jpg?s=612x612&w=0&k=20&c=CeT1RVWZzQDay4t54ookMaFsdi7ZHVFg2Y5v7hxigCA=",
+                    'country': "Unknown",
+                    'artist_genre': "Unknown"
+                })
+        
+        return enhanced_artists
 
 class UserRecommendationsView(generics.ListAPIView):
     serializer_class = SongSerializer
@@ -2059,3 +2115,115 @@ class RecordPlayView(APIView):
         except Exception as e:
             logger.error(f"Error recording play: {e}", exc_info=True)
             return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+class FavoriteGenresDistributionView(APIView):
+    """API view to get genre distribution for the authenticated user's songs"""
+    permission_classes = [IsAuthenticated]
+    
+    def get(self, request):
+        """Get genre distribution for the user's songs"""
+        try:
+            # Get all songs for the user
+            songs = Song.objects.filter(user=request.user)
+            
+            # Extract genres from songs and count them
+            from collections import Counter
+            from django.db.models import Count
+            
+            # First check for genre field on songs
+            genre_counts = Counter()
+            
+            # Process all songs
+            for song in songs:
+                # Get genre from song, split multiple genres if necessary
+                if song.genre:
+                    # Some genres might be comma-separated or in other formats
+                    genres = [g.strip() for g in song.genre.replace('/', ',').split(',')]
+                    for genre in genres:
+                        if genre:
+                            genre_counts[genre] += 1
+            
+            # Convert to list of dicts for the API response
+            genre_data = [{"genre": genre, "count": count} for genre, count in genre_counts.most_common(10)]
+            
+            # If we have artist genre data from the Global Music Artists CSV, use that to enhance our data
+            enhanced_genre_data = []
+            from .utils import get_artist_info
+            
+            # Get unique artists from user's songs
+            artists = songs.values_list('artist', flat=True).distinct()
+            artist_genre_map = {}
+            
+            # Look up each artist in the CSV
+            for artist_name in artists:
+                if not artist_name:
+                    continue
+                    
+                artist_info = get_artist_info(artist_name)
+                if artist_info and artist_info.get('artist_genre'):
+                    # Split genres (they might be comma-separated in the CSV)
+                    artist_genres = [g.strip() for g in artist_info['artist_genre'].replace('/', ',').split(',')]
+                    for genre in artist_genres:
+                        if genre:
+                            genre_counts[genre] += 1
+            
+            # Get the final genre distribution (top 10)
+            final_genre_data = [{"genre": genre, "count": count} for genre, count in genre_counts.most_common(10)]
+            
+            return Response({
+                'success': True,
+                'genre_distribution': final_genre_data
+            })
+        
+        except Exception as e:
+            logger.error(f"Error getting genre distribution: {e}", exc_info=True)
+            return Response({
+                'success': False,
+                'error': str(e)
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+class TopCountriesView(APIView):
+    """API view to get distribution of countries for the user's downloaded songs"""
+    permission_classes = [IsAuthenticated]
+    
+    def get(self, request):
+        """Get country distribution for the user's songs"""
+        try:
+            # Get all songs for the user
+            songs = Song.objects.filter(user=request.user)
+            
+            # Extract countries from artists in songs
+            from collections import Counter
+            
+            country_counts = Counter()
+            
+            # Get unique artists from user's songs
+            artists = songs.values_list('artist', flat=True).distinct()
+            
+            # Look up each artist in the CSV to get their country
+            from .utils import get_artist_info
+            
+            for artist_name in artists:
+                if not artist_name:
+                    continue
+                    
+                artist_info = get_artist_info(artist_name)
+                if artist_info and artist_info.get('country'):
+                    country = artist_info.get('country')
+                    if country and country.strip() != "":
+                        country_counts[country] += 1
+            
+            # Get the top countries (top 10)
+            top_countries = [{"country": country, "count": count} for country, count in country_counts.most_common(10)]
+            
+            return Response({
+                'success': True,
+                'country_distribution': top_countries
+            })
+        
+        except Exception as e:
+            logger.error(f"Error getting country distribution: {e}", exc_info=True)
+            return Response({
+                'success': False,
+                'error': str(e)
+            }, status=status.HTTP_500_INTERNAL_SERVER_ERROR)

@@ -1,8 +1,8 @@
 'use client'
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Clock, Calendar, Disc, BarChart3 } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
-import { BarChart3, Clock, Calendar, Disc } from 'lucide-react'
 
 interface LibraryInsightsCardProps {
   topGenre: string
@@ -39,13 +39,26 @@ export function LibraryInsightsCard({
     return `${Math.floor(diffDays / 30)} months ago`;
   };
 
+  const formatDate = (dateString?: string) => {
+    if (!dateString) return 'Never';
+    const date = new Date(dateString);
+    return date.toLocaleDateString('en-US', { 
+      year: 'numeric', 
+      month: 'short', 
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+  };
+
   return (
     <Card className="shadow-sm">
-      <CardHeader className="pb-2">
+      <CardHeader className="pb-1 pt-3">
         <CardTitle className="text-sm font-medium text-muted-foreground">Library Insights</CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="pb-3">
         <div className="space-y-3">
+          {/* Top Genre */}
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <div className="bg-blue-500/10 p-1.5 rounded-full">
@@ -58,36 +71,37 @@ export function LibraryInsightsCard({
             </Badge>
           </div>
           
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <div className="bg-green-500/10 p-1.5 rounded-full">
-                <Clock className="w-4 h-4 text-green-500" />
-              </div>
-              <span className="text-sm">Listening Time</span>
-            </div>
-            <span className="text-sm font-medium">{formatMinutesToHours(listeningTime)}</span>
-          </div>
+          {/* Last Download */}
           
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
+          
+          {/* Collection Size and Listening Time */}
+          <div className="grid grid-cols-2 gap-3 mt-4">
+            <div className="border rounded-lg p-2">
+              <div className="flex items-center gap-2 mb-0">
+                <div className="bg-amber-500/10 p-1.5 rounded-full">
+                  <Disc className="w-4 h-4 text-amber-500" />
+                </div>
+                <span className="text-sm">Collection</span>
+              </div>
+              <div className="text-md font-semibold pl-8">
+                {totalDownloads} songs
+              </div>
+            </div>
+            
+            <div className="border rounded-lg p-2">
+            <div className="flex items-center gap-2 mb-1">
               <div className="bg-purple-500/10 p-1.5 rounded-full">
                 <Calendar className="w-4 h-4 text-purple-500" />
               </div>
-              <span className="text-sm">Last Download</span>
+              <span className="font-medium text-sm">Last Download</span>
             </div>
-            <span className="text-sm font-medium">
-              {formatDateFromNow(lastDownloadDate)}
-            </span>
-          </div>
-          
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <div className="bg-amber-500/10 p-1.5 rounded-full">
-                <Disc className="w-4 h-4 text-amber-500" />
+            <div className="pl-8">
+              <div className="text-md font-semibold">
+                {formatDateFromNow(lastDownloadDate)}
               </div>
-              <span className="text-sm">Collection Size</span>
+             
             </div>
-            <span className="text-sm font-medium">{totalDownloads} songs</span>
+          </div>
           </div>
         </div>
       </CardContent>

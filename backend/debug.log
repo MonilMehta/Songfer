@@ -571,3 +571,1093 @@ Traceback (most recent call last):
 django.db.utils.OperationalError: could not translate host name "ep-patient-resonance-a19rwm71.ap-southeast-1.aws.neon.tech" to address: No such host is known. 
 
 ERROR 2025-04-12 20:31:00,473 basehttp 6940 11972 "GET /api/songs/ HTTP/1.1" 500 257413
+INFO 2025-04-12 20:48:53,873 basehttp 6940 24744 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-12 20:48:58,255 basehttp 6940 19560 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-12 20:49:03,996 views 6940 24744 User has 4 songs
+INFO 2025-04-12 20:49:04,201 views 6940 24744 User has 0 songs with Spotify IDs
+INFO 2025-04-12 20:49:04,201 views 6940 19560 User has 4 songs
+INFO 2025-04-12 20:49:04,391 views 6940 19560 User has 0 songs with Spotify IDs
+INFO 2025-04-12 20:49:05,427 views 6940 24744 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-12 20:49:05,923 views 6940 19560 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-12 20:49:06,419 views 6940 24744 Got 10 recommendations
+INFO 2025-04-12 20:49:07,503 views 6940 19560 Got 10 recommendations
+INFO 2025-04-12 20:49:07,644 basehttp 6940 24744 "GET /api/songs/recommendations/ HTTP/1.1" 200 3017
+INFO 2025-04-12 20:49:08,417 basehttp 6940 19560 "GET /api/songs/recommendations/ HTTP/1.1" 200 2926
+INFO 2025-04-12 20:49:11,012 basehttp 6940 24744 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 154
+INFO 2025-04-12 20:49:11,284 basehttp 6940 19560 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 154
+ERROR 2025-04-12 23:34:07,124 log 6940 8708 Internal Server Error: /api/songs/
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 279, in ensure_connection
+    self.connect()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\utils.py", line 1783, in runner
+    return sentry_patched_function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\__init__.py", line 690, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\postgresql\base.py", line 332, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\psycopg2\__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: could not translate host name "ep-patient-resonance-a19rwm71.ap-southeast-1.aws.neon.tech" to address: No such host is known. 
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\views.py", line 94, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\__init__.py", line 331, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 330, in perform_authentication
+    request.user
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\request.py", line 232, in user
+    self._authenticate()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\authentication.py", line 196, in authenticate
+    return self.authenticate_credentials(token)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\authentication.py", line 201, in authenticate_credentials
+    token = model.objects.select_related('user').get(key=key)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 645, in get
+    num = len(clone)
+          ^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 382, in __len__
+    self._fetch_all()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1572, in execute_sql
+    cursor = self.connection.cursor()
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 320, in cursor
+    return self._cursor()
+           ^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 296, in _cursor
+    self.ensure_connection()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 278, in ensure_connection
+    with self.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 279, in ensure_connection
+    self.connect()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\utils.py", line 1783, in runner
+    return sentry_patched_function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\__init__.py", line 690, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\postgresql\base.py", line 332, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\psycopg2\__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: could not translate host name "ep-patient-resonance-a19rwm71.ap-southeast-1.aws.neon.tech" to address: No such host is known. 
+
+ERROR 2025-04-12 23:34:07,224 basehttp 6940 8708 "GET /api/songs/ HTTP/1.1" 500 257411
+ERROR 2025-04-12 23:34:07,583 log 6940 15276 Internal Server Error: /api/songs/
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 279, in ensure_connection
+    self.connect()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\utils.py", line 1783, in runner
+    return sentry_patched_function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\__init__.py", line 690, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\postgresql\base.py", line 332, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\psycopg2\__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: could not translate host name "ep-patient-resonance-a19rwm71.ap-southeast-1.aws.neon.tech" to address: No such host is known. 
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\views.py", line 94, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\__init__.py", line 331, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 330, in perform_authentication
+    request.user
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\request.py", line 232, in user
+    self._authenticate()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\authentication.py", line 196, in authenticate
+    return self.authenticate_credentials(token)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\authentication.py", line 201, in authenticate_credentials
+    token = model.objects.select_related('user').get(key=key)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 645, in get
+    num = len(clone)
+          ^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 382, in __len__
+    self._fetch_all()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1572, in execute_sql
+    cursor = self.connection.cursor()
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 320, in cursor
+    return self._cursor()
+           ^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 296, in _cursor
+    self.ensure_connection()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 278, in ensure_connection
+    with self.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 279, in ensure_connection
+    self.connect()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\utils.py", line 1783, in runner
+    return sentry_patched_function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\__init__.py", line 690, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\postgresql\base.py", line 332, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\psycopg2\__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: could not translate host name "ep-patient-resonance-a19rwm71.ap-southeast-1.aws.neon.tech" to address: No such host is known. 
+
+ERROR 2025-04-12 23:34:07,607 basehttp 6940 15276 "GET /api/songs/ HTTP/1.1" 500 257413
+ERROR 2025-04-12 23:34:23,644 log 6940 8708 Internal Server Error: /api/songs/
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django_redis\cache.py", line 29, in _decorator
+    return method(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django_redis\cache.py", line 99, in _get
+    return self.client.get(key, default=default, version=version, client=client)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django_redis\client\default.py", line 260, in get
+    raise ConnectionInterrupted(connection=client) from e
+django_redis.exceptions.ConnectionInterrupted: Redis ConnectionError: Error while reading from redis-18712.crce182.ap-south-1-1.ec2.redns.redis-cloud.com:18712 : (10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\views.py", line 94, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\__init__.py", line 331, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 422, in initial
+    self.check_throttles(request)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 365, in check_throttles
+    if not throttle.allow_request(request, self):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\throttling.py", line 123, in allow_request
+    self.history = self.cache.get(self.key, [])
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django_redis\cache.py", line 92, in get
+    value = self._get(key, default, version, client)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django_redis\cache.py", line 36, in _decorator
+    raise e.__cause__
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django_redis\client\default.py", line 258, in get
+    value = client.get(key)
+            ^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\redis\commands\core.py", line 1822, in get
+    return self.execute_command("GET", name, keys=[name])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\redis\_sync_common.py", line 103, in sentry_patched_execute_command
+    value = old_execute_command(self, name, *args, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\redis\client.py", line 559, in execute_command
+    return self._execute_command(*args, **options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\redis\client.py", line 567, in _execute_command
+    return conn.retry.call_with_retry(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\redis\retry.py", line 65, in call_with_retry
+    fail(error)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\redis\client.py", line 571, in <lambda>
+    lambda error: self._disconnect_raise(conn, error),
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\redis\client.py", line 555, in _disconnect_raise
+    raise error
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\redis\retry.py", line 62, in call_with_retry
+    return do()
+           ^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\redis\client.py", line 568, in <lambda>
+    lambda: self._send_command_parse_response(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\redis\client.py", line 542, in _send_command_parse_response
+    return self.parse_response(conn, command_name, **options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\redis\client.py", line 584, in parse_response
+    response = connection.read_response()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\redis\connection.py", line 600, in read_response
+    raise ConnectionError(
+redis.exceptions.ConnectionError: Error while reading from redis-18712.crce182.ap-south-1-1.ec2.redns.redis-cloud.com:18712 : (10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)
+ERROR 2025-04-12 23:34:23,680 log 6940 15276 Internal Server Error: /api/songs/
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django_redis\cache.py", line 29, in _decorator
+    return method(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django_redis\cache.py", line 99, in _get
+    return self.client.get(key, default=default, version=version, client=client)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django_redis\client\default.py", line 260, in get
+    raise ConnectionInterrupted(connection=client) from e
+django_redis.exceptions.ConnectionInterrupted: Redis ConnectionError: Error while reading from redis-18712.crce182.ap-south-1-1.ec2.redns.redis-cloud.com:18712 : (10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\views.py", line 94, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\__init__.py", line 331, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 422, in initial
+    self.check_throttles(request)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 365, in check_throttles
+    if not throttle.allow_request(request, self):
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\throttling.py", line 123, in allow_request
+    self.history = self.cache.get(self.key, [])
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django_redis\cache.py", line 92, in get
+    value = self._get(key, default, version, client)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django_redis\cache.py", line 36, in _decorator
+    raise e.__cause__
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django_redis\client\default.py", line 258, in get
+    value = client.get(key)
+            ^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\redis\commands\core.py", line 1822, in get
+    return self.execute_command("GET", name, keys=[name])
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\redis\_sync_common.py", line 103, in sentry_patched_execute_command
+    value = old_execute_command(self, name, *args, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\redis\client.py", line 559, in execute_command
+    return self._execute_command(*args, **options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\redis\client.py", line 567, in _execute_command
+    return conn.retry.call_with_retry(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\redis\retry.py", line 65, in call_with_retry
+    fail(error)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\redis\client.py", line 571, in <lambda>
+    lambda error: self._disconnect_raise(conn, error),
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\redis\client.py", line 555, in _disconnect_raise
+    raise error
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\redis\retry.py", line 62, in call_with_retry
+    return do()
+           ^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\redis\client.py", line 568, in <lambda>
+    lambda: self._send_command_parse_response(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\redis\client.py", line 542, in _send_command_parse_response
+    return self.parse_response(conn, command_name, **options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\redis\client.py", line 584, in parse_response
+    response = connection.read_response()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\redis\connection.py", line 600, in read_response
+    raise ConnectionError(
+redis.exceptions.ConnectionError: Error while reading from redis-18712.crce182.ap-south-1-1.ec2.redns.redis-cloud.com:18712 : (10054, 'An existing connection was forcibly closed by the remote host', None, 10054, None)
+ERROR 2025-04-12 23:34:23,762 basehttp 6940 8708 "GET /api/songs/ HTTP/1.1" 500 209143
+ERROR 2025-04-12 23:34:23,770 basehttp 6940 15276 "GET /api/songs/ HTTP/1.1" 500 209143
+INFO 2025-04-12 23:35:55,026 autoreload 1272 11156 Watching for file changes with StatReloader
+INFO 2025-04-12 23:36:14,950 basehttp 1272 17364 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-12 23:36:14,951 basehttp 1272 4968 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-12 23:36:16,563 views 1272 17364 User has 4 songs
+INFO 2025-04-12 23:36:16,699 views 1272 17364 User has 0 songs with Spotify IDs
+INFO 2025-04-12 23:36:16,810 views 1272 17364 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-12 23:36:16,810 recommendation 1272 17364 Skipping Music.csv due to invalid format, using data.csv directly
+INFO 2025-04-12 23:36:17,046 views 1272 4968 User has 4 songs
+INFO 2025-04-12 23:36:17,251 views 1272 4968 User has 0 songs with Spotify IDs
+INFO 2025-04-12 23:36:17,441 views 1272 4968 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-12 23:36:17,441 recommendation 1272 4968 Skipping Music.csv due to invalid format, using data.csv directly
+INFO 2025-04-12 23:36:24,906 recommendation 1272 17364 Loaded data.csv dataset
+INFO 2025-04-12 23:36:25,236 recommendation 1272 17364 Available columns in dataset: ['valence', 'year', 'acousticness', 'artists', 'danceability', 'duration_ms', 'energy', 'explicit', 'id', 'instrumentalness', 'key', 'liveness', 'loudness', 'mode', 'name', 'popularity', 'release_date', 'speechiness', 'tempo']
+INFO 2025-04-12 23:36:25,489 recommendation 1272 17364 Using features: ['acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'loudness', 'speechiness', 'tempo', 'valence']
+INFO 2025-04-12 23:36:25,656 recommendation 1272 17364 Prepared data with 170653 songs and 9 features
+INFO 2025-04-12 23:36:30,421 recommendation 1272 4968 Loaded data.csv dataset
+INFO 2025-04-12 23:36:30,530 recommendation 1272 4968 Available columns in dataset: ['valence', 'year', 'acousticness', 'artists', 'danceability', 'duration_ms', 'energy', 'explicit', 'id', 'instrumentalness', 'key', 'liveness', 'loudness', 'mode', 'name', 'popularity', 'release_date', 'speechiness', 'tempo']
+INFO 2025-04-12 23:36:30,735 recommendation 1272 4968 Using features: ['acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'loudness', 'speechiness', 'tempo', 'valence']
+INFO 2025-04-12 23:36:30,861 recommendation 1272 4968 Prepared data with 170653 songs and 9 features
+INFO 2025-04-12 23:36:32,847 recommendation 1272 17364 Built song clusters successfully
+INFO 2025-04-12 23:36:32,847 recommendation 1272 17364 Music Recommender initialized successfully
+INFO 2025-04-12 23:36:33,013 recommendation 1272 4968 Built song clusters successfully
+INFO 2025-04-12 23:36:33,013 recommendation 1272 4968 Music Recommender initialized successfully
+INFO 2025-04-12 23:36:33,301 views 1272 17364 Got 10 recommendations
+INFO 2025-04-12 23:36:33,554 basehttp 1272 17364 "GET /api/songs/recommendations/ HTTP/1.1" 200 2969
+INFO 2025-04-12 23:36:33,659 views 1272 4968 Got 10 recommendations
+INFO 2025-04-12 23:36:34,044 basehttp 1272 4968 "GET /api/songs/recommendations/ HTTP/1.1" 200 2922
+INFO 2025-04-12 23:36:35,129 basehttp 1272 17364 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 154
+INFO 2025-04-12 23:36:35,631 basehttp 1272 4968 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 154
+INFO 2025-04-12 23:48:14,838 autoreload 1272 11156 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\serializers.py changed, reloading.
+INFO 2025-04-12 23:48:19,990 autoreload 23436 17880 Watching for file changes with StatReloader
+INFO 2025-04-12 23:49:15,794 autoreload 23436 17880 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\utils.py changed, reloading.
+INFO 2025-04-12 23:49:20,323 autoreload 23928 13516 Watching for file changes with StatReloader
+INFO 2025-04-12 23:50:25,113 autoreload 23928 13516 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-12 23:50:30,092 autoreload 18760 23472 Watching for file changes with StatReloader
+INFO 2025-04-12 23:51:42,637 autoreload 18760 23472 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-12 23:51:48,248 autoreload 6816 384 Watching for file changes with StatReloader
+INFO 2025-04-12 23:52:48,899 autoreload 6816 384 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-12 23:52:57,749 autoreload 15340 2596 Watching for file changes with StatReloader
+INFO 2025-04-12 23:54:21,022 autoreload 15340 2596 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\users\views.py changed, reloading.
+INFO 2025-04-12 23:54:27,484 autoreload 17708 19808 Watching for file changes with StatReloader
+INFO 2025-04-12 23:55:05,829 autoreload 17708 19808 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\users\urls.py changed, reloading.
+INFO 2025-04-12 23:55:11,568 autoreload 22576 10128 Watching for file changes with StatReloader
+INFO 2025-04-12 23:55:52,110 autoreload 22576 10128 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\urls.py changed, reloading.
+INFO 2025-04-12 23:55:58,045 autoreload 7952 10368 Watching for file changes with StatReloader
+INFO 2025-04-13 00:22:19,731 autoreload 7952 10368 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\utils.py changed, reloading.
+INFO 2025-04-13 00:22:25,811 autoreload 18588 20484 Watching for file changes with StatReloader
+INFO 2025-04-17 15:29:05,447 autoreload 10864 16180 Watching for file changes with StatReloader
+INFO 2025-04-17 15:59:23,131 basehttp 10864 29916 "POST /api/users/login/ HTTP/1.1" 200 95
+WARNING 2025-04-17 15:59:34,770 log 10864 29916 Unauthorized: /api/songs/user/favorite-genres/
+WARNING 2025-04-17 15:59:34,770 basehttp 10864 29916 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 401 58
+WARNING 2025-04-17 15:59:44,119 log 10864 29916 Unauthorized: /api/songs/user/favorite-genres/
+WARNING 2025-04-17 15:59:44,121 basehttp 10864 29916 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 401 58
+INFO 2025-04-17 16:00:30,593 basehttp 10864 29916 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 362
+INFO 2025-04-17 16:01:43,366 basehttp 10864 20436 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 211
+INFO 2025-04-17 16:02:23,148 basehttp 10864 23556 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 558
+INFO 2025-04-17 16:02:31,217 basehttp 10864 23556 "GET /api/users/download-activity/?period=month HTTP/1.1" 200 1875
+INFO 2025-04-17 16:02:43,497 basehttp 10864 23556 "GET /api/users/download-activity/?period=year HTTP/1.1" 200 894
+INFO 2025-04-17 16:03:07,984 basehttp 10864 23556 "GET /api/songs/user/profile HTTP/1.1" 301 0
+INFO 2025-04-17 16:03:09,119 basehttp 10864 15436 "GET /api/songs/user/profile/ HTTP/1.1" 200 176
+INFO 2025-04-17 16:20:07,248 autoreload 10864 16180 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\users\models.py changed, reloading.
+INFO 2025-04-17 16:20:13,559 autoreload 7132 17920 Watching for file changes with StatReloader
+INFO 2025-04-17 16:20:43,932 autoreload 7132 17920 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\users\models.py changed, reloading.
+INFO 2025-04-17 16:20:48,508 autoreload 4476 7720 Watching for file changes with StatReloader
+INFO 2025-04-17 16:21:48,372 autoreload 4476 7720 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\models.py changed, reloading.
+INFO 2025-04-17 16:21:53,061 autoreload 11800 8828 Watching for file changes with StatReloader
+INFO 2025-04-17 16:47:51,594 autoreload 11800 8828 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-17 16:47:56,260 autoreload 17204 10012 Watching for file changes with StatReloader
+INFO 2025-04-17 16:48:57,068 autoreload 17204 10012 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-17 16:49:01,778 autoreload 19484 4132 Watching for file changes with StatReloader
+INFO 2025-04-17 16:51:37,580 autoreload 19484 4132 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\tasks.py changed, reloading.
+INFO 2025-04-17 16:51:42,210 autoreload 12508 19284 Watching for file changes with StatReloader
+INFO 2025-04-17 16:52:22,338 autoreload 12508 19284 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\tasks.py changed, reloading.
+INFO 2025-04-17 16:52:26,653 autoreload 19584 11684 Watching for file changes with StatReloader
+INFO 2025-04-17 16:53:53,121 autoreload 19584 11684 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-17 16:53:57,830 autoreload 9644 21368 Watching for file changes with StatReloader
+WARNING 2025-04-17 16:56:15,430 log 9644 18732 Unauthorized: /api/songs/songs/download/
+WARNING 2025-04-17 16:56:15,433 basehttp 9644 18732 "POST /api/songs/songs/download/ HTTP/1.1" 401 27
+INFO 2025-04-17 16:56:46,179 utils 9644 18732 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Aloe Blacc - I Need A Dollar - LRG Clothing.mp3
+INFO 2025-04-17 16:56:46,179 utils 9644 18732 Title: Aloe Blacc - I Need A Dollar, Artist: LRG Clothing, Album: Unknown, Genre: Unknown
+INFO 2025-04-17 16:56:46,202 utils 9644 18732 Loaded existing ID3 tags
+INFO 2025-04-17 16:56:46,280 utils 9644 18732 Looking for local thumbnail: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs/Aloe Blacc - I Need A Dollar - LRG Clothing.webp
+INFO 2025-04-17 16:56:46,290 utils 9644 18732 Found local thumbnail: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs/Aloe Blacc - I Need A Dollar - LRG Clothing.webp
+INFO 2025-04-17 16:56:46,290 utils 9644 18732 Detected image type: webp
+INFO 2025-04-17 16:56:46,290 utils 9644 18732 Converting image from webp to JPEG
+INFO 2025-04-17 16:56:47,619 utils 9644 18732 Successfully converted image to JPEG: 129660 bytes
+INFO 2025-04-17 16:56:47,619 utils 9644 18732 Adding album art, MIME type: image/jpeg
+INFO 2025-04-17 16:56:47,619 utils 9644 18732 Successfully added album art to ID3 tags
+INFO 2025-04-17 16:56:47,709 utils 9644 18732 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Aloe Blacc - I Need A Dollar - LRG Clothing.mp3
+INFO 2025-04-17 16:56:47,733 utils 9644 18732 Verification: 8 tags were written, has_cover=True
+INFO 2025-04-17 16:56:48,514 views 9644 18732 Added song to cache: https://www.youtube.com/watch?v=nFZP8zQ5kzk
+INFO 2025-04-17 16:56:48,977 basehttp 9644 18732 "POST /api/songs/songs/download/ HTTP/1.1" 200 5969431
+INFO 2025-04-17 16:57:27,901 basehttp 9644 2848 "GET /api/users/download-activity/?period=year HTTP/1.1" 200 894
+INFO 2025-04-17 16:57:40,480 basehttp 9644 2848 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 558
+INFO 2025-04-17 16:59:59,155 basehttp 9644 20536 "GET /admin/ HTTP/1.1" 302 0
+INFO 2025-04-17 17:00:00,185 basehttp 9644 20536 "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4160
+INFO 2025-04-17 17:00:00,288 basehttp 9644 20536 "GET /static/admin/css/base.css HTTP/1.1" 200 22092
+INFO 2025-04-17 17:00:00,348 basehttp 9644 20536 "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+INFO 2025-04-17 17:00:00,353 basehttp 9644 28048 "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2804
+INFO 2025-04-17 17:00:00,373 basehttp 9644 27344 "GET /static/admin/js/theme.js HTTP/1.1" 200 1653
+INFO 2025-04-17 17:00:00,396 basehttp 9644 29560 "GET /static/admin/css/login.css HTTP/1.1" 200 951
+INFO 2025-04-17 17:00:00,404 basehttp 9644 6016 "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 200 3063
+INFO 2025-04-17 17:00:00,410 basehttp 9644 25712 "GET /static/admin/css/responsive.css HTTP/1.1" 200 17972
+WARNING 2025-04-17 17:00:00,502 log 9644 20536 Not Found: /favicon.ico
+WARNING 2025-04-17 17:00:00,502 basehttp 9644 20536 "GET /favicon.ico HTTP/1.1" 404 3370
+INFO 2025-04-17 17:00:39,670 basehttp 9644 20536 "POST /admin/login/?next=/admin/ HTTP/1.1" 200 4321
+INFO 2025-04-17 17:00:50,164 basehttp 9644 20536 "POST /admin/login/?next=/admin/ HTTP/1.1" 200 4321
+INFO 2025-04-17 17:00:59,381 basehttp 9644 20536 "POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+INFO 2025-04-17 17:01:00,271 basehttp 9644 20536 "GET /admin/ HTTP/1.1" 200 19361
+INFO 2025-04-17 17:01:00,331 basehttp 9644 20536 "GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+INFO 2025-04-17 17:01:00,373 basehttp 9644 6016 "GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 200 392
+INFO 2025-04-17 17:01:00,373 basehttp 9644 20536 "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+INFO 2025-04-17 17:01:00,373 basehttp 9644 25712 "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+INFO 2025-04-17 17:01:08,217 basehttp 9644 20536 "GET /admin/songs/song/ HTTP/1.1" 200 48309
+INFO 2025-04-17 17:01:08,313 basehttp 9644 20536 "GET /static/admin/css/changelists.css HTTP/1.1" 200 6878
+INFO 2025-04-17 17:01:08,321 basehttp 9644 28048 "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+INFO 2025-04-17 17:01:08,344 basehttp 9644 27344 "GET /static/admin/js/core.js HTTP/1.1" 200 6208
+INFO 2025-04-17 17:01:08,352 basehttp 9644 29560 "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 9097
+INFO 2025-04-17 17:01:08,360 basehttp 9644 28048 "GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+INFO 2025-04-17 17:01:08,370 basehttp 9644 20536 "GET /static/admin/js/actions.js HTTP/1.1" 200 8076
+INFO 2025-04-17 17:01:08,397 basehttp 9644 28048 "GET /static/admin/js/filters.js HTTP/1.1" 200 978
+INFO 2025-04-17 17:01:08,407 basehttp 9644 27344 "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+INFO 2025-04-17 17:01:08,423 basehttp 9644 6016 "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
+INFO 2025-04-17 17:01:08,562 basehttp 9644 29560 "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+INFO 2025-04-17 17:01:08,946 basehttp 9644 25712 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-04-17 17:01:08,995 basehttp 9644 29560 "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+INFO 2025-04-17 17:01:10,546 basehttp 9644 29560 "GET /admin/ HTTP/1.1" 200 19361
+INFO 2025-04-17 17:01:13,468 basehttp 9644 29560 "GET /admin/users/customuser/ HTTP/1.1" 200 16844
+INFO 2025-04-17 17:01:14,232 basehttp 9644 29560 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-04-17 17:01:26,369 basehttp 9644 29560 "GET /admin/users/customuser/1/change/ HTTP/1.1" 200 40803
+INFO 2025-04-17 17:01:26,467 basehttp 9644 29560 "GET /static/admin/css/forms.css HTTP/1.1" 200 8794
+INFO 2025-04-17 17:01:26,476 basehttp 9644 27344 "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+INFO 2025-04-17 17:01:26,476 basehttp 9644 28048 "GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+INFO 2025-04-17 17:01:26,483 basehttp 9644 20536 "GET /static/admin/js/calendar.js HTTP/1.1" 200 9141
+INFO 2025-04-17 17:01:26,483 basehttp 9644 25712 "GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 200 19319
+INFO 2025-04-17 17:01:26,491 basehttp 9644 29560 "GET /static/admin/css/widgets.css HTTP/1.1" 200 11564
+INFO 2025-04-17 17:01:27,172 basehttp 9644 6016 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-04-17 17:01:27,269 basehttp 9644 6016 "GET /static/admin/img/icon-clock.svg HTTP/1.1" 200 677
+INFO 2025-04-17 17:01:27,269 basehttp 9644 29560 "GET /static/admin/img/icon-calendar.svg HTTP/1.1" 200 1086
+INFO 2025-04-17 17:03:08,633 autoreload 9644 21368 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\models.py changed, reloading.
+INFO 2025-04-17 17:03:13,662 autoreload 29176 28976 Watching for file changes with StatReloader
+INFO 2025-04-17 17:03:37,512 basehttp 29176 17184 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 558
+INFO 2025-04-17 17:03:45,111 views 29176 17184 Found existing song with URL https://www.youtube.com/watch?v=nFZP8zQ5kzk, serving directly
+INFO 2025-04-17 17:03:45,268 views 29176 17184 Using cached version for URL: https://www.youtube.com/watch?v=nFZP8zQ5kzk
+INFO 2025-04-17 17:03:45,540 basehttp 29176 17184 "POST /api/songs/songs/download/ HTTP/1.1" 200 5832620
+INFO 2025-04-17 17:04:35,798 utils 29176 17184 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Wiz Khalifa - The Thrill Official Audio - Wiz Khalifa.mp3
+INFO 2025-04-17 17:04:35,798 utils 29176 17184 Title: Wiz Khalifa - The Thrill [Official Audio], Artist: Wiz Khalifa, Album: Unknown, Genre: Unknown
+INFO 2025-04-17 17:04:35,822 utils 29176 17184 Loaded existing ID3 tags
+INFO 2025-04-17 17:04:35,912 utils 29176 17184 Looking for local thumbnail: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs/Wiz Khalifa - The Thrill Official Audio - Wiz Khalifa.webp
+INFO 2025-04-17 17:04:35,924 utils 29176 17184 Found local thumbnail: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs/Wiz Khalifa - The Thrill Official Audio - Wiz Khalifa.webp
+INFO 2025-04-17 17:04:35,924 utils 29176 17184 Detected image type: webp
+INFO 2025-04-17 17:04:35,924 utils 29176 17184 Converting image from webp to JPEG
+INFO 2025-04-17 17:04:36,083 utils 29176 17184 Successfully converted image to JPEG: 110197 bytes
+INFO 2025-04-17 17:04:36,083 utils 29176 17184 Adding album art, MIME type: image/jpeg
+INFO 2025-04-17 17:04:36,083 utils 29176 17184 Successfully added album art to ID3 tags
+INFO 2025-04-17 17:04:36,113 utils 29176 17184 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Wiz Khalifa - The Thrill Official Audio - Wiz Khalifa.mp3
+INFO 2025-04-17 17:04:36,132 utils 29176 17184 Verification: 8 tags were written, has_cover=True
+INFO 2025-04-17 17:04:36,864 views 29176 17184 Added song to cache: https://www.youtube.com/watch?v=bf43dRUBSks
+INFO 2025-04-17 17:04:37,125 basehttp 29176 17184 "POST /api/songs/songs/download/ HTTP/1.1" 200 5742423
+INFO 2025-04-17 17:17:06,250 views 29176 28924 Found existing song with URL https://www.youtube.com/watch?v=bf43dRUBSks, serving directly
+INFO 2025-04-17 17:17:06,415 views 29176 28924 Using cached version for URL: https://www.youtube.com/watch?v=bf43dRUBSks
+INFO 2025-04-17 17:17:06,597 basehttp 29176 28924 "POST /api/songs/songs/download/ HTTP/1.1" 200 5625260
+INFO 2025-04-17 17:19:11,823 autoreload 29176 28976 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-17 17:19:18,174 autoreload 28440 15148 Watching for file changes with StatReloader
+INFO 2025-04-17 17:19:30,676 views 28440 22848 Found existing song with URL https://www.youtube.com/watch?v=bf43dRUBSks, serving directly
+INFO 2025-04-17 17:19:30,840 views 28440 22848 Using cached version for URL: https://www.youtube.com/watch?v=bf43dRUBSks
+INFO 2025-04-17 17:19:30,840 models 28440 22848 [DEBUG] record_download called for user=testuser id=1 date=2025-04-17
+INFO 2025-04-17 17:19:31,351 models 28440 22848 [DEBUG] record_download updated analytics: user=testuser id=1 date=2025-04-17 songs_downloaded=1
+INFO 2025-04-17 17:19:31,683 basehttp 28440 22848 "POST /api/songs/songs/download/ HTTP/1.1" 200 5625260
+INFO 2025-04-17 17:19:38,194 basehttp 28440 22848 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 558
+INFO 2025-04-17 17:19:46,269 views 28440 22848 Found existing song with URL https://www.youtube.com/watch?v=bf43dRUBSks, serving directly
+INFO 2025-04-17 17:19:46,400 views 28440 22848 Using cached version for URL: https://www.youtube.com/watch?v=bf43dRUBSks
+INFO 2025-04-17 17:19:46,400 models 28440 22848 [DEBUG] record_download called for user=testuser id=1 date=2025-04-17
+INFO 2025-04-17 17:19:46,531 models 28440 22848 [DEBUG] record_download updated analytics: user=testuser id=1 date=2025-04-17 songs_downloaded=2
+INFO 2025-04-17 17:19:46,660 basehttp 28440 22848 "POST /api/songs/songs/download/ HTTP/1.1" 200 5625260
+INFO 2025-04-17 17:19:54,820 basehttp 28440 22848 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 558
+INFO 2025-04-17 17:56:24,116 basehttp 28440 24104 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-17 17:56:24,737 basehttp 28440 27032 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-17 17:56:24,930 views 28440 24104 User has 4 songs
+INFO 2025-04-17 17:56:24,999 views 28440 24104 User has 0 songs with Spotify IDs
+INFO 2025-04-17 17:56:25,063 views 28440 24104 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-17 17:56:25,063 recommendation 28440 24104 Skipping Music.csv due to invalid format, using data.csv directly
+INFO 2025-04-17 17:56:25,557 views 28440 27032 User has 4 songs
+INFO 2025-04-17 17:56:25,622 views 28440 27032 User has 0 songs with Spotify IDs
+INFO 2025-04-17 17:56:25,694 views 28440 27032 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-17 17:56:25,698 recommendation 28440 27032 Skipping Music.csv due to invalid format, using data.csv directly
+INFO 2025-04-17 17:56:30,838 recommendation 28440 24104 Loaded data.csv dataset
+INFO 2025-04-17 17:56:30,976 recommendation 28440 24104 Available columns in dataset: ['valence', 'year', 'acousticness', 'artists', 'danceability', 'duration_ms', 'energy', 'explicit', 'id', 'instrumentalness', 'key', 'liveness', 'loudness', 'mode', 'name', 'popularity', 'release_date', 'speechiness', 'tempo']
+INFO 2025-04-17 17:56:31,107 recommendation 28440 24104 Using features: ['acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'loudness', 'speechiness', 'tempo', 'valence']
+INFO 2025-04-17 17:56:31,209 recommendation 28440 24104 Prepared data with 170653 songs and 9 features
+INFO 2025-04-17 17:56:34,880 recommendation 28440 27032 Loaded data.csv dataset
+INFO 2025-04-17 17:56:34,952 recommendation 28440 27032 Available columns in dataset: ['valence', 'year', 'acousticness', 'artists', 'danceability', 'duration_ms', 'energy', 'explicit', 'id', 'instrumentalness', 'key', 'liveness', 'loudness', 'mode', 'name', 'popularity', 'release_date', 'speechiness', 'tempo']
+INFO 2025-04-17 17:56:35,106 recommendation 28440 27032 Using features: ['acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'loudness', 'speechiness', 'tempo', 'valence']
+INFO 2025-04-17 17:56:35,217 recommendation 28440 27032 Prepared data with 170653 songs and 9 features
+INFO 2025-04-17 17:56:36,139 recommendation 28440 24104 Built song clusters successfully
+INFO 2025-04-17 17:56:36,142 recommendation 28440 24104 Music Recommender initialized successfully
+INFO 2025-04-17 17:56:36,376 recommendation 28440 27032 Built song clusters successfully
+INFO 2025-04-17 17:56:36,376 recommendation 28440 27032 Music Recommender initialized successfully
+INFO 2025-04-17 17:56:36,503 views 28440 24104 Got 10 recommendations
+INFO 2025-04-17 17:56:36,630 basehttp 28440 24104 "GET /api/songs/recommendations/ HTTP/1.1" 200 3002
+INFO 2025-04-17 17:56:36,727 views 28440 27032 Got 10 recommendations
+INFO 2025-04-17 17:56:36,882 basehttp 28440 27032 "GET /api/songs/recommendations/ HTTP/1.1" 200 2887
+INFO 2025-04-17 17:56:41,317 basehttp 28440 24104 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 1026
+INFO 2025-04-17 17:56:41,468 basehttp 28440 27032 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 1026
+INFO 2025-04-17 17:56:42,137 basehttp 28440 27032 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 558
+INFO 2025-04-17 17:56:42,264 basehttp 28440 24104 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 558
+INFO 2025-04-17 17:56:46,711 basehttp 28440 27032 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 273
+INFO 2025-04-17 17:56:47,160 basehttp 28440 24104 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 273
+INFO 2025-04-17 17:56:49,743 basehttp 28440 27032 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 79
+INFO 2025-04-17 17:56:50,219 basehttp 28440 24104 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 79
+INFO 2025-04-17 18:19:51,045 basehttp 28440 17512 - Broken pipe from ('127.0.0.1', 64404)
+INFO 2025-04-17 18:19:51,046 basehttp 28440 28640 - Broken pipe from ('127.0.0.1', 64403)
+INFO 2025-04-17 18:19:52,052 basehttp 28440 18952 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-17 18:19:52,066 basehttp 28440 11872 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-17 18:19:52,742 views 28440 18952 User has 4 songs
+INFO 2025-04-17 18:19:52,745 views 28440 11872 User has 4 songs
+INFO 2025-04-17 18:19:52,805 views 28440 18952 User has 0 songs with Spotify IDs
+INFO 2025-04-17 18:19:52,812 views 28440 11872 User has 0 songs with Spotify IDs
+INFO 2025-04-17 18:19:52,868 views 28440 18952 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-17 18:19:52,889 views 28440 11872 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-17 18:19:53,188 views 28440 11872 Got 10 recommendations
+INFO 2025-04-17 18:19:53,212 views 28440 18952 Got 10 recommendations
+INFO 2025-04-17 18:19:53,317 basehttp 28440 11872 "GET /api/songs/recommendations/ HTTP/1.1" 200 3038
+INFO 2025-04-17 18:19:53,358 basehttp 28440 18952 "GET /api/songs/recommendations/ HTTP/1.1" 200 3037
+INFO 2025-04-17 18:19:56,865 basehttp 28440 18952 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 1026
+INFO 2025-04-17 18:19:56,960 basehttp 28440 11872 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 1026
+INFO 2025-04-17 18:19:57,590 basehttp 28440 18952 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 558
+INFO 2025-04-17 18:19:57,632 basehttp 28440 11872 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 558
+INFO 2025-04-17 18:20:00,961 basehttp 28440 11872 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 273
+INFO 2025-04-17 18:20:01,015 basehttp 28440 18952 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 273
+INFO 2025-04-17 18:20:04,530 basehttp 28440 11872 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 79
+INFO 2025-04-17 18:20:04,534 basehttp 28440 18952 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 79
+INFO 2025-04-17 18:28:24,599 basehttp 28440 30064 - Broken pipe from ('127.0.0.1', 65072)
+INFO 2025-04-17 18:28:25,456 basehttp 28440 8140 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-17 18:28:25,473 basehttp 28440 24500 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-17 18:28:26,156 views 28440 8140 User has 4 songs
+INFO 2025-04-17 18:28:26,157 views 28440 24500 User has 4 songs
+INFO 2025-04-17 18:28:26,219 views 28440 24500 User has 0 songs with Spotify IDs
+INFO 2025-04-17 18:28:26,225 views 28440 8140 User has 0 songs with Spotify IDs
+INFO 2025-04-17 18:28:26,302 views 28440 24500 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-17 18:28:26,303 views 28440 8140 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-17 18:28:26,656 views 28440 24500 Got 10 recommendations
+INFO 2025-04-17 18:28:26,656 views 28440 8140 Got 10 recommendations
+INFO 2025-04-17 18:28:26,787 basehttp 28440 24500 "GET /api/songs/recommendations/ HTTP/1.1" 200 3012
+INFO 2025-04-17 18:28:26,787 basehttp 28440 8140 "GET /api/songs/recommendations/ HTTP/1.1" 200 2851
+INFO 2025-04-17 18:28:30,318 basehttp 28440 24500 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 1026
+INFO 2025-04-17 18:28:30,336 basehttp 28440 8140 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 1026
+INFO 2025-04-17 18:28:31,017 basehttp 28440 24500 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 558
+INFO 2025-04-17 18:28:31,059 basehttp 28440 8140 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 558
+INFO 2025-04-17 18:28:35,169 basehttp 28440 24500 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 273
+INFO 2025-04-17 18:28:35,259 basehttp 28440 8140 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 273
+INFO 2025-04-17 18:28:39,091 basehttp 28440 24500 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 79
+INFO 2025-04-17 18:28:39,442 basehttp 28440 8140 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 79
+INFO 2025-04-17 18:33:46,041 basehttp 28440 24356 - Broken pipe from ('127.0.0.1', 65489)
+INFO 2025-04-17 18:33:47,365 basehttp 28440 9240 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-17 18:33:47,380 basehttp 28440 19088 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-17 18:33:48,044 views 28440 9240 User has 4 songs
+INFO 2025-04-17 18:33:48,102 views 28440 19088 User has 4 songs
+INFO 2025-04-17 18:33:48,107 views 28440 9240 User has 0 songs with Spotify IDs
+INFO 2025-04-17 18:33:48,179 views 28440 9240 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-17 18:33:48,180 views 28440 19088 User has 0 songs with Spotify IDs
+INFO 2025-04-17 18:33:48,258 views 28440 19088 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-17 18:33:48,471 views 28440 9240 Got 10 recommendations
+INFO 2025-04-17 18:33:48,551 views 28440 19088 Got 10 recommendations
+INFO 2025-04-17 18:33:48,599 basehttp 28440 9240 "GET /api/songs/recommendations/ HTTP/1.1" 200 2927
+INFO 2025-04-17 18:33:48,692 basehttp 28440 19088 "GET /api/songs/recommendations/ HTTP/1.1" 200 2845
+INFO 2025-04-17 18:33:51,790 basehttp 28440 300 - Broken pipe from ('127.0.0.1', 65515)
+INFO 2025-04-17 18:33:51,850 basehttp 28440 25360 - Broken pipe from ('127.0.0.1', 65516)
+INFO 2025-04-17 18:33:51,887 basehttp 28440 16108 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 558
+INFO 2025-04-17 18:33:52,012 basehttp 28440 23312 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 558
+INFO 2025-04-17 18:33:53,583 basehttp 28440 19088 - Broken pipe from ('127.0.0.1', 65502)
+INFO 2025-04-17 18:33:53,583 basehttp 28440 9240 - Broken pipe from ('127.0.0.1', 65500)
+INFO 2025-04-17 18:33:53,583 basehttp 28440 10812 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-17 18:33:53,583 basehttp 28440 12764 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-17 18:33:54,270 views 28440 10812 User has 4 songs
+INFO 2025-04-17 18:33:54,288 views 28440 12764 User has 4 songs
+INFO 2025-04-17 18:33:54,355 views 28440 10812 User has 0 songs with Spotify IDs
+INFO 2025-04-17 18:33:54,360 views 28440 12764 User has 0 songs with Spotify IDs
+INFO 2025-04-17 18:33:54,417 views 28440 10812 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-17 18:33:54,434 views 28440 12764 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-17 18:33:54,697 views 28440 10812 Got 10 recommendations
+INFO 2025-04-17 18:33:54,770 views 28440 12764 Got 10 recommendations
+INFO 2025-04-17 18:33:54,871 basehttp 28440 10812 "GET /api/songs/recommendations/ HTTP/1.1" 200 2964
+INFO 2025-04-17 18:33:54,907 basehttp 28440 12764 "GET /api/songs/recommendations/ HTTP/1.1" 200 2976
+INFO 2025-04-17 18:33:57,657 basehttp 28440 23312 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 273
+INFO 2025-04-17 18:33:57,876 basehttp 28440 16108 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 273
+INFO 2025-04-17 18:34:00,594 basehttp 28440 10812 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 1026
+INFO 2025-04-17 18:34:00,676 basehttp 28440 12764 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 1026
+INFO 2025-04-17 18:34:01,260 basehttp 28440 10812 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 558
+INFO 2025-04-17 18:34:01,399 basehttp 28440 12764 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 558
+INFO 2025-04-17 18:34:05,475 basehttp 28440 12764 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 273
+INFO 2025-04-17 18:34:05,664 basehttp 28440 10812 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 273
+INFO 2025-04-17 18:34:09,603 basehttp 28440 12764 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 79
+INFO 2025-04-17 18:34:09,704 basehttp 28440 10812 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 79
+ERROR 2025-04-17 18:49:15,058 log 28440 15708 Internal Server Error: /api/songs/songs/download/
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 279, in ensure_connection
+    self.connect()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\utils.py", line 1783, in runner
+    return sentry_patched_function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\__init__.py", line 690, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\postgresql\base.py", line 332, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\psycopg2\__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: could not translate host name "ep-patient-resonance-a19rwm71.ap-southeast-1.aws.neon.tech" to address: No such host is known. 
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\views.py", line 94, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\__init__.py", line 331, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 330, in perform_authentication
+    request.user
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\request.py", line 232, in user
+    self._authenticate()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\authentication.py", line 196, in authenticate
+    return self.authenticate_credentials(token)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\authentication.py", line 201, in authenticate_credentials
+    token = model.objects.select_related('user').get(key=key)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 645, in get
+    num = len(clone)
+          ^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 382, in __len__
+    self._fetch_all()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1572, in execute_sql
+    cursor = self.connection.cursor()
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 320, in cursor
+    return self._cursor()
+           ^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 296, in _cursor
+    self.ensure_connection()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 278, in ensure_connection
+    with self.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 279, in ensure_connection
+    self.connect()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\utils.py", line 1783, in runner
+    return sentry_patched_function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\__init__.py", line 690, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\postgresql\base.py", line 332, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\psycopg2\__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: could not translate host name "ep-patient-resonance-a19rwm71.ap-southeast-1.aws.neon.tech" to address: No such host is known. 
+
+ERROR 2025-04-17 18:49:15,070 basehttp 28440 15708 "POST /api/songs/songs/download/ HTTP/1.1" 500 257943
+INFO 2025-04-17 19:01:38,035 views 28440 20608 Using cached version for URL: https://www.youtube.com/watch?v=bf43dRUBSks
+INFO 2025-04-17 19:01:38,036 models 28440 20608 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-17 19:01:38,424 models 28440 20608 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=1
+INFO 2025-04-17 19:01:38,672 utils 28440 20608 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\cache\Wiz Khalifa - The Thrill Official Audio - Wiz Khalifa.mp3
+INFO 2025-04-17 19:01:38,673 utils 28440 20608 Title: Wiz Khalifa - The Thrill [Official Audio], Artist: Wiz Khalifa, Album: Unknown, Genre: Unknown
+INFO 2025-04-17 19:01:38,682 utils 28440 20608 Loaded existing ID3 tags
+INFO 2025-04-17 19:01:38,766 utils 28440 20608 Looking for local thumbnail: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs/Wiz Khalifa - The Thrill Official Audio - Wiz Khalifa.webp
+INFO 2025-04-17 19:01:38,780 utils 28440 20608 Found local thumbnail: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs/Wiz Khalifa - The Thrill Official Audio - Wiz Khalifa.webp
+INFO 2025-04-17 19:01:38,781 utils 28440 20608 Detected image type: webp
+INFO 2025-04-17 19:01:38,781 utils 28440 20608 Converting image from webp to JPEG
+INFO 2025-04-17 19:01:39,559 utils 28440 20608 Successfully converted image to JPEG: 110197 bytes
+INFO 2025-04-17 19:01:39,559 utils 28440 20608 Adding album art, MIME type: image/jpeg
+INFO 2025-04-17 19:01:39,560 utils 28440 20608 Successfully added album art to ID3 tags
+INFO 2025-04-17 19:01:39,583 utils 28440 20608 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\cache\Wiz Khalifa - The Thrill Official Audio - Wiz Khalifa.mp3
+INFO 2025-04-17 19:01:39,592 utils 28440 20608 Verification: 7 tags were written, has_cover=True
+INFO 2025-04-17 19:01:39,910 models 28440 20608 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-17 19:01:40,078 models 28440 20608 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=2
+INFO 2025-04-17 19:01:40,295 basehttp 28440 20608 "POST /api/songs/songs/download/ HTTP/1.1" 200 5742377
+INFO 2025-04-17 19:01:40,774 basehttp 28440 25936 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-17 19:02:01,297 views 28440 20608 Found existing song with URL https://www.youtube.com/watch?v=bf43dRUBSks, serving directly
+INFO 2025-04-17 19:02:01,460 views 28440 20608 Using cached version for URL: https://www.youtube.com/watch?v=bf43dRUBSks
+INFO 2025-04-17 19:02:01,461 models 28440 20608 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-17 19:02:01,621 models 28440 20608 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=3
+INFO 2025-04-17 19:02:01,770 basehttp 28440 20608 "POST /api/songs/songs/download/ HTTP/1.1" 200 5742377
+INFO 2025-04-17 19:02:02,382 basehttp 28440 25936 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-17 19:09:31,171 views 28440 10116 Found existing song with URL https://www.youtube.com/watch?v=bf43dRUBSks, serving directly
+INFO 2025-04-17 19:09:31,333 views 28440 10116 Using cached version for URL: https://www.youtube.com/watch?v=bf43dRUBSks
+INFO 2025-04-17 19:09:31,334 models 28440 10116 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-17 19:09:31,492 models 28440 10116 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=4
+INFO 2025-04-17 19:09:31,675 basehttp 28440 10116 "POST /api/songs/songs/download/ HTTP/1.1" 200 5742377
+INFO 2025-04-17 19:09:32,440 views 28440 10116 Found existing song with URL https://www.youtube.com/watch?v=bf43dRUBSks, serving directly
+INFO 2025-04-17 19:09:32,595 views 28440 10116 Using cached version for URL: https://www.youtube.com/watch?v=bf43dRUBSks
+INFO 2025-04-17 19:09:32,596 models 28440 10116 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-17 19:09:32,750 models 28440 10116 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=5
+INFO 2025-04-17 19:09:32,906 basehttp 28440 10116 "POST /api/songs/songs/download/ HTTP/1.1" 200 5742377
+INFO 2025-04-17 19:09:33,433 basehttp 28440 24640 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-17 19:09:37,126 views 28440 10116 Found existing song with URL https://www.youtube.com/watch?v=bf43dRUBSks, serving directly
+INFO 2025-04-17 19:09:37,273 views 28440 10116 Using cached version for URL: https://www.youtube.com/watch?v=bf43dRUBSks
+INFO 2025-04-17 19:09:37,274 models 28440 10116 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-17 19:09:37,421 models 28440 10116 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=6
+INFO 2025-04-17 19:09:37,556 basehttp 28440 10116 "POST /api/songs/songs/download/ HTTP/1.1" 200 5742377
+INFO 2025-04-17 19:09:38,269 views 28440 10116 Found existing song with URL https://www.youtube.com/watch?v=bf43dRUBSks, serving directly
+INFO 2025-04-17 19:09:38,420 views 28440 10116 Using cached version for URL: https://www.youtube.com/watch?v=bf43dRUBSks
+INFO 2025-04-17 19:09:38,420 models 28440 10116 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-17 19:09:38,568 models 28440 10116 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=7
+INFO 2025-04-17 19:09:38,711 basehttp 28440 10116 "POST /api/songs/songs/download/ HTTP/1.1" 200 5742377
+INFO 2025-04-17 19:09:39,292 basehttp 28440 24640 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-17 19:31:47,094 basehttp 28440 4088 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-17 19:31:47,108 basehttp 28440 22072 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-17 19:31:47,888 views 28440 4088 User has 5 songs
+INFO 2025-04-17 19:31:47,969 views 28440 4088 User has 0 songs with Spotify IDs
+INFO 2025-04-17 19:31:48,044 views 28440 4088 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-17 19:31:48,175 views 28440 22072 User has 5 songs
+INFO 2025-04-17 19:31:48,281 views 28440 22072 User has 0 songs with Spotify IDs
+INFO 2025-04-17 19:31:48,342 views 28440 4088 Got 10 recommendations
+INFO 2025-04-17 19:31:48,386 views 28440 22072 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-17 19:31:48,488 basehttp 28440 4088 "GET /api/songs/recommendations/ HTTP/1.1" 200 3077
+INFO 2025-04-17 19:31:49,037 views 28440 22072 Got 10 recommendations
+INFO 2025-04-17 19:31:49,245 basehttp 28440 22072 "GET /api/songs/recommendations/ HTTP/1.1" 200 3016
+INFO 2025-04-17 19:31:50,259 basehttp 28440 4088 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 1246
+INFO 2025-04-17 19:31:51,206 basehttp 28440 4088 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 558
+INFO 2025-04-17 19:31:52,316 basehttp 28440 22072 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 1246
+INFO 2025-04-17 19:31:53,310 basehttp 28440 4088 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 363
+INFO 2025-04-17 19:31:53,608 basehttp 28440 22072 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 558
+INFO 2025-04-17 19:31:55,203 basehttp 28440 4088 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 79
+INFO 2025-04-17 19:31:56,007 basehttp 28440 22072 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 363
+INFO 2025-04-17 19:31:57,960 basehttp 28440 4088 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 79
+INFO 2025-04-17 19:33:34,859 views 28440 4088 Using cached version for URL: https://www.youtube.com/watch?v=nFZP8zQ5kzk
+INFO 2025-04-17 19:33:34,859 models 28440 4088 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-17 19:33:35,063 models 28440 4088 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=8
+INFO 2025-04-17 19:33:35,161 utils 28440 4088 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\cache\Aloe Blacc - I Need A Dollar - LRG Clothing.mp3
+INFO 2025-04-17 19:33:35,162 utils 28440 4088 Title: Aloe Blacc - I Need A Dollar, Artist: LRG Clothing, Album: Unknown, Genre: Unknown
+INFO 2025-04-17 19:33:35,184 utils 28440 4088 Loaded existing ID3 tags
+INFO 2025-04-17 19:33:35,286 utils 28440 4088 Found matching song in database: Aloe Blacc - I Need A Dollar by LRG Clothing
+INFO 2025-04-17 19:33:35,287 utils 28440 4088 Using thumbnail URL from database: /media/songs/Aloe Blacc - I Need A Dollar - LRG Clothing.webp
+INFO 2025-04-17 19:33:35,287 utils 28440 4088 Looking for local thumbnail: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs/Aloe Blacc - I Need A Dollar - LRG Clothing.webp
+INFO 2025-04-17 19:33:35,301 utils 28440 4088 Found local thumbnail: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs/Aloe Blacc - I Need A Dollar - LRG Clothing.webp
+INFO 2025-04-17 19:33:35,302 utils 28440 4088 Detected image type: webp
+INFO 2025-04-17 19:33:35,302 utils 28440 4088 Converting image from webp to JPEG
+INFO 2025-04-17 19:33:35,335 utils 28440 4088 Successfully converted image to JPEG: 129660 bytes
+INFO 2025-04-17 19:33:35,336 utils 28440 4088 Adding album art, MIME type: image/jpeg
+INFO 2025-04-17 19:33:35,336 utils 28440 4088 Successfully added album art to ID3 tags
+INFO 2025-04-17 19:33:35,346 utils 28440 4088 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\cache\Aloe Blacc - I Need A Dollar - LRG Clothing.mp3
+INFO 2025-04-17 19:33:35,355 utils 28440 4088 Verification: 7 tags were written, has_cover=True
+INFO 2025-04-17 19:33:35,745 models 28440 4088 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-17 19:33:35,939 models 28440 4088 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=9
+INFO 2025-04-17 19:33:36,019 basehttp 28440 4088 "POST /api/songs/songs/download/ HTTP/1.1" 200 5969385
+INFO 2025-04-17 19:33:36,945 views 28440 4088 Found existing song with URL https://www.youtube.com/watch?v=nFZP8zQ5kzk, serving directly
+INFO 2025-04-17 19:33:37,128 views 28440 4088 Using cached version for URL: https://www.youtube.com/watch?v=nFZP8zQ5kzk
+INFO 2025-04-17 19:33:37,129 models 28440 4088 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-17 19:33:37,343 models 28440 4088 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=10
+INFO 2025-04-17 19:33:37,518 basehttp 28440 4088 "POST /api/songs/songs/download/ HTTP/1.1" 200 5969385
+INFO 2025-04-17 19:33:38,051 basehttp 28440 22072 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-17 19:33:55,652 basehttp 28440 4088 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-17 19:33:55,791 basehttp 28440 22072 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-17 19:33:56,632 views 28440 4088 User has 6 songs
+INFO 2025-04-17 19:33:56,734 views 28440 4088 User has 0 songs with Spotify IDs
+INFO 2025-04-17 19:33:56,823 views 28440 22072 User has 6 songs
+INFO 2025-04-17 19:33:56,832 views 28440 4088 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-17 19:33:56,916 views 28440 22072 User has 0 songs with Spotify IDs
+INFO 2025-04-17 19:33:57,001 views 28440 22072 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-17 19:33:57,188 views 28440 4088 Got 10 recommendations
+INFO 2025-04-17 19:33:57,351 views 28440 22072 Got 10 recommendations
+INFO 2025-04-17 19:33:57,551 basehttp 28440 22072 "GET /api/songs/recommendations/ HTTP/1.1" 200 3000
+INFO 2025-04-17 19:33:57,700 basehttp 28440 4088 "GET /api/songs/recommendations/ HTTP/1.1" 200 2989
+INFO 2025-04-17 19:34:00,764 basehttp 28440 4088 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 1283
+INFO 2025-04-17 19:34:01,143 basehttp 28440 22072 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 1283
+INFO 2025-04-17 19:34:01,737 basehttp 28440 4088 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 559
+INFO 2025-04-17 19:34:02,074 basehttp 28440 22072 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 559
+INFO 2025-04-17 19:34:04,691 basehttp 28440 4088 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 363
+INFO 2025-04-17 19:34:05,566 basehttp 28440 22072 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 363
+INFO 2025-04-17 19:34:07,072 basehttp 28440 4088 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 79
+INFO 2025-04-17 19:34:08,748 basehttp 28440 22072 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 79
+WARNING 2025-04-17 20:30:29,651 log 28440 28372 Not Found: /api/songs/spotify/track-details/3YuaBvuZqcwN3CEAyyoaei/
+WARNING 2025-04-17 20:30:29,653 basehttp 28440 28372 "GET /api/songs/spotify/track-details/3YuaBvuZqcwN3CEAyyoaei/ HTTP/1.1" 404 17977
+INFO 2025-04-17 20:30:48,437 spotify_api 28440 28372 Extracting Spotify ID from URL: https://open.spotify.com/track/3YuaBvuZqcwN3CEAyyoaei?si=59fc55c2fa244be1
+INFO 2025-04-17 20:30:48,437 spotify_api 28440 28372 Extracted Spotify track ID: 3YuaBvuZqcwN3CEAyyoaei
+INFO 2025-04-17 20:30:48,612 spotify_api 28440 28372 Extracting Spotify ID from URL: https://open.spotify.com/track/3YuaBvuZqcwN3CEAyyoaei?si=59fc55c2fa244be1
+INFO 2025-04-17 20:30:48,612 spotify_api 28440 28372 Extracted Spotify track ID: 3YuaBvuZqcwN3CEAyyoaei
+INFO 2025-04-17 20:30:48,613 views 28440 28372 Getting info for Spotify track ID: ('track', '3YuaBvuZqcwN3CEAyyoaei')
+INFO 2025-04-17 20:30:48,613 spotify_api 28440 28372 Extracting Spotify ID from URL: https://open.spotify.com/track/3YuaBvuZqcwN3CEAyyoaei?si=59fc55c2fa244be1
+INFO 2025-04-17 20:30:48,614 spotify_api 28440 28372 Extracted Spotify track ID: 3YuaBvuZqcwN3CEAyyoaei
+INFO 2025-04-17 20:30:48,615 spotify_api 28440 28372 Getting info for Spotify track ID: 3YuaBvuZqcwN3CEAyyoaei
+INFO 2025-04-17 20:30:48,615 spotify_api 28440 28372 Creating Spotify client with credentials from settings
+INFO 2025-04-17 20:30:49,210 spotify_api 28440 28372 Successfully tested Spotify client
+INFO 2025-04-17 20:30:49,545 spotify_api 28440 28372 Got track info: Like a Stone by Audioslave
+INFO 2025-04-17 20:30:49,547 views 28440 28372 Got track info: Like a Stone by Audioslave
+INFO 2025-04-17 20:30:49,758 views 28440 28372 Downloading using YouTube search: ytsearch:Like a Stone Audioslave
+INFO 2025-04-17 20:31:01,945 views 28440 28372 Downloaded file to: C:\Users\Dell\AppData\Local\Temp\tmp3ffdsuf4\download-1744902049.mp3
+INFO 2025-04-17 20:31:02,022 utils 28440 28372 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Like a Stone - Audioslave.mp3
+INFO 2025-04-17 20:31:02,022 utils 28440 28372 Title: Like a Stone, Artist: Audioslave, Album: Audioslave, Genre: grunge
+INFO 2025-04-17 20:31:02,030 utils 28440 28372 Loaded existing ID3 tags
+INFO 2025-04-17 20:31:02,101 utils 28440 28372 Downloading thumbnail from URL: https://i.scdn.co/image/ab67616d0000b273a7292b6863258e889b78d787
+INFO 2025-04-17 20:31:02,182 utils 28440 28372 Downloaded thumbnail: 123969 bytes
+INFO 2025-04-17 20:31:02,183 utils 28440 28372 Detected image type: jpeg
+INFO 2025-04-17 20:31:02,184 utils 28440 28372 Adding album art, MIME type: image/jpeg
+INFO 2025-04-17 20:31:02,184 utils 28440 28372 Successfully added album art to ID3 tags
+INFO 2025-04-17 20:31:02,193 utils 28440 28372 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Like a Stone - Audioslave.mp3
+INFO 2025-04-17 20:31:02,233 utils 28440 28372 Verification: 8 tags were written, has_cover=True
+INFO 2025-04-17 20:31:02,528 models 28440 28372 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-17 20:31:02,669 models 28440 28372 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=11
+INFO 2025-04-17 20:31:03,071 views 28440 28372 Added song to cache: https://open.spotify.com/track/3YuaBvuZqcwN3CEAyyoaei?si=59fc55c2fa244be1
+INFO 2025-04-17 20:31:03,145 basehttp 28440 28372 "POST /api/songs/songs/download/ HTTP/1.1" 200 7373432
+INFO 2025-04-17 20:31:03,759 spotify_api 28440 28372 Extracting Spotify ID from URL: https://open.spotify.com/track/3YuaBvuZqcwN3CEAyyoaei?si=59fc55c2fa244be1
+INFO 2025-04-17 20:31:03,759 spotify_api 28440 28372 Extracted Spotify track ID: 3YuaBvuZqcwN3CEAyyoaei
+INFO 2025-04-17 20:31:03,824 views 28440 28372 Found existing song with URL https://open.spotify.com/track/3YuaBvuZqcwN3CEAyyoaei?si=59fc55c2fa244be1, serving directly
+INFO 2025-04-17 20:31:03,953 views 28440 28372 Using cached version for Spotify URL: https://open.spotify.com/track/3YuaBvuZqcwN3CEAyyoaei?si=59fc55c2fa244be1
+INFO 2025-04-17 20:31:03,954 models 28440 28372 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-17 20:31:04,084 models 28440 28372 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=12
+INFO 2025-04-17 20:31:04,085 views 28440 28372 Converting cached Spotify song from mp3 to aac
+INFO 2025-04-17 20:31:11,758 basehttp 28440 28372 "POST /api/songs/songs/download/ HTTP/1.1" 200 5053276
+INFO 2025-04-17 20:31:12,279 basehttp 28440 24536 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-17 20:31:49,840 basehttp 28440 28372 - Broken pipe from ('127.0.0.1', 58296)
+INFO 2025-04-17 20:31:49,962 views 28440 24536 User has 7 songs
+INFO 2025-04-17 20:31:49,976 views 28440 740 User has 7 songs
+INFO 2025-04-17 20:31:50,040 views 28440 740 User has 1 songs with Spotify IDs
+INFO 2025-04-17 20:31:50,040 views 28440 24536 User has 1 songs with Spotify IDs
+INFO 2025-04-17 20:31:50,168 views 28440 740 Sample user songs: [{'spotify_id': '3YuaBvuZqcwN3CEAyyoaei', 'title': 'Like a Stone', 'artist': 'Audioslave'}]
+INFO 2025-04-17 20:31:50,168 views 28440 24536 Sample user songs: [{'spotify_id': '3YuaBvuZqcwN3CEAyyoaei', 'title': 'Like a Stone', 'artist': 'Audioslave'}]
+INFO 2025-04-17 20:31:50,169 views 28440 740 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-17 20:31:50,171 views 28440 24536 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-17 20:31:50,406 views 28440 740 Got 10 recommendations
+INFO 2025-04-17 20:31:50,406 views 28440 24536 Got 10 recommendations
+INFO 2025-04-17 20:31:50,530 basehttp 28440 740 "GET /api/songs/recommendations/ HTTP/1.1" 200 2953
+INFO 2025-04-17 20:31:50,530 basehttp 28440 24536 "GET /api/songs/recommendations/ HTTP/1.1" 200 2991
+INFO 2025-04-17 20:31:50,939 basehttp 28440 25864 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-17 20:31:50,965 basehttp 28440 1612 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-17 20:31:51,609 views 28440 24536 User has 7 songs
+INFO 2025-04-17 20:31:51,609 views 28440 740 User has 7 songs
+INFO 2025-04-17 20:31:51,673 views 28440 24536 User has 1 songs with Spotify IDs
+INFO 2025-04-17 20:31:51,676 views 28440 740 User has 1 songs with Spotify IDs
+INFO 2025-04-17 20:31:51,802 views 28440 24536 Sample user songs: [{'spotify_id': '3YuaBvuZqcwN3CEAyyoaei', 'title': 'Like a Stone', 'artist': 'Audioslave'}]
+INFO 2025-04-17 20:31:51,802 views 28440 740 Sample user songs: [{'spotify_id': '3YuaBvuZqcwN3CEAyyoaei', 'title': 'Like a Stone', 'artist': 'Audioslave'}]
+INFO 2025-04-17 20:31:51,803 views 28440 24536 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-17 20:31:51,804 views 28440 740 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-17 20:31:52,021 views 28440 740 Got 10 recommendations
+INFO 2025-04-17 20:31:52,025 views 28440 24536 Got 10 recommendations
+INFO 2025-04-17 20:31:52,144 basehttp 28440 740 "GET /api/songs/recommendations/ HTTP/1.1" 200 2864
+INFO 2025-04-17 20:31:52,150 basehttp 28440 24536 "GET /api/songs/recommendations/ HTTP/1.1" 200 2940
+INFO 2025-04-17 20:31:55,530 basehttp 28440 24536 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 1299
+INFO 2025-04-17 20:31:55,718 basehttp 28440 740 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 1299
+INFO 2025-04-17 20:31:56,179 basehttp 28440 24536 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 559
+INFO 2025-04-17 20:31:56,405 basehttp 28440 740 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 559
+INFO 2025-04-17 20:32:00,247 basehttp 28440 24536 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 371
+INFO 2025-04-17 20:32:00,648 basehttp 28440 740 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 371
+INFO 2025-04-17 20:32:03,924 basehttp 28440 24536 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 79
+INFO 2025-04-17 20:32:04,675 basehttp 28440 740 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 79
+INFO 2025-04-17 20:46:37,697 basehttp 28440 21308 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-17 20:46:38,229 basehttp 28440 14912 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-17 20:46:38,369 views 28440 21308 User has 7 songs
+INFO 2025-04-17 20:46:38,429 views 28440 21308 User has 1 songs with Spotify IDs
+INFO 2025-04-17 20:46:38,551 views 28440 21308 Sample user songs: [{'spotify_id': '3YuaBvuZqcwN3CEAyyoaei', 'title': 'Like a Stone', 'artist': 'Audioslave'}]
+INFO 2025-04-17 20:46:38,552 views 28440 21308 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-17 20:46:38,749 views 28440 21308 Got 10 recommendations
+INFO 2025-04-17 20:46:38,870 basehttp 28440 21308 "GET /api/songs/recommendations/ HTTP/1.1" 200 3019
+INFO 2025-04-17 20:46:38,959 views 28440 14912 User has 7 songs
+INFO 2025-04-17 20:46:39,026 views 28440 14912 User has 1 songs with Spotify IDs
+INFO 2025-04-17 20:46:39,163 views 28440 14912 Sample user songs: [{'spotify_id': '3YuaBvuZqcwN3CEAyyoaei', 'title': 'Like a Stone', 'artist': 'Audioslave'}]
+INFO 2025-04-17 20:46:39,164 views 28440 14912 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-17 20:46:39,375 views 28440 14912 Got 10 recommendations
+INFO 2025-04-17 20:46:39,509 basehttp 28440 14912 "GET /api/songs/recommendations/ HTTP/1.1" 200 2991
+INFO 2025-04-17 20:46:40,482 basehttp 28440 21308 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 1299
+INFO 2025-04-17 20:46:41,207 basehttp 28440 21308 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 559
+INFO 2025-04-17 20:46:41,361 basehttp 28440 14912 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 1299
+INFO 2025-04-17 20:46:42,130 basehttp 28440 14912 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 559
+INFO 2025-04-17 20:46:43,281 basehttp 28440 21308 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 371
+INFO 2025-04-17 20:46:44,764 basehttp 28440 14912 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 371
+INFO 2025-04-17 20:46:45,900 basehttp 28440 21308 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 79
+INFO 2025-04-17 20:46:47,040 basehttp 28440 14912 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 79

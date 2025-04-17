@@ -349,17 +349,20 @@ class UserAnalytics(models.Model):
     def record_download(cls, user):
         """Record a song download in today's analytics"""
         today = timezone.now().date()
+        import logging
+        logger = logging.getLogger(__name__)
+        logger.info(f"[DEBUG] record_download called for user={user.username} id={user.id} date={today}")
         analytics, created = cls.objects.get_or_create(
             user=user, 
             date=today,
             defaults={
-                'downloads_available': 30 if user.is_subscription_active() else 5,
+                'downloads_available': 50 if user.is_subscription_active() else 15,
             }
         )
         
         analytics.songs_downloaded += 1
         analytics.save(update_fields=['songs_downloaded'])
-        
+        logger.info(f"[DEBUG] record_download updated analytics: user={user.username} id={user.id} date={today} songs_downloaded={analytics.songs_downloaded}")
         return analytics
         
     @classmethod

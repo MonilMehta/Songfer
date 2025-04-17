@@ -35,6 +35,9 @@ class SongSerializer(serializers.ModelSerializer):
 class ArtistSerializer(serializers.Serializer):
     artist = serializers.CharField()
     count = serializers.IntegerField()
+    artist_img = serializers.URLField(required=False, allow_null=True)
+    country = serializers.CharField(required=False, allow_null=True)
+    artist_genre = serializers.CharField(required=False, allow_null=True)
 
 class PlaylistSerializer(serializers.ModelSerializer):
     songs = SongSerializer(many=True, read_only=True)

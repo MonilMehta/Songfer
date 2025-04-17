@@ -945,4 +945,47 @@ def download_youtube_util(url, output_path=None):
         raise YouTubeAPIError(f"YouTube download error: {str(e)}", original_error=e)
     except Exception as e:
         logger.error(f"Unexpected error downloading from YouTube: {str(e)}", exc_info=True)
-        raise YouTubeAPIError(f"Unexpected YouTube error: {str(e)}", original_error=e) 
+        raise YouTubeAPIError(f"Unexpected YouTube error: {str(e)}", original_error=e)
+
+# Additional utility functions
+
+import csv
+import os
+from django.conf import settings
+import logging
+
+logger = logging.getLogger(__name__)
+
+def get_artist_info(artist_name):
+    """
+    Search for artist information in the Global Music Artists CSV file
+    Returns a dictionary with artist data or None if not found
+    """
+    try:
+        csv_path = os.path.join(settings.BASE_DIR, 'songs', 'datasets', 'Global Music Artists.csv')
+        if not os.path.exists(csv_path):
+            logger.warning(f"Artist CSV file not found at: {csv_path}")
+            return None
+            
+        with open(csv_path, 'r', encoding='utf-8') as file:
+            reader = csv.DictReader(file)
+            
+            # Convert artist name to lowercase for case-insensitive matching
+            artist_name_lower = artist_name.lower().strip()
+            
+            for row in reader:
+                # Case-insensitive comparison
+                if row.get('artist_name', '').lower().strip() == artist_name_lower:
+                    return {
+                        'artist': row.get('artist_name'),
+                        'artist_genre': row.get('artist_genre'),
+                        'artist_img': row.get('artist_img'),
+                        'artist_id': row.get('artist_id'),
+                        'country': row.get('country')
+                    }
+                    
+        # If we reach here, artist was not found
+        return None
+    except Exception as e:
+        logger.error(f"Error reading artist CSV: {e}")
+        return None

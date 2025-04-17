@@ -1,14 +1,12 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Download, History } from 'lucide-react'
 import { useToast } from '@/hooks/use-toast'
 
 // Import custom dashboard components
 import { DashboardStats } from '@/components/dashboard/dashboard-stats'
 import { DownloadTab } from '@/components/dashboard/download-tab'
-import { SongsTab } from '@/components/dashboard/songs-tab'
 import { ArtistGrid } from '@/components/dashboard/artist-grid'
 import { RecommendationGrid } from '@/components/dashboard/recommendation-grid'
 
@@ -56,12 +54,31 @@ interface Recommendation {
   genre?: string
 }
 
+interface DownloadActivity {
+  date: string
+  downloads: number
+  day_name: string
+}
+
+interface GenreDistribution {
+  genre: string
+  count: number
+}
+
+interface CountryDistribution {
+  country: string
+  count: number
+}
+
 export default function Dashboard() {
   const [songs, setSongs] = useState<Song[]>([])
   const [recommendations, setRecommendations] = useState<Recommendation[]>([])
   const [topArtists, setTopArtists] = useState<Artist[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [isDownloading, setIsDownloading] = useState(false)
+  const [downloadActivity, setDownloadActivity] = useState<DownloadActivity[]>([])
+  const [favoriteGenres, setFavoriteGenres] = useState<GenreDistribution[]>([])
+  const [topCountries, setTopCountries] = useState<CountryDistribution[]>([])
   const [userStats, setUserStats] = useState<UserStats>({
     downloadsRemaining: 9,
     isPremium: false,
@@ -95,6 +112,7 @@ export default function Dashboard() {
           description: "Please log in again to access your data",
           variant: "destructive"
         });
+        setIsLoading(false);
         return;
       }
       
@@ -104,21 +122,18 @@ export default function Dashboard() {
       };
       
       // Fetch downloaded songs
-      const songsResponse = await fetch('http://localhost:8000/api/songs/', {
-        headers: authHeaders
-      });
-      
-      if (!songsResponse.ok) throw new Error('Failed to fetch songs');
-      const songsData = await songsResponse.json();
-      setSongs(songsData);
+      await fetchSongs(authHeaders);
       
       await fetchRecommendations(authHeaders);
       await fetchTopArtists(authHeaders);
+      await fetchDownloadActivity(authHeaders);
+      await fetchFavoriteGenres(authHeaders);
+      await fetchTopCountries(authHeaders);
       
       // Update user stats
       setUserStats(prev => ({
         ...prev,
-        totalDownloads: songsData.length || 1,
+        totalDownloads: songs.length || 1,
       }));
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -140,23 +155,11 @@ export default function Dashboard() {
       
       if (recommendationsResponse.ok) {
         const recommendationsData = await recommendationsResponse.json();
-        // Transform the recommendations to match our interface
-        const transformedRecommendations = recommendationsData.recommendations.map((rec: any) => ({
-          id: rec.spotify_id || `rec-${Math.random().toString(36).substring(2, 9)}`,
-          title: rec.title,
-          artist: Array.isArray(rec.artist) 
-            ? rec.artist.join(', ').replace(/[\[\]']/g, '') 
-            : rec.artist.replace(/[\[\]']/g, ''),
-          artists: Array.isArray(rec.artist) 
-            ? rec.artist.join(', ').replace(/[\[\]']/g, '') 
-            : rec.artist.replace(/[\[\]']/g, ''),
-          album: rec.album,
-          popularity: rec.popularity,
-          spotify_id: rec.spotify_id,
-          thumbnail_url: rec.thumbnail_url || rec.image_url,
-          genre: getRandomGenre() // This would ideally come from your API
-        }));
-        setRecommendations(transformedRecommendations);
+        // Pass the recommendations directly from the backend
+        // The RecommendationGrid component will handle the data transformation
+        if (recommendationsData.recommendations && recommendationsData.recommendations.length > 0) {
+          setRecommendations(recommendationsData.recommendations);
+        }
       }
     } catch (error) {
       console.error("Error fetching recommendations:", error);
@@ -172,18 +175,77 @@ export default function Dashboard() {
       if (topArtistsResponse.ok) {
         const topArtistsData = await topArtistsResponse.json();
         
-        // Transform the artists data to include placeholder images and last downloaded info
-        const enhancedArtistsData = topArtistsData.map((artist: any) => ({
-          name: artist.artist.replace(/['"]/g, ''),
-          count: artist.count,
-          image: getArtistImage(artist.artist.replace(/['"]/g, '')),
-          lastDownloaded: getRandomRecentDate()
-        }));
-        
-        setTopArtists(enhancedArtistsData);
+        // The ArtistGrid component will handle the transformation
+        // Just pass the data directly as received from the API
+        setTopArtists(topArtistsData);
       }
     } catch (error) {
       console.error("Error fetching top artists:", error);
+    }
+  };
+
+  const fetchDownloadActivity = async (headers: HeadersInit) => {
+    try {
+      const activityResponse = await fetch('http://localhost:8000/api/users/download-activity/?period=week', {
+        headers
+      });
+      
+      if (activityResponse.ok) {
+        const activityData = await activityResponse.json();
+        if (activityData.activity_data && activityData.activity_data.length > 0) {
+          setDownloadActivity(activityData.activity_data);
+        }
+      }
+    } catch (error) {
+      console.error("Error fetching download activity:", error);
+    }
+  };
+
+  const fetchFavoriteGenres = async (headers: HeadersInit) => {
+    try {
+      const genresResponse = await fetch('http://localhost:8000/api/songs/user/favorite-genres/', {
+        headers
+      });
+      
+      if (genresResponse.ok) {
+        const genresData = await genresResponse.json();
+        if (genresData.genre_distribution && genresData.genre_distribution.length > 0) {
+          setFavoriteGenres(genresData.genre_distribution);
+          
+          // Update user stats with the top 3 genres
+          const topGenres = genresData.genre_distribution
+            .filter((genre: GenreDistribution) => genre.genre !== "Unknown")
+            .slice(0, 3)
+            .map((genre: GenreDistribution) => ({
+              name: genre.genre.charAt(0).toUpperCase() + genre.genre.slice(1),
+              count: genre.count
+            }));
+          
+          setUserStats(prev => ({
+            ...prev,
+            genres: topGenres
+          }));
+        }
+      }
+    } catch (error) {
+      console.error("Error fetching favorite genres:", error);
+    }
+  };
+
+  const fetchTopCountries = async (headers: HeadersInit) => {
+    try {
+      const countriesResponse = await fetch('http://localhost:8000/api/songs/user/top-countries/', {
+        headers
+      });
+      
+      if (countriesResponse.ok) {
+        const countriesData = await countriesResponse.json();
+        if (countriesData.country_distribution && countriesData.country_distribution.length > 0) {
+          setTopCountries(countriesData.country_distribution);
+        }
+      }
+    } catch (error) {
+      console.error("Error fetching top countries:", error);
     }
   };
 
@@ -227,12 +289,27 @@ export default function Dashboard() {
       });
       
       if (!response.ok) {
-        throw new Error(`Download failed: ${response.status}`);
+        const contentType = response.headers.get('content-type');
+        let errorMessage = `Download failed: ${response.status}`;
+        
+        if (contentType && contentType.includes('application/json')) {
+          try {
+            const errorData = await response.json();
+            errorMessage = errorData.message || errorData.detail || errorMessage;
+          } catch (parseError) {
+            console.error('Error parsing JSON from error response:', parseError);
+            errorMessage = `Download failed: ${response.status} ${response.statusText}`;
+          }
+        } else {
+          errorMessage = `Download failed: ${response.status} ${response.statusText}`;
+        }
+        
+        throw new Error(errorMessage);
       }
       
       toast({
-        title: "Download Successful",
-        description: "Your song has been added to your library",
+        title: "Download Initiated",
+        description: "Your download is processing...",
       });
       
       setUserStats(prev => ({
@@ -246,10 +323,10 @@ export default function Dashboard() {
       fetchSongs();
       
     } catch (error) {
-      console.error('Download error:', error);
+      console.error('Dashboard download error:', error);
       toast({
         title: "Download Failed",
-        description: error instanceof Error ? error.message : "An error occurred",
+        description: error instanceof Error ? error.message : "An unexpected error occurred",
         variant: "destructive"
       });
     } finally {
@@ -257,22 +334,21 @@ export default function Dashboard() {
     }
   };
 
-  const fetchSongs = async () => {
+  const fetchSongs = async (headers?: HeadersInit) => {
+    const token = localStorage.getItem('token');
+    const authHeaders = headers || { 'Authorization': `Token ${token}`, 'Content-Type': 'application/json' };
     try {
-      const token = localStorage.getItem('token');
-      if (!token) return;
-      
-      const response = await fetch('http://localhost:8000/api/songs/', {
-        headers: {
-          'Authorization': `Token ${token}`,
-          'Content-Type': 'application/json'
-        }
-      });
-      
-      if (response.ok) {
-        const data = await response.json();
-        setSongs(data);
+      if (!token && !headers) {
+        console.warn("Cannot fetch songs without auth token or provided headers.");
+        return;
       }
+      const songsResponse = await fetch('http://localhost:8000/api/songs/', {
+        headers: authHeaders
+      });
+      if (!songsResponse.ok) throw new Error('Failed to fetch songs for count update');
+      const songsData = await songsResponse.json();
+      setSongs(songsData);
+      setUserStats(prev => ({ ...prev, totalDownloads: songsData.length }));
     } catch (error) {
       console.error("Error fetching songs:", error);
     }
@@ -285,54 +361,41 @@ export default function Dashboard() {
         'Authorization': `Token ${token}`,
         'Content-Type': 'application/json'
       };
-      fetchRecommendations(headers);
+      setIsLoading(true);
+      fetchRecommendations(headers).finally(() => setIsLoading(false));
     }
   };
 
   // Get download history data for mini chart (for demo purposes)
   const getDownloadActivityData = () => {
+    if (downloadActivity.length > 0) {
+      return downloadActivity.map(activity => activity.downloads);
+    }
     return Array.from({ length: 7 }, () => Math.floor(Math.random() * 5)); // 7 days of random download counts
   };
 
   const downloadActivityData = getDownloadActivityData();
 
   return (
-    <div className="container mx-auto p-4 space-y-6">
+    <div className="container mx-auto p-4 md:p-6 lg:p-8 space-y-8">
       {/* Stats Cards */}
       <DashboardStats 
         userStats={userStats}
         downloadActivityData={downloadActivityData}
+        downloadActivity={downloadActivity}
+        favoriteGenres={favoriteGenres}
+        topCountries={topCountries}
       />
 
-      {/* Downloads and Library Tabs */}
-      <Tabs defaultValue="download" className="space-y-4">
-        <TabsList className="grid w-full grid-cols-2">
-          <TabsTrigger value="download" className="flex items-center">
-            <Download className="w-4 h-4 mr-2" />
-            Download
-          </TabsTrigger>
-          <TabsTrigger value="songs" className="flex items-center">
-            <History className="w-4 h-4 mr-2" />
-            My Downloads
-          </TabsTrigger>
-        </TabsList>
-        
-        <TabsContent value="download" className="space-y-4">
-          <DownloadTab 
-            onDownload={handleDownload}
-            isLoading={isLoading}
-            isDownloading={isDownloading}
-            isPremium={userStats.isPremium}
-          />
-        </TabsContent>
-        
-        <TabsContent value="songs">
-          <SongsTab 
-            songs={songs}
-            isLoading={isLoading}
-          />
-        </TabsContent>
-      </Tabs>
+      {/* Download Section - Render DownloadTab directly */}
+      <div className="mt-8">
+        <DownloadTab 
+          onDownload={handleDownload}
+          isLoading={isLoading}
+          isDownloading={isDownloading}
+          isPremium={userStats.isPremium}
+        />
+      </div>
       
       {/* Top Artists Section */}
       <ArtistGrid 
