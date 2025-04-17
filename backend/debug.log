@@ -1661,3 +1661,1004 @@ INFO 2025-04-17 20:46:43,281 basehttp 28440 21308 "GET /api/songs/user/favorite-
 INFO 2025-04-17 20:46:44,764 basehttp 28440 14912 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 371
 INFO 2025-04-17 20:46:45,900 basehttp 28440 21308 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 79
 INFO 2025-04-17 20:46:47,040 basehttp 28440 14912 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 79
+INFO 2025-04-17 20:55:12,127 autoreload 28440 15148 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-17 20:55:42,853 autoreload 22872 23484 Watching for file changes with StatReloader
+INFO 2025-04-17 21:03:40,907 autoreload 22872 23484 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-17 21:03:44,973 autoreload 22920 30652 Watching for file changes with StatReloader
+INFO 2025-04-17 21:04:22,795 autoreload 22920 30652 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views\song_views.py changed, reloading.
+INFO 2025-04-17 21:04:26,210 autoreload 29344 12172 Watching for file changes with StatReloader
+INFO 2025-04-17 21:05:10,124 autoreload 29344 12172 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views\song_views.py changed, reloading.
+INFO 2025-04-17 21:05:13,423 autoreload 10448 14184 Watching for file changes with StatReloader
+INFO 2025-04-17 21:25:50,197 autoreload 9584 18992 Watching for file changes with StatReloader
+INFO 2025-04-17 21:37:34,348 autoreload 9584 18992 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\urls.py changed, reloading.
+INFO 2025-04-17 21:37:37,969 autoreload 29304 21092 Watching for file changes with StatReloader
+INFO 2025-04-17 21:37:58,168 autoreload 29304 21092 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\urls.py changed, reloading.
+INFO 2025-04-17 21:38:01,914 autoreload 19184 2140 Watching for file changes with StatReloader
+INFO 2025-04-17 21:39:11,735 autoreload 30180 15616 Watching for file changes with StatReloader
+WARNING 2025-04-17 22:09:27,134 log 30180 26800 Not Found: /api/songs/spotify/track-details/3YuaBvuZqcwN3CEAyyoaei/
+WARNING 2025-04-17 22:09:27,136 basehttp 30180 26800 "GET /api/songs/spotify/track-details/3YuaBvuZqcwN3CEAyyoaei/ HTTP/1.1" 404 17977
+INFO 2025-04-17 22:09:42,889 spotify_api 30180 26800 Extracting Spotify ID from URL: https://open.spotify.com/track/3YuaBvuZqcwN3CEAyyoaei?si=7997ab1e12154272
+INFO 2025-04-17 22:09:42,889 spotify_api 30180 26800 Extracted Spotify track ID: 3YuaBvuZqcwN3CEAyyoaei
+INFO 2025-04-17 22:09:43,041 spotify_api 30180 26800 Extracting Spotify ID from URL: https://open.spotify.com/track/3YuaBvuZqcwN3CEAyyoaei?si=7997ab1e12154272
+INFO 2025-04-17 22:09:43,041 spotify_api 30180 26800 Extracted Spotify track ID: 3YuaBvuZqcwN3CEAyyoaei
+INFO 2025-04-17 22:09:43,042 views 30180 26800 Getting info for Spotify track ID: ('track', '3YuaBvuZqcwN3CEAyyoaei')
+INFO 2025-04-17 22:09:43,042 spotify_api 30180 26800 Extracting Spotify ID from URL: https://open.spotify.com/track/3YuaBvuZqcwN3CEAyyoaei?si=7997ab1e12154272
+INFO 2025-04-17 22:09:43,042 spotify_api 30180 26800 Extracted Spotify track ID: 3YuaBvuZqcwN3CEAyyoaei
+INFO 2025-04-17 22:09:43,042 spotify_api 30180 26800 Getting info for Spotify track ID: 3YuaBvuZqcwN3CEAyyoaei
+INFO 2025-04-17 22:09:43,043 spotify_api 30180 26800 Creating Spotify client with credentials from settings
+INFO 2025-04-17 22:09:43,416 spotify_api 30180 26800 Successfully tested Spotify client
+INFO 2025-04-17 22:09:43,725 spotify_api 30180 26800 Got track info: Like a Stone by Audioslave
+INFO 2025-04-17 22:09:43,728 views 30180 26800 Got track info: Like a Stone by Audioslave
+INFO 2025-04-17 22:09:44,032 views 30180 26800 Downloading using YouTube search: ytsearch:Like a Stone Audioslave
+INFO 2025-04-17 22:09:57,194 views 30180 26800 Downloaded file to: C:\Users\Dell\AppData\Local\Temp\tmpuwuiang8\download-1744907983.mp3
+INFO 2025-04-17 22:09:57,342 utils 30180 26800 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Like a Stone - Audioslave.mp3
+INFO 2025-04-17 22:09:57,343 utils 30180 26800 Title: Like a Stone, Artist: Audioslave, Album: Audioslave, Genre: grunge
+INFO 2025-04-17 22:09:57,350 utils 30180 26800 Loaded existing ID3 tags
+INFO 2025-04-17 22:09:57,427 utils 30180 26800 Found matching song in database: Like a Stone by Audioslave
+INFO 2025-04-17 22:09:57,428 utils 30180 26800 Using thumbnail URL from database: https://i.scdn.co/image/ab67616d0000b273a7292b6863258e889b78d787
+INFO 2025-04-17 22:09:57,428 utils 30180 26800 Downloading thumbnail from URL: https://i.scdn.co/image/ab67616d0000b273a7292b6863258e889b78d787
+INFO 2025-04-17 22:09:57,595 utils 30180 26800 Downloaded thumbnail: 123969 bytes
+INFO 2025-04-17 22:09:57,596 utils 30180 26800 Detected image type: jpeg
+INFO 2025-04-17 22:09:57,597 utils 30180 26800 Adding album art, MIME type: image/jpeg
+INFO 2025-04-17 22:09:57,597 utils 30180 26800 Successfully added album art to ID3 tags
+INFO 2025-04-17 22:09:57,616 utils 30180 26800 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Like a Stone - Audioslave.mp3
+INFO 2025-04-17 22:09:57,633 utils 30180 26800 Verification: 8 tags were written, has_cover=True
+INFO 2025-04-17 22:09:57,958 models 30180 26800 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-17 22:09:58,108 models 30180 26800 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=13
+INFO 2025-04-17 22:09:58,568 views 30180 26800 Added song to cache: https://open.spotify.com/track/3YuaBvuZqcwN3CEAyyoaei?si=7997ab1e12154272
+INFO 2025-04-17 22:09:58,782 basehttp 30180 26800 "POST /api/songs/songs/download/ HTTP/1.1" 200 7373432
+INFO 2025-04-17 22:09:59,427 spotify_api 30180 26800 Extracting Spotify ID from URL: https://open.spotify.com/track/3YuaBvuZqcwN3CEAyyoaei?si=7997ab1e12154272
+INFO 2025-04-17 22:09:59,427 spotify_api 30180 26800 Extracted Spotify track ID: 3YuaBvuZqcwN3CEAyyoaei
+INFO 2025-04-17 22:09:59,504 views 30180 26800 Found existing song with URL https://open.spotify.com/track/3YuaBvuZqcwN3CEAyyoaei?si=7997ab1e12154272, serving directly
+INFO 2025-04-17 22:09:59,666 views 30180 26800 Using cached version for Spotify URL: https://open.spotify.com/track/3YuaBvuZqcwN3CEAyyoaei?si=7997ab1e12154272
+INFO 2025-04-17 22:09:59,667 models 30180 26800 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-17 22:09:59,796 models 30180 26800 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=14
+INFO 2025-04-17 22:09:59,960 basehttp 30180 26800 "POST /api/songs/songs/download/ HTTP/1.1" 200 7240940
+INFO 2025-04-17 22:10:00,594 basehttp 30180 27224 "GET /api/songs/ HTTP/1.1" 200 107
+WARNING 2025-04-17 22:19:56,381 log 30180 11940 Not Found: /api/songs/spotify/track-details/3YuaBvuZqcwN3CEAyyoaei/
+WARNING 2025-04-17 22:19:56,382 basehttp 30180 11940 "GET /api/songs/spotify/track-details/3YuaBvuZqcwN3CEAyyoaei/ HTTP/1.1" 404 17977
+WARNING 2025-04-17 22:20:15,066 log 30180 11940 Not Found: /api/songs/spotify/track-details/3YuaBvuZqcwN3CEAyyoaei/
+WARNING 2025-04-17 22:20:15,067 basehttp 30180 11940 "GET /api/songs/spotify/track-details/3YuaBvuZqcwN3CEAyyoaei/ HTTP/1.1" 404 17977
+INFO 2025-04-17 22:20:54,967 utils 30180 11940 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Lithe - Fall Back - GANGSTER GANG.mp3
+INFO 2025-04-17 22:20:54,968 utils 30180 11940 Title: Lithe - Fall Back, Artist: GANGSTER GANG, Album: Unknown, Genre: Unknown
+INFO 2025-04-17 22:20:54,980 utils 30180 11940 Loaded existing ID3 tags
+INFO 2025-04-17 22:20:55,050 utils 30180 11940 Looking for local thumbnail: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs/Lithe - Fall Back - GANGSTER GANG.webp
+INFO 2025-04-17 22:20:55,066 utils 30180 11940 Found local thumbnail: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs/Lithe - Fall Back - GANGSTER GANG.webp
+INFO 2025-04-17 22:20:55,067 utils 30180 11940 Detected image type: webp
+INFO 2025-04-17 22:20:55,068 utils 30180 11940 Converting image from webp to JPEG
+INFO 2025-04-17 22:20:55,746 utils 30180 11940 Successfully converted image to JPEG: 193728 bytes
+INFO 2025-04-17 22:20:55,746 utils 30180 11940 Adding album art, MIME type: image/jpeg
+INFO 2025-04-17 22:20:55,746 utils 30180 11940 Successfully added album art to ID3 tags
+INFO 2025-04-17 22:20:55,751 utils 30180 11940 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Lithe - Fall Back - GANGSTER GANG.mp3
+INFO 2025-04-17 22:20:55,763 utils 30180 11940 Verification: 8 tags were written, has_cover=True
+INFO 2025-04-17 22:20:56,464 views 30180 11940 Added song to cache: https://www.youtube.com/watch?v=8sF1oLahd_M
+INFO 2025-04-17 22:20:56,540 basehttp 30180 11940 "POST /api/songs/songs/download/ HTTP/1.1" 200 3386421
+INFO 2025-04-17 22:20:57,247 views 30180 11940 Found existing song with URL https://www.youtube.com/watch?v=8sF1oLahd_M, serving directly
+INFO 2025-04-17 22:20:57,387 views 30180 11940 Using cached version for URL: https://www.youtube.com/watch?v=8sF1oLahd_M
+INFO 2025-04-17 22:20:57,388 models 30180 11940 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-17 22:20:57,531 models 30180 11940 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=15
+INFO 2025-04-17 22:20:57,656 basehttp 30180 11940 "POST /api/songs/songs/download/ HTTP/1.1" 200 3188204
+INFO 2025-04-17 22:20:58,232 basehttp 30180 19956 "GET /api/songs/ HTTP/1.1" 200 107
+ERROR 2025-04-17 22:21:58,397 log 30180 11940 Internal Server Error: /api/songs/songs/download/
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 279, in ensure_connection
+    self.connect()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\utils.py", line 1783, in runner
+    return sentry_patched_function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\__init__.py", line 690, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\postgresql\base.py", line 332, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\psycopg2\__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: could not translate host name "ep-patient-resonance-a19rwm71.ap-southeast-1.aws.neon.tech" to address: No such host is known. 
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\views.py", line 94, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\__init__.py", line 331, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 330, in perform_authentication
+    request.user
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\request.py", line 232, in user
+    self._authenticate()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\authentication.py", line 196, in authenticate
+    return self.authenticate_credentials(token)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\authentication.py", line 201, in authenticate_credentials
+    token = model.objects.select_related('user').get(key=key)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 645, in get
+    num = len(clone)
+          ^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 382, in __len__
+    self._fetch_all()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1572, in execute_sql
+    cursor = self.connection.cursor()
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 320, in cursor
+    return self._cursor()
+           ^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 296, in _cursor
+    self.ensure_connection()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 278, in ensure_connection
+    with self.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 279, in ensure_connection
+    self.connect()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\utils.py", line 1783, in runner
+    return sentry_patched_function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\__init__.py", line 690, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\postgresql\base.py", line 332, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\psycopg2\__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: could not translate host name "ep-patient-resonance-a19rwm71.ap-southeast-1.aws.neon.tech" to address: No such host is known. 
+
+ERROR 2025-04-17 22:21:58,411 basehttp 30180 11940 "POST /api/songs/songs/download/ HTTP/1.1" 500 257941
+INFO 2025-04-17 22:39:33,386 views 30180 21436 Found existing song with URL https://www.youtube.com/watch?v=8sF1oLahd_M, serving directly
+INFO 2025-04-17 22:39:33,536 views 30180 21436 Using cached version for URL: https://www.youtube.com/watch?v=8sF1oLahd_M
+INFO 2025-04-17 22:39:33,536 models 30180 21436 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-17 22:39:33,684 models 30180 21436 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=16
+INFO 2025-04-17 22:39:33,777 basehttp 30180 21436 "POST /api/songs/songs/download/ HTTP/1.1" 200 3188204
+INFO 2025-04-17 22:39:34,400 views 30180 21436 Found existing song with URL https://www.youtube.com/watch?v=8sF1oLahd_M, serving directly
+INFO 2025-04-17 22:39:34,528 views 30180 21436 Using cached version for URL: https://www.youtube.com/watch?v=8sF1oLahd_M
+INFO 2025-04-17 22:39:34,528 models 30180 21436 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-17 22:39:34,661 models 30180 21436 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=17
+INFO 2025-04-17 22:39:34,771 basehttp 30180 21436 "POST /api/songs/songs/download/ HTTP/1.1" 200 3188204
+INFO 2025-04-17 22:39:35,302 basehttp 30180 27496 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-17 22:39:38,846 views 30180 21436 Found existing song with URL https://www.youtube.com/watch?v=8sF1oLahd_M, serving directly
+INFO 2025-04-17 22:39:38,976 views 30180 21436 Using cached version for URL: https://www.youtube.com/watch?v=8sF1oLahd_M
+INFO 2025-04-17 22:39:38,977 models 30180 21436 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-17 22:39:39,104 models 30180 21436 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=18
+INFO 2025-04-17 22:39:39,212 basehttp 30180 21436 "POST /api/songs/songs/download/ HTTP/1.1" 200 3188204
+INFO 2025-04-17 22:39:39,808 views 30180 21436 Found existing song with URL https://www.youtube.com/watch?v=8sF1oLahd_M, serving directly
+INFO 2025-04-17 22:39:39,933 views 30180 21436 Using cached version for URL: https://www.youtube.com/watch?v=8sF1oLahd_M
+INFO 2025-04-17 22:39:39,934 models 30180 21436 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-17 22:39:40,060 models 30180 21436 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=19
+INFO 2025-04-17 22:39:40,175 basehttp 30180 21436 "POST /api/songs/songs/download/ HTTP/1.1" 200 3188204
+INFO 2025-04-17 22:39:40,696 basehttp 30180 27496 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-17 22:40:00,664 views 30180 21436 Found existing song with URL https://www.youtube.com/watch?v=8sF1oLahd_M, serving directly
+INFO 2025-04-17 22:40:00,794 views 30180 21436 Using cached version for URL: https://www.youtube.com/watch?v=8sF1oLahd_M
+INFO 2025-04-17 22:40:00,795 models 30180 21436 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-17 22:40:00,924 models 30180 21436 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=20
+INFO 2025-04-17 22:40:01,046 basehttp 30180 21436 "POST /api/songs/songs/download/ HTTP/1.1" 200 3188204
+INFO 2025-04-17 22:40:01,632 views 30180 21436 Found existing song with URL https://www.youtube.com/watch?v=8sF1oLahd_M, serving directly
+INFO 2025-04-17 22:40:01,756 views 30180 21436 Using cached version for URL: https://www.youtube.com/watch?v=8sF1oLahd_M
+INFO 2025-04-17 22:40:01,757 models 30180 21436 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-17 22:40:01,883 models 30180 21436 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=21
+INFO 2025-04-17 22:40:01,980 basehttp 30180 21436 "POST /api/songs/songs/download/ HTTP/1.1" 200 3188204
+INFO 2025-04-17 22:40:02,511 basehttp 30180 27496 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-17 23:05:11,570 basehttp 30180 8648 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-17 23:05:12,273 basehttp 30180 12120 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-17 23:05:12,669 views 30180 8648 User has 9 songs
+INFO 2025-04-17 23:05:12,738 views 30180 8648 User has 2 songs with Spotify IDs
+INFO 2025-04-17 23:05:12,867 views 30180 8648 Sample user songs: [{'spotify_id': '3YuaBvuZqcwN3CEAyyoaei', 'title': 'Like a Stone', 'artist': 'Audioslave'}, {'spotify_id': '3YuaBvuZqcwN3CEAyyoaei', 'title': 'Like a Stone', 'artist': 'Audioslave'}]
+INFO 2025-04-17 23:05:12,867 views 30180 8648 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-17 23:05:12,867 recommendation 30180 8648 Skipping Music.csv due to invalid format, using data.csv directly
+INFO 2025-04-17 23:05:12,908 views 30180 12120 User has 9 songs
+INFO 2025-04-17 23:05:12,981 views 30180 12120 User has 2 songs with Spotify IDs
+INFO 2025-04-17 23:05:13,120 views 30180 12120 Sample user songs: [{'spotify_id': '3YuaBvuZqcwN3CEAyyoaei', 'title': 'Like a Stone', 'artist': 'Audioslave'}, {'spotify_id': '3YuaBvuZqcwN3CEAyyoaei', 'title': 'Like a Stone', 'artist': 'Audioslave'}]
+INFO 2025-04-17 23:05:13,120 views 30180 12120 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-17 23:05:13,120 recommendation 30180 12120 Skipping Music.csv due to invalid format, using data.csv directly
+INFO 2025-04-17 23:05:21,021 recommendation 30180 8648 Loaded data.csv dataset
+INFO 2025-04-17 23:05:23,770 recommendation 30180 8648 Available columns in dataset: ['valence', 'year', 'acousticness', 'artists', 'danceability', 'duration_ms', 'energy', 'explicit', 'id', 'instrumentalness', 'key', 'liveness', 'loudness', 'mode', 'name', 'popularity', 'release_date', 'speechiness', 'tempo']
+INFO 2025-04-17 23:05:24,683 recommendation 30180 8648 Using features: ['acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'loudness', 'speechiness', 'tempo', 'valence']
+INFO 2025-04-17 23:05:24,920 recommendation 30180 12120 Loaded data.csv dataset
+INFO 2025-04-17 23:05:25,018 recommendation 30180 8648 Prepared data with 170653 songs and 9 features
+INFO 2025-04-17 23:05:25,018 recommendation 30180 12120 Available columns in dataset: ['valence', 'year', 'acousticness', 'artists', 'danceability', 'duration_ms', 'energy', 'explicit', 'id', 'instrumentalness', 'key', 'liveness', 'loudness', 'mode', 'name', 'popularity', 'release_date', 'speechiness', 'tempo']
+INFO 2025-04-17 23:05:25,199 recommendation 30180 12120 Using features: ['acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'loudness', 'speechiness', 'tempo', 'valence']
+INFO 2025-04-17 23:05:25,329 recommendation 30180 12120 Prepared data with 170653 songs and 9 features
+INFO 2025-04-17 23:05:27,858 recommendation 30180 12120 Built song clusters successfully
+INFO 2025-04-17 23:05:27,863 recommendation 30180 12120 Music Recommender initialized successfully
+INFO 2025-04-17 23:05:27,871 recommendation 30180 8648 Built song clusters successfully
+INFO 2025-04-17 23:05:27,871 recommendation 30180 8648 Music Recommender initialized successfully
+INFO 2025-04-17 23:05:28,229 views 30180 8648 Got 10 recommendations
+INFO 2025-04-17 23:05:28,229 views 30180 12120 Got 10 recommendations
+INFO 2025-04-17 23:05:28,377 basehttp 30180 12120 "GET /api/songs/recommendations/ HTTP/1.1" 200 2901
+INFO 2025-04-17 23:05:28,377 basehttp 30180 8648 "GET /api/songs/recommendations/ HTTP/1.1" 200 2902
+INFO 2025-04-17 23:05:33,370 basehttp 30180 8648 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 1292
+INFO 2025-04-17 23:05:34,079 basehttp 30180 8648 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 559
+INFO 2025-04-17 23:05:34,352 basehttp 30180 12120 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 1292
+INFO 2025-04-17 23:05:35,042 basehttp 30180 12120 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 559
+INFO 2025-04-17 23:05:42,941 basehttp 30180 8648 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 371
+INFO 2025-04-17 23:05:43,647 basehttp 30180 12120 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 371
+INFO 2025-04-17 23:05:51,378 basehttp 30180 8648 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 79
+INFO 2025-04-17 23:05:52,333 basehttp 30180 12120 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 79
+WARNING 2025-04-17 23:24:47,330 log 30180 19072 Not Found: /api/songs/spotify/playlists/21y0yK08j1UzYu4ro06wfL/
+WARNING 2025-04-17 23:24:47,330 basehttp 30180 19072 "GET /api/songs/spotify/playlists/21y0yK08j1UzYu4ro06wfL/ HTTP/1.1" 404 17965
+WARNING 2025-04-17 23:24:47,358 log 30180 19072 Not Found: /api/songs/spotify-playlist/21y0yK08j1UzYu4ro06wfL/
+WARNING 2025-04-17 23:24:47,358 basehttp 30180 19072 "GET /api/songs/spotify-playlist/21y0yK08j1UzYu4ro06wfL/ HTTP/1.1" 404 17962
+WARNING 2025-04-17 23:24:47,380 log 30180 19072 Not Found: /api/spotify/playlists/21y0yK08j1UzYu4ro06wfL/
+WARNING 2025-04-17 23:24:47,383 basehttp 30180 19072 "GET /api/spotify/playlists/21y0yK08j1UzYu4ro06wfL/ HTTP/1.1" 404 3472
+INFO 2025-04-17 23:25:03,047 spotify_api 30180 19072 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-17 23:25:03,051 spotify_api 30180 19072 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-17 23:25:03,051 views 30180 19072 Redirecting Spotify playlist URL to playlist download endpoint: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-17 23:25:03,052 spotify_api 30180 19072 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-17 23:25:03,052 spotify_api 30180 19072 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-17 23:25:03,053 spotify_api 30180 19072 Getting Spotify playlist info for ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-17 23:25:03,053 spotify_api 30180 19072 Creating Spotify client with credentials from settings
+INFO 2025-04-17 23:25:03,594 spotify_api 30180 19072 Successfully tested Spotify client
+INFO 2025-04-17 23:25:04,214 spotify_api 30180 19072 Extracted 3 track URLs from playlist
+INFO 2025-04-17 23:25:04,505 spotify_api 30180 19072 Extracting Spotify ID from URL: https://open.spotify.com/track/1ApfHqjOoBmJZ0SjdjzVyA
+INFO 2025-04-17 23:25:04,505 spotify_api 30180 19072 Extracted Spotify track ID: 1ApfHqjOoBmJZ0SjdjzVyA
+INFO 2025-04-17 23:25:04,505 spotify_api 30180 19072 Getting info for Spotify track ID: 1ApfHqjOoBmJZ0SjdjzVyA
+INFO 2025-04-17 23:25:04,505 spotify_api 30180 19072 Creating Spotify client with credentials from settings
+INFO 2025-04-17 23:25:04,686 spotify_api 30180 19072 Successfully tested Spotify client
+INFO 2025-04-17 23:25:05,134 spotify_api 30180 19072 Got track info: Yeh Raaten Yeh Mausam by Sanam
+INFO 2025-04-17 23:25:16,784 views 30180 19072 Added Spotify song to cache from playlist: https://open.spotify.com/track/1ApfHqjOoBmJZ0SjdjzVyA
+INFO 2025-04-17 23:25:17,175 spotify_api 30180 19072 Extracting Spotify ID from URL: https://open.spotify.com/track/0dQiyqHUpnMPmHtk535VAY
+INFO 2025-04-17 23:25:17,177 spotify_api 30180 19072 Extracted Spotify track ID: 0dQiyqHUpnMPmHtk535VAY
+INFO 2025-04-17 23:25:17,177 spotify_api 30180 19072 Getting info for Spotify track ID: 0dQiyqHUpnMPmHtk535VAY
+INFO 2025-04-17 23:25:17,177 spotify_api 30180 19072 Creating Spotify client with credentials from settings
+INFO 2025-04-17 23:25:17,389 spotify_api 30180 19072 Successfully tested Spotify client
+INFO 2025-04-17 23:25:17,829 spotify_api 30180 19072 Got track info: Tennu Le by omer inayat
+INFO 2025-04-17 23:25:26,845 views 30180 19072 Added Spotify song to cache from playlist: https://open.spotify.com/track/0dQiyqHUpnMPmHtk535VAY
+INFO 2025-04-17 23:25:27,216 spotify_api 30180 19072 Extracting Spotify ID from URL: https://open.spotify.com/track/0kYBzFJ5a2Jozi6cI4y9Bp
+INFO 2025-04-17 23:25:27,216 spotify_api 30180 19072 Extracted Spotify track ID: 0kYBzFJ5a2Jozi6cI4y9Bp
+INFO 2025-04-17 23:25:27,216 spotify_api 30180 19072 Getting info for Spotify track ID: 0kYBzFJ5a2Jozi6cI4y9Bp
+INFO 2025-04-17 23:25:27,216 spotify_api 30180 19072 Creating Spotify client with credentials from settings
+INFO 2025-04-17 23:25:27,454 spotify_api 30180 19072 Successfully tested Spotify client
+INFO 2025-04-17 23:25:27,765 spotify_api 30180 19072 Got track info: Jo Tere Sang by Jeet Gannguli
+INFO 2025-04-17 23:25:40,568 views 30180 19072 Added Spotify song to cache from playlist: https://open.spotify.com/track/0kYBzFJ5a2Jozi6cI4y9Bp
+INFO 2025-04-17 23:25:40,945 models 30180 19072 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-17 23:25:41,075 models 30180 19072 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=22
+INFO 2025-04-17 23:25:41,075 models 30180 19072 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-17 23:25:41,195 models 30180 19072 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=23
+INFO 2025-04-17 23:25:41,195 models 30180 19072 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-17 23:25:41,317 models 30180 19072 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=24
+INFO 2025-04-17 23:25:41,317 basehttp 30180 19072 "POST /api/songs/songs/download/ HTTP/1.1" 200 122
+INFO 2025-04-17 23:25:41,890 spotify_api 30180 19072 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-17 23:25:41,890 spotify_api 30180 19072 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-17 23:25:41,890 views 30180 19072 Redirecting Spotify playlist URL to playlist download endpoint: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-17 23:25:41,890 spotify_api 30180 19072 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-17 23:25:41,894 spotify_api 30180 19072 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-17 23:25:41,894 spotify_api 30180 19072 Getting Spotify playlist info for ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-17 23:25:41,894 spotify_api 30180 19072 Creating Spotify client with credentials from settings
+INFO 2025-04-17 23:25:42,054 spotify_api 30180 19072 Successfully tested Spotify client
+INFO 2025-04-17 23:25:42,507 spotify_api 30180 19072 Extracted 3 track URLs from playlist
+INFO 2025-04-17 23:25:42,943 views 30180 19072 Added existing song to playlist: https://open.spotify.com/track/1ApfHqjOoBmJZ0SjdjzVyA
+INFO 2025-04-17 23:25:43,245 views 30180 19072 Added existing song to playlist: https://open.spotify.com/track/0dQiyqHUpnMPmHtk535VAY
+INFO 2025-04-17 23:25:43,545 views 30180 19072 Added existing song to playlist: https://open.spotify.com/track/0kYBzFJ5a2Jozi6cI4y9Bp
+INFO 2025-04-17 23:25:43,675 models 30180 19072 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-17 23:25:43,802 models 30180 19072 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=25
+INFO 2025-04-17 23:25:43,802 models 30180 19072 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-17 23:25:43,920 models 30180 19072 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=26
+INFO 2025-04-17 23:25:43,920 models 30180 19072 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-17 23:25:44,045 models 30180 19072 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=27
+INFO 2025-04-17 23:25:44,053 basehttp 30180 19072 "POST /api/songs/songs/download/ HTTP/1.1" 200 122
+INFO 2025-04-17 23:25:44,661 basehttp 30180 19072 "GET /api/songs/ HTTP/1.1" 200 107
+WARNING 2025-04-17 23:26:34,937 log 30180 19072 Not Found: /api/songs/spotify/playlists/21y0yK08j1UzYu4ro06wfL/
+WARNING 2025-04-17 23:26:34,938 basehttp 30180 19072 "GET /api/songs/spotify/playlists/21y0yK08j1UzYu4ro06wfL/ HTTP/1.1" 404 17965
+WARNING 2025-04-17 23:26:34,966 log 30180 19072 Not Found: /api/songs/spotify-playlist/21y0yK08j1UzYu4ro06wfL/
+WARNING 2025-04-17 23:26:34,969 basehttp 30180 19072 "GET /api/songs/spotify-playlist/21y0yK08j1UzYu4ro06wfL/ HTTP/1.1" 404 17962
+WARNING 2025-04-17 23:26:34,988 log 30180 19072 Not Found: /api/spotify/playlists/21y0yK08j1UzYu4ro06wfL/
+WARNING 2025-04-17 23:26:34,989 basehttp 30180 19072 "GET /api/spotify/playlists/21y0yK08j1UzYu4ro06wfL/ HTTP/1.1" 404 3472
+INFO 2025-04-17 23:26:38,340 spotify_api 30180 19072 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-17 23:26:38,340 spotify_api 30180 19072 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-17 23:26:38,340 views 30180 19072 Redirecting Spotify playlist URL to playlist download endpoint: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-17 23:26:38,340 spotify_api 30180 19072 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-17 23:26:38,340 spotify_api 30180 19072 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-17 23:26:38,340 spotify_api 30180 19072 Getting Spotify playlist info for ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-17 23:26:38,344 spotify_api 30180 19072 Creating Spotify client with credentials from settings
+INFO 2025-04-17 23:26:38,628 spotify_api 30180 19072 Successfully tested Spotify client
+INFO 2025-04-17 23:26:39,100 spotify_api 30180 19072 Extracted 3 track URLs from playlist
+INFO 2025-04-17 23:26:40,263 views 30180 19072 Added existing song to playlist: https://open.spotify.com/track/1ApfHqjOoBmJZ0SjdjzVyA
+INFO 2025-04-17 23:26:41,180 views 30180 19072 Added existing song to playlist: https://open.spotify.com/track/0dQiyqHUpnMPmHtk535VAY
+INFO 2025-04-17 23:26:42,101 views 30180 19072 Added existing song to playlist: https://open.spotify.com/track/0kYBzFJ5a2Jozi6cI4y9Bp
+INFO 2025-04-17 23:26:42,412 models 30180 19072 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-17 23:26:42,822 models 30180 19072 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=28
+INFO 2025-04-17 23:26:42,822 models 30180 19072 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-17 23:26:43,226 models 30180 19072 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=29
+INFO 2025-04-17 23:26:43,234 models 30180 19072 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-17 23:26:43,639 models 30180 19072 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=30
+INFO 2025-04-17 23:26:43,642 basehttp 30180 19072 "POST /api/songs/songs/download/ HTTP/1.1" 200 122
+INFO 2025-04-17 23:26:45,301 spotify_api 30180 19072 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-17 23:26:45,301 spotify_api 30180 19072 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-17 23:26:45,301 views 30180 19072 Redirecting Spotify playlist URL to playlist download endpoint: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-17 23:26:45,301 spotify_api 30180 19072 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-17 23:26:45,301 spotify_api 30180 19072 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-17 23:26:45,301 spotify_api 30180 19072 Getting Spotify playlist info for ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-17 23:26:45,301 spotify_api 30180 19072 Creating Spotify client with credentials from settings
+INFO 2025-04-17 23:26:45,503 spotify_api 30180 19072 Successfully tested Spotify client
+INFO 2025-04-17 23:26:45,897 spotify_api 30180 19072 Extracted 3 track URLs from playlist
+INFO 2025-04-17 23:26:47,185 views 30180 19072 Added existing song to playlist: https://open.spotify.com/track/1ApfHqjOoBmJZ0SjdjzVyA
+INFO 2025-04-17 23:26:48,165 views 30180 19072 Added existing song to playlist: https://open.spotify.com/track/0dQiyqHUpnMPmHtk535VAY
+INFO 2025-04-17 23:26:48,807 views 30180 19072 Added existing song to playlist: https://open.spotify.com/track/0kYBzFJ5a2Jozi6cI4y9Bp
+INFO 2025-04-17 23:26:49,087 models 30180 19072 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-17 23:26:49,477 models 30180 19072 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=31
+INFO 2025-04-17 23:26:49,477 models 30180 19072 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-17 23:26:49,890 models 30180 19072 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=32
+INFO 2025-04-17 23:26:49,891 models 30180 19072 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-17 23:26:50,298 models 30180 19072 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=33
+INFO 2025-04-17 23:26:50,298 basehttp 30180 19072 "POST /api/songs/songs/download/ HTTP/1.1" 200 122
+INFO 2025-04-17 23:26:50,884 basehttp 30180 19072 "GET /api/songs/ HTTP/1.1" 200 107
+WARNING 2025-04-17 23:27:03,641 log 30180 19072 Not Found: /api/songs/spotify/tracks/0oA9wBGDY4uyILLg4GymWP/
+WARNING 2025-04-17 23:27:03,641 basehttp 30180 19072 "GET /api/songs/spotify/tracks/0oA9wBGDY4uyILLg4GymWP/ HTTP/1.1" 404 17956
+WARNING 2025-04-17 23:27:03,658 log 30180 19072 Not Found: /api/songs/spotify-track/0oA9wBGDY4uyILLg4GymWP/
+WARNING 2025-04-17 23:27:03,665 basehttp 30180 19072 "GET /api/songs/spotify-track/0oA9wBGDY4uyILLg4GymWP/ HTTP/1.1" 404 17953
+WARNING 2025-04-17 23:27:03,681 log 30180 19072 Not Found: /api/spotify/tracks/0oA9wBGDY4uyILLg4GymWP/
+WARNING 2025-04-17 23:27:03,681 basehttp 30180 19072 "GET /api/spotify/tracks/0oA9wBGDY4uyILLg4GymWP/ HTTP/1.1" 404 3463
+WARNING 2025-04-17 23:27:08,033 log 30180 19072 Too Many Requests: /api/songs/songs/download/
+WARNING 2025-04-17 23:27:08,040 basehttp 30180 19072 "POST /api/songs/songs/download/ HTTP/1.1" 429 97
+WARNING 2025-04-17 23:27:49,717 log 30180 19072 Too Many Requests: /api/songs/songs/download/
+WARNING 2025-04-17 23:27:49,721 basehttp 30180 19072 "POST /api/songs/songs/download/ HTTP/1.1" 429 97
+INFO 2025-04-17 23:28:04,176 basehttp 30180 22384 "GET /admin/ HTTP/1.1" 200 19361
+WARNING 2025-04-17 23:28:04,332 log 30180 22384 Not Found: /favicon.ico
+INFO 2025-04-17 23:28:04,333 basehttp 30180 22384 - Broken pipe from ('127.0.0.1', 61233)
+INFO 2025-04-17 23:28:13,500 basehttp 30180 28352 "GET /admin/users/customuser/ HTTP/1.1" 200 16844
+INFO 2025-04-17 23:28:15,464 basehttp 30180 28352 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-04-17 23:28:26,603 basehttp 30180 28352 "GET /admin/users/customuser/4/change/ HTTP/1.1" 200 40725
+INFO 2025-04-17 23:28:26,686 basehttp 30180 16800 - Broken pipe from ('127.0.0.1', 61277)
+INFO 2025-04-17 23:28:26,694 basehttp 30180 10572 - Broken pipe from ('127.0.0.1', 61278)
+INFO 2025-04-17 23:28:28,602 basehttp 30180 28352 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-04-17 23:30:56,737 basehttp 30180 11068 "POST /admin/users/customuser/4/change/ HTTP/1.1" 302 0
+INFO 2025-04-17 23:30:57,609 basehttp 30180 11068 "GET /admin/users/customuser/ HTTP/1.1" 200 17045
+INFO 2025-04-17 23:30:58,254 basehttp 30180 11068 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-04-17 23:30:58,285 basehttp 30180 11068 "GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+INFO 2025-04-17 23:31:05,537 spotify_api 30180 7992 Extracting Spotify ID from URL: https://open.spotify.com/track/0oA9wBGDY4uyILLg4GymWP?si=e851f3944638428a
+INFO 2025-04-17 23:31:05,539 spotify_api 30180 7992 Extracted Spotify track ID: 0oA9wBGDY4uyILLg4GymWP
+INFO 2025-04-17 23:31:05,669 spotify_api 30180 7992 Extracting Spotify ID from URL: https://open.spotify.com/track/0oA9wBGDY4uyILLg4GymWP?si=e851f3944638428a
+INFO 2025-04-17 23:31:05,669 spotify_api 30180 7992 Extracted Spotify track ID: 0oA9wBGDY4uyILLg4GymWP
+INFO 2025-04-17 23:31:05,670 views 30180 7992 Getting info for Spotify track ID: ('track', '0oA9wBGDY4uyILLg4GymWP')
+INFO 2025-04-17 23:31:05,670 spotify_api 30180 7992 Extracting Spotify ID from URL: https://open.spotify.com/track/0oA9wBGDY4uyILLg4GymWP?si=e851f3944638428a
+INFO 2025-04-17 23:31:05,670 spotify_api 30180 7992 Extracted Spotify track ID: 0oA9wBGDY4uyILLg4GymWP
+INFO 2025-04-17 23:31:05,671 spotify_api 30180 7992 Getting info for Spotify track ID: 0oA9wBGDY4uyILLg4GymWP
+INFO 2025-04-17 23:31:05,671 spotify_api 30180 7992 Creating Spotify client with credentials from settings
+INFO 2025-04-17 23:31:05,886 spotify_api 30180 7992 Successfully tested Spotify client
+INFO 2025-04-17 23:31:06,212 spotify_api 30180 7992 Got track info: Tom's Diner by AnnenMayKantereit
+INFO 2025-04-17 23:31:06,213 views 30180 7992 Got track info: Tom's Diner by AnnenMayKantereit
+INFO 2025-04-17 23:31:06,274 views 30180 7992 Downloading using YouTube search: ytsearch:Tom's Diner AnnenMayKantereit
+INFO 2025-04-17 23:31:16,594 views 30180 7992 Downloaded file to: C:\Users\Dell\AppData\Local\Temp\tmp_wj5uyhv\download-1744912866.mp3
+INFO 2025-04-17 23:31:16,667 utils 30180 7992 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Toms Diner - AnnenMayKantereit.mp3
+INFO 2025-04-17 23:31:16,667 utils 30180 7992 Title: Tom's Diner, Artist: AnnenMayKantereit, Album: Tom's Diner, Genre: german pop
+INFO 2025-04-17 23:31:16,674 utils 30180 7992 Loaded existing ID3 tags
+INFO 2025-04-17 23:31:16,745 utils 30180 7992 Downloading thumbnail from URL: https://i.scdn.co/image/ab67616d0000b2732186eb1b0b5436f858c0508c
+INFO 2025-04-17 23:31:16,814 utils 30180 7992 Downloaded thumbnail: 60776 bytes
+INFO 2025-04-17 23:31:16,815 utils 30180 7992 Detected image type: jpeg
+INFO 2025-04-17 23:31:16,815 utils 30180 7992 Adding album art, MIME type: image/jpeg
+INFO 2025-04-17 23:31:16,816 utils 30180 7992 Successfully added album art to ID3 tags
+INFO 2025-04-17 23:31:16,824 utils 30180 7992 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Toms Diner - AnnenMayKantereit.mp3
+INFO 2025-04-17 23:31:16,835 utils 30180 7992 Verification: 8 tags were written, has_cover=True
+INFO 2025-04-17 23:31:17,115 models 30180 7992 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-17 23:31:17,235 models 30180 7992 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=34
+INFO 2025-04-17 23:31:17,614 views 30180 7992 Added song to cache: https://open.spotify.com/track/0oA9wBGDY4uyILLg4GymWP?si=e851f3944638428a
+INFO 2025-04-17 23:31:17,693 basehttp 30180 7992 "POST /api/songs/songs/download/ HTTP/1.1" 200 6635105
+INFO 2025-04-17 23:31:18,279 spotify_api 30180 7992 Extracting Spotify ID from URL: https://open.spotify.com/track/0oA9wBGDY4uyILLg4GymWP?si=e851f3944638428a
+INFO 2025-04-17 23:31:18,279 spotify_api 30180 7992 Extracted Spotify track ID: 0oA9wBGDY4uyILLg4GymWP
+INFO 2025-04-17 23:31:18,346 views 30180 7992 Found existing song with URL https://open.spotify.com/track/0oA9wBGDY4uyILLg4GymWP?si=e851f3944638428a, serving directly
+INFO 2025-04-17 23:31:18,477 views 30180 7992 Using cached version for Spotify URL: https://open.spotify.com/track/0oA9wBGDY4uyILLg4GymWP?si=e851f3944638428a
+INFO 2025-04-17 23:31:18,478 models 30180 7992 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-17 23:31:18,610 models 30180 7992 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=35
+INFO 2025-04-17 23:31:18,767 basehttp 30180 7992 "POST /api/songs/songs/download/ HTTP/1.1" 200 6566444
+INFO 2025-04-17 23:31:19,231 basehttp 30180 27436 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-17 23:35:06,145 basehttp 30180 15872 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-17 23:35:06,159 basehttp 30180 21600 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-17 23:35:06,739 views 30180 15872 User has 13 songs
+INFO 2025-04-17 23:35:06,799 views 30180 15872 User has 6 songs with Spotify IDs
+INFO 2025-04-17 23:35:06,823 views 30180 21600 User has 13 songs
+INFO 2025-04-17 23:35:06,890 views 30180 21600 User has 6 songs with Spotify IDs
+INFO 2025-04-17 23:35:06,923 views 30180 15872 Sample user songs: [{'spotify_id': '0oA9wBGDY4uyILLg4GymWP', 'title': "Tom's Diner", 'artist': 'AnnenMayKantereit'}, {'spotify_id': '0kYBzFJ5a2Jozi6cI4y9Bp', 'title': 'Jo Tere Sang', 'artist': 'Jeet Gannguli'}, {'spotify_id': '0dQiyqHUpnMPmHtk535VAY', 'title': 'Tennu Le', 'artist': 'omer inayat'}, {'spotify_id': '1ApfHqjOoBmJZ0SjdjzVyA', 'title': 'Yeh Raaten Yeh Mausam', 'artist': 'Sanam'}, {'spotify_id': '3YuaBvuZqcwN3CEAyyoaei', 'title': 'Like a Stone', 'artist': 'Audioslave'}]
+INFO 2025-04-17 23:35:06,923 views 30180 15872 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-17 23:35:07,014 views 30180 21600 Sample user songs: [{'spotify_id': '0oA9wBGDY4uyILLg4GymWP', 'title': "Tom's Diner", 'artist': 'AnnenMayKantereit'}, {'spotify_id': '0kYBzFJ5a2Jozi6cI4y9Bp', 'title': 'Jo Tere Sang', 'artist': 'Jeet Gannguli'}, {'spotify_id': '0dQiyqHUpnMPmHtk535VAY', 'title': 'Tennu Le', 'artist': 'omer inayat'}, {'spotify_id': '1ApfHqjOoBmJZ0SjdjzVyA', 'title': 'Yeh Raaten Yeh Mausam', 'artist': 'Sanam'}, {'spotify_id': '3YuaBvuZqcwN3CEAyyoaei', 'title': 'Like a Stone', 'artist': 'Audioslave'}]
+INFO 2025-04-17 23:35:07,015 views 30180 21600 Getting recommendations for user: 4 with limit: 10
+WARNING 2025-04-17 23:35:07,343 recommendation 30180 15872 Song '0oA9wBGDY4uyILLg4GymWP' not found or clustering unavailable, using popular songs
+WARNING 2025-04-17 23:35:07,379 recommendation 30180 21600 Song '0oA9wBGDY4uyILLg4GymWP' not found or clustering unavailable, using popular songs
+WARNING 2025-04-17 23:35:07,775 recommendation 30180 15872 Song '0kYBzFJ5a2Jozi6cI4y9Bp' not found or clustering unavailable, using popular songs
+WARNING 2025-04-17 23:35:07,776 recommendation 30180 21600 Song '0kYBzFJ5a2Jozi6cI4y9Bp' not found or clustering unavailable, using popular songs
+WARNING 2025-04-17 23:35:08,165 recommendation 30180 15872 Song '0dQiyqHUpnMPmHtk535VAY' not found or clustering unavailable, using popular songs
+WARNING 2025-04-17 23:35:08,166 recommendation 30180 21600 Song '0dQiyqHUpnMPmHtk535VAY' not found or clustering unavailable, using popular songs
+WARNING 2025-04-17 23:35:08,523 recommendation 30180 21600 Song '1ApfHqjOoBmJZ0SjdjzVyA' not found or clustering unavailable, using popular songs
+WARNING 2025-04-17 23:35:08,589 recommendation 30180 15872 Song '1ApfHqjOoBmJZ0SjdjzVyA' not found or clustering unavailable, using popular songs
+INFO 2025-04-17 23:35:08,758 views 30180 21600 Got 10 recommendations
+INFO 2025-04-17 23:35:08,770 views 30180 15872 Got 10 recommendations
+INFO 2025-04-17 23:35:08,883 basehttp 30180 21600 "GET /api/songs/recommendations/ HTTP/1.1" 200 2929
+INFO 2025-04-17 23:35:08,893 basehttp 30180 15872 "GET /api/songs/recommendations/ HTTP/1.1" 200 2875
+INFO 2025-04-17 23:35:11,370 basehttp 30180 15872 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 1233
+INFO 2025-04-17 23:35:11,370 basehttp 30180 21600 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 1233
+INFO 2025-04-17 23:35:11,995 basehttp 30180 21600 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 559
+INFO 2025-04-17 23:35:11,995 basehttp 30180 15872 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 559
+INFO 2025-04-17 23:35:19,249 basehttp 30180 15872 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 377
+INFO 2025-04-17 23:35:19,688 basehttp 30180 21600 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 377
+INFO 2025-04-17 23:35:26,730 basehttp 30180 15872 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 111
+INFO 2025-04-17 23:35:27,277 basehttp 30180 21600 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 111
+WARNING 2025-04-17 23:45:06,846 log 30180 30648 Not Found: /api/songs/spotify/tracks/0oA9wBGDY4uyILLg4GymWP/
+WARNING 2025-04-17 23:45:06,848 basehttp 30180 30648 "GET /api/songs/spotify/tracks/0oA9wBGDY4uyILLg4GymWP/ HTTP/1.1" 404 17956
+WARNING 2025-04-17 23:45:06,862 log 30180 30648 Not Found: /api/songs/spotify-track/0oA9wBGDY4uyILLg4GymWP/
+WARNING 2025-04-17 23:45:06,863 basehttp 30180 30648 "GET /api/songs/spotify-track/0oA9wBGDY4uyILLg4GymWP/ HTTP/1.1" 404 17953
+WARNING 2025-04-17 23:45:06,875 log 30180 30648 Not Found: /api/spotify/tracks/0oA9wBGDY4uyILLg4GymWP/
+WARNING 2025-04-17 23:45:06,876 basehttp 30180 30648 "GET /api/spotify/tracks/0oA9wBGDY4uyILLg4GymWP/ HTTP/1.1" 404 3463
+INFO 2025-04-17 23:45:10,722 spotify_api 30180 30648 Extracting Spotify ID from URL: https://open.spotify.com/track/0oA9wBGDY4uyILLg4GymWP?si=e851f3944638428a
+INFO 2025-04-17 23:45:10,722 spotify_api 30180 30648 Extracted Spotify track ID: 0oA9wBGDY4uyILLg4GymWP
+INFO 2025-04-17 23:45:10,793 views 30180 30648 Found existing song with URL https://open.spotify.com/track/0oA9wBGDY4uyILLg4GymWP?si=e851f3944638428a, serving directly
+INFO 2025-04-17 23:45:10,936 views 30180 30648 Using cached version for Spotify URL: https://open.spotify.com/track/0oA9wBGDY4uyILLg4GymWP?si=e851f3944638428a
+INFO 2025-04-17 23:45:10,936 models 30180 30648 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-17 23:45:11,063 models 30180 30648 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=36
+INFO 2025-04-17 23:45:11,183 basehttp 30180 30648 "POST /api/songs/songs/download/ HTTP/1.1" 200 6566444
+INFO 2025-04-17 23:45:11,756 spotify_api 30180 30648 Extracting Spotify ID from URL: https://open.spotify.com/track/0oA9wBGDY4uyILLg4GymWP?si=e851f3944638428a
+INFO 2025-04-17 23:45:11,757 spotify_api 30180 30648 Extracted Spotify track ID: 0oA9wBGDY4uyILLg4GymWP
+INFO 2025-04-17 23:45:11,821 views 30180 30648 Found existing song with URL https://open.spotify.com/track/0oA9wBGDY4uyILLg4GymWP?si=e851f3944638428a, serving directly
+INFO 2025-04-17 23:45:11,945 views 30180 30648 Using cached version for Spotify URL: https://open.spotify.com/track/0oA9wBGDY4uyILLg4GymWP?si=e851f3944638428a
+INFO 2025-04-17 23:45:11,946 models 30180 30648 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-17 23:45:12,072 models 30180 30648 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=37
+INFO 2025-04-17 23:45:12,227 basehttp 30180 30648 "POST /api/songs/songs/download/ HTTP/1.1" 200 6566444
+INFO 2025-04-17 23:45:12,718 basehttp 30180 14756 "GET /api/songs/ HTTP/1.1" 200 107
+WARNING 2025-04-17 23:55:32,550 log 30180 22348 Not Found: /api/songs/spotify/tracks/0oA9wBGDY4uyILLg4GymWP/
+WARNING 2025-04-17 23:55:32,551 basehttp 30180 22348 "GET /api/songs/spotify/tracks/0oA9wBGDY4uyILLg4GymWP/ HTTP/1.1" 404 17956
+WARNING 2025-04-17 23:55:32,566 log 30180 22348 Not Found: /api/songs/spotify-track/0oA9wBGDY4uyILLg4GymWP/
+WARNING 2025-04-17 23:55:32,567 basehttp 30180 22348 "GET /api/songs/spotify-track/0oA9wBGDY4uyILLg4GymWP/ HTTP/1.1" 404 17953
+WARNING 2025-04-17 23:55:32,578 log 30180 22348 Not Found: /api/spotify/tracks/0oA9wBGDY4uyILLg4GymWP/
+WARNING 2025-04-17 23:55:32,579 basehttp 30180 22348 "GET /api/spotify/tracks/0oA9wBGDY4uyILLg4GymWP/ HTTP/1.1" 404 3463
+INFO 2025-04-17 23:55:35,875 spotify_api 30180 22348 Extracting Spotify ID from URL: https://open.spotify.com/track/0oA9wBGDY4uyILLg4GymWP?si=e851f3944638428a
+INFO 2025-04-17 23:55:35,875 spotify_api 30180 22348 Extracted Spotify track ID: 0oA9wBGDY4uyILLg4GymWP
+INFO 2025-04-17 23:55:35,952 views 30180 22348 Found existing song with URL https://open.spotify.com/track/0oA9wBGDY4uyILLg4GymWP?si=e851f3944638428a, serving directly
+INFO 2025-04-17 23:55:36,094 views 30180 22348 Using cached version for Spotify URL: https://open.spotify.com/track/0oA9wBGDY4uyILLg4GymWP?si=e851f3944638428a
+INFO 2025-04-17 23:55:36,095 models 30180 22348 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-17 23:55:36,227 models 30180 22348 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=38
+INFO 2025-04-17 23:55:36,227 views 30180 22348 Converting cached Spotify song from mp3 to aac
+INFO 2025-04-17 23:55:42,537 basehttp 30180 22348 "POST /api/songs/songs/download/ HTTP/1.1" 200 4581382
+INFO 2025-04-17 23:55:43,105 spotify_api 30180 22348 Extracting Spotify ID from URL: https://open.spotify.com/track/0oA9wBGDY4uyILLg4GymWP?si=e851f3944638428a
+INFO 2025-04-17 23:55:43,106 spotify_api 30180 22348 Extracted Spotify track ID: 0oA9wBGDY4uyILLg4GymWP
+INFO 2025-04-17 23:55:43,167 views 30180 22348 Found existing song with URL https://open.spotify.com/track/0oA9wBGDY4uyILLg4GymWP?si=e851f3944638428a, serving directly
+INFO 2025-04-17 23:55:43,290 views 30180 22348 Using cached version for Spotify URL: https://open.spotify.com/track/0oA9wBGDY4uyILLg4GymWP?si=e851f3944638428a
+INFO 2025-04-17 23:55:43,290 models 30180 22348 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-17 23:55:43,414 models 30180 22348 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=39
+INFO 2025-04-17 23:55:43,415 views 30180 22348 Converting cached Spotify song from mp3 to aac
+INFO 2025-04-17 23:55:49,548 basehttp 30180 22348 "POST /api/songs/songs/download/ HTTP/1.1" 200 4581382
+INFO 2025-04-17 23:55:50,064 basehttp 30180 8308 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-17 23:56:58,756 utils 30180 22348 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Owl City - Fireflies Official Music Video - Owl City.mp3
+INFO 2025-04-17 23:56:58,757 utils 30180 22348 Title: Owl City - Fireflies (Official Music Video), Artist: Owl City, Album: Unknown, Genre: Unknown
+INFO 2025-04-17 23:56:58,768 utils 30180 22348 Loaded existing ID3 tags
+INFO 2025-04-17 23:56:58,838 utils 30180 22348 Looking for local thumbnail: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs/Owl City - Fireflies Official Music Video - Owl City.webp
+INFO 2025-04-17 23:56:58,848 utils 30180 22348 Found local thumbnail: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs/Owl City - Fireflies Official Music Video - Owl City.webp
+INFO 2025-04-17 23:56:58,849 utils 30180 22348 Detected image type: webp
+INFO 2025-04-17 23:56:58,849 utils 30180 22348 Converting image from webp to JPEG
+INFO 2025-04-17 23:56:58,885 utils 30180 22348 Successfully converted image to JPEG: 96313 bytes
+INFO 2025-04-17 23:56:58,886 utils 30180 22348 Adding album art, MIME type: image/jpeg
+INFO 2025-04-17 23:56:58,886 utils 30180 22348 Successfully added album art to ID3 tags
+INFO 2025-04-17 23:56:58,892 utils 30180 22348 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Owl City - Fireflies Official Music Video - Owl City.mp3
+INFO 2025-04-17 23:56:58,904 utils 30180 22348 Verification: 8 tags were written, has_cover=True
+INFO 2025-04-17 23:56:59,549 views 30180 22348 Added song to cache: https://www.youtube.com/watch?v=psuRGfAaju4
+INFO 2025-04-17 23:56:59,600 basehttp 30180 22348 "POST /api/songs/songs/download/ HTTP/1.1" 200 5677215
+INFO 2025-04-17 23:57:00,246 views 30180 22348 Found existing song with URL https://www.youtube.com/watch?v=psuRGfAaju4, serving directly
+INFO 2025-04-17 23:57:00,376 views 30180 22348 Using cached version for URL: https://www.youtube.com/watch?v=psuRGfAaju4
+INFO 2025-04-17 23:57:00,377 models 30180 22348 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-17 23:57:00,502 models 30180 22348 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=40
+INFO 2025-04-17 23:57:00,637 basehttp 30180 22348 "POST /api/songs/songs/download/ HTTP/1.1" 200 5573996
+INFO 2025-04-17 23:57:01,155 basehttp 30180 8308 "GET /api/songs/ HTTP/1.1" 200 107
+WARNING 2025-04-18 00:00:05,204 log 30180 24052 Not Found: /api/songs/spotify/tracks/0oA9wBGDY4uyILLg4GymWP/
+WARNING 2025-04-18 00:00:05,204 basehttp 30180 24052 "GET /api/songs/spotify/tracks/0oA9wBGDY4uyILLg4GymWP/ HTTP/1.1" 404 17956
+WARNING 2025-04-18 00:00:05,274 log 30180 24052 Not Found: /api/songs/spotify-track/0oA9wBGDY4uyILLg4GymWP/
+WARNING 2025-04-18 00:00:05,274 basehttp 30180 24052 "GET /api/songs/spotify-track/0oA9wBGDY4uyILLg4GymWP/ HTTP/1.1" 404 17953
+WARNING 2025-04-18 00:00:05,293 log 30180 24052 Not Found: /api/spotify/tracks/0oA9wBGDY4uyILLg4GymWP/
+WARNING 2025-04-18 00:00:05,294 basehttp 30180 24052 "GET /api/spotify/tracks/0oA9wBGDY4uyILLg4GymWP/ HTTP/1.1" 404 3463
+INFO 2025-04-18 00:00:08,060 spotify_api 30180 24052 Extracting Spotify ID from URL: https://open.spotify.com/track/0oA9wBGDY4uyILLg4GymWP?si=e851f3944638428a
+INFO 2025-04-18 00:00:08,061 spotify_api 30180 24052 Extracted Spotify track ID: 0oA9wBGDY4uyILLg4GymWP
+INFO 2025-04-18 00:00:08,126 views 30180 24052 Found existing song with URL https://open.spotify.com/track/0oA9wBGDY4uyILLg4GymWP?si=e851f3944638428a, serving directly
+INFO 2025-04-18 00:00:08,250 views 30180 24052 Using cached version for Spotify URL: https://open.spotify.com/track/0oA9wBGDY4uyILLg4GymWP?si=e851f3944638428a
+INFO 2025-04-18 00:00:08,250 models 30180 24052 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-18 00:00:08,368 models 30180 24052 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=41
+INFO 2025-04-18 00:00:08,489 basehttp 30180 24052 "POST /api/songs/songs/download/ HTTP/1.1" 200 6566444
+INFO 2025-04-18 00:00:09,047 spotify_api 30180 24052 Extracting Spotify ID from URL: https://open.spotify.com/track/0oA9wBGDY4uyILLg4GymWP?si=e851f3944638428a
+INFO 2025-04-18 00:00:09,047 spotify_api 30180 24052 Extracted Spotify track ID: 0oA9wBGDY4uyILLg4GymWP
+INFO 2025-04-18 00:00:09,109 views 30180 24052 Found existing song with URL https://open.spotify.com/track/0oA9wBGDY4uyILLg4GymWP?si=e851f3944638428a, serving directly
+INFO 2025-04-18 00:00:09,235 views 30180 24052 Using cached version for Spotify URL: https://open.spotify.com/track/0oA9wBGDY4uyILLg4GymWP?si=e851f3944638428a
+INFO 2025-04-18 00:00:09,235 models 30180 24052 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-18 00:00:09,379 models 30180 24052 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=42
+INFO 2025-04-18 00:00:09,512 basehttp 30180 24052 "POST /api/songs/songs/download/ HTTP/1.1" 200 6566444
+INFO 2025-04-18 00:00:10,017 basehttp 30180 3144 "GET /api/songs/ HTTP/1.1" 200 107
+WARNING 2025-04-18 00:04:10,834 log 30180 17400 Not Found: /api/songs/spotify/tracks/0oA9wBGDY4uyILLg4GymWP/
+WARNING 2025-04-18 00:04:10,834 basehttp 30180 17400 "GET /api/songs/spotify/tracks/0oA9wBGDY4uyILLg4GymWP/ HTTP/1.1" 404 17956
+WARNING 2025-04-18 00:04:10,853 log 30180 17400 Not Found: /api/songs/spotify-track/0oA9wBGDY4uyILLg4GymWP/
+WARNING 2025-04-18 00:04:10,857 basehttp 30180 17400 "GET /api/songs/spotify-track/0oA9wBGDY4uyILLg4GymWP/ HTTP/1.1" 404 17953
+WARNING 2025-04-18 00:04:10,865 log 30180 17400 Not Found: /api/spotify/tracks/0oA9wBGDY4uyILLg4GymWP/
+WARNING 2025-04-18 00:04:10,865 basehttp 30180 17400 "GET /api/spotify/tracks/0oA9wBGDY4uyILLg4GymWP/ HTTP/1.1" 404 3463
+INFO 2025-04-18 00:04:13,347 spotify_api 30180 17400 Extracting Spotify ID from URL: https://open.spotify.com/track/0oA9wBGDY4uyILLg4GymWP?si=e851f3944638428a
+INFO 2025-04-18 00:04:13,347 spotify_api 30180 17400 Extracted Spotify track ID: 0oA9wBGDY4uyILLg4GymWP
+INFO 2025-04-18 00:04:13,425 views 30180 17400 Found existing song with URL https://open.spotify.com/track/0oA9wBGDY4uyILLg4GymWP?si=e851f3944638428a, serving directly
+INFO 2025-04-18 00:04:13,559 views 30180 17400 Using cached version for Spotify URL: https://open.spotify.com/track/0oA9wBGDY4uyILLg4GymWP?si=e851f3944638428a
+INFO 2025-04-18 00:04:13,559 models 30180 17400 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-18 00:04:13,685 models 30180 17400 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=43
+INFO 2025-04-18 00:04:13,846 basehttp 30180 17400 "POST /api/songs/songs/download/ HTTP/1.1" 200 6566444
+INFO 2025-04-18 00:04:14,431 spotify_api 30180 17400 Extracting Spotify ID from URL: https://open.spotify.com/track/0oA9wBGDY4uyILLg4GymWP?si=e851f3944638428a
+INFO 2025-04-18 00:04:14,431 spotify_api 30180 17400 Extracted Spotify track ID: 0oA9wBGDY4uyILLg4GymWP
+INFO 2025-04-18 00:04:14,504 views 30180 17400 Found existing song with URL https://open.spotify.com/track/0oA9wBGDY4uyILLg4GymWP?si=e851f3944638428a, serving directly
+INFO 2025-04-18 00:04:14,631 views 30180 17400 Using cached version for Spotify URL: https://open.spotify.com/track/0oA9wBGDY4uyILLg4GymWP?si=e851f3944638428a
+INFO 2025-04-18 00:04:14,631 models 30180 17400 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-18 00:04:14,764 models 30180 17400 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=44
+INFO 2025-04-18 00:04:14,897 basehttp 30180 17400 "POST /api/songs/songs/download/ HTTP/1.1" 200 6566444
+INFO 2025-04-18 00:04:15,406 basehttp 30180 20396 "GET /api/songs/ HTTP/1.1" 200 107
+WARNING 2025-04-18 00:04:29,524 log 30180 17400 Not Found: /api/songs/spotify/tracks/4ofwffwvvnbSkrMSCKQDaC/
+WARNING 2025-04-18 00:04:29,525 basehttp 30180 17400 "GET /api/songs/spotify/tracks/4ofwffwvvnbSkrMSCKQDaC/ HTTP/1.1" 404 17956
+WARNING 2025-04-18 00:04:29,536 log 30180 17400 Not Found: /api/songs/spotify-track/4ofwffwvvnbSkrMSCKQDaC/
+WARNING 2025-04-18 00:04:29,537 basehttp 30180 17400 "GET /api/songs/spotify-track/4ofwffwvvnbSkrMSCKQDaC/ HTTP/1.1" 404 17953
+WARNING 2025-04-18 00:04:29,548 log 30180 17400 Not Found: /api/spotify/tracks/4ofwffwvvnbSkrMSCKQDaC/
+WARNING 2025-04-18 00:04:29,548 basehttp 30180 17400 "GET /api/spotify/tracks/4ofwffwvvnbSkrMSCKQDaC/ HTTP/1.1" 404 3463
+INFO 2025-04-18 00:04:32,594 spotify_api 30180 17400 Extracting Spotify ID from URL: https://open.spotify.com/track/4ofwffwvvnbSkrMSCKQDaC?si=6a33151d7d524849
+INFO 2025-04-18 00:04:32,595 spotify_api 30180 17400 Extracted Spotify track ID: 4ofwffwvvnbSkrMSCKQDaC
+INFO 2025-04-18 00:04:32,719 spotify_api 30180 17400 Extracting Spotify ID from URL: https://open.spotify.com/track/4ofwffwvvnbSkrMSCKQDaC?si=6a33151d7d524849
+INFO 2025-04-18 00:04:32,719 spotify_api 30180 17400 Extracted Spotify track ID: 4ofwffwvvnbSkrMSCKQDaC
+INFO 2025-04-18 00:04:32,729 views 30180 17400 Getting info for Spotify track ID: ('track', '4ofwffwvvnbSkrMSCKQDaC')
+INFO 2025-04-18 00:04:32,729 spotify_api 30180 17400 Extracting Spotify ID from URL: https://open.spotify.com/track/4ofwffwvvnbSkrMSCKQDaC?si=6a33151d7d524849
+INFO 2025-04-18 00:04:32,729 spotify_api 30180 17400 Extracted Spotify track ID: 4ofwffwvvnbSkrMSCKQDaC
+INFO 2025-04-18 00:04:32,729 spotify_api 30180 17400 Getting info for Spotify track ID: 4ofwffwvvnbSkrMSCKQDaC
+INFO 2025-04-18 00:04:32,729 spotify_api 30180 17400 Creating Spotify client with credentials from settings
+INFO 2025-04-18 00:04:32,904 spotify_api 30180 17400 Successfully tested Spotify client
+INFO 2025-04-18 00:04:33,199 spotify_api 30180 17400 Got track info: Shotgun by George Ezra
+INFO 2025-04-18 00:04:33,199 views 30180 17400 Got track info: Shotgun by George Ezra
+INFO 2025-04-18 00:04:33,270 views 30180 17400 Downloading using YouTube search: ytsearch:Shotgun George Ezra
+INFO 2025-04-18 00:04:41,485 views 30180 17400 Downloaded file to: C:\Users\Dell\AppData\Local\Temp\tmpk64gf2ug\download-1744914873.mp3
+INFO 2025-04-18 00:04:41,573 utils 30180 17400 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Shotgun - George Ezra.mp3
+INFO 2025-04-18 00:04:41,573 utils 30180 17400 Title: Shotgun, Artist: George Ezra, Album: Staying at Tamara's, Genre: Unknown
+INFO 2025-04-18 00:04:41,584 utils 30180 17400 Loaded existing ID3 tags
+INFO 2025-04-18 00:04:41,648 utils 30180 17400 Downloading thumbnail from URL: https://i.scdn.co/image/ab67616d0000b273103045cd1c29dd16a469f808
+INFO 2025-04-18 00:04:41,738 utils 30180 17400 Downloaded thumbnail: 150295 bytes
+INFO 2025-04-18 00:04:41,739 utils 30180 17400 Detected image type: jpeg
+INFO 2025-04-18 00:04:41,740 utils 30180 17400 Adding album art, MIME type: image/jpeg
+INFO 2025-04-18 00:04:41,740 utils 30180 17400 Successfully added album art to ID3 tags
+INFO 2025-04-18 00:04:41,749 utils 30180 17400 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Shotgun - George Ezra.mp3
+INFO 2025-04-18 00:04:41,763 utils 30180 17400 Verification: 8 tags were written, has_cover=True
+INFO 2025-04-18 00:04:42,001 models 30180 17400 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-18 00:04:42,131 models 30180 17400 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=45
+INFO 2025-04-18 00:04:42,500 views 30180 17400 Added song to cache: https://open.spotify.com/track/4ofwffwvvnbSkrMSCKQDaC?si=6a33151d7d524849
+INFO 2025-04-18 00:04:42,550 basehttp 30180 17400 "POST /api/songs/songs/download/ HTTP/1.1" 200 5032928
+INFO 2025-04-18 00:04:43,127 spotify_api 30180 17400 Extracting Spotify ID from URL: https://open.spotify.com/track/4ofwffwvvnbSkrMSCKQDaC?si=6a33151d7d524849
+INFO 2025-04-18 00:04:43,127 spotify_api 30180 17400 Extracted Spotify track ID: 4ofwffwvvnbSkrMSCKQDaC
+INFO 2025-04-18 00:04:43,195 views 30180 17400 Found existing song with URL https://open.spotify.com/track/4ofwffwvvnbSkrMSCKQDaC?si=6a33151d7d524849, serving directly
+INFO 2025-04-18 00:04:43,326 views 30180 17400 Using cached version for Spotify URL: https://open.spotify.com/track/4ofwffwvvnbSkrMSCKQDaC?si=6a33151d7d524849
+INFO 2025-04-18 00:04:43,326 models 30180 17400 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-18 00:04:43,450 models 30180 17400 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=46
+INFO 2025-04-18 00:04:43,561 basehttp 30180 17400 "POST /api/songs/songs/download/ HTTP/1.1" 200 4876460
+INFO 2025-04-18 00:04:44,070 basehttp 30180 20396 "GET /api/songs/ HTTP/1.1" 200 107
+WARNING 2025-04-18 00:11:33,384 log 30180 19312 Not Found: /api/songs/spotify/tracks/4ofwffwvvnbSkrMSCKQDaC/
+WARNING 2025-04-18 00:11:33,384 basehttp 30180 19312 "GET /api/songs/spotify/tracks/4ofwffwvvnbSkrMSCKQDaC/ HTTP/1.1" 404 17956
+WARNING 2025-04-18 00:11:33,398 log 30180 19312 Not Found: /api/songs/spotify-track/4ofwffwvvnbSkrMSCKQDaC/
+WARNING 2025-04-18 00:11:33,398 basehttp 30180 19312 "GET /api/songs/spotify-track/4ofwffwvvnbSkrMSCKQDaC/ HTTP/1.1" 404 17953
+WARNING 2025-04-18 00:11:33,414 log 30180 19312 Not Found: /api/spotify/tracks/4ofwffwvvnbSkrMSCKQDaC/
+WARNING 2025-04-18 00:11:33,415 basehttp 30180 19312 "GET /api/spotify/tracks/4ofwffwvvnbSkrMSCKQDaC/ HTTP/1.1" 404 3463
+INFO 2025-04-18 00:11:37,180 spotify_api 30180 19312 Extracting Spotify ID from URL: https://open.spotify.com/track/4ofwffwvvnbSkrMSCKQDaC?si=6a33151d7d524849
+INFO 2025-04-18 00:11:37,184 spotify_api 30180 19312 Extracted Spotify track ID: 4ofwffwvvnbSkrMSCKQDaC
+INFO 2025-04-18 00:11:37,258 views 30180 19312 Found existing song with URL https://open.spotify.com/track/4ofwffwvvnbSkrMSCKQDaC?si=6a33151d7d524849, serving directly
+INFO 2025-04-18 00:11:37,413 views 30180 19312 Using cached version for Spotify URL: https://open.spotify.com/track/4ofwffwvvnbSkrMSCKQDaC?si=6a33151d7d524849
+INFO 2025-04-18 00:11:37,413 models 30180 19312 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-18 00:11:37,614 models 30180 19312 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=47
+INFO 2025-04-18 00:11:37,823 basehttp 30180 19312 "POST /api/songs/songs/download/ HTTP/1.1" 200 4876460
+INFO 2025-04-18 00:11:38,669 spotify_api 30180 19312 Extracting Spotify ID from URL: https://open.spotify.com/track/4ofwffwvvnbSkrMSCKQDaC?si=6a33151d7d524849
+INFO 2025-04-18 00:11:38,669 spotify_api 30180 19312 Extracted Spotify track ID: 4ofwffwvvnbSkrMSCKQDaC
+INFO 2025-04-18 00:11:38,747 views 30180 19312 Found existing song with URL https://open.spotify.com/track/4ofwffwvvnbSkrMSCKQDaC?si=6a33151d7d524849, serving directly
+INFO 2025-04-18 00:11:38,877 views 30180 19312 Using cached version for Spotify URL: https://open.spotify.com/track/4ofwffwvvnbSkrMSCKQDaC?si=6a33151d7d524849
+INFO 2025-04-18 00:11:38,877 models 30180 19312 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-18 00:11:39,024 models 30180 19312 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=48
+INFO 2025-04-18 00:11:39,164 basehttp 30180 19312 "POST /api/songs/songs/download/ HTTP/1.1" 200 4876460
+INFO 2025-04-18 00:11:39,789 basehttp 30180 29460 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-18 00:11:48,167 basehttp 30180 19312 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-18 00:11:48,195 basehttp 30180 29460 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-18 00:11:48,954 views 30180 19312 User has 15 songs
+INFO 2025-04-18 00:11:49,013 views 30180 29460 User has 15 songs
+INFO 2025-04-18 00:11:49,024 views 30180 19312 User has 7 songs with Spotify IDs
+INFO 2025-04-18 00:11:49,084 views 30180 29460 User has 7 songs with Spotify IDs
+INFO 2025-04-18 00:11:49,154 views 30180 19312 Sample user songs: [{'spotify_id': '4ofwffwvvnbSkrMSCKQDaC', 'title': 'Shotgun', 'artist': 'George Ezra'}, {'spotify_id': '0oA9wBGDY4uyILLg4GymWP', 'title': "Tom's Diner", 'artist': 'AnnenMayKantereit'}, {'spotify_id': '0kYBzFJ5a2Jozi6cI4y9Bp', 'title': 'Jo Tere Sang', 'artist': 'Jeet Gannguli'}, {'spotify_id': '0dQiyqHUpnMPmHtk535VAY', 'title': 'Tennu Le', 'artist': 'omer inayat'}, {'spotify_id': '1ApfHqjOoBmJZ0SjdjzVyA', 'title': 'Yeh Raaten Yeh Mausam', 'artist': 'Sanam'}]
+INFO 2025-04-18 00:11:49,158 views 30180 19312 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-18 00:11:49,227 views 30180 29460 Sample user songs: [{'spotify_id': '4ofwffwvvnbSkrMSCKQDaC', 'title': 'Shotgun', 'artist': 'George Ezra'}, {'spotify_id': '0oA9wBGDY4uyILLg4GymWP', 'title': "Tom's Diner", 'artist': 'AnnenMayKantereit'}, {'spotify_id': '0kYBzFJ5a2Jozi6cI4y9Bp', 'title': 'Jo Tere Sang', 'artist': 'Jeet Gannguli'}, {'spotify_id': '0dQiyqHUpnMPmHtk535VAY', 'title': 'Tennu Le', 'artist': 'omer inayat'}, {'spotify_id': '1ApfHqjOoBmJZ0SjdjzVyA', 'title': 'Yeh Raaten Yeh Mausam', 'artist': 'Sanam'}]
+INFO 2025-04-18 00:11:49,227 views 30180 29460 Getting recommendations for user: 4 with limit: 10
+WARNING 2025-04-18 00:11:49,424 recommendation 30180 19312 Song '0oA9wBGDY4uyILLg4GymWP' not found or clustering unavailable, using popular songs
+WARNING 2025-04-18 00:11:49,562 recommendation 30180 29460 Song '0oA9wBGDY4uyILLg4GymWP' not found or clustering unavailable, using popular songs
+WARNING 2025-04-18 00:11:49,854 recommendation 30180 29460 Song '0kYBzFJ5a2Jozi6cI4y9Bp' not found or clustering unavailable, using popular songs
+WARNING 2025-04-18 00:11:49,854 recommendation 30180 19312 Song '0kYBzFJ5a2Jozi6cI4y9Bp' not found or clustering unavailable, using popular songs
+WARNING 2025-04-18 00:11:50,118 recommendation 30180 29460 Song '0dQiyqHUpnMPmHtk535VAY' not found or clustering unavailable, using popular songs
+WARNING 2025-04-18 00:11:50,127 recommendation 30180 19312 Song '0dQiyqHUpnMPmHtk535VAY' not found or clustering unavailable, using popular songs
+INFO 2025-04-18 00:11:50,297 views 30180 19312 Got 10 recommendations
+INFO 2025-04-18 00:11:50,324 views 30180 29460 Got 10 recommendations
+INFO 2025-04-18 00:11:50,436 basehttp 30180 19312 "GET /api/songs/recommendations/ HTTP/1.1" 200 2990
+INFO 2025-04-18 00:11:50,463 basehttp 30180 29460 "GET /api/songs/recommendations/ HTTP/1.1" 200 2923
+INFO 2025-04-18 00:11:51,624 basehttp 30180 19312 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 1160
+INFO 2025-04-18 00:11:51,891 basehttp 30180 29460 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 1160
+INFO 2025-04-18 00:11:52,411 basehttp 30180 19312 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 559
+INFO 2025-04-18 00:11:53,112 basehttp 30180 29460 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 559
+WARNING 2025-04-18 00:11:56,258 log 30180 25176 Not Found: /api/songs/spotify/tracks/4ofwffwvvnbSkrMSCKQDaC/
+WARNING 2025-04-18 00:11:56,269 basehttp 30180 25176 "GET /api/songs/spotify/tracks/4ofwffwvvnbSkrMSCKQDaC/ HTTP/1.1" 404 17956
+WARNING 2025-04-18 00:11:56,284 log 30180 25176 Not Found: /api/songs/spotify-track/4ofwffwvvnbSkrMSCKQDaC/
+WARNING 2025-04-18 00:11:56,285 basehttp 30180 25176 "GET /api/songs/spotify-track/4ofwffwvvnbSkrMSCKQDaC/ HTTP/1.1" 404 17953
+WARNING 2025-04-18 00:11:56,315 log 30180 25176 Not Found: /api/spotify/tracks/4ofwffwvvnbSkrMSCKQDaC/
+WARNING 2025-04-18 00:11:56,315 basehttp 30180 25176 "GET /api/spotify/tracks/4ofwffwvvnbSkrMSCKQDaC/ HTTP/1.1" 404 3463
+INFO 2025-04-18 00:11:57,459 basehttp 30180 19312 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 372
+INFO 2025-04-18 00:11:58,590 spotify_api 30180 25176 Extracting Spotify ID from URL: https://open.spotify.com/track/4ofwffwvvnbSkrMSCKQDaC?si=2860c24a47c94fc5
+INFO 2025-04-18 00:11:58,590 spotify_api 30180 25176 Extracted Spotify track ID: 4ofwffwvvnbSkrMSCKQDaC
+INFO 2025-04-18 00:11:58,744 spotify_api 30180 25176 Extracting Spotify ID from URL: https://open.spotify.com/track/4ofwffwvvnbSkrMSCKQDaC?si=2860c24a47c94fc5
+INFO 2025-04-18 00:11:58,757 spotify_api 30180 25176 Extracted Spotify track ID: 4ofwffwvvnbSkrMSCKQDaC
+INFO 2025-04-18 00:11:58,759 views 30180 25176 Getting info for Spotify track ID: ('track', '4ofwffwvvnbSkrMSCKQDaC')
+INFO 2025-04-18 00:11:58,760 spotify_api 30180 25176 Extracting Spotify ID from URL: https://open.spotify.com/track/4ofwffwvvnbSkrMSCKQDaC?si=2860c24a47c94fc5
+INFO 2025-04-18 00:11:58,763 spotify_api 30180 25176 Extracted Spotify track ID: 4ofwffwvvnbSkrMSCKQDaC
+INFO 2025-04-18 00:11:58,775 spotify_api 30180 25176 Getting info for Spotify track ID: 4ofwffwvvnbSkrMSCKQDaC
+INFO 2025-04-18 00:11:58,778 spotify_api 30180 25176 Creating Spotify client with credentials from settings
+INFO 2025-04-18 00:11:59,038 spotify_api 30180 25176 Successfully tested Spotify client
+INFO 2025-04-18 00:11:59,380 spotify_api 30180 25176 Got track info: Shotgun by George Ezra
+INFO 2025-04-18 00:11:59,380 views 30180 25176 Got track info: Shotgun by George Ezra
+INFO 2025-04-18 00:11:59,443 views 30180 25176 Downloading using YouTube search: ytsearch:Shotgun George Ezra
+INFO 2025-04-18 00:12:00,872 basehttp 30180 29460 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 372
+INFO 2025-04-18 00:12:01,871 basehttp 30180 19312 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 150
+INFO 2025-04-18 00:12:07,885 basehttp 30180 29460 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 150
+INFO 2025-04-18 00:12:10,666 views 30180 25176 Downloaded file to: C:\Users\Dell\AppData\Local\Temp\tmpakic9b8i\download-1744915319.mp3
+INFO 2025-04-18 00:12:10,799 utils 30180 25176 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Shotgun - George Ezra.mp3
+INFO 2025-04-18 00:12:10,799 utils 30180 25176 Title: Shotgun, Artist: George Ezra, Album: Staying at Tamara's, Genre: Unknown
+INFO 2025-04-18 00:12:10,816 utils 30180 25176 Loaded existing ID3 tags
+INFO 2025-04-18 00:12:10,967 utils 30180 25176 Found matching song in database: Shotgun by George Ezra
+INFO 2025-04-18 00:12:10,967 utils 30180 25176 Using thumbnail URL from database: https://i.scdn.co/image/ab67616d0000b273103045cd1c29dd16a469f808
+INFO 2025-04-18 00:12:10,967 utils 30180 25176 Downloading thumbnail from URL: https://i.scdn.co/image/ab67616d0000b273103045cd1c29dd16a469f808
+INFO 2025-04-18 00:12:11,129 utils 30180 25176 Downloaded thumbnail: 150295 bytes
+INFO 2025-04-18 00:12:11,129 utils 30180 25176 Detected image type: jpeg
+INFO 2025-04-18 00:12:11,129 utils 30180 25176 Adding album art, MIME type: image/jpeg
+INFO 2025-04-18 00:12:11,129 utils 30180 25176 Successfully added album art to ID3 tags
+INFO 2025-04-18 00:12:11,129 utils 30180 25176 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Shotgun - George Ezra.mp3
+INFO 2025-04-18 00:12:11,144 utils 30180 25176 Verification: 8 tags were written, has_cover=True
+INFO 2025-04-18 00:12:11,426 models 30180 25176 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-18 00:12:11,578 models 30180 25176 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=49
+INFO 2025-04-18 00:12:11,983 views 30180 25176 Added song to cache: https://open.spotify.com/track/4ofwffwvvnbSkrMSCKQDaC?si=2860c24a47c94fc5
+INFO 2025-04-18 00:12:12,035 basehttp 30180 25176 "POST /api/songs/songs/download/ HTTP/1.1" 200 5032928
+INFO 2025-04-18 00:12:12,700 spotify_api 30180 25176 Extracting Spotify ID from URL: https://open.spotify.com/track/4ofwffwvvnbSkrMSCKQDaC?si=2860c24a47c94fc5
+INFO 2025-04-18 00:12:12,700 spotify_api 30180 25176 Extracted Spotify track ID: 4ofwffwvvnbSkrMSCKQDaC
+INFO 2025-04-18 00:12:12,778 views 30180 25176 Found existing song with URL https://open.spotify.com/track/4ofwffwvvnbSkrMSCKQDaC?si=2860c24a47c94fc5, serving directly
+INFO 2025-04-18 00:12:12,904 views 30180 25176 Using cached version for Spotify URL: https://open.spotify.com/track/4ofwffwvvnbSkrMSCKQDaC?si=2860c24a47c94fc5
+INFO 2025-04-18 00:12:12,904 models 30180 25176 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-18 00:12:13,061 models 30180 25176 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=50
+INFO 2025-04-18 00:12:13,186 basehttp 30180 25176 "POST /api/songs/songs/download/ HTTP/1.1" 200 4876460
+INFO 2025-04-18 00:12:13,734 basehttp 30180 19312 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-18 00:17:16,094 autoreload 30180 15616 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-18 00:17:59,532 autoreload 28280 19312 Watching for file changes with StatReloader
+INFO 2025-04-18 00:18:22,419 autoreload 28280 19312 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-18 00:18:28,139 autoreload 19720 29128 Watching for file changes with StatReloader
+INFO 2025-04-18 00:20:13,131 autoreload 19720 29128 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-18 00:20:18,770 autoreload 18164 6524 Watching for file changes with StatReloader
+INFO 2025-04-18 00:21:29,090 autoreload 18164 6524 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-18 00:21:35,145 autoreload 25204 364 Watching for file changes with StatReloader
+WARNING 2025-04-18 00:22:13,683 log 25204 21280 Not Found: /api/songs/spotify/tracks/2tpWsVSb9UEmDRxAl1zhX1/
+WARNING 2025-04-18 00:22:13,685 basehttp 25204 21280 "GET /api/songs/spotify/tracks/2tpWsVSb9UEmDRxAl1zhX1/ HTTP/1.1" 404 17956
+WARNING 2025-04-18 00:22:13,699 log 25204 21280 Not Found: /api/songs/spotify-track/2tpWsVSb9UEmDRxAl1zhX1/
+WARNING 2025-04-18 00:22:13,699 basehttp 25204 21280 "GET /api/songs/spotify-track/2tpWsVSb9UEmDRxAl1zhX1/ HTTP/1.1" 404 17953
+WARNING 2025-04-18 00:22:13,713 log 25204 21280 Not Found: /api/spotify/tracks/2tpWsVSb9UEmDRxAl1zhX1/
+WARNING 2025-04-18 00:22:13,714 basehttp 25204 21280 "GET /api/spotify/tracks/2tpWsVSb9UEmDRxAl1zhX1/ HTTP/1.1" 404 3463
+INFO 2025-04-18 00:22:16,359 spotify_api 25204 21280 Extracting Spotify ID from URL: https://open.spotify.com/track/2tpWsVSb9UEmDRxAl1zhX1?si=6c199e3d3b844ae1
+INFO 2025-04-18 00:22:16,359 spotify_api 25204 21280 Extracted Spotify track ID: 2tpWsVSb9UEmDRxAl1zhX1
+INFO 2025-04-18 00:22:16,590 spotify_api 25204 21280 Extracting Spotify ID from URL: https://open.spotify.com/track/2tpWsVSb9UEmDRxAl1zhX1?si=6c199e3d3b844ae1
+INFO 2025-04-18 00:22:16,590 spotify_api 25204 21280 Extracted Spotify track ID: 2tpWsVSb9UEmDRxAl1zhX1
+INFO 2025-04-18 00:22:16,590 views 25204 21280 Getting info for Spotify track ID: ('track', '2tpWsVSb9UEmDRxAl1zhX1')
+INFO 2025-04-18 00:22:16,590 spotify_api 25204 21280 Extracting Spotify ID from URL: https://open.spotify.com/track/2tpWsVSb9UEmDRxAl1zhX1?si=6c199e3d3b844ae1
+INFO 2025-04-18 00:22:16,590 spotify_api 25204 21280 Extracted Spotify track ID: 2tpWsVSb9UEmDRxAl1zhX1
+INFO 2025-04-18 00:22:16,590 spotify_api 25204 21280 Getting info for Spotify track ID: 2tpWsVSb9UEmDRxAl1zhX1
+INFO 2025-04-18 00:22:16,590 spotify_api 25204 21280 Creating Spotify client with credentials from settings
+INFO 2025-04-18 00:22:17,063 spotify_api 25204 21280 Successfully tested Spotify client
+INFO 2025-04-18 00:22:17,355 spotify_api 25204 21280 Got track info: Counting Stars by OneRepublic
+INFO 2025-04-18 00:22:17,359 views 25204 21280 Got track info: Counting Stars by OneRepublic
+INFO 2025-04-18 00:22:17,563 views 25204 21280 Downloading using YouTube search: ytsearch:Counting Stars OneRepublic
+INFO 2025-04-18 00:22:34,021 views 25204 21280 Downloaded file to: C:\Users\Dell\AppData\Local\Temp\tmpfp1j4o0m\download-1744915937.mp3
+INFO 2025-04-18 00:22:34,374 utils 25204 21280 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Counting Stars - OneRepublic.mp3
+INFO 2025-04-18 00:22:34,374 utils 25204 21280 Title: Counting Stars, Artist: OneRepublic, Album: Native, Genre: soft pop
+INFO 2025-04-18 00:22:34,380 utils 25204 21280 Loaded existing ID3 tags
+INFO 2025-04-18 00:22:34,455 utils 25204 21280 Found matching song in database: Counting Stars by OneRepublic
+INFO 2025-04-18 00:22:34,456 utils 25204 21280 Using thumbnail URL from database: https://i.scdn.co/image/ab67616d0000b2739e2f95ae77cf436017ada9cb
+INFO 2025-04-18 00:22:34,456 utils 25204 21280 Downloading thumbnail from URL: https://i.scdn.co/image/ab67616d0000b2739e2f95ae77cf436017ada9cb
+INFO 2025-04-18 00:22:34,552 utils 25204 21280 Downloaded thumbnail: 117299 bytes
+INFO 2025-04-18 00:22:34,552 utils 25204 21280 Detected image type: jpeg
+INFO 2025-04-18 00:22:34,552 utils 25204 21280 Adding album art, MIME type: image/jpeg
+INFO 2025-04-18 00:22:34,554 utils 25204 21280 Successfully added album art to ID3 tags
+INFO 2025-04-18 00:22:34,572 utils 25204 21280 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Counting Stars - OneRepublic.mp3
+INFO 2025-04-18 00:22:34,585 utils 25204 21280 Verification: 8 tags were written, has_cover=True
+INFO 2025-04-18 00:22:34,901 models 25204 21280 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-18 00:22:35,062 models 25204 21280 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=51
+INFO 2025-04-18 00:22:35,478 views 25204 21280 Added song to cache: https://open.spotify.com/track/2tpWsVSb9UEmDRxAl1zhX1?si=6c199e3d3b844ae1
+INFO 2025-04-18 00:22:35,812 basehttp 25204 21280 "POST /api/songs/songs/download/ HTTP/1.1" 200 6919920
+INFO 2025-04-18 00:22:36,367 spotify_api 25204 21280 Extracting Spotify ID from URL: https://open.spotify.com/track/2tpWsVSb9UEmDRxAl1zhX1?si=6c199e3d3b844ae1
+INFO 2025-04-18 00:22:36,367 spotify_api 25204 21280 Extracted Spotify track ID: 2tpWsVSb9UEmDRxAl1zhX1
+INFO 2025-04-18 00:22:36,432 views 25204 21280 Found existing song with URL https://open.spotify.com/track/2tpWsVSb9UEmDRxAl1zhX1?si=6c199e3d3b844ae1, serving directly
+INFO 2025-04-18 00:22:36,559 views 25204 21280 Using cached version for Spotify URL: https://open.spotify.com/track/2tpWsVSb9UEmDRxAl1zhX1?si=6c199e3d3b844ae1
+INFO 2025-04-18 00:22:36,559 models 25204 21280 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-18 00:22:36,681 models 25204 21280 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=52
+INFO 2025-04-18 00:22:36,908 basehttp 25204 21280 "POST /api/songs/songs/download/ HTTP/1.1" 200 6794540
+INFO 2025-04-18 00:22:37,355 basehttp 25204 21128 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-18 00:23:10,108 autoreload 25204 364 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-18 00:23:17,769 autoreload 556 11220 Watching for file changes with StatReloader
+INFO 2025-04-18 00:23:32,358 autoreload 556 11220 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-18 00:23:35,610 autoreload 20636 28760 Watching for file changes with StatReloader
+WARNING 2025-04-18 00:26:01,477 log 20636 556 Not Found: /api/songs/spotify/tracks/2tpWsVSb9UEmDRxAl1zhX1/
+WARNING 2025-04-18 00:26:01,477 basehttp 20636 556 "GET /api/songs/spotify/tracks/2tpWsVSb9UEmDRxAl1zhX1/ HTTP/1.1" 404 17956
+WARNING 2025-04-18 00:26:01,497 log 20636 556 Not Found: /api/songs/spotify-track/2tpWsVSb9UEmDRxAl1zhX1/
+WARNING 2025-04-18 00:26:01,497 basehttp 20636 556 "GET /api/songs/spotify-track/2tpWsVSb9UEmDRxAl1zhX1/ HTTP/1.1" 404 17953
+WARNING 2025-04-18 00:26:01,507 log 20636 556 Not Found: /api/spotify/tracks/2tpWsVSb9UEmDRxAl1zhX1/
+WARNING 2025-04-18 00:26:01,507 basehttp 20636 556 "GET /api/spotify/tracks/2tpWsVSb9UEmDRxAl1zhX1/ HTTP/1.1" 404 3463
+WARNING 2025-04-18 00:26:05,063 log 20636 556 Not Found: /api/songs/spotify/tracks/2tpWsVSb9UEmDRxAl1zhX1/
+WARNING 2025-04-18 00:26:05,063 basehttp 20636 556 "GET /api/songs/spotify/tracks/2tpWsVSb9UEmDRxAl1zhX1/ HTTP/1.1" 404 17956
+WARNING 2025-04-18 00:26:05,075 log 20636 556 Not Found: /api/songs/spotify-track/2tpWsVSb9UEmDRxAl1zhX1/
+WARNING 2025-04-18 00:26:05,079 basehttp 20636 556 "GET /api/songs/spotify-track/2tpWsVSb9UEmDRxAl1zhX1/ HTTP/1.1" 404 17953
+WARNING 2025-04-18 00:26:05,091 log 20636 556 Not Found: /api/spotify/tracks/2tpWsVSb9UEmDRxAl1zhX1/
+WARNING 2025-04-18 00:26:05,091 basehttp 20636 556 "GET /api/spotify/tracks/2tpWsVSb9UEmDRxAl1zhX1/ HTTP/1.1" 404 3463
+WARNING 2025-04-18 00:26:17,952 log 20636 556 Not Found: /api/songs/spotify/tracks/5TXDeTFVRVY7Cvt0Dw4vWW/
+WARNING 2025-04-18 00:26:17,952 basehttp 20636 556 "GET /api/songs/spotify/tracks/5TXDeTFVRVY7Cvt0Dw4vWW/ HTTP/1.1" 404 17956
+WARNING 2025-04-18 00:26:18,042 log 20636 556 Not Found: /api/songs/spotify-track/5TXDeTFVRVY7Cvt0Dw4vWW/
+WARNING 2025-04-18 00:26:18,042 basehttp 20636 556 "GET /api/songs/spotify-track/5TXDeTFVRVY7Cvt0Dw4vWW/ HTTP/1.1" 404 17953
+WARNING 2025-04-18 00:26:18,054 log 20636 556 Not Found: /api/spotify/tracks/5TXDeTFVRVY7Cvt0Dw4vWW/
+WARNING 2025-04-18 00:26:18,058 basehttp 20636 556 "GET /api/spotify/tracks/5TXDeTFVRVY7Cvt0Dw4vWW/ HTTP/1.1" 404 3463
+INFO 2025-04-18 00:26:21,648 spotify_api 20636 556 Extracting Spotify ID from URL: https://open.spotify.com/track/5TXDeTFVRVY7Cvt0Dw4vWW?si=8ec1ce40a1bc4341
+INFO 2025-04-18 00:26:21,648 spotify_api 20636 556 Extracted Spotify track ID: 5TXDeTFVRVY7Cvt0Dw4vWW
+INFO 2025-04-18 00:26:21,780 spotify_api 20636 556 Extracting Spotify ID from URL: https://open.spotify.com/track/5TXDeTFVRVY7Cvt0Dw4vWW?si=8ec1ce40a1bc4341
+INFO 2025-04-18 00:26:21,780 spotify_api 20636 556 Extracted Spotify track ID: 5TXDeTFVRVY7Cvt0Dw4vWW
+INFO 2025-04-18 00:26:21,780 views 20636 556 Getting info for Spotify track ID: ('track', '5TXDeTFVRVY7Cvt0Dw4vWW')
+INFO 2025-04-18 00:26:21,780 spotify_api 20636 556 Extracting Spotify ID from URL: https://open.spotify.com/track/5TXDeTFVRVY7Cvt0Dw4vWW?si=8ec1ce40a1bc4341
+INFO 2025-04-18 00:26:21,784 spotify_api 20636 556 Extracted Spotify track ID: 5TXDeTFVRVY7Cvt0Dw4vWW
+INFO 2025-04-18 00:26:21,784 spotify_api 20636 556 Getting info for Spotify track ID: 5TXDeTFVRVY7Cvt0Dw4vWW
+INFO 2025-04-18 00:26:21,784 spotify_api 20636 556 Creating Spotify client with credentials from settings
+INFO 2025-04-18 00:26:22,158 spotify_api 20636 556 Successfully tested Spotify client
+INFO 2025-04-18 00:26:22,435 spotify_api 20636 556 Got track info: Revenge by XXXTENTACION
+INFO 2025-04-18 00:26:22,439 views 20636 556 Got track info: Revenge by XXXTENTACION
+INFO 2025-04-18 00:26:22,629 views 20636 556 Downloading using YouTube search: ytsearch:Revenge XXXTENTACION
+INFO 2025-04-18 00:26:31,484 views 20636 556 Downloaded file to: C:\Users\Dell\AppData\Local\Temp\tmpgz88t8q8\download-1744916182.mp3
+INFO 2025-04-18 00:26:31,573 utils 20636 556 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Revenge - XXXTENTACION.mp3
+INFO 2025-04-18 00:26:31,577 utils 20636 556 Title: Revenge, Artist: XXXTENTACION, Album: 17, Genre: emo rap
+INFO 2025-04-18 00:26:31,585 utils 20636 556 Loaded existing ID3 tags
+INFO 2025-04-18 00:26:31,649 utils 20636 556 Downloading thumbnail from URL: https://i.scdn.co/image/ab67616d0000b273203c89bd4391468eea4cc3f5
+INFO 2025-04-18 00:26:31,728 utils 20636 556 Downloaded thumbnail: 139135 bytes
+INFO 2025-04-18 00:26:31,731 utils 20636 556 Detected image type: jpeg
+INFO 2025-04-18 00:26:31,731 utils 20636 556 Adding album art, MIME type: image/jpeg
+INFO 2025-04-18 00:26:31,731 utils 20636 556 Successfully added album art to ID3 tags
+INFO 2025-04-18 00:26:31,736 utils 20636 556 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Revenge - XXXTENTACION.mp3
+INFO 2025-04-18 00:26:31,748 utils 20636 556 Verification: 8 tags were written, has_cover=True
+INFO 2025-04-18 00:26:32,007 models 20636 556 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-18 00:26:32,137 models 20636 556 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=53
+INFO 2025-04-18 00:26:32,513 views 20636 556 Added song to cache: https://open.spotify.com/track/5TXDeTFVRVY7Cvt0Dw4vWW?si=8ec1ce40a1bc4341
+INFO 2025-04-18 00:26:32,660 basehttp 20636 556 "POST /api/songs/songs/download/ HTTP/1.1" 200 3048118
+INFO 2025-04-18 00:26:33,237 spotify_api 20636 556 Extracting Spotify ID from URL: https://open.spotify.com/track/5TXDeTFVRVY7Cvt0Dw4vWW?si=8ec1ce40a1bc4341
+INFO 2025-04-18 00:26:33,237 spotify_api 20636 556 Extracted Spotify track ID: 5TXDeTFVRVY7Cvt0Dw4vWW
+INFO 2025-04-18 00:26:33,298 views 20636 556 Found existing song with URL https://open.spotify.com/track/5TXDeTFVRVY7Cvt0Dw4vWW?si=8ec1ce40a1bc4341, serving directly
+INFO 2025-04-18 00:26:33,436 views 20636 556 Using cached version for Spotify URL: https://open.spotify.com/track/5TXDeTFVRVY7Cvt0Dw4vWW?si=8ec1ce40a1bc4341
+INFO 2025-04-18 00:26:33,436 models 20636 556 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-18 00:26:33,560 models 20636 556 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=54
+INFO 2025-04-18 00:26:33,672 basehttp 20636 556 "POST /api/songs/songs/download/ HTTP/1.1" 200 2904812
+INFO 2025-04-18 00:26:34,225 basehttp 20636 11180 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-18 00:27:32,187 utils 20636 556 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Foster The People - Imagination Official Audio - FosterThePeople.mp3
+INFO 2025-04-18 00:27:32,191 utils 20636 556 Title: Foster The People - Imagination (Official Audio), Artist: FosterThePeople, Album: Unknown, Genre: Unknown
+INFO 2025-04-18 00:27:32,203 utils 20636 556 Loaded existing ID3 tags
+INFO 2025-04-18 00:27:32,264 utils 20636 556 Looking for local thumbnail: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs/Foster The People - Imagination Official Audio - FosterThePeople.webp
+INFO 2025-04-18 00:27:32,276 utils 20636 556 Found local thumbnail: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs/Foster The People - Imagination Official Audio - FosterThePeople.webp
+INFO 2025-04-18 00:27:32,280 utils 20636 556 Detected image type: webp
+INFO 2025-04-18 00:27:32,280 utils 20636 556 Converting image from webp to JPEG
+INFO 2025-04-18 00:27:32,466 utils 20636 556 Successfully converted image to JPEG: 94463 bytes
+INFO 2025-04-18 00:27:32,466 utils 20636 556 Adding album art, MIME type: image/jpeg
+INFO 2025-04-18 00:27:32,466 utils 20636 556 Successfully added album art to ID3 tags
+INFO 2025-04-18 00:27:32,474 utils 20636 556 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Foster The People - Imagination Official Audio - FosterThePeople.mp3
+INFO 2025-04-18 00:27:32,486 utils 20636 556 Verification: 8 tags were written, has_cover=True
+INFO 2025-04-18 00:27:33,084 views 20636 556 Added song to cache: https://www.youtube.com/watch?v=NE6pANWJGuU&pp=0gcJCX4JAYcqIYzv
+INFO 2025-04-18 00:27:33,206 basehttp 20636 556 "POST /api/songs/songs/download/ HTTP/1.1" 200 6273889
+INFO 2025-04-18 00:27:33,936 views 20636 556 Found existing song with URL https://www.youtube.com/watch?v=NE6pANWJGuU&pp=0gcJCX4JAYcqIYzv, serving directly
+INFO 2025-04-18 00:27:34,059 views 20636 556 Using cached version for URL: https://www.youtube.com/watch?v=NE6pANWJGuU&pp=0gcJCX4JAYcqIYzv
+INFO 2025-04-18 00:27:34,060 models 20636 556 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-18 00:27:34,187 models 20636 556 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=55
+INFO 2025-04-18 00:27:34,357 basehttp 20636 556 "POST /api/songs/songs/download/ HTTP/1.1" 200 6171884
+INFO 2025-04-18 00:27:34,810 basehttp 20636 11180 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-18 00:33:41,851 views 20636 1344 Found existing song with URL https://www.youtube.com/watch?v=NE6pANWJGuU&pp=0gcJCX4JAYcqIYzv, serving directly
+INFO 2025-04-18 00:33:41,990 views 20636 1344 Using cached version for URL: https://www.youtube.com/watch?v=NE6pANWJGuU&pp=0gcJCX4JAYcqIYzv
+INFO 2025-04-18 00:33:41,991 models 20636 1344 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-18 00:33:42,121 models 20636 1344 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=56
+INFO 2025-04-18 00:33:42,291 basehttp 20636 1344 "POST /api/songs/songs/download/ HTTP/1.1" 200 6171884
+INFO 2025-04-18 00:33:43,659 views 20636 1344 Found existing song with URL https://www.youtube.com/watch?v=NE6pANWJGuU&pp=0gcJCX4JAYcqIYzv, serving directly
+INFO 2025-04-18 00:33:43,799 views 20636 1344 Using cached version for URL: https://www.youtube.com/watch?v=NE6pANWJGuU&pp=0gcJCX4JAYcqIYzv
+INFO 2025-04-18 00:33:43,799 models 20636 1344 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-18 00:33:43,990 models 20636 1344 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=57
+INFO 2025-04-18 00:33:44,203 basehttp 20636 1344 "POST /api/songs/songs/download/ HTTP/1.1" 200 6171884
+INFO 2025-04-18 00:33:45,575 basehttp 20636 8184 "GET /api/songs/ HTTP/1.1" 200 107
+WARNING 2025-04-18 00:34:00,768 log 20636 1344 Not Found: /api/songs/spotify/tracks/5TXDeTFVRVY7Cvt0Dw4vWW/
+WARNING 2025-04-18 00:34:00,768 basehttp 20636 1344 "GET /api/songs/spotify/tracks/5TXDeTFVRVY7Cvt0Dw4vWW/ HTTP/1.1" 404 17956
+WARNING 2025-04-18 00:34:00,780 log 20636 1344 Not Found: /api/songs/spotify-track/5TXDeTFVRVY7Cvt0Dw4vWW/
+WARNING 2025-04-18 00:34:00,780 basehttp 20636 1344 "GET /api/songs/spotify-track/5TXDeTFVRVY7Cvt0Dw4vWW/ HTTP/1.1" 404 17953
+WARNING 2025-04-18 00:34:00,794 log 20636 1344 Not Found: /api/spotify/tracks/5TXDeTFVRVY7Cvt0Dw4vWW/
+WARNING 2025-04-18 00:34:00,794 basehttp 20636 1344 "GET /api/spotify/tracks/5TXDeTFVRVY7Cvt0Dw4vWW/ HTTP/1.1" 404 3463
+INFO 2025-04-18 00:34:03,800 spotify_api 20636 1344 Extracting Spotify ID from URL: https://open.spotify.com/track/5TXDeTFVRVY7Cvt0Dw4vWW?si=b768fad59e6043d3
+INFO 2025-04-18 00:34:03,800 spotify_api 20636 1344 Extracted Spotify track ID: 5TXDeTFVRVY7Cvt0Dw4vWW
+INFO 2025-04-18 00:34:03,993 spotify_api 20636 1344 Extracting Spotify ID from URL: https://open.spotify.com/track/5TXDeTFVRVY7Cvt0Dw4vWW?si=b768fad59e6043d3
+INFO 2025-04-18 00:34:03,993 spotify_api 20636 1344 Extracted Spotify track ID: 5TXDeTFVRVY7Cvt0Dw4vWW
+INFO 2025-04-18 00:34:03,993 views 20636 1344 Getting info for Spotify track ID: ('track', '5TXDeTFVRVY7Cvt0Dw4vWW')
+INFO 2025-04-18 00:34:03,997 spotify_api 20636 1344 Extracting Spotify ID from URL: https://open.spotify.com/track/5TXDeTFVRVY7Cvt0Dw4vWW?si=b768fad59e6043d3
+INFO 2025-04-18 00:34:03,997 spotify_api 20636 1344 Extracted Spotify track ID: 5TXDeTFVRVY7Cvt0Dw4vWW
+INFO 2025-04-18 00:34:03,997 spotify_api 20636 1344 Getting info for Spotify track ID: 5TXDeTFVRVY7Cvt0Dw4vWW
+INFO 2025-04-18 00:34:03,997 spotify_api 20636 1344 Creating Spotify client with credentials from settings
+INFO 2025-04-18 00:34:04,433 spotify_api 20636 1344 Successfully tested Spotify client
+INFO 2025-04-18 00:34:04,708 spotify_api 20636 1344 Got track info: Revenge by XXXTENTACION
+INFO 2025-04-18 00:34:04,708 views 20636 1344 Got track info: Revenge by XXXTENTACION
+INFO 2025-04-18 00:34:04,745 views 20636 1344 Downloading using YouTube search: ytsearch:Revenge XXXTENTACION
+INFO 2025-04-18 00:34:15,097 views 20636 1344 Downloaded file to: C:\Users\Dell\AppData\Local\Temp\tmp07h5k3sf\download-1744916644.mp3
+INFO 2025-04-18 00:34:15,241 utils 20636 1344 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Revenge - XXXTENTACION.mp3
+INFO 2025-04-18 00:34:15,241 utils 20636 1344 Title: Revenge, Artist: XXXTENTACION, Album: 17, Genre: emo rap
+INFO 2025-04-18 00:34:15,251 utils 20636 1344 Loaded existing ID3 tags
+INFO 2025-04-18 00:34:15,354 utils 20636 1344 Found matching song in database: Revenge by XXXTENTACION
+INFO 2025-04-18 00:34:15,354 utils 20636 1344 Using thumbnail URL from database: https://i.scdn.co/image/ab67616d0000b273203c89bd4391468eea4cc3f5
+INFO 2025-04-18 00:34:15,354 utils 20636 1344 Downloading thumbnail from URL: https://i.scdn.co/image/ab67616d0000b273203c89bd4391468eea4cc3f5
+INFO 2025-04-18 00:34:16,634 utils 20636 1344 Downloaded thumbnail: 139135 bytes
+INFO 2025-04-18 00:34:16,634 utils 20636 1344 Detected image type: jpeg
+INFO 2025-04-18 00:34:16,635 utils 20636 1344 Adding album art, MIME type: image/jpeg
+INFO 2025-04-18 00:34:16,635 utils 20636 1344 Successfully added album art to ID3 tags
+INFO 2025-04-18 00:34:16,638 utils 20636 1344 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Revenge - XXXTENTACION.mp3
+INFO 2025-04-18 00:34:16,648 utils 20636 1344 Verification: 8 tags were written, has_cover=True
+INFO 2025-04-18 00:34:16,914 models 20636 1344 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-18 00:34:17,037 models 20636 1344 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=58
+INFO 2025-04-18 00:34:17,413 views 20636 1344 Added song to cache: https://open.spotify.com/track/5TXDeTFVRVY7Cvt0Dw4vWW?si=b768fad59e6043d3
+INFO 2025-04-18 00:34:17,440 basehttp 20636 1344 "POST /api/songs/songs/download/ HTTP/1.1" 200 3048118
+INFO 2025-04-18 00:34:18,007 spotify_api 20636 1344 Extracting Spotify ID from URL: https://open.spotify.com/track/5TXDeTFVRVY7Cvt0Dw4vWW?si=b768fad59e6043d3
+INFO 2025-04-18 00:34:18,008 spotify_api 20636 1344 Extracted Spotify track ID: 5TXDeTFVRVY7Cvt0Dw4vWW
+INFO 2025-04-18 00:34:18,073 views 20636 1344 Found existing song with URL https://open.spotify.com/track/5TXDeTFVRVY7Cvt0Dw4vWW?si=b768fad59e6043d3, serving directly
+INFO 2025-04-18 00:34:18,215 views 20636 1344 Using cached version for Spotify URL: https://open.spotify.com/track/5TXDeTFVRVY7Cvt0Dw4vWW?si=b768fad59e6043d3
+INFO 2025-04-18 00:34:18,215 models 20636 1344 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-18 00:34:18,364 models 20636 1344 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=59
+INFO 2025-04-18 00:34:18,512 basehttp 20636 1344 "POST /api/songs/songs/download/ HTTP/1.1" 200 2904812
+INFO 2025-04-18 00:34:19,485 basehttp 20636 8184 "GET /api/songs/ HTTP/1.1" 200 107
+WARNING 2025-04-18 00:38:49,207 log 20636 15052 Not Found: /api/songs/spotify/tracks/5TXDeTFVRVY7Cvt0Dw4vWW/
+WARNING 2025-04-18 00:38:49,207 basehttp 20636 15052 "GET /api/songs/spotify/tracks/5TXDeTFVRVY7Cvt0Dw4vWW/ HTTP/1.1" 404 17956
+WARNING 2025-04-18 00:38:49,224 log 20636 15052 Not Found: /api/songs/spotify-track/5TXDeTFVRVY7Cvt0Dw4vWW/
+WARNING 2025-04-18 00:38:49,226 basehttp 20636 15052 "GET /api/songs/spotify-track/5TXDeTFVRVY7Cvt0Dw4vWW/ HTTP/1.1" 404 17953
+WARNING 2025-04-18 00:38:49,237 log 20636 15052 Not Found: /api/spotify/tracks/5TXDeTFVRVY7Cvt0Dw4vWW/
+WARNING 2025-04-18 00:38:49,237 basehttp 20636 15052 "GET /api/spotify/tracks/5TXDeTFVRVY7Cvt0Dw4vWW/ HTTP/1.1" 404 3463
+INFO 2025-04-18 00:38:52,300 spotify_api 20636 15052 Extracting Spotify ID from URL: https://open.spotify.com/track/5TXDeTFVRVY7Cvt0Dw4vWW?si=b768fad59e6043d3
+INFO 2025-04-18 00:38:52,300 spotify_api 20636 15052 Extracted Spotify track ID: 5TXDeTFVRVY7Cvt0Dw4vWW
+INFO 2025-04-18 00:38:52,379 views 20636 15052 Found existing song with URL https://open.spotify.com/track/5TXDeTFVRVY7Cvt0Dw4vWW?si=b768fad59e6043d3, serving directly
+INFO 2025-04-18 00:38:52,763 views 20636 15052 Using cached version for Spotify URL: https://open.spotify.com/track/5TXDeTFVRVY7Cvt0Dw4vWW?si=b768fad59e6043d3
+INFO 2025-04-18 00:38:52,763 models 20636 15052 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-18 00:38:53,175 models 20636 15052 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=60
+INFO 2025-04-18 00:38:53,417 basehttp 20636 15052 "POST /api/songs/songs/download/ HTTP/1.1" 200 2904812
+INFO 2025-04-18 00:38:54,947 spotify_api 20636 15052 Extracting Spotify ID from URL: https://open.spotify.com/track/5TXDeTFVRVY7Cvt0Dw4vWW?si=b768fad59e6043d3
+INFO 2025-04-18 00:38:54,948 spotify_api 20636 15052 Extracted Spotify track ID: 5TXDeTFVRVY7Cvt0Dw4vWW
+INFO 2025-04-18 00:38:55,020 views 20636 15052 Found existing song with URL https://open.spotify.com/track/5TXDeTFVRVY7Cvt0Dw4vWW?si=b768fad59e6043d3, serving directly
+INFO 2025-04-18 00:38:55,459 views 20636 15052 Using cached version for Spotify URL: https://open.spotify.com/track/5TXDeTFVRVY7Cvt0Dw4vWW?si=b768fad59e6043d3
+INFO 2025-04-18 00:38:55,459 models 20636 15052 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-18 00:38:56,014 models 20636 15052 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=61
+INFO 2025-04-18 00:38:56,265 basehttp 20636 15052 "POST /api/songs/songs/download/ HTTP/1.1" 200 2904812
+INFO 2025-04-18 00:38:57,801 basehttp 20636 19884 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-18 00:39:25,511 basehttp 20636 15052 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-18 00:39:25,548 basehttp 20636 19884 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-18 00:39:26,459 views 20636 19884 User has 20 songs
+INFO 2025-04-18 00:39:26,589 views 20636 19884 User has 11 songs with Spotify IDs
+INFO 2025-04-18 00:39:26,887 views 20636 19884 Sample user songs: [{'spotify_id': '5TXDeTFVRVY7Cvt0Dw4vWW', 'title': 'Revenge', 'artist': 'XXXTENTACION'}, {'spotify_id': '5TXDeTFVRVY7Cvt0Dw4vWW', 'title': 'Revenge', 'artist': 'XXXTENTACION'}, {'spotify_id': '2tpWsVSb9UEmDRxAl1zhX1', 'title': 'Counting Stars', 'artist': 'OneRepublic'}, {'spotify_id': '4ofwffwvvnbSkrMSCKQDaC', 'title': 'Shotgun', 'artist': 'George Ezra'}, {'spotify_id': '4ofwffwvvnbSkrMSCKQDaC', 'title': 'Shotgun', 'artist': 'George Ezra'}]
+INFO 2025-04-18 00:39:26,887 views 20636 19884 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-18 00:39:26,887 recommendation 20636 19884 Skipping Music.csv due to invalid format, using data.csv directly
+INFO 2025-04-18 00:39:28,359 views 20636 15052 User has 20 songs
+INFO 2025-04-18 00:39:28,578 views 20636 15052 User has 11 songs with Spotify IDs
+INFO 2025-04-18 00:39:28,801 views 20636 15052 Sample user songs: [{'spotify_id': '5TXDeTFVRVY7Cvt0Dw4vWW', 'title': 'Revenge', 'artist': 'XXXTENTACION'}, {'spotify_id': '5TXDeTFVRVY7Cvt0Dw4vWW', 'title': 'Revenge', 'artist': 'XXXTENTACION'}, {'spotify_id': '2tpWsVSb9UEmDRxAl1zhX1', 'title': 'Counting Stars', 'artist': 'OneRepublic'}, {'spotify_id': '4ofwffwvvnbSkrMSCKQDaC', 'title': 'Shotgun', 'artist': 'George Ezra'}, {'spotify_id': '4ofwffwvvnbSkrMSCKQDaC', 'title': 'Shotgun', 'artist': 'George Ezra'}]
+INFO 2025-04-18 00:39:28,907 views 20636 15052 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-18 00:39:28,958 recommendation 20636 15052 Skipping Music.csv due to invalid format, using data.csv directly
+INFO 2025-04-18 00:39:30,082 recommendation 20636 19884 Loaded data.csv dataset
+INFO 2025-04-18 00:39:30,207 recommendation 20636 19884 Available columns in dataset: ['valence', 'year', 'acousticness', 'artists', 'danceability', 'duration_ms', 'energy', 'explicit', 'id', 'instrumentalness', 'key', 'liveness', 'loudness', 'mode', 'name', 'popularity', 'release_date', 'speechiness', 'tempo']
+INFO 2025-04-18 00:39:30,347 recommendation 20636 19884 Using features: ['acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'loudness', 'speechiness', 'tempo', 'valence']
+INFO 2025-04-18 00:39:30,465 recommendation 20636 19884 Prepared data with 170653 songs and 9 features
+INFO 2025-04-18 00:39:33,364 recommendation 20636 15052 Loaded data.csv dataset
+INFO 2025-04-18 00:39:33,421 recommendation 20636 15052 Available columns in dataset: ['valence', 'year', 'acousticness', 'artists', 'danceability', 'duration_ms', 'energy', 'explicit', 'id', 'instrumentalness', 'key', 'liveness', 'loudness', 'mode', 'name', 'popularity', 'release_date', 'speechiness', 'tempo']
+INFO 2025-04-18 00:39:33,556 recommendation 20636 15052 Using features: ['acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'loudness', 'speechiness', 'tempo', 'valence']
+INFO 2025-04-18 00:39:33,626 recommendation 20636 15052 Prepared data with 170653 songs and 9 features
+INFO 2025-04-18 00:39:34,309 recommendation 20636 19884 Built song clusters successfully
+INFO 2025-04-18 00:39:34,311 recommendation 20636 19884 Music Recommender initialized successfully
+WARNING 2025-04-18 00:39:34,692 recommendation 20636 19884 Song '2tpWsVSb9UEmDRxAl1zhX1' not found or clustering unavailable, using popular songs
+INFO 2025-04-18 00:39:34,745 recommendation 20636 15052 Built song clusters successfully
+INFO 2025-04-18 00:39:34,748 recommendation 20636 15052 Music Recommender initialized successfully
+INFO 2025-04-18 00:39:34,994 views 20636 19884 Got 10 recommendations
+INFO 2025-04-18 00:39:35,216 basehttp 20636 19884 "GET /api/songs/recommendations/ HTTP/1.1" 200 2939
+WARNING 2025-04-18 00:39:35,432 recommendation 20636 15052 Song '2tpWsVSb9UEmDRxAl1zhX1' not found or clustering unavailable, using popular songs
+INFO 2025-04-18 00:39:35,629 views 20636 15052 Got 10 recommendations
+INFO 2025-04-18 00:39:36,207 basehttp 20636 15052 "GET /api/songs/recommendations/ HTTP/1.1" 200 3094
+INFO 2025-04-18 00:39:37,021 views 20636 29648 Found existing song with URL https://www.youtube.com/watch?v=NE6pANWJGuU&pp=0gcJCX4JAYcqIYzv, serving directly
+INFO 2025-04-18 00:39:37,173 views 20636 29648 Using cached version for URL: https://www.youtube.com/watch?v=NE6pANWJGuU&pp=0gcJCX4JAYcqIYzv
+INFO 2025-04-18 00:39:37,175 models 20636 29648 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-18 00:39:37,178 basehttp 20636 19884 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 1142
+INFO 2025-04-18 00:39:37,365 models 20636 29648 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=62
+INFO 2025-04-18 00:39:38,030 basehttp 20636 15052 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 1142
+INFO 2025-04-18 00:39:38,058 basehttp 20636 29648 "POST /api/songs/songs/download/ HTTP/1.1" 200 6171884
+INFO 2025-04-18 00:39:38,321 basehttp 20636 19884 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 559
+INFO 2025-04-18 00:39:39,211 views 20636 29648 Found existing song with URL https://www.youtube.com/watch?v=NE6pANWJGuU&pp=0gcJCX4JAYcqIYzv, serving directly
+INFO 2025-04-18 00:39:39,216 basehttp 20636 15052 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 559
+INFO 2025-04-18 00:39:39,332 views 20636 29648 Using cached version for URL: https://www.youtube.com/watch?v=NE6pANWJGuU&pp=0gcJCX4JAYcqIYzv
+INFO 2025-04-18 00:39:39,333 models 20636 29648 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-18 00:39:39,470 models 20636 29648 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=63
+INFO 2025-04-18 00:39:41,137 basehttp 20636 26628 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-18 00:39:41,684 basehttp 20636 29648 "POST /api/songs/songs/download/ HTTP/1.1" 200 6171884
+INFO 2025-04-18 00:39:44,756 basehttp 20636 19884 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 371
+INFO 2025-04-18 00:39:47,240 basehttp 20636 15052 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 371
+INFO 2025-04-18 00:39:50,527 basehttp 20636 29648 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 181
+INFO 2025-04-18 00:39:53,114 basehttp 20636 15052 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 181
+INFO 2025-04-18 00:43:24,102 views 20636 16908 Found existing song with URL https://www.youtube.com/watch?v=NE6pANWJGuU&pp=0gcJCX4JAYcqIYzv, serving directly
+INFO 2025-04-18 00:43:24,230 views 20636 16908 Using cached version for URL: https://www.youtube.com/watch?v=NE6pANWJGuU&pp=0gcJCX4JAYcqIYzv
+INFO 2025-04-18 00:43:24,232 models 20636 16908 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-18 00:43:24,355 models 20636 16908 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=64
+INFO 2025-04-18 00:43:24,495 basehttp 20636 16908 "POST /api/songs/songs/download/ HTTP/1.1" 200 6171884
+INFO 2025-04-18 00:43:25,148 views 20636 16908 Found existing song with URL https://www.youtube.com/watch?v=NE6pANWJGuU&pp=0gcJCX4JAYcqIYzv, serving directly
+INFO 2025-04-18 00:43:25,272 views 20636 16908 Using cached version for URL: https://www.youtube.com/watch?v=NE6pANWJGuU&pp=0gcJCX4JAYcqIYzv
+INFO 2025-04-18 00:43:25,273 models 20636 16908 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-18 00:43:25,396 models 20636 16908 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=65
+INFO 2025-04-18 00:43:25,525 basehttp 20636 16908 "POST /api/songs/songs/download/ HTTP/1.1" 200 6171884
+INFO 2025-04-18 00:43:26,025 basehttp 20636 26676 "GET /api/songs/ HTTP/1.1" 200 107
+WARNING 2025-04-18 00:43:41,062 log 20636 16908 Not Found: /api/songs/spotify/tracks/5TXDeTFVRVY7Cvt0Dw4vWW/
+WARNING 2025-04-18 00:43:41,064 basehttp 20636 16908 "GET /api/songs/spotify/tracks/5TXDeTFVRVY7Cvt0Dw4vWW/ HTTP/1.1" 404 17956
+WARNING 2025-04-18 00:43:41,080 log 20636 16908 Not Found: /api/songs/spotify-track/5TXDeTFVRVY7Cvt0Dw4vWW/
+WARNING 2025-04-18 00:43:41,081 basehttp 20636 16908 "GET /api/songs/spotify-track/5TXDeTFVRVY7Cvt0Dw4vWW/ HTTP/1.1" 404 17953
+WARNING 2025-04-18 00:43:41,095 log 20636 16908 Not Found: /api/spotify/tracks/5TXDeTFVRVY7Cvt0Dw4vWW/
+WARNING 2025-04-18 00:43:41,095 basehttp 20636 16908 "GET /api/spotify/tracks/5TXDeTFVRVY7Cvt0Dw4vWW/ HTTP/1.1" 404 3463
+INFO 2025-04-18 00:43:42,815 spotify_api 20636 16908 Extracting Spotify ID from URL: https://open.spotify.com/track/5TXDeTFVRVY7Cvt0Dw4vWW?si=b768fad59e6043d3
+INFO 2025-04-18 00:43:42,817 spotify_api 20636 16908 Extracted Spotify track ID: 5TXDeTFVRVY7Cvt0Dw4vWW
+INFO 2025-04-18 00:43:42,880 views 20636 16908 Found existing song with URL https://open.spotify.com/track/5TXDeTFVRVY7Cvt0Dw4vWW?si=b768fad59e6043d3, serving directly
+INFO 2025-04-18 00:43:43,002 views 20636 16908 Using cached version for Spotify URL: https://open.spotify.com/track/5TXDeTFVRVY7Cvt0Dw4vWW?si=b768fad59e6043d3
+INFO 2025-04-18 00:43:43,003 models 20636 16908 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-18 00:43:43,127 models 20636 16908 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=66
+INFO 2025-04-18 00:43:43,211 basehttp 20636 16908 "POST /api/songs/songs/download/ HTTP/1.1" 200 2904812
+INFO 2025-04-18 00:43:43,774 spotify_api 20636 16908 Extracting Spotify ID from URL: https://open.spotify.com/track/5TXDeTFVRVY7Cvt0Dw4vWW?si=b768fad59e6043d3
+INFO 2025-04-18 00:43:43,774 spotify_api 20636 16908 Extracted Spotify track ID: 5TXDeTFVRVY7Cvt0Dw4vWW
+INFO 2025-04-18 00:43:43,835 views 20636 16908 Found existing song with URL https://open.spotify.com/track/5TXDeTFVRVY7Cvt0Dw4vWW?si=b768fad59e6043d3, serving directly
+INFO 2025-04-18 00:43:43,964 views 20636 16908 Using cached version for Spotify URL: https://open.spotify.com/track/5TXDeTFVRVY7Cvt0Dw4vWW?si=b768fad59e6043d3
+INFO 2025-04-18 00:43:43,965 models 20636 16908 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-17
+INFO 2025-04-18 00:43:44,093 models 20636 16908 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-17 songs_downloaded=67
+INFO 2025-04-18 00:43:44,207 basehttp 20636 16908 "POST /api/songs/songs/download/ HTTP/1.1" 200 2904812
+INFO 2025-04-18 00:43:44,747 basehttp 20636 26676 "GET /api/songs/ HTTP/1.1" 200 107

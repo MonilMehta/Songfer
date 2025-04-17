@@ -40,23 +40,86 @@ export default function DownloadForm({ onDownload }: DownloadFormProps) {
       }
 
       // Call API to download song
-      const response = await apiCaller('songs/songs/download/', 'POST', { url })
+      const response = await apiCaller('songs/songs/download/', 'POST', { url }, 
+        { responseType: 'blob' }) // Set responseType to blob to handle binary data
 
       if (response && response.status === 200) {
         setSuccess('Song downloaded successfully!')
         setUrl('')
         
-        // Create a song object from the response
+        // Get metadata from response headers
+        const headers = response.headers || {}
+        console.log('Response headers:', headers)
+        
+        const contentDisposition = headers['content-disposition']
+        const songTitle = headers['x-song-title']
+        const songArtist = headers['x-song-artist']
+        const albumName = headers['x-album-name']
+        const coverUrl = headers['x-cover-url']
+        const durationStr = headers['x-duration']
+        
+        console.log('Song metadata from headers:', {
+          contentDisposition,
+          songTitle,
+          songArtist,
+          albumName,
+          coverUrl,
+          durationStr
+        })
+        
+        // Parse filename from Content-Disposition if available
+        let filename
+        if (contentDisposition) {
+          const filenameMatch = contentDisposition.match(/filename="(.+?)"(?:;|$)/)
+          if (filenameMatch && filenameMatch[1]) {
+            filename = filenameMatch[1].replace(/\.[^/.]+$/, "") // Remove extension
+            console.log('Extracted filename:', filename)
+          }
+        }
+        
+        // Use the best available title and artist (prefer headers, fallback to filename or URL)
+        let title = songTitle || filename
+        // For Spotify URLs without metadata, extract the Spotify ID instead of using generic name
+        if (!title && isSpotify) {
+          // More robust regex that handles different Spotify URL formats
+          const spotifyIdMatch = url.match(/spotify\.com\/(track|playlist)\/([a-zA-Z0-9]+)(\?|$)/)
+          if (spotifyIdMatch && spotifyIdMatch[2]) {
+            // Extract the ID and use it in a more descriptive way
+            const songId = spotifyIdMatch[2]
+            const trackType = spotifyIdMatch[1] // "track" or "playlist"
+            console.log(`Extracted Spotify ${trackType} ID: ${songId}`)
+            
+            // Try to fetch track info from Spotify API if we have time later
+            // For now, create a better title than just the ID
+            title = `${trackType.charAt(0).toUpperCase() + trackType.slice(1)}: ${songId}`
+          } else {
+            console.log('Could not extract Spotify ID from URL:', url)
+            title = 'Spotify Track'
+          }
+        } else if (!title) {
+          console.log('No title found in headers or filename')
+          title = 'Downloaded Song'
+        }
+        
+        // Create a song object with available data
         const songData = {
-          id: response.data.id || Date.now(),
-          title: response.data.title || 'Downloaded Song',
-          artist: response.data.artist || 'Unknown Artist',
-          album: response.data.album,
-          duration: response.data.duration,
-          cover_url: response.data.cover_url,
-          download_url: response.data.download_url,
+          id: Date.now(),
+          title: title,
+          artist: songArtist || 'Unknown Artist',
+          album: albumName,
+          duration: durationStr,
+          cover_url: coverUrl,
+          // For binary responses, create a blob URL from the data
+          download_url: window.URL.createObjectURL(response.data),
           download_date: new Date().toISOString()
         }
+        
+        console.log('Created song data object:', {
+          id: songData.id,
+          title: songData.title,
+          artist: songData.artist,
+          album: songData.album
+        })
         
         // Call onDownload prop if provided
         if (onDownload) {
@@ -67,6 +130,7 @@ export default function DownloadForm({ onDownload }: DownloadFormProps) {
       }
     } catch (error: any) {
       setError(error.message || 'An error occurred')
+      console.error('Download error:', error)
     } finally {
       setIsLoading(false)
     }

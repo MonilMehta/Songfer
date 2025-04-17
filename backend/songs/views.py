@@ -182,6 +182,13 @@ class SongViewSet(viewsets.ModelViewSet):
                 filename=filename
             )
             response['Content-Type'] = 'audio/mpeg'
+            # Add song metadata headers
+            response['x-song-title'] = song.title
+            response['x-song-artist'] = song.artist
+            if song.album:
+                response['x-album-name'] = song.album
+            if song.thumbnail_url:
+                response['x-cover-url'] = song.thumbnail_url
             return response
             
         except Exception as e:
@@ -257,6 +264,13 @@ class SongViewSet(viewsets.ModelViewSet):
                     filename=filename
                 )
                 response['Content-Type'] = f'audio/{output_format}'
+                # Add song metadata headers
+                response['x-song-title'] = existing_song.title
+                response['x-song-artist'] = existing_song.artist
+                if existing_song.album:
+                    response['x-album-name'] = existing_song.album
+                if existing_song.thumbnail_url:
+                    response['x-cover-url'] = existing_song.thumbnail_url
                 return response
             
             # Song not in database, check cache
@@ -307,6 +321,13 @@ class SongViewSet(viewsets.ModelViewSet):
                     filename=formatted_filename
                 )
                 response['Content-Type'] = f'audio/{output_format}'
+                # Add song metadata headers
+                response['x-song-title'] = title
+                response['x-song-artist'] = artist
+                if 'album' in metadata:
+                    response['x-album-name'] = metadata['album']
+                if metadata.get('thumbnail_url'):
+                    response['x-cover-url'] = metadata['thumbnail_url']
                 return response
             
             # Neither song in database nor cache, need to download
@@ -724,6 +745,13 @@ class SongViewSet(viewsets.ModelViewSet):
                 filename=formatted_filename
             )
             response['Content-Type'] = f'audio/{output_format or "mp3"}'
+            # Add song metadata headers
+            response['x-song-title'] = info['title']
+            response['x-song-artist'] = info.get('uploader', 'Unknown Artist')
+            if info.get('album'):
+                response['x-album-name'] = info.get('album')
+            if thumbnail_url:
+                response['x-cover-url'] = thumbnail_url
             return response
                 
         except Exception as e:
@@ -1558,6 +1586,13 @@ class SongViewSet(viewsets.ModelViewSet):
                 filename=f"{song.title} - {song.artist}.mp3"
             )
             response['Content-Type'] = 'audio/mpeg'
+            # Add song metadata headers
+            response['x-song-title'] = song.title
+            response['x-song-artist'] = song.artist
+            if song.album:
+                response['x-album-name'] = song.album
+            if song.thumbnail_url:
+                response['x-cover-url'] = song.thumbnail_url
             return response
         except Exception as e:
             logger.error(f"Error serving file: {e}", exc_info=True)
