@@ -151,8 +151,10 @@ class Song(models.Model):
 class Playlist(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     name = models.CharField(max_length=200)
+    description = models.TextField(blank=True, default="")  # Adding description field
     source = models.CharField(max_length=50)  # 'spotify' or 'apple_music'
     source_url = models.URLField()
+    thumbnail_url = models.URLField(blank=True, null=True)  # Adding thumbnail_url field
     created_at = models.DateTimeField(auto_now_add=True)
     songs = models.ManyToManyField(Song, related_name='playlists', blank=True)
 

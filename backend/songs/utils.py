@@ -265,7 +265,7 @@ def embed_metadata(mp3_path, title, artist, album='Unknown', genre='Unknown', th
     import tempfile
     import shutil
     from subprocess import call
-    from mutagen.id3 import TCOM, TPE2, TYER
+    from mutagen.id3 import ID3, APIC, TIT2, TPE1, TALB, TCON, TRCK, TDRC, TCOM, TPE2, TYER
     from PIL import Image
     from io import BytesIO
     import imghdr
@@ -511,72 +511,66 @@ def embed_metadata(mp3_path, title, artist, album='Unknown', genre='Unknown', th
                 # Determine MIME type
                 img_type = imghdr.what(None, h=image_data[:32])
                 logger.info(f"Detected image type: {img_type}")
+
+                # Create a temporary directory for image processing
+                temp_dir = tempfile.mkdtemp()
+                temp_img_path = os.path.join(temp_dir, "temp_img.jpg")
                 
-                # Convert to JPEG if it's not already JPEG to avoid the 'unknown mimetype' issue
-                if img_type and img_type.lower() not in ['jpeg', 'jpg']:
-                    logger.info(f"Converting image from {img_type} to JPEG")
+                # Always convert to JPEG for compatibility
+                try:
+                    # Save the original image data to a temp file
+                    temp_orig = os.path.join(temp_dir, f"orig.{img_type or 'bin'}")
+                    with open(temp_orig, 'wb') as f:
+                        f.write(image_data)
+                    
+                    # Open with Pillow and convert to RGB JPEG
+                    img = Image.open(temp_orig)
+                    if img.mode != 'RGB':
+                        img = img.convert('RGB')
+                    
+                    # Resize if too large (max 500x500px) while maintaining aspect ratio
+                    if img.width > 500 or img.height > 500:
+                        img.thumbnail((500, 500))
+                    
+                    # Save as high quality JPEG
+                    img.save(temp_img_path, format='JPEG', quality=95)
+                    
+                    # Read the converted image
+                    with open(temp_img_path, 'rb') as f:
+                        image_data = f.read()
+                        
+                    logger.info(f"Successfully converted image to JPEG: {len(image_data)} bytes")
+                    img_type = 'jpeg'
+                except Exception as e:
+                    logger.warning(f"Error processing image with Pillow: {e}")
+                    
+                    # Try ffmpeg as fallback
                     try:
-                        # Create a temporary file to save the image
-                        temp_dir = tempfile.mkdtemp()
-                        temp_img_path = os.path.join(temp_dir, "temp_img.jpg")
+                        call(['ffmpeg', '-i', temp_orig, '-q:v', '1', '-pix_fmt', 'yuvj420p', temp_img_path], 
+                             stdout=tempfile.devnull, stderr=tempfile.devnull)
                         
-                        # Save the image data to a temporary file
-                        with open(temp_img_path + ".tmp", 'wb') as f:
-                            f.write(image_data)
-                        
-                        # Open with Pillow and convert to JPEG
-                        img = Image.open(BytesIO(image_data))
-                        if img.mode != 'RGB':
-                            img = img.convert('RGB')
-                        img.save(temp_img_path, format='JPEG', quality=90)
-                        
-                        # Read the converted image
-                        with open(temp_img_path, 'rb') as f:
-                            image_data = f.read()
-                            
-                        # Clean up temporary files
-                        shutil.rmtree(temp_dir, ignore_errors=True)
-                        
-                        logger.info(f"Successfully converted image to JPEG: {len(image_data)} bytes")
-                        img_type = 'jpeg'
-                    except Exception as e:
-                        logger.warning(f"Error converting image with Pillow: {e}")
-                        
-                        # Try alternative conversion with ffmpeg if Pillow fails
-                        try:
-                            logger.info("Attempting conversion with ffmpeg")
-                            temp_dir = tempfile.mkdtemp()
-                            temp_in = os.path.join(temp_dir, f"input.{img_type or 'bin'}")
-                            temp_out = os.path.join(temp_dir, "output.jpg")
-                            
-                            # Write the input file
-                            with open(temp_in, 'wb') as f:
-                                f.write(image_data)
-                            
-                            # Convert using ffmpeg
-                            call(['ffmpeg', '-i', temp_in, '-q:v', '2', temp_out], 
-                                 stdout=tempfile.devnull, stderr=tempfile.devnull)
-                            
-                            # Read the converted file
-                            if os.path.exists(temp_out):
-                                with open(temp_out, 'rb') as f:
-                                    image_data = f.read()
-                                logger.info(f"Successfully converted image with ffmpeg: {len(image_data)} bytes")
-                                img_type = 'jpeg'
-                            else:
-                                logger.warning("FFmpeg conversion failed to create output file")
-                            
-                            # Clean up
-                            shutil.rmtree(temp_dir, ignore_errors=True)
-                        except Exception as ffmpeg_error:
-                            logger.warning(f"FFmpeg conversion also failed: {ffmpeg_error}")
+                        if os.path.exists(temp_img_path):
+                            with open(temp_img_path, 'rb') as f:
+                                image_data = f.read()
+                            logger.info(f"Successfully converted image with ffmpeg: {len(image_data)} bytes")
+                            img_type = 'jpeg'
+                    except Exception as ffmpeg_error:
+                        logger.warning(f"FFmpeg conversion failed: {ffmpeg_error}")
                 
-                # Force JPEG MIME type for compatibility with all players
+                # Clean up
+                try:
+                    shutil.rmtree(temp_dir, ignore_errors=True)
+                except:
+                    pass
+
+                # Use image/jpeg MIME type for Windows compatibility
                 mime_type = "image/jpeg"
                 
                 if image_data:
                     logger.info(f"Adding album art, MIME type: {mime_type}")
+                    
                     # Create APIC frame with version 3 encoding for wide compatibility
+                    # Use ID3v2.3 compatible settings
                     audio['APIC'] = APIC(
                         encoding=3,           # UTF-8
                         mime=mime_type,       # Always use image/jpeg
@@ -606,6 +600,39 @@ def embed_metadata(mp3_path, title, artist, album='Unknown', genre='Unknown', th
                     image_data = response.content
                     logger.info(f"Successfully downloaded YouTube thumbnail: {len(image_data)} bytes")
                     
+                    # Create a temporary directory for image processing
+                    temp_dir = tempfile.mkdtemp()
+                    temp_img_path = os.path.join(temp_dir, "yt_thumb.jpg")
+                    
+                    # Save and optimize the image for Windows compatibility
+                    try:
+                        # Save the original image data
+                        with open(temp_img_path + '.orig', 'wb') as f:
+                            f.write(image_data)
+                        
+                        # Open with Pillow and convert/optimize
+                        img = Image.open(BytesIO(image_data))
+                        if img.mode != 'RGB':
+                            img = img.convert('RGB')
+                        
+                        # Save as high quality JPEG
+                        img.save(temp_img_path, format='JPEG', quality=95)
+                        
+                        # Read the processed image
+                        with open(temp_img_path, 'rb') as f:
+                            image_data = f.read()
+                            
+                        logger.info(f"Successfully processed YouTube thumbnail: {len(image_data)} bytes")
+                    except Exception as e:
+                        logger.warning(f"Error processing YouTube thumbnail: {e}")
+                        # Fall back to original data
+                    
+                    # Clean up
+                    try:
+                        shutil.rmtree(temp_dir, ignore_errors=True)
+                    except:
+                        pass
+                    
                     # Add the thumbnail to the ID3 tags
                     audio['APIC'] = APIC(
                         encoding=3,           # UTF-8
@@ -625,10 +652,36 @@ def embed_metadata(mp3_path, title, artist, album='Unknown', genre='Unknown', th
                         image_data = response.content
                         logger.info(f"Successfully downloaded alternative YouTube thumbnail: {len(image_data)} bytes")
                         
+                        # Process thumbnail for Windows compatibility 
+                        temp_dir = tempfile.mkdtemp()
+                        temp_img_path = os.path.join(temp_dir, "yt_thumb_alt.jpg")
+                        
+                        try:
+                            # Process with Pillow
+                            img = Image.open(BytesIO(image_data))
+                            if img.mode != 'RGB':
+                                img = img.convert('RGB')
+                            img.save(temp_img_path, format='JPEG', quality=95)
+                            
+                            # Read the processed image
+                            with open(temp_img_path, 'rb') as f:
+                                image_data = f.read()
+                                
+                            logger.info(f"Successfully processed alternative YouTube thumbnail: {len(image_data)} bytes")
+                        except Exception as e:
+                            logger.warning(f"Error processing alternative YouTube thumbnail: {e}")
+                            # Fall back to original data
+                        
+                        # Clean up
+                        try:
+                            shutil.rmtree(temp_dir, ignore_errors=True)
+                        except:
+                            pass
+                        
                         # Add the thumbnail to the ID3 tags
                         audio['APIC'] = APIC(
                             encoding=3,           # UTF-8
-                            mime="image/jpeg",     # YouTube thumbnails are JPEG
+                            mime="image/jpeg",     # JPEG format for Windows compatibility
                             type=3,               # Cover (front)
                             desc='Cover',
                             data=image_data
@@ -637,9 +690,9 @@ def embed_metadata(mp3_path, title, artist, album='Unknown', genre='Unknown', th
             except Exception as e:
                 logger.warning(f"Error getting YouTube thumbnail: {e}")
         
-        # Save the changes - important to write to the file - use ID3v2.3 for compatibility
+        # Save the changes using ID3v2.3 for better compatibility with Windows Explorer
         audio.save(mp3_path, v2_version=3)
-        logger.info(f"Successfully saved ID3 tags to {mp3_path}")
+        logger.info(f"Successfully saved ID3 tags to {mp3_path} using ID3v2.3")
         
         # Verify tags were written properly
         try:
@@ -649,6 +702,45 @@ def embed_metadata(mp3_path, title, artist, album='Unknown', genre='Unknown', th
             logger.info(f"Verification: {tag_count} tags were written, has_cover={has_cover}")
         except Exception as e:
             logger.warning(f"Could not verify tags: {e}")
+
+        # For extra Windows compatibility, try to set the album art using a direct approach
+        if image_data and os.name == 'nt':  # Only on Windows systems
+            try:
+                import win32com.client
+                from win32com.shell import shell, shellcon
+                
+                logger.info("Attempting to set system thumbnail property directly (Windows only)")
+                
+                # Save thumbnail to a temporary file
+                temp_dir = tempfile.mkdtemp()
+                temp_jpg = os.path.join(temp_dir, "cover.jpg")
+                
+                with open(temp_jpg, 'wb') as f:
+                    f.write(image_data)
+                
+                # Get absolute paths
+                abs_mp3_path = os.path.abspath(mp3_path)
+                abs_jpg_path = os.path.abspath(temp_jpg)
+                
+                # Try to associate the image with the file
+                try:
+                    shell_folder = shell.SHGetDesktopFolder()
+                    shell_item = shell_folder.ParseDisplayName(0, None, abs_mp3_path)[0]
+                    shell_item.SetInfo(shellcon.SHGFI_ICON, abs_jpg_path)
+                    logger.info("Set Windows shell thumbnail successfully")
+                except Exception as shell_error:
+                    logger.warning(f"Could not set shell thumbnail: {shell_error}")
+                
+                # Clean up
+                try:
+                    shutil.rmtree(temp_dir, ignore_errors=True)
+                except:
+                    pass
+                    
+            except ImportError:
+                logger.info("Win32com not available, skipping direct thumbnail setting")
+            except Exception as win_error:
+                logger.warning(f"Error setting Windows thumbnail: {win_error}")
         
         return True
     
