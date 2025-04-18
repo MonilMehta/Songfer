@@ -1,0 +1,83 @@
+/* Wave Animation */
+.wave-animation {
+  position: relative;
+  overflow: hidden;
+}
+
+.wave-animation::before {
+  content: '';
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  top: -50%;
+  left: -50%;
+  z-index: 0;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, rgba(0, 0, 0, 0) 80%);
+  transform-origin: center center;
+  animation: wave 15s infinite linear;
+}
+
+.dark .wave-animation::before {
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, rgba(0, 0, 0, 0) 80%);
+}
+
+@keyframes wave {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* For light mode specific adjustments */
+:root[data-theme="light"] .wave-animation::before {
+  background: radial-gradient(circle, transparent 30%, #93c5fd 70%);
+}
+
+:root[data-theme="light"] .wave-animation::after {
+  background: radial-gradient(circle, transparent 30%, #bfdbfe 70%);
+}
+
+/* For dark mode specific adjustments */
+:root[data-theme="dark"] .wave-animation::before {
+  background: radial-gradient(circle, transparent 30%, #3b82f6 70%);
+}
+
+:root[data-theme="dark"] .wave-animation::after {
+  background: radial-gradient(circle, transparent 30%, #1e40af 70%);
+}
+
+/* Background patterns */
+.pattern-dots {
+  background-image: radial-gradient(currentColor 1px, transparent 1px);
+}
+
+.pattern-size-4 {
+  background-size: 4px 4px;
+}
+
+/* Slide Up Animation */
+@keyframes slide-up {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.3s ease-out forwards;
+}
+
+/* Static Glow Effect */
+.static-glow {
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.5), 0 0 30px rgba(59, 130, 246, 0.3);
+}
+
+.dark .static-glow {
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.6), 0 0 30px rgba(59, 130, 246, 0.4);
+} 

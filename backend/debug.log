@@ -4116,3 +4116,975 @@ INFO 2025-04-18 21:01:22,952 views 4708 20856 Adding song to ZIP: Sex Drugs Etc.
 INFO 2025-04-18 21:01:23,070 views 4708 20856 Added song 2: Sex Drugs Etc. - Beach Weather.mp3
 INFO 2025-04-18 21:01:23,070 views 4708 20856 ZIP file created successfully: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\temp\tunevault testing_1744990282.zip, size: 10784140 bytes, containing 2 songs
 INFO 2025-04-18 21:01:23,620 basehttp 4708 20856 "GET /api/songs/playlists/63/download-all/ HTTP/1.1" 200 10784140
+INFO 2025-04-18 21:18:10,752 autoreload 4708 21288 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\utils.py changed, reloading.
+INFO 2025-04-18 21:18:18,568 autoreload 19204 24420 Watching for file changes with StatReloader
+INFO 2025-04-18 21:29:55,441 views 19204 8304 Redirecting YouTube playlist URL to playlist download endpoint: https://www.youtube.com/watch?v=xH9xv0X9-Xw&list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1&pp=gAQB
+INFO 2025-04-18 21:29:55,443 utils 19204 8304 Getting YouTube playlist info for URL: https://www.youtube.com/watch?v=xH9xv0X9-Xw&list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1&pp=gAQB
+INFO 2025-04-18 21:29:55,443 utils 19204 8304 Extracted YouTube playlist ID: PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 21:29:55,443 utils 19204 8304 Using formatted playlist URL: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 21:29:55,721 utils 19204 8304 Extracting playlist info from: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 21:29:57,911 utils 19204 8304 Successfully extracted info for playlist: tunevault with 2 tracks
+INFO 2025-04-18 21:29:57,911 download_helper 19204 8304 Playlist info retrieved: title=tunevault, tracks=2, image_url=None
+INFO 2025-04-18 21:29:58,831 download_helper 19204 8304 Added cached song to playlist: https://www.youtube.com/watch?v=B9synWjqBn8
+INFO 2025-04-18 21:29:59,549 download_helper 19204 8304 Added cached song to playlist: https://www.youtube.com/watch?v=U8F5G5wR1mk
+INFO 2025-04-18 21:29:59,681 models 19204 8304 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-18
+INFO 2025-04-18 21:29:59,821 models 19204 8304 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-18 songs_downloaded=49
+INFO 2025-04-18 21:29:59,823 models 19204 8304 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-18
+INFO 2025-04-18 21:29:59,955 models 19204 8304 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-18 songs_downloaded=50
+INFO 2025-04-18 21:29:59,961 basehttp 19204 8304 "POST /api/songs/songs/download/ HTTP/1.1" 200 114
+INFO 2025-04-18 21:30:00,576 views 19204 8304 Redirecting YouTube playlist URL to playlist download endpoint: https://www.youtube.com/watch?v=xH9xv0X9-Xw&list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1&pp=gAQB
+INFO 2025-04-18 21:30:00,579 utils 19204 8304 Getting YouTube playlist info for URL: https://www.youtube.com/watch?v=xH9xv0X9-Xw&list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1&pp=gAQB
+INFO 2025-04-18 21:30:00,581 utils 19204 8304 Extracted YouTube playlist ID: PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 21:30:00,582 utils 19204 8304 Using formatted playlist URL: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 21:30:00,683 utils 19204 8304 Extracting playlist info from: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 21:30:01,999 utils 19204 8304 Successfully extracted info for playlist: tunevault with 2 tracks
+INFO 2025-04-18 21:30:02,003 download_helper 19204 8304 Playlist info retrieved: title=tunevault, tracks=2, image_url=None
+INFO 2025-04-18 21:30:02,453 download_helper 19204 8304 Added existing song to playlist: https://www.youtube.com/watch?v=B9synWjqBn8
+INFO 2025-04-18 21:30:02,761 download_helper 19204 8304 Added existing song to playlist: https://www.youtube.com/watch?v=U8F5G5wR1mk
+INFO 2025-04-18 21:30:02,891 models 19204 8304 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-18
+INFO 2025-04-18 21:30:03,037 models 19204 8304 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-18 songs_downloaded=51
+INFO 2025-04-18 21:30:03,037 models 19204 8304 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-18
+INFO 2025-04-18 21:30:03,165 models 19204 8304 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-18 songs_downloaded=52
+INFO 2025-04-18 21:30:03,206 basehttp 19204 8304 "POST /api/songs/songs/download/ HTTP/1.1" 200 114
+INFO 2025-04-18 21:30:03,846 basehttp 19204 8304 "GET /api/songs/ HTTP/1.1" 200 107
+WARNING 2025-04-18 21:30:23,134 log 19204 8304 Not Found: /api/songs/spotify/playlists/21y0yK08j1UzYu4ro06wfL/
+WARNING 2025-04-18 21:30:23,140 basehttp 19204 8304 "GET /api/songs/spotify/playlists/21y0yK08j1UzYu4ro06wfL/ HTTP/1.1" 404 17175
+WARNING 2025-04-18 21:30:23,156 log 19204 8304 Not Found: /api/songs/spotify-playlist/21y0yK08j1UzYu4ro06wfL/
+WARNING 2025-04-18 21:30:23,156 basehttp 19204 8304 "GET /api/songs/spotify-playlist/21y0yK08j1UzYu4ro06wfL/ HTTP/1.1" 404 17172
+WARNING 2025-04-18 21:30:23,172 log 19204 8304 Not Found: /api/spotify/playlists/21y0yK08j1UzYu4ro06wfL/
+WARNING 2025-04-18 21:30:23,173 basehttp 19204 8304 "GET /api/spotify/playlists/21y0yK08j1UzYu4ro06wfL/ HTTP/1.1" 404 3472
+INFO 2025-04-18 21:30:26,563 spotify_api 19204 8304 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-18 21:30:26,563 spotify_api 19204 8304 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-18 21:30:26,563 views 19204 8304 Redirecting Spotify playlist URL to playlist download endpoint: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-18 21:30:26,563 spotify_api 19204 8304 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-18 21:30:26,569 spotify_api 19204 8304 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-18 21:30:26,569 spotify_api 19204 8304 Getting Spotify playlist info for ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-18 21:30:26,569 spotify_api 19204 8304 Creating Spotify client with credentials from settings
+INFO 2025-04-18 21:30:26,984 spotify_api 19204 8304 Successfully tested Spotify client
+INFO 2025-04-18 21:30:27,395 spotify_api 19204 8304 Extracted 2 track URLs from playlist
+INFO 2025-04-18 21:30:27,395 download_helper 19204 8304 Playlist info retrieved: title=tunevault testing, tracks=2, image_url=https://i.scdn.co/image/ab67616d00001e02037e3cc2b0c60ecb5ee7eca5
+INFO 2025-04-18 21:30:28,246 download_helper 19204 8304 Added cached song to playlist: https://open.spotify.com/track/7MlDNspYwfqnHxORufupwq
+INFO 2025-04-18 21:30:28,971 download_helper 19204 8304 Added cached song to playlist: https://open.spotify.com/track/7uDUb37h7Xdhza1eWMkoJv
+INFO 2025-04-18 21:30:29,096 models 19204 8304 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-18
+INFO 2025-04-18 21:30:29,228 models 19204 8304 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-18 songs_downloaded=53
+INFO 2025-04-18 21:30:29,228 models 19204 8304 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-18
+INFO 2025-04-18 21:30:29,356 models 19204 8304 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-18 songs_downloaded=54
+INFO 2025-04-18 21:30:29,361 basehttp 19204 8304 "POST /api/songs/songs/download/ HTTP/1.1" 200 122
+INFO 2025-04-18 21:30:30,072 views 19204 8304 Playlist download requested: ID=66, Name=tunevault testing, Songs count=2
+INFO 2025-04-18 21:30:30,137 views 19204 8304 Creating playlist ZIP at: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\temp\tunevault testing_1744992030.zip
+INFO 2025-04-18 21:30:30,205 views 19204 8304 Playlist has 2 songs to include in ZIP
+INFO 2025-04-18 21:30:30,272 views 19204 8304 Processing song: Friends - Chase Atlantic, file: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\cache\Friends - Chase Atlantic.mp3
+INFO 2025-04-18 21:30:30,272 views 19204 8304 Adding song to ZIP: Friends - Chase Atlantic.mp3 (5521580 bytes)
+INFO 2025-04-18 21:30:30,392 views 19204 8304 Added song 1: Friends - Chase Atlantic.mp3
+INFO 2025-04-18 21:30:30,392 views 19204 8304 Processing song: Sex, Drugs, Etc. - Beach Weather, file: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\cache\Sex Drugs Etc. - Beach Weather.mp3
+INFO 2025-04-18 21:30:30,396 views 19204 8304 Adding song to ZIP: Sex Drugs Etc. - Beach Weather.mp3 (5150844 bytes)
+INFO 2025-04-18 21:30:30,431 views 19204 8304 Added song 2: Sex Drugs Etc. - Beach Weather.mp3
+INFO 2025-04-18 21:30:30,431 views 19204 8304 ZIP file created successfully: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\temp\tunevault testing_1744992030.zip, size: 10672722 bytes, containing 2 songs
+INFO 2025-04-18 21:30:30,921 basehttp 19204 8304 "GET /api/songs/playlists/66/download-all/ HTTP/1.1" 200 10672722
+INFO 2025-04-18 21:30:31,513 spotify_api 19204 8304 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-18 21:30:31,513 spotify_api 19204 8304 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-18 21:30:31,514 views 19204 8304 Redirecting Spotify playlist URL to playlist download endpoint: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-18 21:30:31,514 spotify_api 19204 8304 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-18 21:30:31,514 spotify_api 19204 8304 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-18 21:30:31,514 spotify_api 19204 8304 Getting Spotify playlist info for ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-18 21:30:31,514 spotify_api 19204 8304 Creating Spotify client with credentials from settings
+INFO 2025-04-18 21:30:31,694 spotify_api 19204 8304 Successfully tested Spotify client
+INFO 2025-04-18 21:30:32,308 spotify_api 19204 8304 Extracted 2 track URLs from playlist
+INFO 2025-04-18 21:30:32,308 download_helper 19204 8304 Playlist info retrieved: title=tunevault testing, tracks=2, image_url=https://i.scdn.co/image/ab67616d00001e02037e3cc2b0c60ecb5ee7eca5
+INFO 2025-04-18 21:30:32,757 download_helper 19204 8304 Added existing song to playlist: https://open.spotify.com/track/7MlDNspYwfqnHxORufupwq
+INFO 2025-04-18 21:30:33,066 download_helper 19204 8304 Added existing song to playlist: https://open.spotify.com/track/7uDUb37h7Xdhza1eWMkoJv
+INFO 2025-04-18 21:30:33,195 models 19204 8304 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-18
+INFO 2025-04-18 21:30:33,326 models 19204 8304 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-18 songs_downloaded=55
+INFO 2025-04-18 21:30:33,326 models 19204 8304 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-18
+INFO 2025-04-18 21:30:33,449 models 19204 8304 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-18 songs_downloaded=56
+INFO 2025-04-18 21:30:33,452 basehttp 19204 8304 "POST /api/songs/songs/download/ HTTP/1.1" 200 122
+INFO 2025-04-18 21:30:34,012 basehttp 19204 8304 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-18 21:32:28,777 spotify_api 19204 21332 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-18 21:32:28,778 spotify_api 19204 21332 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-18 21:32:28,779 views 19204 21332 Redirecting Spotify playlist URL to playlist download endpoint: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-18 21:32:28,780 spotify_api 19204 21332 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-18 21:32:28,781 spotify_api 19204 21332 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-18 21:32:28,782 spotify_api 19204 21332 Getting Spotify playlist info for ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-18 21:32:28,782 spotify_api 19204 21332 Creating Spotify client with credentials from settings
+INFO 2025-04-18 21:32:29,053 spotify_api 19204 21332 Successfully tested Spotify client
+INFO 2025-04-18 21:32:29,460 spotify_api 19204 21332 Extracted 2 track URLs from playlist
+INFO 2025-04-18 21:32:29,463 download_helper 19204 21332 Playlist info retrieved: title=tunevault testing, tracks=2, image_url=https://i.scdn.co/image/ab67616d00001e02037e3cc2b0c60ecb5ee7eca5
+INFO 2025-04-18 21:32:29,900 download_helper 19204 21332 Added existing song to playlist: https://open.spotify.com/track/7MlDNspYwfqnHxORufupwq
+INFO 2025-04-18 21:32:30,212 download_helper 19204 21332 Added existing song to playlist: https://open.spotify.com/track/7uDUb37h7Xdhza1eWMkoJv
+INFO 2025-04-18 21:32:30,337 models 19204 21332 [DEBUG] record_download called for user=testuser id=1 date=2025-04-18
+INFO 2025-04-18 21:32:30,463 models 19204 21332 [DEBUG] record_download updated analytics: user=testuser id=1 date=2025-04-18 songs_downloaded=32
+INFO 2025-04-18 21:32:30,464 models 19204 21332 [DEBUG] record_download called for user=testuser id=1 date=2025-04-18
+INFO 2025-04-18 21:32:30,596 models 19204 21332 [DEBUG] record_download updated analytics: user=testuser id=1 date=2025-04-18 songs_downloaded=33
+INFO 2025-04-18 21:32:30,598 basehttp 19204 21332 "POST /api/songs/songs/download/ HTTP/1.1" 200 122
+WARNING 2025-04-18 21:44:56,418 log 19204 13788 Not Found: /api/songs/spotify/playlists/21y0yK08j1UzYu4ro06wfL/
+WARNING 2025-04-18 21:44:56,427 basehttp 19204 13788 "GET /api/songs/spotify/playlists/21y0yK08j1UzYu4ro06wfL/ HTTP/1.1" 404 17175
+WARNING 2025-04-18 21:44:56,459 log 19204 13788 Not Found: /api/songs/spotify-playlist/21y0yK08j1UzYu4ro06wfL/
+WARNING 2025-04-18 21:44:56,461 basehttp 19204 13788 "GET /api/songs/spotify-playlist/21y0yK08j1UzYu4ro06wfL/ HTTP/1.1" 404 17172
+WARNING 2025-04-18 21:44:56,490 log 19204 13788 Not Found: /api/spotify/playlists/21y0yK08j1UzYu4ro06wfL/
+WARNING 2025-04-18 21:44:56,490 basehttp 19204 13788 "GET /api/spotify/playlists/21y0yK08j1UzYu4ro06wfL/ HTTP/1.1" 404 3472
+INFO 2025-04-18 21:45:18,118 views 19204 13788 Redirecting YouTube playlist URL to playlist download endpoint: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 21:45:18,119 utils 19204 13788 Getting YouTube playlist info for URL: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 21:45:18,119 utils 19204 13788 Extracted YouTube playlist ID: PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 21:45:18,259 utils 19204 13788 Extracting playlist info from: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 21:45:20,154 utils 19204 13788 Successfully extracted info for playlist: tunevault with 2 tracks
+INFO 2025-04-18 21:45:20,161 download_helper 19204 13788 Playlist info retrieved: title=tunevault, tracks=2, image_url=None
+INFO 2025-04-18 21:45:20,682 download_helper 19204 13788 Added existing song to playlist: https://www.youtube.com/watch?v=B9synWjqBn8
+INFO 2025-04-18 21:45:21,005 download_helper 19204 13788 Added existing song to playlist: https://www.youtube.com/watch?v=U8F5G5wR1mk
+INFO 2025-04-18 21:45:21,132 models 19204 13788 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-18
+INFO 2025-04-18 21:45:21,265 models 19204 13788 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-18 songs_downloaded=57
+INFO 2025-04-18 21:45:21,265 models 19204 13788 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-18
+INFO 2025-04-18 21:45:21,398 models 19204 13788 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-18 songs_downloaded=58
+INFO 2025-04-18 21:45:21,402 basehttp 19204 13788 "POST /api/songs/songs/download/ HTTP/1.1" 200 114
+INFO 2025-04-18 21:45:22,004 views 19204 13788 Redirecting YouTube playlist URL to playlist download endpoint: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 21:45:22,008 utils 19204 13788 Getting YouTube playlist info for URL: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 21:45:22,008 utils 19204 13788 Extracted YouTube playlist ID: PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 21:45:22,144 utils 19204 13788 Extracting playlist info from: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 21:45:23,937 utils 19204 13788 Successfully extracted info for playlist: tunevault with 2 tracks
+INFO 2025-04-18 21:45:23,943 download_helper 19204 13788 Playlist info retrieved: title=tunevault, tracks=2, image_url=None
+INFO 2025-04-18 21:45:24,409 download_helper 19204 13788 Added existing song to playlist: https://www.youtube.com/watch?v=B9synWjqBn8
+INFO 2025-04-18 21:45:24,719 download_helper 19204 13788 Added existing song to playlist: https://www.youtube.com/watch?v=U8F5G5wR1mk
+INFO 2025-04-18 21:45:24,846 models 19204 13788 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-18
+INFO 2025-04-18 21:45:24,970 models 19204 13788 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-18 songs_downloaded=59
+INFO 2025-04-18 21:45:24,971 models 19204 13788 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-18
+INFO 2025-04-18 21:45:25,116 models 19204 13788 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-18 songs_downloaded=60
+INFO 2025-04-18 21:45:25,118 basehttp 19204 13788 "POST /api/songs/songs/download/ HTTP/1.1" 200 114
+INFO 2025-04-18 21:45:25,817 basehttp 19204 13788 "GET /api/songs/ HTTP/1.1" 200 107
+WARNING 2025-04-18 21:45:45,369 log 19204 13788 Not Found: /api/songs/spotify/playlists/21y0yK08j1UzYu4ro06wfL/
+WARNING 2025-04-18 21:45:45,370 basehttp 19204 13788 "GET /api/songs/spotify/playlists/21y0yK08j1UzYu4ro06wfL/ HTTP/1.1" 404 17175
+WARNING 2025-04-18 21:45:45,395 log 19204 13788 Not Found: /api/songs/spotify-playlist/21y0yK08j1UzYu4ro06wfL/
+WARNING 2025-04-18 21:45:45,401 basehttp 19204 13788 "GET /api/songs/spotify-playlist/21y0yK08j1UzYu4ro06wfL/ HTTP/1.1" 404 17172
+WARNING 2025-04-18 21:45:45,616 log 19204 13788 Not Found: /api/spotify/playlists/21y0yK08j1UzYu4ro06wfL/
+WARNING 2025-04-18 21:45:45,622 basehttp 19204 13788 "GET /api/spotify/playlists/21y0yK08j1UzYu4ro06wfL/ HTTP/1.1" 404 3472
+INFO 2025-04-18 21:45:48,756 spotify_api 19204 13788 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-18 21:45:48,756 spotify_api 19204 13788 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-18 21:45:48,756 views 19204 13788 Redirecting Spotify playlist URL to playlist download endpoint: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-18 21:45:48,760 spotify_api 19204 13788 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-18 21:45:48,760 spotify_api 19204 13788 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-18 21:45:48,760 spotify_api 19204 13788 Getting Spotify playlist info for ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-18 21:45:48,764 spotify_api 19204 13788 Creating Spotify client with credentials from settings
+INFO 2025-04-18 21:45:49,021 spotify_api 19204 13788 Successfully tested Spotify client
+INFO 2025-04-18 21:45:49,647 spotify_api 19204 13788 Extracted 2 track URLs from playlist
+INFO 2025-04-18 21:45:49,651 download_helper 19204 13788 Playlist info retrieved: title=tunevault testing, tracks=2, image_url=https://i.scdn.co/image/ab67616d00001e02037e3cc2b0c60ecb5ee7eca5
+INFO 2025-04-18 21:45:50,172 download_helper 19204 13788 Added existing song to playlist: https://open.spotify.com/track/7MlDNspYwfqnHxORufupwq
+INFO 2025-04-18 21:45:50,507 download_helper 19204 13788 Added existing song to playlist: https://open.spotify.com/track/7uDUb37h7Xdhza1eWMkoJv
+INFO 2025-04-18 21:45:50,653 models 19204 13788 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-18
+INFO 2025-04-18 21:45:50,786 models 19204 13788 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-18 songs_downloaded=61
+INFO 2025-04-18 21:45:50,786 models 19204 13788 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-18
+INFO 2025-04-18 21:45:50,917 models 19204 13788 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-18 songs_downloaded=62
+INFO 2025-04-18 21:45:50,922 basehttp 19204 13788 "POST /api/songs/songs/download/ HTTP/1.1" 200 122
+INFO 2025-04-18 21:45:51,640 views 19204 13788 Playlist download requested: ID=71, Name=tunevault testing, Songs count=2
+INFO 2025-04-18 21:45:51,700 views 19204 13788 Creating playlist ZIP at: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\temp\tunevault testing_1744992951.zip
+INFO 2025-04-18 21:45:51,786 views 19204 13788 Playlist has 2 songs to include in ZIP
+INFO 2025-04-18 21:45:51,850 views 19204 13788 Processing song: Friends - Chase Atlantic, file: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\cache\Friends - Chase Atlantic.mp3
+INFO 2025-04-18 21:45:51,850 views 19204 13788 Adding song to ZIP: Friends - Chase Atlantic.mp3 (5521580 bytes)
+INFO 2025-04-18 21:45:51,920 views 19204 13788 Added song 1: Friends - Chase Atlantic.mp3
+INFO 2025-04-18 21:45:51,920 views 19204 13788 Processing song: Sex, Drugs, Etc. - Beach Weather, file: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\cache\Sex Drugs Etc. - Beach Weather.mp3
+INFO 2025-04-18 21:45:51,920 views 19204 13788 Adding song to ZIP: Sex Drugs Etc. - Beach Weather.mp3 (5150844 bytes)
+INFO 2025-04-18 21:45:51,945 views 19204 13788 Added song 2: Sex Drugs Etc. - Beach Weather.mp3
+INFO 2025-04-18 21:45:51,947 views 19204 13788 ZIP file created successfully: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\temp\tunevault testing_1744992951.zip, size: 10672722 bytes, containing 2 songs
+INFO 2025-04-18 21:45:52,308 basehttp 19204 13788 "GET /api/songs/playlists/71/download-all/ HTTP/1.1" 200 10672722
+INFO 2025-04-18 21:45:52,857 spotify_api 19204 13788 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-18 21:45:52,857 spotify_api 19204 13788 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-18 21:45:52,857 views 19204 13788 Redirecting Spotify playlist URL to playlist download endpoint: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-18 21:45:52,857 spotify_api 19204 13788 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-18 21:45:52,857 spotify_api 19204 13788 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-18 21:45:52,857 spotify_api 19204 13788 Getting Spotify playlist info for ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-18 21:45:52,857 spotify_api 19204 13788 Creating Spotify client with credentials from settings
+INFO 2025-04-18 21:45:53,114 spotify_api 19204 13788 Successfully tested Spotify client
+INFO 2025-04-18 21:45:53,527 spotify_api 19204 13788 Extracted 2 track URLs from playlist
+INFO 2025-04-18 21:45:53,527 download_helper 19204 13788 Playlist info retrieved: title=tunevault testing, tracks=2, image_url=https://i.scdn.co/image/ab67616d00001e02037e3cc2b0c60ecb5ee7eca5
+INFO 2025-04-18 21:45:53,955 download_helper 19204 13788 Added existing song to playlist: https://open.spotify.com/track/7MlDNspYwfqnHxORufupwq
+INFO 2025-04-18 21:45:54,277 download_helper 19204 13788 Added existing song to playlist: https://open.spotify.com/track/7uDUb37h7Xdhza1eWMkoJv
+INFO 2025-04-18 21:45:54,397 models 19204 13788 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-18
+INFO 2025-04-18 21:45:54,537 models 19204 13788 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-18 songs_downloaded=63
+INFO 2025-04-18 21:45:54,537 models 19204 13788 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-18
+INFO 2025-04-18 21:45:54,669 models 19204 13788 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-18 songs_downloaded=64
+INFO 2025-04-18 21:45:54,671 basehttp 19204 13788 "POST /api/songs/songs/download/ HTTP/1.1" 200 122
+INFO 2025-04-18 21:45:55,340 basehttp 19204 13788 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-18 21:46:50,559 basehttp 19204 13788 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-18 21:46:50,691 basehttp 19204 11888 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-18 21:46:51,298 views 19204 13788 User has 37 songs
+INFO 2025-04-18 21:46:51,362 views 19204 11888 User has 37 songs
+INFO 2025-04-18 21:46:51,396 views 19204 13788 User has 20 songs with Spotify IDs
+INFO 2025-04-18 21:46:51,442 views 19204 11888 User has 20 songs with Spotify IDs
+INFO 2025-04-18 21:46:51,545 views 19204 13788 Sample user songs: [{'spotify_id': '7uDUb37h7Xdhza1eWMkoJv', 'title': 'Friends', 'artist': 'Chase Atlantic'}, {'spotify_id': '7MlDNspYwfqnHxORufupwq', 'title': 'Sex, Drugs, Etc.', 'artist': 'Beach Weather'}, {'spotify_id': '6usohdchdzW9oML7VC4Uhk', 'title': 'Lose Control', 'artist': 'Teddy Swims'}, {'spotify_id': '3M0lSi5WW79CXQamgSBIjx', 'title': 'Swim', 'artist': 'Chase Atlantic'}, {'spotify_id': '0d28khcov6AiegSCpG5TuT', 'title': 'Feel Good Inc.', 'artist': 'Gorillaz'}]
+INFO 2025-04-18 21:46:51,546 views 19204 13788 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-18 21:46:51,547 recommendation 19204 13788 Skipping Music.csv due to invalid format, using data.csv directly
+INFO 2025-04-18 21:46:51,582 views 19204 11888 Sample user songs: [{'spotify_id': '7uDUb37h7Xdhza1eWMkoJv', 'title': 'Friends', 'artist': 'Chase Atlantic'}, {'spotify_id': '7MlDNspYwfqnHxORufupwq', 'title': 'Sex, Drugs, Etc.', 'artist': 'Beach Weather'}, {'spotify_id': '6usohdchdzW9oML7VC4Uhk', 'title': 'Lose Control', 'artist': 'Teddy Swims'}, {'spotify_id': '3M0lSi5WW79CXQamgSBIjx', 'title': 'Swim', 'artist': 'Chase Atlantic'}, {'spotify_id': '0d28khcov6AiegSCpG5TuT', 'title': 'Feel Good Inc.', 'artist': 'Gorillaz'}]
+INFO 2025-04-18 21:46:51,622 views 19204 11888 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-18 21:46:51,746 recommendation 19204 11888 Skipping Music.csv due to invalid format, using data.csv directly
+INFO 2025-04-18 21:46:58,368 views 19204 21232 Redirecting YouTube playlist URL to playlist download endpoint: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 21:46:58,445 utils 19204 21232 Getting YouTube playlist info for URL: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 21:46:58,447 utils 19204 21232 Extracted YouTube playlist ID: PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 21:46:58,549 utils 19204 21232 Extracting playlist info from: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 21:46:58,830 recommendation 19204 13788 Loaded data.csv dataset
+INFO 2025-04-18 21:46:59,040 recommendation 19204 13788 Available columns in dataset: ['valence', 'year', 'acousticness', 'artists', 'danceability', 'duration_ms', 'energy', 'explicit', 'id', 'instrumentalness', 'key', 'liveness', 'loudness', 'mode', 'name', 'popularity', 'release_date', 'speechiness', 'tempo']
+INFO 2025-04-18 21:46:59,264 recommendation 19204 13788 Using features: ['acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'loudness', 'speechiness', 'tempo', 'valence']
+INFO 2025-04-18 21:47:00,228 recommendation 19204 13788 Prepared data with 170653 songs and 9 features
+INFO 2025-04-18 21:47:01,848 recommendation 19204 11888 Loaded data.csv dataset
+INFO 2025-04-18 21:47:01,939 recommendation 19204 11888 Available columns in dataset: ['valence', 'year', 'acousticness', 'artists', 'danceability', 'duration_ms', 'energy', 'explicit', 'id', 'instrumentalness', 'key', 'liveness', 'loudness', 'mode', 'name', 'popularity', 'release_date', 'speechiness', 'tempo']
+INFO 2025-04-18 21:47:02,061 recommendation 19204 11888 Using features: ['acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'loudness', 'speechiness', 'tempo', 'valence']
+INFO 2025-04-18 21:47:02,128 utils 19204 21232 Successfully extracted info for playlist: tunevault with 2 tracks
+INFO 2025-04-18 21:47:02,133 download_helper 19204 21232 Playlist info retrieved: title=tunevault, tracks=2, image_url=None
+INFO 2025-04-18 21:47:02,153 recommendation 19204 11888 Prepared data with 170653 songs and 9 features
+INFO 2025-04-18 21:47:02,582 download_helper 19204 21232 Added existing song to playlist: https://www.youtube.com/watch?v=B9synWjqBn8
+INFO 2025-04-18 21:47:02,890 download_helper 19204 21232 Added existing song to playlist: https://www.youtube.com/watch?v=U8F5G5wR1mk
+INFO 2025-04-18 21:47:03,064 models 19204 21232 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-18
+INFO 2025-04-18 21:47:03,198 models 19204 21232 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-18 songs_downloaded=65
+INFO 2025-04-18 21:47:03,198 models 19204 21232 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-18
+INFO 2025-04-18 21:47:03,390 models 19204 21232 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-18 songs_downloaded=66
+INFO 2025-04-18 21:47:03,398 basehttp 19204 21232 "POST /api/songs/songs/download/ HTTP/1.1" 200 114
+INFO 2025-04-18 21:47:05,069 recommendation 19204 13788 Built song clusters successfully
+INFO 2025-04-18 21:47:05,079 recommendation 19204 13788 Music Recommender initialized successfully
+INFO 2025-04-18 21:47:05,100 recommendation 19204 11888 Built song clusters successfully
+INFO 2025-04-18 21:47:05,103 recommendation 19204 11888 Music Recommender initialized successfully
+WARNING 2025-04-18 21:47:05,714 recommendation 19204 11888 Song '7uDUb37h7Xdhza1eWMkoJv' not found or clustering unavailable, using popular songs
+WARNING 2025-04-18 21:47:05,754 recommendation 19204 13788 Song '7uDUb37h7Xdhza1eWMkoJv' not found or clustering unavailable, using popular songs
+WARNING 2025-04-18 21:47:06,277 recommendation 19204 13788 Song '7MlDNspYwfqnHxORufupwq' not found or clustering unavailable, using popular songs
+WARNING 2025-04-18 21:47:06,303 recommendation 19204 11888 Song '7MlDNspYwfqnHxORufupwq' not found or clustering unavailable, using popular songs
+INFO 2025-04-18 21:47:06,568 views 19204 13788 Got 10 recommendations
+INFO 2025-04-18 21:47:06,568 views 19204 11888 Got 10 recommendations
+INFO 2025-04-18 21:47:06,758 basehttp 19204 11888 "GET /api/songs/recommendations/ HTTP/1.1" 200 3066
+INFO 2025-04-18 21:47:06,758 basehttp 19204 13788 "GET /api/songs/recommendations/ HTTP/1.1" 200 2973
+INFO 2025-04-18 21:47:07,744 basehttp 19204 11888 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 1027
+INFO 2025-04-18 21:47:08,101 basehttp 19204 13788 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 1027
+INFO 2025-04-18 21:47:08,410 basehttp 19204 11888 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 558
+INFO 2025-04-18 21:47:08,798 basehttp 19204 13788 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 558
+INFO 2025-04-18 21:47:15,351 views 19204 21232 Redirecting YouTube playlist URL to playlist download endpoint: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 21:47:15,354 utils 19204 21232 Getting YouTube playlist info for URL: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 21:47:15,355 utils 19204 21232 Extracted YouTube playlist ID: PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 21:47:15,431 utils 19204 21232 Extracting playlist info from: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 21:47:17,298 utils 19204 21232 Successfully extracted info for playlist: tunevault with 2 tracks
+INFO 2025-04-18 21:47:17,311 download_helper 19204 21232 Playlist info retrieved: title=tunevault, tracks=2, image_url=None
+INFO 2025-04-18 21:47:17,758 download_helper 19204 21232 Added existing song to playlist: https://www.youtube.com/watch?v=B9synWjqBn8
+INFO 2025-04-18 21:47:18,078 download_helper 19204 21232 Added existing song to playlist: https://www.youtube.com/watch?v=U8F5G5wR1mk
+INFO 2025-04-18 21:47:18,208 models 19204 21232 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-18
+INFO 2025-04-18 21:47:18,343 models 19204 21232 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-18 songs_downloaded=67
+INFO 2025-04-18 21:47:18,351 models 19204 21232 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-18
+INFO 2025-04-18 21:47:18,480 models 19204 21232 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-18 songs_downloaded=68
+INFO 2025-04-18 21:47:18,491 basehttp 19204 21232 "POST /api/songs/songs/download/ HTTP/1.1" 200 114
+INFO 2025-04-18 21:47:26,370 basehttp 19204 13788 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 364
+INFO 2025-04-18 21:47:26,738 basehttp 19204 11888 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 364
+INFO 2025-04-18 21:47:38,028 basehttp 19204 13788 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 252
+INFO 2025-04-18 21:47:40,557 basehttp 19204 11888 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 252
+INFO 2025-04-18 21:51:06,942 views 19204 3424 Redirecting YouTube playlist URL to playlist download endpoint: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 21:51:06,942 utils 19204 3424 Getting YouTube playlist info for URL: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 21:51:06,942 utils 19204 3424 Extracted YouTube playlist ID: PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 21:51:07,013 utils 19204 3424 Extracting playlist info from: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 21:51:08,332 utils 19204 3424 Successfully extracted info for playlist: tunevault with 2 tracks
+INFO 2025-04-18 21:51:08,333 download_helper 19204 3424 Playlist info retrieved: title=tunevault, tracks=2, image_url=None
+INFO 2025-04-18 21:51:08,797 download_helper 19204 3424 Added existing song to playlist: https://www.youtube.com/watch?v=B9synWjqBn8
+INFO 2025-04-18 21:51:09,112 download_helper 19204 3424 Added existing song to playlist: https://www.youtube.com/watch?v=U8F5G5wR1mk
+INFO 2025-04-18 21:51:09,248 models 19204 3424 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-18
+INFO 2025-04-18 21:51:09,396 models 19204 3424 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-18 songs_downloaded=69
+INFO 2025-04-18 21:51:09,396 models 19204 3424 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-18
+INFO 2025-04-18 21:51:09,525 models 19204 3424 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-18 songs_downloaded=70
+INFO 2025-04-18 21:51:09,532 basehttp 19204 3424 "POST /api/songs/songs/download/ HTTP/1.1" 200 114
+INFO 2025-04-18 21:52:05,773 basehttp 19204 3424 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-18 21:52:05,817 basehttp 19204 15636 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-18 21:52:06,610 views 19204 3424 User has 37 songs
+INFO 2025-04-18 21:52:06,671 views 19204 3424 User has 20 songs with Spotify IDs
+INFO 2025-04-18 21:52:06,674 views 19204 15636 User has 37 songs
+INFO 2025-04-18 21:52:06,739 views 19204 15636 User has 20 songs with Spotify IDs
+INFO 2025-04-18 21:52:06,801 views 19204 3424 Sample user songs: [{'spotify_id': '7uDUb37h7Xdhza1eWMkoJv', 'title': 'Friends', 'artist': 'Chase Atlantic'}, {'spotify_id': '7MlDNspYwfqnHxORufupwq', 'title': 'Sex, Drugs, Etc.', 'artist': 'Beach Weather'}, {'spotify_id': '6usohdchdzW9oML7VC4Uhk', 'title': 'Lose Control', 'artist': 'Teddy Swims'}, {'spotify_id': '3M0lSi5WW79CXQamgSBIjx', 'title': 'Swim', 'artist': 'Chase Atlantic'}, {'spotify_id': '0d28khcov6AiegSCpG5TuT', 'title': 'Feel Good Inc.', 'artist': 'Gorillaz'}]
+INFO 2025-04-18 21:52:06,801 views 19204 3424 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-18 21:52:06,870 views 19204 15636 Sample user songs: [{'spotify_id': '7uDUb37h7Xdhza1eWMkoJv', 'title': 'Friends', 'artist': 'Chase Atlantic'}, {'spotify_id': '7MlDNspYwfqnHxORufupwq', 'title': 'Sex, Drugs, Etc.', 'artist': 'Beach Weather'}, {'spotify_id': '6usohdchdzW9oML7VC4Uhk', 'title': 'Lose Control', 'artist': 'Teddy Swims'}, {'spotify_id': '3M0lSi5WW79CXQamgSBIjx', 'title': 'Swim', 'artist': 'Chase Atlantic'}, {'spotify_id': '0d28khcov6AiegSCpG5TuT', 'title': 'Feel Good Inc.', 'artist': 'Gorillaz'}]
+INFO 2025-04-18 21:52:06,871 views 19204 15636 Getting recommendations for user: 4 with limit: 10
+WARNING 2025-04-18 21:52:07,237 recommendation 19204 3424 Song '7uDUb37h7Xdhza1eWMkoJv' not found or clustering unavailable, using popular songs
+WARNING 2025-04-18 21:52:07,295 recommendation 19204 15636 Song '7uDUb37h7Xdhza1eWMkoJv' not found or clustering unavailable, using popular songs
+WARNING 2025-04-18 21:52:07,706 recommendation 19204 3424 Song '7MlDNspYwfqnHxORufupwq' not found or clustering unavailable, using popular songs
+WARNING 2025-04-18 21:52:07,721 recommendation 19204 15636 Song '7MlDNspYwfqnHxORufupwq' not found or clustering unavailable, using popular songs
+INFO 2025-04-18 21:52:07,924 views 19204 3424 Got 10 recommendations
+INFO 2025-04-18 21:52:07,926 views 19204 15636 Got 10 recommendations
+INFO 2025-04-18 21:52:08,058 basehttp 19204 3424 "GET /api/songs/recommendations/ HTTP/1.1" 200 3043
+INFO 2025-04-18 21:52:08,058 basehttp 19204 15636 "GET /api/songs/recommendations/ HTTP/1.1" 200 2954
+INFO 2025-04-18 21:52:09,112 basehttp 19204 15636 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 1027
+INFO 2025-04-18 21:52:09,160 basehttp 19204 3424 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 1027
+INFO 2025-04-18 21:52:09,761 basehttp 19204 15636 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 558
+INFO 2025-04-18 21:52:09,804 basehttp 19204 3424 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 558
+INFO 2025-04-18 21:52:23,609 basehttp 19204 3424 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 364
+INFO 2025-04-18 21:52:27,812 basehttp 19204 15636 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 364
+INFO 2025-04-18 21:52:39,444 basehttp 19204 3424 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 252
+INFO 2025-04-18 21:52:43,434 basehttp 19204 15636 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 252
+INFO 2025-04-18 22:00:13,313 views 19204 2036 Redirecting YouTube playlist URL to playlist download endpoint: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 22:00:13,313 utils 19204 2036 Getting YouTube playlist info for URL: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 22:00:13,313 utils 19204 2036 Extracted YouTube playlist ID: PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 22:00:13,383 utils 19204 2036 Extracting playlist info from: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 22:00:14,732 utils 19204 2036 Successfully extracted info for playlist: tunevault with 2 tracks
+INFO 2025-04-18 22:00:14,736 download_helper 19204 2036 Playlist info retrieved: title=tunevault, tracks=2, image_url=None
+INFO 2025-04-18 22:00:15,232 download_helper 19204 2036 Added existing song to playlist: https://www.youtube.com/watch?v=B9synWjqBn8
+INFO 2025-04-18 22:00:15,551 download_helper 19204 2036 Added existing song to playlist: https://www.youtube.com/watch?v=U8F5G5wR1mk
+INFO 2025-04-18 22:00:15,700 models 19204 2036 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-18
+INFO 2025-04-18 22:00:15,835 models 19204 2036 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-18 songs_downloaded=71
+INFO 2025-04-18 22:00:15,835 models 19204 2036 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-18
+INFO 2025-04-18 22:00:15,961 models 19204 2036 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-18 songs_downloaded=72
+INFO 2025-04-18 22:00:15,961 basehttp 19204 2036 "POST /api/songs/songs/download/ HTTP/1.1" 200 114
+INFO 2025-04-18 22:04:36,733 views 19204 21012 Redirecting YouTube playlist URL to playlist download endpoint: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 22:04:36,740 utils 19204 21012 Getting YouTube playlist info for URL: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 22:04:36,740 utils 19204 21012 Extracted YouTube playlist ID: PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 22:04:36,828 utils 19204 21012 Extracting playlist info from: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 22:04:38,233 utils 19204 21012 Successfully extracted info for playlist: tunevault with 2 tracks
+INFO 2025-04-18 22:04:38,233 download_helper 19204 21012 Playlist info retrieved: title=tunevault, tracks=2, image_url=None
+INFO 2025-04-18 22:04:38,749 download_helper 19204 21012 Added existing song to playlist: https://www.youtube.com/watch?v=B9synWjqBn8
+INFO 2025-04-18 22:04:39,086 download_helper 19204 21012 Added existing song to playlist: https://www.youtube.com/watch?v=U8F5G5wR1mk
+INFO 2025-04-18 22:04:39,215 models 19204 21012 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-18
+INFO 2025-04-18 22:04:39,354 models 19204 21012 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-18 songs_downloaded=73
+INFO 2025-04-18 22:04:39,354 models 19204 21012 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-18
+INFO 2025-04-18 22:04:39,486 models 19204 21012 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-18 songs_downloaded=74
+INFO 2025-04-18 22:04:39,494 basehttp 19204 21012 "POST /api/songs/songs/download/ HTTP/1.1" 200 114
+INFO 2025-04-18 22:07:12,395 views 19204 21908 Redirecting YouTube playlist URL to playlist download endpoint: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 22:07:12,400 utils 19204 21908 Getting YouTube playlist info for URL: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 22:07:12,400 utils 19204 21908 Extracted YouTube playlist ID: PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 22:07:12,488 utils 19204 21908 Extracting playlist info from: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 22:07:13,967 utils 19204 21908 Successfully extracted info for playlist: tunevault with 2 tracks
+INFO 2025-04-18 22:07:13,967 download_helper 19204 21908 Playlist info retrieved: title=tunevault, tracks=2, image_url=None
+INFO 2025-04-18 22:07:14,464 download_helper 19204 21908 Added existing song to playlist: https://www.youtube.com/watch?v=B9synWjqBn8
+INFO 2025-04-18 22:07:14,790 download_helper 19204 21908 Added existing song to playlist: https://www.youtube.com/watch?v=U8F5G5wR1mk
+INFO 2025-04-18 22:07:14,927 models 19204 21908 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-18
+INFO 2025-04-18 22:07:15,070 models 19204 21908 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-18 songs_downloaded=75
+INFO 2025-04-18 22:07:15,070 models 19204 21908 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-18
+INFO 2025-04-18 22:07:15,200 models 19204 21908 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-18 songs_downloaded=76
+INFO 2025-04-18 22:07:15,200 basehttp 19204 21908 "POST /api/songs/songs/download/ HTTP/1.1" 200 114
+WARNING 2025-04-18 22:07:15,226 log 19204 21908 Not Found: /api/songs/youtube-playlists/78/download-all/
+WARNING 2025-04-18 22:07:15,233 basehttp 19204 21908 "GET /api/songs/youtube-playlists/78/download-all/ HTTP/1.1" 404 17154
+INFO 2025-04-18 22:08:03,027 views 19204 21908 Redirecting YouTube playlist URL to playlist download endpoint: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 22:08:03,027 utils 19204 21908 Getting YouTube playlist info for URL: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 22:08:03,027 utils 19204 21908 Extracted YouTube playlist ID: PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 22:08:03,109 utils 19204 21908 Extracting playlist info from: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 22:08:04,658 utils 19204 21908 Successfully extracted info for playlist: tunevault with 2 tracks
+INFO 2025-04-18 22:08:04,658 download_helper 19204 21908 Playlist info retrieved: title=tunevault, tracks=2, image_url=None
+INFO 2025-04-18 22:08:05,136 download_helper 19204 21908 Added existing song to playlist: https://www.youtube.com/watch?v=B9synWjqBn8
+INFO 2025-04-18 22:08:05,471 download_helper 19204 21908 Added existing song to playlist: https://www.youtube.com/watch?v=U8F5G5wR1mk
+INFO 2025-04-18 22:08:05,606 models 19204 21908 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-18
+INFO 2025-04-18 22:08:05,740 models 19204 21908 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-18 songs_downloaded=77
+INFO 2025-04-18 22:08:05,740 models 19204 21908 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-18
+INFO 2025-04-18 22:08:05,870 models 19204 21908 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-18 songs_downloaded=78
+INFO 2025-04-18 22:08:05,873 basehttp 19204 21908 "POST /api/songs/songs/download/ HTTP/1.1" 200 114
+WARNING 2025-04-18 22:08:05,901 log 19204 21908 Not Found: /api/songs/youtube-playlists/79/download-all/
+WARNING 2025-04-18 22:08:05,901 basehttp 19204 21908 "GET /api/songs/youtube-playlists/79/download-all/ HTTP/1.1" 404 17154
+WARNING 2025-04-18 22:08:29,875 log 19204 21908 Too Many Requests: /api/songs/songs/download/
+WARNING 2025-04-18 22:08:29,881 basehttp 19204 21908 "POST /api/songs/songs/download/ HTTP/1.1" 429 97
+INFO 2025-04-18 22:08:42,430 basehttp 19204 21524 "GET /admin/songs/playlist/ HTTP/1.1" 200 28969
+INFO 2025-04-18 22:08:42,862 basehttp 19204 18472 - Broken pipe from ('127.0.0.1', 51881)
+INFO 2025-04-18 22:08:42,862 basehttp 19204 19528 - Broken pipe from ('127.0.0.1', 51880)
+INFO 2025-04-18 22:08:43,116 basehttp 19204 21524 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+WARNING 2025-04-18 22:08:43,181 log 19204 21524 Not Found: /favicon.ico
+INFO 2025-04-18 22:08:43,183 basehttp 19204 21524 - Broken pipe from ('127.0.0.1', 51876)
+INFO 2025-04-18 22:08:54,668 basehttp 19204 22780 "POST /admin/songs/playlist/ HTTP/1.1" 200 29550
+INFO 2025-04-18 22:08:54,732 basehttp 19204 22780 - Broken pipe from ('127.0.0.1', 51897)
+INFO 2025-04-18 22:08:59,531 basehttp 19204 20148 "POST /admin/songs/playlist/ HTTP/1.1" 302 0
+INFO 2025-04-18 22:09:00,382 basehttp 19204 20148 "GET /admin/songs/playlist/ HTTP/1.1" 200 14933
+INFO 2025-04-18 22:09:01,046 basehttp 19204 20148 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+WARNING 2025-04-18 22:09:01,102 log 19204 20148 Not Found: /favicon.ico
+INFO 2025-04-18 22:09:01,102 basehttp 19204 20148 - Broken pipe from ('127.0.0.1', 51903)
+INFO 2025-04-18 22:09:04,492 basehttp 19204 12008 "GET /admin/songs/songcache/ HTTP/1.1" 200 34769
+INFO 2025-04-18 22:09:05,149 basehttp 19204 12008 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+WARNING 2025-04-18 22:09:05,204 log 19204 12008 Not Found: /favicon.ico
+INFO 2025-04-18 22:09:05,812 basehttp 19204 12008 - Broken pipe from ('127.0.0.1', 51914)
+INFO 2025-04-18 22:09:10,052 basehttp 19204 14812 "POST /admin/songs/songcache/ HTTP/1.1" 200 24715
+INFO 2025-04-18 22:09:14,296 basehttp 19204 14812 "POST /admin/songs/songcache/ HTTP/1.1" 302 0
+INFO 2025-04-18 22:09:15,075 basehttp 19204 14812 "GET /admin/songs/songcache/ HTTP/1.1" 200 14947
+INFO 2025-04-18 22:09:15,760 basehttp 19204 14812 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+WARNING 2025-04-18 22:09:15,802 log 19204 14812 Not Found: /favicon.ico
+INFO 2025-04-18 22:09:15,811 basehttp 19204 14812 - Broken pipe from ('127.0.0.1', 51923)
+INFO 2025-04-18 22:09:19,796 basehttp 19204 6660 "GET /admin/songs/song/ HTTP/1.1" 200 50750
+INFO 2025-04-18 22:09:20,496 basehttp 19204 6660 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-04-18 22:09:26,379 basehttp 19204 6660 "POST /admin/songs/song/ HTTP/1.1" 200 32265
+INFO 2025-04-18 22:09:30,895 basehttp 19204 6660 "POST /admin/songs/song/ HTTP/1.1" 302 0
+INFO 2025-04-18 22:09:31,772 basehttp 19204 6660 "GET /admin/songs/song/ HTTP/1.1" 200 28092
+INFO 2025-04-18 22:09:32,462 basehttp 19204 6660 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-04-18 22:09:39,637 basehttp 19204 6660 "POST /admin/songs/song/ HTTP/1.1" 200 20883
+INFO 2025-04-18 22:09:43,352 basehttp 19204 6660 "POST /admin/songs/song/ HTTP/1.1" 302 0
+INFO 2025-04-18 22:09:44,172 basehttp 19204 6660 "GET /admin/songs/song/ HTTP/1.1" 200 14901
+INFO 2025-04-18 22:09:44,824 basehttp 19204 6660 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-04-18 22:09:48,737 basehttp 19204 6660 "GET /admin/songs/usermusicprofile/ HTTP/1.1" 200 16522
+INFO 2025-04-18 22:09:49,413 basehttp 19204 6660 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-04-18 22:09:55,294 basehttp 19204 6660 "POST /admin/songs/usermusicprofile/ HTTP/1.1" 200 15112
+INFO 2025-04-18 22:09:57,983 basehttp 19204 6660 "POST /admin/songs/usermusicprofile/ HTTP/1.1" 302 0
+INFO 2025-04-18 22:09:58,792 basehttp 19204 6660 "GET /admin/songs/usermusicprofile/ HTTP/1.1" 200 15008
+INFO 2025-04-18 22:09:59,472 basehttp 19204 6660 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-04-18 22:10:02,248 basehttp 19204 6660 "GET /admin/songs/genre/ HTTP/1.1" 200 14772
+INFO 2025-04-18 22:10:02,886 basehttp 19204 6660 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-04-18 22:10:11,993 basehttp 19204 6660 "GET /admin/users/customuser/ HTTP/1.1" 200 16844
+INFO 2025-04-18 22:10:12,683 basehttp 19204 6660 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-04-18 22:10:23,302 basehttp 19204 6660 - Broken pipe from ('127.0.0.1', 51938)
+INFO 2025-04-18 22:10:28,123 basehttp 19204 14396 "GET /admin/users/customuser/4/change/ HTTP/1.1" 200 40733
+INFO 2025-04-18 22:10:28,233 basehttp 19204 11052 - Broken pipe from ('127.0.0.1', 52031)
+INFO 2025-04-18 22:10:28,235 basehttp 19204 18320 - Broken pipe from ('127.0.0.1', 52032)
+INFO 2025-04-18 22:10:28,799 basehttp 19204 14396 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-04-18 22:10:35,933 basehttp 19204 14396 "POST /admin/users/customuser/4/change/ HTTP/1.1" 302 0
+INFO 2025-04-18 22:10:36,768 basehttp 19204 14396 "GET /admin/users/customuser/ HTTP/1.1" 200 17045
+INFO 2025-04-18 22:10:37,439 basehttp 19204 14396 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-04-18 22:14:21,434 views 19204 23704 Redirecting YouTube playlist URL to playlist download endpoint: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 22:14:21,436 utils 19204 23704 Getting YouTube playlist info for URL: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 22:14:21,436 utils 19204 23704 Extracted YouTube playlist ID: PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 22:14:21,504 utils 19204 23704 Extracting playlist info from: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 22:14:22,824 utils 19204 23704 Successfully extracted info for playlist: tunevault with 2 tracks
+INFO 2025-04-18 22:14:22,824 download_helper 19204 23704 Playlist info retrieved: title=tunevault, tracks=2, image_url=None
+INFO 2025-04-18 22:14:23,105 utils 19204 23704 Attempting to download from YouTube: https://www.youtube.com/watch?v=B9synWjqBn8
+INFO 2025-04-18 22:14:45,855 utils 19204 23704 Successfully downloaded with primary method: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\B9synWjqBn8.mp3
+INFO 2025-04-18 22:14:46,166 utils 19204 23704 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Travis Scott - FEN ft. Playboi Carti - Travis Scott.mp3
+INFO 2025-04-18 22:14:46,166 utils 19204 23704 Title: Travis Scott - FEN ft. Playboi Carti, Artist: Travis Scott, Album: Unknown, Genre: Unknown
+INFO 2025-04-18 22:14:46,186 utils 19204 23704 Loaded existing ID3 tags
+INFO 2025-04-18 22:14:46,262 utils 19204 23704 Found matching song in database: Travis Scott - FEN ft. Playboi Carti by Travis Scott
+INFO 2025-04-18 22:14:46,262 utils 19204 23704 Using thumbnail URL from database: https://i.ytimg.com/vi/B9synWjqBn8/maxresdefault.jpg
+INFO 2025-04-18 22:14:46,262 utils 19204 23704 Downloading thumbnail from URL: https://i.ytimg.com/vi/B9synWjqBn8/maxresdefault.jpg
+INFO 2025-04-18 22:14:46,378 utils 19204 23704 Downloaded thumbnail: 29952 bytes
+INFO 2025-04-18 22:14:46,378 utils 19204 23704 Detected image type: jpeg
+INFO 2025-04-18 22:14:46,524 utils 19204 23704 Successfully converted image to JPEG: 16424 bytes
+INFO 2025-04-18 22:14:46,524 utils 19204 23704 Adding album art, MIME type: image/jpeg
+INFO 2025-04-18 22:14:46,526 utils 19204 23704 Successfully added album art to ID3 tags
+INFO 2025-04-18 22:14:46,533 utils 19204 23704 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Travis Scott - FEN ft. Playboi Carti - Travis Scott.mp3 using ID3v2.3
+INFO 2025-04-18 22:14:46,557 utils 19204 23704 Verification: 6 tags were written, has_cover=True
+INFO 2025-04-18 22:14:47,165 utils 19204 23704 Attempting to set system thumbnail property directly (Windows only)
+WARNING 2025-04-18 22:14:47,181 utils 19204 23704 Could not set shell thumbnail: 'int' object has no attribute 'SetInfo'
+INFO 2025-04-18 22:14:47,578 download_helper 19204 23704 Added YouTube song to cache from playlist: https://www.youtube.com/watch?v=B9synWjqBn8
+INFO 2025-04-18 22:14:47,974 utils 19204 23704 Attempting to download from YouTube: https://www.youtube.com/watch?v=U8F5G5wR1mk
+INFO 2025-04-18 22:15:06,077 utils 19204 23704 Successfully downloaded with primary method: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\U8F5G5wR1mk.mp3
+INFO 2025-04-18 22:15:06,228 utils 19204 23704 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Kendrick Lamar - tv off Official Audio - Kendrick Lamar.mp3
+INFO 2025-04-18 22:15:06,230 utils 19204 23704 Title: Kendrick Lamar - tv off Official Audio, Artist: Kendrick Lamar, Album: Unknown, Genre: Unknown
+INFO 2025-04-18 22:15:06,242 utils 19204 23704 Loaded existing ID3 tags
+INFO 2025-04-18 22:15:06,309 utils 19204 23704 Found matching song in database: Kendrick Lamar - tv off Official Audio by Kendrick Lamar
+INFO 2025-04-18 22:15:06,309 utils 19204 23704 Using thumbnail URL from database: https://i.ytimg.com/vi/U8F5G5wR1mk/maxresdefault.jpg
+INFO 2025-04-18 22:15:06,309 utils 19204 23704 Downloading thumbnail from URL: https://i.ytimg.com/vi/U8F5G5wR1mk/maxresdefault.jpg
+INFO 2025-04-18 22:15:06,437 utils 19204 23704 Downloaded thumbnail: 70057 bytes
+INFO 2025-04-18 22:15:06,437 utils 19204 23704 Detected image type: jpeg
+INFO 2025-04-18 22:15:06,487 utils 19204 23704 Successfully converted image to JPEG: 24442 bytes
+INFO 2025-04-18 22:15:06,487 utils 19204 23704 Adding album art, MIME type: image/jpeg
+INFO 2025-04-18 22:15:06,487 utils 19204 23704 Successfully added album art to ID3 tags
+INFO 2025-04-18 22:15:06,497 utils 19204 23704 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Kendrick Lamar - tv off Official Audio - Kendrick Lamar.mp3 using ID3v2.3
+INFO 2025-04-18 22:15:06,520 utils 19204 23704 Verification: 6 tags were written, has_cover=True
+INFO 2025-04-18 22:15:06,520 utils 19204 23704 Attempting to set system thumbnail property directly (Windows only)
+WARNING 2025-04-18 22:15:06,529 utils 19204 23704 Could not set shell thumbnail: 'int' object has no attribute 'SetInfo'
+INFO 2025-04-18 22:15:06,917 download_helper 19204 23704 Added YouTube song to cache from playlist: https://www.youtube.com/watch?v=U8F5G5wR1mk
+INFO 2025-04-18 22:15:07,317 models 19204 23704 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-18
+INFO 2025-04-18 22:15:07,523 models 19204 23704 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-18 songs_downloaded=79
+INFO 2025-04-18 22:15:07,523 models 19204 23704 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-18
+INFO 2025-04-18 22:15:07,844 models 19204 23704 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-18 songs_downloaded=80
+INFO 2025-04-18 22:15:07,846 basehttp 19204 23704 "POST /api/songs/songs/download/ HTTP/1.1" 200 114
+WARNING 2025-04-18 22:15:07,882 log 19204 23704 Not Found: /api/songs/youtube-playlists/80/download-all/
+WARNING 2025-04-18 22:15:07,883 basehttp 19204 23704 "GET /api/songs/youtube-playlists/80/download-all/ HTTP/1.1" 404 17154
+INFO 2025-04-18 22:15:37,951 views 19204 23704 Redirecting YouTube playlist URL to playlist download endpoint: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 22:15:37,951 utils 19204 23704 Getting YouTube playlist info for URL: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 22:15:37,955 utils 19204 23704 Extracted YouTube playlist ID: PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 22:15:38,097 utils 19204 23704 Extracting playlist info from: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 22:15:39,937 utils 19204 23704 Successfully extracted info for playlist: tunevault with 2 tracks
+INFO 2025-04-18 22:15:39,944 download_helper 19204 23704 Playlist info retrieved: title=tunevault, tracks=2, image_url=None
+INFO 2025-04-18 22:15:40,440 download_helper 19204 23704 Added existing song to playlist: https://www.youtube.com/watch?v=B9synWjqBn8
+INFO 2025-04-18 22:15:40,777 download_helper 19204 23704 Added existing song to playlist: https://www.youtube.com/watch?v=U8F5G5wR1mk
+INFO 2025-04-18 22:15:40,912 models 19204 23704 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-18
+INFO 2025-04-18 22:15:41,044 models 19204 23704 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-18 songs_downloaded=81
+INFO 2025-04-18 22:15:41,044 models 19204 23704 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-18
+INFO 2025-04-18 22:15:41,183 models 19204 23704 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-18 songs_downloaded=82
+INFO 2025-04-18 22:15:41,187 basehttp 19204 23704 "POST /api/songs/songs/download/ HTTP/1.1" 200 114
+INFO 2025-04-18 22:15:41,925 views 19204 23704 Playlist download requested: ID=81, Name=tunevault, Songs count=2
+INFO 2025-04-18 22:15:41,997 views 19204 23704 Creating playlist ZIP at: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\temp\tunevault_1744994741.zip
+INFO 2025-04-18 22:15:42,074 views 19204 23704 Playlist has 2 songs to include in ZIP
+INFO 2025-04-18 22:15:42,144 views 19204 23704 Processing song: Kendrick Lamar - tv off Official Audio - Kendrick Lamar, file: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Kendrick Lamar - tv off Official Audio - Kendrick Lamar.mp3
+INFO 2025-04-18 22:15:42,144 views 19204 23704 Adding song to ZIP: Kendrick Lamar - tv off Official Audio - Kendrick Lamar.mp3 (5329090 bytes)
+INFO 2025-04-18 22:15:42,227 views 19204 23704 Added song 1: Kendrick Lamar - tv off Official Audio - Kendrick Lamar.mp3
+INFO 2025-04-18 22:15:42,229 views 19204 23704 Processing song: Travis Scott - FEN ft. Playboi Carti - Travis Scott, file: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Travis Scott - FEN ft. Playboi Carti - Travis Scott.mp3
+INFO 2025-04-18 22:15:42,229 views 19204 23704 Adding song to ZIP: Travis Scott - FEN ft. Playboi Carti - Travis Scott.mp3 (5053532 bytes)
+INFO 2025-04-18 22:15:42,249 views 19204 23704 Added song 2: Travis Scott - FEN ft. Playboi Carti - Travis Scott.mp3
+INFO 2025-04-18 22:15:42,249 views 19204 23704 ZIP file created successfully: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\temp\tunevault_1744994741.zip, size: 10383024 bytes, containing 2 songs
+INFO 2025-04-18 22:15:42,560 basehttp 19204 23704 "GET /api/songs/playlists/81/download-all/ HTTP/1.1" 200 10383024
+WARNING 2025-04-18 22:15:43,187 log 19204 23704 Bad Request: /api/songs/songs/download/
+WARNING 2025-04-18 22:15:43,188 basehttp 19204 23704 "POST /api/songs/songs/download/ HTTP/1.1" 400 59
+WARNING 2025-04-18 22:16:56,991 log 19204 23704 Not Found: /api/songs/spotify/playlists/21y0yK08j1UzYu4ro06wfL/
+WARNING 2025-04-18 22:16:56,996 basehttp 19204 23704 "GET /api/songs/spotify/playlists/21y0yK08j1UzYu4ro06wfL/ HTTP/1.1" 404 17175
+WARNING 2025-04-18 22:16:57,088 log 19204 23704 Not Found: /api/songs/spotify-playlist/21y0yK08j1UzYu4ro06wfL/
+WARNING 2025-04-18 22:16:57,088 basehttp 19204 23704 "GET /api/songs/spotify-playlist/21y0yK08j1UzYu4ro06wfL/ HTTP/1.1" 404 17172
+WARNING 2025-04-18 22:16:57,118 log 19204 23704 Not Found: /api/spotify/playlists/21y0yK08j1UzYu4ro06wfL/
+WARNING 2025-04-18 22:16:57,118 basehttp 19204 23704 "GET /api/spotify/playlists/21y0yK08j1UzYu4ro06wfL/ HTTP/1.1" 404 3472
+INFO 2025-04-18 22:29:40,262 autoreload 19204 24420 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-18 22:29:44,456 autoreload 20428 19960 Watching for file changes with StatReloader
+INFO 2025-04-18 22:30:59,298 autoreload 20428 19960 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\utils.py changed, reloading.
+INFO 2025-04-18 22:31:02,830 autoreload 9024 16340 Watching for file changes with StatReloader
+INFO 2025-04-18 22:33:39,315 basehttp 9024 16212 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 2
+INFO 2025-04-18 22:33:50,619 spotify_api 9024 16212 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-18 22:33:50,619 spotify_api 9024 16212 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-18 22:33:50,620 views 9024 16212 Redirecting Spotify playlist URL to playlist download endpoint: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-18 22:33:50,621 spotify_api 9024 16212 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-18 22:33:50,621 spotify_api 9024 16212 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-18 22:33:50,621 spotify_api 9024 16212 Getting Spotify playlist info for ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-18 22:33:50,622 spotify_api 9024 16212 Creating Spotify client with credentials from settings
+INFO 2025-04-18 22:33:50,987 spotify_api 9024 16212 Successfully tested Spotify client
+INFO 2025-04-18 22:33:51,382 spotify_api 9024 16212 Extracted 2 track URLs from playlist
+INFO 2025-04-18 22:33:51,383 download_helper 9024 16212 Playlist info retrieved: title=tunevault testing, tracks=2, image_url=https://i.scdn.co/image/ab67616d00001e02037e3cc2b0c60ecb5ee7eca5
+INFO 2025-04-18 22:33:51,677 spotify_api 9024 16212 Extracting Spotify ID from URL: https://open.spotify.com/track/7MlDNspYwfqnHxORufupwq
+INFO 2025-04-18 22:33:51,678 spotify_api 9024 16212 Extracted Spotify track ID: 7MlDNspYwfqnHxORufupwq
+INFO 2025-04-18 22:33:51,678 spotify_api 9024 16212 Getting info for Spotify track ID: 7MlDNspYwfqnHxORufupwq
+INFO 2025-04-18 22:33:51,679 spotify_api 9024 16212 Creating Spotify client with credentials from settings
+INFO 2025-04-18 22:33:51,874 spotify_api 9024 16212 Successfully tested Spotify client
+INFO 2025-04-18 22:33:52,172 spotify_api 9024 16212 Got track info: Sex, Drugs, Etc. by Beach Weather
+INFO 2025-04-18 22:33:52,173 download_helper 9024 16212 Spotify track info: Sex, Drugs, Etc. - Beach Weather, thumbnail: https://i.scdn.co/image/ab67616d0000b273037e3cc2b0c60ecb5ee7eca5
+INFO 2025-04-18 22:34:04,699 utils 9024 16212 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Beach Weather - Sex, Drugs, Etc. (Official Video).mp3
+INFO 2025-04-18 22:34:04,700 utils 9024 16212 Title: Sex, Drugs, Etc., Artist: Beach Weather, Album: Pineapple Sunrise, Genre: Unknown
+INFO 2025-04-18 22:34:04,703 utils 9024 16212 Loaded existing ID3 tags
+INFO 2025-04-18 22:34:04,771 utils 9024 16212 Downloading thumbnail from URL: https://i.scdn.co/image/ab67616d0000b273037e3cc2b0c60ecb5ee7eca5
+INFO 2025-04-18 22:34:05,047 utils 9024 16212 Downloaded thumbnail: 151144 bytes
+INFO 2025-04-18 22:34:05,048 utils 9024 16212 Detected image type: jpeg
+INFO 2025-04-18 22:34:05,138 utils 9024 16212 Successfully converted image to JPEG: 101460 bytes
+INFO 2025-04-18 22:34:05,141 utils 9024 16212 Adding album art, MIME type: image/jpeg
+INFO 2025-04-18 22:34:05,141 utils 9024 16212 Successfully added album art to ID3 tags
+INFO 2025-04-18 22:34:05,153 utils 9024 16212 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Beach Weather - Sex, Drugs, Etc. (Official Video).mp3 using ID3v2.3
+INFO 2025-04-18 22:34:05,169 utils 9024 16212 Verification: 8 tags were written, has_cover=True
+INFO 2025-04-18 22:34:05,226 utils 9024 16212 Attempting to set system thumbnail property directly (Windows only)
+WARNING 2025-04-18 22:34:05,236 utils 9024 16212 Could not set shell thumbnail: 'int' object has no attribute 'SetInfo'
+INFO 2025-04-18 22:34:05,688 download_helper 9024 16212 Added Spotify song to cache from playlist: https://open.spotify.com/track/7MlDNspYwfqnHxORufupwq
+INFO 2025-04-18 22:34:06,087 spotify_api 9024 16212 Extracting Spotify ID from URL: https://open.spotify.com/track/7uDUb37h7Xdhza1eWMkoJv
+INFO 2025-04-18 22:34:06,088 spotify_api 9024 16212 Extracted Spotify track ID: 7uDUb37h7Xdhza1eWMkoJv
+INFO 2025-04-18 22:34:06,088 spotify_api 9024 16212 Getting info for Spotify track ID: 7uDUb37h7Xdhza1eWMkoJv
+INFO 2025-04-18 22:34:06,089 spotify_api 9024 16212 Creating Spotify client with credentials from settings
+INFO 2025-04-18 22:34:06,296 spotify_api 9024 16212 Successfully tested Spotify client
+INFO 2025-04-18 22:34:06,609 spotify_api 9024 16212 Got track info: Friends by Chase Atlantic
+INFO 2025-04-18 22:34:06,610 download_helper 9024 16212 Spotify track info: Friends - Chase Atlantic, thumbnail: https://i.scdn.co/image/ab67616d0000b273efa7fe6f9ecee8ba9c877b60
+INFO 2025-04-18 22:34:18,189 utils 9024 16212 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Chase Atlantic - FRIENDS (Official Lyric Video).mp3
+INFO 2025-04-18 22:34:18,190 utils 9024 16212 Title: Friends, Artist: Chase Atlantic, Album: Nostalgia - EP, Genre: Unknown
+INFO 2025-04-18 22:34:18,191 utils 9024 16212 Loaded existing ID3 tags
+INFO 2025-04-18 22:34:18,266 utils 9024 16212 Downloading thumbnail from URL: https://i.scdn.co/image/ab67616d0000b273efa7fe6f9ecee8ba9c877b60
+INFO 2025-04-18 22:34:18,349 utils 9024 16212 Downloaded thumbnail: 104598 bytes
+INFO 2025-04-18 22:34:18,349 utils 9024 16212 Detected image type: jpeg
+INFO 2025-04-18 22:34:18,390 utils 9024 16212 Successfully converted image to JPEG: 93293 bytes
+INFO 2025-04-18 22:34:18,391 utils 9024 16212 Adding album art, MIME type: image/jpeg
+INFO 2025-04-18 22:34:18,392 utils 9024 16212 Successfully added album art to ID3 tags
+INFO 2025-04-18 22:34:18,396 utils 9024 16212 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Chase Atlantic - FRIENDS (Official Lyric Video).mp3 using ID3v2.3
+INFO 2025-04-18 22:34:18,409 utils 9024 16212 Verification: 8 tags were written, has_cover=True
+INFO 2025-04-18 22:34:18,410 utils 9024 16212 Attempting to set system thumbnail property directly (Windows only)
+WARNING 2025-04-18 22:34:18,413 utils 9024 16212 Could not set shell thumbnail: 'int' object has no attribute 'SetInfo'
+INFO 2025-04-18 22:34:18,850 download_helper 9024 16212 Added Spotify song to cache from playlist: https://open.spotify.com/track/7uDUb37h7Xdhza1eWMkoJv
+INFO 2025-04-18 22:34:19,220 models 9024 16212 [DEBUG] record_download called for user=testuser id=1 date=2025-04-18
+INFO 2025-04-18 22:34:19,352 models 9024 16212 [DEBUG] record_download updated analytics: user=testuser id=1 date=2025-04-18 songs_downloaded=34
+INFO 2025-04-18 22:34:19,353 models 9024 16212 [DEBUG] record_download called for user=testuser id=1 date=2025-04-18
+INFO 2025-04-18 22:34:19,471 models 9024 16212 [DEBUG] record_download updated analytics: user=testuser id=1 date=2025-04-18 songs_downloaded=35
+INFO 2025-04-18 22:34:19,473 basehttp 9024 16212 "POST /api/songs/songs/download/ HTTP/1.1" 200 122
+WARNING 2025-04-18 22:34:44,984 log 9024 16212 Too Many Requests: /api/songs/songs/download/
+WARNING 2025-04-18 22:34:44,987 basehttp 9024 16212 "POST /api/songs/songs/download/ HTTP/1.1" 429 90
+INFO 2025-04-18 22:35:08,839 basehttp 9024 21748 "GET /admin/users/customuser/1/change/ HTTP/1.1" 200 40804
+INFO 2025-04-18 22:35:08,988 basehttp 9024 17932 - Broken pipe from ('127.0.0.1', 50937)
+INFO 2025-04-18 22:35:09,588 basehttp 9024 21748 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+WARNING 2025-04-18 22:35:09,656 log 9024 21748 Not Found: /favicon.ico
+INFO 2025-04-18 22:35:09,668 basehttp 9024 21748 - Broken pipe from ('127.0.0.1', 50925)
+INFO 2025-04-18 22:35:09,924 utils 9024 16212 Found partial match for artist 'Beach Weather': The Beach Boys
+INFO 2025-04-18 22:35:10,654 utils 9024 16212 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-18 22:35:10,656 basehttp 9024 16212 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 442
+INFO 2025-04-18 22:46:01,081 views 9024 12240 Redirecting YouTube playlist URL to playlist download endpoint: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 22:46:01,082 utils 9024 12240 Getting YouTube playlist info for URL: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 22:46:01,083 utils 9024 12240 Extracted YouTube playlist ID: PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 22:46:01,177 utils 9024 12240 Extracting playlist info from: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-18 22:46:02,398 utils 9024 12240 Successfully extracted info for playlist: tunevault with 2 tracks
+INFO 2025-04-18 22:46:02,400 download_helper 9024 12240 Playlist info retrieved: title=tunevault, tracks=2, image_url=None
+INFO 2025-04-18 22:46:03,098 download_helper 9024 12240 Added existing song to playlist: https://www.youtube.com/watch?v=B9synWjqBn8
+INFO 2025-04-18 22:46:03,595 download_helper 9024 12240 Added existing song to playlist: https://www.youtube.com/watch?v=U8F5G5wR1mk
+INFO 2025-04-18 22:46:03,796 models 9024 12240 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-18
+INFO 2025-04-18 22:46:03,999 models 9024 12240 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-18 songs_downloaded=83
+INFO 2025-04-18 22:46:03,999 models 9024 12240 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-18
+INFO 2025-04-18 22:46:04,202 models 9024 12240 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-18 songs_downloaded=84
+INFO 2025-04-18 22:46:04,205 basehttp 9024 12240 "POST /api/songs/songs/download/ HTTP/1.1" 200 114
+INFO 2025-04-18 22:46:04,942 views 9024 12240 Playlist download requested: ID=83, Name=tunevault, Songs count=2
+INFO 2025-04-18 22:46:05,009 views 9024 12240 Creating playlist ZIP at: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\temp\tunevault_1744996565.zip
+INFO 2025-04-18 22:46:05,076 views 9024 12240 Playlist has 2 songs to include in ZIP
+INFO 2025-04-18 22:46:05,145 views 9024 12240 Processing song: Kendrick Lamar - tv off Official Audio - Kendrick Lamar, file: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Kendrick Lamar - tv off Official Audio - Kendrick Lamar.mp3
+INFO 2025-04-18 22:46:05,146 views 9024 12240 Adding song to ZIP: Kendrick Lamar - tv off Official Audio - Kendrick Lamar.mp3 (5329090 bytes)
+INFO 2025-04-18 22:46:05,187 views 9024 12240 Added song 1: Kendrick Lamar - tv off Official Audio - Kendrick Lamar.mp3
+INFO 2025-04-18 22:46:05,188 views 9024 12240 Processing song: Travis Scott - FEN ft. Playboi Carti - Travis Scott, file: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Travis Scott - FEN ft. Playboi Carti - Travis Scott.mp3
+INFO 2025-04-18 22:46:05,188 views 9024 12240 Adding song to ZIP: Travis Scott - FEN ft. Playboi Carti - Travis Scott.mp3 (5053532 bytes)
+INFO 2025-04-18 22:46:05,234 views 9024 12240 Added song 2: Travis Scott - FEN ft. Playboi Carti - Travis Scott.mp3
+INFO 2025-04-18 22:46:05,236 views 9024 12240 ZIP file created successfully: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\temp\tunevault_1744996565.zip, size: 10383024 bytes, containing 2 songs
+INFO 2025-04-18 22:46:05,413 basehttp 9024 12240 "GET /api/songs/playlists/83/download-all/ HTTP/1.1" 200 10383024
+WARNING 2025-04-18 22:46:05,992 log 9024 12240 Bad Request: /api/songs/songs/download/
+WARNING 2025-04-18 22:46:05,993 basehttp 9024 12240 "POST /api/songs/songs/download/ HTTP/1.1" 400 59
+INFO 2025-04-18 22:46:47,157 basehttp 9024 12240 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-18 22:46:47,553 basehttp 9024 14784 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-18 22:46:49,051 views 9024 14784 User has 2 songs
+INFO 2025-04-18 22:46:49,118 views 9024 12240 User has 2 songs
+INFO 2025-04-18 22:46:49,207 views 9024 14784 User has 0 songs with Spotify IDs
+INFO 2025-04-18 22:46:49,276 views 9024 12240 User has 0 songs with Spotify IDs
+INFO 2025-04-18 22:46:49,363 views 9024 14784 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-18 22:46:49,364 recommendation 9024 14784 Skipping Music.csv due to invalid format, using data.csv directly
+INFO 2025-04-18 22:46:49,518 views 9024 12240 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-18 22:46:49,524 recommendation 9024 12240 Skipping Music.csv due to invalid format, using data.csv directly
+INFO 2025-04-18 22:46:56,125 recommendation 9024 14784 Loaded data.csv dataset
+INFO 2025-04-18 22:46:56,221 recommendation 9024 12240 Loaded data.csv dataset
+INFO 2025-04-18 22:46:56,329 recommendation 9024 12240 Available columns in dataset: ['valence', 'year', 'acousticness', 'artists', 'danceability', 'duration_ms', 'energy', 'explicit', 'id', 'instrumentalness', 'key', 'liveness', 'loudness', 'mode', 'name', 'popularity', 'release_date', 'speechiness', 'tempo']
+INFO 2025-04-18 22:46:56,402 recommendation 9024 14784 Available columns in dataset: ['valence', 'year', 'acousticness', 'artists', 'danceability', 'duration_ms', 'energy', 'explicit', 'id', 'instrumentalness', 'key', 'liveness', 'loudness', 'mode', 'name', 'popularity', 'release_date', 'speechiness', 'tempo']
+INFO 2025-04-18 22:46:56,510 recommendation 9024 12240 Using features: ['acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'loudness', 'speechiness', 'tempo', 'valence']
+INFO 2025-04-18 22:46:56,600 recommendation 9024 14784 Using features: ['acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'loudness', 'speechiness', 'tempo', 'valence']
+INFO 2025-04-18 22:46:56,647 recommendation 9024 12240 Prepared data with 170653 songs and 9 features
+INFO 2025-04-18 22:46:56,663 recommendation 9024 14784 Prepared data with 170653 songs and 9 features
+INFO 2025-04-18 22:46:58,073 recommendation 9024 14784 Built song clusters successfully
+INFO 2025-04-18 22:46:58,074 recommendation 9024 14784 Music Recommender initialized successfully
+INFO 2025-04-18 22:46:58,093 recommendation 9024 12240 Built song clusters successfully
+INFO 2025-04-18 22:46:58,095 recommendation 9024 12240 Music Recommender initialized successfully
+INFO 2025-04-18 22:46:58,732 views 9024 14784 Got 10 recommendations
+INFO 2025-04-18 22:46:58,732 views 9024 12240 Got 10 recommendations
+INFO 2025-04-18 22:46:59,038 basehttp 9024 14784 "GET /api/songs/recommendations/ HTTP/1.1" 200 3085
+INFO 2025-04-18 22:46:59,055 basehttp 9024 12240 "GET /api/songs/recommendations/ HTTP/1.1" 200 2938
+INFO 2025-04-18 22:47:00,358 utils 9024 12240 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-18 22:47:01,587 utils 9024 12240 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-18 22:47:01,602 basehttp 9024 12240 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 386
+INFO 2025-04-18 22:47:01,695 utils 9024 14784 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-18 22:47:02,276 basehttp 9024 12240 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 558
+INFO 2025-04-18 22:47:02,345 utils 9024 14784 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-18 22:47:02,347 basehttp 9024 14784 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 386
+INFO 2025-04-18 22:47:03,024 basehttp 9024 14784 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 558
+INFO 2025-04-18 22:47:05,044 utils 9024 12240 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-18 22:47:05,070 utils 9024 14784 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-18 22:47:06,085 utils 9024 12240 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-18 22:47:06,089 basehttp 9024 12240 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 205
+INFO 2025-04-18 22:47:06,101 utils 9024 14784 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-18 22:47:06,103 basehttp 9024 14784 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 205
+INFO 2025-04-18 22:47:07,626 utils 9024 14784 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-18 22:47:08,066 utils 9024 12240 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-18 22:47:08,663 utils 9024 14784 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-18 22:47:08,666 basehttp 9024 14784 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 118
+INFO 2025-04-18 22:47:09,041 utils 9024 12240 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-18 22:47:09,042 basehttp 9024 12240 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 118
+INFO 2025-04-18 22:48:21,758 basehttp 9024 12240 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-18 22:48:21,759 basehttp 9024 14784 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-18 22:48:22,534 views 9024 14784 User has 2 songs
+INFO 2025-04-18 22:48:22,547 views 9024 12240 User has 2 songs
+INFO 2025-04-18 22:48:22,595 views 9024 14784 User has 0 songs with Spotify IDs
+INFO 2025-04-18 22:48:22,614 views 9024 12240 User has 0 songs with Spotify IDs
+INFO 2025-04-18 22:48:22,660 views 9024 14784 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-18 22:48:22,681 views 9024 12240 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-18 22:48:23,170 views 9024 14784 Got 10 recommendations
+INFO 2025-04-18 22:48:23,259 views 9024 12240 Got 10 recommendations
+INFO 2025-04-18 22:48:23,344 basehttp 9024 14784 "GET /api/songs/recommendations/ HTTP/1.1" 200 2886
+INFO 2025-04-18 22:48:23,602 basehttp 9024 12240 "GET /api/songs/recommendations/ HTTP/1.1" 200 3007
+INFO 2025-04-18 22:48:25,477 utils 9024 14784 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-18 22:48:25,754 utils 9024 12240 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-18 22:48:26,604 utils 9024 14784 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-18 22:48:26,608 basehttp 9024 14784 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 386
+INFO 2025-04-18 22:48:26,834 utils 9024 12240 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-18 22:48:26,836 basehttp 9024 12240 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 386
+INFO 2025-04-18 22:48:27,228 basehttp 9024 14784 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 558
+INFO 2025-04-18 22:48:27,500 basehttp 9024 12240 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 558
+INFO 2025-04-18 22:48:28,611 utils 9024 14784 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-18 22:48:29,428 utils 9024 12240 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-18 22:48:29,706 utils 9024 14784 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-18 22:48:29,713 basehttp 9024 14784 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 205
+INFO 2025-04-18 22:48:30,176 utils 9024 12240 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-18 22:48:30,179 basehttp 9024 12240 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 205
+INFO 2025-04-18 22:48:30,969 utils 9024 14784 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-18 22:48:31,870 utils 9024 14784 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-18 22:48:31,888 basehttp 9024 14784 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 118
+INFO 2025-04-18 22:48:32,041 utils 9024 12240 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-18 22:48:32,768 utils 9024 12240 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-18 22:48:32,770 basehttp 9024 12240 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 118
+INFO 2025-04-18 22:59:52,668 basehttp 9024 6336 "POST /api/users/login/ HTTP/1.1" 200 95
+INFO 2025-04-18 23:00:01,183 views 9024 6336 User has 2 songs
+INFO 2025-04-18 23:00:01,245 views 9024 6336 User has 2 songs with Spotify IDs
+INFO 2025-04-18 23:00:01,374 views 9024 6336 Sample user songs: [{'spotify_id': '7uDUb37h7Xdhza1eWMkoJv', 'title': 'Friends', 'artist': 'Chase Atlantic'}, {'spotify_id': '7MlDNspYwfqnHxORufupwq', 'title': 'Sex, Drugs, Etc.', 'artist': 'Beach Weather'}]
+INFO 2025-04-18 23:00:01,375 views 9024 6336 Getting recommendations for user: 1 with limit: 10
+WARNING 2025-04-18 23:00:01,640 recommendation 9024 6336 Song '7uDUb37h7Xdhza1eWMkoJv' not found or clustering unavailable, using popular songs
+WARNING 2025-04-18 23:00:01,821 recommendation 9024 6336 Song '7MlDNspYwfqnHxORufupwq' not found or clustering unavailable, using popular songs
+INFO 2025-04-18 23:00:01,959 views 9024 6336 Got 10 recommendations
+INFO 2025-04-18 23:00:02,088 basehttp 9024 6336 "GET /api/songs/recommendations/ HTTP/1.1" 200 3065
+INFO 2025-04-18 23:06:42,859 views 9024 23876 User has 2 songs
+INFO 2025-04-18 23:06:42,931 views 9024 23876 User has 0 songs with Spotify IDs
+INFO 2025-04-18 23:06:42,987 views 9024 23876 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-18 23:06:43,315 views 9024 23876 Got 10 recommendations
+INFO 2025-04-18 23:06:43,442 basehttp 9024 23876 "GET /api/songs/recommendations/ HTTP/1.1" 200 3087
+INFO 2025-04-18 23:06:47,830 views 9024 23876 User has 2 songs
+INFO 2025-04-18 23:06:47,886 views 9024 23876 User has 0 songs with Spotify IDs
+INFO 2025-04-18 23:06:47,945 views 9024 23876 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-18 23:06:48,230 views 9024 23876 Got 10 recommendations
+INFO 2025-04-18 23:06:48,654 basehttp 9024 23876 "GET /api/songs/recommendations/ HTTP/1.1" 200 3058
+INFO 2025-04-18 23:12:53,211 basehttp 9024 24508 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-18 23:12:53,217 basehttp 9024 22004 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-18 23:12:53,893 views 9024 24508 User has 2 songs
+INFO 2025-04-18 23:12:53,893 views 9024 22004 User has 2 songs
+INFO 2025-04-18 23:12:53,956 views 9024 24508 User has 0 songs with Spotify IDs
+INFO 2025-04-18 23:12:53,958 views 9024 22004 User has 0 songs with Spotify IDs
+INFO 2025-04-18 23:12:54,020 views 9024 24508 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-18 23:12:54,021 views 9024 22004 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-18 23:12:54,329 views 9024 22004 Got 10 recommendations
+INFO 2025-04-18 23:12:54,345 views 9024 24508 Got 10 recommendations
+INFO 2025-04-18 23:12:54,499 basehttp 9024 22004 "GET /api/songs/recommendations/ HTTP/1.1" 200 3031
+INFO 2025-04-18 23:12:54,527 basehttp 9024 24508 "GET /api/songs/recommendations/ HTTP/1.1" 200 3045
+INFO 2025-04-18 23:12:56,291 utils 9024 22004 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-18 23:12:56,808 utils 9024 24508 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-18 23:12:57,857 utils 9024 22004 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-18 23:12:57,882 basehttp 9024 22004 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 386
+INFO 2025-04-18 23:12:58,340 utils 9024 24508 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-18 23:12:58,340 basehttp 9024 24508 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 386
+INFO 2025-04-18 23:12:58,564 basehttp 9024 22004 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 558
+INFO 2025-04-18 23:12:58,970 basehttp 9024 24508 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 558
+INFO 2025-04-18 23:12:59,922 utils 9024 22004 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-18 23:13:00,888 utils 9024 24508 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-18 23:13:01,128 utils 9024 22004 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-18 23:13:01,136 basehttp 9024 22004 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 205
+INFO 2025-04-18 23:13:01,756 utils 9024 24508 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-18 23:13:01,756 basehttp 9024 24508 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 205
+INFO 2025-04-18 23:13:02,506 utils 9024 22004 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-18 23:13:03,529 utils 9024 24508 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-18 23:13:04,070 utils 9024 22004 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-18 23:13:04,085 basehttp 9024 22004 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 118
+INFO 2025-04-18 23:13:04,484 utils 9024 24508 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-18 23:13:04,487 basehttp 9024 24508 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 118
+INFO 2025-04-18 23:13:34,380 views 9024 24508 User has 2 songs
+INFO 2025-04-18 23:13:34,442 views 9024 24508 User has 0 songs with Spotify IDs
+INFO 2025-04-18 23:13:34,507 views 9024 24508 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-18 23:13:34,775 views 9024 24508 Got 10 recommendations
+INFO 2025-04-18 23:13:34,901 basehttp 9024 24508 "GET /api/songs/recommendations/ HTTP/1.1" 200 2898
+INFO 2025-04-18 23:13:40,999 views 9024 24508 User has 2 songs
+INFO 2025-04-18 23:13:41,062 views 9024 24508 User has 0 songs with Spotify IDs
+INFO 2025-04-18 23:13:41,125 views 9024 24508 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-18 23:13:41,394 views 9024 24508 Got 10 recommendations
+INFO 2025-04-18 23:13:41,521 basehttp 9024 24508 "GET /api/songs/recommendations/ HTTP/1.1" 200 2957
+INFO 2025-04-18 23:19:00,184 views 9024 12128 User has 2 songs
+INFO 2025-04-18 23:19:00,247 views 9024 12128 User has 0 songs with Spotify IDs
+INFO 2025-04-18 23:19:00,306 views 9024 12128 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-18 23:19:00,595 views 9024 12128 Got 10 recommendations
+INFO 2025-04-18 23:19:00,710 basehttp 9024 22580 - Broken pipe from ('127.0.0.1', 60918)
+INFO 2025-04-18 23:19:00,716 basehttp 9024 12128 "GET /api/songs/recommendations/ HTTP/1.1" 200 2872
+INFO 2025-04-18 23:19:00,772 views 9024 14864 User has 2 songs
+INFO 2025-04-18 23:19:00,836 views 9024 14864 User has 0 songs with Spotify IDs
+INFO 2025-04-18 23:19:00,912 views 9024 14864 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-18 23:19:01,183 views 9024 14864 Got 10 recommendations
+INFO 2025-04-18 23:19:01,320 basehttp 9024 14864 "GET /api/songs/recommendations/ HTTP/1.1" 200 2977
+INFO 2025-04-18 23:19:01,771 basehttp 9024 11952 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-18 23:19:01,809 basehttp 9024 24496 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-18 23:19:02,339 utils 9024 12128 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-18 23:19:02,403 views 9024 14864 User has 2 songs
+INFO 2025-04-18 23:19:02,460 views 9024 11952 User has 2 songs
+INFO 2025-04-18 23:19:02,474 views 9024 14864 User has 0 songs with Spotify IDs
+INFO 2025-04-18 23:19:02,573 views 9024 14864 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-18 23:19:02,573 views 9024 11952 User has 0 songs with Spotify IDs
+INFO 2025-04-18 23:19:02,643 views 9024 11952 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-18 23:19:02,907 views 9024 14864 Got 10 recommendations
+INFO 2025-04-18 23:19:02,981 views 9024 11952 Got 10 recommendations
+INFO 2025-04-18 23:19:03,048 basehttp 9024 14864 "GET /api/songs/recommendations/ HTTP/1.1" 200 2912
+INFO 2025-04-18 23:19:03,125 basehttp 9024 11952 "GET /api/songs/recommendations/ HTTP/1.1" 200 2910
+INFO 2025-04-18 23:19:03,296 utils 9024 12128 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-18 23:19:03,298 basehttp 9024 12128 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 386
+INFO 2025-04-18 23:19:04,690 utils 9024 14864 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-18 23:19:05,038 utils 9024 11952 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-18 23:19:05,951 utils 9024 14864 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-18 23:19:05,958 basehttp 9024 14864 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 386
+INFO 2025-04-18 23:19:06,195 utils 9024 11952 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-18 23:19:06,197 basehttp 9024 11952 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 386
+INFO 2025-04-18 23:19:06,629 basehttp 9024 14864 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 558
+INFO 2025-04-18 23:19:06,816 basehttp 9024 11952 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 558
+INFO 2025-04-18 23:19:08,476 utils 9024 14864 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-18 23:19:08,673 utils 9024 11952 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-18 23:19:09,630 utils 9024 14864 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-18 23:19:09,632 basehttp 9024 14864 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 205
+INFO 2025-04-18 23:19:09,781 utils 9024 11952 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-18 23:19:09,783 basehttp 9024 11952 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 205
+INFO 2025-04-18 23:19:11,342 utils 9024 14864 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-18 23:19:11,534 utils 9024 11952 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-18 23:19:12,592 utils 9024 14864 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-18 23:19:12,596 basehttp 9024 14864 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 118
+INFO 2025-04-18 23:19:12,682 utils 9024 11952 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-18 23:19:12,685 basehttp 9024 11952 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 118
+INFO 2025-04-18 23:19:23,394 basehttp 9024 14864 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-18 23:19:23,516 basehttp 9024 11952 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-18 23:19:24,200 views 9024 14864 User has 2 songs
+INFO 2025-04-18 23:19:24,295 views 9024 14864 User has 0 songs with Spotify IDs
+INFO 2025-04-18 23:19:24,296 views 9024 11952 User has 2 songs
+INFO 2025-04-18 23:19:24,366 views 9024 14864 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-18 23:19:24,369 views 9024 11952 User has 0 songs with Spotify IDs
+INFO 2025-04-18 23:19:24,462 views 9024 11952 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-18 23:19:24,680 views 9024 14864 Got 10 recommendations
+INFO 2025-04-18 23:19:24,743 views 9024 11952 Got 10 recommendations
+INFO 2025-04-18 23:19:24,808 basehttp 9024 14864 "GET /api/songs/recommendations/ HTTP/1.1" 200 3090
+INFO 2025-04-18 23:19:24,912 basehttp 9024 11952 "GET /api/songs/recommendations/ HTTP/1.1" 200 2987
+INFO 2025-04-18 23:19:26,295 utils 9024 14864 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-18 23:19:26,860 utils 9024 11952 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-18 23:19:27,509 utils 9024 14864 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-18 23:19:27,522 basehttp 9024 14864 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 386
+INFO 2025-04-18 23:19:27,750 utils 9024 11952 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-18 23:19:27,755 basehttp 9024 11952 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 386
+INFO 2025-04-18 23:19:28,200 basehttp 9024 14864 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 558
+INFO 2025-04-18 23:19:28,406 basehttp 9024 11952 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 558
+INFO 2025-04-18 23:19:29,743 utils 9024 14864 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-18 23:19:30,574 utils 9024 11952 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-18 23:19:31,257 utils 9024 14864 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-18 23:19:31,260 basehttp 9024 14864 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 205
+INFO 2025-04-18 23:19:31,730 utils 9024 11952 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-18 23:19:31,732 basehttp 9024 11952 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 205
+INFO 2025-04-18 23:19:32,636 utils 9024 14864 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-18 23:19:33,668 utils 9024 14864 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-18 23:19:33,675 basehttp 9024 14864 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 118
+INFO 2025-04-18 23:19:33,850 utils 9024 11952 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-18 23:19:34,485 utils 9024 11952 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-18 23:19:34,486 basehttp 9024 11952 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 118
+INFO 2025-04-18 23:22:08,200 basehttp 9024 23868 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-18 23:22:08,217 basehttp 9024 13856 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-18 23:22:08,841 views 9024 13856 User has 2 songs
+INFO 2025-04-18 23:22:08,846 views 9024 23868 User has 2 songs
+INFO 2025-04-18 23:22:08,904 views 9024 13856 User has 0 songs with Spotify IDs
+INFO 2025-04-18 23:22:08,912 views 9024 23868 User has 0 songs with Spotify IDs
+INFO 2025-04-18 23:22:08,968 views 9024 13856 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-18 23:22:08,975 views 9024 23868 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-18 23:22:09,335 views 9024 13856 Got 10 recommendations
+INFO 2025-04-18 23:22:09,354 views 9024 23868 Got 10 recommendations
+INFO 2025-04-18 23:22:09,484 basehttp 9024 23868 "GET /api/songs/recommendations/ HTTP/1.1" 200 3057
+INFO 2025-04-18 23:22:09,485 basehttp 9024 13856 "GET /api/songs/recommendations/ HTTP/1.1" 200 2958
+INFO 2025-04-18 23:22:11,166 utils 9024 13856 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-18 23:22:11,254 utils 9024 23868 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-18 23:22:12,224 utils 9024 23868 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-18 23:22:12,236 utils 9024 13856 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-18 23:22:12,236 basehttp 9024 23868 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 386
+INFO 2025-04-18 23:22:12,241 basehttp 9024 13856 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 386
+INFO 2025-04-18 23:22:13,040 basehttp 9024 23868 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 558
+INFO 2025-04-18 23:22:13,193 basehttp 9024 13856 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 558
+INFO 2025-04-18 23:22:15,200 utils 9024 13856 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-18 23:22:15,439 utils 9024 23868 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-18 23:22:16,661 utils 9024 13856 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-18 23:22:16,675 basehttp 9024 13856 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 205
+INFO 2025-04-18 23:22:16,865 utils 9024 23868 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-18 23:22:16,867 basehttp 9024 23868 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 205
+INFO 2025-04-18 23:22:18,432 utils 9024 13856 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-18 23:22:19,039 utils 9024 23868 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-18 23:22:19,719 utils 9024 13856 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-18 23:22:19,724 basehttp 9024 13856 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 118
+INFO 2025-04-18 23:22:20,200 utils 9024 23868 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-18 23:22:20,202 basehttp 9024 23868 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 118
+INFO 2025-04-18 23:22:41,161 views 9024 23868 User has 2 songs
+INFO 2025-04-18 23:22:41,223 views 9024 23868 User has 0 songs with Spotify IDs
+INFO 2025-04-18 23:22:41,285 views 9024 23868 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-18 23:22:41,583 views 9024 23868 Got 10 recommendations
+INFO 2025-04-18 23:22:41,712 basehttp 9024 23868 "GET /api/songs/recommendations/ HTTP/1.1" 200 2955
+INFO 2025-04-18 23:32:36,806 basehttp 9024 24252 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-18 23:32:36,806 basehttp 9024 11516 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-18 23:32:37,547 views 9024 11516 User has 2 songs
+INFO 2025-04-18 23:32:37,553 views 9024 24252 User has 2 songs
+INFO 2025-04-18 23:32:37,612 views 9024 11516 User has 0 songs with Spotify IDs
+INFO 2025-04-18 23:32:37,612 views 9024 24252 User has 0 songs with Spotify IDs
+INFO 2025-04-18 23:32:37,677 views 9024 11516 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-18 23:32:37,677 views 9024 24252 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-18 23:32:38,076 views 9024 11516 Got 10 recommendations
+INFO 2025-04-18 23:32:38,076 views 9024 24252 Got 10 recommendations
+INFO 2025-04-18 23:32:38,207 basehttp 9024 24252 "GET /api/songs/recommendations/ HTTP/1.1" 200 2937
+INFO 2025-04-18 23:32:38,225 basehttp 9024 11516 "GET /api/songs/recommendations/ HTTP/1.1" 200 2981
+INFO 2025-04-18 23:32:41,660 utils 9024 11516 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-18 23:32:41,660 utils 9024 24252 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-18 23:32:44,376 utils 9024 24252 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-18 23:32:44,382 basehttp 9024 24252 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 386
+INFO 2025-04-18 23:32:44,410 utils 9024 11516 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-18 23:32:44,410 basehttp 9024 11516 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 386
+INFO 2025-04-18 23:32:45,193 basehttp 9024 11516 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 558
+INFO 2025-04-18 23:32:45,194 basehttp 9024 24252 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 558
+INFO 2025-04-18 23:32:48,829 utils 9024 24252 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-18 23:32:48,832 utils 9024 11516 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-18 23:32:51,519 utils 9024 11516 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-18 23:32:51,519 utils 9024 24252 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-18 23:32:51,526 basehttp 9024 11516 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 205
+INFO 2025-04-18 23:32:51,526 basehttp 9024 24252 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 205
+INFO 2025-04-18 23:32:54,887 utils 9024 11516 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-18 23:32:54,890 utils 9024 24252 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-18 23:32:57,705 utils 9024 11516 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-18 23:32:57,705 utils 9024 24252 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-18 23:32:57,720 basehttp 9024 11516 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 118
+INFO 2025-04-18 23:32:57,720 basehttp 9024 24252 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 118
+INFO 2025-04-19 00:21:32,622 basehttp 9024 8868 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-19 00:21:33,094 basehttp 9024 22732 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-19 00:21:33,280 views 9024 8868 User has 2 songs
+INFO 2025-04-19 00:21:33,346 views 9024 8868 User has 0 songs with Spotify IDs
+INFO 2025-04-19 00:21:33,408 views 9024 8868 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-19 00:21:33,759 views 9024 8868 Got 10 recommendations
+INFO 2025-04-19 00:21:33,774 views 9024 22732 User has 2 songs
+INFO 2025-04-19 00:21:33,832 views 9024 22732 User has 0 songs with Spotify IDs
+INFO 2025-04-19 00:21:33,891 basehttp 9024 8868 "GET /api/songs/recommendations/ HTTP/1.1" 200 2972
+INFO 2025-04-19 00:21:33,900 views 9024 22732 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-19 00:21:34,193 views 9024 22732 Got 10 recommendations
+INFO 2025-04-19 00:21:34,314 basehttp 9024 22732 "GET /api/songs/recommendations/ HTTP/1.1" 200 2945
+INFO 2025-04-19 00:21:36,649 utils 9024 8868 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 00:21:38,046 utils 9024 22732 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 00:21:39,193 utils 9024 8868 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 00:21:39,213 basehttp 9024 8868 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 386
+INFO 2025-04-19 00:21:39,903 basehttp 9024 8868 - Broken pipe from ('127.0.0.1', 51049)
+INFO 2025-04-19 00:21:40,095 utils 9024 22732 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 00:21:40,102 basehttp 9024 22732 - Broken pipe from ('127.0.0.1', 51048)
+INFO 2025-04-19 00:21:40,155 basehttp 9024 22524 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 558
+INFO 2025-04-19 00:21:41,507 basehttp 9024 22524 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-19 00:21:41,526 basehttp 9024 19880 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-19 00:21:41,624 utils 9024 20888 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 00:21:42,268 views 9024 22524 User has 2 songs
+INFO 2025-04-19 00:21:42,334 views 9024 22524 User has 0 songs with Spotify IDs
+INFO 2025-04-19 00:21:42,350 views 9024 19880 User has 2 songs
+INFO 2025-04-19 00:21:42,413 views 9024 19880 User has 0 songs with Spotify IDs
+INFO 2025-04-19 00:21:42,423 views 9024 22524 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-19 00:21:42,498 views 9024 19880 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-19 00:21:42,821 views 9024 22524 Got 10 recommendations
+INFO 2025-04-19 00:21:42,923 views 9024 19880 Got 10 recommendations
+INFO 2025-04-19 00:21:42,992 basehttp 9024 22524 "GET /api/songs/recommendations/ HTTP/1.1" 200 3050
+INFO 2025-04-19 00:21:43,057 basehttp 9024 19880 "GET /api/songs/recommendations/ HTTP/1.1" 200 2858
+INFO 2025-04-19 00:21:43,318 utils 9024 20888 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 00:21:43,318 basehttp 9024 20888 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 205
+INFO 2025-04-19 00:21:46,279 utils 9024 22524 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 00:21:46,335 utils 9024 19880 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 00:21:48,845 utils 9024 22524 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 00:21:48,860 basehttp 9024 22524 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 386
+INFO 2025-04-19 00:21:48,927 utils 9024 19880 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 00:21:48,935 basehttp 9024 19880 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 386
+INFO 2025-04-19 00:21:49,508 basehttp 9024 22524 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 558
+INFO 2025-04-19 00:21:49,586 basehttp 9024 19880 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 558
+INFO 2025-04-19 00:21:52,931 utils 9024 22524 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 00:21:53,049 utils 9024 19880 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 00:21:55,662 utils 9024 22524 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 00:21:55,676 basehttp 9024 22524 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 205
+INFO 2025-04-19 00:21:55,813 utils 9024 19880 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 00:21:55,813 basehttp 9024 19880 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 205
+INFO 2025-04-19 00:21:59,156 utils 9024 22524 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 00:21:59,647 utils 9024 19880 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 00:22:01,813 utils 9024 22524 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 00:22:01,838 basehttp 9024 22524 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 118
+INFO 2025-04-19 00:22:02,304 utils 9024 19880 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 00:22:02,310 basehttp 9024 19880 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 118
+INFO 2025-04-19 00:52:27,584 basehttp 9024 22536 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-19 00:52:28,132 basehttp 9024 19620 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-19 00:52:28,257 views 9024 22536 User has 2 songs
+INFO 2025-04-19 00:52:28,322 views 9024 22536 User has 0 songs with Spotify IDs
+INFO 2025-04-19 00:52:28,390 views 9024 22536 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-19 00:52:28,681 views 9024 22536 Got 10 recommendations
+INFO 2025-04-19 00:52:28,791 views 9024 19620 User has 2 songs
+INFO 2025-04-19 00:52:28,862 views 9024 19620 User has 0 songs with Spotify IDs
+INFO 2025-04-19 00:52:28,862 basehttp 9024 22536 "GET /api/songs/recommendations/ HTTP/1.1" 200 2985
+INFO 2025-04-19 00:52:28,928 views 9024 19620 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-19 00:52:29,191 views 9024 19620 Got 10 recommendations
+INFO 2025-04-19 00:52:29,319 basehttp 9024 19620 "GET /api/songs/recommendations/ HTTP/1.1" 200 2938
+INFO 2025-04-19 00:52:30,433 utils 9024 22536 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 00:52:31,315 utils 9024 19620 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 00:52:31,773 utils 9024 22536 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 00:52:31,790 basehttp 9024 22536 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 386
+INFO 2025-04-19 00:52:32,494 basehttp 9024 22536 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 558
+INFO 2025-04-19 00:52:32,535 utils 9024 19620 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 00:52:32,535 basehttp 9024 19620 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 386
+INFO 2025-04-19 00:52:33,218 basehttp 9024 19620 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 558
+INFO 2025-04-19 00:52:33,985 utils 9024 22536 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 00:52:35,454 utils 9024 22536 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 00:52:35,464 basehttp 9024 22536 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 205
+INFO 2025-04-19 00:52:35,583 utils 9024 19620 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 00:52:36,389 utils 9024 19620 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 00:52:36,418 basehttp 9024 19620 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 205
+INFO 2025-04-19 00:52:37,075 utils 9024 22536 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 00:52:39,005 utils 9024 22536 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 00:52:39,013 utils 9024 19620 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 00:52:39,013 basehttp 9024 22536 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 118
+INFO 2025-04-19 00:52:40,294 utils 9024 19620 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 00:52:40,294 basehttp 9024 19620 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 118
+INFO 2025-04-19 01:08:44,496 utils 9024 12460 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\The Neighbourhood - Reflections Official Audio - The Neighbourhood.mp3
+INFO 2025-04-19 01:08:44,496 utils 9024 12460 Title: The Neighbourhood - Reflections (Official Audio), Artist: The Neighbourhood, Album: Unknown, Genre: Unknown
+INFO 2025-04-19 01:08:44,512 utils 9024 12460 Loaded existing ID3 tags
+INFO 2025-04-19 01:08:44,592 utils 9024 12460 Looking for local thumbnail: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs/The Neighbourhood - Reflections Official Audio - The Neighbourhood.webp
+INFO 2025-04-19 01:08:44,613 utils 9024 12460 Found local thumbnail: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs/The Neighbourhood - Reflections Official Audio - The Neighbourhood.webp
+INFO 2025-04-19 01:08:44,613 utils 9024 12460 Detected image type: webp
+INFO 2025-04-19 01:08:45,504 utils 9024 12460 Successfully converted image to JPEG: 59821 bytes
+INFO 2025-04-19 01:08:45,504 utils 9024 12460 Adding album art, MIME type: image/jpeg
+INFO 2025-04-19 01:08:45,504 utils 9024 12460 Successfully added album art to ID3 tags
+INFO 2025-04-19 01:08:45,508 utils 9024 12460 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\The Neighbourhood - Reflections Official Audio - The Neighbourhood.mp3 using ID3v2.3
+INFO 2025-04-19 01:08:45,524 utils 9024 12460 Verification: 8 tags were written, has_cover=True
+INFO 2025-04-19 01:08:45,524 utils 9024 12460 Attempting to set system thumbnail property directly (Windows only)
+WARNING 2025-04-19 01:08:45,532 utils 9024 12460 Could not set shell thumbnail: 'int' object has no attribute 'SetInfo'
+INFO 2025-04-19 01:08:46,423 download_helper 9024 12460 Added song to cache: https://www.youtube.com/watch?v=x47TgeRJtH0
+INFO 2025-04-19 01:08:46,534 basehttp 9024 12460 "POST /api/songs/songs/download/ HTTP/1.1" 200 5964805
+INFO 2025-04-19 01:08:47,374 views 9024 12460 Found existing song with URL https://www.youtube.com/watch?v=x47TgeRJtH0, serving directly
+INFO 2025-04-19 01:08:47,508 download_helper 9024 12460 Using cached version for URL: https://www.youtube.com/watch?v=x47TgeRJtH0
+INFO 2025-04-19 01:08:47,508 models 9024 12460 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-18
+INFO 2025-04-19 01:08:47,650 models 9024 12460 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-18 songs_downloaded=85
+INFO 2025-04-19 01:08:47,928 basehttp 9024 12460 "POST /api/songs/songs/download/ HTTP/1.1" 200 5897708
+INFO 2025-04-19 01:08:48,329 basehttp 9024 18164 "GET /api/songs/ HTTP/1.1" 200 107

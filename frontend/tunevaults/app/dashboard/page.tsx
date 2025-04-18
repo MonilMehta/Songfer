@@ -35,10 +35,14 @@ interface UserStats {
 }
 
 interface Artist {
-  name: string
+  name?: string
+  artist?: string
   count: number
   image?: string
+  artist_img?: string
   lastDownloaded?: string
+  country?: string
+  artist_genre?: string
 }
 
 interface Recommendation {

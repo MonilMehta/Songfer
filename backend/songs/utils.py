@@ -1052,7 +1052,16 @@ def get_artist_info(artist_name):
     """
     Search for artist information in the Global Music Artists CSV file
     Returns a dictionary with artist data or None if not found
+    
+    Args:
+        artist_name (str): The name of the artist to search for
+    
+    Returns:
+        dict or None: Dictionary with artist data or None if not found
     """
+    if not artist_name:
+        return None
+
     try:
         csv_path = os.path.join(settings.BASE_DIR, 'songs', 'datasets', 'Global Music Artists.csv')
         if not os.path.exists(csv_path):
@@ -1065,18 +1074,49 @@ def get_artist_info(artist_name):
             # Convert artist name to lowercase for case-insensitive matching
             artist_name_lower = artist_name.lower().strip()
             
+            # First try to find exact match
+            exact_matches = []
+            partial_matches = []
+            words_in_artist_name = set(artist_name_lower.split())
+            
             for row in reader:
-                # Case-insensitive comparison
-                if row.get('artist_name', '').lower().strip() == artist_name_lower:
-                    return {
-                        'artist': row.get('artist_name'),
-                        'artist_genre': row.get('artist_genre'),
-                        'artist_img': row.get('artist_img'),
-                        'artist_id': row.get('artist_id'),
-                        'country': row.get('country')
-                    }
-                    
+                csv_artist_name = row.get('artist_name', '').lower().strip()
+                
+                # Exact match check
+                if csv_artist_name == artist_name_lower:
+                    exact_matches.append(row)
+                # Partial match - either artist name contains the other or they share significant words
+                elif (artist_name_lower in csv_artist_name or 
+                      csv_artist_name in artist_name_lower or
+                      len(words_in_artist_name.intersection(csv_artist_name.split())) >= min(1, len(words_in_artist_name)//2)):
+                    partial_matches.append(row)
+            
+            # If we have exact matches, use the first one
+            if exact_matches:
+                best_match = exact_matches[0]
+                logger.info(f"Found exact match for artist '{artist_name}': {best_match.get('artist_name')}")
+                return {
+                    'artist': best_match.get('artist_name'),
+                    'artist_genre': best_match.get('artist_genre'),
+                    'artist_img': best_match.get('artist_img'),
+                    'artist_id': best_match.get('artist_id'),
+                    'country': best_match.get('country')
+                }
+            
+            # Otherwise use the first partial match if any
+            elif partial_matches:
+                best_match = partial_matches[0]
+                logger.info(f"Found partial match for artist '{artist_name}': {best_match.get('artist_name')}")
+                return {
+                    'artist': best_match.get('artist_name'),
+                    'artist_genre': best_match.get('artist_genre'),
+                    'artist_img': best_match.get('artist_img'),
+                    'artist_id': best_match.get('artist_id'),
+                    'country': best_match.get('country')
+                }
+                
         # If we reach here, artist was not found
+        logger.info(f"No match found for artist '{artist_name}' in CSV data")
         return None
     except Exception as e:
         logger.error(f"Error reading artist CSV: {e}")

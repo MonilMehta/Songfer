@@ -1,17 +1,9 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import { UserIcon } from 'lucide-react'
+import { Headphones, PlusCircle } from 'lucide-react'
 import { ArtistCard } from './artist-card'
 import { useEffect, useState } from 'react'
-
-// This should match what ArtistCard expects
-interface ProcessedArtist {
-  name: string
-  count: number
-  image?: string
-  lastDownloaded?: string
-}
 
 // This matches the backend response
 interface ArtistFromBackend {
@@ -19,7 +11,20 @@ interface ArtistFromBackend {
   name?: string
   count: number
   image?: string
+  artist_img?: string
   lastDownloaded?: string
+  country?: string
+  artist_genre?: string
+}
+
+// This should match what ArtistCard expects
+interface ProcessedArtist {
+  name: string
+  count: number
+  image?: string
+  lastDownloaded?: string
+  country?: string
+  artist_genre?: string
 }
 
 interface ArtistGridProps {
@@ -43,7 +48,9 @@ export function ArtistGrid({ artists, isLoading = false }: ArtistGridProps) {
           name: artistName,
           count: artist.count,
           lastDownloaded: artist.lastDownloaded || new Date().toISOString(),
-          image: artist.image || getArtistImage(artistName)
+          image: artist.artist_img || artist.image || getArtistImage(artistName),
+          country: artist.country,
+          artist_genre: artist.artist_genre
         };
       });
       
@@ -55,7 +62,7 @@ export function ArtistGrid({ artists, isLoading = false }: ArtistGridProps) {
   const getArtistImage = (artistName: string) => {
     // This would be replaced with actual images from your backend
     const hash = artistName.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
-    return `https://source.unsplash.com/random/200x200/?musician&sig=${hash}`;
+    return `https://source.unsplash.com/random/400x400/?musician&sig=${hash}`;
   };
 
   if (isLoading) {
@@ -71,22 +78,43 @@ export function ArtistGrid({ artists, isLoading = false }: ArtistGridProps) {
   }
 
   return (
-    <div className="mt-8">
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center">
-          <UserIcon className="w-5 h-5 mr-2 text-blue-500" />
-          <h2 className="text-xl font-bold">Your Top Artists</h2>
+    <div className="py-8 relative">
+      {/* Decorative Elements */}
+      <div className="absolute -z-10 -left-16 top-20 w-32 h-32 rounded-full bg-primary/5 blur-xl" />
+      <div className="absolute -z-10 right-10 bottom-10 w-40 h-40 rounded-full bg-secondary/5 blur-xl" />
+      
+      {/* Header Section with Funky Typography */}
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10">
+        <div>
+          <h2 className="flex items-center text-3xl font-black">
+            <span className="inline-block transform -rotate-2 text-primary mr-2">YOUR</span>
+            <span className="inline-block transform rotate-1 mr-2">TOP</span>
+            <span className="inline-block transform -rotate-1">ARTISTS</span>
+          </h2>
+          <div className="flex items-center mt-2 text-muted-foreground">
+            <Headphones className="h-4 w-4 mr-2" />
+            <span>{processedArtists.length} artists on rotation</span>
+          </div>
         </div>
-        <Button variant="outline" size="sm" className="text-xs">
-          View All
+        
+        <Button 
+          variant="outline" 
+          size="sm"
+          className="group mt-4 md:mt-0 rounded-full border-dashed border-primary/30"
+        >
+          <PlusCircle className="h-4 w-4 mr-2 group-hover:text-primary" />
+          <span>EXPLORE ARTISTS</span>
         </Button>
       </div>
       
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-        {processedArtists.map((artist, index) => (
-          <ArtistCard key={index} artist={artist} />
+      {/* Artist Grid with even spacing */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {processedArtists.map((artist, idx) => (
+          <div key={idx} className="h-full">
+            <ArtistCard artist={artist} />
+          </div>
         ))}
       </div>
     </div>
   );
-} 
+}

@@ -1,21 +1,23 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import { Sparkles } from 'lucide-react'
 import { RecommendationCard } from './recommendation-card'
+import { FloatingPlayerBar } from '@/components/player/FloatingPlayerBar'
 import { useEffect, useState } from 'react'
+import { useTheme } from 'next-themes'
+import { PlayerProvider } from '@/context/PlayerContext'
 
 // For the processed recommendations that the card component expects
 interface ProcessedRecommendation {
   id: string
   title: string
-  artist: string
+  artist: string | string[]
   artists?: string
   album?: string
   popularity: number
   spotify_id?: string
-  thumbnail_url?: string
-  image_url?: string
+  thumbnail_url?: string | null
+  image_url?: string | null
   genre?: string
 }
 
@@ -48,8 +50,13 @@ export function RecommendationGrid({
   isLoading = false,
   onRefresh
 }: RecommendationGridProps) {
+  const { theme } = useTheme();
   const [processedRecommendations, setProcessedRecommendations] = useState<ProcessedRecommendation[]>([]);
-
+  const [currentPage, setCurrentPage] = useState(0);
+  const [showLoadMoreButton, setShowLoadMoreButton] = useState(false);
+  const itemsPerPage = 5;
+  
+  // Process recommendations from backend format
   useEffect(() => {
     if (recommendations && recommendations.length > 0) {
       const processed = recommendations.map(rec => {
@@ -62,78 +69,169 @@ export function RecommendationGrid({
           // Handle case where artist is actually an array
           artistName = rec.artist.join(', ');
         }
-
-        // Generate a thumbnail URL if one doesn't exist
-        const thumbnailUrl = rec.thumbnail_url || rec.image_url || getThumbnailForSpotifyTrack(rec.spotify_id);
-
+        
         return {
           id: rec.id || rec.spotify_id || `rec-${Math.random().toString(36).substring(2, 9)}`,
           title: rec.title,
-          artist: artistName,
-          artists: artistName, // Duplicate for compatibility
+          artist: rec.artist, // Keep original for processing
+          artists: artistName, // Formatted for display
           album: rec.album || 'Unknown',
           popularity: rec.popularity || 50,
           spotify_id: rec.spotify_id,
-          thumbnail_url: thumbnailUrl,
-          image_url: rec.image_url || thumbnailUrl,
-          genre: rec.genre || getRandomGenre() // This would ideally come from your API
+          thumbnail_url: null, // We'll fetch thumbnails in the card component
+          image_url: null,
+          genre: rec.genre || generateGenreFromTitle(rec.title, artistName) // Generate a genre if not provided
         };
       });
       
       setProcessedRecommendations(processed);
+    } else {
+      setProcessedRecommendations([]);
     }
   }, [recommendations]);
 
-  // Helper function to get a thumbnail for a Spotify track
-  const getThumbnailForSpotifyTrack = (spotifyId?: string) => {
-    if (!spotifyId) {
-      // If no Spotify ID, generate a random placeholder
-      const randomId = Math.floor(Math.random() * 1000);
-      return `https://source.unsplash.com/random/300x300/?album&sig=${randomId}`;
-    }
+  // Generate a genre based on title and artist if not provided by backend
+  const generateGenreFromTitle = (title: string, artist: string): string => {
+    const titles = title.toLowerCase();
+    const artists = artist.toLowerCase();
     
-    // Use the Spotify ID to generate a consistent placeholder
-    return `https://source.unsplash.com/random/300x300/?album&sig=${spotifyId}`;
+    // Simple genre mapping based on keywords
+    if (titles.includes('remix') || artists.includes('dj')) return 'Hip Hop';
+    if (artists.includes('wheeler') || artists.includes('jay')) return 'Jazz';
+    if (artists.includes('imagine') || artists.includes('grande')) return 'Pop';
+    if (artists.includes('weeknd') || artists.includes('electric')) return 'R&B';
+    if (artists.includes('bieber') || artists.includes('chance')) return 'Jazz';
     
-    // In a real app, you might fetch the actual image from Spotify API
-    // return `https://i.scdn.co/image/${spotifyId}`;
-  };
-
-  // Helper function for random genre (temporary)
-  const getRandomGenre = () => {
+    // Random genre assignment
     const genres = ['Hip Hop', 'Pop', 'R&B', 'Rock', 'Electronic', 'Jazz', 'Country', 'Alternative', 'Indie'];
     return genres[Math.floor(Math.random() * genres.length)];
+  };
+
+  const handleNextPage = () => {
+    const nextPage = currentPage + 1;
+    const totalPages = Math.ceil(processedRecommendations.length / itemsPerPage);
+    
+    if (nextPage < totalPages) {
+      setCurrentPage(nextPage);
+    } else {
+      // We've shown all recommendations, now show the load more button
+      setShowLoadMoreButton(true);
+    }
+  };
+  
+  const handleLoadMore = () => {
+    if (onRefresh) {
+      setShowLoadMoreButton(false);
+      setCurrentPage(0);
+      onRefresh();
+    }
   };
 
   if (isLoading) {
     return (
       <div className="flex items-center justify-center h-40">
-        <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-primary"></div>
+        <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-600 dark:border-blue-400"></div>
       </div>
     );
   }
 
   if (!processedRecommendations.length) {
-    return null;
+    return (
+      <div className="mt-6 relative overflow-hidden rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-black p-8 shadow-lg text-center">
+        <div className="wave-animation"></div>
+        <div className="relative z-10">
+          <h3 className="text-xl font-bold text-slate-800 dark:text-white mb-3">No Recommendations Available</h3>
+          <p className="text-sm text-slate-600 dark:text-slate-400 mb-6">We're still learning your musical taste</p>
+          <Button 
+            onClick={onRefresh}
+            className="bg-blue-600 hover:bg-blue-700 text-white"
+          >
+            Discover New Music
+          </Button>
+        </div>
+      </div>
+    );
   }
 
+  // Get current page of recommendations
+  const currentRecommendations = processedRecommendations.slice(
+    currentPage * itemsPerPage, 
+    (currentPage + 1) * itemsPerPage
+  );
+  
+  const totalPages = Math.ceil(processedRecommendations.length / itemsPerPage);
+
   return (
-    <div className="mt-8">
-      <div className="flex items-center justify-between mb-4">
-        <div className="flex items-center">
-          <Sparkles className="w-5 h-5 mr-2 text-primary" />
-          <h2 className="text-xl font-bold">Recommended for You</h2>
+    <PlayerProvider>
+      <div className="mt-6 relative overflow-hidden rounded-xl bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-900 dark:to-black p-6 shadow-lg">
+        {/* Wave animation */}
+        <div className="wave-animation"></div>
+        
+        <div className="relative z-10">
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <h2 className="text-xl font-bold text-slate-800 dark:text-white">Your Vibe <span className="text-blue-600 dark:text-blue-400">Today</span></h2>
+              <p className="text-sm text-slate-600 dark:text-slate-400">Fresh picks based on your taste</p>
+            </div>
+            
+            {!showLoadMoreButton ? (
+              <Button 
+                variant="ghost" 
+                size="sm"
+                className="text-slate-800 dark:text-white bg-white/80 dark:bg-blue-900/40 hover:bg-slate-200 dark:hover:bg-blue-800/60 gap-2 h-9 px-4"
+                onClick={handleNextPage}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
+                  <polygon points="5 4 15 12 5 20 5 4"></polygon>
+                </svg>
+                Next {itemsPerPage}
+              </Button>
+            ) : (
+              <Button 
+                variant="outline" 
+                size="sm"
+                className="text-slate-800 dark:text-white border-slate-300 dark:border-blue-700 hover:bg-slate-100 dark:hover:bg-blue-800/60 gap-2 h-9 px-4"
+                onClick={handleLoadMore}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
+                  <path d="M21 12a9 9 0 0 1-9 9"></path>
+                  <path d="M3 12a9 9 0 0 1 9-9"></path>
+                  <path d="M21 12c0-4.97-4.03-9-9-9"></path>
+                  <polyline points="12 3 12 9 16 9"></polyline>
+                </svg>
+                Get New Recommendations
+              </Button>
+            )}
+          </div>
+          
+          {/* Pagination dots */}
+          {totalPages > 1 && !showLoadMoreButton && (
+            <div className="flex justify-center mb-6">
+              <div className="flex gap-1.5">
+                {Array.from({ length: totalPages }).map((_, i) => (
+                  <div 
+                    key={i} 
+                    className={`w-2 h-2 rounded-full transition-all duration-300 ${i === currentPage ? 'bg-blue-600 dark:bg-blue-500 scale-125' : 'bg-slate-400 dark:bg-slate-600 opacity-70'}`}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
+          
+          {/* Recommendations grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
+            {currentRecommendations.map((song) => (
+              <RecommendationCard 
+                key={song.id} 
+                song={song}
+              />
+            ))}
+          </div>
         </div>
-        <Button variant="outline" size="sm" className="text-xs" onClick={onRefresh}>
-          Refresh
-        </Button>
       </div>
       
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {processedRecommendations.map((song) => (
-          <RecommendationCard key={song.id} song={song} />
-        ))}
-      </div>
-    </div>
+      {/* Floating Player Bar */}
+      <FloatingPlayerBar />
+    </PlayerProvider>
   );
-} 
+}

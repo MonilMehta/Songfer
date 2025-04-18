@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 import Footer from "@/components/custom/Footer";
+import { PlayerProvider } from '@/context/PlayerContext'
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,10 +27,12 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <main className="min-h-screen flex flex-col">
-            {children}
-            <Footer />
-          </main>
+          <PlayerProvider>
+            <main className="min-h-screen flex flex-col">
+              {children}
+              <Footer />
+            </main>
+          </PlayerProvider>
           <Toaster />
         </ThemeProvider>
       </body>
