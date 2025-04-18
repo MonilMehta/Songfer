@@ -7,6 +7,18 @@ import { useToast } from '@/hooks/use-toast'
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 import { Label } from "@/components/ui/label"
 import React from 'react'
+import * as musicMetadata from 'music-metadata-browser'
+import { 
+  MediaPreviewData, 
+  extractVideoId, 
+  fetchYouTubeData, 
+  fetchSpotifyData,
+  generateFilename,
+  cleanupFilename,
+  getPlaylistDownloadEndpoint,
+  extractMetadataFromHeaders,
+  PlaylistDownloadResponse
+} from '@/utils/media-data-fetcher'
 
 interface DownloadFormProps {
   onDownload: (url: string, format: string) => void
@@ -14,27 +26,26 @@ interface DownloadFormProps {
   isPremium?: boolean
 }
 
-interface PreviewData {
-  title: string
-  artist: string
-  thumbnail: string
-  platform: 'youtube' | 'spotify'
-  isPlaylist: boolean
-  songCount?: number
-  url: string
-  id: string
+// Create an interface for ID3 tag metadata
+interface ID3Metadata {
+  title?: string
+  artist?: string
+  album?: string
+  year?: string
+  picture?: { format: string, data: Uint8Array }[]
 }
 
 export function DownloadForm({ onDownload, isLoading, isPremium = false }: DownloadFormProps) {
   const [url, setUrl] = useState('')
   const [format, setFormat] = useState('mp3')
-  const [preview, setPreview] = useState<PreviewData | null>(null)
+  const [preview, setPreview] = useState<MediaPreviewData | null>(null)
   const [isPreviewLoading, setIsPreviewLoading] = useState(false)
   const [downloadProgress, setDownloadProgress] = useState(0)
   const [isDownloading, setIsDownloading] = useState(false)
   const [downloadComplete, setDownloadComplete] = useState(false)
   const [downloadedFile, setDownloadedFile] = useState<Blob | null>(null)
   const [filename, setFilename] = useState('')
+  const [id3Metadata, setId3Metadata] = useState<ID3Metadata | null>(null)
   const audioRef = useRef<HTMLAudioElement>(null)
   const { toast } = useToast()
   const hasSavedRef = useRef(false)
@@ -46,10 +57,11 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
     setDownloadComplete(false)
     setDownloadedFile(null)
     setFilename('')
+    setId3Metadata(null)
     hasSavedRef.current = false
     if (audioRef.current) {
-      audioRef.current.src = '';
-      audioRef.current.removeAttribute('src');
+      audioRef.current.src = ''
+      audioRef.current.removeAttribute('src')
     }
   }, [url])
 
@@ -57,416 +69,78 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
     return localStorage.getItem('token') || ''
   }
 
-  const isYoutubePlaylist = (url: string) => {
-    return url.includes('youtube.com') && url.includes('list=')
-  }
-
-  const isSpotifyPlaylist = (url: string) => {
-    return url.includes('spotify.com/playlist/')
-  }
-
-  const extractVideoId = (url: string): { id: string, platform: 'youtube' | 'spotify', isPlaylist: boolean, playlistId?: string } | null => {
-    try {
-        const cleanedUrl = new URL(url);
-        const pathSegments = cleanedUrl.pathname.split('/').filter(Boolean);
-
-        if ((cleanedUrl.hostname.includes('youtube.com') && cleanedUrl.searchParams.has('v')) || cleanedUrl.hostname.includes('youtu.be')) {
-            const videoId = cleanedUrl.hostname.includes('youtu.be') ? pathSegments[0] : cleanedUrl.searchParams.get('v');
-            if (!videoId || videoId.length !== 11) return null;
-            const isPlaylist = cleanedUrl.searchParams.has('list');
-            const playlistId = isPlaylist ? cleanedUrl.searchParams.get('list') || undefined : undefined;
-            return { id: videoId, platform: 'youtube', isPlaylist, playlistId };
-        }
-
-        if (cleanedUrl.hostname.includes('youtube.com') && (cleanedUrl.searchParams.has('list') || pathSegments[0] === 'playlist')) {
-             const playlistId = cleanedUrl.searchParams.get('list') || (pathSegments[0] === 'playlist' ? pathSegments[1] : undefined);
-            if (!playlistId) return null;
-            return { id: playlistId, platform: 'youtube', isPlaylist: true };
-        }
-
-        // More robust Spotify track ID extraction
-        if (cleanedUrl.hostname.includes('spotify.com') && pathSegments[0] === 'track') {
-            let trackId = pathSegments[1];
-            // Some Spotify URLs have shortened IDs, extract them properly
-            if (trackId) {
-                // Remove any query parameters that might be in the ID
-                trackId = trackId.split('?')[0];
-                console.log('Extracted Spotify track ID:', trackId);
-                return { id: trackId, platform: 'spotify', isPlaylist: false };
-            }
-            return null;
-        }
-
-        if (cleanedUrl.hostname.includes('spotify.com') && pathSegments[0] === 'playlist' && pathSegments[1]) {
-            let playlistId = pathSegments[1];
-            // Some Spotify URLs have shortened IDs, extract them properly
-            if (playlistId) {
-                // Remove any query parameters that might be in the ID
-                playlistId = playlistId.split('?')[0];
-                console.log('Extracted Spotify playlist ID:', playlistId);
-                return { id: playlistId, platform: 'spotify', isPlaylist: true };
-            }
-            return null;
-        }
-
-    } catch (e) {
-        console.error("Error parsing URL:", e);
-        return null;
-    }
-
-    return null;
-}
-
-  const fetchYouTubeData = async (videoId: string, isPlaylist: boolean, playlistId?: string) => {
-    try {
-      if (isPlaylist && playlistId) {
-        let firstVideoId = videoId;
-        try {
-          const playlistItemsResponse = await fetch(`https://noembed.com/embed?url=https://www.youtube.com/playlist?list=${playlistId}`);
-          if (playlistItemsResponse.ok) {
-             const playlistData = await playlistItemsResponse.json();
-             const thumbnailUrl = playlistData.thumbnail_url;
-             if (thumbnailUrl && typeof thumbnailUrl === 'string') {
-               const videoIdMatch = thumbnailUrl.match(/vi\/([a-zA-Z0-9_-]{11})\//);
-               if (videoIdMatch && videoIdMatch[1]) {
-                 firstVideoId = videoIdMatch[1];
-               }
-             }
-          }
-        } catch (itemError) {
-            console.warn("Could not fetch first video details for playlist thumbnail, using fallback.", itemError);
-        }
-
-        const playlistResponse = await fetch(`https://noembed.com/embed?url=https://www.youtube.com/playlist?list=${playlistId}`).catch(() => null);
-
-        if (playlistResponse?.ok) {
-          const data = await playlistResponse.json();
-          return {
-            title: data.title || 'YouTube Playlist',
-            artist: data.author_name || 'Various Artists',
-            thumbnail: `https://img.youtube.com/vi/${firstVideoId}/maxresdefault.jpg`,
-            platform: 'youtube' as const,
-            isPlaylist: true,
-            songCount: data.videos || 'Multiple',
-            url,
-            id: playlistId
-          };
-        }
-        
-        return {
-          title: 'YouTube Playlist',
-          artist: 'Various Artists',
-          thumbnail: `https://img.youtube.com/vi/${firstVideoId}/maxresdefault.jpg`,
-          platform: 'youtube' as const,
-          isPlaylist: true,
-          songCount: 'Multiple',
-          url,
-          id: playlistId
-        };
-      } else {
-        const response = await fetch(`https://noembed.com/embed?url=https://www.youtube.com/watch?v=${videoId}`);
-
-        if (!response.ok) {
-          throw new Error('Failed to fetch video data');
-        }
-
-        const data = await response.json();
-        
-        // Just clean up the title without trying to extract artist information
-        let videoTitle = data.title || 'YouTube Video';
-        videoTitle = videoTitle
-          .replace(/\(Official Music Video\)/gi, '')
-          .replace(/\(Official Video\)/gi, '')
-          .replace(/\(Lyrics\)/gi, '')
-          .replace(/\(Lyric Video\)/gi, '')
-          .replace(/\(Audio\)/gi, '')
-          .replace(/\(Official Audio\)/gi, '')
-          .replace(/\[\s*HD\s*\]/gi, '')
-          .replace(/\s{2,}/g, ' ')
-          .trim();
-
-        let thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
-        try {
-            const imgResponse = await fetch(thumbnailUrl, { method: 'HEAD' });
-            if (!imgResponse.ok) {
-                 thumbnailUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
-            }
-        } catch (imgError) {
-             thumbnailUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
-        }
-
-        // Clean up artist name - remove VEVO, Official, Topic, etc.
-        let artistName = data.author_name || 'Unknown Artist';
-        artistName = artistName
-          .replace(/VEVO$/i, '')
-          .replace(/Official$/i, '')
-          .replace(/Topic$/i, '')
-          .replace(/\s{2,}/g, ' ')
-          .trim();
-
-        return {
-          title: videoTitle,
-          artist: artistName,
-          thumbnail: thumbnailUrl,
-          platform: 'youtube' as const,
-          isPlaylist: false,
-          url,
-          id: videoId
-        };
-      }
-    } catch (error) {
-      console.error('Error fetching YouTube data:', error);
-      throw error;
-    }
-  }
-
-  const fetchSpotifyData = async (id: string, isPlaylist: boolean, url: string) => {
-    try {
-      const token = getAuthToken();
-      if (!token) {
-        console.warn("Authentication token missing for Spotify data fetch");
-        return {
-          title: isPlaylist ? 'Spotify Playlist' : 'Spotify Track',
-          artist: '💿',
-          thumbnail: '/default-song-cover.jpg',
-          platform: 'spotify' as const,
-          isPlaylist,
-          songCount: isPlaylist ? undefined : undefined,
-          url,
-          id
-        };
-      }
-
-      const endpoint = isPlaylist ? 'playlists' : 'tracks';
-      
-      const fetchUrl = `http://localhost:8000/api/songs/spotify/${endpoint}/${id}/`;
-      
-      console.log(`Fetching Spotify data from: ${fetchUrl}`);
-
-      const response = await fetch(fetchUrl, {
-           headers: {
-              'Authorization': `Token ${token}`,
-           }
-      }).catch(error => {
-        console.error("Network error fetching Spotify data:", error);
-        return null; // Return null on network error to handle below
-      });
-
-      if (!response || !response.ok) {
-          console.log(`First Spotify URL failed, trying alternate URL format...`);
-          
-          const altUrl = `http://localhost:8000/api/songs/spotify-${isPlaylist ? 'playlist' : 'track'}/${id}/`;
-          
-          console.log(`Trying alternate URL: ${altUrl}`);
-          const altResponse = await fetch(altUrl, {
-            headers: {
-                'Authorization': `Token ${token}`,
-            }
-          }).catch(error => {
-            console.error("Network error fetching Spotify data (alt URL):", error);
-            return null;
-          });
-          
-          if (!altResponse || !altResponse.ok) {
-              const thirdUrl = `http://localhost:8000/api/spotify/${endpoint}/${id}/`;
-              console.log(`Trying third URL format: ${thirdUrl}`);
-              
-              const thirdResponse = await fetch(thirdUrl, {
-                headers: {
-                  'Authorization': `Token ${token}`,
-                }
-              }).catch(error => {
-                console.error("Network error fetching Spotify data (third URL):", error);
-                return null;
-              });
-              
-              if (!thirdResponse || !thirdResponse.ok) {
-                // If all three attempts fail, return a placeholder
-                console.warn("All Spotify API endpoints failed, using fallback data");
-                return {
-                  title: isPlaylist ? 'Spotify Playlist' : 'Spotify Track',
-                  artist: '💿',
-                  thumbnail: '/default-song-cover.jpg',
-                  platform: 'spotify' as const,
-                  isPlaylist,
-                  songCount: isPlaylist ? undefined : undefined,
-                  url,
-                  id
-                };
-              }
-              
-              const data = await thirdResponse.json();
-              return processSpotifyData(data, isPlaylist, id, url);
-          }
-          
-          const data = await altResponse.json();
-          return processSpotifyData(data, isPlaylist, id, url);
-      }
-
-      const data = await response.json();
-      return processSpotifyData(data, isPlaylist, id, url);
-    } catch (error) {
-      console.error('Error in fetchSpotifyData:', error);
-      
-      return {
-        title: isPlaylist ? 'Spotify Playlist' : 'Spotify Track',
-        artist: '💿',
-        thumbnail: '/default-song-cover.jpg',
-        platform: 'spotify' as const,
-        isPlaylist,
-        songCount: isPlaylist ? undefined : undefined,
-        url,
-        id
-      };
-    }
-  }
-
-  const processSpotifyData = (data: any, isPlaylist: boolean, id: string, url: string) => {
-      // For tracks, look for specific track properties based on Spotify API response
-      if (!isPlaylist && data) {
-        // Get proper song title
-        let title = data.name;
-        
-        // Get all artists if available
-        let artist = '';
-        if (data.artists && Array.isArray(data.artists) && data.artists.length > 0) {
-          artist = data.artists.map((a: any) => a.name).join(', ');
-        } else if (data.artist && data.artist.name) {
-          // Some endpoints return artist in a different format
-          artist = data.artist.name;
-        }
-        
-        // Get album info if available
-        let albumName = '';
-        if (data.album && data.album.name) {
-          albumName = data.album.name;
-        }
-        
-        // For song titles that are just generic names like "Track" or numbers, 
-        // enhance with album name if available
-        if (title && (title.length < 3 || /^track\s*\d*$/i.test(title)) && albumName) {
-          title = `${title} (${albumName})`;
-        }
-        
-        console.log('Processed Spotify track data:', { title, artist, id });
-        
-        return {
-          title: title || 'Spotify Track',
-          artist: artist || '💿',
-          thumbnail: data.album?.images?.[0]?.url || '/default-song-cover.jpg',
-          platform: 'spotify' as const,
-          isPlaylist,
-          songCount: undefined,
-          url,
-          id: data.id || id
-        };
-      }
-      
-      // Handle playlists
-      if (isPlaylist && data) {
-        return {
-          title: data.name || 'Spotify Playlist',
-          artist: data.owner?.display_name || 'Various Artists',
-          thumbnail: data.images?.[0]?.url || '/default-song-cover.jpg',
-          platform: 'spotify' as const,
-          isPlaylist,
-          songCount: data.tracks?.total,
-          url,
-          id: data.id || id
-        };
-      }
-      
-      // Fallback for invalid or incomplete data
-      return {
-        title: data?.name || (isPlaylist ? 'Spotify Playlist' : 'Spotify Track'),
-        artist: isPlaylist ? (data?.owner?.display_name || 'Various Artists') : 
-                          (data?.artists?.map((a: { name: string }) => a.name).join(', ') || '💿'),
-        thumbnail: isPlaylist ? (data?.images?.[0]?.url || '/default-song-cover.jpg') : 
-                             (data?.album?.images?.[0]?.url || '/default-song-cover.jpg'),
-        platform: 'spotify' as const,
-        isPlaylist,
-        songCount: isPlaylist ? data?.tracks?.total : undefined,
-        url,
-        id: data?.id || id
-      };
-  }
-
   const clearAudioSource = () => {
     if (audioRef.current) {
       if (audioRef.current.src && audioRef.current.src.startsWith('blob:')) {
-        URL.revokeObjectURL(audioRef.current.src);
+        URL.revokeObjectURL(audioRef.current.src)
       }
-      audioRef.current.src = '';
-      audioRef.current.removeAttribute('src');
+      audioRef.current.src = ''
+      audioRef.current.removeAttribute('src')
     }
   }
 
   const handlePreview = async () => {
-    if (!url || isPreviewLoading || isDownloading) return;
+    if (!url || isPreviewLoading || isDownloading) return
 
-    setIsPreviewLoading(true);
-    setPreview(null);
-    setDownloadProgress(0);
-    setIsDownloading(false);
-    setDownloadComplete(false);
-    setDownloadedFile(null);
-    setFilename('');
-    hasSavedRef.current = false;
+    setIsPreviewLoading(true)
+    setPreview(null)
+    setDownloadProgress(0)
+    setIsDownloading(false)
+    setDownloadComplete(false)
+    setDownloadedFile(null)
+    setFilename('')
+    setId3Metadata(null)
+    hasSavedRef.current = false
     
-    clearAudioSource();
+    clearAudioSource()
 
     try {
-      const videoInfo = extractVideoId(url);
-      console.log("Extracted Video Info:", videoInfo);
+      const videoInfo = extractVideoId(url)
+      console.log("Extracted Video Info:", videoInfo)
 
       if (!videoInfo) {
         toast({
           title: "Invalid URL",
           description: "Please enter a valid YouTube or Spotify URL.",
           variant: "destructive"
-        });
-        setIsPreviewLoading(false);
-        return;
+        })
+        setIsPreviewLoading(false)
+        return
       }
 
-      let data;
+      let data: MediaPreviewData
       if (videoInfo.platform === 'youtube') {
-        data = await fetchYouTubeData(videoInfo.id, videoInfo.isPlaylist, videoInfo.playlistId);
+        data = await fetchYouTubeData(videoInfo.id, videoInfo.isPlaylist, videoInfo.playlistId, url)
       } else { 
-        data = await fetchSpotifyData(videoInfo.id, videoInfo.isPlaylist, url);
+        data = await fetchSpotifyData(videoInfo.id, videoInfo.isPlaylist, url, getAuthToken())
       }
 
       if (!data) {
-          throw new Error("Failed to fetch preview data");
+          throw new Error("Failed to fetch preview data")
       }
 
-      const songCount = typeof data.songCount === 'number' ? data.songCount : (typeof data.songCount === 'string' && data.songCount !== 'Multiple' ? parseInt(data.songCount, 10) : undefined);
-      const previewData: PreviewData = {
-          title: data.title,
-          artist: data.artist,
-          thumbnail: data.thumbnail,
-          platform: videoInfo.platform,
-          isPlaylist: data.isPlaylist,
-          songCount: songCount && !isNaN(songCount) ? songCount : undefined,
-          url: url,
-          id: data.id
-      };
-      setPreview(previewData);
+      const songCount = typeof data.songCount === 'number' ? data.songCount : (typeof data.songCount === 'string' && data.songCount !== 'Multiple' ? parseInt(data.songCount, 10) : undefined)
+      const previewData: MediaPreviewData = {
+          ...data,
+          songCount: songCount && !isNaN(songCount) ? songCount : undefined
+      }
+      
+      setPreview(previewData)
       toast({
           title: "Preview Loaded",
           description: "Check the details and choose a format.",
-      });
+      })
 
     } catch (error) {
-      console.error('Error in handlePreview:', error);
+      console.error('Error in handlePreview:', error)
       toast({
         title: "Preview Failed",
         description: error instanceof Error ? error.message : "Could not load preview for this URL.",
         variant: "destructive"
-      });
-       setPreview(null); 
+      })
+       setPreview(null)
     } finally {
-      setIsPreviewLoading(false);
+      setIsPreviewLoading(false)
     }
   }
 
@@ -477,81 +151,130 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
             downloadedFile: typeof downloadedFile, 
             hasFile: !!downloadedFile,
             filename 
-        });
+        })
         toast({ 
             title: "Save Error", 
             description: "Could not save file. Please try downloading again.", 
             variant: "destructive" 
-        });
-        return;
+        })
+        return
     }
 
-    console.log(`Saving file: ${filename} (${downloadedFile.size} bytes)`);
+    console.log(`Saving file: ${filename} (${downloadedFile.size} bytes)`)
     
     try {
         // Create a blob URL from the downloaded file
-        const blobUrl = window.URL.createObjectURL(downloadedFile);
+        const blobUrl = window.URL.createObjectURL(downloadedFile)
         
         // Set up download element
-        const a = document.createElement('a');
-        a.href = blobUrl;
-        a.download = filename;
-        a.style.display = 'none';
-        document.body.appendChild(a);
+        const a = document.createElement('a')
+        a.href = blobUrl
+        a.download = filename
+        a.style.display = 'none'
+        document.body.appendChild(a)
         
         // Trigger download
-        a.click();
+        a.click()
         
         // Clean up resources after download starts
         setTimeout(() => {
-            window.URL.revokeObjectURL(blobUrl);
-            document.body.removeChild(a);
-        }, 100);
+            window.URL.revokeObjectURL(blobUrl)
+            document.body.removeChild(a)
+        }, 100)
         
         toast({
             title: "File Saved",
             description: `${filename} has been saved to your device.`,
-        });
+        })
     } catch (e) {
-        console.error("Error initiating file download:", e);
+        console.error("Error initiating file download:", e)
         toast({ 
             title: "Save Error", 
             description: "Failed to trigger download. Please try again.", 
             variant: "destructive" 
-        });
+        })
     }
     
     // We deliberately don't reset downloadedFile or downloadComplete state 
     // so the user can save the same file multiple times without re-downloading
   }
 
+  // Parse ID3 tags from MP3 file
+  const extractID3Tags = async (blob: Blob): Promise<ID3Metadata> => {
+    try {
+      console.log('Attempting to extract ID3 tags from MP3 file...', { type: blob.type, size: blob.size })
+      
+      // Ensure it looks like an MP3 file before parsing
+      if (!blob.type.includes('mpeg') && !blob.type.includes('mp3')) {
+        console.warn('Blob does not appear to be an MP3 file, skipping ID3 extraction.')
+        return {}
+      }
+
+      const metadata = await musicMetadata.parseBlob(blob, { 
+        skipCovers: false, 
+        skipPostHeaders: false,
+        duration: true
+      })
+      console.log('Raw ID3 tags extracted:', metadata)
+      
+      // Extract relevant information, logging each piece
+      const title = metadata.common.title || undefined
+      const artist = metadata.common.artist || metadata.common.artists?.[0] || undefined
+      const album = metadata.common.album || undefined
+      const year = metadata.common.year?.toString() || undefined
+      
+      console.log('Extracted ID3 Fields:', { title, artist, album, year })
+      
+      const id3Data: ID3Metadata = {
+        title: title,
+        artist: artist,
+        album: album,
+        year: year,
+        picture: metadata.common.picture
+      }
+      
+      return id3Data
+    } catch (error) {
+      console.error('Error extracting ID3 tags:', error)
+      // Return empty object on error so the calling function knows it failed
+      return {}
+    }
+  }
+
   const handleDownloadMedia = async () => {
     if (preview && downloadComplete && downloadedFile && filename) {
-        console.log("File already downloaded. Saving existing file...");
-        saveToDevice();
-        return;
+        console.log("File already downloaded. Saving existing file...")
+        saveToDevice()
+        return
     }
 
-    if (!preview || isDownloading) return;
+    if (!preview || isDownloading) return
 
-    setIsDownloading(true);
-    setDownloadProgress(0);
-    setDownloadComplete(false); 
-    setDownloadedFile(null); 
+    setIsDownloading(true)
+    setDownloadProgress(0)
+    setDownloadComplete(false)
+    setDownloadedFile(null)
+    setId3Metadata(null)
 
     const interval = setInterval(() => {
       setDownloadProgress(prev => {
         if (prev >= 90) {
-          clearInterval(interval);
-          return 90;
+          clearInterval(interval)
+          return 90
         }
-        return prev + Math.floor(Math.random() * 5) + 1;
-      });
-    }, 300);
+        return prev + Math.floor(Math.random() * 5) + 1
+      })
+    }, 300)
 
     try {
-      const token = getAuthToken();
-      if (!token) throw new Error('Authentication required to download.');
+      const token = getAuthToken()
+      if (!token) throw new Error('Authentication required to download.')
+
+      // For playlists from Spotify, use special playlist download endpoint
+      if (preview.isPlaylist && preview.platform === 'spotify') {
+        await handleSpotifyPlaylistDownload(token, interval)
+        return
+      }
 
       const response = await fetch('http://localhost:8000/api/songs/songs/download/', {
         method: 'POST',
@@ -560,149 +283,280 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
           'Authorization': `Token ${token}`,
         },
         body: JSON.stringify({ url: preview.url, format }),
-      });
+      })
 
-      clearInterval(interval);
+      clearInterval(interval)
 
       if (!response.ok) {
         // Check for rate limit (429) error specifically
         if (response.status === 429) {
-          throw new Error('You have hit the daily limit!! Please try again tomorrow.');
+          throw new Error('You have hit the daily limit!! Please try again tomorrow.')
         }
 
-        let errorMessage = `Download failed: ${response.status}`;
+        let errorMessage = `Download failed: ${response.status}`
         try {
-             const errorData = await response.json();
-             errorMessage = errorData.message || errorData.detail || errorMessage;
+             const errorData = await response.json()
+             errorMessage = errorData.message || errorData.detail || errorMessage
         } catch (e) {
-             errorMessage = `Download failed: ${response.status} ${response.statusText}`;
+             errorMessage = `Download failed: ${response.status} ${response.statusText}`
         }
-        throw new Error(errorMessage);
+        throw new Error(errorMessage)
       }
 
-      const contentType = response.headers.get('content-type');
+      const contentType = response.headers.get('content-type')
 
       if (contentType && (contentType.includes('audio/') || contentType.includes('application/zip'))) {
-        const contentDisposition = response.headers.get('content-disposition');
-        const filenameMatch = contentDisposition?.match(/filename\*?=['"]?([^'";]+)['"]?/);
-        let outputFilename = "download";
+        const contentDisposition = response.headers.get('content-disposition')
+        const filenameMatch = contentDisposition?.match(/filename\*?=['"]?([^'";]+)['"]?/)
+        let outputFilename = ''; // Initialize filename
         
-        // Get metadata from response headers
-        const songTitle = response.headers.get('x-song-title');
-        const songArtist = response.headers.get('x-song-artist');
-        const songAlbum = response.headers.get('x-album-name');
-        const songDuration = response.headers.get('x-duration');
+        // Extract and log ALL metadata from response headers
+        const metadata = extractMetadataFromHeaders(response.headers)
+        console.log('Headers metadata:', metadata)
         
-        console.log('Metadata from headers:', { songTitle, songArtist, songAlbum, songDuration });
+        // Get the blob first so we can extract ID3 tags if needed
+        const blob = await response.blob()
+        console.log(`Blob received (${blob.size} bytes)`)
         
-        if (filenameMatch && filenameMatch[1]) {
-          try { 
-            outputFilename = decodeURIComponent(filenameMatch[1]); 
-          } catch (e) { 
-            outputFilename = filenameMatch[1]; 
-          }
-          
-          // Clean up filename for better readability even if server provided one
-          outputFilename = cleanupFilename(outputFilename, preview);
-        } else {
-          // Create our own filename if server didn't provide one
-          outputFilename = generateFilename(preview, format);
+        // Try to extract ID3 tags if it's an MP3 file
+        let extractedID3: ID3Metadata = {}
+        if (contentType.includes('audio/mpeg') || contentType.includes('audio/mp3')) {
+          extractedID3 = await extractID3Tags(blob)
+          setId3Metadata(extractedID3) // Store for potential later use
         }
         
-        // Use metadata from headers if available (this is the most reliable source)
-        if (songTitle && songArtist) {
-          console.log(`Using metadata from headers: Title=${songTitle}, Artist=${songArtist}`);
-          // Clean up the metadata (removes "Official Music Video" etc)
-          const cleanTitle = songTitle
-            .replace(/\(Official Music Video\)/gi, '')
-            .replace(/\(Official Video\)/gi, '')
-            .replace(/\(Lyrics\)/gi, '')
-            .replace(/\(Lyric Video\)/gi, '')
-            .replace(/\(Audio\)/gi, '')
-            .replace(/\(Official Audio\)/gi, '')
-            .replace(/\[\s*HD\s*\]/gi, '')
-            .replace(/\s{2,}/g, ' ')
-            .trim();
-          
-          // Create a proper filename with artist and title
-          outputFilename = `${songArtist} - ${cleanTitle}.${preview.isPlaylist ? 'zip' : format}`;
-          // Clean up any invalid characters
-          outputFilename = outputFilename.replace(/[/\\?%*:|"<>]/g, '-');
+        // --- Filename Logic --- 
+        // Priority 1: Use ID3 tags if BOTH title and artist are present
+        if (extractedID3.title && extractedID3.artist) {
+          console.log(`Using ID3 metadata: Title="${extractedID3.title}", Artist="${extractedID3.artist}"`);
+          outputFilename = `${extractedID3.artist} - ${extractedID3.title}.${format}`; 
+        }
+        // Priority 2: Use headers if BOTH title and artist are present (and ID3 failed)
+        else if (metadata.title && metadata.artist) {
+          console.log(`Using header metadata: Title="${metadata.title}", Artist="${metadata.artist}"`);
+          let finalTitle = metadata.title; // Start with header title
+          // Apply YouTube specific cleaning if needed
+          if (preview && preview.platform === 'youtube') {
+            finalTitle = finalTitle
+              .replace(/\(Official Music Video\)/gi, '')
+              .replace(/\(Official Video\)/gi, '')
+              .replace(/\(Lyrics\)/gi, '')
+              .replace(/\(Lyric Video\)/gi, '')
+              .replace(/\(Audio\)/gi, '')
+              .replace(/\(Official Audio\)/gi, '')
+              .replace(/\[\s*HD\s*\]/gi, '')
+              .replace(/\s{2,}/g, ' ')
+              .trim();
+            const dashIndex = finalTitle.indexOf('-');
+            if (dashIndex > 0) {
+              finalTitle = finalTitle.substring(dashIndex + 1).trim();
+            }
+          }
+          outputFilename = `${metadata.artist} - ${finalTitle}.${format}`;
+        }
+        // Priority 3: Use Preview data if available (and ID3/Headers failed)
+        else if (preview && preview.title && preview.artist && 
+                 preview.title !== 'Track' && preview.title !== 'Spotify Track' &&
+                 preview.artist !== 'Unknown Artist') {
+          console.log(`Using preview metadata: Title="${preview.title}", Artist="${preview.artist}"`);
+          outputFilename = `${preview.artist} - ${preview.title}.${format}`;
+        }
+        // Priority 4: Use Content Disposition filename if available (and others failed)
+        else if (filenameMatch && filenameMatch[1]) {
+           console.log('Using content disposition filename as fallback');
+           try { 
+             outputFilename = decodeURIComponent(filenameMatch[1]); 
+           } catch (e) { 
+             outputFilename = filenameMatch[1]; 
+           }
+           // Ensure correct extension
+           if (!outputFilename.toLowerCase().endsWith(`.${format}`)) {
+             outputFilename = `${outputFilename.replace(/\.[^/.]+$/, "")} .${format}`;
+           }
+         } 
+        // Priority 5: Final Fallback (if nothing else worked)
+        else {
+          console.log('Using final fallback filename');
+          outputFilename = `${preview?.artist || 'Unknown Artist'} - ${preview?.title || 'Untitled Track'}.${format}`; 
+          // Use a simpler default if preview is also generic
+          if (outputFilename.startsWith('Unknown Artist - Untitled Track')) {
+            outputFilename = `Downloaded File - ${new Date().toISOString().split('T')[0]}.${format}`
+          }
         }
 
+        // Clean the final filename of invalid characters
+        outputFilename = outputFilename.replace(/[/\\?%*:|"<>]/g, '-');
+        console.log(`Final generated filename: ${outputFilename}`);
+
         setFilename(outputFilename);
-        const blob = await response.blob();
-        console.log(`Blob received (${blob.size} bytes), setting filename: ${outputFilename}`);
         setDownloadedFile(blob);
 
         if (!preview.isPlaylist && audioRef.current && contentType.includes('audio/')) {
           try {
-            const audioUrl = URL.createObjectURL(blob);
+            const audioUrl = URL.createObjectURL(blob)
             // Clean up existing audio URL properly using our dedicated function
-            clearAudioSource();
+            clearAudioSource()
             // Set the new blob URL
-            audioRef.current.src = audioUrl;
+            audioRef.current.src = audioUrl
+            
+            // Try once more to get metadata from the audio element
+            audioRef.current.onloadedmetadata = () => {
+              try {
+                if (!audioRef.current) return;
+                
+                console.log('Audio element metadata:', {
+                  title: audioRef.current.title,
+                  duration: audioRef.current.duration
+                })
+                
+                if (audioRef.current.title && filename.includes('Unknown Artist') || filename.includes('Downloaded Track')) {
+                  const newFilename = `${audioRef.current.title}.${format}`.replace(/[/\\?%*:|"<>]/g, '-')
+                  console.log(`Updating filename from audio element metadata: ${newFilename}`)
+                  setFilename(newFilename)
+                }
+              } catch (e) {
+                console.error('Error getting metadata from audio element:', e)
+              }
+            }
           } catch (audioError) { 
-            console.error("Error creating audio object URL:", audioError); 
-            clearAudioSource(); // Ensure audio is cleared if there's an error
+            console.error("Error creating audio object URL:", audioError)
+            clearAudioSource() // Ensure audio is cleared if there's an error
           }
         }
 
-        setDownloadProgress(100);
-        setDownloadComplete(true);
+        setDownloadProgress(100)
+        setDownloadComplete(true)
 
         toast({ 
             title: "Download Complete", 
             description: "Click the Save button to save the file to your device." 
-        });
+        })
 
-        onDownload(preview.url, format);
+        onDownload(preview.url, format)
       } else {
          try {
-            const data = await response.json();
-            console.log('Download response (JSON):', data);
-            setDownloadProgress(100);
-            setDownloadComplete(true);
+            const data = await response.json()
+            console.log('Download response (JSON):', data)
+            setDownloadProgress(100)
+            setDownloadComplete(true)
             toast({ 
                 title: data.message || "Processing Started", 
                 description: data.detail || "Download is processing." 
-            });
-            onDownload(preview.url, format);
+            })
+            onDownload(preview.url, format)
         } catch(jsonError) {
-             console.error("Error processing non-file download response:", jsonError, contentType);
-             throw new Error("Received an unexpected response from the server.");
+             console.error("Error processing non-file download response:", jsonError, contentType)
+             throw new Error("Received an unexpected response from the server.")
         }
       }
     } catch (error) {
-      console.error('Download error:', error);
-      clearInterval(interval);
+      console.error('Download error:', error)
+      clearInterval(interval)
       toast({ 
           title: "Download Failed", 
           description: error instanceof Error ? error.message : "An error occurred.", 
           variant: "destructive" 
-      });
-      setDownloadProgress(0);
-      setDownloadComplete(false);
-      setDownloadedFile(null); 
+      })
+      setDownloadProgress(0)
+      setDownloadComplete(false)
+      setDownloadedFile(null)
     } finally {
-      setIsDownloading(false);
+      setIsDownloading(false)
+    }
+  }
+
+  // New function to handle Spotify playlist downloads
+  const handleSpotifyPlaylistDownload = async (token: string, progressInterval: NodeJS.Timeout) => {
+    try {
+      // First, initiate the playlist download
+      const playlistInitResponse = await fetch('http://localhost:8000/api/songs/songs/download/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Token ${token}`,
+        },
+        body: JSON.stringify({ url: preview?.url, format }),
+      });
+
+      if (!playlistInitResponse.ok) {
+        clearInterval(progressInterval)
+        throw new Error(`Failed to initiate playlist download: ${playlistInitResponse.status}`)
+      }
+      
+      // Get playlist info from response
+      const playlistData = await playlistInitResponse.json() as PlaylistDownloadResponse
+      console.log('Playlist download initiated:', playlistData)
+      
+      if (!playlistData.playlist_id) {
+        clearInterval(progressInterval)
+        throw new Error('No playlist ID returned from server')
+      }
+      
+      // Show info about download
+      toast({
+        title: "Playlist Processing",
+        description: `${playlistData.downloaded_tracks} of ${playlistData.total_tracks} tracks processed. Downloading ZIP file...`,
+      })
+      
+      // Now download the actual ZIP file
+      const zipResponse = await fetch(getPlaylistDownloadEndpoint(playlistData.playlist_id), {
+        method: 'GET',
+        headers: {
+          'Authorization': `Token ${token}`,
+        },
+      })
+      
+      clearInterval(progressInterval)
+      
+      if (!zipResponse.ok) {
+        throw new Error(`Failed to download playlist ZIP: ${zipResponse.status}`)
+      }
+      
+      const blob = await zipResponse.blob()
+      console.log(`Playlist ZIP received (${blob.size} bytes)`)
+      
+      // Generate a good filename for the playlist
+      let playlistName = preview?.title || 'Playlist'
+      if (playlistName === 'Spotify Playlist') {
+        playlistName = 'Playlist'
+      }
+      
+      const cleanPlaylistName = playlistName.replace(/[/\\?%*:|"<>]/g, '-')
+      const outputFilename = `${cleanPlaylistName}.zip`
+      
+      setFilename(outputFilename)
+      setDownloadedFile(blob)
+      setDownloadProgress(100)
+      setDownloadComplete(true)
+      
+      toast({ 
+        title: "Playlist Download Complete", 
+        description: "Click the Save button to save the ZIP file to your device." 
+      })
+      
+      onDownload(preview?.url || '', format)
+      
+    } catch (error) {
+      clearInterval(progressInterval)
+      console.error('Spotify playlist download error:', error)
+      throw error // Pass to outer catch handler
     }
   }
 
   const handleActionButtonClick = () => {
     // If we already have the file downloaded, just save it (no backend call)
     if (downloadComplete && downloadedFile) {
-      console.log('Using existing downloaded file - no need to make another backend request');
-      saveToDevice();
+      console.log('Using existing downloaded file - no need to make another backend request')
+      saveToDevice()
     } else {
       // Otherwise initiate a new download from the backend
-      handleDownloadMedia();
+      handleDownloadMedia()
     }
-  };
+  }
 
   const playAudio = () => {
     if (audioRef.current) {
-      audioRef.current.play().catch(e => console.error("Audio play error:", e));
+      audioRef.current.play().catch(e => console.error("Audio play error:", e))
     }
   }
 
@@ -718,7 +572,7 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           style={{ minHeight: '200px', maxHeight: '300px' }}
         ></iframe>
-      );
+      )
     } else {
       return (
         <iframe
@@ -730,13 +584,33 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
            style={{ minHeight: '200px', maxHeight: '300px' }}
         ></iframe>
-      );
+      )
     }
-  };
+  }
 
   const renderSpotifyEmbed = (id: string, isPlaylist: boolean) => {
-    const embedType = isPlaylist ? 'playlist' : 'track';
-    const height = isPlaylist ? '380px' : '80px';
+    const embedType = isPlaylist ? 'playlist' : 'track'
+    const height = isPlaylist ? '380px' : '80px'
+    
+    // When rendering the Spotify embed, also try to extract the title and artist
+    // This is a backup method that might help with filename generation
+    setTimeout(() => {
+      try {
+        const iframe = document.querySelector(`iframe[src*="open.spotify.com/embed/${embedType}/${id}"]`)
+        if (iframe && preview && preview.platform === 'spotify' && 
+            (preview.title === 'Track' || preview.title === 'Spotify Track')) {
+          console.log('Attempting to extract metadata from rendered Spotify iframe')
+          
+          // We can't directly access iframe content due to CORS,
+          // but we can listen for messages or try other approaches
+          
+          // For now, just log that we found the iframe - future enhancement
+          console.log('Found Spotify iframe, metadata extraction would go here')
+        }
+      } catch (e) {
+        console.warn('Error checking Spotify iframe:', e)
+      }
+    }, 1500)
 
     return (
       <iframe
@@ -749,8 +623,8 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
         loading="lazy"
       ></iframe>
-    );
-  };
+    )
+  }
 
   const formatSelectorElement = (
       <div className="space-y-2">
@@ -758,7 +632,7 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
         <ToggleGroup
           type="single"
           value={format}
-          onValueChange={(value) => { if (value) { setFormat(value); } }}
+          onValueChange={(value) => { if (value) { setFormat(value) } }}
           className="flex flex-wrap gap-2"
           disabled={isDownloading}
         >
@@ -768,59 +642,7 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
           <ToggleGroupItem value="wav" aria-label="Select WAV format">WAV</ToggleGroupItem>
         </ToggleGroup>
       </div>
-  );
-
-  // Add helper functions for filename formatting
-  const cleanupFilename = (filename: string, preview: PreviewData): string => {
-    // If it's a YouTube video, remove common unnecessary text patterns
-    if (preview.platform === 'youtube' && !preview.isPlaylist) {
-      filename = filename
-        .replace(/\(Official Music Video\)/gi, '')
-        .replace(/\(Official Video\)/gi, '')
-        .replace(/\(Lyrics\)/gi, '')
-        .replace(/\(Lyric Video\)/gi, '')
-        .replace(/\(Audio\)/gi, '')
-        .replace(/\(Official Audio\)/gi, '')
-        .replace(/\[\s*HD\s*\]/gi, '')
-        .replace(/\s{2,}/g, ' ') // Remove extra spaces
-        .trim();
-    }
-    
-    return filename;
-  }
-
-  const generateFilename = (preview: PreviewData, format: string): string => {
-    const extension = preview.isPlaylist ? 'zip' : format;
-    
-    // Start with the title, clean it up first
-    let title = preview.title
-      .replace(/\(Official Music Video\)/gi, '')
-      .replace(/\(Official Video\)/gi, '')
-      .replace(/\(Lyrics\)/gi, '')
-      .replace(/\(Lyric Video\)/gi, '')
-      .replace(/\(Audio\)/gi, '')
-      .replace(/\(Official Audio\)/gi, '')
-      .replace(/\[\s*HD\s*\]/gi, '')
-      .replace(/\s{2,}/g, ' ')
-      .trim();
-    
-    // Use generic names for missing data instead of platform + ID
-    if (preview.platform === 'spotify' && 
-       (title === 'Spotify Track' || title === 'Spotify Playlist')) {
-      title = preview.isPlaylist ? 'Playlist' : 'Track';
-    }
-    
-    // Add artist if available (except for playlists)
-    let filename = title;
-    if (preview.artist && preview.artist !== '💿' && !preview.isPlaylist) {
-      filename = `${preview.artist} - ${title}`;
-    }
-    
-    // Clean up any invalid characters
-    filename = filename.replace(/[/\\?%*:|"<>]/g, '-');
-    
-    return `${filename}.${extension}`;
-  }
+  )
 
   return (
     <div className="space-y-6">
