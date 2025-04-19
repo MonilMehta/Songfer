@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import { Card } from '@/components/ui/card'
+import { Card, CardContent, CardHeader } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Music, MapPin } from 'lucide-react'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
@@ -49,37 +49,34 @@ export function ArtistCard({ artist }: ArtistCardProps) {
       }}
       className="h-full w-full"
     >
-      <Card className="h-full overflow-hidden rounded-2xl border-0 shadow-lg">
-        {/* Artist Image Section */}
+      <Card className="h-full overflow-hidden rounded-2xl border-0 shadow-lg bg-card text-card-foreground dark:border dark:border-border/20 dark:shadow-primary/5">
         <div className="relative aspect-square overflow-hidden">
           <div 
-            className="absolute inset-0 z-10 bg-gradient-to-b from-black/10 via-transparent to-black/80"
+            className="absolute inset-0 z-10 bg-gradient-to-b from-black/5 via-transparent to-black/70"
           />
           <Image
-            src={artist.image || "/placeholder-artist.jpg"}
+            src={artist.image || "/assets/ArtistPlaceholder.png"}
             alt={artist.name}
             fill
             className="object-cover"
+            onError={(e) => (e.currentTarget.src = "/assets/ArtistPlaceholder.png")}
           />
           
-          {/* Diagonal Color Overlay */}
           <div 
-            className="absolute -bottom-10 right-0 h-2/3 w-full rotate-6 z-20"
+            className="absolute -bottom-8 -right-8 h-1/2 w-1/2 rotate-12 z-0 opacity-50"
             style={{ 
               background: `linear-gradient(45deg, ${colors.primary}, ${colors.secondary})`,
-              mixBlendMode: 'overlay'
             }}
           />
           
-          {/* Artist Name */}
-          <h3 className="absolute bottom-3 left-4 text-xl font-bold text-white z-30 drop-shadow-md">
+          <h3 className="absolute bottom-3 left-4 text-xl font-bold text-white z-20 drop-shadow-md">
             {artist.name}
           </h3>
           
-          {/* Country Badge */}
           {artist.country && (
             <Badge 
-              className="absolute top-3 right-3 bg-white/80 text-black text-xs flex items-center gap-1 px-2 backdrop-blur-sm z-30"
+              variant="secondary"
+              className="absolute top-3 right-3 text-xs flex items-center gap-1 px-2 backdrop-blur-sm z-20"
             >
               <MapPin className="h-3 w-3" />
               {artist.country}
@@ -87,30 +84,28 @@ export function ArtistCard({ artist }: ArtistCardProps) {
           )}
         </div>
         
-        {/* Artist Info Section */}
-        <div className="p-4 bg-white">
+        <CardContent className="p-4">
           <div className="flex items-center gap-3 mb-3">
             <div 
-              className="flex items-center justify-center h-10 w-10 rounded-full"
+              className="flex items-center justify-center h-10 w-10 rounded-full flex-shrink-0"
               style={{ background: colors.primary }}
             >
               <Music className="h-5 w-5 text-white" />
             </div>
             <div>
-              <div className="text-2xl font-bold">{artist.count}</div>
+              <div className="text-2xl font-bold text-card-foreground">{artist.count}</div>
               <div className="text-xs text-muted-foreground -mt-1">
                 {artist.count === 1 ? 'track' : 'tracks'}
               </div>
             </div>
           </div>
           
-          {/* Genres */}
           {allGenres.length > 0 && (
             <div className="flex flex-wrap gap-2 mt-3">
               {displayGenres.map((genre, idx) => (
                 <Badge
                   key={idx}
-                  className="text-white text-xs px-2 py-1 font-medium border-0"
+                  className="text-white text-xs px-2 py-1 font-medium border-0 transition-transform duration-150 ease-in-out hover:scale-105"
                   style={{ 
                     background: idx === 0 ? colors.primary : colors.secondary,
                     transform: `rotate(${idx % 2 === 0 ? '-1deg' : '1deg'})` 
@@ -124,7 +119,7 @@ export function ArtistCard({ artist }: ArtistCardProps) {
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger asChild>
-                      <Badge className="bg-black/10 text-black hover:bg-black/20 text-xs font-medium cursor-pointer">
+                      <Badge variant="secondary" className="text-xs font-medium cursor-pointer">
                         +{allGenres.length - 2}
                       </Badge>
                     </TooltipTrigger>
@@ -142,7 +137,7 @@ export function ArtistCard({ artist }: ArtistCardProps) {
               )}
             </div>
           )}
-        </div>
+        </CardContent>
       </Card>
     </motion.div>
   );

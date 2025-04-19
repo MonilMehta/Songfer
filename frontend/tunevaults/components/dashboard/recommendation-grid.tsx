@@ -3,9 +3,10 @@
 import { Button } from '@/components/ui/button'
 import { RecommendationCard } from './recommendation-card'
 import { FloatingPlayerBar } from '@/components/player/FloatingPlayerBar'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import { useTheme } from 'next-themes'
 import { PlayerProvider } from '@/context/PlayerContext'
+import { RefreshCw, Play as PlayIcon } from 'lucide-react'
 
 // For the processed recommendations that the card component expects
 interface ProcessedRecommendation {
@@ -51,45 +52,10 @@ export function RecommendationGrid({
   onRefresh
 }: RecommendationGridProps) {
   const { theme } = useTheme();
-  const [processedRecommendations, setProcessedRecommendations] = useState<ProcessedRecommendation[]>([]);
   const [currentPage, setCurrentPage] = useState(0);
   const [showLoadMoreButton, setShowLoadMoreButton] = useState(false);
   const itemsPerPage = 5;
   
-  // Process recommendations from backend format
-  useEffect(() => {
-    if (recommendations && recommendations.length > 0) {
-      const processed = recommendations.map(rec => {
-        // Process artist field which might be a string array in brackets
-        let artistName = '';
-        if (typeof rec.artist === 'string') {
-          // Handle case where artist is a string that might contain array notation like "['Artist Name']"
-          artistName = rec.artist.replace(/^\['|'\]$|"|'/g, '').replace(/','|", "/g, ', ');
-        } else if (Array.isArray(rec.artist)) {
-          // Handle case where artist is actually an array
-          artistName = rec.artist.join(', ');
-        }
-        
-        return {
-          id: rec.id || rec.spotify_id || `rec-${Math.random().toString(36).substring(2, 9)}`,
-          title: rec.title,
-          artist: rec.artist, // Keep original for processing
-          artists: artistName, // Formatted for display
-          album: rec.album || 'Unknown',
-          popularity: rec.popularity || 50,
-          spotify_id: rec.spotify_id,
-          thumbnail_url: null, // We'll fetch thumbnails in the card component
-          image_url: null,
-          genre: rec.genre || generateGenreFromTitle(rec.title, artistName) // Generate a genre if not provided
-        };
-      });
-      
-      setProcessedRecommendations(processed);
-    } else {
-      setProcessedRecommendations([]);
-    }
-  }, [recommendations]);
-
   // Generate a genre based on title and artist if not provided by backend
   const generateGenreFromTitle = (title: string, artist: string): string => {
     const titles = title.toLowerCase();
@@ -106,6 +72,44 @@ export function RecommendationGrid({
     const genres = ['Hip Hop', 'Pop', 'R&B', 'Rock', 'Electronic', 'Jazz', 'Country', 'Alternative', 'Indie'];
     return genres[Math.floor(Math.random() * genres.length)];
   };
+
+  // Process recommendations using useMemo
+  const processedRecommendations = useMemo(() => {
+    if (!recommendations || recommendations.length === 0) {
+      return [];
+    }
+    
+    return recommendations.map(rec => {
+      // Process artist field which might be a string array in brackets
+      let artistName = '';
+      if (typeof rec.artist === 'string') {
+        // Handle case where artist is a string that might contain array notation like "['Artist Name']"
+        artistName = rec.artist.replace(/^\[\'|"\]$|"|'/g, '').replace(/\',\'|", "/g, ', ');
+      } else if (Array.isArray(rec.artist)) {
+        // Handle case where artist is actually an array
+        artistName = rec.artist.join(', ');
+      }
+      
+      return {
+        id: rec.id || rec.spotify_id || `rec-${Math.random().toString(36).substring(2, 9)}`,
+        title: rec.title,
+        artist: rec.artist, // Keep original for processing
+        artists: artistName, // Formatted for display
+        album: rec.album || 'Unknown',
+        popularity: rec.popularity || 50,
+        spotify_id: rec.spotify_id,
+        thumbnail_url: null, // We'll fetch thumbnails in the card component
+        image_url: null,
+        genre: rec.genre || generateGenreFromTitle(rec.title, artistName) // Generate a genre if not provided
+      };
+    });
+  }, [recommendations]); // Dependency array ensures recalculation only when recommendations change
+
+  // Effect to reset pagination when recommendations change
+  useEffect(() => {
+    setCurrentPage(0);
+    setShowLoadMoreButton(false);
+  }, [processedRecommendations]);
 
   const handleNextPage = () => {
     const nextPage = currentPage + 1;
@@ -167,38 +171,39 @@ export function RecommendationGrid({
         {/* Wave animation */}
         <div className="wave-animation"></div>
         
+        {/* Decorative Elements - Added from ArtistGrid */}
+        <div className="absolute -z-10 -left-16 top-10 w-32 h-32 rounded-full bg-blue-500/5 blur-2xl" />
+        <div className="absolute -z-10 right-10 -bottom-10 w-40 h-40 rounded-full bg-cyan-500/5 blur-2xl" />
+        
         <div className="relative z-10">
-          <div className="flex items-center justify-between mb-6">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8"> 
             <div>
-              <h2 className="text-xl font-bold text-slate-800 dark:text-white">Your Vibe <span className="text-blue-600 dark:text-blue-400">Today</span></h2>
-              <p className="text-sm text-slate-600 dark:text-slate-400">Fresh picks based on your taste</p>
+              <h2 className="text-3xl font-black">
+                <span className="inline-block transform -rotate-2 text-blue-600 dark:text-blue-400 mr-2">YOUR</span>
+                <span className="inline-block transform rotate-1 mr-2">VIBE</span>
+                <span className="inline-block transform -rotate-1">TODAY</span>
+              </h2>
+              <p className="text-sm text-muted-foreground mt-2">Fresh picks based on your taste</p>
             </div>
             
             {!showLoadMoreButton ? (
               <Button 
                 variant="ghost" 
                 size="sm"
-                className="text-slate-800 dark:text-white bg-white/80 dark:bg-blue-900/40 hover:bg-slate-200 dark:hover:bg-blue-800/60 gap-2 h-9 px-4"
+                className="text-slate-800 dark:text-white bg-white/80 dark:bg-blue-900/40 hover:bg-slate-200 dark:hover:bg-blue-800/60 gap-2 h-9 px-4 rounded-full mt-4 md:mt-0"
                 onClick={handleNextPage}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
-                  <polygon points="5 4 15 12 5 20 5 4"></polygon>
-                </svg>
+                <PlayIcon className="w-4 h-4" />
                 Next {itemsPerPage}
               </Button>
             ) : (
               <Button 
                 variant="outline" 
                 size="sm"
-                className="text-slate-800 dark:text-white border-slate-300 dark:border-blue-700 hover:bg-slate-100 dark:hover:bg-blue-800/60 gap-2 h-9 px-4"
+                className="text-slate-800 dark:text-white border-slate-300 dark:border-blue-700 hover:bg-slate-100 dark:hover:bg-blue-800/60 gap-2 h-9 px-4 rounded-full mt-4 md:mt-0"
                 onClick={handleLoadMore}
               >
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
-                  <path d="M21 12a9 9 0 0 1-9 9"></path>
-                  <path d="M3 12a9 9 0 0 1 9-9"></path>
-                  <path d="M21 12c0-4.97-4.03-9-9-9"></path>
-                  <polyline points="12 3 12 9 16 9"></polyline>
-                </svg>
+                <RefreshCw className="w-4 h-4" />
                 Get New Recommendations
               </Button>
             )}

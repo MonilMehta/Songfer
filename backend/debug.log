@@ -5088,3 +5088,695 @@ INFO 2025-04-19 01:08:47,508 models 9024 12460 [DEBUG] record_download called fo
 INFO 2025-04-19 01:08:47,650 models 9024 12460 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-18 songs_downloaded=85
 INFO 2025-04-19 01:08:47,928 basehttp 9024 12460 "POST /api/songs/songs/download/ HTTP/1.1" 200 5897708
 INFO 2025-04-19 01:08:48,329 basehttp 9024 18164 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-19 02:21:19,790 autoreload 16352 1860 Watching for file changes with StatReloader
+INFO 2025-04-19 09:53:50,795 autoreload 14808 16736 Watching for file changes with StatReloader
+WARNING 2025-04-19 09:54:43,487 log 14808 17836 Bad Request: /api/songs/songs/download/
+WARNING 2025-04-19 09:54:43,487 basehttp 14808 17836 "POST /api/songs/songs/download/ HTTP/1.1" 400 59
+WARNING 2025-04-19 09:54:46,081 log 14808 17836 Bad Request: /api/songs/songs/download/
+WARNING 2025-04-19 09:54:46,082 basehttp 14808 17836 "POST /api/songs/songs/download/ HTTP/1.1" 400 59
+INFO 2025-04-19 09:54:56,296 basehttp 14808 17836 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-19 09:54:56,335 basehttp 14808 1956 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-19 09:54:56,957 views 14808 17836 User has 3 songs
+INFO 2025-04-19 09:54:57,023 views 14808 17836 User has 0 songs with Spotify IDs
+INFO 2025-04-19 09:54:57,063 views 14808 1956 User has 3 songs
+INFO 2025-04-19 09:54:57,092 views 14808 17836 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-19 09:54:57,093 recommendation 14808 17836 Skipping Music.csv due to invalid format, using data.csv directly
+INFO 2025-04-19 09:54:57,159 views 14808 1956 User has 0 songs with Spotify IDs
+INFO 2025-04-19 09:54:57,228 views 14808 1956 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-19 09:54:57,254 recommendation 14808 1956 Skipping Music.csv due to invalid format, using data.csv directly
+INFO 2025-04-19 09:55:05,159 recommendation 14808 17836 Loaded data.csv dataset
+INFO 2025-04-19 09:55:07,760 recommendation 14808 17836 Available columns in dataset: ['valence', 'year', 'acousticness', 'artists', 'danceability', 'duration_ms', 'energy', 'explicit', 'id', 'instrumentalness', 'key', 'liveness', 'loudness', 'mode', 'name', 'popularity', 'release_date', 'speechiness', 'tempo']
+INFO 2025-04-19 09:55:09,045 recommendation 14808 17836 Using features: ['acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'loudness', 'speechiness', 'tempo', 'valence']
+INFO 2025-04-19 09:55:09,276 recommendation 14808 17836 Prepared data with 170653 songs and 9 features
+INFO 2025-04-19 09:55:09,416 recommendation 14808 1956 Loaded data.csv dataset
+INFO 2025-04-19 09:55:09,557 recommendation 14808 1956 Available columns in dataset: ['valence', 'year', 'acousticness', 'artists', 'danceability', 'duration_ms', 'energy', 'explicit', 'id', 'instrumentalness', 'key', 'liveness', 'loudness', 'mode', 'name', 'popularity', 'release_date', 'speechiness', 'tempo']
+INFO 2025-04-19 09:55:09,789 recommendation 14808 1956 Using features: ['acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'loudness', 'speechiness', 'tempo', 'valence']
+INFO 2025-04-19 09:55:09,890 recommendation 14808 1956 Prepared data with 170653 songs and 9 features
+INFO 2025-04-19 09:55:12,421 recommendation 14808 17836 Built song clusters successfully
+INFO 2025-04-19 09:55:12,431 recommendation 14808 17836 Music Recommender initialized successfully
+INFO 2025-04-19 09:55:12,436 recommendation 14808 1956 Built song clusters successfully
+INFO 2025-04-19 09:55:12,441 recommendation 14808 1956 Music Recommender initialized successfully
+INFO 2025-04-19 09:55:12,887 views 14808 17836 Got 10 recommendations
+INFO 2025-04-19 09:55:12,918 views 14808 1956 Got 10 recommendations
+INFO 2025-04-19 09:55:13,034 basehttp 14808 17836 "GET /api/songs/recommendations/ HTTP/1.1" 200 2954
+INFO 2025-04-19 09:55:13,102 basehttp 14808 1956 "GET /api/songs/recommendations/ HTTP/1.1" 200 2889
+INFO 2025-04-19 09:55:15,938 utils 14808 17836 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 09:55:16,582 utils 14808 1956 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 09:55:18,617 utils 14808 17836 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 09:55:18,970 utils 14808 1956 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 09:55:21,020 utils 14808 17836 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 09:55:21,031 basehttp 14808 17836 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 592
+INFO 2025-04-19 09:55:21,295 utils 14808 1956 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 09:55:21,295 basehttp 14808 1956 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 592
+INFO 2025-04-19 09:55:21,763 basehttp 14808 17836 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 560
+INFO 2025-04-19 09:55:22,008 basehttp 14808 1956 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 560
+INFO 2025-04-19 09:55:24,521 utils 14808 17836 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 09:55:25,382 utils 14808 1956 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 09:55:26,884 utils 14808 17836 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 09:55:27,958 utils 14808 1956 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 09:55:29,360 utils 14808 17836 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 09:55:29,369 basehttp 14808 17836 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 311
+INFO 2025-04-19 09:55:29,986 utils 14808 1956 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 09:55:29,986 basehttp 14808 1956 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 311
+INFO 2025-04-19 09:55:31,891 utils 14808 17836 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 09:55:33,157 utils 14808 1956 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 09:55:34,390 utils 14808 17836 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 09:55:35,561 utils 14808 1956 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 09:55:36,839 utils 14808 17836 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 09:55:36,857 basehttp 14808 17836 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 118
+INFO 2025-04-19 09:55:37,541 utils 14808 1956 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 09:55:37,561 basehttp 14808 1956 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 118
+INFO 2025-04-19 09:56:01,099 utils 14808 17836 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\The Weeknd - Drive Official Music Video - The Weeknd.mp3
+INFO 2025-04-19 09:56:01,099 utils 14808 17836 Title: The Weeknd - Drive (Official Music Video), Artist: The Weeknd, Album: Unknown, Genre: Unknown
+INFO 2025-04-19 09:56:01,119 utils 14808 17836 Loaded existing ID3 tags
+INFO 2025-04-19 09:56:01,206 utils 14808 17836 Looking for local thumbnail: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs/The Weeknd - Drive Official Music Video - The Weeknd.webp
+INFO 2025-04-19 09:56:01,276 utils 14808 17836 Found local thumbnail: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs/The Weeknd - Drive Official Music Video - The Weeknd.webp
+INFO 2025-04-19 09:56:01,284 utils 14808 17836 Detected image type: webp
+INFO 2025-04-19 09:56:02,256 utils 14808 17836 Successfully converted image to JPEG: 64853 bytes
+INFO 2025-04-19 09:56:02,256 utils 14808 17836 Adding album art, MIME type: image/jpeg
+INFO 2025-04-19 09:56:02,256 utils 14808 17836 Successfully added album art to ID3 tags
+INFO 2025-04-19 09:56:02,273 utils 14808 17836 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\The Weeknd - Drive Official Music Video - The Weeknd.mp3 using ID3v2.3
+INFO 2025-04-19 09:56:02,289 utils 14808 17836 Verification: 8 tags were written, has_cover=True
+INFO 2025-04-19 09:56:02,530 utils 14808 17836 Attempting to set system thumbnail property directly (Windows only)
+WARNING 2025-04-19 09:56:02,530 utils 14808 17836 Could not set shell thumbnail: 'int' object has no attribute 'SetInfo'
+INFO 2025-04-19 09:56:03,319 download_helper 14808 17836 Added song to cache: https://www.youtube.com/watch?v=Fv2Y1odMjvE
+INFO 2025-04-19 09:56:03,627 basehttp 14808 17836 "POST /api/songs/songs/download/ HTTP/1.1" 200 6649578
+INFO 2025-04-19 09:56:04,077 basehttp 14808 1956 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-19 10:12:29,707 basehttp 14808 4196 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-19 10:12:29,755 basehttp 14808 11060 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-19 10:12:30,352 views 14808 4196 User has 4 songs
+INFO 2025-04-19 10:12:30,367 views 14808 11060 User has 4 songs
+INFO 2025-04-19 10:12:30,414 views 14808 4196 User has 0 songs with Spotify IDs
+INFO 2025-04-19 10:12:30,430 views 14808 11060 User has 0 songs with Spotify IDs
+INFO 2025-04-19 10:12:30,477 views 14808 4196 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-19 10:12:30,495 views 14808 11060 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-19 10:12:30,990 views 14808 4196 Got 10 recommendations
+INFO 2025-04-19 10:12:31,045 views 14808 11060 Got 10 recommendations
+INFO 2025-04-19 10:12:31,125 basehttp 14808 4196 "GET /api/songs/recommendations/ HTTP/1.1" 200 3066
+INFO 2025-04-19 10:12:31,191 basehttp 14808 11060 "GET /api/songs/recommendations/ HTTP/1.1" 200 2981
+INFO 2025-04-19 10:12:34,229 utils 14808 11060 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 10:12:34,399 utils 14808 4196 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 10:12:36,527 utils 14808 11060 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 10:12:36,744 utils 14808 4196 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 10:12:38,519 utils 14808 11060 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 10:12:38,521 utils 14808 4196 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 10:12:40,771 utils 14808 4196 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 10:12:40,787 basehttp 14808 4196 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 787
+INFO 2025-04-19 10:12:40,808 utils 14808 11060 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 10:12:40,823 basehttp 14808 11060 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 787
+INFO 2025-04-19 10:12:41,448 basehttp 14808 4196 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 560
+INFO 2025-04-19 10:12:41,688 basehttp 14808 11060 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 560
+INFO 2025-04-19 10:12:43,864 utils 14808 4196 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 10:12:44,343 utils 14808 11060 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 10:12:45,881 utils 14808 4196 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 10:12:46,304 utils 14808 11060 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 10:12:47,696 utils 14808 4196 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 10:12:48,090 utils 14808 11060 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 10:12:49,409 utils 14808 4196 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 10:12:49,411 basehttp 14808 4196 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 394
+INFO 2025-04-19 10:12:49,541 utils 14808 11060 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 10:12:49,542 basehttp 14808 11060 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 394
+INFO 2025-04-19 10:12:50,828 utils 14808 4196 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 10:12:51,694 utils 14808 11060 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 10:12:51,884 utils 14808 4196 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 10:12:52,724 utils 14808 11060 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 10:12:53,431 utils 14808 4196 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 10:12:53,627 utils 14808 11060 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 10:12:54,651 utils 14808 11060 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 10:12:54,660 basehttp 14808 11060 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 149
+INFO 2025-04-19 10:12:54,830 utils 14808 4196 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 10:12:54,834 basehttp 14808 4196 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 149
+INFO 2025-04-19 11:12:33,493 basehttp 14808 1752 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-19 11:12:33,620 basehttp 14808 1204 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-19 11:12:34,435 views 14808 1752 User has 4 songs
+INFO 2025-04-19 11:12:34,508 views 14808 1204 User has 4 songs
+INFO 2025-04-19 11:12:34,510 views 14808 1752 User has 0 songs with Spotify IDs
+INFO 2025-04-19 11:12:34,589 views 14808 1752 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-19 11:12:34,590 views 14808 1204 User has 0 songs with Spotify IDs
+INFO 2025-04-19 11:12:34,671 views 14808 1204 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-19 11:12:35,374 views 14808 1752 Got 10 recommendations
+INFO 2025-04-19 11:12:35,396 views 14808 1204 Got 10 recommendations
+INFO 2025-04-19 11:12:35,632 basehttp 14808 1204 "GET /api/songs/recommendations/ HTTP/1.1" 200 3016
+INFO 2025-04-19 11:12:35,633 basehttp 14808 1752 "GET /api/songs/recommendations/ HTTP/1.1" 200 2915
+INFO 2025-04-19 11:12:37,841 utils 14808 1752 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 11:12:37,906 utils 14808 1204 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 11:12:39,349 utils 14808 1752 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 11:12:39,612 utils 14808 1204 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 11:12:41,023 utils 14808 1204 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 11:12:41,142 utils 14808 1752 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 11:12:42,428 utils 14808 1204 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 11:12:42,445 basehttp 14808 1204 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 787
+INFO 2025-04-19 11:12:42,522 utils 14808 1752 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 11:12:42,526 basehttp 14808 1752 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 787
+INFO 2025-04-19 11:12:43,337 basehttp 14808 1204 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 560
+INFO 2025-04-19 11:12:43,428 basehttp 14808 1752 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 560
+INFO 2025-04-19 11:12:46,426 utils 14808 1204 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 11:12:47,144 utils 14808 1752 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 11:12:48,956 utils 14808 1204 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 11:12:50,452 utils 14808 1752 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 11:12:51,582 utils 14808 1204 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 11:12:53,789 utils 14808 1752 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 11:12:54,941 utils 14808 1204 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 11:12:55,016 basehttp 14808 1204 - Broken pipe from ('127.0.0.1', 56824)
+INFO 2025-04-19 11:12:55,545 basehttp 14808 16720 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-19 11:12:55,577 basehttp 14808 12040 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-19 11:12:58,304 views 14808 16720 User has 4 songs
+INFO 2025-04-19 11:12:58,355 views 14808 12040 User has 4 songs
+INFO 2025-04-19 11:12:58,444 views 14808 16720 User has 0 songs with Spotify IDs
+INFO 2025-04-19 11:12:58,457 views 14808 12040 User has 0 songs with Spotify IDs
+INFO 2025-04-19 11:12:58,549 views 14808 16720 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-19 11:12:58,551 views 14808 12040 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-19 11:12:58,699 utils 14808 1752 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 11:12:58,730 basehttp 14808 1752 - Broken pipe from ('127.0.0.1', 56825)
+INFO 2025-04-19 11:12:58,868 utils 14808 17772 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 11:12:59,030 utils 14808 17660 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 11:12:59,113 views 14808 12040 Got 10 recommendations
+INFO 2025-04-19 11:12:59,169 views 14808 16720 Got 10 recommendations
+INFO 2025-04-19 11:12:59,338 basehttp 14808 12040 "GET /api/songs/recommendations/ HTTP/1.1" 200 2902
+INFO 2025-04-19 11:12:59,385 basehttp 14808 16720 "GET /api/songs/recommendations/ HTTP/1.1" 200 2939
+INFO 2025-04-19 11:13:03,823 utils 14808 17660 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 11:13:04,375 utils 14808 17772 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 11:13:06,130 utils 14808 16720 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 11:13:06,878 utils 14808 12040 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 11:13:09,461 utils 14808 17660 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 11:13:10,864 utils 14808 17772 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 11:13:11,872 utils 14808 16720 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 11:13:13,192 utils 14808 12040 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 11:13:15,492 utils 14808 17660 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 11:13:15,524 basehttp 14808 17660 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 149
+INFO 2025-04-19 11:13:16,933 utils 14808 17772 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 11:13:16,955 basehttp 14808 17772 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 149
+INFO 2025-04-19 11:13:17,054 utils 14808 16720 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 11:13:18,430 utils 14808 12040 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 11:13:20,471 utils 14808 16720 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 11:13:20,507 basehttp 14808 16720 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 787
+INFO 2025-04-19 11:13:21,051 utils 14808 12040 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 11:13:21,083 basehttp 14808 12040 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 787
+INFO 2025-04-19 11:13:22,012 basehttp 14808 16720 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 560
+INFO 2025-04-19 11:13:22,091 basehttp 14808 12040 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 560
+INFO 2025-04-19 11:13:25,511 utils 14808 16720 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 11:13:26,153 utils 14808 12040 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 11:13:28,444 utils 14808 16720 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 11:13:29,230 utils 14808 12040 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 11:13:31,476 utils 14808 16720 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 11:13:32,738 utils 14808 12040 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 11:13:34,557 utils 14808 16720 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 11:13:34,562 basehttp 14808 16720 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 394
+INFO 2025-04-19 11:13:35,363 utils 14808 12040 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 11:13:35,392 basehttp 14808 12040 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 394
+INFO 2025-04-19 11:13:37,636 utils 14808 16720 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 11:13:39,628 utils 14808 12040 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 11:13:40,541 utils 14808 16720 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 11:13:42,988 utils 14808 12040 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 11:13:43,463 utils 14808 16720 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 11:13:45,878 utils 14808 12040 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 11:13:46,059 utils 14808 16720 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 11:13:46,073 basehttp 14808 16720 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 149
+INFO 2025-04-19 11:13:47,679 utils 14808 12040 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 11:13:47,682 basehttp 14808 12040 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 149
+INFO 2025-04-19 11:14:55,692 basehttp 14808 16720 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-19 11:14:55,780 basehttp 14808 12040 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-19 11:14:56,581 views 14808 16720 User has 4 songs
+INFO 2025-04-19 11:14:56,693 views 14808 16720 User has 0 songs with Spotify IDs
+INFO 2025-04-19 11:14:56,773 views 14808 12040 User has 4 songs
+INFO 2025-04-19 11:14:56,785 views 14808 16720 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-19 11:14:56,870 views 14808 12040 User has 0 songs with Spotify IDs
+INFO 2025-04-19 11:14:56,982 views 14808 12040 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-19 11:14:57,266 views 14808 16720 Got 10 recommendations
+INFO 2025-04-19 11:14:57,595 views 14808 12040 Got 10 recommendations
+INFO 2025-04-19 11:14:57,599 basehttp 14808 16720 "GET /api/songs/recommendations/ HTTP/1.1" 200 2908
+INFO 2025-04-19 11:14:57,820 basehttp 14808 12040 "GET /api/songs/recommendations/ HTTP/1.1" 200 2909
+INFO 2025-04-19 11:15:02,469 utils 14808 12040 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 11:15:02,724 utils 14808 16720 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 11:15:05,879 utils 14808 12040 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 11:15:07,580 utils 14808 16720 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 11:15:09,744 utils 14808 12040 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 11:15:10,884 utils 14808 16720 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 11:15:13,536 utils 14808 12040 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 11:15:13,592 basehttp 14808 12040 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 787
+INFO 2025-04-19 11:15:14,204 utils 14808 16720 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 11:15:14,305 basehttp 14808 16720 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 787
+INFO 2025-04-19 11:15:14,470 basehttp 14808 12040 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 560
+INFO 2025-04-19 11:15:15,249 basehttp 14808 16720 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 560
+INFO 2025-04-19 11:15:18,036 utils 14808 12040 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 11:15:19,312 utils 14808 16720 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 11:15:21,427 utils 14808 12040 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 11:15:22,469 utils 14808 16720 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 11:15:25,533 utils 14808 12040 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 11:15:25,870 utils 14808 16720 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 11:15:28,848 utils 14808 16720 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 11:15:28,866 basehttp 14808 16720 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 394
+INFO 2025-04-19 11:15:29,488 utils 14808 12040 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 11:15:29,519 basehttp 14808 12040 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 394
+INFO 2025-04-19 11:15:32,311 utils 14808 16720 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 11:15:34,644 utils 14808 12040 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 11:15:36,945 utils 14808 16720 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 11:15:38,316 utils 14808 12040 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 11:15:40,441 utils 14808 16720 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 11:15:41,785 utils 14808 12040 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 11:15:43,393 utils 14808 16720 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 11:15:43,400 basehttp 14808 16720 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 149
+INFO 2025-04-19 11:15:44,084 utils 14808 12040 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 11:15:44,089 basehttp 14808 12040 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 149
+INFO 2025-04-19 11:32:54,511 views 14808 8664 Redirecting YouTube playlist URL to playlist download endpoint: https://www.youtube.com/watch?v=B9synWjqBn8&list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-19 11:32:54,576 utils 14808 8664 Getting YouTube playlist info for URL: https://www.youtube.com/watch?v=B9synWjqBn8&list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-19 11:32:54,578 utils 14808 8664 Extracted YouTube playlist ID: PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-19 11:32:54,579 utils 14808 8664 Using formatted playlist URL: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-19 11:32:54,783 utils 14808 8664 Extracting playlist info from: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-19 11:32:57,427 utils 14808 8664 Successfully extracted info for playlist: tunevault with 3 tracks
+INFO 2025-04-19 11:32:57,433 download_helper 14808 8664 Playlist info retrieved: title=tunevault, tracks=3, image_url=None
+INFO 2025-04-19 11:32:58,191 download_helper 14808 8664 Added existing song to playlist: https://www.youtube.com/watch?v=U8F5G5wR1mk
+INFO 2025-04-19 11:32:58,408 utils 14808 8664 Attempting to download from YouTube: https://www.youtube.com/watch?v=xnvkStb2jT0
+INFO 2025-04-19 11:33:34,440 utils 14808 8664 Successfully downloaded with primary method: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\xnvkStb2jT0.mp3
+INFO 2025-04-19 11:33:34,747 utils 14808 8664 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\The Weeknd Madonna Playboi Carti - Popular Visualizer - The Weeknd.mp3
+INFO 2025-04-19 11:33:34,750 utils 14808 8664 Title: The Weeknd Madonna Playboi Carti - Popular Visualizer, Artist: The Weeknd, Album: Unknown, Genre: Unknown
+INFO 2025-04-19 11:33:34,775 utils 14808 8664 Loaded existing ID3 tags
+INFO 2025-04-19 11:33:34,981 utils 14808 8664 Found matching song in database: The Weeknd Madonna Playboi Carti - Popular Visualizer by The Weeknd
+INFO 2025-04-19 11:33:34,986 utils 14808 8664 Using thumbnail URL from database: https://i.ytimg.com/vi_webp/xnvkStb2jT0/maxresdefault.webp
+INFO 2025-04-19 11:33:34,986 utils 14808 8664 Downloading thumbnail from URL: https://i.ytimg.com/vi_webp/xnvkStb2jT0/maxresdefault.webp
+INFO 2025-04-19 11:33:34,986 utils 14808 8664 Detected webp image in URL, will handle special conversion
+INFO 2025-04-19 11:33:35,728 utils 14808 8664 Successfully converted webp to JPEG with Pillow: 289742 bytes
+INFO 2025-04-19 11:33:35,728 utils 14808 8664 Downloaded thumbnail: 289742 bytes
+INFO 2025-04-19 11:33:35,732 utils 14808 8664 Detected image type: jpeg
+INFO 2025-04-19 11:33:35,831 utils 14808 8664 Successfully converted image to JPEG: 60632 bytes
+INFO 2025-04-19 11:33:35,839 utils 14808 8664 Adding album art, MIME type: image/jpeg
+INFO 2025-04-19 11:33:35,841 utils 14808 8664 Successfully added album art to ID3 tags
+INFO 2025-04-19 11:33:35,847 utils 14808 8664 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\The Weeknd Madonna Playboi Carti - Popular Visualizer - The Weeknd.mp3 using ID3v2.3
+INFO 2025-04-19 11:33:35,895 utils 14808 8664 Verification: 6 tags were written, has_cover=True
+INFO 2025-04-19 11:33:35,895 utils 14808 8664 Attempting to set system thumbnail property directly (Windows only)
+WARNING 2025-04-19 11:33:35,904 utils 14808 8664 Could not set shell thumbnail: 'int' object has no attribute 'SetInfo'
+INFO 2025-04-19 11:33:36,850 download_helper 14808 8664 Added YouTube song to cache from playlist: https://www.youtube.com/watch?v=xnvkStb2jT0
+INFO 2025-04-19 11:33:42,467 utils 14808 8664 Attempting to download from YouTube: https://www.youtube.com/watch?v=SMvmAWECT8U
+INFO 2025-04-19 11:34:56,163 utils 14808 8664 Successfully downloaded with primary method: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\SMvmAWECT8U.mp3
+INFO 2025-04-19 11:34:57,232 utils 14808 8664 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Tommy Richman - DEVIL IS A LIE - Tommy Richman.mp3
+INFO 2025-04-19 11:34:57,232 utils 14808 8664 Title: Tommy Richman - DEVIL IS A LIE, Artist: Tommy Richman, Album: Unknown, Genre: Unknown
+INFO 2025-04-19 11:34:57,252 utils 14808 8664 Loaded existing ID3 tags
+INFO 2025-04-19 11:34:57,335 utils 14808 8664 Found matching song in database: Tommy Richman - DEVIL IS A LIE by Tommy Richman
+INFO 2025-04-19 11:34:57,335 utils 14808 8664 Using thumbnail URL from database: https://i.ytimg.com/vi/SMvmAWECT8U/sddefault.jpg
+INFO 2025-04-19 11:34:57,335 utils 14808 8664 Downloading thumbnail from URL: https://i.ytimg.com/vi/SMvmAWECT8U/sddefault.jpg
+INFO 2025-04-19 11:34:57,578 utils 14808 8664 Downloaded thumbnail: 34793 bytes
+INFO 2025-04-19 11:34:57,578 utils 14808 8664 Detected image type: jpeg
+INFO 2025-04-19 11:34:57,634 utils 14808 8664 Successfully converted image to JPEG: 52850 bytes
+INFO 2025-04-19 11:34:57,634 utils 14808 8664 Adding album art, MIME type: image/jpeg
+INFO 2025-04-19 11:34:57,634 utils 14808 8664 Successfully added album art to ID3 tags
+INFO 2025-04-19 11:34:57,646 utils 14808 8664 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Tommy Richman - DEVIL IS A LIE - Tommy Richman.mp3 using ID3v2.3
+INFO 2025-04-19 11:34:57,716 utils 14808 8664 Verification: 6 tags were written, has_cover=True
+INFO 2025-04-19 11:34:57,716 utils 14808 8664 Attempting to set system thumbnail property directly (Windows only)
+WARNING 2025-04-19 11:34:57,726 utils 14808 8664 Could not set shell thumbnail: 'int' object has no attribute 'SetInfo'
+INFO 2025-04-19 11:34:58,513 download_helper 14808 8664 Added YouTube song to cache from playlist: https://www.youtube.com/watch?v=SMvmAWECT8U
+INFO 2025-04-19 11:34:59,029 models 14808 8664 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-19
+INFO 2025-04-19 11:34:59,499 models 14808 8664 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-19 songs_downloaded=1
+INFO 2025-04-19 11:34:59,503 models 14808 8664 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-19
+INFO 2025-04-19 11:34:59,701 models 14808 8664 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-19 songs_downloaded=2
+INFO 2025-04-19 11:34:59,704 models 14808 8664 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-19
+INFO 2025-04-19 11:34:59,884 models 14808 8664 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-19 songs_downloaded=3
+INFO 2025-04-19 11:34:59,890 basehttp 14808 8664 "POST /api/songs/songs/download/ HTTP/1.1" 200 114
+WARNING 2025-04-19 11:35:00,064 log 14808 8664 Not Found: /api/songs/playlists/PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1/download-all/
+WARNING 2025-04-19 11:35:00,076 basehttp 14808 8664 "GET /api/songs/playlists/PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1/download-all/ HTTP/1.1" 404 17226
+INFO 2025-04-19 16:51:15,580 autoreload 18916 1344 Watching for file changes with StatReloader
+INFO 2025-04-19 16:51:25,255 utils 18916 15264 Found exact match for artist 'Tommy Richman': Tommy Richman
+INFO 2025-04-19 16:51:26,615 utils 18916 15264 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 16:51:28,096 utils 18916 15264 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 16:51:29,516 utils 18916 15264 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 16:51:30,844 utils 18916 15264 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 16:51:32,167 utils 18916 15264 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 16:51:32,167 basehttp 18916 15264 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 406
+INFO 2025-04-19 16:51:34,105 utils 18916 15264 Found exact match for artist 'Tommy Richman': Tommy Richman
+INFO 2025-04-19 16:51:35,445 utils 18916 15264 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 16:51:36,724 utils 18916 15264 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 16:51:38,050 utils 18916 15264 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 16:51:39,381 utils 18916 15264 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 16:51:40,718 utils 18916 15264 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 16:51:40,726 basehttp 18916 15264 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 181
+INFO 2025-04-19 16:52:03,341 basehttp 18916 15264 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-19 16:52:03,365 basehttp 18916 2532 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-19 16:52:03,968 views 18916 15264 User has 6 songs
+INFO 2025-04-19 16:52:04,030 views 18916 15264 User has 0 songs with Spotify IDs
+INFO 2025-04-19 16:52:04,090 views 18916 15264 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-19 16:52:04,091 recommendation 18916 15264 Skipping Music.csv due to invalid format, using data.csv directly
+INFO 2025-04-19 16:52:04,624 views 18916 2532 User has 6 songs
+INFO 2025-04-19 16:52:04,702 views 18916 2532 User has 0 songs with Spotify IDs
+INFO 2025-04-19 16:52:04,783 views 18916 2532 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-19 16:52:04,785 recommendation 18916 2532 Skipping Music.csv due to invalid format, using data.csv directly
+INFO 2025-04-19 16:52:06,761 recommendation 18916 15264 Loaded data.csv dataset
+INFO 2025-04-19 16:52:07,049 recommendation 18916 15264 Available columns in dataset: ['valence', 'year', 'acousticness', 'artists', 'danceability', 'duration_ms', 'energy', 'explicit', 'id', 'instrumentalness', 'key', 'liveness', 'loudness', 'mode', 'name', 'popularity', 'release_date', 'speechiness', 'tempo']
+INFO 2025-04-19 16:52:07,137 recommendation 18916 15264 Using features: ['acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'loudness', 'speechiness', 'tempo', 'valence']
+INFO 2025-04-19 16:52:07,277 recommendation 18916 15264 Prepared data with 170653 songs and 9 features
+INFO 2025-04-19 16:52:08,856 recommendation 18916 2532 Loaded data.csv dataset
+INFO 2025-04-19 16:52:08,969 recommendation 18916 2532 Available columns in dataset: ['valence', 'year', 'acousticness', 'artists', 'danceability', 'duration_ms', 'energy', 'explicit', 'id', 'instrumentalness', 'key', 'liveness', 'loudness', 'mode', 'name', 'popularity', 'release_date', 'speechiness', 'tempo']
+INFO 2025-04-19 16:52:09,091 recommendation 18916 2532 Using features: ['acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'loudness', 'speechiness', 'tempo', 'valence']
+INFO 2025-04-19 16:52:09,142 recommendation 18916 2532 Prepared data with 170653 songs and 9 features
+INFO 2025-04-19 16:52:10,046 recommendation 18916 15264 Built song clusters successfully
+INFO 2025-04-19 16:52:10,046 recommendation 18916 15264 Music Recommender initialized successfully
+INFO 2025-04-19 16:52:10,054 recommendation 18916 2532 Built song clusters successfully
+INFO 2025-04-19 16:52:10,059 recommendation 18916 2532 Music Recommender initialized successfully
+INFO 2025-04-19 16:52:10,433 views 18916 2532 Got 10 recommendations
+INFO 2025-04-19 16:52:10,433 views 18916 15264 Got 10 recommendations
+INFO 2025-04-19 16:52:10,558 basehttp 18916 2532 "GET /api/songs/recommendations/ HTTP/1.1" 200 2988
+INFO 2025-04-19 16:52:10,558 basehttp 18916 15264 "GET /api/songs/recommendations/ HTTP/1.1" 200 2924
+INFO 2025-04-19 16:52:11,986 utils 18916 2532 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 16:52:12,004 utils 18916 15264 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 16:52:12,614 utils 18916 2532 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 16:52:12,994 utils 18916 15264 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 16:52:13,440 utils 18916 2532 Found exact match for artist 'Tommy Richman': Tommy Richman
+INFO 2025-04-19 16:52:13,957 utils 18916 15264 Found exact match for artist 'Tommy Richman': Tommy Richman
+INFO 2025-04-19 16:52:14,164 utils 18916 2532 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 16:52:14,752 utils 18916 15264 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 16:52:14,859 utils 18916 2532 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 16:52:14,871 basehttp 18916 2532 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 964
+INFO 2025-04-19 16:52:15,239 utils 18916 15264 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 16:52:15,239 basehttp 18916 15264 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 964
+INFO 2025-04-19 16:52:15,509 basehttp 18916 2532 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 560
+INFO 2025-04-19 16:52:15,876 basehttp 18916 15264 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 560
+INFO 2025-04-19 16:52:16,703 utils 18916 2532 Found exact match for artist 'Tommy Richman': Tommy Richman
+INFO 2025-04-19 16:52:17,313 utils 18916 15264 Found exact match for artist 'Tommy Richman': Tommy Richman
+INFO 2025-04-19 16:52:17,465 utils 18916 2532 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 16:52:18,236 utils 18916 15264 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 16:52:18,368 utils 18916 2532 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 16:52:18,982 utils 18916 15264 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 16:52:19,242 utils 18916 2532 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 16:52:19,702 utils 18916 15264 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 16:52:20,010 utils 18916 2532 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 16:52:20,533 utils 18916 15264 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 16:52:20,857 utils 18916 2532 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 16:52:20,874 basehttp 18916 2532 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 406
+INFO 2025-04-19 16:52:21,096 utils 18916 15264 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 16:52:21,113 basehttp 18916 15264 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 406
+INFO 2025-04-19 16:52:22,069 utils 18916 2532 Found exact match for artist 'Tommy Richman': Tommy Richman
+INFO 2025-04-19 16:52:22,636 utils 18916 2532 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 16:52:23,206 utils 18916 15264 Found exact match for artist 'Tommy Richman': Tommy Richman
+INFO 2025-04-19 16:52:23,286 utils 18916 2532 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 16:52:24,036 utils 18916 15264 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 16:52:24,055 utils 18916 2532 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 16:52:24,855 utils 18916 2532 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 16:52:24,910 utils 18916 15264 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 16:52:25,703 utils 18916 2532 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 16:52:25,715 basehttp 18916 2532 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 181
+INFO 2025-04-19 16:52:25,756 utils 18916 15264 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 16:52:26,257 utils 18916 15264 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 16:52:26,800 utils 18916 15264 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 16:52:26,803 basehttp 18916 15264 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 181
+WARNING 2025-04-19 16:53:37,915 log 18916 2532 Not Found: /api/songs/spotify/playlists/21y0yK08j1UzYu4ro06wfL/
+WARNING 2025-04-19 16:53:37,915 basehttp 18916 2532 "GET /api/songs/spotify/playlists/21y0yK08j1UzYu4ro06wfL/ HTTP/1.1" 404 17175
+WARNING 2025-04-19 16:53:37,952 log 18916 2532 Not Found: /api/songs/spotify-playlist/21y0yK08j1UzYu4ro06wfL/
+WARNING 2025-04-19 16:53:37,953 basehttp 18916 2532 "GET /api/songs/spotify-playlist/21y0yK08j1UzYu4ro06wfL/ HTTP/1.1" 404 17172
+WARNING 2025-04-19 16:53:37,965 log 18916 2532 Not Found: /api/spotify/playlists/21y0yK08j1UzYu4ro06wfL/
+WARNING 2025-04-19 16:53:37,968 basehttp 18916 2532 "GET /api/spotify/playlists/21y0yK08j1UzYu4ro06wfL/ HTTP/1.1" 404 3472
+INFO 2025-04-19 16:53:40,777 spotify_api 18916 2532 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-19 16:53:40,778 spotify_api 18916 2532 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-19 16:53:40,779 views 18916 2532 Redirecting Spotify playlist URL to playlist download endpoint: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-19 16:53:40,779 spotify_api 18916 2532 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-19 16:53:40,779 spotify_api 18916 2532 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-19 16:53:40,780 spotify_api 18916 2532 Getting Spotify playlist info for ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-19 16:53:40,780 spotify_api 18916 2532 Creating Spotify client with credentials from settings
+INFO 2025-04-19 16:53:41,170 spotify_api 18916 2532 Successfully tested Spotify client
+INFO 2025-04-19 16:53:41,568 spotify_api 18916 2532 Extracted 2 track URLs from playlist
+INFO 2025-04-19 16:53:41,571 download_helper 18916 2532 Playlist info retrieved: title=tunevault testing, tracks=2, image_url=https://i.scdn.co/image/ab67616d00001e02037e3cc2b0c60ecb5ee7eca5
+INFO 2025-04-19 16:53:42,514 download_helper 18916 2532 Added cached song to playlist: https://open.spotify.com/track/7MlDNspYwfqnHxORufupwq
+INFO 2025-04-19 16:53:43,227 download_helper 18916 2532 Added cached song to playlist: https://open.spotify.com/track/7uDUb37h7Xdhza1eWMkoJv
+INFO 2025-04-19 16:53:43,354 models 18916 2532 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-19
+INFO 2025-04-19 16:53:43,485 models 18916 2532 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-19 songs_downloaded=4
+INFO 2025-04-19 16:53:43,487 models 18916 2532 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-19
+INFO 2025-04-19 16:53:43,615 models 18916 2532 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-19 songs_downloaded=5
+INFO 2025-04-19 16:53:43,615 basehttp 18916 2532 "POST /api/songs/songs/download/ HTTP/1.1" 200 122
+INFO 2025-04-19 16:53:44,523 basehttp 18916 2532 "GET /api/songs/playlists/85/download-all/ HTTP/1.1" 200 10672722
+INFO 2025-04-19 16:53:45,182 spotify_api 18916 2532 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-19 16:53:45,182 spotify_api 18916 2532 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-19 16:53:45,184 views 18916 2532 Redirecting Spotify playlist URL to playlist download endpoint: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-19 16:53:45,184 spotify_api 18916 2532 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-19 16:53:45,184 spotify_api 18916 2532 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-19 16:53:45,184 spotify_api 18916 2532 Getting Spotify playlist info for ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-19 16:53:45,187 spotify_api 18916 2532 Creating Spotify client with credentials from settings
+INFO 2025-04-19 16:53:45,374 spotify_api 18916 2532 Successfully tested Spotify client
+INFO 2025-04-19 16:53:45,786 spotify_api 18916 2532 Extracted 2 track URLs from playlist
+INFO 2025-04-19 16:53:45,788 download_helper 18916 2532 Playlist info retrieved: title=tunevault testing, tracks=2, image_url=https://i.scdn.co/image/ab67616d00001e02037e3cc2b0c60ecb5ee7eca5
+INFO 2025-04-19 16:53:46,242 download_helper 18916 2532 Added existing song to playlist: https://open.spotify.com/track/7MlDNspYwfqnHxORufupwq
+INFO 2025-04-19 16:53:46,563 download_helper 18916 2532 Added existing song to playlist: https://open.spotify.com/track/7uDUb37h7Xdhza1eWMkoJv
+INFO 2025-04-19 16:53:46,692 models 18916 2532 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-19
+INFO 2025-04-19 16:53:46,818 models 18916 2532 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-19 songs_downloaded=6
+INFO 2025-04-19 16:53:46,818 models 18916 2532 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-19
+INFO 2025-04-19 16:53:46,947 models 18916 2532 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-19 songs_downloaded=7
+INFO 2025-04-19 16:53:46,947 basehttp 18916 2532 "POST /api/songs/songs/download/ HTTP/1.1" 200 122
+INFO 2025-04-19 16:53:47,496 basehttp 18916 2532 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-19 17:06:00,023 views 18916 12008 Redirecting YouTube playlist URL to playlist download endpoint: https://www.youtube.com/watch?v=U8F5G5wR1mk&list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1&pp=gAQB
+INFO 2025-04-19 17:06:00,023 utils 18916 12008 Getting YouTube playlist info for URL: https://www.youtube.com/watch?v=U8F5G5wR1mk&list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1&pp=gAQB
+INFO 2025-04-19 17:06:00,023 utils 18916 12008 Extracted YouTube playlist ID: PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-19 17:06:00,023 utils 18916 12008 Using formatted playlist URL: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-19 17:06:00,391 utils 18916 12008 Extracting playlist info from: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-19 17:06:03,342 utils 18916 12008 Successfully extracted info for playlist: tunevault with 3 tracks
+INFO 2025-04-19 17:06:03,346 download_helper 18916 12008 Playlist info retrieved: title=tunevault, tracks=3, image_url=None
+INFO 2025-04-19 17:06:03,842 download_helper 18916 12008 Added existing song to playlist: https://www.youtube.com/watch?v=U8F5G5wR1mk
+INFO 2025-04-19 17:06:04,146 download_helper 18916 12008 Added existing song to playlist: https://www.youtube.com/watch?v=xnvkStb2jT0
+INFO 2025-04-19 17:06:04,456 download_helper 18916 12008 Added existing song to playlist: https://www.youtube.com/watch?v=SMvmAWECT8U
+INFO 2025-04-19 17:06:04,577 models 18916 12008 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-19
+INFO 2025-04-19 17:06:04,719 models 18916 12008 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-19 songs_downloaded=8
+INFO 2025-04-19 17:06:04,720 models 18916 12008 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-19
+INFO 2025-04-19 17:06:04,839 models 18916 12008 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-19 songs_downloaded=9
+INFO 2025-04-19 17:06:04,843 models 18916 12008 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-19
+INFO 2025-04-19 17:06:04,968 models 18916 12008 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-19 songs_downloaded=10
+INFO 2025-04-19 17:06:04,972 basehttp 18916 12008 "POST /api/songs/songs/download/ HTTP/1.1" 200 114
+WARNING 2025-04-19 17:06:04,989 log 18916 12008 Not Found: /api/songs/playlists/PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1/download-all/
+WARNING 2025-04-19 17:06:04,993 basehttp 18916 12008 "GET /api/songs/playlists/PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1/download-all/ HTTP/1.1" 404 17226
+INFO 2025-04-19 17:06:38,441 views 18916 12008 Redirecting YouTube playlist URL to playlist download endpoint: https://www.youtube.com/watch?v=U8F5G5wR1mk&list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1&pp=gAQB
+INFO 2025-04-19 17:06:38,450 utils 18916 12008 Getting YouTube playlist info for URL: https://www.youtube.com/watch?v=U8F5G5wR1mk&list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1&pp=gAQB
+INFO 2025-04-19 17:06:38,490 utils 18916 12008 Extracted YouTube playlist ID: PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-19 17:06:38,509 utils 18916 12008 Using formatted playlist URL: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-19 17:06:38,664 utils 18916 12008 Extracting playlist info from: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-19 17:06:40,400 utils 18916 12008 Successfully extracted info for playlist: tunevault with 3 tracks
+INFO 2025-04-19 17:06:40,407 download_helper 18916 12008 Playlist info retrieved: title=tunevault, tracks=3, image_url=None
+INFO 2025-04-19 17:06:40,845 download_helper 18916 12008 Added existing song to playlist: https://www.youtube.com/watch?v=U8F5G5wR1mk
+INFO 2025-04-19 17:06:41,157 download_helper 18916 12008 Added existing song to playlist: https://www.youtube.com/watch?v=xnvkStb2jT0
+INFO 2025-04-19 17:06:41,461 download_helper 18916 12008 Added existing song to playlist: https://www.youtube.com/watch?v=SMvmAWECT8U
+INFO 2025-04-19 17:06:41,586 models 18916 12008 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-19
+INFO 2025-04-19 17:06:41,710 models 18916 12008 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-19 songs_downloaded=11
+INFO 2025-04-19 17:06:41,710 models 18916 12008 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-19
+INFO 2025-04-19 17:06:41,833 models 18916 12008 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-19 songs_downloaded=12
+INFO 2025-04-19 17:06:41,834 models 18916 12008 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-19
+INFO 2025-04-19 17:06:41,957 models 18916 12008 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-19 songs_downloaded=13
+INFO 2025-04-19 17:06:41,960 basehttp 18916 12008 "POST /api/songs/songs/download/ HTTP/1.1" 200 114
+WARNING 2025-04-19 17:06:42,094 log 18916 12008 Not Found: /api/songs/playlists/PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1/download-all/
+WARNING 2025-04-19 17:06:42,096 basehttp 18916 12008 "GET /api/songs/playlists/PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1/download-all/ HTTP/1.1" 404 17226
+INFO 2025-04-19 18:00:08,851 basehttp 18916 15728 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-19 18:00:09,308 basehttp 18916 14116 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-19 18:00:09,568 views 18916 15728 User has 8 songs
+INFO 2025-04-19 18:00:09,635 views 18916 15728 User has 2 songs with Spotify IDs
+INFO 2025-04-19 18:00:09,760 views 18916 15728 Sample user songs: [{'spotify_id': '7uDUb37h7Xdhza1eWMkoJv', 'title': 'Friends', 'artist': 'Chase Atlantic'}, {'spotify_id': '7MlDNspYwfqnHxORufupwq', 'title': 'Sex, Drugs, Etc.', 'artist': 'Beach Weather'}]
+INFO 2025-04-19 18:00:09,761 views 18916 15728 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-19 18:00:09,994 views 18916 14116 User has 8 songs
+INFO 2025-04-19 18:00:10,110 views 18916 14116 User has 2 songs with Spotify IDs
+WARNING 2025-04-19 18:00:10,225 recommendation 18916 15728 Song '7uDUb37h7Xdhza1eWMkoJv' not found or clustering unavailable, using popular songs
+INFO 2025-04-19 18:00:10,274 views 18916 14116 Sample user songs: [{'spotify_id': '7uDUb37h7Xdhza1eWMkoJv', 'title': 'Friends', 'artist': 'Chase Atlantic'}, {'spotify_id': '7MlDNspYwfqnHxORufupwq', 'title': 'Sex, Drugs, Etc.', 'artist': 'Beach Weather'}]
+INFO 2025-04-19 18:00:10,277 views 18916 14116 Getting recommendations for user: 4 with limit: 10
+WARNING 2025-04-19 18:00:10,444 recommendation 18916 15728 Song '7MlDNspYwfqnHxORufupwq' not found or clustering unavailable, using popular songs
+WARNING 2025-04-19 18:00:10,606 recommendation 18916 14116 Song '7uDUb37h7Xdhza1eWMkoJv' not found or clustering unavailable, using popular songs
+INFO 2025-04-19 18:00:10,782 views 18916 15728 Got 10 recommendations
+WARNING 2025-04-19 18:00:10,874 recommendation 18916 14116 Song '7MlDNspYwfqnHxORufupwq' not found or clustering unavailable, using popular songs
+INFO 2025-04-19 18:00:10,951 basehttp 18916 15728 "GET /api/songs/recommendations/ HTTP/1.1" 200 3001
+INFO 2025-04-19 18:00:11,029 views 18916 14116 Got 10 recommendations
+INFO 2025-04-19 18:00:11,155 basehttp 18916 14116 "GET /api/songs/recommendations/ HTTP/1.1" 200 3087
+INFO 2025-04-19 18:00:12,584 utils 18916 15728 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 18:00:13,117 utils 18916 14116 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 18:00:14,417 utils 18916 14116 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 18:00:14,459 utils 18916 15728 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 18:00:16,383 utils 18916 15728 Found exact match for artist 'Tommy Richman': Tommy Richman
+INFO 2025-04-19 18:00:16,427 utils 18916 14116 Found exact match for artist 'Tommy Richman': Tommy Richman
+INFO 2025-04-19 18:00:18,252 utils 18916 15728 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-19 18:00:18,284 utils 18916 14116 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-19 18:00:19,691 utils 18916 15728 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 18:00:19,691 utils 18916 14116 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 18:00:19,695 basehttp 18916 15728 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 928
+INFO 2025-04-19 18:00:19,695 basehttp 18916 14116 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 928
+INFO 2025-04-19 18:00:20,337 basehttp 18916 14116 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 561
+INFO 2025-04-19 18:00:20,360 basehttp 18916 15728 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 561
+INFO 2025-04-19 18:00:22,268 utils 18916 14116 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-19 18:00:22,747 utils 18916 15728 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-19 18:00:24,062 utils 18916 14116 Found partial match for artist 'Beach Weather': The Beach Boys
+INFO 2025-04-19 18:00:24,172 utils 18916 15728 Found partial match for artist 'Beach Weather': The Beach Boys
+INFO 2025-04-19 18:00:25,360 utils 18916 14116 Found exact match for artist 'Tommy Richman': Tommy Richman
+INFO 2025-04-19 18:00:25,598 utils 18916 15728 Found exact match for artist 'Tommy Richman': Tommy Richman
+INFO 2025-04-19 18:00:26,700 utils 18916 15728 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 18:00:26,724 utils 18916 14116 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 18:00:27,854 utils 18916 14116 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 18:00:27,888 utils 18916 15728 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 18:00:28,954 utils 18916 14116 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 18:00:28,992 utils 18916 15728 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 18:00:30,171 utils 18916 15728 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 18:00:30,240 utils 18916 14116 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 18:00:31,204 utils 18916 15728 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 18:00:31,253 basehttp 18916 15728 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 386
+INFO 2025-04-19 18:00:31,270 utils 18916 14116 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 18:00:31,277 basehttp 18916 14116 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 386
+INFO 2025-04-19 18:00:33,086 utils 18916 14116 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-19 18:00:33,089 utils 18916 15728 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-19 18:00:34,138 utils 18916 15728 Found partial match for artist 'Beach Weather': The Beach Boys
+INFO 2025-04-19 18:00:34,220 utils 18916 14116 Found partial match for artist 'Beach Weather': The Beach Boys
+INFO 2025-04-19 18:00:35,237 utils 18916 14116 Found exact match for artist 'Tommy Richman': Tommy Richman
+INFO 2025-04-19 18:00:35,452 utils 18916 15728 Found exact match for artist 'Tommy Richman': Tommy Richman
+INFO 2025-04-19 18:00:36,016 utils 18916 14116 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 18:00:36,828 utils 18916 15728 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 18:00:37,136 utils 18916 14116 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 18:00:37,763 utils 18916 15728 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 18:00:38,576 utils 18916 15728 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 18:00:38,654 utils 18916 14116 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 18:00:39,471 utils 18916 15728 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 18:00:39,894 utils 18916 14116 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 18:00:40,725 utils 18916 14116 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 18:00:40,738 basehttp 18916 14116 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 215
+INFO 2025-04-19 18:00:40,776 utils 18916 15728 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 18:00:40,781 basehttp 18916 15728 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 215
+INFO 2025-04-19 18:01:28,052 basehttp 18916 14116 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-19 18:01:28,083 basehttp 18916 15728 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-19 18:01:28,825 views 18916 14116 User has 8 songs
+INFO 2025-04-19 18:01:28,833 views 18916 15728 User has 8 songs
+INFO 2025-04-19 18:01:28,888 views 18916 14116 User has 2 songs with Spotify IDs
+INFO 2025-04-19 18:01:28,894 views 18916 15728 User has 2 songs with Spotify IDs
+INFO 2025-04-19 18:01:29,024 views 18916 15728 Sample user songs: [{'spotify_id': '7uDUb37h7Xdhza1eWMkoJv', 'title': 'Friends', 'artist': 'Chase Atlantic'}, {'spotify_id': '7MlDNspYwfqnHxORufupwq', 'title': 'Sex, Drugs, Etc.', 'artist': 'Beach Weather'}]
+INFO 2025-04-19 18:01:29,024 views 18916 14116 Sample user songs: [{'spotify_id': '7uDUb37h7Xdhza1eWMkoJv', 'title': 'Friends', 'artist': 'Chase Atlantic'}, {'spotify_id': '7MlDNspYwfqnHxORufupwq', 'title': 'Sex, Drugs, Etc.', 'artist': 'Beach Weather'}]
+INFO 2025-04-19 18:01:29,026 views 18916 15728 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-19 18:01:29,026 views 18916 14116 Getting recommendations for user: 4 with limit: 10
+WARNING 2025-04-19 18:01:29,470 recommendation 18916 15728 Song '7uDUb37h7Xdhza1eWMkoJv' not found or clustering unavailable, using popular songs
+WARNING 2025-04-19 18:01:29,472 recommendation 18916 14116 Song '7uDUb37h7Xdhza1eWMkoJv' not found or clustering unavailable, using popular songs
+WARNING 2025-04-19 18:01:29,816 recommendation 18916 15728 Song '7MlDNspYwfqnHxORufupwq' not found or clustering unavailable, using popular songs
+WARNING 2025-04-19 18:01:29,869 recommendation 18916 14116 Song '7MlDNspYwfqnHxORufupwq' not found or clustering unavailable, using popular songs
+INFO 2025-04-19 18:01:30,031 views 18916 15728 Got 10 recommendations
+INFO 2025-04-19 18:01:30,054 views 18916 14116 Got 10 recommendations
+INFO 2025-04-19 18:01:30,152 basehttp 18916 15728 "GET /api/songs/recommendations/ HTTP/1.1" 200 2895
+INFO 2025-04-19 18:01:30,178 basehttp 18916 14116 "GET /api/songs/recommendations/ HTTP/1.1" 200 2924
+INFO 2025-04-19 18:01:32,143 utils 18916 15728 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 18:01:32,251 utils 18916 14116 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 18:01:33,725 utils 18916 14116 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 18:01:33,739 utils 18916 15728 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 18:01:35,566 utils 18916 15728 Found exact match for artist 'Tommy Richman': Tommy Richman
+INFO 2025-04-19 18:01:35,665 utils 18916 14116 Found exact match for artist 'Tommy Richman': Tommy Richman
+INFO 2025-04-19 18:01:37,375 utils 18916 15728 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-19 18:01:37,548 utils 18916 14116 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-19 18:01:39,236 utils 18916 15728 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 18:01:39,245 utils 18916 14116 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 18:01:39,246 basehttp 18916 15728 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 928
+INFO 2025-04-19 18:01:39,248 basehttp 18916 14116 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 928
+INFO 2025-04-19 18:01:39,924 basehttp 18916 14116 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 561
+INFO 2025-04-19 18:01:39,938 basehttp 18916 15728 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 561
+INFO 2025-04-19 18:01:42,423 utils 18916 15728 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-19 18:01:42,436 utils 18916 14116 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-19 18:01:43,936 utils 18916 15728 Found partial match for artist 'Beach Weather': The Beach Boys
+INFO 2025-04-19 18:01:44,116 utils 18916 14116 Found partial match for artist 'Beach Weather': The Beach Boys
+INFO 2025-04-19 18:01:45,271 utils 18916 14116 Found exact match for artist 'Tommy Richman': Tommy Richman
+INFO 2025-04-19 18:01:45,516 utils 18916 15728 Found exact match for artist 'Tommy Richman': Tommy Richman
+INFO 2025-04-19 18:01:46,763 utils 18916 14116 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 18:01:47,536 utils 18916 15728 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 18:01:49,049 utils 18916 14116 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 18:01:49,476 utils 18916 15728 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 18:01:52,020 utils 18916 14116 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 18:01:52,654 utils 18916 15728 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 18:01:54,491 utils 18916 14116 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 18:01:54,816 utils 18916 15728 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 18:01:56,421 utils 18916 15728 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 18:01:56,421 utils 18916 14116 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 18:01:56,426 basehttp 18916 14116 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 386
+INFO 2025-04-19 18:01:56,426 basehttp 18916 15728 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 386
+INFO 2025-04-19 18:01:58,467 utils 18916 15728 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-19 18:01:58,467 utils 18916 14116 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-19 18:02:00,666 utils 18916 15728 Found partial match for artist 'Beach Weather': The Beach Boys
+INFO 2025-04-19 18:02:00,696 utils 18916 14116 Found partial match for artist 'Beach Weather': The Beach Boys
+INFO 2025-04-19 18:02:02,037 utils 18916 14116 Found exact match for artist 'Tommy Richman': Tommy Richman
+INFO 2025-04-19 18:02:02,549 utils 18916 15728 Found exact match for artist 'Tommy Richman': Tommy Richman
+INFO 2025-04-19 18:02:03,412 utils 18916 14116 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 18:02:03,676 utils 18916 15728 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 18:02:04,816 utils 18916 14116 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 18:02:05,387 utils 18916 15728 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 18:02:05,949 utils 18916 14116 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 18:02:06,896 utils 18916 15728 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 18:02:07,989 utils 18916 14116 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 18:02:08,556 utils 18916 15728 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 18:02:09,148 utils 18916 14116 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 18:02:09,158 basehttp 18916 14116 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 215
+INFO 2025-04-19 18:02:09,696 utils 18916 15728 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 18:02:09,702 basehttp 18916 15728 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 215
+INFO 2025-04-19 19:16:47,540 views 18916 2476 Redirecting YouTube playlist URL to playlist download endpoint: https://www.youtube.com/watch?v=U8F5G5wR1mk&list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1&pp=gAQB
+INFO 2025-04-19 19:16:47,544 utils 18916 2476 Getting YouTube playlist info for URL: https://www.youtube.com/watch?v=U8F5G5wR1mk&list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1&pp=gAQB
+INFO 2025-04-19 19:16:47,544 utils 18916 2476 Extracted YouTube playlist ID: PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-19 19:16:47,544 utils 18916 2476 Using formatted playlist URL: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-19 19:16:47,606 utils 18916 2476 Extracting playlist info from: https://www.youtube.com/playlist?list=PLpwZLavzdLK5E9aEw-jcU9RqArw8ZVjd1
+INFO 2025-04-19 19:16:48,804 utils 18916 2476 Successfully extracted info for playlist: tunevault with 3 tracks
+INFO 2025-04-19 19:16:48,808 download_helper 18916 2476 Playlist info retrieved: title=tunevault, tracks=3, image_url=None
+INFO 2025-04-19 19:16:49,288 download_helper 18916 2476 Added existing song to playlist: https://www.youtube.com/watch?v=U8F5G5wR1mk
+INFO 2025-04-19 19:16:49,603 download_helper 18916 2476 Added existing song to playlist: https://www.youtube.com/watch?v=xnvkStb2jT0
+INFO 2025-04-19 19:16:49,917 download_helper 18916 2476 Added existing song to playlist: https://www.youtube.com/watch?v=SMvmAWECT8U
+INFO 2025-04-19 19:16:50,046 models 18916 2476 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-19
+INFO 2025-04-19 19:16:50,178 models 18916 2476 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-19 songs_downloaded=14
+INFO 2025-04-19 19:16:50,178 models 18916 2476 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-19
+INFO 2025-04-19 19:16:50,303 models 18916 2476 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-19 songs_downloaded=15
+INFO 2025-04-19 19:16:50,305 models 18916 2476 [DEBUG] record_download called for user=MonilM id=4 date=2025-04-19
+INFO 2025-04-19 19:16:50,431 models 18916 2476 [DEBUG] record_download updated analytics: user=MonilM id=4 date=2025-04-19 songs_downloaded=16
+INFO 2025-04-19 19:16:50,439 basehttp 18916 2476 "POST /api/songs/songs/download/ HTTP/1.1" 200 114
+INFO 2025-04-19 19:16:51,369 basehttp 18916 2476 "GET /api/songs/playlists/89/download-all/ HTTP/1.1" 200 13771545
+WARNING 2025-04-19 19:16:52,099 log 18916 2476 Bad Request: /api/songs/songs/download/
+WARNING 2025-04-19 19:16:52,099 basehttp 18916 2476 "POST /api/songs/songs/download/ HTTP/1.1" 400 59
+INFO 2025-04-19 19:40:47,965 basehttp 18916 10196 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-19 19:40:48,078 basehttp 18916 14664 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-19 19:40:48,583 views 18916 10196 User has 8 songs
+INFO 2025-04-19 19:40:48,644 views 18916 10196 User has 2 songs with Spotify IDs
+INFO 2025-04-19 19:40:48,763 views 18916 14664 User has 8 songs
+INFO 2025-04-19 19:40:48,766 views 18916 10196 Sample user songs: [{'spotify_id': '7uDUb37h7Xdhza1eWMkoJv', 'title': 'Friends', 'artist': 'Chase Atlantic'}, {'spotify_id': '7MlDNspYwfqnHxORufupwq', 'title': 'Sex, Drugs, Etc.', 'artist': 'Beach Weather'}]
+INFO 2025-04-19 19:40:48,766 views 18916 10196 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-19 19:40:48,828 views 18916 14664 User has 2 songs with Spotify IDs
+INFO 2025-04-19 19:40:48,990 views 18916 14664 Sample user songs: [{'spotify_id': '7uDUb37h7Xdhza1eWMkoJv', 'title': 'Friends', 'artist': 'Chase Atlantic'}, {'spotify_id': '7MlDNspYwfqnHxORufupwq', 'title': 'Sex, Drugs, Etc.', 'artist': 'Beach Weather'}]
+INFO 2025-04-19 19:40:49,005 views 18916 14664 Getting recommendations for user: 4 with limit: 10
+WARNING 2025-04-19 19:40:49,191 recommendation 18916 10196 Song '7uDUb37h7Xdhza1eWMkoJv' not found or clustering unavailable, using popular songs
+WARNING 2025-04-19 19:40:49,278 recommendation 18916 14664 Song '7uDUb37h7Xdhza1eWMkoJv' not found or clustering unavailable, using popular songs
+WARNING 2025-04-19 19:40:49,571 recommendation 18916 10196 Song '7MlDNspYwfqnHxORufupwq' not found or clustering unavailable, using popular songs
+WARNING 2025-04-19 19:40:49,571 recommendation 18916 14664 Song '7MlDNspYwfqnHxORufupwq' not found or clustering unavailable, using popular songs
+INFO 2025-04-19 19:40:49,709 views 18916 14664 Got 10 recommendations
+INFO 2025-04-19 19:40:49,713 views 18916 10196 Got 10 recommendations
+INFO 2025-04-19 19:40:49,835 basehttp 18916 10196 "GET /api/songs/recommendations/ HTTP/1.1" 200 2950
+INFO 2025-04-19 19:40:49,837 basehttp 18916 14664 "GET /api/songs/recommendations/ HTTP/1.1" 200 3045
+INFO 2025-04-19 19:40:51,142 utils 18916 14664 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 19:40:51,206 utils 18916 10196 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 19:40:51,862 utils 18916 10196 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 19:40:52,173 utils 18916 14664 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 19:40:52,433 utils 18916 10196 Found exact match for artist 'Tommy Richman': Tommy Richman
+INFO 2025-04-19 19:40:52,997 utils 18916 10196 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-19 19:40:53,242 utils 18916 14664 Found exact match for artist 'Tommy Richman': Tommy Richman
+INFO 2025-04-19 19:40:53,566 utils 18916 10196 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 19:40:53,583 basehttp 18916 10196 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 928
+INFO 2025-04-19 19:40:53,825 utils 18916 14664 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-19 19:40:54,215 utils 18916 14664 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 19:40:54,215 basehttp 18916 10196 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 561
+INFO 2025-04-19 19:40:54,215 basehttp 18916 14664 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 928
+INFO 2025-04-19 19:40:54,829 basehttp 18916 10196 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 561
+INFO 2025-04-19 19:40:55,233 utils 18916 14664 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-19 19:40:55,687 utils 18916 14664 Found partial match for artist 'Beach Weather': The Beach Boys
+INFO 2025-04-19 19:40:56,075 utils 18916 10196 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-19 19:40:56,647 utils 18916 10196 Found partial match for artist 'Beach Weather': The Beach Boys
+INFO 2025-04-19 19:40:56,668 utils 18916 14664 Found exact match for artist 'Tommy Richman': Tommy Richman
+INFO 2025-04-19 19:40:57,231 utils 18916 10196 Found exact match for artist 'Tommy Richman': Tommy Richman
+INFO 2025-04-19 19:40:57,829 utils 18916 14664 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 19:40:57,829 utils 18916 10196 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 19:40:58,412 utils 18916 10196 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 19:40:58,737 utils 18916 14664 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 19:40:58,941 utils 18916 10196 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 19:40:59,623 utils 18916 10196 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 19:40:59,894 utils 18916 14664 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 19:41:00,279 utils 18916 10196 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 19:41:00,279 basehttp 18916 10196 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 386
+INFO 2025-04-19 19:41:00,539 utils 18916 14664 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 19:41:00,996 utils 18916 14664 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 19:41:01,012 basehttp 18916 14664 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 386
+INFO 2025-04-19 19:41:01,309 utils 18916 10196 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-19 19:41:01,698 utils 18916 10196 Found partial match for artist 'Beach Weather': The Beach Boys
+INFO 2025-04-19 19:41:02,281 utils 18916 10196 Found exact match for artist 'Tommy Richman': Tommy Richman
+INFO 2025-04-19 19:41:02,612 utils 18916 14664 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-19 19:41:02,855 utils 18916 10196 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 19:41:03,330 utils 18916 10196 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 19:41:03,840 utils 18916 14664 Found partial match for artist 'Beach Weather': The Beach Boys
+INFO 2025-04-19 19:41:03,973 utils 18916 10196 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 19:41:04,564 utils 18916 10196 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 19:41:04,829 utils 18916 14664 Found exact match for artist 'Tommy Richman': Tommy Richman
+INFO 2025-04-19 19:41:05,083 utils 18916 10196 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 19:41:05,092 basehttp 18916 10196 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 215
+INFO 2025-04-19 19:41:05,487 utils 18916 14664 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 19:41:05,948 utils 18916 14664 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-19 19:41:06,421 utils 18916 14664 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-19 19:41:07,382 utils 18916 14664 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-19 19:41:08,332 utils 18916 14664 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-19 19:41:08,349 basehttp 18916 14664 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 215

@@ -6,6 +6,9 @@ import { Button } from '@/components/ui/button'
 import { Download, Music, Play, Pause, ExternalLink } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import { usePlayer } from '@/context/PlayerContext'
+import { useToast } from "@/hooks/use-toast"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
+
 
 interface RecommendationCardProps {
   song: {
@@ -24,6 +27,7 @@ interface RecommendationCardProps {
 
 export function RecommendationCard({ song }: RecommendationCardProps) {
   const { theme } = useTheme()
+  const { toast } = useToast()
   const { currentSong, isPlaying, togglePlay } = usePlayer()
   const [thumbnailUrl, setThumbnailUrl] = useState<string | null>(null)
   const [isLoading, setIsLoading] = useState(true)
@@ -73,13 +77,39 @@ export function RecommendationCard({ song }: RecommendationCardProps) {
     if (!song.spotify_id) return;
     
     setIsDownloading(true);
+    const { dismiss } = toast({
+      title: "Starting download...",
+      description: `Preparing to download ${song.title}.`,
+    });
     
     try {
-      // Trigger the download API
-      const response = await fetch(`/api/download?spotify_id=${song.spotify_id}`);
+      const spotifyUrl = getSpotifyPreviewUrl(); // Get the spotify URL
       
-      if (!response.ok) throw new Error('Download failed');
+      // Update fetch call for the new API endpoint and method
+      const response = await fetch(`http://localhost:8000/api/songs/songs/download/`, { 
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+          url: spotifyUrl, 
+          format: "mp3" 
+        }),
+      });
       
+      if (!response.ok) {
+        // Try to get error message from response body
+        let errorMsg = `Download failed: ${response.statusText || response.status}`;
+        try {
+          const errorData = await response.json();
+          errorMsg = errorData.detail || errorData.error || errorMsg; // Use detailed error if available
+        } catch (e) {
+          // Ignore if response is not JSON
+        }
+        throw new Error(errorMsg);
+      }
+      
+      // Assuming the API returns the file blob directly in the response body
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
       const a = document.createElement('a');
@@ -89,9 +119,24 @@ export function RecommendationCard({ song }: RecommendationCardProps) {
       document.body.appendChild(a);
       a.click();
       window.URL.revokeObjectURL(url);
-    } catch (error) {
+      document.body.removeChild(a); // Clean up the anchor element
+
+      // Dismiss the loading toast and show success
+      dismiss();
+      toast({
+        title: "Download Complete!",
+        description: `${song.title} has been downloaded.`,
+      });
+
+    } catch (error: unknown) {
       console.error('Download failed:', error);
-      // Could show a toast notification here
+      // Dismiss loading toast and show error
+      dismiss();
+      toast({
+        title: "Download Failed",
+        description: error instanceof Error ? error.message : "Could not download the song. Please try again.",
+        variant: "destructive",
+      });
     } finally {
       setIsDownloading(false);
     }
@@ -107,6 +152,7 @@ export function RecommendationCard({ song }: RecommendationCardProps) {
   useEffect(() => {
     const fetchAlbumArt = async () => {
       setIsLoading(true);
+      setThumbnailUrl(null); // Reset thumbnail on new song
       
       try {
         // First try to get the artwork from Spotify
@@ -135,12 +181,12 @@ export function RecommendationCard({ song }: RecommendationCardProps) {
           const artworkUrl = itunesData.results[0].artworkUrl100.replace('100x100', '600x600');
           setThumbnailUrl(artworkUrl);
         } else {
-          // Last resort fallback to an AI-generated music image
-          setThumbnailUrl(`https://source.unsplash.com/300x300/?music,album,${encodeURIComponent(formatArtistName())}`);
+          // Last resort fallback to the local placeholder
+          setThumbnailUrl('/assets/MusicPlaceholder.png');
         }
       } catch (error) {
         console.error('Failed to fetch album art:', error);
-        setThumbnailUrl(`https://source.unsplash.com/300x300/?music,album,${encodeURIComponent(formatArtistName())}`);
+        setThumbnailUrl('/assets/MusicPlaceholder.png'); // Use local placeholder on error
       }
       
       setIsLoading(false);
@@ -150,52 +196,61 @@ export function RecommendationCard({ song }: RecommendationCardProps) {
   }, [song]);
 
   return (
-    <Card className={`overflow-hidden h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 backdrop-blur-sm ${getCardBackground()} ${isThisPlaying ? 'ring-2 ring-blue-500 ring-offset-2 ring-offset-transparent static-glow' : ''}`}>
+    <Card className={`overflow-hidden h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 backdrop-blur-sm ${getCardBackground()} ${isThisPlaying ? 'ring-2 ring-blue-500 ring-offset-2 ring-offset-transparent static-glow' : ''} dark:border dark:border-border/20 dark:shadow-blue-500/5`}>
       <div className="aspect-square relative">
         {/* Creative background pattern */}
         <div className="absolute inset-0 pattern-dots pattern-blue-500 pattern-bg-white pattern-size-4 pattern-opacity-10 dark:pattern-opacity-5"></div>
         
         {/* Thumbnail or placeholder */}
         <div className="absolute inset-0 bg-gradient-to-b from-blue-500/10 to-slate-900/30 dark:from-blue-500/20 dark:to-black/50">
-          {thumbnailUrl ? (
+          {isLoading ? (
+            <div className="flex items-center justify-center h-full">
+               <div className="animate-pulse w-12 h-12 rounded-full bg-slate-200 dark:bg-white/20"></div>
+             </div>
+          ) : thumbnailUrl ? (
             <Image
               src={thumbnailUrl}
               alt={song.title}
               fill
               className="object-cover opacity-90"
-              onError={() => setThumbnailUrl(`https://source.unsplash.com/300x300/?music,album,${encodeURIComponent(formatArtistName())}`)}
+              onError={() => setThumbnailUrl('/assets/MusicPlaceholder.png')} // Fallback on image load error
             />
           ) : (
             <div className="flex items-center justify-center h-full">
-              {isLoading ? (
-                <div className="animate-pulse w-12 h-12 rounded-full bg-slate-200 dark:bg-white/20"></div>
-              ) : (
-                <Music className="h-12 w-12 text-slate-400 dark:text-white/50" />
-              )}
+              <Music className="h-12 w-12 text-slate-400 dark:text-white/50" />
             </div>
           )}
         </div>
         
-        {/* Popularity indicator */}
-        <div className="absolute top-2 right-2 flex items-center">
-          <div className={`h-1.5 w-1.5 rounded-full ${getPopularityClass()} mr-1.5 ${isThisPlaying ? 'animate-pulse' : ''}`}></div>
-          <span className="text-xs font-medium text-white bg-black/50 backdrop-blur-sm rounded-full px-2 py-0.5">
-            {song.popularity}/100
-          </span>
-        </div>
+        {/* Popularity indicator with Tooltip */}
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <div className="absolute top-2 right-2 flex items-center cursor-default">
+                <div className={`h-1.5 w-1.5 rounded-full ${getPopularityClass()} mr-1.5 ${isThisPlaying ? 'animate-pulse' : ''}`}></div>
+                <span className="text-xs font-medium text-white bg-black/50 backdrop-blur-sm rounded-full px-2 py-0.5">
+                  {song.popularity}/100
+                </span>
+              </div>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Popularity Score on Spotify</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
         
         {/* Spotify link */}
         {song.spotify_id && (
           <div className="absolute top-2 left-2">
-            <a 
-              href={getSpotifyPreviewUrl()} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="text-xs font-medium flex items-center gap-1 bg-black/50 backdrop-blur-sm hover:bg-green-800/70 text-white rounded-full px-2 py-0.5 transition-colors"
+            <Button 
+              variant="ghost" 
+              className="h-10 text-xs gap-2 text-slate-700 dark:text-white hover:bg-slate-100 dark:hover:bg-blue-900/20 rounded-none border-r border-slate-100 dark:border-white/5"
+              onClick={openInSpotify}
+              disabled={!song.spotify_id}
             >
-              <span className="w-3 h-3 rounded-full bg-green-500"></span>
-              Spotify
-            </a>
+              <ExternalLink className="w-4 h-4" />
+              Open in Spotify
+            </Button>
           </div>
         )}
         
@@ -252,7 +307,7 @@ export function RecommendationCard({ song }: RecommendationCardProps) {
           ) : (
             <Download className="w-4 h-4" />
           )}
-          Download
+          {isDownloading ? 'Downloading...' : 'Download'}
         </Button>
       </div>
     </Card>

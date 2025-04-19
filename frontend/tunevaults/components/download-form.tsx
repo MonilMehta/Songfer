@@ -557,15 +557,22 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
           if (responseData.message && responseData.message.includes('downloaded successfully')) {
             console.log(`YouTube playlist success message detected: ${responseData.message}`);
             
-            // Extract the playlist ID directly from the URL
-            const urlMatch = preview.url.match(/list=([a-zA-Z0-9_-]+)/i);
-            if (!urlMatch || !urlMatch[1]) {
-              console.error(`Cannot extract playlist ID from URL: ${preview.url}`);
-              throw new Error(`Cannot extract playlist ID from URL: ${preview.url}`);
-            }
+            // **PRIORITIZE internal ID from response if available**
+            let internalPlaylistId = responseData.playlist_id; 
             
-            const playlistId = urlMatch[1];
-            console.log(`Extracted YouTube playlist ID from URL: ${playlistId}`);
+            // Fallback: Extract the YouTube playlist ID directly from the URL
+            if (!internalPlaylistId) {
+              const urlMatch = preview.url.match(/list=([a-zA-Z0-9_-]+)/i);
+              if (!urlMatch || !urlMatch[1]) {
+                console.error(`Cannot extract playlist ID from URL: ${preview.url}`);
+                throw new Error(`Cannot extract playlist ID from URL: ${preview.url}`);
+              }
+              // Use the YouTube ID string ONLY if internal ID is missing (this might still be wrong)
+              internalPlaylistId = urlMatch[1]; 
+              console.warn(`Using YouTube ID string (${internalPlaylistId}) as fallback for download-all endpoint. Backend might expect internal ID.`);
+            } else {
+               console.log(`Using internal playlist ID from response: ${internalPlaylistId}`);
+            }
             
             // Extract name if available
             let playlistName = preview.title;
@@ -581,8 +588,8 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
               duration: 5000
             });
             
-            // Build YouTube playlist ZIP endpoint
-            const zipEndpoint = `http://localhost:8000/api/songs/playlists/${playlistId}/download-all/`;
+            // Build YouTube playlist ZIP endpoint using the internal ID
+            const zipEndpoint = `http://localhost:8000/api/songs/playlists/${internalPlaylistId}/download-all/`;
             console.log(`Fetching YouTube ZIP from: ${zipEndpoint}`);
             
             try {
@@ -993,18 +1000,31 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
       return (
         <div className="w-full border rounded-md shadow-md overflow-hidden flex flex-col">
           <div className="p-4 bg-card border-b">
-            <div className="flex items-start">
-              {playlistDetails?.thumbnail ? (
-                <img 
-                  src={playlistDetails.thumbnail} 
-                  alt="Playlist thumbnail" 
-                  className="w-12 h-12 rounded mr-3 object-cover"
-                />
-              ) : (
-                <ListMusic className="w-10 h-10 mr-3 text-primary" />
-              )}
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0 w-24 h-24 bg-muted rounded-md overflow-hidden">
+                {/* Render ACTUAL thumbnail or placeholder, NOT recursive call */}
+                {playlistDetails?.thumbnail ? (
+                  <img 
+                    src={playlistDetails.thumbnail} 
+                    alt="Playlist thumbnail" 
+                    className="w-full h-full object-cover"
+                  />
+                ) : preview?.thumbnail ? (
+                   <img 
+                    src={preview.thumbnail} 
+                    alt="Playlist thumbnail" 
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-primary/10 to-secondary/10">
+                     <ListMusic className="w-10 h-10 text-primary/50" />
+                  </div>
+                )}
+              </div>
               <div>
-                <h3 className="font-medium">{playlistDetails?.title || preview?.title || 'YouTube Playlist'}</h3>
+                {/* Use title directly, assuming it's descriptive enough */}
+                <h3 className="font-medium">{playlistDetails?.title || preview?.title || 'Playlist'}</h3>
+                {/* Only show artist if it exists and is not 'Various Artists' */}
                 {preview?.artist && preview.artist !== 'Various Artists' && (
                   <p className="text-sm text-muted-foreground mt-1">Created by {preview.artist}</p>
                 )}

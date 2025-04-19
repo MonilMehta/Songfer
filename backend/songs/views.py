@@ -332,7 +332,7 @@ class SongViewSet(viewsets.ModelViewSet):
                 if 'album' in metadata:
                     response['x-album-name'] = metadata['album']
                 if metadata.get('thumbnail_url'):
-                    response['x-cover-url'] = metadata.get('thumbnail_url')
+                    response['x-cover-url'] = metadata['thumbnail_url']
                 return response
             
             # Neither song in database nor cache, need to download
@@ -595,12 +595,7 @@ class PlaylistViewSet(viewsets.ModelViewSet):
         Download all songs in a playlist as a ZIP file
         """
         playlist = self.get_object()
-        songs = playlist.songs.all()
-        
-        logger.info(f"Playlist download requested: ID={playlist.id}, Name={playlist.name}, Songs count={songs.count()}")
-        
-        if not songs.exists():
-            logger.warning(f"No songs found in playlist {playlist.id}")
+        if not playlist.songs.exists():
             return Response(
                 {'error': 'Playlist is empty'}, 
                 status=status.HTTP_400_BAD_REQUEST
@@ -609,147 +604,32 @@ class PlaylistViewSet(viewsets.ModelViewSet):
         try:
             # Create a ZIP file
             import zipfile
-            import os
+            import tempfile
             
-            # Create temp directory if it doesn't exist
-            temp_dir = os.path.join(settings.MEDIA_ROOT, 'temp')
-            os.makedirs(temp_dir, exist_ok=True)
-            
-            # Create zip file with a fixed name inside the temp directory
-            zip_filename = f"{playlist.name}_{int(time.time())}.zip"
-            sanitized_zip_filename = sanitize_filename(zip_filename)
-            zip_path = os.path.join(temp_dir, sanitized_zip_filename)
-            
-            logger.info(f"Creating playlist ZIP at: {zip_path}")
-            logger.info(f"Playlist has {songs.count()} songs to include in ZIP")
-            
-            song_count = 0
-            total_size = 0
-            
-            with zipfile.ZipFile(zip_path, 'w') as zip_file:
-                # Loop through each song in the playlist
-                for song in songs:
-                    if not song.file:
-                        logger.warning(f"Song {song.id} ({song.title} - {song.artist}) has no file attribute")
-                        continue
-                    
-                    try:
-                        # Get the actual file path - handle both string and FileField
-                        if hasattr(song.file, 'path'):
-                            file_path = song.file.path
-                        elif hasattr(song.file, 'name'):
-                            # Make sure there's a proper path separator between directories
-                            file_name = song.file.name
-                            # Ensure proper path format
-                            if not os.path.sep in file_name and '/' in file_name:
-                                file_name = file_name.replace('/', os.path.sep)
-                            file_path = os.path.join(settings.MEDIA_ROOT, file_name)
-                        else:
-                            # Handle string paths, ensuring proper directory separation
-                            file_str = str(song.file)
-                            
-                            # Check if we need to add a separator between 'songs' and the filename
-                            if 'songs' in file_str and not (file_str.endswith('/') or file_str.endswith('\\')): 
-                                if not (os.path.sep in file_str[-5:] or '/' in file_str[-5:]):
-                                    # Insert proper separator between 'songs' and the filename
-                                    if 'songs' + os.path.sep not in file_str and 'songs/' not in file_str:
-                                        file_str = file_str.replace('songs', 'songs' + os.path.sep)
-                            
-                            file_path = os.path.join(settings.MEDIA_ROOT, file_str)
-                        
-                        # Log the path we're attempting to use
-                        logger.info(f"Processing song: {song.title} - {song.artist}, file: {file_path}")
-                        
-                        # Try alternative paths if the file isn't found
-                        if not os.path.exists(file_path):
-                            logger.warning(f"Initial file path not found: {file_path}")
-                            
-                            # Try common variations of the path
-                            alternate_paths = [
-                                # Standard songs directory
-                                os.path.join(settings.MEDIA_ROOT, 'songs', f"{song.title} - {song.artist}.mp3"),
-                                # With sanitized filename
-                                os.path.join(settings.MEDIA_ROOT, 'songs', sanitize_filename(f"{song.title} - {song.artist}.mp3")),
-                                # Handling YouTube naming convention
-                                os.path.join(settings.MEDIA_ROOT, 'songs', f"{song.title} - {song.artist} (Official Video).mp3"),
-                                os.path.join(settings.MEDIA_ROOT, 'songs', f"{song.title} - {song.artist} (Official Lyric Video).mp3")
-                            ]
-                            
-                            # Try cache directory as well
-                            cache_paths = [
-                                os.path.join(settings.MEDIA_ROOT, 'cache', f"{song.title} - {song.artist}.mp3"),
-                                os.path.join(settings.MEDIA_ROOT, 'cache', sanitize_filename(f"{song.title} - {song.artist}.mp3"))
-                            ]
-                            alternate_paths.extend(cache_paths)
-                            
-                            # Check each alternate path
-                            found = False
-                            for alt_path in alternate_paths:
-                                if os.path.exists(alt_path):
-                                    file_path = alt_path
-                                    logger.info(f"Found file at alternate path: {file_path}")
-                                    found = True
-                                    break
-                                    
-                            if not found:
-                                logger.warning(f"File not found at any expected location for song: {song.title} - {song.artist}")
-                                continue
-                        
-                        # Get file size
-                        file_size = os.path.getsize(file_path)
-                        if file_size == 0:
-                            logger.warning(f"File is empty (0 bytes): {file_path}")
-                            continue
-                            
-                        # Use a clean filename for the ZIP entry
-                        zip_filename = f"{song.title} - {song.artist}.mp3"
-                        zip_filename = sanitize_filename(zip_filename)
-                        
-                        logger.info(f"Adding song to ZIP: {zip_filename} ({file_size} bytes)")
-                        
-                        # Add the file to the ZIP
-                        zip_file.write(file_path, zip_filename)
-                        
-                        # Update counters
-                        song_count += 1
-                        total_size += file_size
-                        logger.info(f"Added song {song_count}: {zip_filename}")
-                    except Exception as song_error:
-                        logger.error(f"Error adding song {song.id} to ZIP: {str(song_error)}", exc_info=True)
-                        continue
-            
-            # Check if the ZIP file was created successfully and has content
-            if os.path.exists(zip_path) and os.path.getsize(zip_path) > 0 and song_count > 0:
-                # Log success
-                zip_size = os.path.getsize(zip_path)
-                logger.info(f"ZIP file created successfully: {zip_path}, size: {zip_size} bytes, containing {song_count} songs")
+            # Create a temporary directory instead of a temporary file
+            with tempfile.TemporaryDirectory() as temp_dir:
+                # Create zip file with a fixed name inside the temp directory
+                zip_path = os.path.join(temp_dir, f"{playlist.name}_{int(time.time())}.zip")
                 
-                # Create a FileResponse with the ZIP file
-                response = FileResponse(
-                    open(zip_path, 'rb'),
-                    content_type='application/zip',
-                    as_attachment=True,
-                    filename=f"{playlist.name}.zip"
-                )
+                with zipfile.ZipFile(zip_path, 'w') as zip_file:
+                    for song in playlist.songs.all():
+                        file_path = os.path.join(settings.MEDIA_ROOT, song.file.name)
+                        if os.path.exists(file_path):
+                            # Use a clean filename for the ZIP entry
+                            clean_filename = f"{song.title} - {song.artist}.mp3"
+                            clean_filename = sanitize_filename(clean_filename)
+                            zip_file.write(file_path, clean_filename)
                 
+                # Read file content into memory and return
+                with open(zip_path, 'rb') as f:
+                    content = f.read()
+                
+                response = HttpResponse(content, content_type='application/zip')
+                response['Content-Disposition'] = f'attachment; filename="{playlist.name}.zip"'
                 return response
-            else:
-                # No songs were added or ZIP creation failed
-                if song_count == 0:
-                    logger.error(f"No songs were added to the ZIP file for playlist {playlist.id}")
-                    return Response(
-                        {'error': 'No valid songs found in playlist. Please check if the song files exist.'}, 
-                        status=status.HTTP_400_BAD_REQUEST
-                    )
-                else:
-                    logger.error(f"ZIP file creation failed or file is empty: {zip_path}")
-                    return Response(
-                        {'error': 'Failed to create ZIP file'}, 
-                        status=status.HTTP_500_INTERNAL_SERVER_ERROR
-                    )
 
         except Exception as e:
-            logger.error(f"Error downloading playlist {playlist.id}: {str(e)}", exc_info=True)
+            logger.error(f"Error in download_all: {e}", exc_info=True)
             return Response(
                 {'error': f'Playlist download failed: {str(e)}'}, 
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR

@@ -1,55 +1,95 @@
 "use client";
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { motion, useScroll, useTransform, stagger, useAnimate } from 'framer-motion'
 import { ChevronDown, Disc } from 'lucide-react'
 import Floating, { FloatingElement } from '@/components/ui/parallax-floating'
 import { ButtonCta } from '@/components/ui/button-shiny'
 
-// Album cover images for the parallax effect
-const albumCovers = [
+// Full list of album cover images
+const allAlbumCovers = [
   {
-    url: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=2070&auto=format&fit=crop",
-    title: "Vinyl Record",
+    url: "/album-covers/21pilots.jpg",
+    title: "21 Pilots",
   },
   {
-    url: "https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?q=80&w=2070&auto=format&fit=crop",
-    title: "Music Studio",
+    url: "/album-covers/Avici.jpg",
+    title: "Avicii",
   },
   {
-    url: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=2070&auto=format&fit=crop",
-    title: "Headphones",
+    url: "/album-covers/coldplay.jpg",
+    title: "Coldplay",
   },
   {
-    url: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=2070&auto=format&fit=crop",
-    title: "Vinyl Collection",
+    url: "/album-covers/Eminem.jpg",
+    title: "Eminem",
   },
   {
-    url: "https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?q=80&w=2070&auto=format&fit=crop",
-    title: "Music Equipment",
+    url: "/album-covers/Frank.jpeg",
+    title: "Frank Ocean",
   },
   {
-    url: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?q=80&w=2070&auto=format&fit=crop",
-    title: "Audio Device",
+    url: "/album-covers/future.jpeg",
+    title: "Future",
   },
   {
-    url: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?q=80&w=2070&auto=format&fit=crop",
-    title: "Record Player",
+    url: "/album-covers/hardwell.jpg",
+    title: "Hardwell",
   },
   {
-    url: "https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?q=80&w=2070&auto=format&fit=crop",
-    title: "Studio Microphone",
+    url: "/album-covers/Kanye.jpg",
+    title: "Kanye West",
   },
-]
+  {
+    url: "/album-covers/LinkingPark.jpeg",
+    title: "Linkin Park",
+  },
+  {
+    url: "/album-covers/Nirvana.jpg",
+    title: "Nirvana",
+  },
+  {
+    url: "/album-covers/SM.jpg",
+    title: "Shawn Mendes",
+  },
+  {
+    url: "/album-covers/Tyler.jpeg",
+    title: "Tyler, the Creator",
+  },
+];
+
+// Function to shuffle an array (Fisher-Yates shuffle)
+function shuffleArray<T>(array: T[]): T[] {
+  let currentIndex = array.length, randomIndex;
+  const newArray = [...array]; // Create a copy
+  
+  // While there remain elements to shuffle.
+  while (currentIndex !== 0) {
+    // Pick a remaining element.
+    randomIndex = Math.floor(Math.random() * currentIndex);
+    currentIndex--;
+
+    // And swap it with the current element.
+    [newArray[currentIndex], newArray[randomIndex]] = [
+      newArray[randomIndex], newArray[currentIndex]];
+  }
+
+  return newArray;
+}
 
 const Hero: React.FC = () => {
   const { scrollY } = useScroll()
   const y = useTransform(scrollY, [0, 500], [0, 150])
   const opacity = useTransform(scrollY, [0, 300], [1, 0])
   const [scope, animate] = useAnimate()
+  const [displayedCovers, setDisplayedCovers] = useState(allAlbumCovers.slice(0, 8)); // Initial state
 
   useEffect(() => {
+    // Shuffle and set the covers on component mount
+    setDisplayedCovers(shuffleArray(allAlbumCovers).slice(0, 8));
+
+    // Animate images
     animate("img", { opacity: [0, 1] }, { duration: 0.5, delay: stagger(0.15) })
-  }, [animate])
+  }, [animate]) // Rerun animation logic if animate changes
 
   const scrollToDownload = () => {
     const downloadSection = document.getElementById('download-section')
@@ -58,74 +98,79 @@ const Hero: React.FC = () => {
     }
   }
 
+  // Ensure we have enough covers before rendering
+  if (displayedCovers.length < 8) {
+    return null; // Or a loading state
+  }
+
   return (
     <div className="relative h-screen overflow-hidden bg-gradient-to-b from-background to-background/80" ref={scope}>
-      {/* Parallax Album Covers */}
+      {/* Parallax Album Covers - Using randomized displayedCovers */}
       <Floating sensitivity={-1} className="overflow-hidden">
-        <FloatingElement depth={0.5} className="top-[8%] left-[11%]">
+        <FloatingElement depth={0.5} className="top-[4%] left-[11%]">
           <motion.img
             initial={{ opacity: 0 }}
-            src={albumCovers[0].url}
-            alt={albumCovers[0].title}
-            className="w-16 h-16 md:w-32 md:h-32 object-cover rounded-lg shadow-xl hover:scale-105 duration-200 cursor-pointer transition-transform"
+            src={displayedCovers[0].url}
+            alt={displayedCovers[0].title}
+            className="w-24 h-24 md:w-48 md:h-48 object-cover rounded-lg shadow-xl hover:scale-105 duration-200 cursor-pointer transition-transform"
           />
         </FloatingElement>
         <FloatingElement depth={1} className="top-[10%] left-[32%]">
           <motion.img
             initial={{ opacity: 0 }}
-            src={albumCovers[1].url}
-            alt={albumCovers[1].title}
-            className="w-20 h-20 md:w-28 md:h-28 object-cover rounded-lg shadow-xl hover:scale-105 duration-200 cursor-pointer transition-transform"
+            src={displayedCovers[1].url}
+            alt={displayedCovers[1].title}
+            className="w-32 h-32 md:w-40 md:h-40 object-cover rounded-lg shadow-xl hover:scale-105 duration-200 cursor-pointer transition-transform"
           />
         </FloatingElement>
         <FloatingElement depth={2} className="top-[2%] left-[53%]">
           <motion.img
             initial={{ opacity: 0 }}
-            src={albumCovers[2].url}
-            alt={albumCovers[2].title}
-            className="w-28 h-40 md:w-44 md:h-58 object-cover rounded-lg shadow-xl hover:scale-105 duration-200 cursor-pointer transition-transform"
+            src={displayedCovers[2].url}
+            alt={displayedCovers[2].title}
+            className="w-40 h-44 md:w-52 md:h-52 object-cover rounded-lg shadow-xl hover:scale-105 duration-200 cursor-pointer transition-transform"
           />
         </FloatingElement>
         <FloatingElement depth={1} className="top-[4%] left-[83%]">
           <motion.img
             initial={{ opacity: 0 }}
-            src={albumCovers[3].url}
-            alt={albumCovers[3].title}
-            className="w-24 h-24 md:w-36 md:h-36 object-cover rounded-lg shadow-xl hover:scale-105 duration-200 cursor-pointer transition-transform"
+            src={displayedCovers[3].url}
+            alt={displayedCovers[3].title}
+            className="w-36 h-36 md:w-52 md:h-52 object-cover rounded-lg shadow-xl hover:scale-105 duration-200 cursor-pointer transition-transform"
           />
         </FloatingElement>
 
-        <FloatingElement depth={1} className="top-[40%] left-[2%]">
+        <FloatingElement depth={1} className="top-[40%] left-[6%]">
           <motion.img
             initial={{ opacity: 0 }}
-            src={albumCovers[4].url}
-            alt={albumCovers[4].title}
-            className="w-28 h-28 md:w-36 md:h-36 object-cover rounded-lg shadow-xl hover:scale-105 duration-200 cursor-pointer transition-transform"
+            src={displayedCovers[4].url}
+            alt={displayedCovers[4].title}
+            className="w-40 h-40 md:w-52 md:h-52 object-cover rounded-lg shadow-xl hover:scale-105 duration-200 cursor-pointer transition-transform"
           />
         </FloatingElement>
-        <FloatingElement depth={2} className="top-[70%] left-[77%]">
+        <FloatingElement depth={2} className="top-[70%] left-[80%]">
           <motion.img
             initial={{ opacity: 0 }}
-            src={albumCovers[5].url}
-            alt={albumCovers[5].title}
-            className="w-28 h-28 md:w-36 md:h-48 object-cover rounded-lg shadow-xl hover:scale-105 duration-200 cursor-pointer transition-transform"
+            src={displayedCovers[5].url}
+            alt={displayedCovers[5].title}
+            className="w-36 h-36 md:w-52 md:h-52 object-cover rounded-lg shadow-xl hover:scale-105 duration-200 cursor-pointer transition-transform"
           />
         </FloatingElement>
 
-        <FloatingElement depth={4} className="top-[73%] left-[15%]">
+        <FloatingElement depth={4} className="top-[70%] left-[30%]">
           <motion.img
             initial={{ opacity: 0 }}
-            src={albumCovers[6].url}
-            alt={albumCovers[6].title}
-            className="w-40 md:w-52 h-full object-cover rounded-lg shadow-xl hover:scale-105 duration-200 cursor-pointer transition-transform"
+            src={displayedCovers[6].url}
+            alt={displayedCovers[6].title}
+            className="w-60 md:w-52 h-full object-cover rounded-lg shadow-xl hover:scale-105 duration-200 cursor-pointer transition-transform"
           />
         </FloatingElement>
-        <FloatingElement depth={1} className="top-[78%] left-[50%]">
+        <FloatingElement depth={1} className="top-[72%] left-[50%]">
           <motion.img
             initial={{ opacity: 0 }}
-            src={albumCovers[7].url}
-            alt={albumCovers[7].title}
-            className="w-24 h-24 md:w-32 md:h-32 object-cover rounded-lg shadow-xl hover:scale-105 duration-200 cursor-pointer transition-transform"
+            src={displayedCovers[7].url}
+            alt={displayedCovers[7].title}
+            className="w-36 h-36 md:w-48 md:h-48 object-cover rounded-lg shadow-xl hover:scale-105 duration-200 cursor-pointer transition-transform"
           />
         </FloatingElement>
       </Floating>
