@@ -68,7 +68,7 @@ SECRET_KEY = 'your-secret-key-here'
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['songporter.onrender.com', 'localhost', '*']
+ALLOWED_HOSTS = ['songporter.onrender.com', 'https://songporter.vercel.app']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
