@@ -3,6 +3,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { TrendingUp } from 'lucide-react'
 import { useEffect, useState } from 'react'
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 interface DownloadActivity {
   date: string
@@ -13,11 +14,13 @@ interface DownloadActivity {
 interface DownloadActivityCardProps {
   activityData?: number[]
   downloadActivity?: DownloadActivity[]
+  isLoading?: boolean
 }
 
 export function DownloadActivityCard({ 
   activityData = [0, 0, 0, 0, 0, 0, 0],
-  downloadActivity = []
+  downloadActivity = [],
+  isLoading = false
 }: DownloadActivityCardProps) {
   const [barData, setBarData] = useState<number[]>([])
   const [dayLabels, setDayLabels] = useState<string[]>([])
@@ -45,53 +48,70 @@ export function DownloadActivityCard({
   const maxActivity = Math.max(...barData, 1) 
 
   return (
-    <Card className="shadow-sm">
-      <CardHeader className="pb-2">
+    <Card className="shadow-sm h-full flex flex-col">
+      <CardHeader className="pb-2 pt-4">
         <CardTitle className="text-sm font-medium text-muted-foreground">Download Activity</CardTitle>
       </CardHeader>
-      <CardContent>
-        <div className="flex items-end h-20 gap-1 mb-2">
-          {activityData.map((count, index) => (
-            <div 
-              key={index} 
-              className="bg-primary/80 rounded-sm w-full"
-              style={{ 
-                height: `${(count / maxActivity) * 100}%`,
-                minHeight: '4px'
-              }}
-            >
-              {/* Tooltip showing day and count */}
-              <div className="absolute bottom-full mb-1 left-1/2 transform -translate-x-1/2 
-                              bg-black text-white text-xs py-1 px-2 rounded opacity-0 
-                              group-hover:opacity-100 transition-opacity pointer-events-none">
-                {dayLabels[index]}: {count}
-              </div>
+      <CardContent className="flex-grow flex flex-col justify-between">
+        {isLoading ? (
+          <div className="flex flex-col flex-grow justify-center items-center">
+            <div className="flex items-end h-20 gap-1 mb-2 w-full px-4 animate-pulse">
+              {[...Array(7)].map((_, index) => (
+                <div 
+                  key={index} 
+                  className="bg-primary/20 rounded-sm w-full"
+                  style={{ height: `${(Math.random() * 60) + 20}%` }}
+                />
+              ))}
             </div>
-          ))}
-        </div>
-        
-        <div className="flex justify-between text-xs text-muted-foreground">
-          {dayLabels.length > 1 && (
-            <>
-              <span>{dayLabels[0]}</span>
-              <span>{dayLabels[dayLabels.length - 1]}</span>
-            </>
-          )}
-        </div>
-        
-        <div className="mt-2 pt-2 border-t">
-          <div className="flex justify-between items-center">
-            <div className="flex items-center gap-2">
-              <div className="bg-red-500/10 p-1.5 rounded-full">
-                <TrendingUp className="w-4 h-4 text-red-500" />
-              </div>
-              <span className="text-sm">This Week</span>
-            </div>
-            <span className="text-lg font-semibold">
-              {totalDownloads} songs
-            </span>
+            <span className="text-xs text-muted-foreground">Loading activity...</span>
           </div>
-        </div>
+        ) : (
+          <>
+            <div>
+              <div className="flex items-end h-20 gap-1 mb-2">
+                {barData.map((count, index) => (
+                  <TooltipProvider key={index} delayDuration={100}>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <div 
+                          className="bg-primary/80 rounded-sm w-full hover:bg-primary transition-colors cursor-default"
+                          style={{ 
+                            height: `${(count / maxActivity) * 100}%`,
+                            minHeight: '4px'
+                          }}
+                        />
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>{dayLabels[index]}: {count} download{count === 1 ? '' : 's'}</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                ))}
+              </div>
+              
+              <div className="flex justify-between text-[10px] text-muted-foreground px-1">
+                {dayLabels.map((label, index) => (
+                  <span key={index} className="text-center flex-1">{label}</span>
+                ))}
+              </div>
+            </div>
+            
+            <div className="mt-4 pt-3 border-t">
+              <div className="flex justify-between items-center">
+                <div className="flex items-center gap-2 text-sm">
+                  <div className="bg-primary/10 p-1.5 rounded-full">
+                    <TrendingUp className="w-4 h-4 text-primary" />
+                  </div>
+                  <span>This Week</span>
+                </div>
+                <span className="text-lg font-semibold">
+                  {totalDownloads} songs
+                </span>
+              </div>
+            </div>
+          </>
+        )}
       </CardContent>
     </Card>
   )

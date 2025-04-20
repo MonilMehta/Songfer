@@ -2,16 +2,24 @@
 
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Menu, Github, Linkedin, FileText, Music, Disc, Sun, Moon,Play,Pause } from "lucide-react";
+import { Menu, Github, Linkedin, FileText, Music, Disc, Sun, Moon, Play, Pause, LogOut, User, Home, UserCircle } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
+import { useRouter } from "next/navigation";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+
 const VinylPlayer = () => {
     const { theme } = useTheme();
     const isDark = theme === "dark";
     const [isPlaying, setIsPlaying] = useState(false);
-    const audioRef = useRef(null);
+    const audioRef = useRef<HTMLAudioElement>(null);
   
     const togglePlay = () => {
       if (isPlaying) {
@@ -79,10 +87,13 @@ const VinylPlayer = () => {
         {/* Hidden audio element */}
         <audio 
           ref={audioRef} 
-          src="/path-to-your-default-song.mp3" 
+          src="/songs/Low Life feat. The Weeknd - Future.aac" 
           onEnded={() => setIsPlaying(false)}
           style={{ display: "none" }} 
         />
+
+        {/* Play/Pause indicator - subtle visual cue */}
+        <div className={`absolute bottom-1 right-1 w-3 h-3 rounded-full transition-opacity ${isPlaying ? 'bg-green-500 opacity-70' : 'bg-gray-400 opacity-40'}`}></div>
       </div>
     );
   };
@@ -98,6 +109,7 @@ export default function Navbar() {
   const [isloggedin, setisloggedin] = useState<string | undefined>(undefined);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { theme, setTheme } = useTheme();
+  const router = useRouter();
 
   // Add window width tracking
   useEffect(() => {
@@ -154,6 +166,12 @@ export default function Navbar() {
     const token = localStorage.getItem('token');
     setisloggedin(token ? 'true' : undefined);
   }, []);
+  
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    window.location.href = '/login';
+  };
 
   return (
     <motion.nav 
@@ -170,38 +188,61 @@ export default function Navbar() {
     >
       <div className="container flex h-14 items-center px-4">
         {/* Logo and brand name - left side */}
-        <div className="flex items-center">
+        <VinylPlayer />
+        <div className="flex items-center ml-2 sm:ml-4">
           <Link href="/" className="flex items-center space-x-2">
-            <VinylPlayer />
+            
             <span className="font-bold sm:inline-block">
-              TuneVault
+              Song Porter
             </span>
           </Link>
         </div>
         
         {/* Right side - navigation and buttons */}
         <div className="flex flex-1 items-center justify-end">
-          {/* Desktop navigation */}
-          <div className="hidden md:flex items-center space-x-6 mr-6 text-sm font-medium">
-            <Link
-              href="/features"
-              className="transition-colors hover:text-foreground/80 text-foreground"
-            >
-              Features
-            </Link>
-            <Link
-              href="/pricing"
-              className="transition-colors hover:text-foreground/80 text-foreground"
-            >
-              Pricing
-            </Link>
-            <Link
-              href="/about"
-              className="transition-colors hover:text-foreground/80 text-foreground"
-            >
-              About
-            </Link>
-          </div>
+          {/* Desktop navigation for non-logged in users */}
+          {!isloggedin && (
+            <div className="hidden md:flex items-center space-x-6 mr-6 text-sm font-medium">
+              <Link
+                href="/features"
+                className="transition-colors hover:text-foreground/80 text-foreground"
+              >
+                Features
+              </Link>
+              <Link
+                href="/pricing"
+                className="transition-colors hover:text-foreground/80 text-foreground"
+              >
+                Pricing
+              </Link>
+              <Link
+                href="/about"
+                className="transition-colors hover:text-foreground/80 text-foreground"
+              >
+                About
+              </Link>
+            </div>
+          )}
+          
+          {/* Desktop navigation for logged in users */}
+          {isloggedin && (
+            <div className="hidden md:flex items-center space-x-6 mr-6 text-sm font-medium">
+              <Link
+                href="/dashboard"
+                className="transition-colors hover:text-foreground/80 text-foreground flex items-center"
+              >
+                <Home className="mr-1 h-4 w-4" />
+                Home
+              </Link>
+              <Link
+                href="/profile"
+                className="transition-colors hover:text-foreground/80 text-foreground flex items-center"
+              >
+                <UserCircle className="mr-1 h-4 w-4" />
+                Profile
+              </Link>
+            </div>
+          )}
           
           {/* Theme toggle and GitHub - always visible */}
           <div className="flex items-center space-x-2">
@@ -217,28 +258,49 @@ export default function Navbar() {
             </Button>
             
             <Button variant="ghost" size="icon" asChild className="h-8 w-8">
-              <Link href="https://github.com/yourusername/tunevault" target="_blank">
+              <Link href="https://github.com/MonilMehta/Song Porter" target="_blank">
                 <Github className="h-4 w-4" />
                 <span className="sr-only">GitHub</span>
               </Link>
             </Button>
           </div>
           
-          {/* Login/Signup - visible on desktop, hidden on mobile */}
-          <div className="hidden md:flex items-center space-x-2 ml-4">
-            <Link
-              href="/login"
-              className="text-sm font-medium transition-colors hover:text-foreground/80 text-foreground"
-            >
-              Login
-            </Link>
-            <Button asChild size="sm" className="h-8">
-              <Link href="/signup">Sign Up</Link>
-            </Button>
-          </div>
+          {/* Login/Signup - visible on desktop only when not logged in */}
+          {!isloggedin && (
+            <div className="hidden md:flex items-center space-x-2 ml-4">
+              <Link
+                href="/login"
+                className="text-sm font-medium transition-colors hover:text-foreground/80 text-foreground"
+              >
+                Login
+              </Link>
+              <Button asChild size="sm" className="h-8">
+                <Link href="/signup">Sign Up</Link>
+              </Button>
+            </div>
+          )}
+          
+          {/* Profile dropdown for logged in users */}
+          {isloggedin && (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="ghost" size="icon" className="h-8 w-8 ml-2">
+                  <User className="h-4 w-4" />
+                  <span className="sr-only">Profile</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem onClick={handleLogout}>
+                  <LogOut className="mr-2 h-4 w-4" />
+                  <span>Logout</span>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          )}
           
           {/* Mobile menu button */}
           <Button
+            ref={menuButtonRef}
             className="ml-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 md:hidden"
             variant="ghost"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -251,39 +313,68 @@ export default function Navbar() {
       
       {/* Mobile menu */}
       {isMenuOpen && (
-        <div className="md:hidden">
+        <div className="md:hidden" ref={mobileMenuRef}>
           <div className="space-y-1 px-2 pb-3 pt-2">
-            <Link
-              href="/features"
-              className="block rounded-md px-3 py-2 text-base font-medium hover:bg-accent hover:text-accent-foreground"
-            >
-              Features
-            </Link>
-            <Link
-              href="/pricing"
-              className="block rounded-md px-3 py-2 text-base font-medium hover:bg-accent hover:text-accent-foreground"
-            >
-              Pricing
-            </Link>
-            <Link
-              href="/about"
-              className="block rounded-md px-3 py-2 text-base font-medium hover:bg-accent hover:text-accent-foreground"
-            >
-              About
-            </Link>
-            <div className="border-t border-border my-2"></div>
-            <Link
-              href="/login"
-              className="block rounded-md px-3 py-2 text-base font-medium hover:bg-accent hover:text-accent-foreground"
-            >
-              Login
-            </Link>
-            <Link
-              href="/signup"
-              className="block rounded-md px-3 py-2 text-base font-medium hover:bg-accent hover:text-accent-foreground"
-            >
-              Sign Up
-            </Link>
+            {isloggedin ? (
+              <>
+                <Link
+                  href="/dashboard"
+                  className="flex items-center rounded-md px-3 py-2 text-base font-medium hover:bg-accent hover:text-accent-foreground"
+                >
+                  <Home className="mr-2 h-4 w-4" />
+                  Home
+                </Link>
+                <Link
+                  href="/profile"
+                  className="flex items-center rounded-md px-3 py-2 text-base font-medium hover:bg-accent hover:text-accent-foreground"
+                >
+                  <UserCircle className="mr-2 h-4 w-4" />
+                  Profile
+                </Link>
+                <Button
+                  variant="ghost"
+                  onClick={handleLogout}
+                  className="w-full justify-start rounded-md px-3 py-2 text-base font-medium hover:bg-accent hover:text-accent-foreground flex items-center"
+                >
+                  <LogOut className="mr-2 h-4 w-4" />
+                  Logout
+                </Button>
+              </>
+            ) : (
+              <>
+                <Link
+                  href="/features"
+                  className="block rounded-md px-3 py-2 text-base font-medium hover:bg-accent hover:text-accent-foreground"
+                >
+                  Features
+                </Link>
+                <Link
+                  href="/pricing"
+                  className="block rounded-md px-3 py-2 text-base font-medium hover:bg-accent hover:text-accent-foreground"
+                >
+                  Pricing
+                </Link>
+                <Link
+                  href="/about"
+                  className="block rounded-md px-3 py-2 text-base font-medium hover:bg-accent hover:text-accent-foreground"
+                >
+                  About
+                </Link>
+                <div className="border-t border-border my-2"></div>
+                <Link
+                  href="/login"
+                  className="block rounded-md px-3 py-2 text-base font-medium hover:bg-accent hover:text-accent-foreground"
+                >
+                  Login
+                </Link>
+                <Link
+                  href="/signup"
+                  className="block rounded-md px-3 py-2 text-base font-medium hover:bg-accent hover:text-accent-foreground"
+                >
+                  Sign Up
+                </Link>
+              </>
+            )}
           </div>
         </div>
       )}

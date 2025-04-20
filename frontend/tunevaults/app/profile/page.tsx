@@ -1,369 +1,312 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import { Badge } from '@/components/ui/badge'
-import { Separator } from '@/components/ui/separator'
-import { Download, Music, CreditCard, Settings, LogOut, User, Crown } from 'lucide-react'
-import Link from 'next/link'
 import apiCaller from '@/utils/apiCaller'
+import { Music, ListMusic } from 'lucide-react'
+import { formatDistanceToNow, parseISO } from 'date-fns'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
+import { Crown, Calendar, Download } from 'lucide-react'
+import { Badge } from '@/components/ui/badge'
+import { GenreChart } from '@/components/profile/genre-chart'
+import { CountryMap } from '@/components/profile/country-map'
+import { MusicShelf } from '@/components/profile/music-shelf'
+import { FeedbackCard } from '@/components/profile/feedback-card'
+import { ProfileCard } from '@/components/profile/profile-card' // Import our new component
 
-interface UserProfile {
-  username: string
-  email: string
-  isPremium: boolean
-  downloadsRemaining: number
-  totalDownloads: number
-  savingsAmount: number
-  joinDate: string
-  subscriptionEndDate?: string
-}
-
-interface DownloadHistory {
+// Types
+interface Song {
   id: number
   title: string
   artist: string
-  downloadDate: string
-  format: string
+  album?: string
+  song_url: string
+  thumbnail_url?: string | null
+  image_url?: string | null
+  source: string
+  created_at: string
+  file_url: string
+}
+
+interface Playlist {
+  id: number
+  name: string
+  source: string
+  source_url: string
+  created_at: string
+  songs: Song[]
+}
+
+interface GenreDistributionItem {
+  genre: string
+  count: number
+}
+
+interface CountryDistributionItem {
+  country: string
+  count: number
+}
+
+interface ListeningStats {
+  total_plays: number;
+  unique_songs: number;
+  total_listen_time: number;
+  favorite_time: string;
+}
+
+interface TopArtist {
+  artist: string;
+  count: number;
+}
+
+interface UsageMetrics {
+  songs_added_last_week: number;
+  last_download: string;
+  most_active_day: string;
+}
+
+interface UserProfile {
+  id: number
+  username: string
+  email: string;
+  date_joined: string;
+  is_premium: boolean
+  downloads_remaining: number
+  total_songs_downloaded: number
+  total_songs: number
+  listening_stats?: ListeningStats;
+  top_artists?: TopArtist[];
+  usage_metrics?: UsageMetrics;
 }
 
 export default function ProfilePage() {
-  const [profile, setProfile] = useState<UserProfile>({
-    username: 'User',
-    email: 'user@example.com',
-    isPremium: false,
-    downloadsRemaining: 10,
-    totalDownloads: 5,
-    savingsAmount: 25,
-    joinDate: '2023-01-01',
-    subscriptionEndDate: undefined
-  })
-  
-  const [downloadHistory, setDownloadHistory] = useState<DownloadHistory[]>([])
+  const [profile, setProfile] = useState<UserProfile | null>(null)
+  const [songs, setSongs] = useState<Song[]>([])
+  const [playlists, setPlaylists] = useState<Playlist[]>([])
+  const [genres, setGenres] = useState<GenreDistributionItem[]>([])
+  const [countries, setCountries] = useState<CountryDistributionItem[]>([])
   const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     const fetchProfileData = async () => {
+      setIsLoading(true)
+      setError(null)
       try {
-        // TODO: Replace with actual API call when available
-        // const profileResponse = await apiCaller('users/profile/', 'GET')
-        // if (profileResponse && profileResponse.status === 200) {
-        //   setProfile(profileResponse.data)
-        // }
-        
-        // For now, using mock data
-        const isPremiumUser = localStorage.getItem('isPremium') === 'true'
-        setProfile({
-          username: 'JohnDoe',
-          email: 'john.doe@example.com',
-          isPremium: isPremiumUser,
-          downloadsRemaining: isPremiumUser ? 50 : 10,
-          totalDownloads: 15,
-          savingsAmount: 75,
-          joinDate: '2023-06-15',
-          subscriptionEndDate: isPremiumUser ? '2024-06-15' : undefined
-        })
-        
-        // TODO: Replace with actual API call when available
-        // const historyResponse = await apiCaller('users/downloads/', 'GET')
-        // if (historyResponse && historyResponse.status === 200) {
-        //   setDownloadHistory(historyResponse.data)
-        // }
-        
-        // For now, using mock data
-        setDownloadHistory([
-          {
-            id: 1,
-            title: 'Song 1',
-            artist: 'Artist 1',
-            downloadDate: '2023-06-20',
-            format: 'MP3'
-          },
-          {
-            id: 2,
-            title: 'Song 2',
-            artist: 'Artist 2',
-            downloadDate: '2023-06-18',
-            format: 'MP3'
-          },
-          {
-            id: 3,
-            title: 'Song 3',
-            artist: 'Artist 3',
-            downloadDate: '2023-06-15',
-            format: 'MP3'
-          }
-        ])
-        
-        setIsLoading(false)
-      } catch (error) {
-        console.error('Error fetching profile data:', error)
+        const [profileRes, songsRes, playlistsRes, genresRes, countriesRes] = await Promise.all([
+          apiCaller('songs/user/profile/', 'GET'),
+          apiCaller('songs/songs/', 'GET'),
+          apiCaller('songs/playlists/', 'GET'),
+          apiCaller('songs/user/favorite-genres/', 'GET'),
+          apiCaller('songs/user/top-countries/', 'GET')
+        ]);
+
+        if (profileRes && profileRes.status === 200) {
+          setProfile(profileRes.data as UserProfile);
+          localStorage.setItem('isPremium', profileRes.data.is_premium.toString());
+        } else {
+          throw new Error('Failed to fetch profile data');
+        }
+
+        if (songsRes && songsRes.status === 200) {
+          setSongs(songsRes.data)
+        } else {
+          console.warn('Failed to fetch songs data or no songs found')
+          setSongs([])
+        }
+
+        if (playlistsRes && playlistsRes.status === 200) {
+          setPlaylists(playlistsRes.data)
+        } else {
+          console.warn('Failed to fetch playlists data or no playlists found')
+          setPlaylists([])
+        }
+
+        if (genresRes && genresRes.status === 200 && genresRes.data.success) {
+          setGenres(genresRes.data.genre_distribution || [])
+        } else {
+          console.warn('Failed to fetch genre distribution or data format error')
+          setGenres([])
+        }
+
+        if (countriesRes && countriesRes.status === 200 && countriesRes.data.success) {
+          setCountries(countriesRes.data.country_distribution || [])
+        } else {
+          console.warn('Failed to fetch country distribution or data format error')
+          setCountries([])
+        }
+      } catch (err) {
+        console.error('Error fetching profile data:', err)
+        setError(err instanceof Error ? err.message : 'An unknown error occurred')
+        setProfile(null)
+        setSongs([])
+        setPlaylists([])
+        setGenres([])
+        setCountries([])
+      } finally {
         setIsLoading(false)
       }
     }
-    
+
     fetchProfileData()
   }, [])
 
   const handleLogout = () => {
-    // Clear local storage
     localStorage.removeItem('token')
     localStorage.removeItem('isPremium')
-    
-    // Redirect to login page
     window.location.href = '/login'
   }
 
   if (isLoading) {
     return (
-      <div className="flex items-center justify-center min-h-[80vh]">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="flex flex-col items-center gap-4">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+          <p className="text-muted-foreground">Loading your profile...</p>
+        </div>
+      </div>
+    )
+  }
+
+  if (error || !profile) {
+    return (
+      <div className="container mx-auto px-4 py-8 text-center mt-20">
+        <h1 className="text-3xl font-bold mb-4">Profile Error</h1>
+        <p className="text-red-500 mb-4">{error || 'Failed to load profile data. Please try again later.'}</p>
+        <Button onClick={() => window.location.reload()}>Retry</Button>
       </div>
     )
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-8">Profile</h1>
-      
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {/* Profile Info */}
-        <div className="md:col-span-1">
-          <Card>
-            <CardHeader className="text-center">
-              <div className="flex justify-center mb-4">
-                <Avatar className="h-24 w-24">
-                  <AvatarImage src="https://via.placeholder.com/150" />
-                  <AvatarFallback>{profile.username.charAt(0).toUpperCase()}</AvatarFallback>
+    <div className="min-h-screen bg-gradient-to-br from-background to-muted/30 pb-24">
+      {/* Profile Card - with cover image background */}
+      <div className="flex flex-col items-center justify-center pt-24 pb-10">
+        <div className="relative flex flex-col items-center w-full max-w-2xl rounded-2xl bg-background shadow-xl border border-border/30 p-0 overflow-hidden">
+          {/* Cover image background */}
+          <div className="absolute top-0 left-0 right-0 h-40 bg-gradient-to-r from-violet-600/80 via-indigo-500/80 to-purple-500/80 overflow-hidden">
+            <div className="absolute inset-0 bg-[url('/album-covers/pattern1.jpg')] opacity-30 bg-center bg-cover mix-blend-overlay"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background/90"></div>
+          </div>
+          
+          <div className="relative z-10 flex flex-col items-center w-full mt-16">
+            {/* Avatar with aura */}
+            <div className="mb-4">
+              <div className={`relative ${profile?.is_premium ? 'ring-8 ring-pink-400/60 animate-pulse-slow' : ''} rounded-full`}>
+                <Avatar className="h-32 w-32 border-4 border-background shadow-2xl">
+                  <AvatarImage src={`https://api.dicebear.com/8.x/thumbs/svg?seed=${profile?.username}`} alt={profile?.username} />
+                  <AvatarFallback className="text-3xl">{profile?.username?.substring(0, 2).toUpperCase()}</AvatarFallback>
                 </Avatar>
-              </div>
-              <CardTitle className="text-xl">{profile.username}</CardTitle>
-              <CardDescription>{profile.email}</CardDescription>
-              <div className="mt-2">
-                {profile.isPremium ? (
-                  <Badge variant="default" className="bg-gradient-to-r from-amber-500 to-yellow-500">
-                    <Crown className="h-3 w-3 mr-1" />
-                    Premium
-                  </Badge>
-                ) : (
-                  <Badge variant="outline">Free</Badge>
+                {profile?.is_premium && (
+                  <span className="absolute bottom-0 right-0 block h-8 w-8 rounded-full bg-gradient-to-r from-amber-400 to-orange-500 ring-2 ring-background flex items-center justify-center">
+                    <Crown className="h-5 w-5 text-black" />
+                  </span>
                 )}
               </div>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-2">
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Member since</span>
-                  <span>{new Date(profile.joinDate).toLocaleDateString()}</span>
-                </div>
-                {profile.isPremium && profile.subscriptionEndDate && (
-                  <div className="flex justify-between">
-                    <span className="text-muted-foreground">Subscription ends</span>
-                    <span>{new Date(profile.subscriptionEndDate).toLocaleDateString()}</span>
-                  </div>
-                )}
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Downloads remaining</span>
-                  <span>{profile.downloadsRemaining}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Total downloads</span>
-                  <span>{profile.totalDownloads}</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-muted-foreground">Money saved</span>
-                  <span>${profile.savingsAmount}</span>
-                </div>
+            </div>
+            
+            {/* Username and badges */}
+            <h1 className="text-3xl font-extrabold tracking-tight mb-1">{profile?.username}</h1>
+            <div className="flex flex-wrap gap-2 mb-2 justify-center">
+              <Badge variant={profile?.is_premium ? 'default' : 'secondary'} className={`${profile?.is_premium ? 'bg-gradient-to-r from-amber-400 to-orange-500 text-black font-semibold border-amber-500/50' : 'border'} rounded-md px-2 py-0.5`}>{profile?.is_premium ? 'Premium Member' : 'Free Member'}</Badge>
+              <span className="text-xs text-muted-foreground flex items-center gap-1"><Calendar className="h-3 w-3" /> Joined {profile?.date_joined ? formatDistanceToNow(parseISO(profile.date_joined), { addSuffix: true }) : 'N/A'}</span>
+            </div>
+            
+            {/* Email */}
+            <span className="text-xs text-muted-foreground mb-4">{profile?.email}</span>
+            
+            {/* Stats - bold, playful */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 my-6 w-full px-8">
+              <div className="bg-muted/50 rounded-xl p-6 flex flex-col items-center shadow-sm border border-border/20">
+                <Download className="h-7 w-7 text-primary mb-2" />
+                <span className="text-lg font-bold">{profile?.is_premium ? '∞' : profile?.downloads_remaining}</span>
+                <span className="text-xs text-muted-foreground mt-1">Downloads Left</span>
               </div>
-            </CardContent>
-            <CardFooter className="flex flex-col space-y-2">
-              <Button variant="outline" className="w-full" asChild>
-                <Link href="/settings">
-                  <Settings className="mr-2 h-4 w-4" />
-                  Settings
-                </Link>
-              </Button>
-              <Button variant="outline" className="w-full" onClick={handleLogout}>
-                <LogOut className="mr-2 h-4 w-4" />
-                Logout
-              </Button>
-            </CardFooter>
-          </Card>
+              <div className="bg-muted/50 rounded-xl p-6 flex flex-col items-center shadow-sm border border-border/20">
+                <Music className="h-7 w-7 text-primary mb-2" />
+                <span className="text-lg font-bold">{profile?.total_songs_downloaded}</span>
+                <span className="text-xs text-muted-foreground mt-1">Songs Downloaded</span>
+              </div>
+              <div className="bg-muted/50 rounded-xl p-6 flex flex-col items-center shadow-sm border border-border/20">
+                <ListMusic className="h-7 w-7 text-primary mb-2" />
+                <span className="text-lg font-bold">{profile?.total_songs}</span>
+                <span className="text-xs text-muted-foreground mt-1">Library Size</span>
+              </div>
+            </div>
+            
+            {/* Logout button */}
+            <div className="w-full px-8 mb-6">
+              <Button variant="outline" className="w-full" onClick={handleLogout}>Log out</Button>
+            </div>
+          </div>
         </div>
+      </div>
+      
+      {/* Genre Chart and Country Map */}
+      <div className="max-w-5xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
+        {/* Genre Chart Card */}
+
+          {genres && genres.length > 0 ? (
+            <GenreChart data={genres} />
+          ) : (
+            <div className="flex flex-col items-center justify-center py-8 text-muted-foreground">
+              <p>Not enough genre data yet</p>
+            </div>
+          )}
         
-        {/* Tabs Content */}
-        <div className="md:col-span-2">
-          <Tabs defaultValue="downloads">
-            <TabsList className="grid w-full grid-cols-3">
-              <TabsTrigger value="downloads">
-                <Download className="mr-2 h-4 w-4" />
-                Downloads
-              </TabsTrigger>
-              <TabsTrigger value="subscription">
-                <CreditCard className="mr-2 h-4 w-4" />
-                Subscription
-              </TabsTrigger>
-              <TabsTrigger value="account">
-                <User className="mr-2 h-4 w-4" />
-                Account
-              </TabsTrigger>
+        
+        {/* Country Map Card */}
+
+          {countries && countries.length > 0 ? (
+            <CountryMap data={countries} />
+          ) : (
+            <div className="flex flex-col items-center justify-center py-8 text-muted-foreground">
+              <p>Not enough country data yet</p>
+            </div>
+          )}
+      </div>
+  
+      <div className="max-w-5xl mx-auto px-4 mt-10">
+        <Tabs defaultValue="songs" className="w-full">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-2xl font-bold">Your Music Collection</h2>
+            <TabsList>
+              <TabsTrigger value="songs">Songs</TabsTrigger>
+              <TabsTrigger value="playlists">Playlists</TabsTrigger>
             </TabsList>
-            
-            {/* Downloads Tab */}
-            <TabsContent value="downloads" className="mt-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Download History</CardTitle>
-                  <CardDescription>
-                    Your recent downloads
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  {downloadHistory.length > 0 ? (
-                    <div className="space-y-4">
-                      {downloadHistory.map((item) => (
-                        <div key={item.id} className="flex items-center justify-between p-4 border rounded-lg">
-                          <div className="flex items-center space-x-4">
-                            <div className="bg-muted p-2 rounded-full">
-                              <Music className="h-5 w-5" />
-                            </div>
-                            <div>
-                              <h3 className="font-medium">{item.title}</h3>
-                              <p className="text-sm text-muted-foreground">{item.artist}</p>
-                            </div>
-                          </div>
-                          <div className="text-right">
-                            <p className="text-sm">{new Date(item.downloadDate).toLocaleDateString()}</p>
-                            <Badge variant="outline" className="mt-1">{item.format}</Badge>
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  ) : (
-                    <div className="text-center py-8">
-                      <Music className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                      <h3 className="text-lg font-medium">No downloads yet</h3>
-                      <p className="text-sm text-muted-foreground mt-1">
-                        Start downloading songs to see your history here
-                      </p>
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-            </TabsContent>
-            
-            {/* Subscription Tab */}
-            <TabsContent value="subscription" className="mt-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Subscription Details</CardTitle>
-                  <CardDescription>
-                    Manage your subscription
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-6">
-                    <div className="flex items-center justify-between p-4 border rounded-lg">
-                      <div>
-                        <h3 className="font-medium">Current Plan</h3>
-                        <p className="text-sm text-muted-foreground">
-                          {profile.isPremium ? 'Premium' : 'Free'}
-                        </p>
-                      </div>
-                      <Badge variant={profile.isPremium ? "default" : "outline"}>
-                        {profile.isPremium ? 'Active' : 'Inactive'}
-                      </Badge>
-                    </div>
-                    
-                    {profile.isPremium && profile.subscriptionEndDate && (
-                      <div className="flex items-center justify-between p-4 border rounded-lg">
-                        <div>
-                          <h3 className="font-medium">Renewal Date</h3>
-                          <p className="text-sm text-muted-foreground">
-                            {new Date(profile.subscriptionEndDate).toLocaleDateString()}
-                          </p>
-                        </div>
-                        <Button variant="outline" size="sm">Manage</Button>
-                      </div>
-                    )}
-                    
-                    <div className="flex items-center justify-between p-4 border rounded-lg">
-                      <div>
-                        <h3 className="font-medium">Downloads</h3>
-                        <p className="text-sm text-muted-foreground">
-                          {profile.downloadsRemaining} remaining today
-                        </p>
-                      </div>
-                      <div className="text-right">
-                        <p className="text-sm font-medium">{profile.totalDownloads} total</p>
-                        <p className="text-xs text-muted-foreground">${profile.savingsAmount} saved</p>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-                <CardFooter>
-                  {!profile.isPremium ? (
-                    <Button className="w-full" asChild>
-                      <Link href="/pricing">Upgrade to Premium</Link>
-                    </Button>
-                  ) : (
-                    <Button variant="outline" className="w-full">Manage Subscription</Button>
-                  )}
-                </CardFooter>
-              </Card>
-            </TabsContent>
-            
-            {/* Account Tab */}
-            <TabsContent value="account" className="mt-6">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Account Settings</CardTitle>
-                  <CardDescription>
-                    Manage your account information
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-6">
-                    <div className="space-y-2">
-                      <h3 className="font-medium">Username</h3>
-                      <div className="flex items-center space-x-2">
-                        <p>{profile.username}</p>
-                        <Button variant="ghost" size="sm">Edit</Button>
-                      </div>
-                    </div>
-                    
-                    <Separator />
-                    
-                    <div className="space-y-2">
-                      <h3 className="font-medium">Email</h3>
-                      <div className="flex items-center space-x-2">
-                        <p>{profile.email}</p>
-                        <Button variant="ghost" size="sm">Edit</Button>
-                      </div>
-                    </div>
-                    
-                    <Separator />
-                    
-                    <div className="space-y-2">
-                      <h3 className="font-medium">Password</h3>
-                      <div className="flex items-center space-x-2">
-                        <p>••••••••</p>
-                        <Button variant="ghost" size="sm">Change</Button>
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-                <CardFooter>
-                  <Button variant="outline" className="w-full">Save Changes</Button>
-                </CardFooter>
-              </Card>
-            </TabsContent>
-          </Tabs>
-        </div>
+          </div>
+          
+          <TabsContent value="songs" className="mt-0">
+            {songs && songs.length > 0 ? (
+              <MusicShelf 
+                items={songs} 
+                type="songs" 
+                nowPlayingId={songs.length > 0 ? songs[0].id : undefined}
+              />
+            ) : (
+              <div className="text-center p-8 bg-muted/30 border border-dashed border-border rounded-lg">
+                <Music className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
+                <p className="text-muted-foreground">Your collection is empty. Start adding songs!</p>
+              </div>
+            )}
+          </TabsContent>
+          
+          <TabsContent value="playlists" className="mt-0">
+            {playlists && playlists.length > 0 ? (
+              <MusicShelf 
+                items={playlists} 
+                type="playlists" 
+              />
+            ) : (
+              <div className="text-center p-8 bg-muted/30 border border-dashed border-border rounded-lg">
+                <ListMusic className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
+                <p className="text-muted-foreground">You haven't created any playlists yet. Create your first playlist!</p>
+              </div>
+            )}
+          </TabsContent>
+        </Tabs>
       </div>
     </div>
   )
-} 
+}

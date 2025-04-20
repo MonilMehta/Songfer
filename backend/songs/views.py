@@ -35,6 +35,7 @@ from .utils import (
 from django.utils.text import Truncator
 import re
 from .download_helper import download_youtube, download_spotify_track, download_playlist, download_by_task
+from django.db import models
 
 
 logger = logging.getLogger(__name__)
@@ -640,19 +641,138 @@ class UserMusicProfileView(generics.RetrieveUpdateAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_object(self):
-        return UserMusicProfile.objects.get_or_create(user=self.request.user)[0]
+        # Get or create the profile
+        profile, created = UserMusicProfile.objects.get_or_create(user=self.request.user)
+        
+        # Sync total_songs_downloaded with actual count if it's out of sync
+        actual_song_count = Song.objects.filter(user=self.request.user).count()
+        if profile.total_songs_downloaded != actual_song_count:
+            profile.total_songs_downloaded = actual_song_count
+            profile.save(update_fields=['total_songs_downloaded'])
+            
+        # Sync with analytics data
+        analytics_data = UserAnalytics.objects.filter(user=self.request.user).aggregate(
+            total_downloads=models.Sum('songs_downloaded')
+        )
+        
+        if analytics_data['total_downloads'] and profile.total_songs_downloaded == 0:
+            profile.total_songs_downloaded = analytics_data['total_downloads']
+            profile.save(update_fields=['total_songs_downloaded'])
+            
+        return profile
         
     def retrieve(self, request, *args, **kwargs):
         instance = self.get_object()
         serializer = self.get_serializer(instance)
+        user = request.user
         
+        # Get user's listening stats
+        listening_stats = user.get_listening_stats()
+        
+        # Get user's top artists with enhanced info
+        top_artists = Song.get_user_top_artists(user, limit=5)
+        
+        # If user has songs but no plays, add placeholder data based on song count
+        if listening_stats['total_plays'] == 0 and Song.objects.filter(user=user).exists():
+            song_count = Song.objects.filter(user=user).count()
+            # Add estimated stats based on song count
+            listening_stats.update({
+                'estimated_plays': song_count * 2,  # Estimate that each song is played twice
+                'estimated_listen_time': song_count * 180,  # Estimate 3 minutes per song
+            })
+        
+        # Get recent songs
+        recent_songs = Song.objects.filter(user=user).order_by('-created_at')[:5]
+        recent_songs_data = SongSerializer(recent_songs, many=True, context={'request': request}).data
+        
+        # Get recent plays
+        recent_plays = SongPlay.objects.filter(user=user).order_by('-timestamp')[:10]
+        
+        # Format recent plays data
+        recent_plays_data = []
+        for play in recent_plays:
+            recent_plays_data.append({
+                'id': play.id,
+                'song_title': play.song.title,
+                'song_artist': play.song.artist,
+                'song_id': play.song.id,
+                'timestamp': play.timestamp,
+                'duration': play.duration,
+                'completed': play.completed
+            })
+            
+        # If no play data but songs exist, create placeholder recent plays based on songs
+        if not recent_plays_data and recent_songs:
+            for i, song in enumerate(recent_songs):
+                # Create fake timestamps starting from 1 day ago, spaced by 3 hours
+                fake_timestamp = timezone.now() - timezone.timedelta(days=1) + timezone.timedelta(hours=i*3)
+                recent_plays_data.append({
+                    'id': None,
+                    'song_title': song.title,
+                    'song_artist': song.artist,
+                    'song_id': song.id,
+                    'timestamp': fake_timestamp,
+                    'duration': 180,  # 3 minutes
+                    'completed': True,
+                    'is_placeholder': True  # Mark as placeholder so frontend knows
+                })
+                
+        # Get user analytics
+        user_stats = UserAnalytics.get_user_stats(user, days=30)
+        
+        # If user is premium, get subscription details
+        subscription_details = {}
+        if user.is_subscription_active():
+            subscription_details = {
+                'start_date': user.subscription_start,
+                'end_date': user.subscription_end,
+                'days_remaining': (user.subscription_end - timezone.now()).days if user.subscription_end else 0
+            }
+        
+        # Extract genres from songs if no favorite genres
+        favorite_genres = [genre.name for genre in user.get_favorite_genres()]
+        if not favorite_genres:
+            # Extract genres from songs
+            genre_set = set()
+            for song in Song.objects.filter(user=user):
+                if song.genre:
+                    genres = [g.strip() for g in song.genre.replace('/', ',').split(',')]
+                    for genre in genres:
+                        if genre:
+                            genre_set.add(genre)
+            favorite_genres = list(genre_set)[:5]  # Limit to top 5
+            
+        # Add usage metrics
+        usage_metrics = {
+            'songs_added_last_week': Song.objects.filter(
+                user=user,
+                created_at__gte=timezone.now() - timezone.timedelta(days=7)
+            ).count(),
+            'last_download': Song.objects.filter(user=user).order_by('-created_at').first().created_at if Song.objects.filter(user=user).exists() else None,
+            'most_active_day': max(user_stats['daily_data'], key=lambda x: x['downloads'] + x['plays'])['date'] if user_stats['daily_data'] else None,
+        }
+            
         # Add additional user info to response
         data = serializer.data
         data.update({
-            'username': request.user.username,
-            'total_songs': Song.objects.filter(user=request.user).count(),
-            'downloads_remaining': request.user.get_downloads_remaining(),
-            'is_premium': request.user.is_subscription_active()
+            'username': user.username,
+            'email': user.email,
+            'date_joined': user.date_joined,
+            'last_login': user.last_login,
+            'last_seen': user.last_seen,
+            'total_songs': Song.objects.filter(user=user).count(),
+            'downloads_remaining': user.get_downloads_remaining(),
+            'total_downloads_today': user.daily_downloads,
+            'is_premium': user.is_subscription_active(),
+            'subscription_details': subscription_details,
+            'total_listen_time': user.total_listen_time,
+            'listening_stats': listening_stats,
+            'top_artists': list(top_artists),
+            'favorite_genres': favorite_genres,
+            'recent_songs': recent_songs_data,
+            'recent_plays': recent_plays_data,
+            'analytics': user_stats,
+            'usage_metrics': usage_metrics
         })
         
         return Response(data)

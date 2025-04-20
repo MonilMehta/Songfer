@@ -6,27 +6,36 @@ import { DownloadForm } from '@/components/download-form'
 import { useToast } from '@/hooks/use-toast'
 import { motion } from 'framer-motion'
 import { Badge } from '@/components/ui/badge'
+import { useUserProfile } from '@/context/UserProfileContext'
 
 interface DownloadTabProps {
   onDownload: (url: string, format: string) => void
   isLoading: boolean
   isDownloading: boolean
-  isPremium: boolean
+  isPremium?: boolean  // Make this optional since we'll get it from context
 }
 
 export function DownloadTab({ 
   onDownload, 
   isLoading, 
-  isDownloading, 
-  isPremium 
+  isDownloading,
+  isPremium: propIsPremium
 }: DownloadTabProps) {
   const { toast } = useToast();
   const [errorState, setErrorState] = useState<string | null>(null);
+  const { userProfile, updateDownloadsCount } = useUserProfile();
+  
+  // Use context data if available, otherwise fall back to props
+  const isPremium = userProfile?.is_premium ?? propIsPremium ?? false;
 
   const handleDownloadWithErrorHandling = (url: string, format: string) => {
     setErrorState(null);
     try {
+      // Call the provided onDownload function
       onDownload(url, format);
+      
+      // Update download count in our context without making an API call
+      updateDownloadsCount(true);
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : "An unexpected error occurred";
       setErrorState(errorMessage);
@@ -43,7 +52,7 @@ export function DownloadTab({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="my-8 p-6 md:p-8 bg-gradient-to-br from-card via-card/90 to-background/80 rounded-2xl shadow-xl border border-border/10 relative overflow-hidden"
+      className="my-4 p-6 md:p-8 bg-gradient-to-br from-card via-card/90 to-background/80 rounded-2xl shadow-xl border border-border/10 relative overflow-hidden"
     >
       {/* Adjust background elements for consistency */}
       <div className="absolute -z-10 -left-10 -top-10 w-40 h-40 bg-primary/5 rounded-full blur-3xl opacity-60" />
@@ -53,10 +62,6 @@ export function DownloadTab({
         {/* Header */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8"> 
           <div className="flex items-center gap-3 mb-4 sm:mb-0">
-            {/* Icon Container - removed extra padding */}
-            {/* <div className="p-2 bg-primary/10 rounded-full"> 
-              <Headphones className="w-6 h-6 text-primary" />
-            </div> */}
             <div>
               {/* Funky Title */} 
               <h2 className="text-3xl font-black flex items-center"> 
@@ -65,7 +70,7 @@ export function DownloadTab({
                 <span className="inline-block transform -rotate-2 mr-2">YOUR</span>
                 <span className="inline-block transform rotate-1">DOWNLOAD</span>
               </h2>
-              <p className="text-sm text-muted-foreground mt-2 ml-10">Paste a YouTube or Spotify link below.</p> { /* Adjusted margin */ }
+              <p className="text-sm text-muted-foreground mt-2 ml-10">Paste a YouTube or Spotify link below.</p>
             </div>
           </div>
           {isPremium && (
@@ -124,4 +129,4 @@ export function DownloadTab({
       </div>
     </motion.div>
   )
-} 
+}

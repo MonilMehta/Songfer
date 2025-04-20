@@ -19,8 +19,17 @@ const nextConfig = {
           hostname: 'is1-ssl.mzstatic.com',
         },
         {
+          protocol: 'http',
+          hostname: 'localhost',
+          port: '8000',
+        },
+        {
           protocol: 'https',
           hostname: 'source.unsplash.com',
+        },
+        {
+          protocol: 'https',
+          hostname: 'api.dicebear.com',
         },
       ],
     },

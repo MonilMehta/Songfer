@@ -1131,87 +1131,50 @@ def download_by_task(request):
     """
     Download a playlist by task_id after it has been processed asynchronously
     """
-    task_id = request.query_params.get('task_id')
-    if not task_id:
-        return Response({'error': 'Task ID is required'}, status=status.HTTP_400_BAD_REQUEST)
-    
     try:
-        # Check if task is complete
+        task_id = request.GET.get('task_id')
+        if not task_id:
+            return Response(
+                {'error': 'task_id is required'}, 
+                status=status.HTTP_400_BAD_REQUEST
+            )
+        
+        # Get the task result
         from celery.result import AsyncResult
         result = AsyncResult(task_id)
-        if not result.ready():
-            # Get progress information
+        
+        if result.ready():
+            # Result is ready, return it
+            result_data = result.get()
+            
+            # Update user's music profile for download count
+            if hasattr(request.user, 'music_profile'):
+                user_profile = request.user.music_profile
+                if result_data.get('success') and result_data.get('song_count'):
+                    user_profile.total_songs_downloaded += result_data.get('song_count', 0)
+                    user_profile.save(update_fields=['total_songs_downloaded'])
+            
+            return Response(result_data)
+        else:
+            # Task still running, check progress
             progress = DownloadProgress.objects.filter(task_id=task_id).first()
-            progress_data = {}
+            
             if progress:
-                progress_data = {
+                return Response({
+                    'status': 'in_progress',
                     'current': progress.current_progress,
                     'total': progress.total_items,
                     'current_file': progress.current_file,
                     'started_at': progress.started_at,
-                    'last_update': progress.last_update,
                     'estimated_completion': progress.estimated_completion_time
-                }
-            
-            return Response({
-                'status': 'processing',
-                'message': 'Playlist download is still in progress',
-                'task_id': task_id,
-                'progress': progress_data
-            }, status=status.HTTP_202_ACCEPTED)
-        
-        # Get the playlist ID from the task result
-        playlist_id = result.get()
-        if not playlist_id:
-            return Response({'error': 'No playlist found for this task'}, status=status.HTTP_404_NOT_FOUND)
-        
-        # Get the playlist
-        try:
-            playlist = Playlist.objects.get(id=playlist_id, user=request.user)
-        except Playlist.DoesNotExist:
-            return Response({'error': 'Playlist not found'}, status=status.HTTP_404_NOT_FOUND)
-        
-        # Create a ZIP file with all songs
-        if not playlist.songs.exists():
-            return Response({'error': 'Playlist is empty'}, status=status.HTTP_400_BAD_REQUEST)
-        
-        import zipfile
-        import tempfile
-        
-        with tempfile.NamedTemporaryFile(suffix='.zip', delete=False) as temp_file:
-            with zipfile.ZipFile(temp_file.name, 'w') as zip_file:
-                for song in playlist.songs.all():
-                    file_path = os.path.join(settings.MEDIA_ROOT, song.file.name)
-                    if os.path.exists(file_path):
-                        # Use a clean filename for the ZIP entry
-                        clean_filename = f"{song.title} - {song.artist}.mp3"
-                        clean_filename = sanitize_filename(clean_filename)
-                        zip_file.write(file_path, clean_filename)
-            
-            # Return the ZIP file
-            response = FileResponse(
-                open(temp_file.name, 'rb'),
-                as_attachment=True,
-                filename=f"{playlist.name}.zip"
-            )
-            response['Content-Type'] = 'application/zip'
-            
-            # Schedule the temp file for deletion after response is sent
-            import threading
-            def delete_file():
-                import time
-                time.sleep(60)  # Wait for the file to be sent
-                try:
-                    os.unlink(temp_file.name)
-                except:
-                    pass
-            
-            threading.Thread(target=delete_file).start()
-            
-            return response
-            
+                })
+            else:
+                return Response({
+                    'status': 'in_progress',
+                    'message': 'Task is still running but no progress info available'
+                })
     except Exception as e:
-        logger.error(f"Error downloading playlist by task: {e}", exc_info=True)
+        logger.error(f"Error in download_by_task: {e}", exc_info=True)
         return Response(
             {'error': f'Download failed: {str(e)}'}, 
             status=status.HTTP_500_INTERNAL_SERVER_ERROR

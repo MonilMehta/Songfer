@@ -49,7 +49,7 @@ export default function Header() {
       <div className="container mx-auto px-4 flex justify-between items-center">
         <Link href="/" className="text-2xl font-bold text-primary flex items-center">
           <RotatingVinylDisc />
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/60">TuneVault</span>
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/60">Song Porter</span>
         </Link>
         <nav className="flex items-center space-x-2 md:space-x-4">
           <DropdownMenu>
@@ -72,7 +72,7 @@ export default function Header() {
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-          <Link href="https://github.com/yourusername/tunevault" target="_blank" rel="noopener noreferrer">
+          <Link href="https://github.com/yourusername/Song Porter" target="_blank" rel="noopener noreferrer">
             <Button variant="ghost" size="icon" className="h-9 w-9 rounded-full">
               <Github className="h-[1.2rem] w-[1.2rem]" />
               <span className="sr-only">GitHub</span>

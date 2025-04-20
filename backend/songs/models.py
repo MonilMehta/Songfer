@@ -7,6 +7,7 @@ import logging
 from django.utils import timezone
 from datetime import timedelta
 from django.utils.text import Truncator
+from django.db import transaction
 
 logger = logging.getLogger(__name__)
 
@@ -191,6 +192,19 @@ class UserMusicProfile(models.Model):
         if hasattr(song, 'genres') and hasattr(song.genres, 'exists') and song.genres.exists():
             for genre in song.genres.all():
                 self.favorite_genres.add(genre)
+        # Extract genres from song.genre string field if present
+        elif hasattr(song, 'genre') and song.genre:
+            # Split on commas and slashes which commonly separate genres
+            genre_names = [g.strip() for g in song.genre.replace('/', ',').split(',')]
+            for genre_name in genre_names:
+                if genre_name:
+                    # Get or create genre
+                    try:
+                        with transaction.atomic():
+                            genre, created = Genre.objects.get_or_create(name=genre_name)
+                            self.favorite_genres.add(genre)
+                    except Exception as e:
+                        logger.warning(f"Error adding genre {genre_name}: {e}")
 
 class DownloadProgress(models.Model):
     task_id = models.CharField(max_length=255, unique=True)
@@ -351,8 +365,6 @@ class UserAnalytics(models.Model):
     def record_download(cls, user):
         """Record a song download in today's analytics"""
         today = timezone.now().date()
-        import logging
-        logger = logging.getLogger(__name__)
         logger.info(f"[DEBUG] record_download called for user={user.username} id={user.id} date={today}")
         analytics, created = cls.objects.get_or_create(
             user=user, 

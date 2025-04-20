@@ -4,6 +4,7 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { SongPreview } from '@/components/song-preview'
 import { useToast } from '@/hooks/use-toast'
+import { useUserProfile } from '@/context/UserProfileContext'
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group"
 import { Label } from "@/components/ui/label"
 import React from 'react'
@@ -142,6 +143,15 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
   const audioRef = useRef<HTMLAudioElement>(null)
   const { toast } = useToast()
   const hasSavedRef = useRef(false)
+  
+  // Get user profile from context
+  const { userProfile, updateDownloadsCount } = useUserProfile()
+  
+  // Use context's isPremium value if available, otherwise fall back to props
+  const userIsPremium = userProfile?.is_premium ?? isPremium
+  
+  // Check for download limitations
+  const hasReachedDownloadLimit = userProfile && !userProfile.is_premium && userProfile.downloads_remaining <= 0
 
   useEffect(() => {
     // Reset states when URL changes
@@ -230,6 +240,16 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
   }
 
   const handleDownloadMedia = async () => {
+    // Check download limits from context
+    if (hasReachedDownloadLimit) {
+      toast({
+        title: "Download Limit Reached",
+        description: "You have reached your daily download limit. Upgrade to premium for more downloads.",
+        variant: "destructive"
+      })
+      return
+    }
+
     if (preview && downloadComplete && downloadedFile && filename) {
       console.log("File already downloaded. Saving existing file...")
       saveToDevice()
@@ -263,6 +283,10 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
         console.log(`Handling playlist download for ${preview.platform}...`);
         // Use the unified playlist download handler
         await handlePlaylistDownload(token, interval, preview.platform);
+        
+        // Update the download count in context
+        updateDownloadsCount(true)
+        
         return; // Exit after handling playlist
       }
 
@@ -377,6 +401,10 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
             })
             
             onDownload(preview.url, 'zip')
+            
+            // Update download count in context without an API call
+            updateDownloadsCount(true)
+            
             return
           }
           
@@ -477,6 +505,9 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
         setDownloadComplete(true);
         toast({ title: "Download Complete", description: "Click the Save button to save the file." });
         onDownload(preview.url, format);
+        
+        // Update download count in context without an API call
+        updateDownloadsCount(true)
       } else {
         // If response is not audio and not a known format, handle as error
         console.error('Unexpected content type:', contentType)
@@ -908,7 +939,7 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
     
     setPlaylistDetails({ 
       title: preview?.title || 'YouTube Playlist', 
-      tracks: [],
+      tracks: [], 
       loading: true 
     });
     
@@ -1192,6 +1223,15 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
         </Button>
       </div>
 
+      {hasReachedDownloadLimit && (
+        <div className="bg-destructive/10 text-destructive text-sm p-3 rounded-md">
+          You've reached your daily download limit. 
+          <a href="/pricing" className="ml-1 font-medium underline">
+            Upgrade to premium
+          </a> for unlimited downloads.
+        </div>
+      )}
+
       {preview && (
         <div className="mt-6 animate-fade-in">
               <SongPreview
@@ -1213,6 +1253,7 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
                     : renderSpotifyEmbed(preview.id, preview.isPlaylist)}
                 formatSelector={formatSelectorElement}
                 downloadedFile={downloadedFile} 
+                disabled={hasReachedDownloadLimit}
               />
               
           
@@ -1228,4 +1269,4 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
       />{/* preload="none" prevents automatic loading until explicitly set */}
     </div>
   )
-} 
+}

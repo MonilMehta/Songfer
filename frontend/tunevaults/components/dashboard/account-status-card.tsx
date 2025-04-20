@@ -4,22 +4,58 @@ import Link from 'next/link'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { Progress } from '@/components/ui/progress'
+import { useUserProfile } from '@/context/UserProfileContext'
+import { Skeleton } from '@/components/ui/skeleton'
 
+// Keep the props interface for backward compatibility
 interface AccountStatusCardProps {
-  isPremium: boolean
-  downloadsRemaining: number
-  dailyDownloadLimit: number
-  dailyDownloads: number
+  isPremium?: boolean
+  downloadsRemaining?: number
+  dailyDownloadLimit?: number
+  dailyDownloads?: number
 }
 
 export function AccountStatusCard({
-  isPremium,
-  downloadsRemaining,
-  dailyDownloadLimit,
-  dailyDownloads
+  // Default values will be overridden by context data
+  isPremium: propIsPremium,
+  downloadsRemaining: propDownloadsRemaining,
+  dailyDownloadLimit: propDailyDownloadLimit = 15,
+  dailyDownloads: propDailyDownloads
 }: AccountStatusCardProps) {
+  // Get data from context
+  const { userProfile, isLoading } = useUserProfile()
+  
+  // Use context data if available, otherwise fall back to props
+  const isPremium = userProfile?.is_premium ?? propIsPremium ?? false
+  const downloadsRemaining = userProfile?.downloads_remaining ?? propDownloadsRemaining ?? 0
+  const dailyDownloads = userProfile?.total_downloads_today ?? propDailyDownloads ?? 0
+  
+  // Free users have a daily limit (default 15), premium users have higher or no limit
+  const dailyDownloadLimit = isPremium ? 50 : (propDailyDownloadLimit ?? 15)
+  
   // Calculate daily download progress percentage
   const dailyDownloadProgress = Math.min(100, (dailyDownloads / dailyDownloadLimit) * 100)
+
+  if (isLoading) {
+    return (
+      <Card className="shadow-sm">
+        <CardHeader className="pb-2">
+          <Skeleton className="h-5 w-32" />
+        </CardHeader>
+        <CardContent>
+          <div className="flex items-center gap-3">
+            <Skeleton className="h-10 w-10 rounded-full" />
+            <div className="w-full">
+              <Skeleton className="h-6 w-24 mb-2" />
+              <Skeleton className="h-4 w-40" />
+            </div>
+          </div>
+          <Skeleton className="h-2 w-full mt-6 mb-2" />
+          <Skeleton className="h-8 w-full mt-4" />
+        </CardContent>
+      </Card>
+    )
+  }
 
   return (
     <Card className="shadow-sm">
@@ -42,7 +78,7 @@ export function AccountStatusCard({
           </div>
         </div>
         
-        <div className="mt-4">
+        <div className="mt-12">
           <div className="flex justify-between text-xs mb-1">
             <span>Daily Usage</span>
             <span>{Math.round(dailyDownloadProgress)}%</span>
@@ -58,4 +94,4 @@ export function AccountStatusCard({
       </CardContent>
     </Card>
   )
-} 
+}

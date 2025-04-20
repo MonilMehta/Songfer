@@ -32,7 +32,6 @@ export default function DashboardLayout({
 
   return (
     <div className="min-h-screen flex flex-col">
-      <DashboardNavbar />
       <main className="flex-1">
         {children}
       </main>
