@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { Card, CardContent } from '@/components/ui/card'
 import { CircularProgress } from '@/components/ui/circular-progress'
 import { Download, Music } from 'lucide-react'

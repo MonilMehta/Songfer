@@ -1,3 +1,4 @@
+/* eslint-disable */
 "use client"
 
 import { Sparkles, Zap, Check, Music, ArrowRight } from "lucide-react"

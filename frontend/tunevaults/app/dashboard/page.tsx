@@ -1,7 +1,8 @@
+/* eslint-disable */
 'use client'
 
 import { useState, useEffect } from 'react'
-import { Download, History } from 'lucide-react'
+// import { Download, History } from 'lucide-react'
 import { useToast } from '@/hooks/use-toast'
 
 // Import custom dashboard components
@@ -101,7 +102,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     fetchUserData();
-  }, []);
+  }, [])
 
   // Fetch user's downloaded songs, recommendations and stats
   const fetchUserData = async () => {

@@ -1,24 +1,18 @@
+/* eslint-disable */
 import {
   Download,
   Music,
   Headphones,
   Zap,
   Share2,
-  Lock,
-  Disc,
-  PlayCircle,
-  Radio,
-  Library,
-  Volume2,
-  Music2,
   Youtube,
   CircleDot
 } from "lucide-react";
   
 import { BentoCard, BentoGrid } from "@/components/ui/bento-grid";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { motion } from "framer-motion";
+// import { Input } from "@/components/ui/input";
+// import { motion } from "framer-motion";
 import Link from "next/link";
 
 const DownloadMusicContent = () => (

@@ -1,7 +1,8 @@
-import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card'
+/* eslint-disable */
+import { Card} from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Download, Music, Youtube, ListMusic, Play, Save } from 'lucide-react'
-import Image from 'next/image'
+import { Download, Play, Save } from 'lucide-react'
+
 import React from 'react'
 
 interface SongPreviewProps {

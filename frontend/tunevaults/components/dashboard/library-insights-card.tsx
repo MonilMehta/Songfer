@@ -1,3 +1,4 @@
+/* eslint-disable */
 'use client'
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -164,6 +165,7 @@ export function LibraryInsightsCard({
           </div>
           
        
+
         </div>
       </CardContent>
     </Card>

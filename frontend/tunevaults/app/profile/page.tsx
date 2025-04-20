@@ -12,8 +12,8 @@ import { Badge } from '@/components/ui/badge'
 import { GenreChart } from '@/components/profile/genre-chart'
 import { CountryMap } from '@/components/profile/country-map'
 import { MusicShelf } from '@/components/profile/music-shelf'
-import { FeedbackCard } from '@/components/profile/feedback-card'
-import { ProfileCard } from '@/components/profile/profile-card' // Import our new component
+// import { FeedbackCard } from '@/components/profile/feedback-card'
+// import { ProfileCard } from '@/components/profile/profile-card' // Import our new component
 
 // Types
 interface Song {
@@ -301,7 +301,7 @@ export default function ProfilePage() {
             ) : (
               <div className="text-center p-8 bg-muted/30 border border-dashed border-border rounded-lg">
                 <ListMusic className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
-                <p className="text-muted-foreground">You haven't created any playlists yet. Create your first playlist!</p>
+                <p className="text-muted-foreground">You haven&apos;t created any playlists yet. Create your first playlist!</p>
               </div>
             )}
           </TabsContent>

@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Github, Sun, Moon, LogOut, User, Crown } from "lucide-react";
 import { useEffect, useState } from "react";
-import { cn } from "@/lib/utils";
+// import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";

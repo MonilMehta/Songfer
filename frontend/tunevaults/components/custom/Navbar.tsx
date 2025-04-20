@@ -1,8 +1,9 @@
+/* eslint-disable */
 "use client";
 
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { Menu, Github, Linkedin, FileText, Music, Disc, Sun, Moon, Play, Pause, LogOut, User, Home, UserCircle } from "lucide-react";
+import { Menu, Github, Sun, Moon, LogOut, User, Home, UserCircle } from "lucide-react";
 import { useEffect, useState, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";

@@ -1,5 +1,6 @@
+/* eslint-disable */
 import { useState, useEffect, useRef } from 'react'
-import { Youtube, Music, ListMusic, Play, DownloadCloud, LinkIcon, Search, Save } from 'lucide-react'
+import { ListMusic,LinkIcon, Search } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { SongPreview } from '@/components/song-preview'

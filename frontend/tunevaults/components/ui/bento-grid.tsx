@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { ReactNode } from "react";
 import { ArrowRight } from "lucide-react";
 

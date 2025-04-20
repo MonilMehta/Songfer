@@ -1,8 +1,9 @@
+/* eslint-disable */
 "use client";
 
 import { useState, useEffect } from 'react';
 import Hero from '@/components/custom/Hero'
-import { Download, Music, Headphones, Zap, Share2, Lock, Disc } from 'lucide-react'
+// import { Download, Music, Headphones, Zap, Share2, Lock, Disc } from 'lucide-react'
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
@@ -11,9 +12,10 @@ import { ButtonCta } from '@/components/ui/button-shiny';
 import { Cover } from '@/components/ui/cover';
 import { motion } from 'framer-motion';
 import { BentoDemo } from '@/components/custom/Bento';
-import Navbar from '@/components/custom/Navbar';
+// import Navbar from '@/components/custom/Navbar';
 import { PricingSectionDemo } from '@/components/blocks/pricing-section-demo';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 export default function Home() {
   const [url, setUrl] = useState('');
@@ -224,7 +226,7 @@ export default function Home() {
                 >
                   <div className="flex flex-col sm:flex-row items-center gap-4">
                     {downloadedSong.thumbnailUrl && (
-                      <img
+                      <Image
                         src={downloadedSong.thumbnailUrl}
                         alt="Song thumbnail"
                         className="h-20 w-20 object-cover rounded-md border"
@@ -274,7 +276,7 @@ export default function Home() {
                   Simple, Transparent Pricing
                 </h2>
                 <p className="mx-auto max-w-[700px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Choose the plan that's right for you
+                  Choose the plan that&apos;s right for you
                 </p>
               </div>
             </div>

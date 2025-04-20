@@ -47,7 +47,7 @@ export default function PricingPage() {
           <div className="text-left">
             <h3 className="font-semibold mb-2">What happens if I exceed my daily download limit?</h3>
             <p className="text-muted-foreground">
-              If you reach your daily limit, you'll need to wait until the next day or upgrade to a higher plan for more downloads.
+              If you reach your daily limit, you&apos;ll need to wait until the next day or upgrade to a higher plan for more downloads.
             </p>
           </div>
         </div>

@@ -25,7 +25,7 @@ export default function NotFoundPage() {
                 Oops! Page Not Found
               </h3>
               <p className="mb-6 text-muted-foreground sm:mb-8 max-w-md mx-auto">
-                It seems the page you're looking for has vanished into the digital ether. Don't worry, let's get you back on track.
+                It seems the page you&apos;re looking for has vanished into the digital ether. Don&apos;t worry, let&apos;s get you back on track.
               </p>
 
               <Button
