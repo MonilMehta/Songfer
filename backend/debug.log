@@ -1,0 +1,683 @@
+INFO 2025-04-21 00:11:02,264 autoreload 20984 18520 Watching for file changes with StatReloader
+ERROR 2025-04-21 00:24:33,061 exception 20984 9412 Invalid HTTP_HOST header: 'localhost:8000'. You may need to add 'localhost' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\middleware.py", line 177, in __call__
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\deprecation.py", line 128, in __call__
+    response = self.process_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\http\request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'localhost:8000'. You may need to add 'localhost' to ALLOWED_HOSTS.
+WARNING 2025-04-21 00:24:39,138 log 20984 9412 Bad Request: /api/users/login/
+WARNING 2025-04-21 00:24:39,141 basehttp 20984 9412 "POST /api/users/login/ HTTP/1.1" 400 87281
+ERROR 2025-04-21 00:30:13,426 exception 20984 20964 Invalid HTTP_HOST header: 'localhost:8000'. You may need to add 'localhost' to ALLOWED_HOSTS.
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\middleware.py", line 177, in __call__
+    return f(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\deprecation.py", line 128, in __call__
+    response = self.process_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\middleware\common.py", line 48, in process_request
+    host = request.get_host()
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\http\request.py", line 151, in get_host
+    raise DisallowedHost(msg)
+django.core.exceptions.DisallowedHost: Invalid HTTP_HOST header: 'localhost:8000'. You may need to add 'localhost' to ALLOWED_HOSTS.
+WARNING 2025-04-21 00:30:13,505 log 20984 20964 Bad Request: /api/users/login/
+WARNING 2025-04-21 00:30:13,507 basehttp 20984 20964 "POST /api/users/login/ HTTP/1.1" 400 87281
+INFO 2025-04-21 00:31:11,919 autoreload 20984 18520 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\tunevault\settings.py changed, reloading.
+INFO 2025-04-21 00:31:47,190 autoreload 21112 19704 Watching for file changes with StatReloader
+WARNING 2025-04-21 00:32:05,309 log 21112 20664 Bad Request: /api/users/login/
+WARNING 2025-04-21 00:32:05,314 basehttp 21112 20664 "POST /api/users/login/ HTTP/1.1" 400 68
+WARNING 2025-04-21 00:32:29,294 log 21112 20664 Bad Request: /api/users/login/
+WARNING 2025-04-21 00:32:29,294 basehttp 21112 20664 "POST /api/users/login/ HTTP/1.1" 400 68
+INFO 2025-04-21 00:32:38,655 basehttp 21112 20664 "POST /api/users/login/ HTTP/1.1" 200 96
+INFO 2025-04-21 00:32:40,224 basehttp 21112 20664 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-21 00:32:40,224 basehttp 21112 5108 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-21 00:32:40,874 views 21112 20664 User has 8 songs
+INFO 2025-04-21 00:32:40,935 views 21112 5108 User has 8 songs
+INFO 2025-04-21 00:32:40,938 views 21112 20664 User has 2 songs with Spotify IDs
+INFO 2025-04-21 00:32:40,996 views 21112 5108 User has 2 songs with Spotify IDs
+INFO 2025-04-21 00:32:41,069 views 21112 20664 Sample user songs: [{'spotify_id': '7uDUb37h7Xdhza1eWMkoJv', 'title': 'Friends', 'artist': 'Chase Atlantic'}, {'spotify_id': '7MlDNspYwfqnHxORufupwq', 'title': 'Sex, Drugs, Etc.', 'artist': 'Beach Weather'}]
+INFO 2025-04-21 00:32:41,071 views 21112 20664 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-21 00:32:41,072 recommendation 21112 20664 Skipping Music.csv due to invalid format, using data.csv directly
+INFO 2025-04-21 00:32:41,127 views 21112 5108 Sample user songs: [{'spotify_id': '7uDUb37h7Xdhza1eWMkoJv', 'title': 'Friends', 'artist': 'Chase Atlantic'}, {'spotify_id': '7MlDNspYwfqnHxORufupwq', 'title': 'Sex, Drugs, Etc.', 'artist': 'Beach Weather'}]
+INFO 2025-04-21 00:32:41,127 views 21112 5108 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-21 00:32:41,127 recommendation 21112 5108 Skipping Music.csv due to invalid format, using data.csv directly
+INFO 2025-04-21 00:32:54,311 recommendation 21112 20664 Loaded data.csv dataset
+INFO 2025-04-21 00:32:54,311 recommendation 21112 5108 Loaded data.csv dataset
+INFO 2025-04-21 00:32:54,628 recommendation 21112 20664 Available columns in dataset: ['valence', 'year', 'acousticness', 'artists', 'danceability', 'duration_ms', 'energy', 'explicit', 'id', 'instrumentalness', 'key', 'liveness', 'loudness', 'mode', 'name', 'popularity', 'release_date', 'speechiness', 'tempo']
+INFO 2025-04-21 00:32:54,628 recommendation 21112 5108 Available columns in dataset: ['valence', 'year', 'acousticness', 'artists', 'danceability', 'duration_ms', 'energy', 'explicit', 'id', 'instrumentalness', 'key', 'liveness', 'loudness', 'mode', 'name', 'popularity', 'release_date', 'speechiness', 'tempo']
+INFO 2025-04-21 00:32:55,085 recommendation 21112 5108 Using features: ['acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'loudness', 'speechiness', 'tempo', 'valence']
+INFO 2025-04-21 00:32:55,179 recommendation 21112 20664 Using features: ['acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'loudness', 'speechiness', 'tempo', 'valence']
+INFO 2025-04-21 00:32:55,284 recommendation 21112 5108 Prepared data with 170653 songs and 9 features
+INFO 2025-04-21 00:32:55,294 recommendation 21112 20664 Prepared data with 170653 songs and 9 features
+INFO 2025-04-21 00:32:58,686 recommendation 21112 20664 Built song clusters successfully
+INFO 2025-04-21 00:32:58,686 recommendation 21112 20664 Music Recommender initialized successfully
+INFO 2025-04-21 00:32:58,744 recommendation 21112 5108 Built song clusters successfully
+INFO 2025-04-21 00:32:58,746 recommendation 21112 5108 Music Recommender initialized successfully
+WARNING 2025-04-21 00:32:59,534 recommendation 21112 20664 Song '7uDUb37h7Xdhza1eWMkoJv' not found or clustering unavailable, using popular songs
+WARNING 2025-04-21 00:32:59,536 recommendation 21112 5108 Song '7uDUb37h7Xdhza1eWMkoJv' not found or clustering unavailable, using popular songs
+WARNING 2025-04-21 00:33:00,346 recommendation 21112 20664 Song '7MlDNspYwfqnHxORufupwq' not found or clustering unavailable, using popular songs
+WARNING 2025-04-21 00:33:00,390 recommendation 21112 5108 Song '7MlDNspYwfqnHxORufupwq' not found or clustering unavailable, using popular songs
+INFO 2025-04-21 00:33:00,661 views 21112 5108 Got 10 recommendations
+INFO 2025-04-21 00:33:00,661 views 21112 20664 Got 10 recommendations
+INFO 2025-04-21 00:33:00,785 basehttp 21112 20664 "GET /api/songs/recommendations/ HTTP/1.1" 200 2916
+INFO 2025-04-21 00:33:00,785 basehttp 21112 5108 "GET /api/songs/recommendations/ HTTP/1.1" 200 3040
+INFO 2025-04-21 00:33:04,014 utils 21112 5108 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-21 00:33:04,542 utils 21112 20664 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-21 00:33:07,174 utils 21112 20664 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-21 00:33:07,304 utils 21112 5108 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-21 00:33:10,074 utils 21112 5108 Found exact match for artist 'Tommy Richman': Tommy Richman
+INFO 2025-04-21 00:33:10,165 utils 21112 20664 Found exact match for artist 'Tommy Richman': Tommy Richman
+INFO 2025-04-21 00:33:12,984 utils 21112 5108 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-21 00:33:13,065 utils 21112 20664 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-21 00:33:15,878 utils 21112 5108 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-21 00:33:15,886 basehttp 21112 5108 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 928
+INFO 2025-04-21 00:33:15,924 utils 21112 20664 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-21 00:33:15,929 basehttp 21112 20664 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 928
+INFO 2025-04-21 00:33:16,517 basehttp 21112 5108 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 559
+INFO 2025-04-21 00:33:16,546 basehttp 21112 20664 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 559
+INFO 2025-04-21 00:33:19,974 utils 21112 20664 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-21 00:33:20,018 utils 21112 5108 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-21 00:33:22,897 utils 21112 5108 Found partial match for artist 'Beach Weather': The Beach Boys
+INFO 2025-04-21 00:33:22,944 utils 21112 20664 Found partial match for artist 'Beach Weather': The Beach Boys
+INFO 2025-04-21 00:33:25,746 utils 21112 20664 Found exact match for artist 'Tommy Richman': Tommy Richman
+INFO 2025-04-21 00:33:25,867 utils 21112 5108 Found exact match for artist 'Tommy Richman': Tommy Richman
+INFO 2025-04-21 00:33:28,889 utils 21112 5108 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-21 00:33:29,034 utils 21112 20664 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-21 00:33:31,868 utils 21112 5108 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-21 00:33:32,160 utils 21112 20664 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-21 00:33:34,807 utils 21112 5108 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-21 00:33:35,188 utils 21112 20664 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-21 00:33:37,928 utils 21112 5108 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-21 00:33:38,104 utils 21112 20664 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-21 00:33:40,794 utils 21112 20664 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-21 00:33:40,804 utils 21112 5108 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-21 00:33:40,807 basehttp 21112 20664 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 386
+INFO 2025-04-21 00:33:40,807 basehttp 21112 5108 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 386
+INFO 2025-04-21 00:33:44,124 utils 21112 5108 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-21 00:33:44,344 utils 21112 20664 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-21 00:33:46,988 utils 21112 5108 Found partial match for artist 'Beach Weather': The Beach Boys
+INFO 2025-04-21 00:33:47,036 utils 21112 20664 Found partial match for artist 'Beach Weather': The Beach Boys
+INFO 2025-04-21 00:33:49,594 utils 21112 20664 Found exact match for artist 'Tommy Richman': Tommy Richman
+INFO 2025-04-21 00:33:50,009 utils 21112 5108 Found exact match for artist 'Tommy Richman': Tommy Richman
+INFO 2025-04-21 00:33:52,404 utils 21112 20664 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-21 00:33:52,837 utils 21112 5108 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-21 00:33:55,499 utils 21112 20664 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-21 00:33:55,575 utils 21112 5108 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-21 00:33:58,519 utils 21112 20664 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-21 00:33:58,599 utils 21112 5108 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-21 00:34:01,264 utils 21112 20664 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-21 00:34:01,513 utils 21112 5108 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-21 00:34:04,167 utils 21112 5108 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-21 00:34:04,184 utils 21112 20664 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-21 00:34:04,184 basehttp 21112 5108 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 215
+INFO 2025-04-21 00:34:04,191 basehttp 21112 20664 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 215
+INFO 2025-04-21 00:38:02,841 basehttp 21112 9992 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-21 00:38:03,504 views 21112 9992 User has 8 songs
+INFO 2025-04-21 00:38:03,566 views 21112 9992 User has 2 songs with Spotify IDs
+INFO 2025-04-21 00:38:03,699 views 21112 9992 Sample user songs: [{'spotify_id': '7uDUb37h7Xdhza1eWMkoJv', 'title': 'Friends', 'artist': 'Chase Atlantic'}, {'spotify_id': '7MlDNspYwfqnHxORufupwq', 'title': 'Sex, Drugs, Etc.', 'artist': 'Beach Weather'}]
+INFO 2025-04-21 00:38:03,699 views 21112 9992 Getting recommendations for user: 4 with limit: 10
+WARNING 2025-04-21 00:38:04,211 recommendation 21112 9992 Song '7uDUb37h7Xdhza1eWMkoJv' not found or clustering unavailable, using popular songs
+WARNING 2025-04-21 00:38:04,659 recommendation 21112 9992 Song '7MlDNspYwfqnHxORufupwq' not found or clustering unavailable, using popular songs
+INFO 2025-04-21 00:38:04,867 views 21112 9992 Got 10 recommendations
+INFO 2025-04-21 00:38:04,994 basehttp 21112 9992 "GET /api/songs/recommendations/ HTTP/1.1" 200 3050
+INFO 2025-04-21 00:38:07,074 utils 21112 9992 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-21 00:38:08,511 utils 21112 9992 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-21 00:38:09,973 utils 21112 9992 Found exact match for artist 'Tommy Richman': Tommy Richman
+INFO 2025-04-21 00:38:11,406 utils 21112 9992 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-21 00:38:12,805 utils 21112 9992 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-21 00:38:12,805 basehttp 21112 9992 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 928
+INFO 2025-04-21 00:38:13,446 basehttp 21112 9992 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 559
+INFO 2025-04-21 00:38:15,574 utils 21112 9992 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-21 00:38:17,014 utils 21112 9992 Found partial match for artist 'Beach Weather': The Beach Boys
+INFO 2025-04-21 00:38:18,434 utils 21112 9992 Found exact match for artist 'Tommy Richman': Tommy Richman
+INFO 2025-04-21 00:38:19,877 utils 21112 9992 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-21 00:38:21,284 utils 21112 9992 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-21 00:38:22,716 utils 21112 9992 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-21 00:38:24,076 utils 21112 9992 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-21 00:38:25,453 utils 21112 9992 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-21 00:38:25,454 basehttp 21112 9992 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 386
+INFO 2025-04-21 00:38:27,574 utils 21112 9992 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-21 00:38:28,968 utils 21112 9992 Found partial match for artist 'Beach Weather': The Beach Boys
+INFO 2025-04-21 00:38:30,384 utils 21112 9992 Found exact match for artist 'Tommy Richman': Tommy Richman
+INFO 2025-04-21 00:38:31,824 utils 21112 9992 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-21 00:38:33,398 utils 21112 9992 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-21 00:38:34,964 utils 21112 9992 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-21 00:38:36,514 utils 21112 9992 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-21 00:38:37,945 utils 21112 9992 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-21 00:38:37,954 basehttp 21112 9992 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 215
+INFO 2025-04-21 00:38:57,186 basehttp 21112 3892 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-21 00:38:57,312 basehttp 21112 15948 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-21 00:38:58,030 views 21112 3892 User has 8 songs
+INFO 2025-04-21 00:38:58,096 views 21112 3892 User has 2 songs with Spotify IDs
+INFO 2025-04-21 00:38:58,230 views 21112 3892 Sample user songs: [{'spotify_id': '7uDUb37h7Xdhza1eWMkoJv', 'title': 'Friends', 'artist': 'Chase Atlantic'}, {'spotify_id': '7MlDNspYwfqnHxORufupwq', 'title': 'Sex, Drugs, Etc.', 'artist': 'Beach Weather'}]
+INFO 2025-04-21 00:38:58,230 views 21112 3892 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-21 00:38:58,408 views 21112 15948 User has 8 songs
+INFO 2025-04-21 00:38:58,514 views 21112 15948 User has 2 songs with Spotify IDs
+INFO 2025-04-21 00:38:58,743 views 21112 15948 Sample user songs: [{'spotify_id': '7uDUb37h7Xdhza1eWMkoJv', 'title': 'Friends', 'artist': 'Chase Atlantic'}, {'spotify_id': '7MlDNspYwfqnHxORufupwq', 'title': 'Sex, Drugs, Etc.', 'artist': 'Beach Weather'}]
+INFO 2025-04-21 00:38:58,767 views 21112 15948 Getting recommendations for user: 4 with limit: 10
+WARNING 2025-04-21 00:38:59,185 recommendation 21112 3892 Song '7uDUb37h7Xdhza1eWMkoJv' not found or clustering unavailable, using popular songs
+INFO 2025-04-21 00:38:59,240 basehttp 21112 19504 "GET /api/songs/ HTTP/1.1" 200 107
+WARNING 2025-04-21 00:38:59,510 recommendation 21112 15948 Song '7uDUb37h7Xdhza1eWMkoJv' not found or clustering unavailable, using popular songs
+INFO 2025-04-21 00:39:00,263 views 21112 19504 User has 8 songs
+INFO 2025-04-21 00:39:00,410 views 21112 19504 User has 2 songs with Spotify IDs
+WARNING 2025-04-21 00:39:00,484 recommendation 21112 3892 Song '7MlDNspYwfqnHxORufupwq' not found or clustering unavailable, using popular songs
+WARNING 2025-04-21 00:39:00,487 recommendation 21112 15948 Song '7MlDNspYwfqnHxORufupwq' not found or clustering unavailable, using popular songs
+INFO 2025-04-21 00:39:00,625 views 21112 19504 Sample user songs: [{'spotify_id': '7uDUb37h7Xdhza1eWMkoJv', 'title': 'Friends', 'artist': 'Chase Atlantic'}, {'spotify_id': '7MlDNspYwfqnHxORufupwq', 'title': 'Sex, Drugs, Etc.', 'artist': 'Beach Weather'}]
+INFO 2025-04-21 00:39:00,627 views 21112 19504 Getting recommendations for user: 4 with limit: 10
+INFO 2025-04-21 00:39:00,753 views 21112 3892 Got 10 recommendations
+INFO 2025-04-21 00:39:00,794 views 21112 15948 Got 10 recommendations
+INFO 2025-04-21 00:39:01,015 basehttp 21112 3892 "GET /api/songs/recommendations/ HTTP/1.1" 200 2958
+INFO 2025-04-21 00:39:01,015 basehttp 21112 15948 "GET /api/songs/recommendations/ HTTP/1.1" 200 2906
+WARNING 2025-04-21 00:39:01,154 recommendation 21112 19504 Song '7uDUb37h7Xdhza1eWMkoJv' not found or clustering unavailable, using popular songs
+WARNING 2025-04-21 00:39:01,727 recommendation 21112 19504 Song '7MlDNspYwfqnHxORufupwq' not found or clustering unavailable, using popular songs
+INFO 2025-04-21 00:39:01,729 basehttp 21112 9992 "GET /api/songs/user/profile/ HTTP/1.1" 200 6441
+INFO 2025-04-21 00:39:01,977 views 21112 19504 Got 10 recommendations
+INFO 2025-04-21 00:39:02,144 basehttp 21112 19504 "GET /api/songs/recommendations/ HTTP/1.1" 200 3034
+INFO 2025-04-21 00:39:05,262 basehttp 21112 19504 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 559
+INFO 2025-04-21 00:39:05,321 basehttp 21112 16016 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 559
+INFO 2025-04-21 00:39:05,477 basehttp 21112 21156 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 559
+INFO 2025-04-21 00:39:06,935 utils 21112 3892 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-21 00:39:06,946 utils 21112 15948 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-21 00:39:11,644 utils 21112 9992 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-21 00:39:16,830 utils 21112 21156 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-21 00:39:17,025 utils 21112 16016 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-21 00:39:17,111 utils 21112 19504 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-21 00:39:18,476 utils 21112 3892 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-21 00:39:18,816 utils 21112 15948 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-21 00:39:23,211 utils 21112 9992 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+WARNING 2025-04-21 00:39:23,395 log 21112 6708 Not Found: /api/users/google-auth/
+WARNING 2025-04-21 00:39:23,449 basehttp 21112 6708 "POST /api/users/google-auth/ HTTP/1.1" 404 4628
+INFO 2025-04-21 00:39:26,896 utils 21112 21156 Found partial match for artist 'Beach Weather': The Beach Boys
+INFO 2025-04-21 00:39:26,976 utils 21112 19504 Found partial match for artist 'Beach Weather': The Beach Boys
+INFO 2025-04-21 00:39:27,328 utils 21112 16016 Found partial match for artist 'Beach Weather': The Beach Boys
+INFO 2025-04-21 00:39:27,929 utils 21112 15948 Found exact match for artist 'Tommy Richman': Tommy Richman
+INFO 2025-04-21 00:39:28,012 utils 21112 3892 Found exact match for artist 'Tommy Richman': Tommy Richman
+INFO 2025-04-21 00:39:28,724 utils 21112 9992 Found exact match for artist 'Tommy Richman': Tommy Richman
+INFO 2025-04-21 00:39:30,660 utils 21112 15948 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-21 00:39:30,738 utils 21112 21156 Found exact match for artist 'Tommy Richman': Tommy Richman
+WARNING 2025-04-21 00:39:31,485 log 21112 6708 Not Found: /api/users/google-auth/
+WARNING 2025-04-21 00:39:31,524 basehttp 21112 6708 "POST /api/users/google-auth/ HTTP/1.1" 404 4628
+INFO 2025-04-21 00:39:32,144 utils 21112 19504 Found exact match for artist 'Tommy Richman': Tommy Richman
+INFO 2025-04-21 00:39:32,598 utils 21112 9992 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-21 00:39:33,044 utils 21112 16016 Found exact match for artist 'Tommy Richman': Tommy Richman
+INFO 2025-04-21 00:39:33,944 utils 21112 3892 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-21 00:39:34,880 utils 21112 21156 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-21 00:39:35,704 utils 21112 15948 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-21 00:39:35,736 basehttp 21112 15948 - Broken pipe from ('127.0.0.1', 63595)
+INFO 2025-04-21 00:39:37,474 utils 21112 19504 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-21 00:39:38,511 utils 21112 9992 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-21 00:39:38,593 basehttp 21112 9992 - Broken pipe from ('127.0.0.1', 63496)
+INFO 2025-04-21 00:39:39,501 utils 21112 16016 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-21 00:39:41,104 utils 21112 3892 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-21 00:39:41,136 basehttp 21112 3892 - Broken pipe from ('127.0.0.1', 63593)
+INFO 2025-04-21 00:39:41,604 utils 21112 21156 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-21 00:39:43,474 utils 21112 19504 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-21 00:39:44,604 utils 21112 16016 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-21 00:39:46,179 utils 21112 21156 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-21 00:39:48,419 utils 21112 19504 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-21 00:39:49,404 utils 21112 16016 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-21 00:39:50,275 utils 21112 21156 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-21 00:39:53,096 utils 21112 19504 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-21 00:39:54,096 utils 21112 16016 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-21 00:39:54,590 utils 21112 21156 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-21 00:39:54,612 basehttp 21112 21156 - Broken pipe from ('127.0.0.1', 63621)
+INFO 2025-04-21 00:39:56,739 utils 21112 19504 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-21 00:39:56,749 basehttp 21112 19504 - Broken pipe from ('127.0.0.1', 63600)
+INFO 2025-04-21 00:39:57,024 utils 21112 16016 Found exact match for artist 'Travis Scott': Travis Scott
+INFO 2025-04-21 00:39:57,034 basehttp 21112 16016 - Broken pipe from ('127.0.0.1', 63618)
+INFO 2025-04-21 00:41:03,726 autoreload 21112 19704 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\users\urls.py changed, reloading.
+INFO 2025-04-21 00:41:10,972 autoreload 21660 22380 Watching for file changes with StatReloader
+INFO 2025-04-21 00:41:23,714 autoreload 21660 22380 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\users\views.py changed, reloading.
+INFO 2025-04-21 00:41:29,615 autoreload 20580 15664 Watching for file changes with StatReloader
+INFO 2025-04-21 00:41:39,214 autoreload 20580 15664 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\users\views.py changed, reloading.
+INFO 2025-04-21 00:41:45,092 autoreload 11444 3816 Watching for file changes with StatReloader
+INFO 2025-04-21 00:41:51,799 autoreload 11444 3816 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\users\views.py changed, reloading.
+INFO 2025-04-21 00:41:57,294 autoreload 18524 3060 Watching for file changes with StatReloader
+INFO 2025-04-21 00:42:01,549 autoreload 18524 3060 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\users\views.py changed, reloading.
+INFO 2025-04-21 00:42:07,229 autoreload 10188 15580 Watching for file changes with StatReloader
+INFO 2025-04-21 00:42:33,011 autoreload 10188 15580 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\users\views.py changed, reloading.
+INFO 2025-04-21 00:42:38,808 autoreload 11028 5068 Watching for file changes with StatReloader
+INFO 2025-04-21 00:42:43,004 autoreload 11028 5068 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\users\views.py changed, reloading.
+INFO 2025-04-21 00:42:48,116 autoreload 21264 9992 Watching for file changes with StatReloader
+INFO 2025-04-21 00:42:52,929 autoreload 21264 9992 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\users\views.py changed, reloading.
+INFO 2025-04-21 00:42:58,939 autoreload 15144 17200 Watching for file changes with StatReloader
+INFO 2025-04-21 00:43:03,878 autoreload 15144 17200 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\users\views.py changed, reloading.
+INFO 2025-04-21 00:43:09,374 autoreload 2128 15600 Watching for file changes with StatReloader
+INFO 2025-04-21 00:43:16,043 autoreload 2128 15600 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\users\urls.py changed, reloading.
+INFO 2025-04-21 00:43:21,139 autoreload 17984 22172 Watching for file changes with StatReloader
+ERROR 2025-04-21 00:43:34,075 log 17984 6768 Internal Server Error: /api/users/google-auth/
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\users\views.py", line 142, in google_auth
+    user = User.objects.get(email=email)
+           ^^^^
+NameError: name 'User' is not defined
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\views.py", line 94, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\users\views.py", line 143, in google_auth
+    except User.DoesNotExist:
+           ^^^^
+NameError: name 'User' is not defined
+ERROR 2025-04-21 00:43:34,102 basehttp 17984 6768 "POST /api/users/google-auth/ HTTP/1.1" 500 119002
+ERROR 2025-04-21 00:43:43,561 log 17984 6768 Internal Server Error: /api/users/google-auth/
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\users\views.py", line 142, in google_auth
+    user = User.objects.get(email=email)
+           ^^^^
+NameError: name 'User' is not defined
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\views.py", line 94, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\decorators.py", line 50, in handler
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\users\views.py", line 143, in google_auth
+    except User.DoesNotExist:
+           ^^^^
+NameError: name 'User' is not defined
+ERROR 2025-04-21 00:43:43,571 basehttp 17984 6768 "POST /api/users/google-auth/ HTTP/1.1" 500 119002
+INFO 2025-04-21 00:44:03,980 autoreload 17984 22172 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\users\views.py changed, reloading.
+INFO 2025-04-21 00:44:10,009 autoreload 1876 22004 Watching for file changes with StatReloader
+INFO 2025-04-21 00:44:21,050 basehttp 1876 16584 "POST /api/users/google-auth/ HTTP/1.1" 200 93
+INFO 2025-04-21 00:44:22,850 basehttp 1876 16584 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-21 00:44:22,895 basehttp 1876 4940 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-21 00:44:23,855 views 1876 16584 User has 0 songs
+INFO 2025-04-21 00:44:23,930 views 1876 16584 User has 0 songs with Spotify IDs
+INFO 2025-04-21 00:44:23,998 views 1876 16584 Getting recommendations for user: 5 with limit: 10
+INFO 2025-04-21 00:44:23,999 recommendation 1876 16584 Skipping Music.csv due to invalid format, using data.csv directly
+INFO 2025-04-21 00:44:24,089 views 1876 4940 User has 0 songs
+INFO 2025-04-21 00:44:24,174 views 1876 4940 User has 0 songs with Spotify IDs
+INFO 2025-04-21 00:44:24,251 views 1876 4940 Getting recommendations for user: 5 with limit: 10
+INFO 2025-04-21 00:44:24,254 recommendation 1876 4940 Skipping Music.csv due to invalid format, using data.csv directly
+INFO 2025-04-21 00:44:32,739 recommendation 1876 16584 Loaded data.csv dataset
+INFO 2025-04-21 00:44:33,112 recommendation 1876 16584 Available columns in dataset: ['valence', 'year', 'acousticness', 'artists', 'danceability', 'duration_ms', 'energy', 'explicit', 'id', 'instrumentalness', 'key', 'liveness', 'loudness', 'mode', 'name', 'popularity', 'release_date', 'speechiness', 'tempo']
+INFO 2025-04-21 00:44:34,374 recommendation 1876 16584 Using features: ['acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'loudness', 'speechiness', 'tempo', 'valence']
+INFO 2025-04-21 00:44:38,044 recommendation 1876 16584 Prepared data with 170653 songs and 9 features
+INFO 2025-04-21 00:44:38,316 recommendation 1876 4940 Loaded data.csv dataset
+INFO 2025-04-21 00:44:38,418 recommendation 1876 4940 Available columns in dataset: ['valence', 'year', 'acousticness', 'artists', 'danceability', 'duration_ms', 'energy', 'explicit', 'id', 'instrumentalness', 'key', 'liveness', 'loudness', 'mode', 'name', 'popularity', 'release_date', 'speechiness', 'tempo']
+INFO 2025-04-21 00:44:38,624 recommendation 1876 4940 Using features: ['acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'loudness', 'speechiness', 'tempo', 'valence']
+INFO 2025-04-21 00:44:38,734 recommendation 1876 4940 Prepared data with 170653 songs and 9 features
+INFO 2025-04-21 00:44:41,444 recommendation 1876 16584 Built song clusters successfully
+INFO 2025-04-21 00:44:41,449 recommendation 1876 16584 Music Recommender initialized successfully
+INFO 2025-04-21 00:44:41,474 recommendation 1876 4940 Built song clusters successfully
+INFO 2025-04-21 00:44:41,479 recommendation 1876 4940 Music Recommender initialized successfully
+WARNING 2025-04-21 00:44:41,526 recommendation 1876 16584 User 5 has no songs - using popular songs
+WARNING 2025-04-21 00:44:41,549 recommendation 1876 4940 User 5 has no songs - using popular songs
+INFO 2025-04-21 00:44:41,767 views 1876 16584 Got 10 recommendations
+INFO 2025-04-21 00:44:41,767 views 1876 4940 Got 10 recommendations
+INFO 2025-04-21 00:44:41,899 basehttp 1876 4940 "GET /api/songs/recommendations/ HTTP/1.1" 200 2988
+INFO 2025-04-21 00:44:41,914 basehttp 1876 16584 "GET /api/songs/recommendations/ HTTP/1.1" 200 3088
+INFO 2025-04-21 00:44:42,565 basehttp 1876 4940 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 2
+INFO 2025-04-21 00:44:42,634 basehttp 1876 16584 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 2
+INFO 2025-04-21 00:44:43,221 basehttp 1876 4940 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 556
+INFO 2025-04-21 00:44:43,290 basehttp 1876 16584 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 556
+INFO 2025-04-21 00:44:43,915 basehttp 1876 4940 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 40
+INFO 2025-04-21 00:44:44,014 basehttp 1876 16584 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 40
+INFO 2025-04-21 00:44:44,534 basehttp 1876 4940 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 42
+INFO 2025-04-21 00:44:44,685 basehttp 1876 16584 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 42
+INFO 2025-04-21 00:45:42,922 basehttp 1876 16584 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-21 00:45:43,599 views 1876 16584 User has 0 songs
+INFO 2025-04-21 00:45:43,667 views 1876 16584 User has 0 songs with Spotify IDs
+INFO 2025-04-21 00:45:43,734 views 1876 16584 Getting recommendations for user: 5 with limit: 10
+WARNING 2025-04-21 00:45:43,800 recommendation 1876 16584 User 5 has no songs - using popular songs
+INFO 2025-04-21 00:45:43,924 views 1876 16584 Got 10 recommendations
+INFO 2025-04-21 00:45:44,054 basehttp 1876 16584 "GET /api/songs/recommendations/ HTTP/1.1" 200 2892
+INFO 2025-04-21 00:45:44,727 basehttp 1876 16584 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 2
+INFO 2025-04-21 00:45:45,395 basehttp 1876 16584 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 556
+INFO 2025-04-21 00:45:46,104 basehttp 1876 16584 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 40
+INFO 2025-04-21 00:45:46,748 basehttp 1876 16584 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 42
+INFO 2025-04-21 00:46:46,909 basehttp 1876 16584 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-21 00:46:47,577 views 1876 16584 User has 0 songs
+INFO 2025-04-21 00:46:47,644 views 1876 16584 User has 0 songs with Spotify IDs
+INFO 2025-04-21 00:46:47,706 views 1876 16584 Getting recommendations for user: 5 with limit: 10
+WARNING 2025-04-21 00:46:47,774 recommendation 1876 16584 User 5 has no songs - using popular songs
+INFO 2025-04-21 00:46:47,908 views 1876 16584 Got 10 recommendations
+INFO 2025-04-21 00:46:48,039 basehttp 1876 16584 "GET /api/songs/recommendations/ HTTP/1.1" 200 2936
+INFO 2025-04-21 00:46:48,678 basehttp 1876 16584 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 2
+INFO 2025-04-21 00:46:49,317 basehttp 1876 16584 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 556
+INFO 2025-04-21 00:46:49,994 basehttp 1876 16584 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 40
+INFO 2025-04-21 00:46:50,624 basehttp 1876 16584 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 42
+INFO 2025-04-21 00:47:02,904 basehttp 1876 16584 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-21 00:47:03,544 views 1876 16584 User has 0 songs
+INFO 2025-04-21 00:47:03,619 views 1876 16584 User has 0 songs with Spotify IDs
+INFO 2025-04-21 00:47:03,675 views 1876 16584 Getting recommendations for user: 5 with limit: 10
+WARNING 2025-04-21 00:47:03,744 recommendation 1876 16584 User 5 has no songs - using popular songs
+INFO 2025-04-21 00:47:03,866 views 1876 16584 Got 10 recommendations
+INFO 2025-04-21 00:47:03,999 basehttp 1876 16584 "GET /api/songs/recommendations/ HTTP/1.1" 200 2928
+INFO 2025-04-21 00:47:04,634 basehttp 1876 16584 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 2
+INFO 2025-04-21 00:47:05,264 basehttp 1876 16584 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 556
+INFO 2025-04-21 00:47:06,015 basehttp 1876 16584 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 40
+INFO 2025-04-21 00:47:06,654 basehttp 1876 16584 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 42
+INFO 2025-04-21 00:47:07,214 basehttp 1876 18412 "GET /admin/ HTTP/1.1" 302 0
+INFO 2025-04-21 00:47:08,194 basehttp 1876 18412 "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4160
+INFO 2025-04-21 00:47:08,315 basehttp 1876 16236 "GET /static/admin/js/theme.js HTTP/1.1" 304 0
+INFO 2025-04-21 00:47:08,325 basehttp 1876 16236 "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 304 0
+INFO 2025-04-21 00:47:09,289 basehttp 1876 17268 "GET /static/admin/css/login.css HTTP/1.1" 200 951
+INFO 2025-04-21 00:47:09,289 basehttp 1876 18412 "GET /static/admin/css/base.css HTTP/1.1" 200 22092
+INFO 2025-04-21 00:47:09,289 basehttp 1876 22324 "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+INFO 2025-04-21 00:47:09,293 basehttp 1876 11548 "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2804
+INFO 2025-04-21 00:47:09,298 basehttp 1876 20028 "GET /static/admin/css/responsive.css HTTP/1.1" 200 17972
+INFO 2025-04-21 00:47:12,144 basehttp 1876 16584 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-21 00:47:12,806 views 1876 16584 User has 0 songs
+INFO 2025-04-21 00:47:12,874 views 1876 16584 User has 0 songs with Spotify IDs
+INFO 2025-04-21 00:47:12,944 views 1876 16584 Getting recommendations for user: 5 with limit: 10
+WARNING 2025-04-21 00:47:13,008 recommendation 1876 16584 User 5 has no songs - using popular songs
+INFO 2025-04-21 00:47:13,133 views 1876 16584 Got 10 recommendations
+INFO 2025-04-21 00:47:13,271 basehttp 1876 16584 "GET /api/songs/recommendations/ HTTP/1.1" 200 2988
+INFO 2025-04-21 00:47:13,944 basehttp 1876 16584 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 2
+INFO 2025-04-21 00:47:14,580 basehttp 1876 16584 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 556
+INFO 2025-04-21 00:47:15,254 basehttp 1876 16584 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 40
+INFO 2025-04-21 00:47:15,884 basehttp 1876 16584 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 42
+INFO 2025-04-21 00:47:35,024 basehttp 1876 16584 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-21 00:47:35,662 views 1876 16584 User has 0 songs
+INFO 2025-04-21 00:47:35,724 views 1876 16584 User has 0 songs with Spotify IDs
+INFO 2025-04-21 00:47:35,784 views 1876 16584 Getting recommendations for user: 5 with limit: 10
+WARNING 2025-04-21 00:47:35,857 recommendation 1876 16584 User 5 has no songs - using popular songs
+INFO 2025-04-21 00:47:35,978 views 1876 16584 Got 10 recommendations
+INFO 2025-04-21 00:47:36,118 basehttp 1876 16584 "GET /api/songs/recommendations/ HTTP/1.1" 200 3014
+INFO 2025-04-21 00:47:36,784 basehttp 1876 16584 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 2
+INFO 2025-04-21 00:47:37,408 basehttp 1876 16584 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 556
+INFO 2025-04-21 00:47:38,114 basehttp 1876 16584 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 40
+INFO 2025-04-21 00:47:38,765 basehttp 1876 16584 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 42
+INFO 2025-04-21 00:47:48,744 basehttp 1876 16584 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-21 00:47:49,388 views 1876 16584 User has 0 songs
+INFO 2025-04-21 00:47:49,455 views 1876 16584 User has 0 songs with Spotify IDs
+INFO 2025-04-21 00:47:49,524 views 1876 16584 Getting recommendations for user: 5 with limit: 10
+WARNING 2025-04-21 00:47:49,589 recommendation 1876 16584 User 5 has no songs - using popular songs
+INFO 2025-04-21 00:47:49,714 views 1876 16584 Got 10 recommendations
+INFO 2025-04-21 00:47:49,854 basehttp 1876 16584 "GET /api/songs/recommendations/ HTTP/1.1" 200 2886
+INFO 2025-04-21 00:47:50,475 basehttp 1876 16584 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 2
+INFO 2025-04-21 00:47:51,144 basehttp 1876 16584 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 556
+INFO 2025-04-21 00:47:51,868 basehttp 1876 16584 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 40
+INFO 2025-04-21 00:47:52,504 basehttp 1876 16584 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 42
+INFO 2025-04-21 00:49:19,977 basehttp 1876 16584 "GET /api/songs/user/profile/ HTTP/1.1" 200 2672
+INFO 2025-04-21 00:49:29,656 basehttp 1876 16584 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-21 00:49:29,698 basehttp 1876 5480 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-21 00:49:29,862 basehttp 1876 20696 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-21 00:49:30,349 views 1876 16584 User has 0 songs
+INFO 2025-04-21 00:49:30,414 views 1876 16584 User has 0 songs with Spotify IDs
+INFO 2025-04-21 00:49:30,436 views 1876 5480 User has 0 songs
+INFO 2025-04-21 00:49:30,480 views 1876 16584 Getting recommendations for user: 5 with limit: 10
+INFO 2025-04-21 00:49:30,506 views 1876 5480 User has 0 songs with Spotify IDs
+WARNING 2025-04-21 00:49:30,547 recommendation 1876 16584 User 5 has no songs - using popular songs
+INFO 2025-04-21 00:49:30,575 views 1876 5480 Getting recommendations for user: 5 with limit: 10
+INFO 2025-04-21 00:49:30,575 views 1876 20696 User has 0 songs
+WARNING 2025-04-21 00:49:30,652 recommendation 1876 5480 User 5 has no songs - using popular songs
+INFO 2025-04-21 00:49:30,652 views 1876 20696 User has 0 songs with Spotify IDs
+INFO 2025-04-21 00:49:30,744 views 1876 20696 Getting recommendations for user: 5 with limit: 10
+INFO 2025-04-21 00:49:30,786 views 1876 16584 Got 10 recommendations
+WARNING 2025-04-21 00:49:30,820 recommendation 1876 20696 User 5 has no songs - using popular songs
+INFO 2025-04-21 00:49:30,865 views 1876 5480 Got 10 recommendations
+INFO 2025-04-21 00:49:30,974 basehttp 1876 16584 "GET /api/songs/recommendations/ HTTP/1.1" 200 2975
+INFO 2025-04-21 00:49:31,084 basehttp 1876 5480 "GET /api/songs/recommendations/ HTTP/1.1" 200 2900
+INFO 2025-04-21 00:49:31,086 views 1876 20696 Got 10 recommendations
+INFO 2025-04-21 00:49:31,235 basehttp 1876 20696 "GET /api/songs/recommendations/ HTTP/1.1" 200 2917
+INFO 2025-04-21 00:49:31,819 basehttp 1876 5480 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 2
+INFO 2025-04-21 00:49:31,934 basehttp 1876 20696 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 2
+INFO 2025-04-21 00:49:32,324 basehttp 1876 16584 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 2
+INFO 2025-04-21 00:49:32,584 basehttp 1876 20696 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 556
+INFO 2025-04-21 00:49:32,754 basehttp 1876 5480 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 556
+INFO 2025-04-21 00:49:33,054 basehttp 1876 16584 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 556
+INFO 2025-04-21 00:49:33,324 basehttp 1876 20696 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 40
+INFO 2025-04-21 00:49:33,484 basehttp 1876 5480 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 40
+INFO 2025-04-21 00:49:33,794 basehttp 1876 16584 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 40
+INFO 2025-04-21 00:49:33,986 basehttp 1876 20696 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 42
+INFO 2025-04-21 00:49:34,131 basehttp 1876 5480 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 42
+INFO 2025-04-21 00:49:34,434 basehttp 1876 16584 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 42
+INFO 2025-04-21 00:49:49,390 basehttp 1876 16584 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-21 00:49:50,060 views 1876 16584 User has 0 songs
+INFO 2025-04-21 00:49:50,131 views 1876 16584 User has 0 songs with Spotify IDs
+INFO 2025-04-21 00:49:50,199 views 1876 16584 Getting recommendations for user: 5 with limit: 10
+WARNING 2025-04-21 00:49:50,270 recommendation 1876 16584 User 5 has no songs - using popular songs
+INFO 2025-04-21 00:49:50,394 views 1876 16584 Got 10 recommendations
+INFO 2025-04-21 00:49:50,530 basehttp 1876 16584 "GET /api/songs/recommendations/ HTTP/1.1" 200 2940
+INFO 2025-04-21 00:49:51,205 basehttp 1876 16584 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 2
+INFO 2025-04-21 00:49:51,886 basehttp 1876 16584 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 556
+INFO 2025-04-21 00:49:52,559 basehttp 1876 16584 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 40
+INFO 2025-04-21 00:49:53,205 basehttp 1876 16584 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 42
+INFO 2025-04-21 00:50:47,107 basehttp 1876 16584 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-21 00:50:47,752 views 1876 16584 User has 0 songs
+INFO 2025-04-21 00:50:47,816 views 1876 16584 User has 0 songs with Spotify IDs
+INFO 2025-04-21 00:50:47,889 views 1876 16584 Getting recommendations for user: 5 with limit: 10
+WARNING 2025-04-21 00:50:47,954 recommendation 1876 16584 User 5 has no songs - using popular songs
+INFO 2025-04-21 00:50:48,096 views 1876 16584 Got 10 recommendations
+INFO 2025-04-21 00:50:48,228 basehttp 1876 16584 "GET /api/songs/recommendations/ HTTP/1.1" 200 2937
+INFO 2025-04-21 00:50:49,121 basehttp 1876 16584 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 2
+INFO 2025-04-21 00:50:49,825 basehttp 1876 16584 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 556
+INFO 2025-04-21 00:50:50,534 basehttp 1876 16584 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 40
+INFO 2025-04-21 00:50:51,257 basehttp 1876 16584 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 42
+INFO 2025-04-21 00:51:00,686 basehttp 1876 20696 "GET /api/songs/songs/ HTTP/1.1" 200 2
+INFO 2025-04-21 00:51:00,815 basehttp 1876 20740 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 42
+INFO 2025-04-21 00:51:00,815 basehttp 1876 5480 "GET /api/songs/playlists/ HTTP/1.1" 200 2
+INFO 2025-04-21 00:51:00,954 basehttp 1876 6644 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 40
+INFO 2025-04-21 00:51:01,622 basehttp 1876 20696 "GET /api/songs/songs/ HTTP/1.1" 200 2
+INFO 2025-04-21 00:51:01,704 basehttp 1876 5480 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 40
+INFO 2025-04-21 00:51:01,714 basehttp 1876 20740 "GET /api/songs/playlists/ HTTP/1.1" 200 2
+INFO 2025-04-21 00:51:01,794 basehttp 1876 6644 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 42
+INFO 2025-04-21 00:51:04,004 basehttp 1876 6328 "GET /api/songs/user/profile/ HTTP/1.1" 200 2672
+INFO 2025-04-21 00:51:04,429 basehttp 1876 16584 "GET /api/songs/user/profile/ HTTP/1.1" 200 2672
+INFO 2025-04-21 00:54:01,767 basehttp 1876 20028 "GET /api/songs/songs/ HTTP/1.1" 200 2
+INFO 2025-04-21 00:54:01,821 basehttp 1876 18612 "GET /api/songs/playlists/ HTTP/1.1" 200 2
+INFO 2025-04-21 00:54:01,821 basehttp 1876 7076 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 42
+INFO 2025-04-21 00:54:01,882 basehttp 1876 16360 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 40
+INFO 2025-04-21 00:54:05,006 basehttp 1876 10068 "GET /api/songs/user/profile/ HTTP/1.1" 200 2672
+INFO 2025-04-21 00:54:05,618 basehttp 1876 16212 "GET /api/songs/user/profile/ HTTP/1.1" 200 2672
+INFO 2025-04-21 00:58:07,010 basehttp 1876 15764 "GET /api/songs/playlists/ HTTP/1.1" 200 2
+INFO 2025-04-21 00:58:07,010 basehttp 1876 11724 "GET /api/songs/songs/ HTTP/1.1" 200 2
+INFO 2025-04-21 00:58:07,012 basehttp 1876 10024 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 42
+INFO 2025-04-21 00:58:07,097 basehttp 1876 19792 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 40
+INFO 2025-04-21 00:58:07,857 basehttp 1876 10024 "GET /api/songs/user/profile HTTP/1.1" 301 0
+INFO 2025-04-21 00:58:10,191 basehttp 1876 16360 "GET /api/songs/user/profile/ HTTP/1.1" 200 2672
+INFO 2025-04-21 00:58:11,585 basehttp 1876 19792 "GET /api/songs/user/profile/ HTTP/1.1" 200 2672
+INFO 2025-04-21 01:00:57,264 basehttp 1876 5696 "GET /api/songs/songs/ HTTP/1.1" 200 2
+INFO 2025-04-21 01:00:57,305 basehttp 1876 7816 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 42
+INFO 2025-04-21 01:00:57,306 basehttp 1876 8544 "GET /api/songs/playlists/ HTTP/1.1" 200 2
+INFO 2025-04-21 01:00:57,359 basehttp 1876 8116 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 40
+INFO 2025-04-21 01:00:57,408 basehttp 1876 7816 "GET /api/songs/user/profile HTTP/1.1" 301 0
+INFO 2025-04-21 01:01:00,351 basehttp 1876 18992 "GET /api/songs/user/profile/ HTTP/1.1" 200 2672
+INFO 2025-04-21 01:01:01,404 basehttp 1876 8116 "GET /api/songs/user/profile/ HTTP/1.1" 200 2672
+INFO 2025-04-21 01:01:11,559 basehttp 1876 18992 "POST /api/users/google-auth/ HTTP/1.1" 200 93
+INFO 2025-04-21 01:01:13,404 basehttp 1876 8116 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-21 01:01:13,454 basehttp 1876 18992 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-21 01:01:14,032 views 1876 8116 User has 0 songs
+INFO 2025-04-21 01:01:14,083 views 1876 18992 User has 0 songs
+INFO 2025-04-21 01:01:14,094 views 1876 8116 User has 0 songs with Spotify IDs
+INFO 2025-04-21 01:01:14,175 views 1876 18992 User has 0 songs with Spotify IDs
+INFO 2025-04-21 01:01:14,180 views 1876 8116 Getting recommendations for user: 5 with limit: 10
+INFO 2025-04-21 01:01:14,235 views 1876 18992 Getting recommendations for user: 5 with limit: 10
+WARNING 2025-04-21 01:01:14,245 recommendation 1876 8116 User 5 has no songs - using popular songs
+WARNING 2025-04-21 01:01:14,341 recommendation 1876 18992 User 5 has no songs - using popular songs
+INFO 2025-04-21 01:01:14,435 views 1876 8116 Got 10 recommendations
+INFO 2025-04-21 01:01:14,491 views 1876 18992 Got 10 recommendations
+INFO 2025-04-21 01:01:14,564 basehttp 1876 8116 "GET /api/songs/recommendations/ HTTP/1.1" 200 2997
+INFO 2025-04-21 01:01:14,617 basehttp 1876 18992 "GET /api/songs/recommendations/ HTTP/1.1" 200 2934
+INFO 2025-04-21 01:01:15,168 basehttp 1876 8116 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 2
+INFO 2025-04-21 01:01:15,266 basehttp 1876 18992 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 2
+INFO 2025-04-21 01:01:15,784 basehttp 1876 8116 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 556
+INFO 2025-04-21 01:01:15,902 basehttp 1876 18992 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 556
+INFO 2025-04-21 01:01:16,499 basehttp 1876 8116 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 40
+INFO 2025-04-21 01:01:16,649 basehttp 1876 18992 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 40
+INFO 2025-04-21 01:01:17,115 basehttp 1876 8116 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 42
+INFO 2025-04-21 01:01:17,305 basehttp 1876 18992 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 42
+INFO 2025-04-21 01:01:25,270 basehttp 1876 8116 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-21 01:01:26,022 views 1876 8116 User has 0 songs
+INFO 2025-04-21 01:01:26,088 views 1876 8116 User has 0 songs with Spotify IDs
+INFO 2025-04-21 01:01:26,152 views 1876 8116 Getting recommendations for user: 5 with limit: 10
+WARNING 2025-04-21 01:01:26,218 recommendation 1876 8116 User 5 has no songs - using popular songs
+INFO 2025-04-21 01:01:26,341 views 1876 8116 Got 10 recommendations
+INFO 2025-04-21 01:01:26,489 basehttp 1876 8116 "GET /api/songs/recommendations/ HTTP/1.1" 200 2930
+INFO 2025-04-21 01:01:27,258 basehttp 1876 8116 - Broken pipe from ('127.0.0.1', 49253)
+INFO 2025-04-21 01:01:27,519 basehttp 1876 18992 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 556
+INFO 2025-04-21 01:01:28,324 basehttp 1876 18992 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 40
+INFO 2025-04-21 01:01:29,417 basehttp 1876 8544 "GET /api/songs/user/profile HTTP/1.1" 301 0
+INFO 2025-04-21 01:01:29,540 basehttp 1876 18992 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-21 01:01:29,541 basehttp 1876 5696 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-21 01:01:30,182 basehttp 1876 12508 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-21 01:01:30,357 views 1876 18992 User has 0 songs
+INFO 2025-04-21 01:01:30,378 views 1876 5696 User has 0 songs
+INFO 2025-04-21 01:01:30,437 views 1876 18992 User has 0 songs with Spotify IDs
+INFO 2025-04-21 01:01:30,446 views 1876 5696 User has 0 songs with Spotify IDs
+INFO 2025-04-21 01:01:30,512 views 1876 5696 Getting recommendations for user: 5 with limit: 10
+INFO 2025-04-21 01:01:30,512 views 1876 18992 Getting recommendations for user: 5 with limit: 10
+WARNING 2025-04-21 01:01:30,590 recommendation 1876 18992 User 5 has no songs - using popular songs
+WARNING 2025-04-21 01:01:30,591 recommendation 1876 5696 User 5 has no songs - using popular songs
+INFO 2025-04-21 01:01:30,814 views 1876 18992 Got 10 recommendations
+INFO 2025-04-21 01:01:30,850 views 1876 5696 Got 10 recommendations
+INFO 2025-04-21 01:01:30,950 basehttp 1876 18992 "GET /api/songs/recommendations/ HTTP/1.1" 200 2968
+INFO 2025-04-21 01:01:30,970 views 1876 12508 User has 0 songs
+INFO 2025-04-21 01:01:30,989 basehttp 1876 5696 "GET /api/songs/recommendations/ HTTP/1.1" 200 2997
+INFO 2025-04-21 01:01:31,038 views 1876 12508 User has 0 songs with Spotify IDs
+INFO 2025-04-21 01:01:31,105 views 1876 12508 Getting recommendations for user: 5 with limit: 10
+WARNING 2025-04-21 01:01:31,174 recommendation 1876 12508 User 5 has no songs - using popular songs
+INFO 2025-04-21 01:01:31,312 views 1876 12508 Got 10 recommendations
+INFO 2025-04-21 01:01:31,445 basehttp 1876 12508 "GET /api/songs/recommendations/ HTTP/1.1" 200 2826
+INFO 2025-04-21 01:01:31,578 basehttp 1876 18992 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 2
+INFO 2025-04-21 01:01:31,695 basehttp 1876 5696 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 2
+INFO 2025-04-21 01:01:32,121 basehttp 1876 12508 - Broken pipe from ('127.0.0.1', 49358)
+INFO 2025-04-21 01:01:32,298 basehttp 1876 18992 - Broken pipe from ('127.0.0.1', 49250)
+INFO 2025-04-21 01:01:32,594 basehttp 1876 5696 - Broken pipe from ('127.0.0.1', 49251)
+INFO 2025-04-21 01:01:32,640 basehttp 1876 21808 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 556
+INFO 2025-04-21 01:01:32,702 basehttp 1876 7324 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 40
+INFO 2025-04-21 01:01:32,822 basehttp 1876 9252 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 40
+INFO 2025-04-21 01:01:33,507 basehttp 1876 15748 - Broken pipe from ('127.0.0.1', 49356)
+INFO 2025-04-21 01:01:34,737 basehttp 1876 21808 "POST /api/users/google-auth/ HTTP/1.1" 200 93
+INFO 2025-04-21 01:01:36,505 basehttp 1876 21808 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-21 01:01:36,527 basehttp 1876 7324 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-21 01:01:37,132 views 1876 21808 User has 0 songs
+INFO 2025-04-21 01:01:37,170 views 1876 7324 User has 0 songs
+INFO 2025-04-21 01:01:37,194 views 1876 21808 User has 0 songs with Spotify IDs
+INFO 2025-04-21 01:01:37,233 views 1876 7324 User has 0 songs with Spotify IDs
+INFO 2025-04-21 01:01:37,258 views 1876 21808 Getting recommendations for user: 5 with limit: 10
+INFO 2025-04-21 01:01:37,298 views 1876 7324 Getting recommendations for user: 5 with limit: 10
+WARNING 2025-04-21 01:01:37,319 recommendation 1876 21808 User 5 has no songs - using popular songs
+WARNING 2025-04-21 01:01:37,389 recommendation 1876 7324 User 5 has no songs - using popular songs
+INFO 2025-04-21 01:01:37,446 views 1876 21808 Got 10 recommendations
+INFO 2025-04-21 01:01:37,549 views 1876 7324 Got 10 recommendations
+INFO 2025-04-21 01:01:37,614 basehttp 1876 21808 "GET /api/songs/recommendations/ HTTP/1.1" 200 2960
+INFO 2025-04-21 01:01:37,677 basehttp 1876 7324 "GET /api/songs/recommendations/ HTTP/1.1" 200 3032
+INFO 2025-04-21 01:01:38,253 basehttp 1876 21808 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 2
+INFO 2025-04-21 01:01:38,318 basehttp 1876 7324 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 2
+INFO 2025-04-21 01:01:38,920 basehttp 1876 21808 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 556
+INFO 2025-04-21 01:01:39,082 basehttp 1876 7324 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 556
+INFO 2025-04-21 01:01:39,644 basehttp 1876 21808 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 40
+INFO 2025-04-21 01:01:39,851 basehttp 1876 7324 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 40
+INFO 2025-04-21 01:01:40,300 basehttp 1876 21808 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 42
+INFO 2025-04-21 01:01:40,620 basehttp 1876 7324 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 42
+INFO 2025-04-21 01:02:41,418 basehttp 1876 7324 "GET /api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-21 01:02:42,040 views 1876 7324 User has 0 songs
+INFO 2025-04-21 01:02:42,096 views 1876 7324 User has 0 songs with Spotify IDs
+INFO 2025-04-21 01:02:42,163 views 1876 7324 Getting recommendations for user: 5 with limit: 10
+WARNING 2025-04-21 01:02:42,222 recommendation 1876 7324 User 5 has no songs - using popular songs
+INFO 2025-04-21 01:02:42,308 views 1876 7324 Got 10 recommendations
+INFO 2025-04-21 01:02:42,430 basehttp 1876 7324 "GET /api/songs/recommendations/ HTTP/1.1" 200 3054
+INFO 2025-04-21 01:02:43,061 basehttp 1876 7324 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 2
+INFO 2025-04-21 01:02:43,646 basehttp 1876 7324 "GET /api/users/download-activity/?period=week HTTP/1.1" 200 556
+INFO 2025-04-21 01:02:44,346 basehttp 1876 7324 "GET /api/songs/user/favorite-genres/ HTTP/1.1" 200 40
+INFO 2025-04-21 01:02:44,996 basehttp 1876 7324 "GET /api/songs/user/top-countries/ HTTP/1.1" 200 42
+WARNING 2025-04-21 01:13:53,630 log 1876 19028 Forbidden (CSRF cookie not set.): /admin/login/
+WARNING 2025-04-21 01:13:53,630 basehttp 1876 19028 "POST /admin/login/?next=/admin/ HTTP/1.1" 403 2855
+INFO 2025-04-21 01:13:57,729 basehttp 1876 19028 "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4160
+INFO 2025-04-21 01:14:05,096 basehttp 1876 19028 "POST /admin/login/?next=/admin/ HTTP/1.1" 200 4321
+INFO 2025-04-21 01:14:11,732 basehttp 1876 19028 "POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+INFO 2025-04-21 01:14:12,476 basehttp 1876 19028 "GET /admin/ HTTP/1.1" 200 19612
+INFO 2025-04-21 01:14:12,556 basehttp 1876 19028 "GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+INFO 2025-04-21 01:14:12,584 basehttp 1876 19028 "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+INFO 2025-04-21 01:14:12,584 basehttp 1876 15512 "GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 200 392
+INFO 2025-04-21 01:14:12,588 basehttp 1876 20536 "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+INFO 2025-04-21 01:14:17,801 basehttp 1876 19028 "GET /admin/users/customuser/ HTTP/1.1" 200 17118
+INFO 2025-04-21 01:14:17,859 basehttp 1876 20536 "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 304 0
+INFO 2025-04-21 01:14:17,867 basehttp 1876 20536 "GET /static/admin/js/actions.js HTTP/1.1" 304 0
+INFO 2025-04-21 01:14:17,867 basehttp 1876 14468 "GET /static/admin/js/jquery.init.js HTTP/1.1" 304 0
+INFO 2025-04-21 01:14:17,867 basehttp 1876 16800 "GET /static/admin/js/core.js HTTP/1.1" 304 0
+INFO 2025-04-21 01:14:17,874 basehttp 1876 20536 "GET /static/admin/js/urlify.js HTTP/1.1" 304 0
+INFO 2025-04-21 01:14:17,874 basehttp 1876 7868 "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 304 0
+INFO 2025-04-21 01:14:17,874 basehttp 1876 19028 "GET /static/admin/css/changelists.css HTTP/1.1" 200 6878
+INFO 2025-04-21 01:14:17,881 basehttp 1876 16800 "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 304 0
+INFO 2025-04-21 01:14:17,881 basehttp 1876 20536 "GET /static/admin/js/filters.js HTTP/1.1" 304 0
+INFO 2025-04-21 01:14:17,881 basehttp 1876 14468 "GET /static/admin/js/prepopulate.js HTTP/1.1" 304 0
+INFO 2025-04-21 01:14:18,481 basehttp 1876 15512 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-04-21 01:14:18,513 basehttp 1876 19028 "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+WARNING 2025-04-21 01:14:18,529 log 1876 19028 Not Found: /favicon.ico
+INFO 2025-04-21 01:14:18,535 basehttp 1876 19028 - Broken pipe from ('127.0.0.1', 51057)
+INFO 2025-04-21 01:14:28,999 basehttp 1876 15512 "GET /admin/users/customuser/5/change/ HTTP/1.1" 200 40694
+INFO 2025-04-21 01:14:29,049 basehttp 1876 7868 "GET /static/admin/js/calendar.js HTTP/1.1" 304 0
+INFO 2025-04-21 01:14:29,051 basehttp 1876 14468 "GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 304 0
+INFO 2025-04-21 01:14:29,054 basehttp 1876 20596 "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 304 0
+INFO 2025-04-21 01:14:29,054 basehttp 1876 15512 "GET /static/admin/css/forms.css HTTP/1.1" 200 8794
+INFO 2025-04-21 01:14:29,066 basehttp 1876 16800 "GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+INFO 2025-04-21 01:14:29,074 basehttp 1876 15512 "GET /static/admin/css/widgets.css HTTP/1.1" 200 11564
+INFO 2025-04-21 01:14:29,610 basehttp 1876 20536 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+WARNING 2025-04-21 01:14:29,676 log 1876 15512 Not Found: /favicon.ico
+INFO 2025-04-21 01:14:29,678 basehttp 1876 15512 - Broken pipe from ('127.0.0.1', 51084)
+INFO 2025-04-21 01:14:30,051 basehttp 1876 20536 "GET /static/admin/img/icon-calendar.svg HTTP/1.1" 200 1086
+INFO 2025-04-21 01:14:30,052 basehttp 1876 16800 "GET /static/admin/img/icon-clock.svg HTTP/1.1" 200 677

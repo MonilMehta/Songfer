@@ -1,6 +1,6 @@
 'use client'
 
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react'
+import React, { createContext, useContext, useState, useEffect, ReactNode, useRef } from 'react'
 
 // Define the user profile data structure based on API response
 interface UserProfile {
@@ -36,9 +36,11 @@ const UserProfileContext = createContext<UserProfileContextType | undefined>(und
 
 export function UserProfileProvider({ children }: { children: ReactNode }) {
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null)
-  const [isLoading, setIsLoading] = useState<boolean>(true)
+  const [isLoading, setIsLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
   const [lastFetch, setLastFetch] = useState<number>(0)
+  const isFetchingRef = useRef(false)
+  const authInitializedRef = useRef(false) // Track if auth has been initialized
 
   // Cache expiration time in milliseconds (5 minutes)
   const CACHE_EXPIRATION = 5 * 60 * 1000
@@ -51,7 +53,24 @@ export function UserProfileProvider({ children }: { children: ReactNode }) {
     return ''
   }
 
+  // Check if a session exists by looking for session cookie or other auth indicators
+  const hasAuthSession = () => {
+    if (typeof window === 'undefined') return false
+    
+    // Check for token in localStorage
+    const hasToken = !!localStorage.getItem('token')
+    
+    // Check for session cookie (adjust name based on your auth implementation)
+    const hasSessionCookie = document.cookie.includes('next-auth.session-token=')
+    
+    return hasToken || hasSessionCookie
+  }
+
   const fetchUserProfile = async () => {
+    // If we're already fetching, don't start another fetch
+    if (isFetchingRef.current) return
+    
+    isFetchingRef.current = true
     setIsLoading(true)
     setError(null)
 
@@ -59,13 +78,18 @@ export function UserProfileProvider({ children }: { children: ReactNode }) {
       const token = getAuthToken()
       
       if (!token) {
-        throw new Error('No authentication token found')
+        // No need to throw an error for new users without a token
+        setIsLoading(false)
+        isFetchingRef.current = false
+        return
       }
 
-      const response = await fetch('http://localhost:8000/api/songs/user/profile', {
+      const response = await fetch('https://songporter.onrender.com/api/songs/user/profile', {
         headers: {
           'Authorization': `Token ${token}`
-        }
+        },
+        // Add cache: 'no-store' to prevent browser caching
+        cache: 'no-store'
       })
       
       if (!response.ok) {
@@ -75,11 +99,14 @@ export function UserProfileProvider({ children }: { children: ReactNode }) {
       const data = await response.json()
       setUserProfile(data)
       setLastFetch(Date.now())
+      // Mark auth as initialized once we've successfully loaded profile data
+      authInitializedRef.current = true
     } catch (err) {
       setError(err instanceof Error ? err.message : 'An unknown error occurred')
       console.error('Error fetching user profile:', err)
     } finally {
       setIsLoading(false)
+      isFetchingRef.current = false
     }
   }
 
@@ -108,13 +135,48 @@ export function UserProfileProvider({ children }: { children: ReactNode }) {
     })
   }
 
-  // Initial fetch on mount
+  // Check for valid session and fetch profile data
   useEffect(() => {
-    // Only attempt to fetch if we're in a browser context where localStorage is available
-    if (typeof window !== 'undefined') {
-      fetchUserProfile()
+    // Don't make requests if we've already determined there's no auth
+    if (typeof window === 'undefined') return
+    
+    // Function to check session and fetch user data if needed
+    const checkSessionAndFetchProfile = async () => {
+      // If we've already successfully initialized auth, skip redundant check
+      if (authInitializedRef.current) return
+      
+      const hasSession = hasAuthSession()
+      const token = getAuthToken()
+      
+      // Only fetch if we have a token and haven't fetched recently
+      if (token && hasSession && (Date.now() - lastFetch > CACHE_EXPIRATION)) {
+        await fetchUserProfile()
+      } else if (!token && !hasSession) {
+        // No auth present, no need to keep checking
+        authInitializedRef.current = true
+      }
     }
-  }, [])
+    
+    // Initial fetch with a delay to avoid race conditions during auth
+    const timeoutId = setTimeout(() => {
+      checkSessionAndFetchProfile()
+    }, 800) // Increased timeout to give OAuth login more time to complete
+    
+    // Set up a listener for storage events to detect token changes
+    // This helps with OAuth flows where the token might be set by another tab/process
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === 'token' && e.newValue) {
+        checkSessionAndFetchProfile()
+      }
+    }
+    
+    window.addEventListener('storage', handleStorageChange)
+    
+    return () => {
+      clearTimeout(timeoutId)
+      window.removeEventListener('storage', handleStorageChange)
+    }
+  }, [lastFetch])
 
   const value = {
     userProfile,

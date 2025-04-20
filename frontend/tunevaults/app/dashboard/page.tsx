@@ -1,9 +1,9 @@
-/* eslint-disable */
 'use client'
 
 import { useState, useEffect } from 'react'
-// import { Download, History } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 import { useToast } from '@/hooks/use-toast'
+import { useSession } from 'next-auth/react'
 
 // Import custom dashboard components
 import { DashboardStats } from '@/components/dashboard/dashboard-stats'
@@ -98,11 +98,58 @@ export default function Dashboard() {
     listeningTime: 2460, // in minutes
     lastDownloadDate: "2025-04-10T14:32:11Z"
   })
+  const router = useRouter()
+  const { data: session, status: authStatus } = useSession()
   const { toast } = useToast()
 
+  // Check authentication status when component mounts
   useEffect(() => {
-    fetchUserData();
-  }, [])
+    const checkAuth = async () => {
+      const token = localStorage.getItem('token')
+      
+      // If no token and not authenticated with NextAuth, redirect to login
+      if (!token && authStatus === 'unauthenticated') {
+        console.log('Not authenticated, redirecting to login')
+        router.push('/login')
+        return
+      }
+      
+      // If user is authenticated through NextAuth but doesn't have a token in localStorage,
+      // we need to get a token from our backend using Google credentials
+      if (!token && authStatus === 'authenticated' && session?.user?.email) {
+        try {
+          const response = await fetch('https://songporter.onrender.com/api/users/google-auth/', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              email: session.user.email,
+              name: session.user.name || session.user.email.split('@')[0],
+              google_token: session.accessToken
+            })
+          })
+          
+          if (response.ok) {
+            const data = await response.json()
+            localStorage.setItem('token', data.token)
+            fetchUserData() // Fetch user data with the new token
+          } else {
+            // If backend auth fails, redirect to login
+            console.error('Backend authentication failed')
+            router.push('/login')
+          }
+        } catch (error) {
+          console.error('Error authenticating with Google credentials:', error)
+          router.push('/login')
+        }
+      } else {
+        fetchUserData() // We have a token, fetch user data
+      }
+    }
+    
+    checkAuth()
+  }, [authStatus, session, router])
 
   // Fetch user's downloaded songs, recommendations and stats
   const fetchUserData = async () => {
@@ -117,6 +164,7 @@ export default function Dashboard() {
           description: "Please log in again to access your data",
           variant: "destructive"
         });
+        router.push('/login');
         setIsLoading(false);
         return;
       }
@@ -147,6 +195,13 @@ export default function Dashboard() {
         description: `Failed to load data: ${error instanceof Error ? error.message : 'Unknown error'}`,
         variant: "destructive"
       });
+      
+      // Check if the error is due to authentication issues
+      if (error instanceof Error && error.message.includes('401')) {
+        // If token is expired or invalid, clear it and redirect to login
+        localStorage.removeItem('token');
+        router.push('/login');
+      }
     } finally {
       setIsLoading(false);
     }
@@ -154,7 +209,7 @@ export default function Dashboard() {
 
   const fetchRecommendations = async (headers: HeadersInit) => {
     try {
-      const recommendationsResponse = await fetch('http://localhost:8000/api/songs/recommendations/', {
+      const recommendationsResponse = await fetch('https://songporter.onrender.com/api/songs/recommendations/', {
         headers
       });
       
@@ -173,7 +228,7 @@ export default function Dashboard() {
 
   const fetchTopArtists = async (headers: HeadersInit) => {
     try {
-      const topArtistsResponse = await fetch('http://localhost:8000/api/songs/user/top-artists/', {
+      const topArtistsResponse = await fetch('https://songporter.onrender.com/api/songs/user/top-artists/', {
         headers
       });
       
@@ -191,7 +246,7 @@ export default function Dashboard() {
 
   const fetchDownloadActivity = async (headers: HeadersInit) => {
     try {
-      const activityResponse = await fetch('http://localhost:8000/api/users/download-activity/?period=week', {
+      const activityResponse = await fetch('https://songporter.onrender.com/api/users/download-activity/?period=week', {
         headers
       });
       
@@ -208,7 +263,7 @@ export default function Dashboard() {
 
   const fetchFavoriteGenres = async (headers: HeadersInit) => {
     try {
-      const genresResponse = await fetch('http://localhost:8000/api/songs/user/favorite-genres/', {
+      const genresResponse = await fetch('https://songporter.onrender.com/api/songs/user/favorite-genres/', {
         headers
       });
       
@@ -239,7 +294,7 @@ export default function Dashboard() {
 
   const fetchTopCountries = async (headers: HeadersInit) => {
     try {
-      const countriesResponse = await fetch('http://localhost:8000/api/songs/user/top-countries/', {
+      const countriesResponse = await fetch('https://songporter.onrender.com/api/songs/user/top-countries/', {
         headers
       });
       
@@ -284,7 +339,7 @@ export default function Dashboard() {
         throw new Error('Authentication required');
       }
       
-      const response = await fetch('http://localhost:8000/api/songs/songs/download/', {
+      const response = await fetch('https://songporter.onrender.com/api/songs/songs/download/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -347,7 +402,7 @@ export default function Dashboard() {
         console.warn("Cannot fetch songs without auth token or provided headers.");
         return;
       }
-      const songsResponse = await fetch('http://localhost:8000/api/songs/', {
+      const songsResponse = await fetch('https://songporter.onrender.com/api/songs/', {
         headers: authHeaders
       });
       if (!songsResponse.ok) throw new Error('Failed to fetch songs for count update');

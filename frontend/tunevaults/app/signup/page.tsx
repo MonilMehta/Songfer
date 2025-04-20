@@ -1,7 +1,6 @@
-/* eslint-disable */
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -13,6 +12,7 @@ import { Separator } from '@/components/ui/separator'
 import apiCaller from '@/utils/apiCaller'
 import VinylPlayer from '@/components/custom/VinylPlayer'
 import { Alert, AlertDescription } from '@/components/ui/alert'
+import { signIn, useSession } from 'next-auth/react'
 
 export default function SignUp() {
   const [username, setUsername] = useState('')
@@ -22,6 +22,70 @@ export default function SignUp() {
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const router = useRouter()
+  const { data: session, status } = useSession()
+
+  // Function to handle backend authentication with Google credentials
+  const authenticateWithBackend = useCallback(async (email: string | null | undefined, name: string | null | undefined, accessToken: string | undefined) => {
+    if (!email) {
+      setError('Email not provided by Google authentication')
+      return false
+    }
+    
+    try {
+      // Make a request to your backend to authenticate or register the Google user
+      const response = await apiCaller('users/google-auth/', 'POST', { 
+        email, 
+        name: name || email.split('@')[0],
+        google_token: accessToken 
+      })
+      
+      if (response && response.status === 200) {
+        // Store the token from your backend
+        localStorage.setItem('token', response.data.token)
+        return true
+      } else {
+        setError('Backend authentication failed after Google sign-in')
+        return false
+      }
+    } catch (error: any) {
+      console.error('Backend authentication error:', error)
+      setError(error?.response?.data?.detail || 'Failed to authenticate with the backend')
+      return false
+    }
+  }, [])
+  
+  // Check session and handle backend authentication when session changes
+  useEffect(() => {
+    const handleSessionChange = async () => {
+      if (status === 'authenticated' && session?.user?.email) {
+        setIsLoading(true)
+        try {
+          // Authenticate with backend using Google credentials
+          const success = await authenticateWithBackend(
+            session.user.email,
+            session.user.name,
+            session.accessToken
+          )
+          
+          if (success) {
+            router.push('/dashboard')
+          }
+        } finally {
+          setIsLoading(false)
+        }
+      }
+    }
+    
+    handleSessionChange()
+  }, [session, status, router, authenticateWithBackend])
+  
+  // Check if user is already authenticated with a token
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    if (token) {
+      router.push('/dashboard')
+    }
+  }, [router])
 
   const validateForm = () => {
     // Reset error
@@ -109,9 +173,15 @@ export default function SignUp() {
     }
   }
 
-  const handleGoogleSignIn = () => {
-    // TODO: Implement Google sign-in
-    console.log('Google sign-in clicked')
+  const handleGoogleSignIn = async () => {
+    setIsLoading(true)
+    try {
+      await signIn('google', { callbackUrl: '/signup' }) // Redirect back to signup to process in useEffect
+    } catch (error) {
+      console.error('Google sign-in error:', error)
+      setError('Failed to sign in with Google')
+      setIsLoading(false)
+    }
   }
 
   return (

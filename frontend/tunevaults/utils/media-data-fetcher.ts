@@ -283,7 +283,7 @@ export const fetchSpotifyData = async (id: string, isPlaylist: boolean, url: str
 
     const endpoint = isPlaylist ? 'playlists' : 'tracks';
     
-    const fetchUrl = `http://localhost:8000/api/songs/spotify/${endpoint}/${id}/`;
+    const fetchUrl = `https://songporter.onrender.com/api/songs/spotify/${endpoint}/${id}/`;
     
     console.log(`Fetching Spotify data from: ${fetchUrl}`);
 
@@ -299,7 +299,7 @@ export const fetchSpotifyData = async (id: string, isPlaylist: boolean, url: str
     if (!response || !response.ok) {
         console.log(`First Spotify URL failed, trying alternate URL format...`);
         
-        const altUrl = `http://localhost:8000/api/songs/spotify-${isPlaylist ? 'playlist' : 'track'}/${id}/`;
+        const altUrl = `https://songporter.onrender.com/api/songs/spotify-${isPlaylist ? 'playlist' : 'track'}/${id}/`;
         
         console.log(`Trying alternate URL: ${altUrl}`);
         const altResponse = await fetch(altUrl, {
@@ -312,7 +312,7 @@ export const fetchSpotifyData = async (id: string, isPlaylist: boolean, url: str
         });
         
         if (!altResponse || !altResponse.ok) {
-            const thirdUrl = `http://localhost:8000/api/spotify/${endpoint}/${id}/`;
+            const thirdUrl = `https://songporter.onrender.com/api/spotify/${endpoint}/${id}/`;
             console.log(`Trying third URL format: ${thirdUrl}`);
             
             const thirdResponse = await fetch(thirdUrl, {
@@ -517,7 +517,7 @@ export interface PlaylistDownloadResponse {
 
 // Function to get the playlist download endpoint for a playlist ID
 export const getPlaylistDownloadEndpoint = (playlistId: number | string): string => {
-  return `http://localhost:8000/api/songs/playlists/${playlistId}/download-all/`;
+  return `https://songporter.onrender.com/api/songs/playlists/${playlistId}/download-all/`;
 };
 
 // Extracts metadata from response headers

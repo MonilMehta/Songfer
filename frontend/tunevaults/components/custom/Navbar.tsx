@@ -169,9 +169,28 @@ export default function Navbar() {
   }, []);
   
   const handleLogout = () => {
+    // Clear localStorage items
     localStorage.removeItem('token');
     localStorage.removeItem('user');
-    window.location.href = '/login';
+    
+    // Clear any Next Auth session data
+    // This handles removing cookies and session data from Next Auth
+    fetch('/api/auth/signout', { 
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include'
+    }).finally(() => {
+      // Clear any cookies that might be related to authentication
+      document.cookie.split(';').forEach(cookie => {
+        const [name] = cookie.trim().split('=');
+        document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+      });
+      
+      // Redirect to login page
+      window.location.href = '/login';
+    });
   };
 
   return (

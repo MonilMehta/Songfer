@@ -4,7 +4,8 @@ from .views import (
     CustomObtainAuthToken,
     SubscriptionAPIView,
     DownloadLimitAPIView,
-    DownloadActivityView
+    DownloadActivityView,
+    google_auth
 )
 
 urlpatterns = [
@@ -13,5 +14,6 @@ urlpatterns = [
     path('subscription/', SubscriptionAPIView.as_view(), name='subscription'),
     path('download-limit/', DownloadLimitAPIView.as_view(), name='download-limit'),
     path('download-activity/', DownloadActivityView.as_view(), name='download-activity'),
+    path('google-auth/', google_auth, name='google-auth'),  # Add the new endpoint
 ]
 

@@ -50,7 +50,7 @@ export function DownloadsRemainingCard({ downloadsRemaining, isPremium }: { down
         <p className="text-xs text-muted-foreground mt-1">
           {isPremium 
             ? "Premium users get 50 downloads daily" 
-            : "Free users get 10 downloads daily"}
+            : "Free users get 15 downloads daily"}
         </p>
       </CardContent>
     </Card>

@@ -87,7 +87,7 @@ export function RecommendationCard({ song }: RecommendationCardProps) {
       const spotifyUrl = getSpotifyPreviewUrl(); // Get the spotify URL
       
       // Update fetch call for the new API endpoint and method
-      const response = await fetch(`http://localhost:8000/api/songs/songs/download/`, { 
+      const response = await fetch(`https://songporter.onrender.com/api/songs/songs/download/`, { 
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -183,11 +183,11 @@ export function RecommendationCard({ song }: RecommendationCardProps) {
           setThumbnailUrl(artworkUrl);
         } else {
           // Last resort fallback to the local placeholder
-          setThumbnailUrl('/assets/MusicPlaceholder.png');
+          setThumbnailUrl('/album-covers/MusicPlaceholder.png');
         }
       } catch (error) {
         console.error('Failed to fetch album art:', error);
-        setThumbnailUrl('/assets/MusicPlaceholder.png'); // Use local placeholder on error
+        setThumbnailUrl('/album-covers/MusicPlaceholder.png'); // Use local placeholder on error
       }
       
       setIsLoading(false);

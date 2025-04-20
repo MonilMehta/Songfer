@@ -73,7 +73,7 @@ const VinylPlayer = () => {
         {/* Hidden audio element */}
         <audio 
           ref={audioRef} 
-          src="/path-to-your-default-song.mp3" 
+          src="songs/Low Life feat. The Weeknd - Future.aac" 
           onEnded={() => setIsPlaying(false)}
           style={{ display: "none" }} 
         />

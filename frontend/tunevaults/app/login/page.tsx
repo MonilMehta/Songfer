@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -11,15 +11,85 @@ import { Eye, EyeOff } from 'lucide-react'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import VinylPlayer from '@/components/custom/VinylPlayer'
+import { signIn, useSession } from 'next-auth/react'
 
 export default function Login() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState('')
   const router = useRouter()
+  const { data: session, status } = useSession()
+  
+  // Function to handle backend authentication with Google credentials
+  const authenticateWithBackend = useCallback(async (email: string | null | undefined, name: string | null | undefined, accessToken: string | undefined) => {
+    if (!email) {
+      setError('Email not provided by Google authentication')
+      return false
+    }
+    
+    try {
+      // Make a request to your backend to authenticate or register the Google user
+      const response = await apiCaller('users/google-auth/', 'POST', { 
+        email, 
+        name: name || email.split('@')[0],
+        google_token: accessToken 
+      })
+      
+      if (response && response.status === 200) {
+        // Store the token from your backend
+        localStorage.setItem('token', response.data.token)
+        return true
+      } else {
+        setError('Backend authentication failed after Google sign-in')
+        return false
+      }
+    } catch (error: any) {
+      console.error('Backend authentication error:', error)
+      setError(error?.response?.data?.detail || 'Failed to authenticate with the backend')
+      return false
+    }
+  }, [])
+  
+  // Check session and handle backend authentication when session changes
+  useEffect(() => {
+    const handleSessionChange = async () => {
+      if (status === 'authenticated' && session?.user?.email) {
+        setIsLoading(true)
+        try {
+          // Authenticate with backend using Google credentials
+          const success = await authenticateWithBackend(
+            session.user.email,
+            session.user.name,
+            session.accessToken
+          )
+          
+          if (success) {
+            router.push('/dashboard')
+          }
+        } finally {
+          setIsLoading(false)
+        }
+      }
+    }
+    
+    handleSessionChange()
+  }, [session, status, router, authenticateWithBackend])
+  
+  // Check if user is already authenticated with a token
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    if (token) {
+      router.push('/dashboard')
+    }
+  }, [router])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setIsLoading(true)
+    setError('')
+    
     try {
       const response = await apiCaller('users/login/', 'POST', { username, password })
 
@@ -28,16 +98,29 @@ export default function Login() {
         localStorage.setItem('token', data.token)
         router.push('/dashboard')
       } else {
-        console.error('Failed to login')
+        setError('Invalid username or password')
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error('Error:', error)
+      if (error.response && error.response.data) {
+        setError(error.response.data.detail || 'Login failed')
+      } else {
+        setError('Login failed. Please check your credentials and try again.')
+      }
+    } finally {
+      setIsLoading(false)
     }
   }
 
-  const handleGoogleSignIn = () => {
-    // TODO: Implement Google sign-in
-    console.log('Google sign-in clicked')
+  const handleGoogleSignIn = async () => {
+    setIsLoading(true)
+    try {
+      await signIn('google', { callbackUrl: '/login' }) // Redirect back to login to process in useEffect
+    } catch (error) {
+      console.error('Google sign-in error:', error)
+      setError('Failed to sign in with Google')
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -57,6 +140,12 @@ export default function Login() {
           </CardDescription>
         </CardHeader>
         <CardContent>
+          {error && (
+            <div className="bg-destructive/15 p-3 rounded-md mb-4 text-sm text-destructive">
+              {error}
+            </div>
+          )}
+        
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="username">Username</Label>
@@ -67,6 +156,7 @@ export default function Login() {
                 onChange={(e) => setUsername(e.target.value)}
                 required
                 placeholder="Enter your username"
+                disabled={isLoading}
               />
             </div>
             <div className="space-y-2">
@@ -79,18 +169,20 @@ export default function Login() {
                   onChange={(e) => setPassword(e.target.value)}
                   required
                   placeholder="Enter your password"
+                  disabled={isLoading}
                 />
                 <button
                   type="button"
                   className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
                   onClick={() => setShowPassword(!showPassword)}
+                  disabled={isLoading}
                 >
                   {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                 </button>
               </div>
             </div>
-            <Button type="submit" className="w-full">
-              Sign In
+            <Button type="submit" className="w-full" disabled={isLoading}>
+              {isLoading ? 'Signing in...' : 'Sign In'}
             </Button>
           </form>
           
@@ -107,6 +199,7 @@ export default function Login() {
             variant="outline" 
             className="w-full" 
             onClick={handleGoogleSignIn}
+            disabled={isLoading}
           >
             <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24">
               <path

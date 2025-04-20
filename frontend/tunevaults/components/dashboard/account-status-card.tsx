@@ -27,7 +27,8 @@ export function AccountStatusCard({
   
   // Use context data if available, otherwise fall back to props
   const isPremium = userProfile?.is_premium ?? propIsPremium ?? false
-  const downloadsRemaining = userProfile?.downloads_remaining ?? propDownloadsRemaining ?? 0
+  // For a new user, default to 10 downloads if no context or prop value is provided
+  const downloadsRemaining = userProfile?.downloads_remaining ?? propDownloadsRemaining ?? 10
   const dailyDownloads = userProfile?.total_downloads_today ?? propDailyDownloads ?? 0
   
   // Free users have a daily limit (default 15), premium users have higher or no limit

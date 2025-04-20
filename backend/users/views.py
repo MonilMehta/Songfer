@@ -5,12 +5,13 @@ from rest_framework.authtoken.views import ObtainAuthToken
 from .serializers import UserSerializer, UserRegistrationSerializer
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from rest_framework.decorators import api_view, permission_classes
 from django.utils.decorators import method_decorator
 from django.views.decorators.http import require_POST
 from django.http import JsonResponse
 from rest_framework.views import APIView
 from rest_framework import status
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated,AllowAny
 from .models import CustomUser
 from datetime import datetime, timedelta
 from django.utils import timezone
@@ -19,6 +20,9 @@ import logging
 from songs.models import UserAnalytics
 import calendar
 from collections import OrderedDict
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 class UserRegistrationView(generics.CreateAPIView):
     serializer_class = UserRegistrationSerializer
@@ -124,7 +128,33 @@ class DownloadLimitAPIView(APIView):
             'downloads_remaining': user.get_downloads_remaining(),
             'can_download': user.can_download(),
         })
+    
+@api_view(['POST'])
+@permission_classes([AllowAny])
+def google_auth(request):
+    email = request.data.get('email')
+    name = request.data.get('name')
+    google_token = request.data.get('google_token')
 
+    if not email or not google_token:
+        return Response({'error': 'Email and Google token are required.'}, status=status.HTTP_400_BAD_REQUEST)
+
+    # Check if the user already exists
+    try:
+        user = User.objects.get(email=email)
+    except User.DoesNotExist:
+        # Create a new user if they don't exist
+        user = User.objects.create_user(email=email, username=name)
+        user.save()
+
+    # Get or create a token for the user
+    token, created = Token.objects.get_or_create(user=user)
+
+    return Response({
+        'token': token.key,
+        'user_id': user.pk,
+        'email': user.email
+    }, status=status.HTTP_200_OK)
 class DownloadActivityView(APIView):
     """API view for tracking weekly or monthly download activity"""
     permission_classes = [IsAuthenticated]
