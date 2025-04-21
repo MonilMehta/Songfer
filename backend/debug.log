@@ -681,3 +681,490 @@ WARNING 2025-04-21 01:14:29,676 log 1876 15512 Not Found: /favicon.ico
 INFO 2025-04-21 01:14:29,678 basehttp 1876 15512 - Broken pipe from ('127.0.0.1', 51084)
 INFO 2025-04-21 01:14:30,051 basehttp 1876 20536 "GET /static/admin/img/icon-calendar.svg HTTP/1.1" 200 1086
 INFO 2025-04-21 01:14:30,052 basehttp 1876 16800 "GET /static/admin/img/icon-clock.svg HTTP/1.1" 200 677
+INFO 2025-04-21 17:52:15,544 autoreload 9844 5508 Watching for file changes with StatReloader
+INFO 2025-04-21 19:09:58,284 autoreload 9844 5508 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\tunevault\settings.py changed, reloading.
+INFO 2025-04-21 19:10:07,521 autoreload 6972 13492 Watching for file changes with StatReloader
+INFO 2025-04-21 19:48:26,812 autoreload 19256 6356 Watching for file changes with StatReloader
+INFO 2025-04-21 19:50:10,874 autoreload 19256 6356 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-21 19:50:14,713 autoreload 22416 19544 Watching for file changes with StatReloader
+INFO 2025-04-21 19:52:48,148 autoreload 22416 19544 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-21 19:52:52,670 autoreload 21648 2836 Watching for file changes with StatReloader
+INFO 2025-04-21 19:53:37,778 views 21648 22600 Getting artist info for Future from Hugging Face API
+WARNING 2025-04-21 19:53:38,045 views 21648 22600 Failed to get artist info from Hugging Face API: 404, <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /spaces/MonilM/SongPorter/artist-info</pre>
+</body>
+</html>
+
+INFO 2025-04-21 19:53:38,046 views 21648 22600 Getting artist info for Wiz Khalifa from Hugging Face API
+WARNING 2025-04-21 19:53:38,278 views 21648 22600 Failed to get artist info from Hugging Face API: 404, <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /spaces/MonilM/SongPorter/artist-info</pre>
+</body>
+</html>
+
+INFO 2025-04-21 19:53:38,280 views 21648 22600 Getting artist info for Beach Weather from Hugging Face API
+WARNING 2025-04-21 19:53:38,524 views 21648 22600 Failed to get artist info from Hugging Face API: 404, <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /spaces/MonilM/SongPorter/artist-info</pre>
+</body>
+</html>
+
+INFO 2025-04-21 19:53:38,525 views 21648 22600 Getting artist info for Chase Atlantic from Hugging Face API
+WARNING 2025-04-21 19:53:38,753 views 21648 22600 Failed to get artist info from Hugging Face API: 404, <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /spaces/MonilM/SongPorter/artist-info</pre>
+</body>
+</html>
+
+INFO 2025-04-21 19:53:38,759 basehttp 21648 22600 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 1025
+INFO 2025-04-21 19:54:20,842 basehttp 21648 22600 "POST /api/users/login/ HTTP/1.1" 200 95
+INFO 2025-04-21 19:54:32,263 views 21648 22600 User has 4 songs
+INFO 2025-04-21 19:54:32,324 views 21648 22600 User has 3 songs with Spotify IDs
+INFO 2025-04-21 19:54:32,449 views 21648 22600 Sample user songs for recommendations: [{'spotify_id': '7EiZI6JVHllARrX9PUvAdX', 'title': 'Low Life feat. The Weeknd', 'artist': 'Future'}, {'spotify_id': '7uDUb37h7Xdhza1eWMkoJv', 'title': 'Friends', 'artist': 'Chase Atlantic'}, {'spotify_id': '7MlDNspYwfqnHxORufupwq', 'title': 'Sex, Drugs, Etc.', 'artist': 'Beach Weather'}]
+INFO 2025-04-21 19:54:32,449 views 21648 22600 Calling Hugging Face recommendations API for user: 1 with 3 songs
+ERROR 2025-04-21 19:54:32,713 views 21648 22600 Hugging Face API error: 404, <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Error</title>
+</head>
+<body>
+<pre>Cannot POST /spaces/MonilM/SongPorter/recommendations</pre>
+</body>
+</html>
+
+ERROR 2025-04-21 19:54:34,480 log 21648 22600 Internal Server Error: /api/songs/recommendations/
+ERROR 2025-04-21 19:54:34,481 basehttp 21648 22600 "GET /api/songs/recommendations/ HTTP/1.1" 500 108
+INFO 2025-04-21 19:59:40,555 autoreload 21648 2836 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-21 19:59:44,837 autoreload 10744 7240 Watching for file changes with StatReloader
+INFO 2025-04-21 19:59:51,887 views 10744 9464 User has 4 songs
+INFO 2025-04-21 19:59:51,965 views 10744 9464 User has 3 songs with Spotify IDs
+INFO 2025-04-21 19:59:52,097 views 10744 9464 Sample user songs for recommendations: [{'spotify_id': '7EiZI6JVHllARrX9PUvAdX', 'title': 'Low Life feat. The Weeknd', 'artist': 'Future'}, {'spotify_id': '7uDUb37h7Xdhza1eWMkoJv', 'title': 'Friends', 'artist': 'Chase Atlantic'}, {'spotify_id': '7MlDNspYwfqnHxORufupwq', 'title': 'Sex, Drugs, Etc.', 'artist': 'Beach Weather'}]
+INFO 2025-04-21 19:59:52,098 views 10744 9464 Calling Hugging Face recommendations API for user: 1 with 3 songs
+ERROR 2025-04-21 19:59:53,636 views 10744 9464 Hugging Face API error: 404, {"detail":"Not Found"}
+ERROR 2025-04-21 19:59:53,760 log 10744 9464 Internal Server Error: /api/songs/recommendations/
+ERROR 2025-04-21 19:59:53,770 basehttp 10744 9464 "GET /api/songs/recommendations/ HTTP/1.1" 500 108
+INFO 2025-04-21 20:03:27,312 autoreload 10744 7240 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-21 20:03:31,229 autoreload 14716 6136 Watching for file changes with StatReloader
+INFO 2025-04-21 20:04:38,271 autoreload 14716 6136 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-21 20:04:41,920 autoreload 18212 12620 Watching for file changes with StatReloader
+ERROR 2025-04-21 20:04:48,524 log 18212 15184 Internal Server Error: /api/songs/recommendations/
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 279, in ensure_connection
+    self.connect()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\utils.py", line 1783, in runner
+    return sentry_patched_function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\__init__.py", line 690, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\postgresql\base.py", line 332, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\psycopg2\__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: could not translate host name "ep-patient-resonance-a19rwm71.ap-southeast-1.aws.neon.tech" to address: No such host is known. 
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\views.py", line 94, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\__init__.py", line 331, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 330, in perform_authentication
+    request.user
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\request.py", line 232, in user
+    self._authenticate()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\authentication.py", line 196, in authenticate
+    return self.authenticate_credentials(token)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\authentication.py", line 201, in authenticate_credentials
+    token = model.objects.select_related('user').get(key=key)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 645, in get
+    num = len(clone)
+          ^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 382, in __len__
+    self._fetch_all()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1572, in execute_sql
+    cursor = self.connection.cursor()
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 320, in cursor
+    return self._cursor()
+           ^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 296, in _cursor
+    self.ensure_connection()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 278, in ensure_connection
+    with self.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 279, in ensure_connection
+    self.connect()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\utils.py", line 1783, in runner
+    return sentry_patched_function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\__init__.py", line 690, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\postgresql\base.py", line 332, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\psycopg2\__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: could not translate host name "ep-patient-resonance-a19rwm71.ap-southeast-1.aws.neon.tech" to address: No such host is known. 
+
+ERROR 2025-04-21 20:04:48,541 basehttp 18212 15184 "GET /api/songs/recommendations/ HTTP/1.1" 500 256971
+INFO 2025-04-21 20:04:55,261 views 18212 15184 User has 4 songs
+INFO 2025-04-21 20:04:55,320 views 18212 15184 User has 3 songs with Spotify IDs
+INFO 2025-04-21 20:04:55,440 views 18212 15184 Sample user songs for recommendations: [{'spotify_id': '7EiZI6JVHllARrX9PUvAdX', 'title': 'Low Life feat. The Weeknd', 'artist': 'Future'}, {'spotify_id': '7uDUb37h7Xdhza1eWMkoJv', 'title': 'Friends', 'artist': 'Chase Atlantic'}, {'spotify_id': '7MlDNspYwfqnHxORufupwq', 'title': 'Sex, Drugs, Etc.', 'artist': 'Beach Weather'}]
+INFO 2025-04-21 20:04:55,440 views 18212 15184 Calling Hugging Face recommendations API for user: 1 with 3 songs
+ERROR 2025-04-21 20:04:56,592 views 18212 15184 Hugging Face API error: 404, {"detail":"Not Found"}
+ERROR 2025-04-21 20:04:56,597 log 18212 15184 Internal Server Error: /api/songs/recommendations/
+ERROR 2025-04-21 20:04:56,598 basehttp 18212 15184 "GET /api/songs/recommendations/ HTTP/1.1" 500 108
+INFO 2025-04-21 20:05:17,375 views 18212 15184 Getting artist info for Future from Hugging Face API
+WARNING 2025-04-21 20:05:19,141 views 18212 15184 Failed to get artist info from Hugging Face API: 405, {"detail":"Method Not Allowed"}
+INFO 2025-04-21 20:05:19,142 views 18212 15184 Getting artist info for Wiz Khalifa from Hugging Face API
+WARNING 2025-04-21 20:05:20,682 views 18212 15184 Failed to get artist info from Hugging Face API: 405, {"detail":"Method Not Allowed"}
+INFO 2025-04-21 20:05:20,683 views 18212 15184 Getting artist info for Beach Weather from Hugging Face API
+WARNING 2025-04-21 20:05:22,411 views 18212 15184 Failed to get artist info from Hugging Face API: 405, {"detail":"Method Not Allowed"}
+INFO 2025-04-21 20:05:22,412 views 18212 15184 Getting artist info for Chase Atlantic from Hugging Face API
+WARNING 2025-04-21 20:05:24,091 views 18212 15184 Failed to get artist info from Hugging Face API: 405, {"detail":"Method Not Allowed"}
+INFO 2025-04-21 20:05:24,104 basehttp 18212 15184 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 1025
+INFO 2025-04-21 20:06:30,112 autoreload 18212 12620 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-21 20:06:34,231 autoreload 19860 19096 Watching for file changes with StatReloader
+INFO 2025-04-21 20:06:36,910 views 19860 13132 Getting artist info for Future from Hugging Face API
+WARNING 2025-04-21 20:06:38,380 views 19860 13132 Failed to get artist info from Hugging Face API: 422, {"detail":[{"type":"missing","loc":["body","artist_names"],"msg":"Field required","input":{"artist_name":"Future"}}]}
+INFO 2025-04-21 20:06:38,383 views 19860 13132 Getting artist info for Wiz Khalifa from Hugging Face API
+WARNING 2025-04-21 20:06:39,582 views 19860 13132 Failed to get artist info from Hugging Face API: 422, {"detail":[{"type":"missing","loc":["body","artist_names"],"msg":"Field required","input":{"artist_name":"Wiz Khalifa"}}]}
+INFO 2025-04-21 20:06:39,583 views 19860 13132 Getting artist info for Beach Weather from Hugging Face API
+WARNING 2025-04-21 20:06:40,563 views 19860 13132 Failed to get artist info from Hugging Face API: 422, {"detail":[{"type":"missing","loc":["body","artist_names"],"msg":"Field required","input":{"artist_name":"Beach Weather"}}]}
+INFO 2025-04-21 20:06:40,564 views 19860 13132 Getting artist info for Chase Atlantic from Hugging Face API
+WARNING 2025-04-21 20:06:41,510 views 19860 13132 Failed to get artist info from Hugging Face API: 422, {"detail":[{"type":"missing","loc":["body","artist_names"],"msg":"Field required","input":{"artist_name":"Chase Atlantic"}}]}
+INFO 2025-04-21 20:06:41,513 basehttp 19860 13132 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 1025
+INFO 2025-04-21 20:06:52,864 views 19860 13132 User has 4 songs
+INFO 2025-04-21 20:06:52,924 views 19860 13132 User has 3 songs with Spotify IDs
+INFO 2025-04-21 20:06:53,044 views 19860 13132 Sample user songs for recommendations: [{'spotify_id': '7EiZI6JVHllARrX9PUvAdX', 'title': 'Low Life feat. The Weeknd', 'artist': 'Future'}, {'spotify_id': '7uDUb37h7Xdhza1eWMkoJv', 'title': 'Friends', 'artist': 'Chase Atlantic'}, {'spotify_id': '7MlDNspYwfqnHxORufupwq', 'title': 'Sex, Drugs, Etc.', 'artist': 'Beach Weather'}]
+INFO 2025-04-21 20:06:53,044 views 19860 13132 Calling Hugging Face recommendations API for user: 1 with 3 songs
+ERROR 2025-04-21 20:06:53,910 views 19860 13132 Hugging Face API error: 422, {"detail":[{"type":"missing","loc":["body","recent_song_ids"],"msg":"Field required","input":{"songs":[{"spotify_id":"7EiZI6JVHllARrX9PUvAdX","title":"Low Life feat. The Weeknd","artist":"Future"},{"spotify_id":"7uDUb37h7Xdhza1eWMkoJv","title":"Friends","artist":"Chase Atlantic"},{"spotify_id":"7MlDNspYwfqnHxORufupwq","title":"Sex, Drugs, Etc.","artist":"Beach Weather"}],"limit":10}},{"type":"missing","loc":["body","top_genres"],"msg":"Field required","input":{"songs":[{"spotify_id":"7EiZI6JVHllARrX9PUvAdX","title":"Low Life feat. The Weeknd","artist":"Future"},{"spotify_id":"7uDUb37h7Xdhza1eWMkoJv","title":"Friends","artist":"Chase Atlantic"},{"spotify_id":"7MlDNspYwfqnHxORufupwq","title":"Sex, Drugs, Etc.","artist":"Beach Weather"}],"limit":10}}]}
+ERROR 2025-04-21 20:06:54,132 log 19860 13132 Internal Server Error: /api/songs/recommendations/
+ERROR 2025-04-21 20:06:54,133 basehttp 19860 13132 "GET /api/songs/recommendations/ HTTP/1.1" 500 108
+INFO 2025-04-21 20:07:32,531 autoreload 19860 19096 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-21 20:07:36,334 autoreload 20520 16952 Watching for file changes with StatReloader
+INFO 2025-04-21 20:15:22,260 autoreload 20520 16952 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-21 20:15:26,262 autoreload 13704 19032 Watching for file changes with StatReloader
+INFO 2025-04-21 20:17:02,377 autoreload 13704 19032 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-21 20:17:05,806 autoreload 17088 9112 Watching for file changes with StatReloader
+INFO 2025-04-21 20:18:15,261 autoreload 17088 9112 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-21 20:18:19,127 autoreload 16452 1212 Watching for file changes with StatReloader
+INFO 2025-04-21 20:18:25,247 views 16452 22864 User has 4 songs
+INFO 2025-04-21 20:18:25,334 views 16452 22864 User has 3 songs with Spotify IDs
+ERROR 2025-04-21 20:18:25,409 views 16452 22864 Error getting recommendations: type object 'Song' has no attribute 'get_user_top_genres'
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py", line 991, in get
+    top_genres_data = Song.get_user_top_genres(request.user, limit=3)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: type object 'Song' has no attribute 'get_user_top_genres'. Did you mean: 'get_user_top_artists'?
+ERROR 2025-04-21 20:18:25,855 log 16452 22864 Internal Server Error: /api/songs/recommendations/
+ERROR 2025-04-21 20:18:25,856 basehttp 16452 22864 "GET /api/songs/recommendations/ HTTP/1.1" 500 85
+INFO 2025-04-21 20:18:44,947 views 16452 22864 Getting bulk artist info for 4 artists from Hugging Face API
+ERROR 2025-04-21 20:18:44,948 views 16452 22864 Error calling Hugging Face artist info API: name 'requests' is not defined
+INFO 2025-04-21 20:18:44,951 basehttp 16452 22864 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 1025
+INFO 2025-04-21 20:19:47,603 autoreload 16452 1212 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-21 20:19:51,122 autoreload 8368 6644 Watching for file changes with StatReloader
+INFO 2025-04-21 20:20:48,499 autoreload 8368 6644 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-21 20:20:52,708 autoreload 16560 15992 Watching for file changes with StatReloader
+INFO 2025-04-21 20:21:07,861 views 16560 13484 Getting artist info for Future from Hugging Face API
+WARNING 2025-04-21 20:21:08,788 views 16560 13484 Failed to get artist info from Hugging Face API: 422, {"detail":[{"type":"missing","loc":["body","artist_names"],"msg":"Field required","input":{"artist_name":"Future"}}]}
+INFO 2025-04-21 20:21:08,789 views 16560 13484 Getting artist info for Wiz Khalifa from Hugging Face API
+WARNING 2025-04-21 20:21:09,641 views 16560 13484 Failed to get artist info from Hugging Face API: 422, {"detail":[{"type":"missing","loc":["body","artist_names"],"msg":"Field required","input":{"artist_name":"Wiz Khalifa"}}]}
+INFO 2025-04-21 20:21:09,642 views 16560 13484 Getting artist info for Beach Weather from Hugging Face API
+WARNING 2025-04-21 20:21:10,462 views 16560 13484 Failed to get artist info from Hugging Face API: 422, {"detail":[{"type":"missing","loc":["body","artist_names"],"msg":"Field required","input":{"artist_name":"Beach Weather"}}]}
+INFO 2025-04-21 20:21:10,463 views 16560 13484 Getting artist info for Chase Atlantic from Hugging Face API
+WARNING 2025-04-21 20:21:11,308 views 16560 13484 Failed to get artist info from Hugging Face API: 422, {"detail":[{"type":"missing","loc":["body","artist_names"],"msg":"Field required","input":{"artist_name":"Chase Atlantic"}}]}
+INFO 2025-04-21 20:21:11,317 basehttp 16560 13484 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 1025
+INFO 2025-04-21 20:21:21,795 views 16560 13484 User has 4 songs
+INFO 2025-04-21 20:21:21,854 views 16560 13484 User has 3 songs with Spotify IDs
+INFO 2025-04-21 20:21:21,979 views 16560 13484 Sample user songs for recommendations: [{'spotify_id': '7EiZI6JVHllARrX9PUvAdX', 'title': 'Low Life feat. The Weeknd', 'artist': 'Future'}, {'spotify_id': '7uDUb37h7Xdhza1eWMkoJv', 'title': 'Friends', 'artist': 'Chase Atlantic'}, {'spotify_id': '7MlDNspYwfqnHxORufupwq', 'title': 'Sex, Drugs, Etc.', 'artist': 'Beach Weather'}]
+INFO 2025-04-21 20:21:21,980 views 16560 13484 Calling Hugging Face recommendations API for user: 1 with 3 songs
+ERROR 2025-04-21 20:21:22,848 views 16560 13484 Hugging Face API error: 422, {"detail":[{"type":"missing","loc":["body","recent_song_ids"],"msg":"Field required","input":{"songs":[{"spotify_id":"7EiZI6JVHllARrX9PUvAdX","title":"Low Life feat. The Weeknd","artist":"Future"},{"spotify_id":"7uDUb37h7Xdhza1eWMkoJv","title":"Friends","artist":"Chase Atlantic"},{"spotify_id":"7MlDNspYwfqnHxORufupwq","title":"Sex, Drugs, Etc.","artist":"Beach Weather"}],"limit":10}},{"type":"missing","loc":["body","top_genres"],"msg":"Field required","input":{"songs":[{"spotify_id":"7EiZI6JVHllARrX9PUvAdX","title":"Low Life feat. The Weeknd","artist":"Future"},{"spotify_id":"7uDUb37h7Xdhza1eWMkoJv","title":"Friends","artist":"Chase Atlantic"},{"spotify_id":"7MlDNspYwfqnHxORufupwq","title":"Sex, Drugs, Etc.","artist":"Beach Weather"}],"limit":10}}]}
+ERROR 2025-04-21 20:21:23,051 log 16560 13484 Internal Server Error: /api/songs/recommendations/
+ERROR 2025-04-21 20:21:23,052 basehttp 16560 13484 "GET /api/songs/recommendations/ HTTP/1.1" 500 108
+INFO 2025-04-21 20:26:19,742 views 16560 14056 User has 4 songs
+INFO 2025-04-21 20:26:19,806 views 16560 14056 User has 3 songs with Spotify IDs
+INFO 2025-04-21 20:26:19,927 views 16560 14056 Sample user songs for recommendations: [{'spotify_id': '7EiZI6JVHllARrX9PUvAdX', 'title': 'Low Life feat. The Weeknd', 'artist': 'Future'}, {'spotify_id': '7uDUb37h7Xdhza1eWMkoJv', 'title': 'Friends', 'artist': 'Chase Atlantic'}, {'spotify_id': '7MlDNspYwfqnHxORufupwq', 'title': 'Sex, Drugs, Etc.', 'artist': 'Beach Weather'}]
+INFO 2025-04-21 20:26:19,931 views 16560 14056 Calling Hugging Face recommendations API for user: 1 with 3 songs
+INFO 2025-04-21 20:26:21,079 views 16560 14056 Got 1 recommendations from Hugging Face API
+WARNING 2025-04-21 20:26:21,079 views 16560 14056 Missing spotify_id in recommendation: recommendations
+INFO 2025-04-21 20:26:21,216 basehttp 16560 14056 "GET /api/songs/recommendations/ HTTP/1.1" 200 219
+INFO 2025-04-21 20:26:38,905 views 16560 14056 Getting artist info for Future from Hugging Face API
+INFO 2025-04-21 20:26:39,701 views 16560 14056 Successfully retrieved artist info for Future
+INFO 2025-04-21 20:26:39,701 views 16560 14056 Getting artist info for Wiz Khalifa from Hugging Face API
+INFO 2025-04-21 20:26:40,497 views 16560 14056 Successfully retrieved artist info for Wiz Khalifa
+INFO 2025-04-21 20:26:40,497 views 16560 14056 Getting artist info for Beach Weather from Hugging Face API
+INFO 2025-04-21 20:26:41,340 views 16560 14056 Successfully retrieved artist info for Beach Weather
+INFO 2025-04-21 20:26:41,341 views 16560 14056 Getting artist info for Chase Atlantic from Hugging Face API
+INFO 2025-04-21 20:26:42,155 views 16560 14056 Successfully retrieved artist info for Chase Atlantic
+ERROR 2025-04-21 20:26:42,232 log 16560 14056 Internal Server Error: /api/songs/user/top-artists/
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\fields.py", line 437, in get_attribute
+    return get_attribute(instance, self.source_attrs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\fields.py", line 102, in get_attribute
+    instance = instance[attr]
+               ~~~~~~~~^^^^^^
+KeyError: 'artist'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\views.py", line 94, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\generics.py", line 203, in get
+    return self.list(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\mixins.py", line 46, in list
+    return Response(serializer.data)
+                    ^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\serializers.py", line 797, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\serializers.py", line 251, in data
+    self._data = self.to_representation(self.instance)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\serializers.py", line 716, in to_representation
+    self.child.to_representation(item) for item in iterable
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\serializers.py", line 527, in to_representation
+    attribute = field.get_attribute(instance)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\fields.py", line 470, in get_attribute
+    raise type(exc)(msg)
+KeyError: "Got KeyError when attempting to get a value for field `artist` on serializer `ArtistSerializer`.\nThe serializer field might be named incorrectly and not match any attribute or key on the `dict` instance.\nOriginal exception text was: 'artist'."
+ERROR 2025-04-21 20:26:42,238 basehttp 16560 14056 "GET /api/songs/user/top-artists/ HTTP/1.1" 500 147407
+INFO 2025-04-21 20:30:18,999 autoreload 16560 15992 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-21 20:30:23,077 autoreload 22896 16884 Watching for file changes with StatReloader
+INFO 2025-04-21 20:36:19,625 views 22896 4376 Getting artist info for Future from Hugging Face API
+INFO 2025-04-21 20:36:20,526 views 22896 4376 Successfully retrieved artist info for Future
+INFO 2025-04-21 20:36:20,528 views 22896 4376 Getting artist info for Wiz Khalifa from Hugging Face API
+INFO 2025-04-21 20:36:21,399 views 22896 4376 Successfully retrieved artist info for Wiz Khalifa
+INFO 2025-04-21 20:36:21,399 views 22896 4376 Getting artist info for Beach Weather from Hugging Face API
+INFO 2025-04-21 20:36:22,240 views 22896 4376 Successfully retrieved artist info for Beach Weather
+INFO 2025-04-21 20:36:22,240 views 22896 4376 Getting artist info for Chase Atlantic from Hugging Face API
+INFO 2025-04-21 20:36:23,119 views 22896 4376 Successfully retrieved artist info for Chase Atlantic
+ERROR 2025-04-21 20:36:23,344 log 22896 4376 Internal Server Error: /api/songs/user/top-artists/
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\fields.py", line 437, in get_attribute
+    return get_attribute(instance, self.source_attrs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\fields.py", line 102, in get_attribute
+    instance = instance[attr]
+               ~~~~~~~~^^^^^^
+KeyError: 'artist'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\views.py", line 94, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\views\generic\base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\generics.py", line 203, in get
+    return self.list(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\mixins.py", line 46, in list
+    return Response(serializer.data)
+                    ^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\serializers.py", line 797, in data
+    ret = super().data
+          ^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\serializers.py", line 251, in data
+    self._data = self.to_representation(self.instance)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\serializers.py", line 716, in to_representation
+    self.child.to_representation(item) for item in iterable
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\serializers.py", line 527, in to_representation
+    attribute = field.get_attribute(instance)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\fields.py", line 470, in get_attribute
+    raise type(exc)(msg)
+KeyError: "Got KeyError when attempting to get a value for field `artist` on serializer `ArtistSerializer`.\nThe serializer field might be named incorrectly and not match any attribute or key on the `dict` instance.\nOriginal exception text was: 'artist'."
+ERROR 2025-04-21 20:36:23,350 basehttp 22896 4376 "GET /api/songs/user/top-artists/ HTTP/1.1" 500 147407
+INFO 2025-04-21 20:36:43,416 views 22896 4376 User has 4 songs
+INFO 2025-04-21 20:36:43,477 views 22896 4376 User has 3 songs with Spotify IDs
+INFO 2025-04-21 20:36:43,601 views 22896 4376 Sample user songs for recommendations: [{'spotify_id': '7EiZI6JVHllARrX9PUvAdX', 'title': 'Low Life feat. The Weeknd', 'artist': 'Future'}, {'spotify_id': '7uDUb37h7Xdhza1eWMkoJv', 'title': 'Friends', 'artist': 'Chase Atlantic'}, {'spotify_id': '7MlDNspYwfqnHxORufupwq', 'title': 'Sex, Drugs, Etc.', 'artist': 'Beach Weather'}]
+INFO 2025-04-21 20:36:43,601 views 22896 4376 Calling Hugging Face recommendations API for user: 1 with 3 songs
+INFO 2025-04-21 20:36:44,783 views 22896 4376 Got 1 recommendations from Hugging Face API
+WARNING 2025-04-21 20:36:44,784 views 22896 4376 Missing spotify_id in recommendation: recommendations
+INFO 2025-04-21 20:36:44,906 basehttp 22896 4376 "GET /api/songs/recommendations/ HTTP/1.1" 200 219
+INFO 2025-04-21 20:43:35,317 views 22896 23004 User has 4 songs
+INFO 2025-04-21 20:43:35,374 views 22896 23004 User has 3 songs with Spotify IDs
+INFO 2025-04-21 20:43:35,501 views 22896 23004 Sample user songs for recommendations: [{'spotify_id': '7EiZI6JVHllARrX9PUvAdX', 'title': 'Low Life feat. The Weeknd', 'artist': 'Future'}, {'spotify_id': '7uDUb37h7Xdhza1eWMkoJv', 'title': 'Friends', 'artist': 'Chase Atlantic'}, {'spotify_id': '7MlDNspYwfqnHxORufupwq', 'title': 'Sex, Drugs, Etc.', 'artist': 'Beach Weather'}]
+INFO 2025-04-21 20:43:35,501 views 22896 23004 Calling Hugging Face recommendations API for user: 1 with 3 songs
+INFO 2025-04-21 20:43:36,903 views 22896 23004 Got 1 recommendations from Hugging Face API
+WARNING 2025-04-21 20:43:36,903 views 22896 23004 Missing spotify_id in recommendation: recommendations
+INFO 2025-04-21 20:43:37,038 basehttp 22896 23004 "GET /api/songs/recommendations/ HTTP/1.1" 200 219
+INFO 2025-04-21 20:43:48,507 views 22896 23004 Getting artist info for Future from Hugging Face API
+WARNING 2025-04-21 20:43:49,365 views 22896 23004 Failed to get artist info from Hugging Face API: 500, Internal Server Error
+INFO 2025-04-21 20:43:49,366 views 22896 23004 Getting artist info for Wiz Khalifa from Hugging Face API
+WARNING 2025-04-21 20:43:50,287 views 22896 23004 Failed to get artist info from Hugging Face API: 500, Internal Server Error
+INFO 2025-04-21 20:43:50,288 views 22896 23004 Getting artist info for Beach Weather from Hugging Face API
+WARNING 2025-04-21 20:43:51,206 views 22896 23004 Failed to get artist info from Hugging Face API: 500, Internal Server Error
+INFO 2025-04-21 20:43:51,206 views 22896 23004 Getting artist info for Chase Atlantic from Hugging Face API
+WARNING 2025-04-21 20:43:52,086 views 22896 23004 Failed to get artist info from Hugging Face API: 500, Internal Server Error
+INFO 2025-04-21 20:43:52,089 basehttp 22896 23004 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 1025
+INFO 2025-04-21 20:48:43,685 views 22896 10848 Getting artist info for Future from Hugging Face API
+WARNING 2025-04-21 20:48:44,554 views 22896 10848 Failed to get artist info from Hugging Face API: 500, Internal Server Error
+INFO 2025-04-21 20:48:44,554 views 22896 10848 Getting artist info for Wiz Khalifa from Hugging Face API
+WARNING 2025-04-21 20:48:45,455 views 22896 10848 Failed to get artist info from Hugging Face API: 500, Internal Server Error
+INFO 2025-04-21 20:48:45,455 views 22896 10848 Getting artist info for Beach Weather from Hugging Face API
+WARNING 2025-04-21 20:48:46,304 views 22896 10848 Failed to get artist info from Hugging Face API: 500, Internal Server Error
+INFO 2025-04-21 20:48:46,304 views 22896 10848 Getting artist info for Chase Atlantic from Hugging Face API
+WARNING 2025-04-21 20:48:47,174 views 22896 10848 Failed to get artist info from Hugging Face API: 500, Internal Server Error
+INFO 2025-04-21 20:48:47,179 basehttp 22896 10848 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 1025
+INFO 2025-04-21 20:49:04,582 views 22896 10848 Getting artist info for Future from Hugging Face API
+INFO 2025-04-21 20:49:05,442 views 22896 10848 Successfully retrieved artist info for Future
+INFO 2025-04-21 20:49:05,442 views 22896 10848 Getting artist info for Wiz Khalifa from Hugging Face API
+INFO 2025-04-21 20:49:06,634 views 22896 10848 Successfully retrieved artist info for Wiz Khalifa
+INFO 2025-04-21 20:49:06,635 views 22896 10848 Getting artist info for Beach Weather from Hugging Face API
+INFO 2025-04-21 20:49:07,547 views 22896 10848 Successfully retrieved artist info for Beach Weather
+INFO 2025-04-21 20:49:07,548 views 22896 10848 Getting artist info for Chase Atlantic from Hugging Face API
+INFO 2025-04-21 20:49:08,438 views 22896 10848 Successfully retrieved artist info for Chase Atlantic
+INFO 2025-04-21 20:49:08,442 basehttp 22896 10848 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 1043
+INFO 2025-04-21 20:49:29,703 views 22896 10848 User has 4 songs
+INFO 2025-04-21 20:49:29,763 views 22896 10848 User has 3 songs with Spotify IDs
+INFO 2025-04-21 20:49:29,887 views 22896 10848 Sample user songs for recommendations: [{'spotify_id': '7EiZI6JVHllARrX9PUvAdX', 'title': 'Low Life feat. The Weeknd', 'artist': 'Future'}, {'spotify_id': '7uDUb37h7Xdhza1eWMkoJv', 'title': 'Friends', 'artist': 'Chase Atlantic'}, {'spotify_id': '7MlDNspYwfqnHxORufupwq', 'title': 'Sex, Drugs, Etc.', 'artist': 'Beach Weather'}]
+INFO 2025-04-21 20:49:29,888 views 22896 10848 Calling Hugging Face recommendations API for user: 1 with 3 songs
+INFO 2025-04-21 20:49:30,984 views 22896 10848 Got 1 recommendations from Hugging Face API
+WARNING 2025-04-21 20:49:30,985 views 22896 10848 Missing spotify_id in recommendation: recommendations
+INFO 2025-04-21 20:49:31,109 basehttp 22896 10848 "GET /api/songs/recommendations/ HTTP/1.1" 200 219
+INFO 2025-04-21 22:04:01,476 autoreload 22896 16884 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-21 22:04:06,819 autoreload 12484 17880 Watching for file changes with StatReloader

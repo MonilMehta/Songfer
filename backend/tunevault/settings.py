@@ -344,3 +344,7 @@ RATELIMIT_ENABLE = True
 # Format support
 SUPPORTED_AUDIO_FORMATS = ['mp3', 'aac']
 DEFAULT_AUDIO_FORMAT = 'mp3'
+
+# Hugging Face Space URLs
+HUGGINGFACE_RECOMMENDATION_URL = "https://monilm-songporter.hf.space/recommendations/"
+HUGGINGFACE_ARTIST_INFO_URL = "https://monilm-songporter.hf.space/artist-info/"
