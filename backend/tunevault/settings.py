@@ -71,7 +71,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'songporter.onrender.com',
     'songporter.vercel.app',
-    'localhost',
+    'localhost:3000',
     '127.0.0.1'
 ]
 
@@ -302,7 +302,13 @@ LOGGING = {
 }
 
 # CORS settings
-CORS_ALLOW_ALL_ORIGINS = True  # For development only, restrict in production
+CORS_ALLOW_ALL_ORIGINS = False
+CORS_ALLOWED_ORIGINS = [
+    "https://songporter.vercel.app",
+    "https://songporter.onrender.com",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
 CORS_EXPOSE_HEADERS = ['X-Thumbnail-URL', 'X-Song-Title', 'X-Song-Artist']
 
 # Swagger settings
