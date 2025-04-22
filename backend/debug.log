@@ -1293,3 +1293,898 @@ INFO 2025-04-22 16:24:57,516 utils 16192 21576 Attempting to set system thumbnai
 WARNING 2025-04-22 16:24:57,540 utils 16192 21576 Could not set shell thumbnail: 'int' object has no attribute 'SetInfo'
 INFO 2025-04-22 16:24:58,241 download_helper 16192 21576 Added song to cache: https://www.youtube.com/watch?v=JRdD2Q707Xg
 INFO 2025-04-22 16:24:58,575 basehttp 16192 21576 "POST /api/songs/songs/download/ HTTP/1.1" 200 5746112
+INFO 2025-04-22 17:38:33,339 autoreload 16192 13180 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-22 17:38:38,935 autoreload 12156 20460 Watching for file changes with StatReloader
+INFO 2025-04-22 17:40:46,582 autoreload 12156 20460 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\utils.py changed, reloading.
+INFO 2025-04-22 17:40:50,229 autoreload 24260 21964 Watching for file changes with StatReloader
+INFO 2025-04-22 17:48:29,479 autoreload 24260 21964 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-22 17:48:33,745 autoreload 14744 9308 Watching for file changes with StatReloader
+INFO 2025-04-22 17:49:43,435 autoreload 14744 9308 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-22 17:49:46,767 autoreload 15380 22400 Watching for file changes with StatReloader
+INFO 2025-04-22 17:49:49,875 autoreload 15380 22400 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-22 17:49:52,981 autoreload 14856 13192 Watching for file changes with StatReloader
+INFO 2025-04-22 17:49:58,287 views 14856 7140 Found existing song with URL https://www.youtube.com/watch?v=JRdD2Q707Xg, serving directly
+INFO 2025-04-22 17:49:58,437 download_helper 14856 7140 Using cached version for URL: https://www.youtube.com/watch?v=JRdD2Q707Xg
+INFO 2025-04-22 17:49:58,437 models 14856 7140 [DEBUG] record_download called for user=testuser id=1 date=2025-04-22
+INFO 2025-04-22 17:49:58,569 models 14856 7140 [DEBUG] record_download updated analytics: user=testuser id=1 date=2025-04-22 songs_downloaded=2
+INFO 2025-04-22 17:49:58,796 basehttp 14856 7140 "POST /api/songs/songs/download/ HTTP/1.1" 200 5703020
+INFO 2025-04-22 17:50:27,156 download_helper 14856 7140 Downloading YouTube video from HuggingFace API: https://www.youtube.com/watch?v=YpugK0RpEaU
+ERROR 2025-04-22 17:50:28,032 download_helper 14856 7140 HuggingFace API error: 405 - {"detail":"Method Not Allowed"}
+ERROR 2025-04-22 17:50:28,266 log 14856 7140 Internal Server Error: /api/songs/songs/download/
+ERROR 2025-04-22 17:50:28,267 basehttp 14856 7140 "POST /api/songs/songs/download/ HTTP/1.1" 500 64
+INFO 2025-04-22 17:54:08,194 download_helper 14856 18528 Downloading YouTube video from HuggingFace API: https://www.youtube.com/watch?v=YpugK0RpEaU
+ERROR 2025-04-22 17:54:09,052 download_helper 14856 18528 HuggingFace API error: 405 - {"detail":"Method Not Allowed"}
+ERROR 2025-04-22 17:54:09,054 log 14856 18528 Internal Server Error: /api/songs/songs/download/
+ERROR 2025-04-22 17:54:09,054 basehttp 14856 18528 "POST /api/songs/songs/download/ HTTP/1.1" 500 64
+INFO 2025-04-22 17:54:45,586 download_helper 14856 18528 Downloading YouTube video from HuggingFace API: https://www.youtube.com/watch?v=YpugK0RpEaU
+ERROR 2025-04-22 17:54:52,288 download_helper 14856 18528 HuggingFace API error: 500 - {"detail":"Download failed: 500: Download failed: [Errno 13] Permission denied: './cookies.txt'"}
+ERROR 2025-04-22 17:54:52,291 log 14856 18528 Internal Server Error: /api/songs/songs/download/
+ERROR 2025-04-22 17:54:52,295 basehttp 14856 18528 "POST /api/songs/songs/download/ HTTP/1.1" 500 64
+INFO 2025-04-22 18:10:20,791 autoreload 14856 13192 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-22 18:10:25,342 autoreload 24952 2476 Watching for file changes with StatReloader
+INFO 2025-04-22 20:45:13,274 autoreload 24952 2476 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\tunevault\settings.py changed, reloading.
+INFO 2025-04-22 20:45:17,361 autoreload 6764 13592 Watching for file changes with StatReloader
+INFO 2025-04-22 20:47:46,291 autoreload 6764 13592 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-22 20:47:49,971 autoreload 23384 17760 Watching for file changes with StatReloader
+INFO 2025-04-22 20:49:26,094 autoreload 23384 17760 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\utils.py changed, reloading.
+INFO 2025-04-22 20:49:29,556 autoreload 18380 19936 Watching for file changes with StatReloader
+INFO 2025-04-22 20:57:00,342 autoreload 25420 1560 Watching for file changes with StatReloader
+ERROR 2025-04-22 20:57:14,020 log 25420 24196 Internal Server Error: /api/songs/songs/download/
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 279, in ensure_connection
+    self.connect()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\utils.py", line 1783, in runner
+    return sentry_patched_function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\__init__.py", line 690, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\postgresql\base.py", line 332, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\psycopg2\__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: could not translate host name "ep-patient-resonance-a19rwm71.ap-southeast-1.aws.neon.tech" to address: No such host is known. 
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\views.py", line 94, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\__init__.py", line 331, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 330, in perform_authentication
+    request.user
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\request.py", line 232, in user
+    self._authenticate()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\authentication.py", line 196, in authenticate
+    return self.authenticate_credentials(token)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\authentication.py", line 201, in authenticate_credentials
+    token = model.objects.select_related('user').get(key=key)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 645, in get
+    num = len(clone)
+          ^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 382, in __len__
+    self._fetch_all()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1572, in execute_sql
+    cursor = self.connection.cursor()
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 320, in cursor
+    return self._cursor()
+           ^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 296, in _cursor
+    self.ensure_connection()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 278, in ensure_connection
+    with self.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 279, in ensure_connection
+    self.connect()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\utils.py", line 1783, in runner
+    return sentry_patched_function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\__init__.py", line 690, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\postgresql\base.py", line 332, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\psycopg2\__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: could not translate host name "ep-patient-resonance-a19rwm71.ap-southeast-1.aws.neon.tech" to address: No such host is known. 
+
+ERROR 2025-04-22 20:57:14,046 basehttp 25420 24196 "POST /api/songs/songs/download/ HTTP/1.1" 500 258277
+INFO 2025-04-22 20:57:27,229 download_helper 25420 24196 Requesting raw file download from HuggingFace API: https://www.youtube.com/watch?v=YpugK0RpEaU
+INFO 2025-04-22 20:57:53,523 download_helper 25420 24196 Successfully downloaded raw file from HuggingFace API to: C:\Users\Dell\AppData\Local\Temp\tmp8cwiwqkc\download-1745335668.mp3
+INFO 2025-04-22 20:57:53,685 utils 25420 24196 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Kendrick Lamar - The Recipe Lyric Video ft. Dr. Dre - Kendrick Lamar.mp3
+INFO 2025-04-22 20:57:53,685 utils 25420 24196 Title: Kendrick Lamar - The Recipe (Lyric Video) ft. Dr. Dre, Artist: Kendrick Lamar, Album: Unknown Album, Genre: Unknown
+INFO 2025-04-22 20:57:53,695 utils 25420 24196 Loaded existing ID3 tags
+INFO 2025-04-22 20:57:53,795 utils 25420 24196 Downloading thumbnail from URL: https://i.ytimg.com/vi/YpugK0RpEaU/maxresdefault.jpg
+INFO 2025-04-22 20:57:54,050 utils 25420 24196 Downloaded thumbnail: 56682 bytes
+INFO 2025-04-22 20:57:54,051 utils 25420 24196 Detected image type: jpeg
+INFO 2025-04-22 20:57:54,219 utils 25420 24196 Successfully converted image to JPEG: 37701 bytes
+INFO 2025-04-22 20:57:54,221 utils 25420 24196 Adding album art, MIME type: image/jpeg
+INFO 2025-04-22 20:57:54,222 utils 25420 24196 Successfully added album art to ID3 tags
+INFO 2025-04-22 20:57:54,235 utils 25420 24196 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Kendrick Lamar - The Recipe Lyric Video ft. Dr. Dre - Kendrick Lamar.mp3 using ID3v2.3
+INFO 2025-04-22 20:57:54,243 utils 25420 24196 Verification: 6 tags were written, has_cover=True
+INFO 2025-04-22 20:57:54,394 utils 25420 24196 Attempting to set system thumbnail property directly (Windows only)
+WARNING 2025-04-22 20:57:54,405 utils 25420 24196 Could not set shell thumbnail: 'int' object has no attribute 'SetInfo'
+INFO 2025-04-22 20:57:55,185 download_helper 25420 24196 Added song to cache: https://www.youtube.com/watch?v=YpugK0RpEaU
+INFO 2025-04-22 20:57:55,256 models 25420 24196 [DEBUG] record_download called for user=testuser id=1 date=2025-04-22
+INFO 2025-04-22 20:57:55,480 models 25420 24196 [DEBUG] record_download updated analytics: user=testuser id=1 date=2025-04-22 songs_downloaded=3
+INFO 2025-04-22 20:57:55,533 basehttp 25420 24196 "POST /api/songs/songs/download/ HTTP/1.1" 200 8529128
+INFO 2025-04-22 20:58:33,242 spotify_api 25420 8264 Extracting Spotify ID from URL: https://open.spotify.com/track/7EiZI6JVHllARrX9PUvAdX?si=3a7e2915d2184e2e
+INFO 2025-04-22 20:58:33,243 spotify_api 25420 8264 Extracted Spotify track ID: 7EiZI6JVHllARrX9PUvAdX
+INFO 2025-04-22 20:58:33,312 views 25420 8264 Found existing song with URL https://open.spotify.com/track/7EiZI6JVHllARrX9PUvAdX?si=3a7e2915d2184e2e, serving directly
+INFO 2025-04-22 20:58:33,443 download_helper 25420 8264 Using cached version for Spotify URL: https://open.spotify.com/track/7EiZI6JVHllARrX9PUvAdX?si=3a7e2915d2184e2e
+INFO 2025-04-22 20:58:33,444 models 25420 8264 [DEBUG] record_download called for user=testuser id=1 date=2025-04-22
+INFO 2025-04-22 20:58:33,582 models 25420 8264 [DEBUG] record_download updated analytics: user=testuser id=1 date=2025-04-22 songs_downloaded=4
+INFO 2025-04-22 20:58:33,585 download_helper 25420 8264 Converting cached Spotify song from mp3 to aac
+INFO 2025-04-22 20:58:42,767 basehttp 25420 8264 "POST /api/songs/songs/download/ HTTP/1.1" 200 5256260
+INFO 2025-04-22 20:59:08,914 spotify_api 25420 8264 Extracting Spotify ID from URL: https://open.spotify.com/track/7EiZI6JVHllARrX9PUvAdX?si=3a7e2915d2184e2e
+INFO 2025-04-22 20:59:08,914 spotify_api 25420 8264 Extracted Spotify track ID: 7EiZI6JVHllARrX9PUvAdX
+INFO 2025-04-22 20:59:08,994 views 25420 8264 Found existing song with URL https://open.spotify.com/track/7EiZI6JVHllARrX9PUvAdX?si=3a7e2915d2184e2e, serving directly
+INFO 2025-04-22 20:59:09,136 download_helper 25420 8264 Using cached version for Spotify URL: https://open.spotify.com/track/7EiZI6JVHllARrX9PUvAdX?si=3a7e2915d2184e2e
+INFO 2025-04-22 20:59:09,136 models 25420 8264 [DEBUG] record_download called for user=testuser id=1 date=2025-04-22
+INFO 2025-04-22 20:59:09,279 models 25420 8264 [DEBUG] record_download updated analytics: user=testuser id=1 date=2025-04-22 songs_downloaded=5
+INFO 2025-04-22 20:59:09,282 download_helper 25420 8264 Converting cached Spotify song from mp3 to aac
+INFO 2025-04-22 20:59:19,471 basehttp 25420 8264 "POST /api/songs/songs/download/ HTTP/1.1" 200 5256260
+INFO 2025-04-22 21:00:14,151 spotify_api 25420 23980 Extracting Spotify ID from URL: https://open.spotify.com/track/5ZKG94fnjiuMH5yrC5S9lS?si=c7a622c94afe426b
+INFO 2025-04-22 21:00:14,152 spotify_api 25420 23980 Extracted Spotify track ID: 5ZKG94fnjiuMH5yrC5S9lS
+INFO 2025-04-22 21:00:14,278 spotify_api 25420 23980 Extracting Spotify ID from URL: https://open.spotify.com/track/5ZKG94fnjiuMH5yrC5S9lS?si=c7a622c94afe426b
+INFO 2025-04-22 21:00:14,278 spotify_api 25420 23980 Extracted Spotify track ID: 5ZKG94fnjiuMH5yrC5S9lS
+INFO 2025-04-22 21:00:14,279 download_helper 25420 23980 Getting info for Spotify track ID: ('track', '5ZKG94fnjiuMH5yrC5S9lS')
+INFO 2025-04-22 21:00:14,279 spotify_api 25420 23980 Extracting Spotify ID from URL: https://open.spotify.com/track/5ZKG94fnjiuMH5yrC5S9lS?si=c7a622c94afe426b
+INFO 2025-04-22 21:00:14,280 spotify_api 25420 23980 Extracted Spotify track ID: 5ZKG94fnjiuMH5yrC5S9lS
+INFO 2025-04-22 21:00:14,280 spotify_api 25420 23980 Getting info for Spotify track ID: 5ZKG94fnjiuMH5yrC5S9lS
+INFO 2025-04-22 21:00:14,281 spotify_api 25420 23980 Creating Spotify client with credentials from settings
+INFO 2025-04-22 21:00:14,714 spotify_api 25420 23980 Successfully tested Spotify client
+INFO 2025-04-22 21:00:15,143 spotify_api 25420 23980 Got track info: One Dance by Drake
+INFO 2025-04-22 21:00:15,143 download_helper 25420 23980 Spotify API returned thumbnail URL: https://i.scdn.co/image/ab67616d0000b27372d0af2341359a90710c1fdc
+INFO 2025-04-22 21:00:15,144 download_helper 25420 23980 Got track info: One Dance by Drake
+INFO 2025-04-22 21:00:15,145 download_helper 25420 23980 Using cookies file at: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\cookies.txt
+INFO 2025-04-22 21:00:15,145 download_helper 25420 23980 Cookie file exists: True
+INFO 2025-04-22 21:00:15,365 download_helper 25420 23980 Downloading using YouTube search: ytsearch:One Dance Drake
+INFO 2025-04-22 21:00:29,519 download_helper 25420 23980 Downloaded file to: C:\Users\Dell\AppData\Local\Temp\tmpj9uk98m4\download-1745335815.mp3
+INFO 2025-04-22 21:00:29,642 utils 25420 23980 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\One Dance - Drake.mp3
+INFO 2025-04-22 21:00:29,648 utils 25420 23980 Title: One Dance, Artist: Drake, Album: Views, Genre: rap
+INFO 2025-04-22 21:00:29,667 utils 25420 23980 Loaded existing ID3 tags
+INFO 2025-04-22 21:00:29,733 utils 25420 23980 Downloading thumbnail from URL: https://i.scdn.co/image/ab67616d0000b27372d0af2341359a90710c1fdc
+INFO 2025-04-22 21:00:29,838 utils 25420 23980 Downloaded thumbnail: 79551 bytes
+INFO 2025-04-22 21:00:29,839 utils 25420 23980 Detected image type: jpeg
+INFO 2025-04-22 21:00:29,863 utils 25420 23980 Successfully converted image to JPEG: 66814 bytes
+INFO 2025-04-22 21:00:29,875 utils 25420 23980 Adding album art, MIME type: image/jpeg
+INFO 2025-04-22 21:00:29,876 utils 25420 23980 Successfully added album art to ID3 tags
+INFO 2025-04-22 21:00:29,881 utils 25420 23980 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\One Dance - Drake.mp3 using ID3v2.3
+INFO 2025-04-22 21:00:29,892 utils 25420 23980 Verification: 8 tags were written, has_cover=True
+INFO 2025-04-22 21:00:29,892 utils 25420 23980 Attempting to set system thumbnail property directly (Windows only)
+WARNING 2025-04-22 21:00:29,896 utils 25420 23980 Could not set shell thumbnail: 'int' object has no attribute 'SetInfo'
+INFO 2025-04-22 21:00:30,151 models 25420 23980 [DEBUG] record_download called for user=testuser id=1 date=2025-04-22
+INFO 2025-04-22 21:00:30,292 models 25420 23980 [DEBUG] record_download updated analytics: user=testuser id=1 date=2025-04-22 songs_downloaded=6
+INFO 2025-04-22 21:00:30,678 download_helper 25420 23980 Added song to cache: https://open.spotify.com/track/5ZKG94fnjiuMH5yrC5S9lS?si=c7a622c94afe426b
+INFO 2025-04-22 21:00:30,707 basehttp 25420 23980 "POST /api/songs/songs/download/ HTTP/1.1" 200 4271914
+INFO 2025-04-22 21:01:43,800 autoreload 25420 1560 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\utils.py changed, reloading.
+INFO 2025-04-22 21:01:47,829 autoreload 15400 23456 Watching for file changes with StatReloader
+INFO 2025-04-22 21:05:43,648 autoreload 15400 23456 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-22 21:05:47,871 autoreload 3164 9228 Watching for file changes with StatReloader
+INFO 2025-04-22 21:06:05,000 autoreload 3164 9228 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-22 21:06:08,401 autoreload 3024 7036 Watching for file changes with StatReloader
+INFO 2025-04-22 21:13:34,388 autoreload 3024 7036 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-22 21:13:38,032 autoreload 13828 9396 Watching for file changes with StatReloader
+INFO 2025-04-22 21:14:11,583 spotify_api 13828 10412 Extracting Spotify ID from URL: https://open.spotify.com/track/5ZKG94fnjiuMH5yrC5S9lS?si=c7a622c94afe426b
+INFO 2025-04-22 21:14:11,584 spotify_api 13828 10412 Extracted Spotify track ID: 5ZKG94fnjiuMH5yrC5S9lS
+INFO 2025-04-22 21:14:11,954 views 13828 10412 Found existing song with URL https://open.spotify.com/track/5ZKG94fnjiuMH5yrC5S9lS?si=c7a622c94afe426b, serving directly
+INFO 2025-04-22 21:14:12,379 download_helper 13828 10412 Using cached version for Spotify URL: https://open.spotify.com/track/5ZKG94fnjiuMH5yrC5S9lS?si=c7a622c94afe426b
+INFO 2025-04-22 21:14:12,379 models 13828 10412 [DEBUG] record_download called for user=testuser id=1 date=2025-04-22
+INFO 2025-04-22 21:14:12,517 models 13828 10412 [DEBUG] record_download updated analytics: user=testuser id=1 date=2025-04-22 songs_downloaded=7
+INFO 2025-04-22 21:14:12,517 download_helper 13828 10412 Converting cached Spotify song from mp3 to aac
+INFO 2025-04-22 21:14:18,107 basehttp 13828 10412 "POST /api/songs/songs/download/ HTTP/1.1" 200 2948469
+INFO 2025-04-22 21:14:32,959 spotify_api 13828 10412 Extracting Spotify ID from URL: https://open.spotify.com/track/72TFWvU3wUYdUuxejTTIzt?si=9a72a989388745b4
+INFO 2025-04-22 21:14:32,960 spotify_api 13828 10412 Extracted Spotify track ID: 72TFWvU3wUYdUuxejTTIzt
+INFO 2025-04-22 21:14:33,098 spotify_api 13828 10412 Extracting Spotify ID from URL: https://open.spotify.com/track/72TFWvU3wUYdUuxejTTIzt?si=9a72a989388745b4
+INFO 2025-04-22 21:14:33,099 spotify_api 13828 10412 Extracted Spotify track ID: 72TFWvU3wUYdUuxejTTIzt
+INFO 2025-04-22 21:14:33,099 download_helper 13828 10412 Getting info for Spotify track ID: ('track', '72TFWvU3wUYdUuxejTTIzt')
+INFO 2025-04-22 21:14:33,099 spotify_api 13828 10412 Extracting Spotify ID from URL: https://open.spotify.com/track/72TFWvU3wUYdUuxejTTIzt?si=9a72a989388745b4
+INFO 2025-04-22 21:14:33,100 spotify_api 13828 10412 Extracted Spotify track ID: 72TFWvU3wUYdUuxejTTIzt
+INFO 2025-04-22 21:14:33,100 spotify_api 13828 10412 Getting info for Spotify track ID: 72TFWvU3wUYdUuxejTTIzt
+INFO 2025-04-22 21:14:33,100 spotify_api 13828 10412 Creating Spotify client with credentials from settings
+INFO 2025-04-22 21:14:33,314 spotify_api 13828 10412 Successfully tested Spotify client
+INFO 2025-04-22 21:14:33,630 spotify_api 13828 10412 Got track info: Work by Rihanna
+INFO 2025-04-22 21:14:33,633 download_helper 13828 10412 Spotify API returned thumbnail URL: https://i.scdn.co/image/ab67616d0000b27333c6b920eabcf4c00d7a1093
+INFO 2025-04-22 21:14:33,634 download_helper 13828 10412 Got track info: Work by Rihanna
+INFO 2025-04-22 21:14:33,634 download_helper 13828 10412 Requesting Spotify download from HuggingFace API: https://monilm-songporter.hf.space/api/download/spotify
+ERROR 2025-04-22 21:14:34,488 download_helper 13828 10412 HuggingFace API error: 404 {"detail":"Not Found"}
+ERROR 2025-04-22 21:14:34,830 download_helper 13828 10412 Error downloading Spotify from HuggingFace API: HuggingFace API returned error: 404
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py", line 125, in download_spotify_from_huggingface
+    raise Exception(f"HuggingFace API returned error: {response.status_code}")
+Exception: HuggingFace API returned error: 404
+ERROR 2025-04-22 21:14:34,840 utils 13828 10412 Unexpected error in download_spotify_from_huggingface: HuggingFace API returned error: 404
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\utils.py", line 102, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py", line 125, in download_spotify_from_huggingface
+    raise Exception(f"HuggingFace API returned error: {response.status_code}")
+Exception: HuggingFace API returned error: 404
+ERROR 2025-04-22 21:14:34,844 download_helper 13828 10412 Error downloading from HuggingFace API: HuggingFace API returned error: 404
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py", line 1079, in download_spotify_track
+    temp_filename, hf_metadata, temp_dir = download_spotify_from_huggingface(url, track_info)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\utils.py", line 102, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py", line 125, in download_spotify_from_huggingface
+    raise Exception(f"HuggingFace API returned error: {response.status_code}")
+Exception: HuggingFace API returned error: 404
+INFO 2025-04-22 21:14:34,850 download_helper 13828 10412 Falling back to original yt-dlp implementation for Spotify track
+INFO 2025-04-22 21:14:34,853 download_helper 13828 10412 Using cookies file at: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\cookies.txt
+INFO 2025-04-22 21:14:34,854 download_helper 13828 10412 Cookie file exists: True
+INFO 2025-04-22 21:14:35,027 download_helper 13828 10412 Downloading using YouTube search: ytsearch:Work Rihanna
+ERROR 2025-04-22 21:14:54,376 log 13828 10412 Internal Server Error: /api/songs/songs/download/
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\views.py", line 94, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 517, in dispatch
+    self.response = self.finalize_response(request, response, *args, **kwargs)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 429, in finalize_response
+    assert isinstance(response, HttpResponseBase), (
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Expected a `Response`, `HttpResponse` or `StreamingHttpResponse` to be returned from the view, but received a `<class 'NoneType'>`
+ERROR 2025-04-22 21:14:54,381 basehttp 13828 10412 "POST /api/songs/songs/download/ HTTP/1.1" 500 97115
+INFO 2025-04-22 21:15:48,504 autoreload 13828 9396 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-22 21:15:53,434 autoreload 23100 19000 Watching for file changes with StatReloader
+INFO 2025-04-22 21:16:19,665 spotify_api 23100 10108 Extracting Spotify ID from URL: https://open.spotify.com/track/6qn9YLKt13AGvpq9jfO8py?si=5bd3c76437e94ad9
+INFO 2025-04-22 21:16:19,665 spotify_api 23100 10108 Extracted Spotify track ID: 6qn9YLKt13AGvpq9jfO8py
+INFO 2025-04-22 21:16:19,831 spotify_api 23100 10108 Extracting Spotify ID from URL: https://open.spotify.com/track/6qn9YLKt13AGvpq9jfO8py?si=5bd3c76437e94ad9
+INFO 2025-04-22 21:16:19,831 spotify_api 23100 10108 Extracted Spotify track ID: 6qn9YLKt13AGvpq9jfO8py
+INFO 2025-04-22 21:16:19,832 download_helper 23100 10108 Getting info for Spotify track ID: ('track', '6qn9YLKt13AGvpq9jfO8py')
+INFO 2025-04-22 21:16:19,832 spotify_api 23100 10108 Extracting Spotify ID from URL: https://open.spotify.com/track/6qn9YLKt13AGvpq9jfO8py?si=5bd3c76437e94ad9
+INFO 2025-04-22 21:16:19,833 spotify_api 23100 10108 Extracted Spotify track ID: 6qn9YLKt13AGvpq9jfO8py
+INFO 2025-04-22 21:16:19,835 spotify_api 23100 10108 Getting info for Spotify track ID: 6qn9YLKt13AGvpq9jfO8py
+INFO 2025-04-22 21:16:19,836 spotify_api 23100 10108 Creating Spotify client with credentials from settings
+INFO 2025-04-22 21:16:20,031 spotify_api 23100 10108 Successfully tested Spotify client
+INFO 2025-04-22 21:16:20,352 spotify_api 23100 10108 Got track info: We Found Love by Rihanna
+INFO 2025-04-22 21:16:20,353 download_helper 23100 10108 Spotify API returned thumbnail URL: https://i.scdn.co/image/ab67616d0000b273bef074de9ca825bddaeb9f46
+INFO 2025-04-22 21:16:20,354 download_helper 23100 10108 Got track info: We Found Love by Rihanna
+INFO 2025-04-22 21:16:20,354 download_helper 23100 10108 Requesting Spotify download from HuggingFace API: https://monilm-songporter.hf.space/api/download/
+ERROR 2025-04-22 21:16:21,311 download_helper 23100 10108 HuggingFace API error: 405 {"detail":"Method Not Allowed"}
+ERROR 2025-04-22 21:16:21,600 download_helper 23100 10108 Error downloading Spotify from HuggingFace API: HuggingFace API returned error: 405
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py", line 125, in download_spotify_from_huggingface
+    raise Exception(f"HuggingFace API returned error: {response.status_code}")
+Exception: HuggingFace API returned error: 405
+ERROR 2025-04-22 21:16:21,609 utils 23100 10108 Unexpected error in download_spotify_from_huggingface: HuggingFace API returned error: 405
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\utils.py", line 102, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py", line 125, in download_spotify_from_huggingface
+    raise Exception(f"HuggingFace API returned error: {response.status_code}")
+Exception: HuggingFace API returned error: 405
+ERROR 2025-04-22 21:16:21,613 download_helper 23100 10108 Error downloading from HuggingFace API: HuggingFace API returned error: 405
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py", line 1079, in download_spotify_track
+    temp_filename, hf_metadata, temp_dir = download_spotify_from_huggingface(url, track_info)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\utils.py", line 102, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py", line 125, in download_spotify_from_huggingface
+    raise Exception(f"HuggingFace API returned error: {response.status_code}")
+Exception: HuggingFace API returned error: 405
+INFO 2025-04-22 21:16:21,618 download_helper 23100 10108 Falling back to original yt-dlp implementation for Spotify track
+INFO 2025-04-22 21:16:21,621 download_helper 23100 10108 Using cookies file at: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\cookies.txt
+INFO 2025-04-22 21:16:21,622 download_helper 23100 10108 Cookie file exists: True
+INFO 2025-04-22 21:16:21,779 download_helper 23100 10108 Downloading using YouTube search: ytsearch:We Found Love Rihanna
+ERROR 2025-04-22 21:16:38,308 log 23100 10108 Internal Server Error: /api/songs/songs/download/
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\views.py", line 94, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 517, in dispatch
+    self.response = self.finalize_response(request, response, *args, **kwargs)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 429, in finalize_response
+    assert isinstance(response, HttpResponseBase), (
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Expected a `Response`, `HttpResponse` or `StreamingHttpResponse` to be returned from the view, but received a `<class 'NoneType'>`
+ERROR 2025-04-22 21:16:38,317 basehttp 23100 10108 "POST /api/songs/songs/download/ HTTP/1.1" 500 97115
+INFO 2025-04-22 21:16:58,403 autoreload 23100 19000 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-22 21:17:02,111 autoreload 21448 14936 Watching for file changes with StatReloader
+INFO 2025-04-22 21:17:22,284 autoreload 21448 14936 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-22 21:17:25,850 autoreload 2344 11396 Watching for file changes with StatReloader
+INFO 2025-04-22 21:18:48,551 autoreload 2344 11396 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-22 21:18:52,018 autoreload 22148 16160 Watching for file changes with StatReloader
+INFO 2025-04-22 21:44:19,242 spotify_api 22148 15912 Extracting Spotify ID from URL: https://open.spotify.com/track/1AWQoqb9bSvzTjaLralEkT?si=fbafc788292b4784
+INFO 2025-04-22 21:44:19,243 spotify_api 22148 15912 Extracted Spotify track ID: 1AWQoqb9bSvzTjaLralEkT
+INFO 2025-04-22 21:44:19,429 spotify_api 22148 15912 Extracting Spotify ID from URL: https://open.spotify.com/track/1AWQoqb9bSvzTjaLralEkT?si=fbafc788292b4784
+INFO 2025-04-22 21:44:19,430 spotify_api 22148 15912 Extracted Spotify track ID: 1AWQoqb9bSvzTjaLralEkT
+INFO 2025-04-22 21:44:19,430 download_helper 22148 15912 Getting info for Spotify track ID: ('track', '1AWQoqb9bSvzTjaLralEkT')
+INFO 2025-04-22 21:44:19,430 spotify_api 22148 15912 Extracting Spotify ID from URL: https://open.spotify.com/track/1AWQoqb9bSvzTjaLralEkT?si=fbafc788292b4784
+INFO 2025-04-22 21:44:19,431 spotify_api 22148 15912 Extracted Spotify track ID: 1AWQoqb9bSvzTjaLralEkT
+INFO 2025-04-22 21:44:19,432 spotify_api 22148 15912 Getting info for Spotify track ID: 1AWQoqb9bSvzTjaLralEkT
+INFO 2025-04-22 21:44:19,433 spotify_api 22148 15912 Creating Spotify client with credentials from settings
+INFO 2025-04-22 21:44:19,617 spotify_api 22148 15912 Successfully tested Spotify client
+INFO 2025-04-22 21:44:19,946 spotify_api 22148 15912 Got track info: Rock Your Body by Justin Timberlake
+INFO 2025-04-22 21:44:19,947 download_helper 22148 15912 Spotify API returned thumbnail URL: https://i.scdn.co/image/ab67616d0000b273346a5742374ab4cf9ed32dee
+INFO 2025-04-22 21:44:19,947 download_helper 22148 15912 Got track info: Rock Your Body by Justin Timberlake
+INFO 2025-04-22 21:44:19,948 download_helper 22148 15912 Requesting Spotify download from HuggingFace API: https://monilm-songporter.hf.space/api/download/?url=https%3A//open.spotify.com/track/1AWQoqb9bSvzTjaLralEkT%3Fsi%3Dfbafc788292b4784&title=Rock%20Your%20Body&artist=Justin%20Timberlake
+ERROR 2025-04-22 21:44:21,301 download_helper 22148 15912 HuggingFace API error: 500 {"detail":"Download failed: ERROR: [DRM] The requested site is known to use DRM protection. It will NOT be supported.\n       Please DO NOT open an issue, unless you have evidence that the video is not DRM protected"}
+ERROR 2025-04-22 21:44:21,489 download_helper 22148 15912 Error downloading Spotify from HuggingFace API: HuggingFace API returned error: 500
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py", line 124, in download_spotify_from_huggingface
+    raise Exception(f"HuggingFace API returned error: {response.status_code}")
+Exception: HuggingFace API returned error: 500
+ERROR 2025-04-22 21:44:21,497 utils 22148 15912 Unexpected error in download_spotify_from_huggingface: HuggingFace API returned error: 500
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\utils.py", line 102, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py", line 124, in download_spotify_from_huggingface
+    raise Exception(f"HuggingFace API returned error: {response.status_code}")
+Exception: HuggingFace API returned error: 500
+ERROR 2025-04-22 21:44:21,501 download_helper 22148 15912 Error downloading from HuggingFace API: HuggingFace API returned error: 500
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py", line 1078, in download_spotify_track
+    temp_filename, hf_metadata, temp_dir = download_spotify_from_huggingface(url, track_info)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\utils.py", line 102, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py", line 124, in download_spotify_from_huggingface
+    raise Exception(f"HuggingFace API returned error: {response.status_code}")
+Exception: HuggingFace API returned error: 500
+INFO 2025-04-22 21:44:21,506 download_helper 22148 15912 Falling back to original yt-dlp implementation for Spotify track
+INFO 2025-04-22 21:44:21,507 download_helper 22148 15912 Using cookies file at: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\cookies.txt
+INFO 2025-04-22 21:44:21,509 download_helper 22148 15912 Cookie file exists: True
+INFO 2025-04-22 21:44:21,696 download_helper 22148 15912 Downloading using YouTube search: ytsearch:Rock Your Body Justin Timberlake
+ERROR 2025-04-22 21:44:35,967 log 22148 15912 Internal Server Error: /api/songs/songs/download/
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\views.py", line 94, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 517, in dispatch
+    self.response = self.finalize_response(request, response, *args, **kwargs)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 429, in finalize_response
+    assert isinstance(response, HttpResponseBase), (
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Expected a `Response`, `HttpResponse` or `StreamingHttpResponse` to be returned from the view, but received a `<class 'NoneType'>`
+ERROR 2025-04-22 21:44:35,967 basehttp 22148 15912 "POST /api/songs/songs/download/ HTTP/1.1" 500 97115
+INFO 2025-04-22 21:48:10,697 autoreload 22148 16160 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-22 21:48:14,694 autoreload 24608 22788 Watching for file changes with StatReloader
+INFO 2025-04-22 21:48:18,429 autoreload 24608 22788 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-22 21:48:22,023 autoreload 23752 16188 Watching for file changes with StatReloader
+INFO 2025-04-22 21:48:24,483 autoreload 23752 16188 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-22 21:48:28,167 autoreload 13112 9804 Watching for file changes with StatReloader
+INFO 2025-04-22 21:48:31,882 autoreload 13112 9804 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-22 21:48:35,474 autoreload 21320 22760 Watching for file changes with StatReloader
+INFO 2025-04-22 21:48:46,301 autoreload 21320 22760 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-22 21:48:50,028 autoreload 14980 2524 Watching for file changes with StatReloader
+INFO 2025-04-22 21:50:53,145 autoreload 14980 2524 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-22 21:50:57,843 autoreload 13280 24256 Watching for file changes with StatReloader
+INFO 2025-04-22 21:56:57,619 autoreload 13280 24256 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-22 21:57:01,520 autoreload 15252 3260 Watching for file changes with StatReloader
+INFO 2025-04-22 21:58:33,983 autoreload 15252 3260 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-22 21:59:12,904 autoreload 15912 15804 Watching for file changes with StatReloader
+INFO 2025-04-22 21:59:30,508 spotify_api 15912 17532 Extracting Spotify ID from URL: https://open.spotify.com/track/1AWQoqb9bSvzTjaLralEkT?si=fbafc788292b4784
+INFO 2025-04-22 21:59:30,508 spotify_api 15912 17532 Extracted Spotify track ID: 1AWQoqb9bSvzTjaLralEkT
+INFO 2025-04-22 21:59:30,698 spotify_api 15912 17532 Extracting Spotify ID from URL: https://open.spotify.com/track/1AWQoqb9bSvzTjaLralEkT?si=fbafc788292b4784
+INFO 2025-04-22 21:59:30,698 spotify_api 15912 17532 Extracted Spotify track ID: 1AWQoqb9bSvzTjaLralEkT
+INFO 2025-04-22 21:59:30,698 download_helper 15912 17532 Getting info for Spotify track ID: ('track', '1AWQoqb9bSvzTjaLralEkT')
+INFO 2025-04-22 21:59:30,698 spotify_api 15912 17532 Extracting Spotify ID from URL: https://open.spotify.com/track/1AWQoqb9bSvzTjaLralEkT?si=fbafc788292b4784
+INFO 2025-04-22 21:59:30,698 spotify_api 15912 17532 Extracted Spotify track ID: 1AWQoqb9bSvzTjaLralEkT
+INFO 2025-04-22 21:59:30,698 spotify_api 15912 17532 Getting info for Spotify track ID: 1AWQoqb9bSvzTjaLralEkT
+INFO 2025-04-22 21:59:30,698 spotify_api 15912 17532 Creating Spotify client with credentials from settings
+INFO 2025-04-22 21:59:31,111 spotify_api 15912 17532 Successfully tested Spotify client
+INFO 2025-04-22 21:59:31,474 spotify_api 15912 17532 Got track info: Rock Your Body by Justin Timberlake
+INFO 2025-04-22 21:59:31,474 download_helper 15912 17532 Spotify API returned thumbnail URL: https://i.scdn.co/image/ab67616d0000b273346a5742374ab4cf9ed32dee
+INFO 2025-04-22 21:59:31,474 download_helper 15912 17532 Got track info: Rock Your Body by Justin Timberlake
+INFO 2025-04-22 21:59:31,474 download_helper 15912 17532 Using YouTube search query for HuggingFace API: ytsearch:Rock%20Your%20Body%20Justin%20Timberlake
+INFO 2025-04-22 21:59:31,474 download_helper 15912 17532 Requesting raw file download from HuggingFace API: ytsearch:Rock%20Your%20Body%20Justin%20Timberlake
+ERROR 2025-04-22 21:59:35,193 download_helper 15912 17532 HuggingFace API error: 500 - {"detail":"Download failed: Output file not found and temp directory is empty."}
+ERROR 2025-04-22 21:59:36,903 utils 15912 17532 Unexpected error in download_file_from_huggingface: HuggingFace API returned status 500
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\utils.py", line 102, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py", line 47, in download_file_from_huggingface
+    raise Exception(f"HuggingFace API returned status {response.status_code}")
+Exception: HuggingFace API returned status 500
+ERROR 2025-04-22 21:59:36,906 download_helper 15912 17532 Error downloading from HuggingFace API: HuggingFace API returned status 500
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py", line 547, in download_spotify_track
+    temp_filename, hf_metadata, temp_dir = download_file_from_huggingface(youtube_url)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\utils.py", line 102, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py", line 47, in download_file_from_huggingface
+    raise Exception(f"HuggingFace API returned status {response.status_code}")
+Exception: HuggingFace API returned status 500
+INFO 2025-04-22 21:59:36,910 download_helper 15912 17532 Falling back to original yt-dlp implementation for Spotify track
+INFO 2025-04-22 21:59:36,912 download_helper 15912 17532 Using cookies file at: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\cookies.txt
+INFO 2025-04-22 21:59:36,912 download_helper 15912 17532 Cookie file exists: True
+INFO 2025-04-22 21:59:37,038 download_helper 15912 17532 Downloading using YouTube search: ytsearch:Rock Your Body Justin Timberlake
+ERROR 2025-04-22 21:59:51,463 log 15912 17532 Internal Server Error: /api/songs/songs/download/
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\views.py", line 94, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 517, in dispatch
+    self.response = self.finalize_response(request, response, *args, **kwargs)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 429, in finalize_response
+    assert isinstance(response, HttpResponseBase), (
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Expected a `Response`, `HttpResponse` or `StreamingHttpResponse` to be returned from the view, but received a `<class 'NoneType'>`
+ERROR 2025-04-22 21:59:51,469 basehttp 15912 17532 "POST /api/songs/songs/download/ HTTP/1.1" 500 97115
+INFO 2025-04-22 22:00:16,042 autoreload 15912 15804 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\utils.py changed, reloading.
+INFO 2025-04-22 22:00:20,247 autoreload 7380 7972 Watching for file changes with StatReloader
+INFO 2025-04-22 22:00:24,092 spotify_api 7380 11236 Extracting Spotify ID from URL: https://open.spotify.com/track/1AWQoqb9bSvzTjaLralEkT?si=fbafc788292b4784
+INFO 2025-04-22 22:00:24,092 spotify_api 7380 11236 Extracted Spotify track ID: 1AWQoqb9bSvzTjaLralEkT
+INFO 2025-04-22 22:00:24,234 spotify_api 7380 11236 Extracting Spotify ID from URL: https://open.spotify.com/track/1AWQoqb9bSvzTjaLralEkT?si=fbafc788292b4784
+INFO 2025-04-22 22:00:24,249 spotify_api 7380 11236 Extracted Spotify track ID: 1AWQoqb9bSvzTjaLralEkT
+INFO 2025-04-22 22:00:24,249 download_helper 7380 11236 Getting info for Spotify track ID: ('track', '1AWQoqb9bSvzTjaLralEkT')
+INFO 2025-04-22 22:00:24,249 spotify_api 7380 11236 Extracting Spotify ID from URL: https://open.spotify.com/track/1AWQoqb9bSvzTjaLralEkT?si=fbafc788292b4784
+INFO 2025-04-22 22:00:24,252 spotify_api 7380 11236 Extracted Spotify track ID: 1AWQoqb9bSvzTjaLralEkT
+INFO 2025-04-22 22:00:24,252 spotify_api 7380 11236 Getting info for Spotify track ID: 1AWQoqb9bSvzTjaLralEkT
+INFO 2025-04-22 22:00:24,252 spotify_api 7380 11236 Creating Spotify client with credentials from settings
+INFO 2025-04-22 22:00:24,440 spotify_api 7380 11236 Successfully tested Spotify client
+INFO 2025-04-22 22:00:24,789 spotify_api 7380 11236 Got track info: Rock Your Body by Justin Timberlake
+INFO 2025-04-22 22:00:24,805 download_helper 7380 11236 Spotify API returned thumbnail URL: https://i.scdn.co/image/ab67616d0000b273346a5742374ab4cf9ed32dee
+INFO 2025-04-22 22:00:24,807 download_helper 7380 11236 Got track info: Rock Your Body by Justin Timberlake
+INFO 2025-04-22 22:00:24,807 download_helper 7380 11236 Using YouTube search query for HuggingFace API: ytsearch:Rock%20Your%20Body%20Justin%20Timberlake
+INFO 2025-04-22 22:00:24,808 download_helper 7380 11236 Requesting raw file download from HuggingFace API: ytsearch:Rock%20Your%20Body%20Justin%20Timberlake
+ERROR 2025-04-22 22:00:27,923 download_helper 7380 11236 HuggingFace API error: 500 - {"detail":"Download failed: Output file not found and temp directory is empty."}
+ERROR 2025-04-22 22:00:28,287 utils 7380 11236 Unexpected error in download_file_from_huggingface: HuggingFace API returned status 500
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\utils.py", line 102, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py", line 47, in download_file_from_huggingface
+    raise Exception(f"HuggingFace API returned status {response.status_code}")
+Exception: HuggingFace API returned status 500
+ERROR 2025-04-22 22:00:28,287 download_helper 7380 11236 Error downloading from HuggingFace API: HuggingFace API returned status 500
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py", line 547, in download_spotify_track
+    temp_filename, hf_metadata, temp_dir = download_file_from_huggingface(youtube_url)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\utils.py", line 102, in wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py", line 47, in download_file_from_huggingface
+    raise Exception(f"HuggingFace API returned status {response.status_code}")
+Exception: HuggingFace API returned status 500
+INFO 2025-04-22 22:00:28,304 download_helper 7380 11236 Falling back to original yt-dlp implementation for Spotify track
+INFO 2025-04-22 22:00:28,307 download_helper 7380 11236 Using cookies file at: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\cookies.txt
+INFO 2025-04-22 22:00:28,307 download_helper 7380 11236 Cookie file exists: True
+INFO 2025-04-22 22:00:28,556 download_helper 7380 11236 Downloading using YouTube search: ytsearch:Rock Your Body Justin Timberlake
+ERROR 2025-04-22 22:00:42,341 log 7380 11236 Internal Server Error: /api/songs/songs/download/
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\views.py", line 94, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 517, in dispatch
+    self.response = self.finalize_response(request, response, *args, **kwargs)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 429, in finalize_response
+    assert isinstance(response, HttpResponseBase), (
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Expected a `Response`, `HttpResponse` or `StreamingHttpResponse` to be returned from the view, but received a `<class 'NoneType'>`
+ERROR 2025-04-22 22:00:42,346 basehttp 7380 11236 "POST /api/songs/songs/download/ HTTP/1.1" 500 97115
+INFO 2025-04-22 22:01:03,935 autoreload 7380 7972 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-22 22:01:08,329 autoreload 16560 10220 Watching for file changes with StatReloader
+INFO 2025-04-22 22:01:14,756 spotify_api 16560 1612 Extracting Spotify ID from URL: https://open.spotify.com/track/1AWQoqb9bSvzTjaLralEkT?si=fbafc788292b4784
+INFO 2025-04-22 22:01:14,756 spotify_api 16560 1612 Extracted Spotify track ID: 1AWQoqb9bSvzTjaLralEkT
+INFO 2025-04-22 22:01:14,906 spotify_api 16560 1612 Extracting Spotify ID from URL: https://open.spotify.com/track/1AWQoqb9bSvzTjaLralEkT?si=fbafc788292b4784
+INFO 2025-04-22 22:01:14,915 spotify_api 16560 1612 Extracted Spotify track ID: 1AWQoqb9bSvzTjaLralEkT
+INFO 2025-04-22 22:01:14,915 download_helper 16560 1612 Getting info for Spotify track ID: ('track', '1AWQoqb9bSvzTjaLralEkT')
+INFO 2025-04-22 22:01:14,915 spotify_api 16560 1612 Extracting Spotify ID from URL: https://open.spotify.com/track/1AWQoqb9bSvzTjaLralEkT?si=fbafc788292b4784
+INFO 2025-04-22 22:01:14,915 spotify_api 16560 1612 Extracted Spotify track ID: 1AWQoqb9bSvzTjaLralEkT
+INFO 2025-04-22 22:01:14,915 spotify_api 16560 1612 Getting info for Spotify track ID: 1AWQoqb9bSvzTjaLralEkT
+INFO 2025-04-22 22:01:14,915 spotify_api 16560 1612 Creating Spotify client with credentials from settings
+INFO 2025-04-22 22:01:15,246 spotify_api 16560 1612 Successfully tested Spotify client
+INFO 2025-04-22 22:01:15,564 spotify_api 16560 1612 Got track info: Rock Your Body by Justin Timberlake
+INFO 2025-04-22 22:01:15,564 download_helper 16560 1612 Spotify API returned thumbnail URL: https://i.scdn.co/image/ab67616d0000b273346a5742374ab4cf9ed32dee
+INFO 2025-04-22 22:01:15,564 download_helper 16560 1612 Got track info: Rock Your Body by Justin Timberlake
+INFO 2025-04-22 22:01:15,574 download_helper 16560 1612 Using cookies file at: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\cookies.txt
+INFO 2025-04-22 22:01:15,574 download_helper 16560 1612 Cookie file exists: True
+INFO 2025-04-22 22:01:15,707 download_helper 16560 1612 Downloading using YouTube search: ytsearch:Rock Your Body Justin Timberlake
+INFO 2025-04-22 22:01:29,512 download_helper 16560 1612 Downloaded file to: C:\Users\Dell\AppData\Local\Temp\tmpq107p08t\download-1745339475.mp3
+INFO 2025-04-22 22:01:29,776 utils 16560 1612 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Rock Your Body - Justin Timberlake.mp3
+INFO 2025-04-22 22:01:29,777 utils 16560 1612 Title: Rock Your Body, Artist: Justin Timberlake, Album: Justified, Genre: Unknown
+INFO 2025-04-22 22:01:29,784 utils 16560 1612 Loaded existing ID3 tags
+INFO 2025-04-22 22:01:29,861 utils 16560 1612 Downloading thumbnail from URL: https://i.scdn.co/image/ab67616d0000b273346a5742374ab4cf9ed32dee
+INFO 2025-04-22 22:01:30,030 utils 16560 1612 Downloaded thumbnail: 83876 bytes
+INFO 2025-04-22 22:01:30,031 utils 16560 1612 Detected image type: jpeg
+INFO 2025-04-22 22:01:30,237 utils 16560 1612 Successfully converted image to JPEG: 72362 bytes
+INFO 2025-04-22 22:01:30,239 utils 16560 1612 Adding album art, MIME type: image/jpeg
+INFO 2025-04-22 22:01:30,240 utils 16560 1612 Successfully added album art to ID3 tags
+INFO 2025-04-22 22:01:30,249 utils 16560 1612 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Rock Your Body - Justin Timberlake.mp3 using ID3v2.3
+INFO 2025-04-22 22:01:30,257 utils 16560 1612 Verification: 8 tags were written, has_cover=True
+INFO 2025-04-22 22:01:30,577 utils 16560 1612 Attempting to set system thumbnail property directly (Windows only)
+WARNING 2025-04-22 22:01:30,602 utils 16560 1612 Could not set shell thumbnail: 'int' object has no attribute 'SetInfo'
+INFO 2025-04-22 22:01:30,893 models 16560 1612 [DEBUG] record_download called for user=testuser id=1 date=2025-04-22
+INFO 2025-04-22 22:01:31,034 models 16560 1612 [DEBUG] record_download updated analytics: user=testuser id=1 date=2025-04-22 songs_downloaded=8
+INFO 2025-04-22 22:01:31,454 download_helper 16560 1612 Added song to cache: https://open.spotify.com/track/1AWQoqb9bSvzTjaLralEkT?si=fbafc788292b4784
+INFO 2025-04-22 22:01:31,568 basehttp 16560 1612 "POST /api/songs/songs/download/ HTTP/1.1" 200 7227299
+INFO 2025-04-22 22:07:37,005 autoreload 16560 10220 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-22 22:07:41,010 autoreload 18764 13144 Watching for file changes with StatReloader
+INFO 2025-04-22 22:08:33,257 spotify_api 18764 8380 Extracting Spotify ID from URL: https://open.spotify.com/track/4PhsKqMdgMEUSstTDAmMpg?si=013890622ce249cd
+INFO 2025-04-22 22:08:33,258 spotify_api 18764 8380 Extracted Spotify track ID: 4PhsKqMdgMEUSstTDAmMpg
+INFO 2025-04-22 22:08:33,414 spotify_api 18764 8380 Extracting Spotify ID from URL: https://open.spotify.com/track/4PhsKqMdgMEUSstTDAmMpg?si=013890622ce249cd
+INFO 2025-04-22 22:08:33,414 spotify_api 18764 8380 Extracted Spotify track ID: 4PhsKqMdgMEUSstTDAmMpg
+INFO 2025-04-22 22:08:33,415 download_helper 18764 8380 Getting Spotify track info for ID: ('track', '4PhsKqMdgMEUSstTDAmMpg')
+INFO 2025-04-22 22:08:33,415 spotify_api 18764 8380 Extracting Spotify ID from URL: https://open.spotify.com/track/4PhsKqMdgMEUSstTDAmMpg?si=013890622ce249cd
+INFO 2025-04-22 22:08:33,415 spotify_api 18764 8380 Extracted Spotify track ID: 4PhsKqMdgMEUSstTDAmMpg
+INFO 2025-04-22 22:08:33,416 spotify_api 18764 8380 Getting info for Spotify track ID: 4PhsKqMdgMEUSstTDAmMpg
+INFO 2025-04-22 22:08:33,416 spotify_api 18764 8380 Creating Spotify client with credentials from settings
+INFO 2025-04-22 22:08:33,621 spotify_api 18764 8380 Successfully tested Spotify client
+INFO 2025-04-22 22:08:33,913 spotify_api 18764 8380 Got track info: Often by The Weeknd
+INFO 2025-04-22 22:08:33,914 download_helper 18764 8380 Spotify track: Often by The Weeknd. Searching YouTube...
+INFO 2025-04-22 22:08:34,241 download_helper 18764 8380 Downloading using YouTube search: Often The Weeknd audio
+INFO 2025-04-22 22:08:50,075 download_helper 18764 8380 yt-dlp downloaded audio for Spotify track to: C:\Users\Dell\AppData\Local\Temp\spotify_ytdlp_wm87kf0f\download-1745339913.m4a
+INFO 2025-04-22 22:08:50,097 utils 18764 8380 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Often - The Weeknd.aac
+INFO 2025-04-22 22:08:50,097 utils 18764 8380 Title: Often, Artist: The Weeknd, Album: Beauty Behind The Madness, Genre: Unknown
+INFO 2025-04-22 22:08:50,098 utils 18764 8380 No existing ID3 tags found, creating new tags
+INFO 2025-04-22 22:08:50,172 utils 18764 8380 Downloading thumbnail from URL: https://i.scdn.co/image/ab67616d0000b2737fcead687e99583072cc217b
+INFO 2025-04-22 22:08:50,327 utils 18764 8380 Downloaded thumbnail: 103620 bytes
+INFO 2025-04-22 22:08:50,328 utils 18764 8380 Detected image type: jpeg
+INFO 2025-04-22 22:08:50,382 utils 18764 8380 Successfully converted image to JPEG: 91841 bytes
+INFO 2025-04-22 22:08:50,382 utils 18764 8380 Adding album art, MIME type: image/jpeg
+INFO 2025-04-22 22:08:50,382 utils 18764 8380 Successfully added album art to ID3 tags
+INFO 2025-04-22 22:08:50,397 utils 18764 8380 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Often - The Weeknd.aac using ID3v2.3
+INFO 2025-04-22 22:08:50,402 utils 18764 8380 Verification: 7 tags were written, has_cover=True
+INFO 2025-04-22 22:08:50,435 utils 18764 8380 Attempting to set system thumbnail property directly (Windows only)
+WARNING 2025-04-22 22:08:50,438 utils 18764 8380 Could not set shell thumbnail: 'int' object has no attribute 'SetInfo'
+INFO 2025-04-22 22:08:50,957 download_helper 18764 8380 Created new Song entry for Spotify URL: https://open.spotify.com/track/4PhsKqMdgMEUSstTDAmMpg?si=013890622ce249cd
+INFO 2025-04-22 22:08:51,152 models 18764 8380 [DEBUG] record_download called for user=testuser id=1 date=2025-04-22
+INFO 2025-04-22 22:08:51,293 models 18764 8380 [DEBUG] record_download updated analytics: user=testuser id=1 date=2025-04-22 songs_downloaded=9
+WARNING 2025-04-22 22:08:51,298 download_helper 18764 8380 Error adding Spotify yt-dlp song to cache: 'Settings' object has no attribute 'SONG_CACHE_DURATION_DAYS'
+DEBUG 2025-04-22 22:08:51,378 download_helper 18764 8380 Cleaned up Spotify yt-dlp temp directory: C:\Users\Dell\AppData\Local\Temp\spotify_ytdlp_wm87kf0f
+INFO 2025-04-22 22:08:51,448 basehttp 18764 8380 "POST /api/songs/songs/download/ HTTP/1.1" 200 6251630
+INFO 2025-04-22 22:10:43,898 download_helper 18764 16264 Attempting download via HuggingFace API: https://www.youtube.com/watch?v=U4mADkt6o-M
+DEBUG 2025-04-22 22:10:59,083 download_helper 18764 16264 HuggingFace API metadata received: {'title': '21 Savage - redrum (Official Music Video)', 'artist': '21 Savage', 'album': 'Unknown Album', 'thumbnail_url': 'https://i.ytimg.com/vi_webp/U4mADkt6o-M/maxresdefault.webp', 'id': 'U4mADkt6o-M', 'source': 'youtube_hf_api'}
+INFO 2025-04-22 22:11:03,400 download_helper 18764 16264 Successfully downloaded via HuggingFace API to: C:\Users\Dell\AppData\Local\Temp\hf_download_t0a9o9h7\21 Savage - redrum Official Music Video-21 Savage-1745340059.mp3
+INFO 2025-04-22 22:11:03,402 download_helper 18764 16264 Processing download from HuggingFace: C:\Users\Dell\AppData\Local\Temp\hf_download_t0a9o9h7\21 Savage - redrum Official Music Video-21 Savage-1745340059.mp3
+INFO 2025-04-22 22:11:03,405 utils 18764 16264 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\21 Savage - redrum Official Music Video - 21 Savage.mp3
+INFO 2025-04-22 22:11:03,406 utils 18764 16264 Title: 21 Savage - redrum (Official Music Video), Artist: 21 Savage, Album: Unknown Album, Genre: Unknown
+INFO 2025-04-22 22:11:03,422 utils 18764 16264 Loaded existing ID3 tags
+INFO 2025-04-22 22:11:03,508 utils 18764 16264 Downloading thumbnail from URL: https://i.ytimg.com/vi_webp/U4mADkt6o-M/maxresdefault.webp
+INFO 2025-04-22 22:11:03,509 utils 18764 16264 Detected webp image in URL, will handle special conversion
+INFO 2025-04-22 22:11:04,364 utils 18764 16264 Successfully converted webp to JPEG with Pillow: 149612 bytes
+INFO 2025-04-22 22:11:04,366 utils 18764 16264 Downloaded thumbnail: 149612 bytes
+INFO 2025-04-22 22:11:04,366 utils 18764 16264 Detected image type: jpeg
+INFO 2025-04-22 22:11:04,427 utils 18764 16264 Successfully converted image to JPEG: 46952 bytes
+INFO 2025-04-22 22:11:04,430 utils 18764 16264 Adding album art, MIME type: image/jpeg
+INFO 2025-04-22 22:11:04,431 utils 18764 16264 Successfully added album art to ID3 tags
+INFO 2025-04-22 22:11:04,441 utils 18764 16264 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\21 Savage - redrum Official Music Video - 21 Savage.mp3 using ID3v2.3
+INFO 2025-04-22 22:11:04,457 utils 18764 16264 Verification: 6 tags were written, has_cover=True
+INFO 2025-04-22 22:11:04,457 utils 18764 16264 Attempting to set system thumbnail property directly (Windows only)
+WARNING 2025-04-22 22:11:04,465 utils 18764 16264 Could not set shell thumbnail: 'int' object has no attribute 'SetInfo'
+INFO 2025-04-22 22:11:04,738 models 18764 16264 [DEBUG] record_download called for user=testuser id=1 date=2025-04-22
+INFO 2025-04-22 22:11:04,866 models 18764 16264 [DEBUG] record_download updated analytics: user=testuser id=1 date=2025-04-22 songs_downloaded=10
+WARNING 2025-04-22 22:11:04,874 download_helper 18764 16264 Error adding HF song to cache: 'Settings' object has no attribute 'SONG_CACHE_DURATION_DAYS'
+DEBUG 2025-04-22 22:11:04,876 download_helper 18764 16264 Cleaned up HuggingFace temp directory: C:\Users\Dell\AppData\Local\Temp\hf_download_t0a9o9h7
+INFO 2025-04-22 22:11:04,988 basehttp 18764 16264 "POST /api/songs/songs/download/ HTTP/1.1" 200 6441338
+INFO 2025-04-22 22:18:15,559 spotify_api 18764 16344 Extracting Spotify ID from URL: https://open.spotify.com/track/4PhsKqMdgMEUSstTDAmMpg?si=013890622ce249cd
+INFO 2025-04-22 22:18:15,560 spotify_api 18764 16344 Extracted Spotify track ID: 4PhsKqMdgMEUSstTDAmMpg
+INFO 2025-04-22 22:18:15,638 views 18764 16344 Found existing song with URL https://open.spotify.com/track/4PhsKqMdgMEUSstTDAmMpg?si=013890622ce249cd, serving directly
+INFO 2025-04-22 22:18:15,714 spotify_api 18764 16344 Extracting Spotify ID from URL: https://open.spotify.com/track/4PhsKqMdgMEUSstTDAmMpg?si=013890622ce249cd
+INFO 2025-04-22 22:18:15,715 spotify_api 18764 16344 Extracted Spotify track ID: 4PhsKqMdgMEUSstTDAmMpg
+INFO 2025-04-22 22:18:15,715 download_helper 18764 16344 Getting Spotify track info for ID: ('track', '4PhsKqMdgMEUSstTDAmMpg')
+INFO 2025-04-22 22:18:15,715 spotify_api 18764 16344 Extracting Spotify ID from URL: https://open.spotify.com/track/4PhsKqMdgMEUSstTDAmMpg?si=013890622ce249cd
+INFO 2025-04-22 22:18:15,715 spotify_api 18764 16344 Extracted Spotify track ID: 4PhsKqMdgMEUSstTDAmMpg
+INFO 2025-04-22 22:18:15,716 spotify_api 18764 16344 Getting info for Spotify track ID: 4PhsKqMdgMEUSstTDAmMpg
+INFO 2025-04-22 22:18:15,716 spotify_api 18764 16344 Creating Spotify client with credentials from settings
+INFO 2025-04-22 22:18:15,928 spotify_api 18764 16344 Successfully tested Spotify client
+INFO 2025-04-22 22:18:16,269 spotify_api 18764 16344 Got track info: Often by The Weeknd
+INFO 2025-04-22 22:18:16,271 download_helper 18764 16344 Spotify track: Often by The Weeknd. Searching YouTube...
+INFO 2025-04-22 22:18:16,352 download_helper 18764 16344 Downloading using YouTube search: Often The Weeknd audio
+INFO 2025-04-22 22:18:33,782 download_helper 18764 16344 yt-dlp downloaded audio for Spotify track to: C:\Users\Dell\AppData\Local\Temp\spotify_ytdlp_le3291r2\download-1745340496.m4a
+INFO 2025-04-22 22:18:33,795 utils 18764 16344 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Often - The Weeknd.aac
+INFO 2025-04-22 22:18:33,795 utils 18764 16344 Title: Often, Artist: The Weeknd, Album: Beauty Behind The Madness, Genre: Unknown
+INFO 2025-04-22 22:18:33,800 utils 18764 16344 No existing ID3 tags found, creating new tags
+INFO 2025-04-22 22:18:33,879 utils 18764 16344 Found matching song in database: Often by The Weeknd
+INFO 2025-04-22 22:18:33,880 utils 18764 16344 Using thumbnail URL from database: https://i.scdn.co/image/ab67616d0000b2737fcead687e99583072cc217b
+INFO 2025-04-22 22:18:33,880 utils 18764 16344 Downloading thumbnail from URL: https://i.scdn.co/image/ab67616d0000b2737fcead687e99583072cc217b
+INFO 2025-04-22 22:18:33,983 utils 18764 16344 Downloaded thumbnail: 103620 bytes
+INFO 2025-04-22 22:18:33,983 utils 18764 16344 Detected image type: jpeg
+INFO 2025-04-22 22:18:34,016 utils 18764 16344 Successfully converted image to JPEG: 91841 bytes
+INFO 2025-04-22 22:18:34,016 utils 18764 16344 Adding album art, MIME type: image/jpeg
+INFO 2025-04-22 22:18:34,016 utils 18764 16344 Successfully added album art to ID3 tags
+INFO 2025-04-22 22:18:34,016 utils 18764 16344 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Often - The Weeknd.aac using ID3v2.3
+INFO 2025-04-22 22:18:34,032 utils 18764 16344 Verification: 7 tags were written, has_cover=True
+INFO 2025-04-22 22:18:34,032 utils 18764 16344 Attempting to set system thumbnail property directly (Windows only)
+WARNING 2025-04-22 22:18:34,039 utils 18764 16344 Could not set shell thumbnail: 'int' object has no attribute 'SetInfo'
+INFO 2025-04-22 22:18:34,309 download_helper 18764 16344 Updated existing Song entry for Spotify URL: https://open.spotify.com/track/4PhsKqMdgMEUSstTDAmMpg?si=013890622ce249cd
+WARNING 2025-04-22 22:18:34,442 download_helper 18764 16344 Error adding Spotify yt-dlp song to cache: 'Settings' object has no attribute 'SONG_CACHE_DURATION_DAYS'
+DEBUG 2025-04-22 22:18:34,459 download_helper 18764 16344 Cleaned up Spotify yt-dlp temp directory: C:\Users\Dell\AppData\Local\Temp\spotify_ytdlp_le3291r2
+INFO 2025-04-22 22:18:34,495 basehttp 18764 16344 "POST /api/songs/songs/download/ HTTP/1.1" 200 6251630
+INFO 2025-04-22 22:19:05,891 autoreload 18764 13144 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-22 22:19:11,556 autoreload 8552 9252 Watching for file changes with StatReloader
+INFO 2025-04-22 22:55:33,825 autoreload 8552 9252 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\tunevault\settings.py changed, reloading.
+INFO 2025-04-22 22:55:39,194 autoreload 3564 896 Watching for file changes with StatReloader
+INFO 2025-04-22 22:56:49,755 basehttp 3564 20540 "OPTIONS //api/songs/ HTTP/1.1" 200 0
+INFO 2025-04-22 22:56:50,483 basehttp 3564 20540 "GET //api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-22 22:56:50,625 basehttp 3564 23088 "OPTIONS //api/songs/recommendations/ HTTP/1.1" 200 0
+INFO 2025-04-22 22:56:51,199 basehttp 3564 8896 "OPTIONS //api/songs/user/profile HTTP/1.1" 200 0
+INFO 2025-04-22 22:56:51,228 basehttp 3564 8896 "GET //api/songs/user/profile HTTP/1.1" 301 0
+INFO 2025-04-22 22:56:51,239 basehttp 3564 11240 "OPTIONS /api/songs/user/profile/ HTTP/1.1" 200 0
+INFO 2025-04-22 22:56:51,256 basehttp 3564 20540 "GET //api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-22 22:56:51,269 views 3564 23088 User has 12 songs
+INFO 2025-04-22 22:56:51,331 views 3564 23088 User has 6 songs with Spotify IDs
+INFO 2025-04-22 22:56:51,460 views 3564 23088 Sample user songs: [{'spotify_id': "('track', '4PhsKqMdgMEUSstTDAmMpg')", 'title': 'Often', 'artist': 'The Weeknd'}, {'spotify_id': '1AWQoqb9bSvzTjaLralEkT', 'title': 'Rock Your Body', 'artist': 'Justin Timberlake'}, {'spotify_id': '5ZKG94fnjiuMH5yrC5S9lS', 'title': 'One Dance', 'artist': 'Drake'}, {'spotify_id': '7EiZI6JVHllARrX9PUvAdX', 'title': 'Low Life feat. The Weeknd', 'artist': 'Future'}, {'spotify_id': '7uDUb37h7Xdhza1eWMkoJv', 'title': 'Friends', 'artist': 'Chase Atlantic'}]
+INFO 2025-04-22 22:56:51,462 views 3564 23088 Getting recommendations for user: 1 with limit: 10
+INFO 2025-04-22 22:56:51,838 basehttp 3564 20540 "GET //api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-22 22:56:52,768 recommendation 3564 23088 Successfully retrieved 10 recommendations from Hugging Face API
+INFO 2025-04-22 22:56:52,769 recommendation 3564 23088 Successfully got 10 recommendations from Hugging Face API
+INFO 2025-04-22 22:56:52,770 views 3564 23088 Got 10 recommendations
+INFO 2025-04-22 22:56:52,908 basehttp 3564 23088 "GET //api/songs/recommendations/ HTTP/1.1" 200 2968
+INFO 2025-04-22 22:56:52,922 basehttp 3564 2800 "OPTIONS //api/songs/user/top-artists/ HTTP/1.1" 200 0
+INFO 2025-04-22 22:56:53,523 views 3564 20540 User has 12 songs
+INFO 2025-04-22 22:56:53,571 views 3564 23088 User has 12 songs
+INFO 2025-04-22 22:56:53,586 views 3564 20540 User has 6 songs with Spotify IDs
+INFO 2025-04-22 22:56:53,638 views 3564 23088 User has 6 songs with Spotify IDs
+INFO 2025-04-22 22:56:53,720 views 3564 20540 Sample user songs: [{'spotify_id': "('track', '4PhsKqMdgMEUSstTDAmMpg')", 'title': 'Often', 'artist': 'The Weeknd'}, {'spotify_id': '1AWQoqb9bSvzTjaLralEkT', 'title': 'Rock Your Body', 'artist': 'Justin Timberlake'}, {'spotify_id': '5ZKG94fnjiuMH5yrC5S9lS', 'title': 'One Dance', 'artist': 'Drake'}, {'spotify_id': '7EiZI6JVHllARrX9PUvAdX', 'title': 'Low Life feat. The Weeknd', 'artist': 'Future'}, {'spotify_id': '7uDUb37h7Xdhza1eWMkoJv', 'title': 'Friends', 'artist': 'Chase Atlantic'}]
+INFO 2025-04-22 22:56:53,722 views 3564 20540 Getting recommendations for user: 1 with limit: 10
+INFO 2025-04-22 22:56:53,778 views 3564 23088 Sample user songs: [{'spotify_id': "('track', '4PhsKqMdgMEUSstTDAmMpg')", 'title': 'Often', 'artist': 'The Weeknd'}, {'spotify_id': '1AWQoqb9bSvzTjaLralEkT', 'title': 'Rock Your Body', 'artist': 'Justin Timberlake'}, {'spotify_id': '5ZKG94fnjiuMH5yrC5S9lS', 'title': 'One Dance', 'artist': 'Drake'}, {'spotify_id': '7EiZI6JVHllARrX9PUvAdX', 'title': 'Low Life feat. The Weeknd', 'artist': 'Future'}, {'spotify_id': '7uDUb37h7Xdhza1eWMkoJv', 'title': 'Friends', 'artist': 'Chase Atlantic'}]
+INFO 2025-04-22 22:56:53,779 views 3564 23088 Getting recommendations for user: 1 with limit: 10
+WARNING 2025-04-22 22:56:54,469 utils 3564 2800 Failed to get bulk artist info from Hugging Face API: 500 {"detail":"Failed to fetch artist info: name 'JSONResponse' is not defined"}
+INFO 2025-04-22 22:56:54,976 recommendation 3564 20540 Successfully retrieved 10 recommendations from Hugging Face API
+INFO 2025-04-22 22:56:54,977 recommendation 3564 20540 Successfully got 10 recommendations from Hugging Face API
+INFO 2025-04-22 22:56:54,977 views 3564 20540 Got 10 recommendations
+INFO 2025-04-22 22:56:55,103 basehttp 3564 20540 "GET //api/songs/recommendations/ HTTP/1.1" 200 2948
+INFO 2025-04-22 22:56:55,274 recommendation 3564 23088 Successfully retrieved 10 recommendations from Hugging Face API
+INFO 2025-04-22 22:56:55,275 recommendation 3564 23088 Successfully got 10 recommendations from Hugging Face API
+INFO 2025-04-22 22:56:55,275 views 3564 23088 Got 10 recommendations
+ERROR 2025-04-22 22:56:55,287 utils 3564 2800 Error fetching artist info from Hugging Face API: 'list' object has no attribute 'get'
+INFO 2025-04-22 22:56:55,412 basehttp 3564 23088 "GET //api/songs/recommendations/ HTTP/1.1" 200 2997
+INFO 2025-04-22 22:56:55,572 basehttp 3564 11240 "GET /api/songs/user/profile/ HTTP/1.1" 200 6305
+INFO 2025-04-22 22:56:56,068 utils 3564 2800 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+ERROR 2025-04-22 22:56:57,009 utils 3564 2800 Error fetching artist info from Hugging Face API: 'list' object has no attribute 'get'
+INFO 2025-04-22 22:56:57,429 utils 3564 2800 Found partial match for artist 'VG CREATION': The Creation
+ERROR 2025-04-22 22:56:58,339 utils 3564 2800 Error fetching artist info from Hugging Face API: 'list' object has no attribute 'get'
+INFO 2025-04-22 22:56:58,876 utils 3564 2800 Found exact match for artist 'Drake': Drake
+ERROR 2025-04-22 22:56:59,815 utils 3564 2800 Error fetching artist info from Hugging Face API: 'list' object has no attribute 'get'
+INFO 2025-04-22 22:57:00,327 utils 3564 2800 Found exact match for artist 'Future': Future
+ERROR 2025-04-22 22:57:01,187 utils 3564 2800 Error fetching artist info from Hugging Face API: 'list' object has no attribute 'get'
+INFO 2025-04-22 22:57:01,559 utils 3564 2800 Found exact match for artist '21 Savage': 21 Savage
+INFO 2025-04-22 22:57:01,561 basehttp 3564 2800 "GET //api/songs/user/top-artists/ HTTP/1.1" 200 978
+INFO 2025-04-22 22:57:01,578 basehttp 3564 23088 "OPTIONS //api/users/download-activity/?period=week HTTP/1.1" 200 0
+INFO 2025-04-22 22:57:02,197 basehttp 3564 23088 "GET //api/users/download-activity/?period=week HTTP/1.1" 200 559
+INFO 2025-04-22 22:57:02,210 basehttp 3564 23088 "OPTIONS //api/songs/user/favorite-genres/ HTTP/1.1" 200 0
+WARNING 2025-04-22 22:57:03,053 utils 3564 11240 Failed to get bulk artist info from Hugging Face API: 500 {"detail":"Failed to fetch artist info: name 'JSONResponse' is not defined"}
+INFO 2025-04-22 22:57:03,302 utils 3564 23088 Found exact match for artist '21 Savage': 21 Savage
+INFO 2025-04-22 22:57:03,716 utils 3564 23088 Found exact match for artist 'The Weeknd': The Weeknd
+ERROR 2025-04-22 22:57:03,978 utils 3564 11240 Error fetching artist info from Hugging Face API: 'list' object has no attribute 'get'
+INFO 2025-04-22 22:57:04,220 utils 3564 23088 Found exact match for artist 'Justin Timberlake': Justin Timberlake
+INFO 2025-04-22 22:57:04,937 utils 3564 23088 Found exact match for artist 'Drake': Drake
+INFO 2025-04-22 22:57:05,109 utils 3564 11240 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-22 22:57:05,382 utils 3564 23088 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-22 22:57:05,781 utils 3564 23088 Found exact match for artist 'Dylan Gossett': Dylan Gossett
+ERROR 2025-04-22 22:57:06,039 utils 3564 11240 Error fetching artist info from Hugging Face API: 'list' object has no attribute 'get'
+INFO 2025-04-22 22:57:06,273 utils 3564 23088 Found partial match for artist 'VG CREATION': The Creation
+INFO 2025-04-22 22:57:07,005 utils 3564 23088 Found exact match for artist 'Eagles': Eagles
+INFO 2025-04-22 22:57:07,006 utils 3564 11240 Found partial match for artist 'VG CREATION': The Creation
+INFO 2025-04-22 22:57:07,505 utils 3564 23088 Found exact match for artist 'Future': Future
+INFO 2025-04-22 22:57:07,955 utils 3564 23088 Found exact match for artist 'Wiz Khalifa': Wiz Khalifa
+ERROR 2025-04-22 22:57:07,972 utils 3564 11240 Error fetching artist info from Hugging Face API: 'list' object has no attribute 'get'
+INFO 2025-04-22 22:57:08,645 utils 3564 23088 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-22 22:57:09,023 utils 3564 11240 Found exact match for artist 'Drake': Drake
+INFO 2025-04-22 22:57:09,174 utils 3564 23088 Found partial match for artist 'Beach Weather': The Beach Boys
+INFO 2025-04-22 22:57:09,176 basehttp 3564 23088 "GET //api/songs/user/favorite-genres/ HTTP/1.1" 200 355
+INFO 2025-04-22 22:57:09,274 basehttp 3564 23088 "OPTIONS //api/songs/user/top-countries/ HTTP/1.1" 200 0
+ERROR 2025-04-22 22:57:10,030 utils 3564 11240 Error fetching artist info from Hugging Face API: 'list' object has no attribute 'get'
+INFO 2025-04-22 22:57:10,517 utils 3564 23088 Found exact match for artist '21 Savage': 21 Savage
+INFO 2025-04-22 22:57:10,697 utils 3564 11240 Found exact match for artist 'Future': Future
+INFO 2025-04-22 22:57:11,066 utils 3564 23088 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-22 22:57:11,451 utils 3564 23088 Found exact match for artist 'Justin Timberlake': Justin Timberlake
+ERROR 2025-04-22 22:57:11,716 utils 3564 11240 Error fetching artist info from Hugging Face API: 'list' object has no attribute 'get'
+INFO 2025-04-22 22:57:11,881 utils 3564 23088 Found exact match for artist 'Drake': Drake
+INFO 2025-04-22 22:57:12,649 utils 3564 11240 Found exact match for artist '21 Savage': 21 Savage
+INFO 2025-04-22 22:57:12,657 basehttp 3564 11240 "GET //api/songs/user/top-artists/ HTTP/1.1" 200 978
+INFO 2025-04-22 22:57:12,699 utils 3564 23088 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-22 22:57:13,063 utils 3564 23088 Found exact match for artist 'Dylan Gossett': Dylan Gossett
+INFO 2025-04-22 22:57:13,436 utils 3564 23088 Found partial match for artist 'VG CREATION': The Creation
+INFO 2025-04-22 22:57:13,544 basehttp 3564 20540 "GET //api/users/download-activity/?period=week HTTP/1.1" 200 559
+INFO 2025-04-22 22:57:13,867 utils 3564 23088 Found exact match for artist 'Eagles': Eagles
+INFO 2025-04-22 22:57:14,265 utils 3564 23088 Found exact match for artist 'Future': Future
+WARNING 2025-04-22 22:57:14,443 utils 3564 11240 Failed to get bulk artist info from Hugging Face API: 500 {"detail":"Failed to fetch artist info: name 'JSONResponse' is not defined"}
+INFO 2025-04-22 22:57:14,829 utils 3564 23088 Found exact match for artist 'Wiz Khalifa': Wiz Khalifa
+INFO 2025-04-22 22:57:15,044 utils 3564 20540 Found exact match for artist '21 Savage': 21 Savage
+ERROR 2025-04-22 22:57:15,496 utils 3564 11240 Error fetching artist info from Hugging Face API: 'list' object has no attribute 'get'
+INFO 2025-04-22 22:57:15,702 utils 3564 20540 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-22 22:57:15,880 utils 3564 23088 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-22 22:57:16,701 utils 3564 11240 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-22 22:57:16,744 utils 3564 20540 Found exact match for artist 'Justin Timberlake': Justin Timberlake
+INFO 2025-04-22 22:57:17,011 utils 3564 23088 Found partial match for artist 'Beach Weather': The Beach Boys
+INFO 2025-04-22 22:57:17,033 basehttp 3564 23088 "GET //api/songs/user/top-countries/ HTTP/1.1" 200 215
+INFO 2025-04-22 22:57:17,257 utils 3564 20540 Found exact match for artist 'Drake': Drake
+INFO 2025-04-22 22:57:17,636 utils 3564 20540 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+ERROR 2025-04-22 22:57:17,637 utils 3564 11240 Error fetching artist info from Hugging Face API: 'list' object has no attribute 'get'
+INFO 2025-04-22 22:57:18,281 utils 3564 11240 Found partial match for artist 'VG CREATION': The Creation
+INFO 2025-04-22 22:57:18,415 utils 3564 20540 Found exact match for artist 'Dylan Gossett': Dylan Gossett
+INFO 2025-04-22 22:57:18,800 utils 3564 20540 Found partial match for artist 'VG CREATION': The Creation
+INFO 2025-04-22 22:57:19,188 utils 3564 20540 Found exact match for artist 'Eagles': Eagles
+ERROR 2025-04-22 22:57:19,279 utils 3564 11240 Error fetching artist info from Hugging Face API: 'list' object has no attribute 'get'
+INFO 2025-04-22 22:57:19,882 utils 3564 20540 Found exact match for artist 'Future': Future
+INFO 2025-04-22 22:57:20,287 utils 3564 11240 Found exact match for artist 'Drake': Drake
+INFO 2025-04-22 22:57:20,651 utils 3564 20540 Found exact match for artist 'Wiz Khalifa': Wiz Khalifa
+INFO 2025-04-22 22:57:21,127 utils 3564 20540 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+ERROR 2025-04-22 22:57:21,223 utils 3564 11240 Error fetching artist info from Hugging Face API: 'list' object has no attribute 'get'
+INFO 2025-04-22 22:57:21,967 utils 3564 20540 Found partial match for artist 'Beach Weather': The Beach Boys
+INFO 2025-04-22 22:57:21,971 basehttp 3564 20540 "GET //api/songs/user/favorite-genres/ HTTP/1.1" 200 355
+INFO 2025-04-22 22:57:22,089 utils 3564 11240 Found exact match for artist 'Future': Future
+ERROR 2025-04-22 22:57:22,920 utils 3564 11240 Error fetching artist info from Hugging Face API: 'list' object has no attribute 'get'
+INFO 2025-04-22 22:57:23,051 utils 3564 23088 Found exact match for artist '21 Savage': 21 Savage
+INFO 2025-04-22 22:57:23,631 utils 3564 23088 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-22 22:57:24,138 utils 3564 23088 Found exact match for artist 'Justin Timberlake': Justin Timberlake
+INFO 2025-04-22 22:57:24,231 utils 3564 11240 Found exact match for artist '21 Savage': 21 Savage
+INFO 2025-04-22 22:57:24,263 basehttp 3564 11240 "GET //api/songs/user/top-artists/ HTTP/1.1" 200 978
+INFO 2025-04-22 22:57:24,778 utils 3564 23088 Found exact match for artist 'Drake': Drake
+INFO 2025-04-22 22:57:24,953 basehttp 3564 11240 "GET //api/users/download-activity/?period=week HTTP/1.1" 200 559
+INFO 2025-04-22 22:57:25,269 utils 3564 23088 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-22 22:57:26,098 utils 3564 23088 Found exact match for artist 'Dylan Gossett': Dylan Gossett
+INFO 2025-04-22 22:57:26,584 utils 3564 11240 Found exact match for artist '21 Savage': 21 Savage
+INFO 2025-04-22 22:57:27,133 utils 3564 23088 Found partial match for artist 'VG CREATION': The Creation
+INFO 2025-04-22 22:57:27,778 utils 3564 11240 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-22 22:57:28,287 utils 3564 23088 Found exact match for artist 'Eagles': Eagles
+INFO 2025-04-22 22:57:28,842 utils 3564 11240 Found exact match for artist 'Justin Timberlake': Justin Timberlake
+INFO 2025-04-22 22:57:29,551 utils 3564 23088 Found exact match for artist 'Future': Future
+INFO 2025-04-22 22:57:29,837 utils 3564 11240 Found exact match for artist 'Drake': Drake
+INFO 2025-04-22 22:57:30,372 utils 3564 23088 Found exact match for artist 'Wiz Khalifa': Wiz Khalifa
+INFO 2025-04-22 22:57:30,840 utils 3564 11240 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-22 22:57:31,003 utils 3564 23088 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-22 22:57:31,440 utils 3564 11240 Found exact match for artist 'Dylan Gossett': Dylan Gossett
+INFO 2025-04-22 22:57:31,864 utils 3564 23088 Found partial match for artist 'Beach Weather': The Beach Boys
+INFO 2025-04-22 22:57:31,874 basehttp 3564 23088 "GET //api/songs/user/top-countries/ HTTP/1.1" 200 215
+INFO 2025-04-22 22:57:32,100 utils 3564 11240 Found partial match for artist 'VG CREATION': The Creation
+INFO 2025-04-22 22:57:32,487 utils 3564 11240 Found exact match for artist 'Eagles': Eagles
+INFO 2025-04-22 22:57:32,934 utils 3564 11240 Found exact match for artist 'Future': Future
+INFO 2025-04-22 22:57:33,338 utils 3564 11240 Found exact match for artist 'Wiz Khalifa': Wiz Khalifa
+INFO 2025-04-22 22:57:33,731 utils 3564 11240 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-22 22:57:34,110 utils 3564 11240 Found partial match for artist 'Beach Weather': The Beach Boys
+INFO 2025-04-22 22:57:34,112 basehttp 3564 11240 "GET //api/songs/user/favorite-genres/ HTTP/1.1" 200 355
+INFO 2025-04-22 22:57:35,198 utils 3564 11240 Found exact match for artist '21 Savage': 21 Savage
+INFO 2025-04-22 22:57:35,588 utils 3564 11240 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-22 22:57:36,013 utils 3564 11240 Found exact match for artist 'Justin Timberlake': Justin Timberlake
+INFO 2025-04-22 22:57:36,463 utils 3564 11240 Found exact match for artist 'Drake': Drake
+INFO 2025-04-22 22:57:36,869 utils 3564 11240 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-22 22:57:37,377 utils 3564 11240 Found exact match for artist 'Dylan Gossett': Dylan Gossett
+INFO 2025-04-22 22:57:37,899 utils 3564 11240 Found partial match for artist 'VG CREATION': The Creation
+INFO 2025-04-22 22:57:38,537 utils 3564 11240 Found exact match for artist 'Eagles': Eagles
+INFO 2025-04-22 22:57:39,065 utils 3564 11240 Found exact match for artist 'Future': Future
+INFO 2025-04-22 22:57:39,535 utils 3564 11240 Found exact match for artist 'Wiz Khalifa': Wiz Khalifa
+INFO 2025-04-22 22:57:40,076 utils 3564 11240 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-22 22:57:40,586 utils 3564 11240 Found partial match for artist 'Beach Weather': The Beach Boys
+INFO 2025-04-22 22:57:40,588 basehttp 3564 11240 "GET //api/songs/user/top-countries/ HTTP/1.1" 200 215
