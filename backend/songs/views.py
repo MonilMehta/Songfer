@@ -5,6 +5,7 @@ import time
 import tempfile
 import shutil
 import yt_dlp
+import requests  # Add requests for API calls
 from django.conf import settings
 from django.http import FileResponse, HttpResponse
 from django.utils import timezone
@@ -785,30 +786,50 @@ class UserTopArtistsView(generics.ListAPIView):
         # Get top artists data
         top_artists = Song.get_user_top_artists(self.request.user)
         
-        # Enhance with data from Global Music Artists CSV
+        # Extract just artist names for bulk API call
+        artist_names = [artist_data['artist'] for artist_data in top_artists]
+        
+        # Use Hugging Face API to get artist info in bulk
+        from .utils import get_bulk_artist_info_from_hf, get_artist_info_from_hf
+        
+        # First try bulk API call
         enhanced_artists = []
+        artist_info_map = get_bulk_artist_info_from_hf(artist_names)
         
         for artist_data in top_artists:
             artist_name = artist_data['artist']
             count = artist_data['count']
             
-            # Get additional artist info from CSV
-            from .utils import get_artist_info
-            artist_info = get_artist_info(artist_name)
-            
-            if artist_info:
-                # Add the count from the original query
+            # First check if we got data from bulk call
+            if artist_name in artist_info_map and artist_info_map[artist_name]:
+                artist_info = artist_info_map[artist_name]
                 artist_info['count'] = count
                 enhanced_artists.append(artist_info)
             else:
-                # If not found in CSV, keep original data with default values
-                enhanced_artists.append({
-                    'artist': artist_name,
-                    'count': count,
-                    'artist_img': "https://media.istockphoto.com/id/1298261537/vector/blank-man-profile-head-icon-placeholder.jpg?s=612x612&w=0&k=20&c=CeT1RVWZzQDay4t54ookMaFsdi7ZHVFg2Y5v7hxigCA=",
-                    'country': "Unknown",
-                    'artist_genre': "Unknown"
-                })
+                # Try individual API call as fallback
+                artist_info = get_artist_info_from_hf(artist_name)
+                
+                if artist_info:
+                    # Add the count from the original query
+                    artist_info['count'] = count
+                    enhanced_artists.append(artist_info)
+                else:
+                    # Fallback to local CSV if both API calls fail
+                    from .utils import get_artist_info
+                    local_artist_info = get_artist_info(artist_name)
+                    
+                    if local_artist_info:
+                        local_artist_info['count'] = count
+                        enhanced_artists.append(local_artist_info)
+                    else:
+                        # If not found anywhere, keep original data with default values
+                        enhanced_artists.append({
+                            'artist': artist_name,
+                            'count': count,
+                            'artist_img': "https://media.istockphoto.com/id/1298261537/vector/blank-man-profile-head-icon-placeholder.jpg?s=612x612&w=0&k=20&c=CeT1RVWZzQDay4t54ookMaFsdi7ZHVFg2Y5v7hxigCA=",
+                            'country': "Unknown",
+                            'artist_genre': "Unknown"
+                        })
         
         return enhanced_artists
 

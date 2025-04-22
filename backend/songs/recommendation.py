@@ -245,7 +245,7 @@ class MusicRecommender:
         try:
             # Check if song exists in dataset by name
             song_idx = None
-            if song_name in self.name_to_index:
+            if (song_name in self.name_to_index):
                 song_idx = self.name_to_index[song_name]
             # If not found by name, try as spotify_id
             elif self.id_to_index and song_name in self.id_to_index:
@@ -623,22 +623,42 @@ def get_recommender():
 
 def get_hybrid_recommendations(user, limit=10):
     """
-    Get recommendations based on user's downloaded songs using a hybrid approach
+    Get recommendations based on user's downloaded songs using a hybrid approach.
+    Primarily uses Hugging Face API with local recommendations as fallback.
     """
     try:
-        recommender = get_recommender()
-        
         # Check if user has any songs
         if not hasattr(user, 'songs') or not user.songs.exists():
             logger.warning(f"User {user.id} has no songs - using popular songs")
-            return recommender.get_popular_songs(limit)
+            return get_hardcoded_recommendations(limit)
         
         # Get user's latest songs
-        latest_songs = user.songs.order_by('-created_at')[:5]
+        latest_songs = list(user.songs.order_by('-created_at')[:5])
         
         if not latest_songs:
             logger.warning(f"No songs found for user {user.id}")
-            return recommender.get_popular_songs(limit)
+            return get_hardcoded_recommendations(limit)
+        
+        # Format songs for API request
+        formatted_songs = []
+        for song in latest_songs:
+            formatted_songs.append({
+                "spotify_id": song.spotify_id,
+                "title": song.title, 
+                "artist": song.artist
+            })
+            
+        # First try to get recommendations from Hugging Face API
+        hf_recommendations = get_recommendations_from_hf(formatted_songs, limit)
+        
+        if hf_recommendations and len(hf_recommendations) >= 3:  # Ensure we have a reasonable number of recommendations
+            logger.info(f"Successfully got {len(hf_recommendations)} recommendations from Hugging Face API")
+            return hf_recommendations
+        else:
+            logger.info("Hugging Face recommendations unavailable or insufficient, falling back to local system")
+        
+        # Fall back to local recommendation logic if API fails
+        recommender = get_recommender()
         
         # Get user's top genres
         from .models import Song
@@ -653,12 +673,8 @@ def get_hybrid_recommendations(user, limit=10):
         # 1. Content-based recommendations from recent songs
         for song in latest_songs:
             if song.spotify_id:
-                # Try to find similar songs - if the specific ID isn't in the dataset,
-                # the find_similar_songs method will try by name/artist
                 song_recommendations = recommender.find_similar_songs(song.spotify_id, n=20)
                 if song_recommendations:
-                    for rec in song_recommendations:
-                        rec['source'] = 'content_based'
                     all_recommendations.extend(song_recommendations)
         
         # 2. Genre-based recommendations
@@ -666,16 +682,11 @@ def get_hybrid_recommendations(user, limit=10):
             if genre['genre'] and genre['genre'] != 'Unknown':
                 genre_recommendations = recommender.get_recommendations_by_genre(genre['genre'], n=10)
                 if genre_recommendations:
-                    for rec in genre_recommendations:
-                        rec['source'] = 'genre_based'
                     all_recommendations.extend(genre_recommendations)
         
         # 3. Popular songs as fallback
         if not all_recommendations:
-            popular_songs = recommender.get_popular_songs(limit)
-            for rec in popular_songs:
-                rec['source'] = 'popular'
-            return popular_songs
+            return recommender.get_popular_songs(limit)
         
         # Group by song title and count occurrences
         recommendation_dict = {}
@@ -691,12 +702,10 @@ def get_hybrid_recommendations(user, limit=10):
         final_recommendations = list(recommendation_dict.values())
         final_recommendations.sort(key=lambda x: (x.get('count', 0), x.get('popularity', 0)), reverse=True)
         
-        # Remove count field and source field and return top recommendations
+        # Remove count field and return top recommendations
         for rec in final_recommendations:
             if 'count' in rec:
                 del rec['count']
-            if 'source' in rec:
-                del rec['source']
                 
         return final_recommendations[:limit]
     except Exception as e:
@@ -725,4 +734,52 @@ def update_user_recommendations(user):
         
     except Exception as e:
         logger.error(f"Error updating recommendations: {e}")
-        return False 
+        return False
+
+def get_recommendations_from_hf(songs, limit=10):
+    """
+    Get song recommendations from Hugging Face API
+    
+    Args:
+        songs (list): List of songs to use for recommendations. Each song should be a dict with 
+                      spotify_id, title, and artist
+        limit (int): Number of recommendations to get
+    
+    Returns:
+        list: List of song recommendations
+    """
+    import requests
+    from django.conf import settings
+    import logging
+    logger = logging.getLogger(__name__)
+    
+    try:
+        # Prepare input data for the API
+        input_songs = []
+        for song in songs[:5]:  # Limit to 5 songs
+            input_songs.append({
+                "spotify_id": song.get("spotify_id", None),
+                "title": song.get("title", None),
+                "artist": song.get("artist", None)
+            })
+        
+        # Make a request to the Hugging Face Space API
+        hf_api_url = "https://monilm-songporter.hf.space/recommendations/"
+        response = requests.post(
+            hf_api_url,
+            json={"songs": input_songs, "limit": limit},
+            headers={"Content-Type": "application/json"},
+            timeout=10  # 10 seconds timeout
+        )
+        
+        if response.status_code == 200:
+            data = response.json()
+            recommendations = data.get('recommendations', [])
+            logger.info(f"Successfully retrieved {len(recommendations)} recommendations from Hugging Face API")
+            return recommendations
+        else:
+            logger.warning(f"Failed to get recommendations from Hugging Face API: {response.status_code} {response.text}")
+            return []
+    except Exception as e:
+        logger.error(f"Error fetching recommendations from Hugging Face API: {e}")
+        return []

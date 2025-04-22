@@ -1168,3 +1168,48 @@ WARNING 2025-04-21 20:49:30,985 views 22896 10848 Missing spotify_id in recommen
 INFO 2025-04-21 20:49:31,109 basehttp 22896 10848 "GET /api/songs/recommendations/ HTTP/1.1" 200 219
 INFO 2025-04-21 22:04:01,476 autoreload 22896 16884 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
 INFO 2025-04-21 22:04:06,819 autoreload 12484 17880 Watching for file changes with StatReloader
+INFO 2025-04-21 23:29:41,027 autoreload 9508 2680 Watching for file changes with StatReloader
+INFO 2025-04-22 13:27:06,872 autoreload 20384 21492 Watching for file changes with StatReloader
+WARNING 2025-04-22 13:27:53,901 utils 20384 13040 Failed to get bulk artist info from Hugging Face API: 404 {"detail":"Not Found"}
+INFO 2025-04-22 13:27:54,724 utils 20384 13040 Successfully retrieved artist info from Hugging Face for Future
+INFO 2025-04-22 13:27:55,742 utils 20384 13040 Successfully retrieved artist info from Hugging Face for Wiz Khalifa
+INFO 2025-04-22 13:27:56,779 utils 20384 13040 Successfully retrieved artist info from Hugging Face for Beach Weather
+INFO 2025-04-22 13:27:57,991 utils 20384 13040 Successfully retrieved artist info from Hugging Face for Chase Atlantic
+INFO 2025-04-22 13:27:57,991 basehttp 20384 13040 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 345
+INFO 2025-04-22 13:30:41,095 autoreload 20384 21492 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\utils.py changed, reloading.
+INFO 2025-04-22 13:30:45,880 autoreload 2936 22832 Watching for file changes with StatReloader
+WARNING 2025-04-22 13:30:52,361 utils 2936 16428 Failed to get bulk artist info from Hugging Face API: 404 {"detail":"Not Found"}
+INFO 2025-04-22 13:30:53,325 utils 2936 16428 Successfully retrieved artist info from Hugging Face for Future
+INFO 2025-04-22 13:30:54,352 utils 2936 16428 Successfully retrieved artist info from Hugging Face for Wiz Khalifa
+INFO 2025-04-22 13:30:55,263 utils 2936 16428 Successfully retrieved artist info from Hugging Face for Beach Weather
+INFO 2025-04-22 13:30:56,492 utils 2936 16428 Successfully retrieved artist info from Hugging Face for Chase Atlantic
+INFO 2025-04-22 13:30:56,492 basehttp 2936 16428 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 345
+INFO 2025-04-22 13:33:04,068 autoreload 2936 22832 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\utils.py changed, reloading.
+INFO 2025-04-22 13:33:08,238 autoreload 17160 9744 Watching for file changes with StatReloader
+INFO 2025-04-22 13:34:04,130 autoreload 17160 9744 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\utils.py changed, reloading.
+INFO 2025-04-22 13:34:08,219 autoreload 9132 2504 Watching for file changes with StatReloader
+WARNING 2025-04-22 13:37:56,651 utils 9132 15172 Failed to get bulk artist info from Hugging Face API: 404 {"detail":"Not Found"}
+INFO 2025-04-22 13:37:57,783 utils 9132 15172 Successfully retrieved artist info from Hugging Face for Future
+INFO 2025-04-22 13:37:58,912 utils 9132 15172 Successfully retrieved artist info from Hugging Face for Wiz Khalifa
+INFO 2025-04-22 13:38:00,753 utils 9132 15172 Successfully retrieved artist info from Hugging Face for Beach Weather
+INFO 2025-04-22 13:38:01,982 utils 9132 15172 Successfully retrieved artist info from Hugging Face for Chase Atlantic
+INFO 2025-04-22 13:38:01,989 basehttp 9132 15172 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 855
+INFO 2025-04-22 13:38:29,736 basehttp 9132 15172 "POST /api/users/login/ HTTP/1.1" 200 95
+INFO 2025-04-22 13:38:52,677 views 9132 15172 User has 4 songs
+INFO 2025-04-22 13:38:52,743 views 9132 15172 User has 3 songs with Spotify IDs
+INFO 2025-04-22 13:38:52,881 views 9132 15172 Sample user songs: [{'spotify_id': '7EiZI6JVHllARrX9PUvAdX', 'title': 'Low Life feat. The Weeknd', 'artist': 'Future'}, {'spotify_id': '7uDUb37h7Xdhza1eWMkoJv', 'title': 'Friends', 'artist': 'Chase Atlantic'}, {'spotify_id': '7MlDNspYwfqnHxORufupwq', 'title': 'Sex, Drugs, Etc.', 'artist': 'Beach Weather'}]
+INFO 2025-04-22 13:38:52,881 views 9132 15172 Getting recommendations for user: 1 with limit: 10
+INFO 2025-04-22 13:38:54,724 recommendation 9132 15172 Successfully retrieved 10 recommendations from Hugging Face API
+INFO 2025-04-22 13:38:54,730 recommendation 9132 15172 Successfully got 10 recommendations from Hugging Face API
+INFO 2025-04-22 13:38:54,730 views 9132 15172 Got 10 recommendations
+INFO 2025-04-22 13:38:54,884 basehttp 9132 15172 "GET /api/songs/recommendations/ HTTP/1.1" 200 3027
+INFO 2025-04-22 13:39:10,662 views 9132 15172 User has 4 songs
+INFO 2025-04-22 13:39:10,733 views 9132 15172 User has 3 songs with Spotify IDs
+INFO 2025-04-22 13:39:10,864 views 9132 15172 Sample user songs: [{'spotify_id': '7EiZI6JVHllARrX9PUvAdX', 'title': 'Low Life feat. The Weeknd', 'artist': 'Future'}, {'spotify_id': '7uDUb37h7Xdhza1eWMkoJv', 'title': 'Friends', 'artist': 'Chase Atlantic'}, {'spotify_id': '7MlDNspYwfqnHxORufupwq', 'title': 'Sex, Drugs, Etc.', 'artist': 'Beach Weather'}]
+INFO 2025-04-22 13:39:10,865 views 9132 15172 Getting recommendations for user: 1 with limit: 10
+INFO 2025-04-22 13:39:12,335 recommendation 9132 15172 Successfully retrieved 10 recommendations from Hugging Face API
+INFO 2025-04-22 13:39:12,336 recommendation 9132 15172 Successfully got 10 recommendations from Hugging Face API
+INFO 2025-04-22 13:39:12,336 views 9132 15172 Got 10 recommendations
+INFO 2025-04-22 13:39:12,501 basehttp 9132 15172 "GET /api/songs/recommendations/ HTTP/1.1" 200 2915
+INFO 2025-04-22 13:40:07,413 autoreload 9132 2504 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\recommendation.py changed, reloading.
+INFO 2025-04-22 13:40:12,443 autoreload 18640 23084 Watching for file changes with StatReloader
