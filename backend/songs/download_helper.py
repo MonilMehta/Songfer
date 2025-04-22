@@ -159,7 +159,10 @@ def download_youtube(request, url, output_format=None):
         temp_dir = tempfile.mkdtemp()
         # Generate a temporary filename
         temp_filename = os.path.join(temp_dir, sanitize_filename(f'download-{int(time.time())}'))
-        
+        # Add this near the start of download_spotify_track function
+        cookie_file = os.path.join(settings.BASE_DIR, 'cookies.txt')
+        logger.info(f"Using cookies file at: {cookie_file}")
+        logger.info(f"Cookie file exists: {os.path.exists(cookie_file)}")
         # Define download options
         ydl_opts = {
             'format': 'bestaudio/best',
@@ -486,7 +489,9 @@ def download_spotify_track(request, url, output_format=None):
         # Create a temporary directory that we'll clean up manually
         temp_dir = tempfile.mkdtemp()
         temp_filename = os.path.join(temp_dir, sanitize_filename(f'download-{int(time.time())}'))
-        
+        cookie_file = os.path.join(settings.BASE_DIR, 'cookies.txt')
+        logger.info(f"Using cookies file at: {cookie_file}")
+        logger.info(f"Cookie file exists: {os.path.exists(cookie_file)}")
         # Download from YouTube using yt-dlp
         ydl_opts = {
             'format': 'bestaudio/best',
@@ -945,7 +950,9 @@ def download_playlist(request):
                         # Get the Spotify thumbnail URL from the track info
                         thumbnail_url = track_info.get('image_url')
                         logger.info(f"Spotify track info: {track_info['title']} - {track_info['artist']}, thumbnail: {thumbnail_url}")
-                        
+                        cookie_file = os.path.join(settings.BASE_DIR, 'cookies.txt')
+                        logger.info(f"Using cookies file at: {cookie_file}")
+                        logger.info(f"Cookie file exists: {os.path.exists(cookie_file)}")
                         ydl_opts = {
                             'format': 'bestaudio/best',
                             'postprocessors': [{
@@ -956,8 +963,9 @@ def download_playlist(request):
                             'outtmpl': os.path.join(settings.MEDIA_ROOT, 'songs', '%(title)s.%(ext)s'),
                             'writethumbnail': True,
                             'cookiefile': os.path.join(settings.BASE_DIR, 'cookies.txt'),  # Use cookies to avoid bot detection
-            'nocheckcertificate': True,  # Sometimes helps with HTTPS issues
-            'ignoreerrors': False,
+                            'nocheckcertificate': True,  # Sometimes helps with HTTPS issues
+                            'ignoreerrors': False,
+                            'user_agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36',
                         }
                         
                         with yt_dlp.YoutubeDL(ydl_opts) as ydl:

@@ -1238,3 +1238,58 @@ INFO 2025-04-22 15:59:42,152 autoreload 19712 15576 C:\Users\Dell\Monil\Apps\cod
 INFO 2025-04-22 16:00:34,527 autoreload 5172 24816 Watching for file changes with StatReloader
 INFO 2025-04-22 16:01:07,265 autoreload 5172 24816 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\tasks.py changed, reloading.
 INFO 2025-04-22 16:01:11,353 autoreload 17552 19464 Watching for file changes with StatReloader
+INFO 2025-04-22 16:16:45,680 autoreload 17552 19464 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\utils.py changed, reloading.
+INFO 2025-04-22 16:16:50,044 autoreload 19784 15064 Watching for file changes with StatReloader
+INFO 2025-04-22 16:17:15,139 autoreload 19784 15064 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\utils.py changed, reloading.
+INFO 2025-04-22 16:17:19,197 autoreload 22452 21604 Watching for file changes with StatReloader
+INFO 2025-04-22 16:17:28,335 autoreload 22452 21604 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-22 16:17:32,216 autoreload 12096 19588 Watching for file changes with StatReloader
+WARNING 2025-04-22 16:21:23,913 log 12096 8132 Unauthorized: /api/songs/songs/download/
+WARNING 2025-04-22 16:21:23,922 basehttp 12096 8132 "POST /api/songs/songs/download/ HTTP/1.1" 401 27
+INFO 2025-04-22 16:21:47,327 basehttp 12096 8132 "POST /api/users/login/ HTTP/1.1" 200 95
+INFO 2025-04-22 16:22:14,388 utils 12096 8132 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Kiska Rasta Dekhe - Kishore Kumar Reverb - VG CREATION.mp3
+INFO 2025-04-22 16:22:14,389 utils 12096 8132 Title: Kiska Rasta Dekhe - Kishore Kumar (Reverb), Artist: VG CREATION, Album: Unknown, Genre: Unknown
+INFO 2025-04-22 16:22:14,398 utils 12096 8132 Loaded existing ID3 tags
+INFO 2025-04-22 16:22:14,471 utils 12096 8132 Looking for local thumbnail: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs/Kiska Rasta Dekhe - Kishore Kumar Reverb - VG CREATION.webp
+INFO 2025-04-22 16:22:14,492 utils 12096 8132 Found local thumbnail: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs/Kiska Rasta Dekhe - Kishore Kumar Reverb - VG CREATION.webp
+INFO 2025-04-22 16:22:14,493 utils 12096 8132 Detected image type: webp
+INFO 2025-04-22 16:22:14,640 utils 12096 8132 Successfully converted image to JPEG: 67983 bytes
+INFO 2025-04-22 16:22:14,646 utils 12096 8132 Adding album art, MIME type: image/jpeg
+INFO 2025-04-22 16:22:14,646 utils 12096 8132 Successfully added album art to ID3 tags
+INFO 2025-04-22 16:22:14,653 utils 12096 8132 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Kiska Rasta Dekhe - Kishore Kumar Reverb - VG CREATION.mp3 using ID3v2.3
+INFO 2025-04-22 16:22:14,665 utils 12096 8132 Verification: 8 tags were written, has_cover=True
+INFO 2025-04-22 16:22:14,698 utils 12096 8132 Attempting to set system thumbnail property directly (Windows only)
+WARNING 2025-04-22 16:22:14,705 utils 12096 8132 Could not set shell thumbnail: 'int' object has no attribute 'SetInfo'
+INFO 2025-04-22 16:22:15,449 download_helper 12096 8132 Added song to cache: https://www.youtube.com/watch?v=uNFGn3BUygg
+INFO 2025-04-22 16:22:15,637 basehttp 12096 8132 "POST /api/songs/songs/download/ HTTP/1.1" 200 6228931
+INFO 2025-04-22 16:23:26,896 autoreload 12096 19588 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-22 16:23:31,125 autoreload 14472 20896 Watching for file changes with StatReloader
+INFO 2025-04-22 16:23:34,624 autoreload 14472 20896 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-22 16:23:39,079 autoreload 10416 17268 Watching for file changes with StatReloader
+INFO 2025-04-22 16:23:45,445 autoreload 10416 17268 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-22 16:23:50,277 autoreload 13628 24796 Watching for file changes with StatReloader
+INFO 2025-04-22 16:23:53,888 autoreload 13628 24796 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\tasks.py changed, reloading.
+INFO 2025-04-22 16:23:59,093 autoreload 2220 1968 Watching for file changes with StatReloader
+INFO 2025-04-22 16:24:01,798 autoreload 2220 1968 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\tasks.py changed, reloading.
+INFO 2025-04-22 16:24:06,085 autoreload 7816 21260 Watching for file changes with StatReloader
+INFO 2025-04-22 16:24:10,183 autoreload 7816 21260 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\tasks.py changed, reloading.
+INFO 2025-04-22 16:24:14,615 autoreload 25176 3904 Watching for file changes with StatReloader
+INFO 2025-04-22 16:24:25,618 autoreload 25176 3904 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\tasks.py changed, reloading.
+INFO 2025-04-22 16:24:29,725 autoreload 16192 13180 Watching for file changes with StatReloader
+INFO 2025-04-22 16:24:45,979 download_helper 16192 21576 Using cookies file at: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\cookies.txt
+INFO 2025-04-22 16:24:45,981 download_helper 16192 21576 Cookie file exists: True
+INFO 2025-04-22 16:24:57,093 utils 16192 21576 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Dylan Gossett - Beneath Oak Trees - Dylan Gossett.mp3
+INFO 2025-04-22 16:24:57,093 utils 16192 21576 Title: Dylan Gossett - Beneath Oak Trees, Artist: Dylan Gossett, Album: Unknown, Genre: Unknown
+INFO 2025-04-22 16:24:57,103 utils 16192 21576 Loaded existing ID3 tags
+INFO 2025-04-22 16:24:57,173 utils 16192 21576 Looking for local thumbnail: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs/Dylan Gossett - Beneath Oak Trees - Dylan Gossett.webp
+INFO 2025-04-22 16:24:57,190 utils 16192 21576 Found local thumbnail: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs/Dylan Gossett - Beneath Oak Trees - Dylan Gossett.webp
+INFO 2025-04-22 16:24:57,192 utils 16192 21576 Detected image type: webp
+INFO 2025-04-22 16:24:57,396 utils 16192 21576 Successfully converted image to JPEG: 36056 bytes
+INFO 2025-04-22 16:24:57,399 utils 16192 21576 Adding album art, MIME type: image/jpeg
+INFO 2025-04-22 16:24:57,400 utils 16192 21576 Successfully added album art to ID3 tags
+INFO 2025-04-22 16:24:57,437 utils 16192 21576 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Dylan Gossett - Beneath Oak Trees - Dylan Gossett.mp3 using ID3v2.3
+INFO 2025-04-22 16:24:57,457 utils 16192 21576 Verification: 8 tags were written, has_cover=True
+INFO 2025-04-22 16:24:57,516 utils 16192 21576 Attempting to set system thumbnail property directly (Windows only)
+WARNING 2025-04-22 16:24:57,540 utils 16192 21576 Could not set shell thumbnail: 'int' object has no attribute 'SetInfo'
+INFO 2025-04-22 16:24:58,241 download_helper 16192 21576 Added song to cache: https://www.youtube.com/watch?v=JRdD2Q707Xg
+INFO 2025-04-22 16:24:58,575 basehttp 16192 21576 "POST /api/songs/songs/download/ HTTP/1.1" 200 5746112

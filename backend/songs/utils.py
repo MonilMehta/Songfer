@@ -943,7 +943,10 @@ def download_youtube_util(url, output_path=None):
                 video_id = info.get('id', 'unknown')
                 title = sanitize_filename(info.get('title', 'Unknown Title'))
                 artist = sanitize_filename(info.get('uploader', 'Unknown Artist'))
-                
+                # Add this near the start of download_spotify_track function
+                cookie_file = os.path.join(settings.BASE_DIR, 'cookies.txt')
+                logger.info(f"Using cookies file at: {cookie_file}")
+                logger.info(f"Cookie file exists: {os.path.exists(cookie_file)}")
                 # Now download with the sanitized info
                 ydl_opts = {
                     'format': 'bestaudio/best',
@@ -956,8 +959,9 @@ def download_youtube_util(url, output_path=None):
                     'writethumbnail': True,
                     'noplaylist': True,
                     'cookiefile': os.path.join(settings.BASE_DIR, 'cookies.txt'),  # Use cookies to avoid bot detection
-            'nocheckcertificate': True,  # Sometimes helps with HTTPS issues
-            'ignoreerrors': False,
+                    'nocheckcertificate': True,  # Sometimes helps with HTTPS issues
+                    'ignoreerrors': False,
+                    'user_agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36',
                 }
                 
                 with yt_dlp.YoutubeDL(ydl_opts) as ydl2:

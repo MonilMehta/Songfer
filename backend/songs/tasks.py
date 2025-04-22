@@ -45,7 +45,9 @@ def download_audio(query, output_path, task_id, is_url=False):
     
     # Extract base path and filename without extension
     base_path = os.path.splitext(output_path)[0]
-    
+    cookie_file = os.path.join(settings.BASE_DIR, 'cookies.txt')
+    logger.info(f"Using cookies file at: {cookie_file}")
+    logger.info(f"Cookie file exists: {os.path.exists(cookie_file)}")
     ydl_opts = {
         'format': 'bestaudio/best',
         'postprocessors': [{
@@ -323,6 +325,9 @@ def download_song(self, url, user_id):
         # Determine which service to use based on the URL
         if 'youtube.com' in url or 'youtu.be' in url:
             # Download from YouTube
+            cookie_file = os.path.join(settings.BASE_DIR, 'cookies.txt')
+            logger.info(f"Using cookies file at: {cookie_file}")
+            logger.info(f"Cookie file exists: {os.path.exists(cookie_file)}")
             ydl_opts = {
                 'format': 'bestaudio/best',
                 'postprocessors': [{
