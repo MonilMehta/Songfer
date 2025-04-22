@@ -171,7 +171,7 @@ def download_youtube(request, url, output_format=None):
             'outtmpl': temp_filename,
             'writethumbnail': True,
             'noplaylist': True,  # Only download the single video, not the playlist
-            'cookiesfile': os.path.join(settings.BASE_DIR, 'cookies.txt'),  # Use cookies to avoid bot detection
+            'cookiefile': os.path.join(settings.BASE_DIR, 'cookies.txt'),  # Use cookies to avoid bot detection
             'nocheckcertificate': True,  # Sometimes helps with HTTPS issues
             'ignoreerrors': False,  # Don't ignore errors for better debugging
         }
@@ -497,7 +497,7 @@ def download_spotify_track(request, url, output_format=None):
             }],
             'outtmpl': temp_filename,
             'writethumbnail': True,
-            'cookiesfile': os.path.join(settings.BASE_DIR, 'cookies.txt'),  # Use cookies to avoid bot detection
+            'cookiefile': os.path.join(settings.BASE_DIR, 'cookies.txt'),  # Use cookies to avoid bot detection
             'nocheckcertificate': True,  # Sometimes helps with HTTPS issues
             'ignoreerrors': False,
         }
@@ -955,7 +955,7 @@ def download_playlist(request):
                             }],
                             'outtmpl': os.path.join(settings.MEDIA_ROOT, 'songs', '%(title)s.%(ext)s'),
                             'writethumbnail': True,
-                            'cookiesfile': os.path.join(settings.BASE_DIR, 'cookies.txt'),  # Use cookies to avoid bot detection
+                            'cookiefile': os.path.join(settings.BASE_DIR, 'cookies.txt'),  # Use cookies to avoid bot detection
             'nocheckcertificate': True,  # Sometimes helps with HTTPS issues
             'ignoreerrors': False,
                         }

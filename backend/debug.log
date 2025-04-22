@@ -1234,3 +1234,7 @@ INFO 2025-04-22 15:46:44,124 utils 19712 20104 Attempting to set system thumbnai
 WARNING 2025-04-22 15:46:44,177 utils 19712 20104 Could not set shell thumbnail: 'int' object has no attribute 'SetInfo'
 INFO 2025-04-22 15:46:44,891 download_helper 19712 20104 Added song to cache: https://www.youtube.com/watch?v=09839DpTctU&pp=ygUQaG90ZWwgY2FsaWZvcm5pYQ%3D%3D
 INFO 2025-04-22 15:46:45,046 basehttp 19712 20104 "POST /api/songs/songs/download/ HTTP/1.1" 200 9754937
+INFO 2025-04-22 15:59:42,152 autoreload 19712 15576 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-22 16:00:34,527 autoreload 5172 24816 Watching for file changes with StatReloader
+INFO 2025-04-22 16:01:07,265 autoreload 5172 24816 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\tasks.py changed, reloading.
+INFO 2025-04-22 16:01:11,353 autoreload 17552 19464 Watching for file changes with StatReloader

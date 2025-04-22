@@ -816,7 +816,7 @@ def get_youtube_playlist_info(playlist_url):
             'skip_download': True,  # Don't download the videos
             'ignoreerrors': True,  # Skip unavailable videos
             'no_warnings': True,  # Don't show warnings
-            'cookiesfile': os.path.join(settings.BASE_DIR, 'cookies.txt'),  # Use cookies to avoid bot detection
+            'cookiefile': os.path.join(settings.BASE_DIR, 'cookies.txt'),  # Use cookies to avoid bot detection
             'nocheckcertificate': True,  # Sometimes helps with HTTPS issues
             'ignoreerrors': False,
         }
@@ -857,7 +857,7 @@ def get_youtube_playlist_info(playlist_url):
                         'no_warnings': True,
                         'playlistrandom': False,  # Don't randomize playlist order
                         'playlistend': 50,  # Limit to first 100 videos to avoid timeout
-                        'cookiesfile': os.path.join(settings.BASE_DIR, 'cookies.txt'),  # Use cookies to avoid bot detection
+                        'cookiefile': os.path.join(settings.BASE_DIR, 'cookies.txt'),  # Use cookies to avoid bot detection
                         'nocheckcertificate': True,  # Sometimes helps with HTTPS issues
                         'ignoreerrors': False,
                     }
@@ -955,7 +955,7 @@ def download_youtube_util(url, output_path=None):
                     'outtmpl': os.path.join(songs_dir, f"{video_id}"),
                     'writethumbnail': True,
                     'noplaylist': True,
-                    'cookiesfile': os.path.join(settings.BASE_DIR, 'cookies.txt'),  # Use cookies to avoid bot detection
+                    'cookiefile': os.path.join(settings.BASE_DIR, 'cookies.txt'),  # Use cookies to avoid bot detection
             'nocheckcertificate': True,  # Sometimes helps with HTTPS issues
             'ignoreerrors': False,
                 }

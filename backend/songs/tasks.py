@@ -58,7 +58,7 @@ def download_audio(query, output_path, task_id, is_url=False):
         'progress_hooks': [progress_hook],
         'writethumbnail': True,  # Enable thumbnail download
         'noplaylist': True,  # Only download the single video, not the playlist
-        'cookiesfile': os.path.join(settings.BASE_DIR, 'cookies.txt'),  # Use cookies to avoid bot detection
+        'cookiefile': os.path.join(settings.BASE_DIR, 'cookies.txt'),  # Use cookies to avoid bot detection
         'nocheckcertificate': True,  # Sometimes helps with HTTPS issues
         'ignoreerrors': False,
     }
@@ -331,7 +331,7 @@ def download_song(self, url, user_id):
                     'preferredquality': '192',
                 }],
                 'outtmpl': os.path.join(settings.MEDIA_ROOT, 'songs', '%(title)s.%(ext)s'),
-                'cookiesfile': os.path.join(settings.BASE_DIR, 'cookies.txt'),  # Use cookies to avoid bot detection
+                'cookiefile': os.path.join(settings.BASE_DIR, 'cookies.txt'),  # Use cookies to avoid bot detection
                 'nocheckcertificate': True,  # Sometimes helps with HTTPS issues
                 'ignoreerrors': False,
             }
