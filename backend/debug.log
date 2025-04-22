@@ -1213,3 +1213,24 @@ INFO 2025-04-22 13:39:12,336 views 9132 15172 Got 10 recommendations
 INFO 2025-04-22 13:39:12,501 basehttp 9132 15172 "GET /api/songs/recommendations/ HTTP/1.1" 200 2915
 INFO 2025-04-22 13:40:07,413 autoreload 9132 2504 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\recommendation.py changed, reloading.
 INFO 2025-04-22 13:40:12,443 autoreload 18640 23084 Watching for file changes with StatReloader
+INFO 2025-04-22 15:45:11,301 autoreload 19712 15576 Watching for file changes with StatReloader
+INFO 2025-04-22 15:45:28,312 views 19712 22432 Found existing song with URL https://www.youtube.com/watch?v=bf43dRUBSks, serving directly
+INFO 2025-04-22 15:45:28,469 download_helper 19712 22432 Using cached version for URL: https://www.youtube.com/watch?v=bf43dRUBSks
+INFO 2025-04-22 15:45:28,469 models 19712 22432 [DEBUG] record_download called for user=testuser id=1 date=2025-04-22
+INFO 2025-04-22 15:45:28,814 models 19712 22432 [DEBUG] record_download updated analytics: user=testuser id=1 date=2025-04-22 songs_downloaded=1
+INFO 2025-04-22 15:45:29,115 basehttp 19712 22432 "POST /api/songs/songs/download/ HTTP/1.1" 200 5742377
+INFO 2025-04-22 15:46:42,715 utils 19712 20104 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Eagles - Hotel California Live 1977 Official Video HD - Eagles.mp3
+INFO 2025-04-22 15:46:42,716 utils 19712 20104 Title: Eagles - Hotel California (Live 1977) (Official Video) [HD], Artist: Eagles, Album: Unknown, Genre: Unknown
+INFO 2025-04-22 15:46:42,733 utils 19712 20104 Loaded existing ID3 tags
+INFO 2025-04-22 15:46:42,819 utils 19712 20104 Looking for local thumbnail: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs/Eagles - Hotel California Live 1977 Official Video HD - Eagles.webp
+INFO 2025-04-22 15:46:42,837 utils 19712 20104 Found local thumbnail: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs/Eagles - Hotel California Live 1977 Official Video HD - Eagles.webp
+INFO 2025-04-22 15:46:42,837 utils 19712 20104 Detected image type: webp
+INFO 2025-04-22 15:46:43,671 utils 19712 20104 Successfully converted image to JPEG: 30159 bytes
+INFO 2025-04-22 15:46:43,673 utils 19712 20104 Adding album art, MIME type: image/jpeg
+INFO 2025-04-22 15:46:43,674 utils 19712 20104 Successfully added album art to ID3 tags
+INFO 2025-04-22 15:46:43,697 utils 19712 20104 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Eagles - Hotel California Live 1977 Official Video HD - Eagles.mp3 using ID3v2.3
+INFO 2025-04-22 15:46:43,725 utils 19712 20104 Verification: 8 tags were written, has_cover=True
+INFO 2025-04-22 15:46:44,124 utils 19712 20104 Attempting to set system thumbnail property directly (Windows only)
+WARNING 2025-04-22 15:46:44,177 utils 19712 20104 Could not set shell thumbnail: 'int' object has no attribute 'SetInfo'
+INFO 2025-04-22 15:46:44,891 download_helper 19712 20104 Added song to cache: https://www.youtube.com/watch?v=09839DpTctU&pp=ygUQaG90ZWwgY2FsaWZvcm5pYQ%3D%3D
+INFO 2025-04-22 15:46:45,046 basehttp 19712 20104 "POST /api/songs/songs/download/ HTTP/1.1" 200 9754937

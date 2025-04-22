@@ -64,7 +64,7 @@ def download_youtube(request, url, output_format=None):
             
         # Check if the song is in cache
         cached_song = SongCache.get_cached_song(url)
-        if cached_song:
+        if (cached_song):
             logger.info(f"Using cached version for URL: {url}")
             # Record download in analytics for cached song
             try:
@@ -171,6 +171,9 @@ def download_youtube(request, url, output_format=None):
             'outtmpl': temp_filename,
             'writethumbnail': True,
             'noplaylist': True,  # Only download the single video, not the playlist
+            'cookiesfile': os.path.join(settings.BASE_DIR, 'cookies.txt'),  # Use cookies to avoid bot detection
+            'nocheckcertificate': True,  # Sometimes helps with HTTPS issues
+            'ignoreerrors': False,  # Don't ignore errors for better debugging
         }
 
         # Download the file using our retry-enabled function
@@ -494,6 +497,9 @@ def download_spotify_track(request, url, output_format=None):
             }],
             'outtmpl': temp_filename,
             'writethumbnail': True,
+            'cookiesfile': os.path.join(settings.BASE_DIR, 'cookies.txt'),  # Use cookies to avoid bot detection
+            'nocheckcertificate': True,  # Sometimes helps with HTTPS issues
+            'ignoreerrors': False,
         }
 
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
@@ -949,6 +955,9 @@ def download_playlist(request):
                             }],
                             'outtmpl': os.path.join(settings.MEDIA_ROOT, 'songs', '%(title)s.%(ext)s'),
                             'writethumbnail': True,
+                            'cookiesfile': os.path.join(settings.BASE_DIR, 'cookies.txt'),  # Use cookies to avoid bot detection
+            'nocheckcertificate': True,  # Sometimes helps with HTTPS issues
+            'ignoreerrors': False,
                         }
                         
                         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
