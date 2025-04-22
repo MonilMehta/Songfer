@@ -71,7 +71,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'songporter.onrender.com',
     'songporter.vercel.app',
-    'localhost:3000',
+    'localhost',
     '127.0.0.1'
 ]
 

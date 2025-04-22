@@ -21,40 +21,40 @@ def get_hardcoded_recommendations(limit=10):
             'title': 'Stay',
             'artist': 'The Kid LAROI, Justin Bieber',
             'album': 'Stay',
-            'spotify_id': '2LRoIwlKmHjgvigdNGBHNo',
-            'image_url': 'https://i.scdn.co/image/ab67616d0000b273171c6ee052142d4301bab492',
+            'spotify_id': '5HCyWlXZPP0y6Gqq8TgA20',
+            'image_url': 'https://i.scdn.co/image/ab67616d00001e0241e31d6ea1d493dd77933ee5',
             'popularity': 95
         },
         {
             'title': 'Blinding Lights',
             'artist': 'The Weeknd',
             'album': 'After Hours',
-            'spotify_id': '0pqnGHJpmpxLKifKRmU6WP',
-            'image_url': 'https://i.scdn.co/image/ab67616d0000b2738863bc11d2aa12b54f5aeb36',
+            'spotify_id': '0VjIjW4GlUZAMYd2vXMi3b',
+            'image_url': 'https://i.scdn.co/image/ab67616d00001e028863bc11d2aa12b54f5aeb36',
             'popularity': 93
         },
         {
             'title': 'Despacito',
             'artist': 'Luis Fonsi',
             'album': 'VIDA',
-            'spotify_id': '7qiZfU4dY1lWllzX7mPBI3',
-            'image_url': 'https://i.scdn.co/image/ab67616d0000b273ef0d4234e1a645740f77d59c',
+            'spotify_id': '6habFhsOp2NvshLv26DqMb',
+            'image_url': 'https://i.scdn.co/image/ab67616d00001e02ef0d4234e1a645740f77d59c',
             'popularity': 91
         },
         {
             'title': 'Shape of You',
             'artist': 'Ed Sheeran',
             'album': '÷ (Divide)',
-            'spotify_id': '0tgVpDi06FyKpA1z0VMD4v',
-            'image_url': 'https://i.scdn.co/image/ab67616d0000b273ba5db46f4b838ef6027e6f96',
+            'spotify_id': '7qiZfU4dY1lWllzX7mPBI3',
+            'image_url': 'https://i.scdn.co/image/ab67616d00001e02ba5db46f4b838ef6027e6f96',
             'popularity': 90
         },
         {
-            'title': 'Dance Monkey',
-            'artist': 'Tones and I',
-            'album': 'The Kids Are Coming',
-            'spotify_id': '1rgnBhdG2JDFTbYkYRZAku',
-            'image_url': 'https://i.scdn.co/image/ab67616d0000b273c6af5ffa661a365b77df6ef6',
+            'title': 'One Dance',
+            'artist': 'Drake',
+            'album': 'Views',
+            'spotify_id': '5ZKG94fnjiuMH5yrC5S9lS',
+            'image_url': 'https://i.scdn.co/image/ab67616d00001e0272d0af2341359a90710c1fdc',
             'popularity': 89
         }
     ]

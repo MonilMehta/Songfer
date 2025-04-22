@@ -32,7 +32,7 @@ export function AccountStatusCard({
   const dailyDownloads = userProfile?.total_downloads_today ?? propDailyDownloads ?? 0
   
   // Free users have a daily limit (default 15), premium users have higher or no limit
-  const dailyDownloadLimit = isPremium ? 50 : (propDailyDownloadLimit ?? 15)
+  const dailyDownloadLimit = isPremium ? 50 : 15
   
   // Calculate daily download progress percentage
   const dailyDownloadProgress = Math.min(100, (dailyDownloads / dailyDownloadLimit) * 100)

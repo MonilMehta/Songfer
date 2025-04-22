@@ -22,6 +22,10 @@ const nextConfig = {
           hostname: 'is1-ssl.mzstatic.com',
         },
         {
+          protocol: 'https',
+          hostname: 'media.istockphoto.com',
+        },
+        {
           protocol: 'http',
           hostname: 'localhost',
           port: '8000',
