@@ -4159,3 +4159,6 @@ INFO 2025-04-23 23:36:35,494 models 20752 17012 [DEBUG] record_download updated 
 INFO 2025-04-23 23:36:35,494 models 20752 17012 [DEBUG] record_download called for user=testuser id=1 date=2025-04-23
 INFO 2025-04-23 23:36:35,624 models 20752 17012 [DEBUG] record_download updated analytics: user=testuser id=1 date=2025-04-23 songs_downloaded=33
 INFO 2025-04-23 23:36:35,626 basehttp 20752 17012 "POST /api/songs/songs/download/ HTTP/1.1" 200 130
+INFO 2025-04-24 01:21:31,035 autoreload 17636 9616 Watching for file changes with StatReloader
+INFO 2025-04-24 01:47:32,202 autoreload 17636 9616 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-24 01:47:36,817 autoreload 15900 17916 Watching for file changes with StatReloader

@@ -69,7 +69,7 @@ def download_youtube(request, url, output_format=None):
             
         # Check if the song is in cache
         cached_song = SongCache.get_cached_song(url)
-        if cached_song:
+        if (cached_song):
             logger.info(f"Using cached version for URL: {url}")
             # Record download in analytics for cached song
             try:
@@ -590,7 +590,7 @@ def download_spotify_track(request, url, output_format=None):
             as_attachment=True,
             filename=formatted_filename
         )
-        response['Content-Type'] = f'audio/{output_format or 'mp3'}'
+        response['Content-Type'] = f'audio/{output_format or "mp3"}'
         
         # Explicitly set Content-Disposition header with filename
         response['Content-Disposition'] = f'attachment; filename="{formatted_filename}"'
