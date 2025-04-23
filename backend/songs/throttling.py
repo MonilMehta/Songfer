@@ -42,10 +42,10 @@ class UserDownloadRateThrottle(UserRateThrottle):
         # Check if user is subscribed
         if self.request.user.is_subscription_active():
             # Premium users get 30 downloads per day
-            return '30/day'
+            return '50/day'
         else:
             # Free users get 5 downloads per day
-            return '5/day'
+            return '15/day'
     
     def allow_request(self, request, view):
         """

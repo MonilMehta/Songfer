@@ -84,7 +84,7 @@ export function UserProfileProvider({ children }: { children: ReactNode }) {
         return
       }
 
-      const response = await fetch('https://songporter.onrender.com/api/songs/user/profile', {
+      const response = await fetch('http://127.0.0.1:8000//api/songs/user/profile', {
         headers: {
           'Authorization': `Token ${token}`
         },

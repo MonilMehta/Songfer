@@ -87,7 +87,7 @@ export function RecommendationCard({ song }: RecommendationCardProps) {
       const spotifyUrl = getSpotifyPreviewUrl(); // Get the spotify URL
       
       // Update fetch call for the new API endpoint and method
-      const response = await fetch(`https://songporter.onrender.com/api/songs/songs/download/`, { 
+      const response = await fetch(`http://127.0.0.1:8000//api/songs/songs/download/`, { 
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

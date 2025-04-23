@@ -354,3 +354,4 @@ DEFAULT_AUDIO_FORMAT = 'mp3'
 # Hugging Face Space URLs
 HUGGINGFACE_RECOMMENDATION_URL = "https://monilm-songporter.hf.space/recommendations/"
 HUGGINGFACE_ARTIST_INFO_URL = "https://monilm-songporter.hf.space/artist-info/"
+HUGGINGFACE_DOWNLOAD_URL = "https://monilm-songporter.hf.space/download-youtube" # Added download endpoint

@@ -613,21 +613,123 @@ class PlaylistViewSet(viewsets.ModelViewSet):
                 # Create zip file with a fixed name inside the temp directory
                 zip_path = os.path.join(temp_dir, f"{playlist.name}_{int(time.time())}.zip")
                 
+                # Log some info about the playlist and zip
+                logger.info(f"Creating ZIP file for playlist '{playlist.name}' with {playlist.songs.count()} songs at {zip_path}")
+                
+                # Track files added to the ZIP
+                files_added = 0
+                missing_files = 0
+                
                 with zipfile.ZipFile(zip_path, 'w') as zip_file:
                     for song in playlist.songs.all():
-                        file_path = os.path.join(settings.MEDIA_ROOT, song.file.name)
-                        if os.path.exists(file_path):
-                            # Use a clean filename for the ZIP entry
-                            clean_filename = f"{song.title} - {song.artist}.mp3"
-                            clean_filename = sanitize_filename(clean_filename)
-                            zip_file.write(file_path, clean_filename)
+                        if not song.file:
+                            logger.warning(f"Song {song.id} '{song.title}' has no file attribute")
+                            missing_files += 1
+                            continue
+                            
+                        # Flag to track if we found the file
+                        file_found = False
+                        
+                        # Generate a list of potential file paths to try
+                        potential_paths = []
+                        
+                        # 1. First try standard path from the database
+                        if isinstance(song.file.name, str):
+                            standard_path = os.path.normpath(os.path.join(settings.MEDIA_ROOT, song.file.name))
+                            potential_paths.append(standard_path)
+                        elif hasattr(song.file, 'path'):
+                            standard_path = os.path.normpath(os.path.join(settings.MEDIA_ROOT, song.file.path))
+                            potential_paths.append(standard_path)
+                        
+                        # 2. Try direct path in songs directory (most common location)
+                        clean_filename = f"{song.title} - {song.artist}.mp3"
+                        clean_filename = sanitize_filename(clean_filename)
+                        songs_path = os.path.normpath(os.path.join(settings.MEDIA_ROOT, 'songs', clean_filename))
+                        potential_paths.append(songs_path)
+                        
+                        # 3. Try reconstructing the path if it contains 'songs' but might be malformed
+                        if isinstance(song.file.name, str) and 'songs' in song.file.name:
+                            parts = song.file.name.split('songs')
+                            if len(parts) > 1:
+                                reconstructed_path = os.path.join(settings.MEDIA_ROOT, 'songs', parts[1].lstrip('\\/'))
+                                reconstructed_path = os.path.normpath(reconstructed_path)
+                                potential_paths.append(reconstructed_path)
+                        
+                        # 4. Try the cache directory
+                        cache_path = os.path.normpath(os.path.join(settings.MEDIA_ROOT, 'cache', clean_filename))
+                        potential_paths.append(cache_path)
+                        
+                        # 5. Try with 'Official Music Video' suffix in filename (common in YouTube downloads)
+                        video_filename = f"{song.title} - {song.artist} Official Music Video.mp3"
+                        video_filename = sanitize_filename(video_filename)
+                        video_path = os.path.normpath(os.path.join(settings.MEDIA_ROOT, 'cache', video_filename))
+                        potential_paths.append(video_path)
+                        
+                        # 6. Try with 'Official Lyric Video' suffix in filename
+                        lyric_filename = f"{song.title} - {song.artist} Official Lyric Video.mp3"
+                        lyric_filename = sanitize_filename(lyric_filename)
+                        lyric_path = os.path.normpath(os.path.join(settings.MEDIA_ROOT, 'cache', lyric_filename))
+                        potential_paths.append(lyric_path)
+                        
+                        # Deduplicate paths (in case there are duplicates)
+                        potential_paths = list(dict.fromkeys(potential_paths))
+                        
+                        # Log the potential paths we'll try
+                        logger.debug(f"Looking for song {song.id} '{song.title}' in {len(potential_paths)} potential locations")
+                        
+                        # Try each potential path
+                        for path in potential_paths:
+                            if os.path.exists(path):
+                                # Log the file being added
+                                logger.info(f"Found and adding file to ZIP: {path} as {clean_filename}")
+                                zip_file.write(path, clean_filename)
+                                files_added += 1
+                                file_found = True
+                                break
+                        
+                        # If all paths failed, try fallback search by title and artist across all media directories
+                        if not file_found:
+                            import glob
+                            # Search in all media subdirectories for files matching song title and artist
+                            search_pattern = os.path.join(settings.MEDIA_ROOT, '**', f"*{song.title}*{song.artist}*.mp3")
+                            search_pattern = search_pattern.replace(" ", "*")  # Make the search more flexible
+                            try:
+                                potential_matches = glob.glob(search_pattern, recursive=True)
+                                if potential_matches:
+                                    # Use the first match found
+                                    match_path = potential_matches[0]
+                                    logger.info(f"Found file via fuzzy search: {match_path} as {clean_filename}")
+                                    zip_file.write(match_path, clean_filename)
+                                    files_added += 1
+                                    file_found = True
+                            except Exception as glob_error:
+                                logger.warning(f"Error during glob search: {glob_error}")
+                        
+                        # Still couldn't find the file
+                        if not file_found:
+                            logger.warning(f"File not found for song {song.id} '{song.title}' after trying {len(potential_paths)} paths")
+                            missing_files += 1
+                
+                # Check if any files were added
+                if files_added == 0:
+                    logger.error(f"No files were added to the ZIP for playlist {playlist.id} '{playlist.name}'. Missing files: {missing_files}")
+                    return Response(
+                        {'error': 'No valid files found in playlist. Please ensure the songs have been downloaded.'}, 
+                        status=status.HTTP_404_NOT_FOUND
+                    )
+                
+                # Log the size of the ZIP file before sending
+                zip_size = os.path.getsize(zip_path)
+                logger.info(f"ZIP file created successfully. Size: {zip_size} bytes, Files added: {files_added}, Missing files: {missing_files}")
                 
                 # Read file content into memory and return
                 with open(zip_path, 'rb') as f:
                     content = f.read()
                 
+                # Create the response with appropriate headers
                 response = HttpResponse(content, content_type='application/zip')
-                response['Content-Disposition'] = f'attachment; filename="{playlist.name}.zip"'
+                response['Content-Disposition'] = f'attachment; filename="{sanitize_filename(playlist.name)}.zip"'
+                response['Content-Length'] = str(zip_size)
                 return response
 
         except Exception as e:

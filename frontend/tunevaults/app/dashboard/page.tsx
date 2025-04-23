@@ -118,7 +118,7 @@ export default function Dashboard() {
       // we need to get a token from our backend using Google credentials
       if (!token && authStatus === 'authenticated' && session?.user?.email) {
         try {
-          const response = await fetch('https://songporter.onrender.com/api/users/google-auth/', {
+          const response = await fetch('http://127.0.0.1:8000//api/users/google-auth/', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -209,7 +209,7 @@ export default function Dashboard() {
 
   const fetchRecommendations = async (headers: HeadersInit) => {
     try {
-      const recommendationsResponse = await fetch('https://songporter.onrender.com/api/songs/recommendations/', {
+      const recommendationsResponse = await fetch('http://127.0.0.1:8000//api/songs/recommendations/', {
         headers
       });
       
@@ -228,7 +228,7 @@ export default function Dashboard() {
 
   const fetchTopArtists = async (headers: HeadersInit) => {
     try {
-      const topArtistsResponse = await fetch('https://songporter.onrender.com/api/songs/user/top-artists/', {
+      const topArtistsResponse = await fetch('http://127.0.0.1:8000//api/songs/user/top-artists/', {
         headers
       });
       
@@ -246,7 +246,7 @@ export default function Dashboard() {
 
   const fetchDownloadActivity = async (headers: HeadersInit) => {
     try {
-      const activityResponse = await fetch('https://songporter.onrender.com/api/users/download-activity/?period=week', {
+      const activityResponse = await fetch('http://127.0.0.1:8000//api/users/download-activity/?period=week', {
         headers
       });
       
@@ -263,7 +263,7 @@ export default function Dashboard() {
 
   const fetchFavoriteGenres = async (headers: HeadersInit) => {
     try {
-      const genresResponse = await fetch('https://songporter.onrender.com/api/songs/user/favorite-genres/', {
+      const genresResponse = await fetch('http://127.0.0.1:8000//api/songs/user/favorite-genres/', {
         headers
       });
       
@@ -294,7 +294,7 @@ export default function Dashboard() {
 
   const fetchTopCountries = async (headers: HeadersInit) => {
     try {
-      const countriesResponse = await fetch('https://songporter.onrender.com/api/songs/user/top-countries/', {
+      const countriesResponse = await fetch('http://127.0.0.1:8000//api/songs/user/top-countries/', {
         headers
       });
       
@@ -339,7 +339,7 @@ export default function Dashboard() {
         throw new Error('Authentication required');
       }
       
-      const response = await fetch('https://songporter.onrender.com/api/songs/songs/download/', {
+      const response = await fetch('http://127.0.0.1:8000//api/songs/songs/download/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -402,7 +402,7 @@ export default function Dashboard() {
         console.warn("Cannot fetch songs without auth token or provided headers.");
         return;
       }
-      const songsResponse = await fetch('https://songporter.onrender.com/api/songs/', {
+      const songsResponse = await fetch('http://127.0.0.1:8000//api/songs/', {
         headers: authHeaders
       });
       if (!songsResponse.ok) throw new Error('Failed to fetch songs for count update');

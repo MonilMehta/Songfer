@@ -218,8 +218,15 @@ def convert_audio_format(input_path, output_format=None):
     
     try:
         command = [
-            'ffmpeg', 
+            'ffmpeg',
             '-i', input_path,
+            '-map_metadata', '0',  # Copy all metadata from input to output
+            '-id3v2_version', '3',  # Use ID3v2.3 format for better compatibility
+            '-c:a', 'libmp3lame' if output_format == 'mp3' else 'copy',  # Use proper codec for the format
+            '-map', '0',  # Map all streams from input to output
+            '-map_chapters', '0',  # Copy chapters if any
+            '-write_id3v2', '1',  # Force writing ID3v2 tags
+            '-write_xing', '1',  # Write Xing header for mp3
             '-y',  # Overwrite output file if it exists
             output_path
         ]
@@ -722,12 +729,50 @@ def embed_metadata(mp3_path, title, artist, album='Unknown', genre='Unknown', th
                 abs_mp3_path = os.path.abspath(mp3_path)
                 abs_jpg_path = os.path.abspath(temp_jpg)
                 
-                # Try to associate the image with the file
+                # Try to associate the image with the file using a different approach
                 try:
-                    shell_folder = shell.SHGetDesktopFolder()
-                    shell_item = shell_folder.ParseDisplayName(0, None, abs_mp3_path)[0]
-                    shell_item.SetInfo(shellcon.SHGFI_ICON, abs_jpg_path)
-                    logger.info("Set Windows shell thumbnail successfully")
+                    # First try to completely wipe existing tags and create fresh ones
+                    try:
+                        # Remove existing ID3 tags
+                        audio = ID3(mp3_path)
+                        audio.delete()
+                        audio.save(mp3_path, v2_version=3)
+                        logger.info("Successfully deleted existing ID3 tags before rebuilding")
+                        
+                        # Create fresh ID3 tags
+                        audio = ID3()
+                        audio['TIT2'] = TIT2(encoding=3, text=title)
+                        audio['TPE1'] = TPE1(encoding=3, text=artist)
+                        audio['TALB'] = TALB(encoding=3, text=album)
+                        audio['TCON'] = TCON(encoding=3, text=genre)
+                        
+                        # Add year if available
+                        if year:
+                            audio['TDRC'] = TDRC(encoding=3, text=str(year))
+                            audio['TYER'] = TYER(encoding=3, text=str(year))
+                        
+                        # Add album artist if available
+                        if album_artist:
+                            audio['TPE2'] = TPE2(encoding=3, text=album_artist)
+                        
+                        # Add the image with ID3v2.3 compatible settings
+                        audio['APIC'] = APIC(
+                            encoding=3,           # UTF-8
+                            mime="image/jpeg",     # Always use image/jpeg
+                            type=3,               # Cover (front)
+                            desc='Cover',
+                            data=image_data
+                        )
+                        
+                        # Save with ID3v2.3 for maximum compatibility
+                        audio.save(mp3_path, v2_version=3)
+                        logger.info("Successfully rebuilt ID3 tags with clean implementation")
+                    except Exception as rebuild_error:
+                        logger.warning(f"Error rebuilding ID3 tags: {rebuild_error}")
+                    
+                    # Skip the shell method for now since it's causing errors
+                    logger.info("Skipping shell thumbnail method due to known issues")
+                    
                 except Exception as shell_error:
                     logger.warning(f"Could not set shell thumbnail: {shell_error}")
                 

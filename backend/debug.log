@@ -2188,3 +2188,1023 @@ INFO 2025-04-22 22:57:39,535 utils 3564 11240 Found exact match for artist 'Wiz 
 INFO 2025-04-22 22:57:40,076 utils 3564 11240 Found exact match for artist 'Chase Atlantic': Chase Atlantic
 INFO 2025-04-22 22:57:40,586 utils 3564 11240 Found partial match for artist 'Beach Weather': The Beach Boys
 INFO 2025-04-22 22:57:40,588 basehttp 3564 11240 "GET //api/songs/user/top-countries/ HTTP/1.1" 200 215
+INFO 2025-04-22 23:07:12,767 autoreload 3564 896 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\recommendation.py changed, reloading.
+INFO 2025-04-22 23:07:17,381 autoreload 20812 7968 Watching for file changes with StatReloader
+INFO 2025-04-22 23:09:13,464 basehttp 20812 22592 "GET //api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-22 23:09:14,060 basehttp 20812 22592 "GET //api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-22 23:09:14,129 basehttp 20812 22592 "OPTIONS //api/songs/user/profile HTTP/1.1" 200 0
+INFO 2025-04-22 23:09:14,142 basehttp 20812 22592 "GET //api/songs/user/profile HTTP/1.1" 301 0
+INFO 2025-04-22 23:09:14,173 basehttp 20812 2640 "OPTIONS /api/songs/user/profile/ HTTP/1.1" 200 0
+INFO 2025-04-22 23:09:14,185 views 20812 20960 User has 12 songs
+INFO 2025-04-22 23:09:14,257 views 20812 20960 User has 6 songs with Spotify IDs
+INFO 2025-04-22 23:09:14,393 views 20812 20960 Sample user songs: [{'spotify_id': "('track', '4PhsKqMdgMEUSstTDAmMpg')", 'title': 'Often', 'artist': 'The Weeknd'}, {'spotify_id': '1AWQoqb9bSvzTjaLralEkT', 'title': 'Rock Your Body', 'artist': 'Justin Timberlake'}, {'spotify_id': '5ZKG94fnjiuMH5yrC5S9lS', 'title': 'One Dance', 'artist': 'Drake'}, {'spotify_id': '7EiZI6JVHllARrX9PUvAdX', 'title': 'Low Life feat. The Weeknd', 'artist': 'Future'}, {'spotify_id': '7uDUb37h7Xdhza1eWMkoJv', 'title': 'Friends', 'artist': 'Chase Atlantic'}]
+INFO 2025-04-22 23:09:14,394 views 20812 20960 Getting recommendations for user: 1 with limit: 10
+INFO 2025-04-22 23:09:14,394 recommendation 20812 20960 Skipping Music.csv due to invalid format, using data.csv directly
+INFO 2025-04-22 23:09:14,871 basehttp 20812 21092 "GET //api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-22 23:09:16,581 recommendation 20812 20960 Loaded data.csv dataset
+INFO 2025-04-22 23:09:16,651 recommendation 20812 20960 Available columns in dataset: ['valence', 'year', 'acousticness', 'artists', 'danceability', 'duration_ms', 'energy', 'explicit', 'id', 'instrumentalness', 'key', 'liveness', 'loudness', 'mode', 'name', 'popularity', 'release_date', 'speechiness', 'tempo']
+INFO 2025-04-22 23:09:16,743 recommendation 20812 20960 Using features: ['acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'loudness', 'speechiness', 'tempo', 'valence']
+INFO 2025-04-22 23:09:16,793 recommendation 20812 20960 Prepared data with 170653 songs and 9 features
+INFO 2025-04-22 23:09:17,989 recommendation 20812 20960 Built song clusters successfully
+INFO 2025-04-22 23:09:17,991 recommendation 20812 20960 Music Recommender initialized successfully
+WARNING 2025-04-22 23:09:18,220 recommendation 20812 20960 Song '('track', '4PhsKqMdgMEUSstTDAmMpg')' not found or clustering unavailable, using popular songs
+WARNING 2025-04-22 23:09:18,392 recommendation 20812 20960 Song '5ZKG94fnjiuMH5yrC5S9lS' not found or clustering unavailable, using popular songs
+INFO 2025-04-22 23:09:18,521 views 20812 20960 Got 10 recommendations
+INFO 2025-04-22 23:09:18,658 basehttp 20812 20960 "GET //api/songs/recommendations/ HTTP/1.1" 200 2976
+INFO 2025-04-22 23:09:19,287 views 20812 20960 User has 12 songs
+INFO 2025-04-22 23:09:19,362 views 20812 20960 User has 6 songs with Spotify IDs
+INFO 2025-04-22 23:09:19,511 views 20812 20960 Sample user songs: [{'spotify_id': "('track', '4PhsKqMdgMEUSstTDAmMpg')", 'title': 'Often', 'artist': 'The Weeknd'}, {'spotify_id': '1AWQoqb9bSvzTjaLralEkT', 'title': 'Rock Your Body', 'artist': 'Justin Timberlake'}, {'spotify_id': '5ZKG94fnjiuMH5yrC5S9lS', 'title': 'One Dance', 'artist': 'Drake'}, {'spotify_id': '7EiZI6JVHllARrX9PUvAdX', 'title': 'Low Life feat. The Weeknd', 'artist': 'Future'}, {'spotify_id': '7uDUb37h7Xdhza1eWMkoJv', 'title': 'Friends', 'artist': 'Chase Atlantic'}]
+INFO 2025-04-22 23:09:19,514 views 20812 20960 Getting recommendations for user: 1 with limit: 10
+INFO 2025-04-22 23:09:19,808 basehttp 20812 2640 "GET /api/songs/user/profile/ HTTP/1.1" 200 6305
+WARNING 2025-04-22 23:09:19,844 recommendation 20812 20960 Song '('track', '4PhsKqMdgMEUSstTDAmMpg')' not found or clustering unavailable, using popular songs
+INFO 2025-04-22 23:09:19,881 utils 20812 21092 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+WARNING 2025-04-22 23:09:20,089 recommendation 20812 20960 Song '5ZKG94fnjiuMH5yrC5S9lS' not found or clustering unavailable, using popular songs
+INFO 2025-04-22 23:09:20,235 views 20812 20960 Got 10 recommendations
+INFO 2025-04-22 23:09:20,374 basehttp 20812 20960 "GET //api/songs/recommendations/ HTTP/1.1" 200 3029
+INFO 2025-04-22 23:09:20,565 utils 20812 21092 Found partial match for artist 'VG CREATION': The Creation
+INFO 2025-04-22 23:09:21,015 utils 20812 21092 Found exact match for artist 'Drake': Drake
+INFO 2025-04-22 23:09:21,034 views 20812 2640 User has 12 songs
+INFO 2025-04-22 23:09:21,098 views 20812 2640 User has 6 songs with Spotify IDs
+INFO 2025-04-22 23:09:21,247 views 20812 2640 Sample user songs: [{'spotify_id': "('track', '4PhsKqMdgMEUSstTDAmMpg')", 'title': 'Often', 'artist': 'The Weeknd'}, {'spotify_id': '1AWQoqb9bSvzTjaLralEkT', 'title': 'Rock Your Body', 'artist': 'Justin Timberlake'}, {'spotify_id': '5ZKG94fnjiuMH5yrC5S9lS', 'title': 'One Dance', 'artist': 'Drake'}, {'spotify_id': '7EiZI6JVHllARrX9PUvAdX', 'title': 'Low Life feat. The Weeknd', 'artist': 'Future'}, {'spotify_id': '7uDUb37h7Xdhza1eWMkoJv', 'title': 'Friends', 'artist': 'Chase Atlantic'}]
+INFO 2025-04-22 23:09:21,249 views 20812 2640 Getting recommendations for user: 1 with limit: 10
+WARNING 2025-04-22 23:09:21,481 recommendation 20812 2640 Song '('track', '4PhsKqMdgMEUSstTDAmMpg')' not found or clustering unavailable, using popular songs
+INFO 2025-04-22 23:09:21,640 utils 20812 21092 Found exact match for artist 'Future': Future
+WARNING 2025-04-22 23:09:21,926 recommendation 20812 2640 Song '5ZKG94fnjiuMH5yrC5S9lS' not found or clustering unavailable, using popular songs
+INFO 2025-04-22 23:09:22,189 views 20812 2640 Got 10 recommendations
+INFO 2025-04-22 23:09:22,263 utils 20812 21092 Found exact match for artist '21 Savage': 21 Savage
+INFO 2025-04-22 23:09:22,264 basehttp 20812 21092 "GET //api/songs/user/top-artists/ HTTP/1.1" 200 978
+INFO 2025-04-22 23:09:22,361 basehttp 20812 2640 "GET //api/songs/recommendations/ HTTP/1.1" 200 2945
+INFO 2025-04-22 23:09:22,891 basehttp 20812 21092 "GET //api/users/download-activity/?period=week HTTP/1.1" 200 559
+INFO 2025-04-22 23:09:23,340 utils 20812 20960 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-22 23:09:23,728 utils 20812 20960 Found partial match for artist 'VG CREATION': The Creation
+INFO 2025-04-22 23:09:24,393 utils 20812 20960 Found exact match for artist 'Drake': Drake
+INFO 2025-04-22 23:09:24,811 utils 20812 2640 Found exact match for artist '21 Savage': 21 Savage
+INFO 2025-04-22 23:09:25,086 utils 20812 20960 Found exact match for artist 'Future': Future
+INFO 2025-04-22 23:09:25,731 utils 20812 20960 Found exact match for artist '21 Savage': 21 Savage
+INFO 2025-04-22 23:09:25,743 basehttp 20812 20960 "GET //api/songs/user/top-artists/ HTTP/1.1" 200 978
+INFO 2025-04-22 23:09:25,850 utils 20812 2640 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-22 23:09:26,238 utils 20812 2640 Found exact match for artist 'Justin Timberlake': Justin Timberlake
+INFO 2025-04-22 23:09:26,468 basehttp 20812 21092 "GET //api/users/download-activity/?period=week HTTP/1.1" 200 559
+INFO 2025-04-22 23:09:27,034 utils 20812 20960 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-22 23:09:27,097 utils 20812 2640 Found exact match for artist 'Drake': Drake
+INFO 2025-04-22 23:09:27,849 utils 20812 2640 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-22 23:09:27,853 utils 20812 20960 Found partial match for artist 'VG CREATION': The Creation
+INFO 2025-04-22 23:09:28,596 utils 20812 2640 Found exact match for artist 'Dylan Gossett': Dylan Gossett
+INFO 2025-04-22 23:09:28,624 utils 20812 20960 Found exact match for artist 'Drake': Drake
+INFO 2025-04-22 23:09:29,336 utils 20812 20960 Found exact match for artist 'Future': Future
+INFO 2025-04-22 23:09:29,546 utils 20812 2640 Found partial match for artist 'VG CREATION': The Creation
+INFO 2025-04-22 23:09:30,217 utils 20812 20960 Found exact match for artist '21 Savage': 21 Savage
+INFO 2025-04-22 23:09:30,243 basehttp 20812 20960 "GET //api/songs/user/top-artists/ HTTP/1.1" 200 978
+INFO 2025-04-22 23:09:30,286 utils 20812 2640 Found exact match for artist 'Eagles': Eagles
+INFO 2025-04-22 23:09:30,704 utils 20812 2640 Found exact match for artist 'Future': Future
+INFO 2025-04-22 23:09:31,048 basehttp 20812 20960 "GET //api/users/download-activity/?period=week HTTP/1.1" 200 559
+INFO 2025-04-22 23:09:31,109 utils 20812 2640 Found exact match for artist 'Wiz Khalifa': Wiz Khalifa
+INFO 2025-04-22 23:09:31,526 utils 20812 2640 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-22 23:09:31,910 utils 20812 2640 Found partial match for artist 'Beach Weather': The Beach Boys
+INFO 2025-04-22 23:09:31,911 basehttp 20812 2640 "GET //api/songs/user/favorite-genres/ HTTP/1.1" 200 355
+INFO 2025-04-22 23:09:33,136 utils 20812 20960 Found exact match for artist '21 Savage': 21 Savage
+INFO 2025-04-22 23:09:33,446 utils 20812 2640 Found exact match for artist '21 Savage': 21 Savage
+INFO 2025-04-22 23:09:34,017 utils 20812 20960 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-22 23:09:34,282 utils 20812 2640 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-22 23:09:34,623 utils 20812 20960 Found exact match for artist 'Justin Timberlake': Justin Timberlake
+INFO 2025-04-22 23:09:35,141 utils 20812 2640 Found exact match for artist 'Justin Timberlake': Justin Timberlake
+INFO 2025-04-22 23:09:35,355 utils 20812 20960 Found exact match for artist 'Drake': Drake
+INFO 2025-04-22 23:09:36,016 utils 20812 2640 Found exact match for artist 'Drake': Drake
+INFO 2025-04-22 23:09:36,710 utils 20812 2640 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-22 23:09:36,802 utils 20812 20960 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-22 23:09:37,274 utils 20812 2640 Found exact match for artist 'Dylan Gossett': Dylan Gossett
+INFO 2025-04-22 23:09:37,965 utils 20812 20960 Found exact match for artist 'Dylan Gossett': Dylan Gossett
+INFO 2025-04-22 23:09:38,003 utils 20812 2640 Found partial match for artist 'VG CREATION': The Creation
+INFO 2025-04-22 23:09:38,569 utils 20812 20960 Found partial match for artist 'VG CREATION': The Creation
+INFO 2025-04-22 23:09:38,988 utils 20812 2640 Found exact match for artist 'Eagles': Eagles
+INFO 2025-04-22 23:09:39,423 utils 20812 20960 Found exact match for artist 'Eagles': Eagles
+INFO 2025-04-22 23:09:39,746 utils 20812 2640 Found exact match for artist 'Future': Future
+INFO 2025-04-22 23:09:40,243 utils 20812 20960 Found exact match for artist 'Future': Future
+INFO 2025-04-22 23:09:40,585 utils 20812 2640 Found exact match for artist 'Wiz Khalifa': Wiz Khalifa
+INFO 2025-04-22 23:09:41,122 utils 20812 20960 Found exact match for artist 'Wiz Khalifa': Wiz Khalifa
+INFO 2025-04-22 23:09:41,575 utils 20812 2640 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-22 23:09:42,282 utils 20812 20960 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-22 23:09:42,908 utils 20812 2640 Found partial match for artist 'Beach Weather': The Beach Boys
+INFO 2025-04-22 23:09:42,911 basehttp 20812 2640 "GET //api/songs/user/favorite-genres/ HTTP/1.1" 200 355
+INFO 2025-04-22 23:09:43,165 utils 20812 20960 Found partial match for artist 'Beach Weather': The Beach Boys
+INFO 2025-04-22 23:09:43,169 basehttp 20812 20960 "GET //api/songs/user/top-countries/ HTTP/1.1" 200 215
+INFO 2025-04-22 23:09:45,032 utils 20812 2640 Found exact match for artist '21 Savage': 21 Savage
+INFO 2025-04-22 23:09:45,107 utils 20812 20960 Found exact match for artist '21 Savage': 21 Savage
+INFO 2025-04-22 23:09:46,473 utils 20812 2640 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-22 23:09:46,505 utils 20812 20960 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-22 23:09:47,696 utils 20812 2640 Found exact match for artist 'Justin Timberlake': Justin Timberlake
+INFO 2025-04-22 23:09:47,750 utils 20812 20960 Found exact match for artist 'Justin Timberlake': Justin Timberlake
+INFO 2025-04-22 23:09:48,800 utils 20812 20960 Found exact match for artist 'Drake': Drake
+INFO 2025-04-22 23:09:48,854 utils 20812 2640 Found exact match for artist 'Drake': Drake
+INFO 2025-04-22 23:09:49,706 utils 20812 2640 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-22 23:09:49,714 utils 20812 20960 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-22 23:09:50,382 utils 20812 2640 Found exact match for artist 'Dylan Gossett': Dylan Gossett
+INFO 2025-04-22 23:09:50,832 utils 20812 20960 Found exact match for artist 'Dylan Gossett': Dylan Gossett
+INFO 2025-04-22 23:09:51,087 utils 20812 2640 Found partial match for artist 'VG CREATION': The Creation
+INFO 2025-04-22 23:09:51,696 utils 20812 2640 Found exact match for artist 'Eagles': Eagles
+INFO 2025-04-22 23:09:52,031 utils 20812 20960 Found partial match for artist 'VG CREATION': The Creation
+INFO 2025-04-22 23:09:52,693 utils 20812 2640 Found exact match for artist 'Future': Future
+INFO 2025-04-22 23:09:52,726 utils 20812 20960 Found exact match for artist 'Eagles': Eagles
+INFO 2025-04-22 23:09:53,368 utils 20812 2640 Found exact match for artist 'Wiz Khalifa': Wiz Khalifa
+INFO 2025-04-22 23:09:53,882 utils 20812 20960 Found exact match for artist 'Future': Future
+INFO 2025-04-22 23:09:54,031 utils 20812 2640 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-22 23:09:54,777 utils 20812 2640 Found partial match for artist 'Beach Weather': The Beach Boys
+INFO 2025-04-22 23:09:54,792 utils 20812 20960 Found exact match for artist 'Wiz Khalifa': Wiz Khalifa
+INFO 2025-04-22 23:09:54,793 basehttp 20812 2640 "GET //api/songs/user/favorite-genres/ HTTP/1.1" 200 355
+INFO 2025-04-22 23:09:55,261 utils 20812 20960 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-22 23:09:55,731 utils 20812 20960 Found partial match for artist 'Beach Weather': The Beach Boys
+INFO 2025-04-22 23:09:55,733 basehttp 20812 20960 "GET //api/songs/user/top-countries/ HTTP/1.1" 200 215
+INFO 2025-04-22 23:09:56,732 utils 20812 2640 Found exact match for artist '21 Savage': 21 Savage
+INFO 2025-04-22 23:09:57,104 utils 20812 2640 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-22 23:09:57,476 utils 20812 2640 Found exact match for artist 'Justin Timberlake': Justin Timberlake
+INFO 2025-04-22 23:09:57,901 utils 20812 2640 Found exact match for artist 'Drake': Drake
+INFO 2025-04-22 23:09:58,285 utils 20812 2640 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-22 23:09:58,663 utils 20812 2640 Found exact match for artist 'Dylan Gossett': Dylan Gossett
+INFO 2025-04-22 23:09:59,033 utils 20812 2640 Found partial match for artist 'VG CREATION': The Creation
+INFO 2025-04-22 23:09:59,438 utils 20812 2640 Found exact match for artist 'Eagles': Eagles
+INFO 2025-04-22 23:09:59,875 utils 20812 2640 Found exact match for artist 'Future': Future
+INFO 2025-04-22 23:10:00,279 utils 20812 2640 Found exact match for artist 'Wiz Khalifa': Wiz Khalifa
+INFO 2025-04-22 23:10:00,650 utils 20812 2640 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-22 23:10:01,024 utils 20812 2640 Found partial match for artist 'Beach Weather': The Beach Boys
+INFO 2025-04-22 23:10:01,026 basehttp 20812 2640 "GET //api/songs/user/top-countries/ HTTP/1.1" 200 215
+INFO 2025-04-22 23:13:47,343 autoreload 20812 7968 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-22 23:13:51,139 autoreload 9104 9424 Watching for file changes with StatReloader
+INFO 2025-04-22 23:21:15,411 autoreload 9104 9424 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-22 23:21:19,265 autoreload 16224 16596 Watching for file changes with StatReloader
+INFO 2025-04-22 23:22:59,452 autoreload 16224 16596 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\models.py changed, reloading.
+INFO 2025-04-22 23:23:03,576 autoreload 8092 21616 Watching for file changes with StatReloader
+INFO 2025-04-22 23:23:49,837 autoreload 8092 21616 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\recommendation.py changed, reloading.
+INFO 2025-04-22 23:23:53,980 autoreload 18968 20440 Watching for file changes with StatReloader
+INFO 2025-04-22 23:25:17,264 autoreload 18968 20440 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-22 23:25:21,641 autoreload 15104 17636 Watching for file changes with StatReloader
+INFO 2025-04-22 23:27:10,974 autoreload 15104 17636 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-22 23:27:15,034 autoreload 10788 22244 Watching for file changes with StatReloader
+INFO 2025-04-22 23:28:09,113 autoreload 10788 22244 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\tasks.py changed, reloading.
+INFO 2025-04-22 23:28:12,954 autoreload 9956 20180 Watching for file changes with StatReloader
+INFO 2025-04-22 23:29:25,971 autoreload 9956 20180 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\models.py changed, reloading.
+INFO 2025-04-22 23:29:29,715 autoreload 17448 18952 Watching for file changes with StatReloader
+INFO 2025-04-22 23:33:06,553 autoreload 17448 18952 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\tasks.py changed, reloading.
+INFO 2025-04-22 23:33:10,790 autoreload 12704 14752 Watching for file changes with StatReloader
+INFO 2025-04-22 23:54:22,683 autoreload 12704 14752 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\tunevault\settings.py changed, reloading.
+INFO 2025-04-22 23:54:26,735 autoreload 18784 2600 Watching for file changes with StatReloader
+INFO 2025-04-23 00:03:50,144 autoreload 18784 2600 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\tunevault\settings.py changed, reloading.
+INFO 2025-04-23 00:03:54,362 autoreload 8320 24528 Watching for file changes with StatReloader
+INFO 2025-04-23 00:31:34,657 autoreload 8320 24528 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\tunevault\settings.py changed, reloading.
+INFO 2025-04-23 00:31:39,786 autoreload 11640 8144 Watching for file changes with StatReloader
+INFO 2025-04-23 00:33:32,481 autoreload 11640 8144 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-23 00:33:37,864 autoreload 21156 19240 Watching for file changes with StatReloader
+INFO 2025-04-23 00:54:44,610 autoreload 21156 19240 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\tunevault\settings.py changed, reloading.
+INFO 2025-04-23 00:54:49,515 autoreload 9296 18648 Watching for file changes with StatReloader
+INFO 2025-04-23 10:50:21,275 autoreload 9296 18648 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\tunevault\settings.py changed, reloading.
+INFO 2025-04-23 10:51:02,726 autoreload 4668 19268 Watching for file changes with StatReloader
+INFO 2025-04-23 10:52:24,097 autoreload 4668 19268 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\tunevault\settings.py changed, reloading.
+INFO 2025-04-23 10:52:27,516 autoreload 9396 3172 Watching for file changes with StatReloader
+INFO 2025-04-23 10:52:35,002 autoreload 9396 3172 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-23 10:52:38,468 autoreload 15172 23164 Watching for file changes with StatReloader
+INFO 2025-04-23 10:52:46,167 autoreload 15172 23164 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\tunevault\settings.py changed, reloading.
+INFO 2025-04-23 10:52:49,391 autoreload 17000 12576 Watching for file changes with StatReloader
+INFO 2025-04-23 10:53:38,222 autoreload 17000 12576 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\tunevault\settings.py changed, reloading.
+INFO 2025-04-23 10:53:41,638 autoreload 16720 11884 Watching for file changes with StatReloader
+INFO 2025-04-23 10:55:08,891 autoreload 16720 11884 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-23 10:55:12,428 autoreload 16244 22912 Watching for file changes with StatReloader
+INFO 2025-04-23 10:55:58,709 autoreload 16244 22912 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\tunevault\settings.py changed, reloading.
+INFO 2025-04-23 10:56:01,844 autoreload 25488 296 Watching for file changes with StatReloader
+INFO 2025-04-23 10:56:12,717 autoreload 25488 296 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\tunevault\settings.py changed, reloading.
+INFO 2025-04-23 10:56:16,118 autoreload 16680 9292 Watching for file changes with StatReloader
+INFO 2025-04-23 10:56:20,000 autoreload 16680 9292 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-23 10:56:23,197 autoreload 1848 160 Watching for file changes with StatReloader
+INFO 2025-04-23 10:58:08,658 autoreload 1848 160 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-23 10:58:12,027 autoreload 23088 2320 Watching for file changes with StatReloader
+INFO 2025-04-23 11:00:26,320 autoreload 23088 2320 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-23 11:00:29,537 autoreload 21212 12808 Watching for file changes with StatReloader
+INFO 2025-04-23 11:01:10,015 autoreload 21212 12808 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-23 11:01:13,539 autoreload 17160 23028 Watching for file changes with StatReloader
+INFO 2025-04-23 11:03:28,514 autoreload 17160 23028 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-23 11:03:31,696 autoreload 11892 13156 Watching for file changes with StatReloader
+INFO 2025-04-23 11:09:58,108 autoreload 11892 13156 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-23 11:10:02,527 autoreload 13056 21404 Watching for file changes with StatReloader
+INFO 2025-04-23 11:30:19,957 autoreload 13056 21404 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-23 11:30:24,234 autoreload 23824 18700 Watching for file changes with StatReloader
+INFO 2025-04-23 11:31:27,905 autoreload 23824 18700 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-23 11:31:33,174 autoreload 24648 5528 Watching for file changes with StatReloader
+INFO 2025-04-23 11:41:35,345 autoreload 24648 5528 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-23 11:42:45,584 autoreload 18336 23276 Watching for file changes with StatReloader
+INFO 2025-04-23 11:43:33,827 autoreload 18336 23276 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-23 11:43:41,876 autoreload 26540 25640 Watching for file changes with StatReloader
+INFO 2025-04-23 11:50:17,302 autoreload 26540 25640 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-23 11:50:22,849 autoreload 26024 4940 Watching for file changes with StatReloader
+INFO 2025-04-23 11:51:47,490 autoreload 26024 4940 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-23 11:51:52,231 autoreload 16452 10264 Watching for file changes with StatReloader
+INFO 2025-04-23 11:52:46,836 download_helper 16452 9140 Downloading YouTube video using Hugging Face API: https://www.youtube.com/watch?v=hzIGIBQXVqA&pp=0gcJCYQJAYcqIYzv
+INFO 2025-04-23 11:52:48,076 download_helper 16452 9140 Sending request to Hugging Face API: https://www.youtube.com/watch?v=hzIGIBQXVqA&pp=0gcJCYQJAYcqIYzv
+ERROR 2025-04-23 11:52:50,276 download_helper 16452 9140 HTTP error from Hugging Face API: 405 Client Error: Method Not Allowed for url: https://monilm-songporter.hf.space:443/download-youtube/
+ERROR 2025-04-23 11:52:51,986 download_helper 16452 9140 Hugging Face API download failed: API error: Method Not Allowed
+ERROR 2025-04-23 11:52:51,986 log 16452 9140 Bad Gateway: /api/songs/songs/download/
+ERROR 2025-04-23 11:52:51,995 basehttp 16452 9140 "POST /api/songs/songs/download/ HTTP/1.1" 502 65
+INFO 2025-04-23 11:54:15,237 download_helper 16452 19780 Downloading YouTube video using Hugging Face API: https://www.youtube.com/watch?v=hzIGIBQXVqA&pp=0gcJCYQJAYcqIYzv
+INFO 2025-04-23 11:54:16,344 download_helper 16452 19780 Sending request to Hugging Face API: https://www.youtube.com/watch?v=hzIGIBQXVqA&pp=0gcJCYQJAYcqIYzv
+ERROR 2025-04-23 11:54:18,191 download_helper 16452 19780 HTTP error from Hugging Face API: 405 Client Error: Method Not Allowed for url: https://monilm-songporter.hf.space:443/download-youtube/
+ERROR 2025-04-23 11:54:18,194 download_helper 16452 19780 Hugging Face API download failed: API error: Method Not Allowed
+ERROR 2025-04-23 11:54:18,194 log 16452 19780 Bad Gateway: /api/songs/songs/download/
+ERROR 2025-04-23 11:54:18,194 basehttp 16452 19780 "POST /api/songs/songs/download/ HTTP/1.1" 502 65
+INFO 2025-04-23 11:58:02,257 autoreload 16452 10264 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-23 11:58:07,029 autoreload 6140 16124 Watching for file changes with StatReloader
+INFO 2025-04-23 11:58:42,626 autoreload 6140 16124 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-23 11:58:49,167 autoreload 8524 13388 Watching for file changes with StatReloader
+INFO 2025-04-23 11:59:18,216 autoreload 8524 13388 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-23 11:59:23,205 autoreload 19760 18820 Watching for file changes with StatReloader
+INFO 2025-04-23 11:59:28,959 autoreload 19760 18820 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-23 11:59:34,764 autoreload 12132 3164 Watching for file changes with StatReloader
+INFO 2025-04-23 12:07:25,115 autoreload 12132 3164 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-23 12:07:30,374 autoreload 9788 26328 Watching for file changes with StatReloader
+INFO 2025-04-23 12:12:04,520 autoreload 9788 26328 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-23 12:12:09,763 autoreload 12576 9568 Watching for file changes with StatReloader
+INFO 2025-04-23 12:14:46,359 autoreload 12576 9568 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-23 12:14:52,748 autoreload 5752 7796 Watching for file changes with StatReloader
+INFO 2025-04-23 12:19:14,214 autoreload 5752 7796 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-23 12:19:21,341 autoreload 23500 10904 Watching for file changes with StatReloader
+INFO 2025-04-23 12:20:11,992 download_helper 23500 21180 Downloading from Hugging Face Spaces: https://www.youtube.com/watch?v=hzIGIBQXVqA&pp=0gcJCYQJAYcqIYzv
+INFO 2025-04-23 12:20:42,618 download_helper 23500 21180 Successfully downloaded file to C:\Users\Dell\AppData\Local\Temp\tmp_j23lcja\download-1745391042.mp3
+INFO 2025-04-23 12:20:43,230 utils 23500 21180 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Old Man Canyon - Phantoms Friends Official Video - Old Man Canyon.mp3
+INFO 2025-04-23 12:20:43,250 utils 23500 21180 Title: Old Man Canyon - Phantoms & Friends [Official Video], Artist: Old Man Canyon, Album: Unknown Album, Genre: Unknown
+INFO 2025-04-23 12:20:43,280 utils 23500 21180 Loaded existing ID3 tags
+INFO 2025-04-23 12:20:43,283 utils 23500 21180 Trying to get thumbnail directly from YouTube: https://img.youtube.com/vi/hzIGIBQXVqA/maxresdefault.jpg
+INFO 2025-04-23 12:20:44,105 utils 23500 21180 Successfully downloaded YouTube thumbnail: 51446 bytes
+INFO 2025-04-23 12:20:44,528 utils 23500 21180 Successfully processed YouTube thumbnail: 97294 bytes
+INFO 2025-04-23 12:20:44,528 utils 23500 21180 Successfully added YouTube thumbnail to ID3 tags
+INFO 2025-04-23 12:20:44,558 utils 23500 21180 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Old Man Canyon - Phantoms Friends Official Video - Old Man Canyon.mp3 using ID3v2.3
+INFO 2025-04-23 12:20:44,589 utils 23500 21180 Verification: 9 tags were written, has_cover=True
+INFO 2025-04-23 12:20:45,259 utils 23500 21180 Attempting to set system thumbnail property directly (Windows only)
+WARNING 2025-04-23 12:20:45,322 utils 23500 21180 Could not set shell thumbnail: 'int' object has no attribute 'SetInfo'
+INFO 2025-04-23 12:20:46,139 download_helper 23500 21180 Added song to cache: https://www.youtube.com/watch?v=hzIGIBQXVqA&pp=0gcJCYQJAYcqIYzv
+INFO 2025-04-23 12:20:46,386 basehttp 23500 21180 "POST /api/songs/songs/download/ HTTP/1.1" 200 5701363
+INFO 2025-04-23 12:21:54,182 spotify_api 23500 20516 Extracting Spotify ID from URL: https://open.spotify.com/track/4HwDCXsMBC7SUdp2WT4MZP?si=2f00fe271dac4e22
+INFO 2025-04-23 12:21:54,182 spotify_api 23500 20516 Extracted Spotify track ID: 4HwDCXsMBC7SUdp2WT4MZP
+INFO 2025-04-23 12:21:54,312 spotify_api 23500 20516 Extracting Spotify ID from URL: https://open.spotify.com/track/4HwDCXsMBC7SUdp2WT4MZP?si=2f00fe271dac4e22
+INFO 2025-04-23 12:21:54,312 spotify_api 23500 20516 Extracted Spotify track ID: 4HwDCXsMBC7SUdp2WT4MZP
+INFO 2025-04-23 12:21:54,312 download_helper 23500 20516 Getting info for Spotify track ID: ('track', '4HwDCXsMBC7SUdp2WT4MZP')
+INFO 2025-04-23 12:21:54,312 spotify_api 23500 20516 Extracting Spotify ID from URL: https://open.spotify.com/track/4HwDCXsMBC7SUdp2WT4MZP?si=2f00fe271dac4e22
+INFO 2025-04-23 12:21:54,312 spotify_api 23500 20516 Extracted Spotify track ID: 4HwDCXsMBC7SUdp2WT4MZP
+INFO 2025-04-23 12:21:54,318 spotify_api 23500 20516 Getting info for Spotify track ID: 4HwDCXsMBC7SUdp2WT4MZP
+INFO 2025-04-23 12:21:54,318 spotify_api 23500 20516 Creating Spotify client with credentials from settings
+INFO 2025-04-23 12:21:54,930 spotify_api 23500 20516 Successfully tested Spotify client
+INFO 2025-04-23 12:21:55,394 spotify_api 23500 20516 Got track info: Into It by Chase Atlantic
+INFO 2025-04-23 12:21:55,394 download_helper 23500 20516 Spotify API returned thumbnail URL: https://i.scdn.co/image/ab67616d0000b2735a0c2870f4f309e382d1fad6
+INFO 2025-04-23 12:21:55,394 download_helper 23500 20516 Got track info: Into It by Chase Atlantic
+INFO 2025-04-23 12:21:55,394 download_helper 23500 20516 Downloading from Hugging Face Spaces: https://youtube.com/results?search_query=Into+It+Chase+Atlantic
+ERROR 2025-04-23 12:22:49,288 download_helper 23500 20516 Hugging Face API error: 502 - {"detail":"Failed to download from YouTube: ERROR: [youtube:tab] RDlZp96uELegI: YouTube said: This playlist type is unviewable."}
+ERROR 2025-04-23 12:22:49,622 download_helper 23500 20516 Error downloading from Hugging Face: Hugging Face API returned status code 502
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py", line 1142, in download_from_huggingface
+    raise Exception(f"Hugging Face API returned status code {response.status_code}")
+Exception: Hugging Face API returned status code 502
+ERROR 2025-04-23 12:22:49,695 download_helper 23500 20516 Spotify track download error: Hugging Face API returned status code 502
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py", line 455, in download_spotify_track
+    info = download_from_huggingface(search_url, temp_dir)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py", line 1142, in download_from_huggingface
+    raise Exception(f"Hugging Face API returned status code {response.status_code}")
+Exception: Hugging Face API returned status code 502
+ERROR 2025-04-23 12:22:49,703 log 23500 20516 Internal Server Error: /api/songs/songs/download/
+ERROR 2025-04-23 12:22:49,703 basehttp 23500 20516 "POST /api/songs/songs/download/ HTTP/1.1" 500 70
+INFO 2025-04-23 12:55:55,777 spotify_api 23500 9664 Extracting Spotify ID from URL: https://open.spotify.com/track/4HwDCXsMBC7SUdp2WT4MZP?si=2f00fe271dac4e22
+INFO 2025-04-23 12:55:55,778 spotify_api 23500 9664 Extracted Spotify track ID: 4HwDCXsMBC7SUdp2WT4MZP
+INFO 2025-04-23 12:55:55,928 spotify_api 23500 9664 Extracting Spotify ID from URL: https://open.spotify.com/track/4HwDCXsMBC7SUdp2WT4MZP?si=2f00fe271dac4e22
+INFO 2025-04-23 12:55:55,928 spotify_api 23500 9664 Extracted Spotify track ID: 4HwDCXsMBC7SUdp2WT4MZP
+INFO 2025-04-23 12:55:55,928 download_helper 23500 9664 Getting info for Spotify track ID: ('track', '4HwDCXsMBC7SUdp2WT4MZP')
+INFO 2025-04-23 12:55:55,929 spotify_api 23500 9664 Extracting Spotify ID from URL: https://open.spotify.com/track/4HwDCXsMBC7SUdp2WT4MZP?si=2f00fe271dac4e22
+INFO 2025-04-23 12:55:55,929 spotify_api 23500 9664 Extracted Spotify track ID: 4HwDCXsMBC7SUdp2WT4MZP
+INFO 2025-04-23 12:55:55,929 spotify_api 23500 9664 Getting info for Spotify track ID: 4HwDCXsMBC7SUdp2WT4MZP
+INFO 2025-04-23 12:55:55,929 spotify_api 23500 9664 Creating Spotify client with credentials from settings
+INFO 2025-04-23 12:55:56,124 spotify_api 23500 9664 Successfully tested Spotify client
+INFO 2025-04-23 12:55:56,426 spotify_api 23500 9664 Got track info: Into It by Chase Atlantic
+INFO 2025-04-23 12:55:56,427 download_helper 23500 9664 Spotify API returned thumbnail URL: https://i.scdn.co/image/ab67616d0000b2735a0c2870f4f309e382d1fad6
+INFO 2025-04-23 12:55:56,427 download_helper 23500 9664 Got track info: Into It by Chase Atlantic
+INFO 2025-04-23 12:55:56,428 download_helper 23500 9664 Downloading from Hugging Face Spaces: https://youtube.com/results?search_query=Into+It+Chase+Atlantic
+INFO 2025-04-23 12:56:10,128 download_helper 23500 9664 Successfully downloaded file to C:\Users\Dell\AppData\Local\Temp\tmpbv9wgwom\download-1745393170.mp3
+INFO 2025-04-23 12:56:10,130 download_helper 23500 9664 Downloaded file to: C:\Users\Dell\AppData\Local\Temp\tmpbv9wgwom\download-1745393170.mp3
+INFO 2025-04-23 12:56:10,212 utils 23500 9664 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Into It - Chase Atlantic.mp3
+INFO 2025-04-23 12:56:10,213 utils 23500 9664 Title: Into It, Artist: Chase Atlantic, Album: Chase Atlantic, Genre: Unknown
+INFO 2025-04-23 12:56:10,233 utils 23500 9664 Loaded existing ID3 tags
+INFO 2025-04-23 12:56:10,305 utils 23500 9664 Downloading thumbnail from URL: https://i.scdn.co/image/ab67616d0000b2735a0c2870f4f309e382d1fad6
+INFO 2025-04-23 12:56:10,366 utils 23500 9664 Downloaded thumbnail: 82754 bytes
+INFO 2025-04-23 12:56:10,366 utils 23500 9664 Detected image type: jpeg
+INFO 2025-04-23 12:56:10,395 utils 23500 9664 Successfully converted image to JPEG: 64522 bytes
+INFO 2025-04-23 12:56:10,397 utils 23500 9664 Adding album art, MIME type: image/jpeg
+INFO 2025-04-23 12:56:10,437 utils 23500 9664 Successfully added album art to ID3 tags
+INFO 2025-04-23 12:56:10,444 utils 23500 9664 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Into It - Chase Atlantic.mp3 using ID3v2.3
+INFO 2025-04-23 12:56:10,464 utils 23500 9664 Verification: 10 tags were written, has_cover=True
+INFO 2025-04-23 12:56:10,468 utils 23500 9664 Attempting to set system thumbnail property directly (Windows only)
+WARNING 2025-04-23 12:56:10,472 utils 23500 9664 Could not set shell thumbnail: 'int' object has no attribute 'SetInfo'
+INFO 2025-04-23 12:56:10,744 models 23500 9664 [DEBUG] record_download called for user=testuser id=1 date=2025-04-23
+INFO 2025-04-23 12:56:11,079 models 23500 9664 [DEBUG] record_download updated analytics: user=testuser id=1 date=2025-04-23 songs_downloaded=1
+INFO 2025-04-23 12:56:11,460 download_helper 23500 9664 Added song to cache: https://open.spotify.com/track/4HwDCXsMBC7SUdp2WT4MZP?si=2f00fe271dac4e22
+INFO 2025-04-23 12:56:16,056 basehttp 23500 9664 "POST /api/songs/songs/download/ HTTP/1.1" 200 3241940
+INFO 2025-04-23 13:01:33,686 autoreload 23500 10904 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-23 13:01:38,985 autoreload 9668 7984 Watching for file changes with StatReloader
+INFO 2025-04-23 13:22:01,729 spotify_api 9668 16160 Extracting Spotify ID from URL: https://open.spotify.com/track/4HwDCXsMBC7SUdp2WT4MZP?si=2f00fe271dac4e22
+INFO 2025-04-23 13:22:01,729 spotify_api 9668 16160 Extracted Spotify track ID: 4HwDCXsMBC7SUdp2WT4MZP
+INFO 2025-04-23 13:22:01,823 views 9668 16160 Found existing song with URL https://open.spotify.com/track/4HwDCXsMBC7SUdp2WT4MZP?si=2f00fe271dac4e22, serving directly
+INFO 2025-04-23 13:22:01,965 download_helper 9668 16160 Using cached version for Spotify URL: https://open.spotify.com/track/4HwDCXsMBC7SUdp2WT4MZP?si=2f00fe271dac4e22
+INFO 2025-04-23 13:22:01,965 models 9668 16160 [DEBUG] record_download called for user=testuser id=1 date=2025-04-23
+INFO 2025-04-23 13:22:02,108 models 9668 16160 [DEBUG] record_download updated analytics: user=testuser id=1 date=2025-04-23 songs_downloaded=2
+INFO 2025-04-23 13:22:02,108 download_helper 9668 16160 Converting cached Spotify song from mp3 to aac
+INFO 2025-04-23 13:22:06,507 basehttp 9668 16160 "POST /api/songs/songs/download/ HTTP/1.1" 200 3241122
+INFO 2025-04-23 13:22:40,125 spotify_api 9668 16160 Extracting Spotify ID from URL: https://open.spotify.com/track/3M0lSi5WW79CXQamgSBIjx?si=702334395f904127
+INFO 2025-04-23 13:22:40,126 spotify_api 9668 16160 Extracted Spotify track ID: 3M0lSi5WW79CXQamgSBIjx
+INFO 2025-04-23 13:22:40,256 spotify_api 9668 16160 Extracting Spotify ID from URL: https://open.spotify.com/track/3M0lSi5WW79CXQamgSBIjx?si=702334395f904127
+INFO 2025-04-23 13:22:40,256 spotify_api 9668 16160 Extracted Spotify track ID: 3M0lSi5WW79CXQamgSBIjx
+INFO 2025-04-23 13:22:40,256 download_helper 9668 16160 Getting info for Spotify track ID: ('track', '3M0lSi5WW79CXQamgSBIjx')
+INFO 2025-04-23 13:22:40,257 spotify_api 9668 16160 Extracting Spotify ID from URL: https://open.spotify.com/track/3M0lSi5WW79CXQamgSBIjx?si=702334395f904127
+INFO 2025-04-23 13:22:40,257 spotify_api 9668 16160 Extracted Spotify track ID: 3M0lSi5WW79CXQamgSBIjx
+INFO 2025-04-23 13:22:40,257 spotify_api 9668 16160 Getting info for Spotify track ID: 3M0lSi5WW79CXQamgSBIjx
+INFO 2025-04-23 13:22:40,257 spotify_api 9668 16160 Creating Spotify client with credentials from settings
+INFO 2025-04-23 13:22:40,660 spotify_api 9668 16160 Successfully tested Spotify client
+INFO 2025-04-23 13:22:41,018 spotify_api 9668 16160 Got track info: Swim by Chase Atlantic
+INFO 2025-04-23 13:22:41,018 download_helper 9668 16160 Spotify API returned thumbnail URL: https://i.scdn.co/image/ab67616d0000b2735a0c2870f4f309e382d1fad6
+INFO 2025-04-23 13:22:41,019 download_helper 9668 16160 Got track info: Swim by Chase Atlantic
+INFO 2025-04-23 13:22:41,020 download_helper 9668 16160 Downloading from Hugging Face Spaces: https://youtube.com/results?search_query=Swim+Chase+Atlantic
+INFO 2025-04-23 13:23:11,940 download_helper 9668 16160 Successfully downloaded file to C:\Users\Dell\AppData\Local\Temp\tmpu37f46_f\download-1745394791.mp3
+INFO 2025-04-23 13:23:11,940 download_helper 9668 16160 Downloaded file to: C:\Users\Dell\AppData\Local\Temp\tmpu37f46_f\download-1745394791.mp3
+INFO 2025-04-23 13:23:12,016 download_helper 9668 16160 Embedding Spotify metadata into MP3 file: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Swim - Chase Atlantic.mp3
+INFO 2025-04-23 13:23:12,046 utils 9668 16160 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Swim - Chase Atlantic.mp3
+INFO 2025-04-23 13:23:12,047 utils 9668 16160 Title: Swim, Artist: Chase Atlantic, Album: Chase Atlantic, Genre: Unknown
+INFO 2025-04-23 13:23:12,055 utils 9668 16160 Loaded existing ID3 tags
+INFO 2025-04-23 13:23:12,136 utils 9668 16160 Downloading thumbnail from URL: https://i.scdn.co/image/ab67616d0000b2735a0c2870f4f309e382d1fad6
+INFO 2025-04-23 13:23:12,219 utils 9668 16160 Downloaded thumbnail: 82754 bytes
+INFO 2025-04-23 13:23:12,220 utils 9668 16160 Detected image type: jpeg
+INFO 2025-04-23 13:23:12,269 utils 9668 16160 Successfully converted image to JPEG: 64522 bytes
+INFO 2025-04-23 13:23:12,272 utils 9668 16160 Adding album art, MIME type: image/jpeg
+INFO 2025-04-23 13:23:12,272 utils 9668 16160 Successfully added album art to ID3 tags
+INFO 2025-04-23 13:23:12,281 utils 9668 16160 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Swim - Chase Atlantic.mp3 using ID3v2.3
+INFO 2025-04-23 13:23:12,289 utils 9668 16160 Verification: 9 tags were written, has_cover=True
+INFO 2025-04-23 13:23:12,335 utils 9668 16160 Attempting to set system thumbnail property directly (Windows only)
+WARNING 2025-04-23 13:23:12,339 utils 9668 16160 Could not set shell thumbnail: 'int' object has no attribute 'SetInfo'
+INFO 2025-04-23 13:23:12,636 models 9668 16160 [DEBUG] record_download called for user=testuser id=1 date=2025-04-23
+INFO 2025-04-23 13:23:12,766 models 9668 16160 [DEBUG] record_download updated analytics: user=testuser id=1 date=2025-04-23 songs_downloaded=3
+INFO 2025-04-23 13:23:13,157 download_helper 9668 16160 Added song to cache: https://open.spotify.com/track/3M0lSi5WW79CXQamgSBIjx?si=702334395f904127
+INFO 2025-04-23 13:23:18,335 basehttp 9668 16160 "POST /api/songs/songs/download/ HTTP/1.1" 200 3767416
+INFO 2025-04-23 13:24:54,139 autoreload 9668 7984 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-23 13:24:57,581 autoreload 13164 9516 Watching for file changes with StatReloader
+INFO 2025-04-23 13:26:56,469 autoreload 13164 9516 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-23 13:27:00,645 autoreload 2936 21632 Watching for file changes with StatReloader
+INFO 2025-04-23 13:30:13,404 spotify_api 2936 25200 Extracting Spotify ID from URL: https://open.spotify.com/track/57yL3161hUMuw06zzzUCHi?si=e4570fa80242451b
+INFO 2025-04-23 13:30:13,404 spotify_api 2936 25200 Extracted Spotify track ID: 57yL3161hUMuw06zzzUCHi
+INFO 2025-04-23 13:30:13,628 spotify_api 2936 25200 Extracting Spotify ID from URL: https://open.spotify.com/track/57yL3161hUMuw06zzzUCHi?si=e4570fa80242451b
+INFO 2025-04-23 13:30:13,628 spotify_api 2936 25200 Extracted Spotify track ID: 57yL3161hUMuw06zzzUCHi
+INFO 2025-04-23 13:30:13,628 download_helper 2936 25200 Getting info for Spotify track ID: ('track', '57yL3161hUMuw06zzzUCHi')
+INFO 2025-04-23 13:30:13,628 spotify_api 2936 25200 Extracting Spotify ID from URL: https://open.spotify.com/track/57yL3161hUMuw06zzzUCHi?si=e4570fa80242451b
+INFO 2025-04-23 13:30:13,628 spotify_api 2936 25200 Extracted Spotify track ID: 57yL3161hUMuw06zzzUCHi
+INFO 2025-04-23 13:30:13,628 spotify_api 2936 25200 Getting info for Spotify track ID: 57yL3161hUMuw06zzzUCHi
+INFO 2025-04-23 13:30:13,628 spotify_api 2936 25200 Creating Spotify client with credentials from settings
+INFO 2025-04-23 13:30:13,879 spotify_api 2936 25200 Successfully tested Spotify client
+INFO 2025-04-23 13:30:14,338 spotify_api 2936 25200 Got track info: Doubt by Twenty One Pilots
+INFO 2025-04-23 13:30:14,338 download_helper 2936 25200 Spotify API returned thumbnail URL: https://i.scdn.co/image/ab67616d0000b2732df0d98a423025032d0db1f7
+INFO 2025-04-23 13:30:14,338 download_helper 2936 25200 Got track info: Doubt by Twenty One Pilots
+INFO 2025-04-23 13:30:14,344 download_helper 2936 25200 Downloading from Hugging Face Spaces: https://youtube.com/results?search_query=Doubt+Twenty+One+Pilots
+INFO 2025-04-23 13:30:50,112 download_helper 2936 25200 Successfully downloaded file to C:\Users\Dell\AppData\Local\Temp\tmp13aerh_o\download-1745395250.mp3
+INFO 2025-04-23 13:30:50,113 download_helper 2936 25200 Using Spotify thumbnail URL: https://i.scdn.co/image/ab67616d0000b2732df0d98a423025032d0db1f7
+INFO 2025-04-23 13:30:50,114 download_helper 2936 25200 Downloaded file to: C:\Users\Dell\AppData\Local\Temp\tmp13aerh_o\download-1745395250.mp3
+INFO 2025-04-23 13:30:50,194 download_helper 2936 25200 Embedding Spotify metadata into MP3 file: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Doubt - Twenty One Pilots.mp3
+INFO 2025-04-23 13:30:50,215 utils 2936 25200 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Doubt - Twenty One Pilots.mp3
+INFO 2025-04-23 13:30:50,216 utils 2936 25200 Title: Doubt, Artist: Twenty One Pilots, Album: Blurryface, Genre: Unknown
+INFO 2025-04-23 13:30:50,227 utils 2936 25200 Loaded existing ID3 tags
+INFO 2025-04-23 13:30:50,306 utils 2936 25200 Downloading thumbnail from URL: https://i.scdn.co/image/ab67616d0000b2732df0d98a423025032d0db1f7
+INFO 2025-04-23 13:30:50,391 utils 2936 25200 Downloaded thumbnail: 75557 bytes
+INFO 2025-04-23 13:30:50,391 utils 2936 25200 Detected image type: jpeg
+INFO 2025-04-23 13:30:50,441 utils 2936 25200 Successfully converted image to JPEG: 63646 bytes
+INFO 2025-04-23 13:30:50,442 utils 2936 25200 Adding album art, MIME type: image/jpeg
+INFO 2025-04-23 13:30:50,443 utils 2936 25200 Successfully added album art to ID3 tags
+INFO 2025-04-23 13:30:50,451 utils 2936 25200 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Doubt - Twenty One Pilots.mp3 using ID3v2.3
+INFO 2025-04-23 13:30:50,461 utils 2936 25200 Verification: 10 tags were written, has_cover=True
+INFO 2025-04-23 13:30:50,493 utils 2936 25200 Attempting to set system thumbnail property directly (Windows only)
+WARNING 2025-04-23 13:30:50,502 utils 2936 25200 Could not set shell thumbnail: 'int' object has no attribute 'SetInfo'
+INFO 2025-04-23 13:30:50,818 models 2936 25200 [DEBUG] record_download called for user=testuser id=1 date=2025-04-23
+INFO 2025-04-23 13:30:50,981 models 2936 25200 [DEBUG] record_download updated analytics: user=testuser id=1 date=2025-04-23 songs_downloaded=4
+INFO 2025-04-23 13:30:51,401 download_helper 2936 25200 Added song to cache: https://open.spotify.com/track/57yL3161hUMuw06zzzUCHi?si=e4570fa80242451b
+INFO 2025-04-23 13:30:56,121 basehttp 2936 25200 "POST /api/songs/songs/download/ HTTP/1.1" 200 3185755
+INFO 2025-04-23 13:34:10,018 autoreload 2936 21632 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\utils.py changed, reloading.
+INFO 2025-04-23 13:34:13,645 autoreload 13500 15892 Watching for file changes with StatReloader
+ERROR 2025-04-23 13:42:41,469 log 13500 22192 Internal Server Error: /api/songs/songs/download/
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 279, in ensure_connection
+    self.connect()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\utils.py", line 1783, in runner
+    return sentry_patched_function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\__init__.py", line 690, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\postgresql\base.py", line 332, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\psycopg2\__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: could not translate host name "ep-patient-resonance-a19rwm71.ap-southeast-1.aws.neon.tech" to address: No such host is known. 
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\views.py", line 94, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\__init__.py", line 331, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 330, in perform_authentication
+    request.user
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\request.py", line 232, in user
+    self._authenticate()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\authentication.py", line 196, in authenticate
+    return self.authenticate_credentials(token)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\authentication.py", line 201, in authenticate_credentials
+    token = model.objects.select_related('user').get(key=key)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 645, in get
+    num = len(clone)
+          ^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 382, in __len__
+    self._fetch_all()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1572, in execute_sql
+    cursor = self.connection.cursor()
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 320, in cursor
+    return self._cursor()
+           ^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 296, in _cursor
+    self.ensure_connection()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 278, in ensure_connection
+    with self.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 279, in ensure_connection
+    self.connect()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\utils.py", line 1783, in runner
+    return sentry_patched_function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\__init__.py", line 690, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\postgresql\base.py", line 332, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\psycopg2\__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: could not translate host name "ep-patient-resonance-a19rwm71.ap-southeast-1.aws.neon.tech" to address: No such host is known. 
+
+ERROR 2025-04-23 13:42:41,484 basehttp 13500 22192 "POST /api/songs/songs/download/ HTTP/1.1" 500 257779
+INFO 2025-04-23 13:44:46,756 spotify_api 13500 10956 Extracting Spotify ID from URL: https://open.spotify.com/track/3CRDbSIZ4r5MsZ0YwxuEkn?si=1d7455f0dd664c73
+INFO 2025-04-23 13:44:46,757 spotify_api 13500 10956 Extracted Spotify track ID: 3CRDbSIZ4r5MsZ0YwxuEkn
+INFO 2025-04-23 13:44:46,911 spotify_api 13500 10956 Extracting Spotify ID from URL: https://open.spotify.com/track/3CRDbSIZ4r5MsZ0YwxuEkn?si=1d7455f0dd664c73
+INFO 2025-04-23 13:44:46,911 spotify_api 13500 10956 Extracted Spotify track ID: 3CRDbSIZ4r5MsZ0YwxuEkn
+INFO 2025-04-23 13:44:46,912 download_helper 13500 10956 Getting info for Spotify track ID: ('track', '3CRDbSIZ4r5MsZ0YwxuEkn')
+INFO 2025-04-23 13:44:46,913 spotify_api 13500 10956 Extracting Spotify ID from URL: https://open.spotify.com/track/3CRDbSIZ4r5MsZ0YwxuEkn?si=1d7455f0dd664c73
+INFO 2025-04-23 13:44:46,914 spotify_api 13500 10956 Extracted Spotify track ID: 3CRDbSIZ4r5MsZ0YwxuEkn
+INFO 2025-04-23 13:44:46,914 spotify_api 13500 10956 Getting info for Spotify track ID: 3CRDbSIZ4r5MsZ0YwxuEkn
+INFO 2025-04-23 13:44:46,915 spotify_api 13500 10956 Creating Spotify client with credentials from settings
+INFO 2025-04-23 13:44:47,125 spotify_api 13500 10956 Successfully tested Spotify client
+INFO 2025-04-23 13:44:47,472 spotify_api 13500 10956 Got track info: Stressed Out by Twenty One Pilots
+INFO 2025-04-23 13:44:47,473 download_helper 13500 10956 Spotify API returned thumbnail URL: https://i.scdn.co/image/ab67616d0000b2732df0d98a423025032d0db1f7
+INFO 2025-04-23 13:44:47,474 download_helper 13500 10956 Got track info: Stressed Out by Twenty One Pilots
+INFO 2025-04-23 13:44:47,476 download_helper 13500 10956 Downloading from Hugging Face Spaces: https://youtube.com/results?search_query=Stressed+Out+Twenty+One+Pilots
+INFO 2025-04-23 13:45:12,834 download_helper 13500 10956 Successfully downloaded file to C:\Users\Dell\AppData\Local\Temp\tmp2eeiglev\download-1745396112.mp3
+INFO 2025-04-23 13:45:12,834 download_helper 13500 10956 Using Spotify thumbnail URL: https://i.scdn.co/image/ab67616d0000b2732df0d98a423025032d0db1f7
+INFO 2025-04-23 13:45:12,835 download_helper 13500 10956 Downloaded file to: C:\Users\Dell\AppData\Local\Temp\tmp2eeiglev\download-1745396112.mp3
+INFO 2025-04-23 13:45:12,909 download_helper 13500 10956 Embedding Spotify metadata into MP3 file: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Stressed Out - Twenty One Pilots.mp3
+INFO 2025-04-23 13:45:12,946 utils 13500 10956 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Stressed Out - Twenty One Pilots.mp3
+INFO 2025-04-23 13:45:12,948 utils 13500 10956 Title: Stressed Out, Artist: Twenty One Pilots, Album: Blurryface, Genre: Unknown
+INFO 2025-04-23 13:45:12,957 utils 13500 10956 Loaded existing ID3 tags
+INFO 2025-04-23 13:45:13,031 utils 13500 10956 Downloading thumbnail from URL: https://i.scdn.co/image/ab67616d0000b2732df0d98a423025032d0db1f7
+INFO 2025-04-23 13:45:13,110 utils 13500 10956 Downloaded thumbnail: 75557 bytes
+INFO 2025-04-23 13:45:13,111 utils 13500 10956 Detected image type: jpeg
+INFO 2025-04-23 13:45:13,157 utils 13500 10956 Successfully converted image to JPEG: 63646 bytes
+INFO 2025-04-23 13:45:13,158 utils 13500 10956 Adding album art, MIME type: image/jpeg
+INFO 2025-04-23 13:45:13,159 utils 13500 10956 Successfully added album art to ID3 tags
+INFO 2025-04-23 13:45:13,170 utils 13500 10956 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Stressed Out - Twenty One Pilots.mp3 using ID3v2.3
+INFO 2025-04-23 13:45:13,180 utils 13500 10956 Verification: 10 tags were written, has_cover=True
+INFO 2025-04-23 13:45:13,218 utils 13500 10956 Attempting to set system thumbnail property directly (Windows only)
+INFO 2025-04-23 13:45:13,236 utils 13500 10956 Successfully deleted existing ID3 tags before rebuilding
+INFO 2025-04-23 13:45:13,250 utils 13500 10956 Successfully rebuilt ID3 tags with clean implementation
+INFO 2025-04-23 13:45:13,251 utils 13500 10956 Skipping shell thumbnail method due to known issues
+INFO 2025-04-23 13:45:13,535 models 13500 10956 [DEBUG] record_download called for user=testuser id=1 date=2025-04-23
+INFO 2025-04-23 13:45:13,666 models 13500 10956 [DEBUG] record_download updated analytics: user=testuser id=1 date=2025-04-23 songs_downloaded=5
+INFO 2025-04-23 13:45:14,047 download_helper 13500 10956 Added song to cache: https://open.spotify.com/track/3CRDbSIZ4r5MsZ0YwxuEkn?si=1d7455f0dd664c73
+INFO 2025-04-23 13:45:19,446 basehttp 13500 10956 "POST /api/songs/songs/download/ HTTP/1.1" 200 3563732
+INFO 2025-04-23 13:54:40,763 autoreload 13500 15892 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\utils.py changed, reloading.
+INFO 2025-04-23 13:54:47,467 autoreload 14892 20436 Watching for file changes with StatReloader
+INFO 2025-04-23 13:58:10,410 autoreload 14892 20436 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-23 13:58:14,323 autoreload 6928 13804 Watching for file changes with StatReloader
+INFO 2025-04-23 14:09:48,459 autoreload 6928 13804 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-23 14:09:57,446 autoreload 24704 16664 Watching for file changes with StatReloader
+INFO 2025-04-23 14:11:08,179 autoreload 24704 16664 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-23 14:11:13,032 autoreload 26272 7900 Watching for file changes with StatReloader
+INFO 2025-04-23 15:54:51,412 spotify_api 26272 7716 Extracting Spotify ID from URL: https://open.spotify.com/track/2Z8WuEywRWYTKe1NybPQEW?si=ece6c450351c4ae9
+INFO 2025-04-23 15:54:51,415 spotify_api 26272 7716 Extracted Spotify track ID: 2Z8WuEywRWYTKe1NybPQEW
+INFO 2025-04-23 15:54:51,577 spotify_api 26272 7716 Extracting Spotify ID from URL: https://open.spotify.com/track/2Z8WuEywRWYTKe1NybPQEW?si=ece6c450351c4ae9
+INFO 2025-04-23 15:54:51,578 spotify_api 26272 7716 Extracted Spotify track ID: 2Z8WuEywRWYTKe1NybPQEW
+INFO 2025-04-23 15:54:51,578 download_helper 26272 7716 Getting info for Spotify track ID: ('track', '2Z8WuEywRWYTKe1NybPQEW')
+INFO 2025-04-23 15:54:51,578 spotify_api 26272 7716 Extracting Spotify ID from URL: https://open.spotify.com/track/2Z8WuEywRWYTKe1NybPQEW?si=ece6c450351c4ae9
+INFO 2025-04-23 15:54:51,579 spotify_api 26272 7716 Extracted Spotify track ID: 2Z8WuEywRWYTKe1NybPQEW
+INFO 2025-04-23 15:54:51,579 spotify_api 26272 7716 Getting info for Spotify track ID: 2Z8WuEywRWYTKe1NybPQEW
+INFO 2025-04-23 15:54:51,579 spotify_api 26272 7716 Creating Spotify client with credentials from settings
+INFO 2025-04-23 15:54:51,985 spotify_api 26272 7716 Successfully tested Spotify client
+INFO 2025-04-23 15:54:52,339 spotify_api 26272 7716 Got track info: Ride by Twenty One Pilots
+INFO 2025-04-23 15:54:52,340 download_helper 26272 7716 Spotify API returned thumbnail URL: https://i.scdn.co/image/ab67616d0000b2732df0d98a423025032d0db1f7
+INFO 2025-04-23 15:54:52,341 download_helper 26272 7716 Got track info: Ride by Twenty One Pilots
+INFO 2025-04-23 15:54:52,344 download_helper 26272 7716 Downloading from Hugging Face Spaces: https://youtube.com/results?search_query=Ride+Twenty+One+Pilots
+INFO 2025-04-23 15:55:09,686 download_helper 26272 7716 Successfully downloaded file to C:\Users\Dell\AppData\Local\Temp\tmpxrvya1j0\download-1745403909.mp3
+INFO 2025-04-23 15:55:09,686 download_helper 26272 7716 Using Spotify thumbnail URL: https://i.scdn.co/image/ab67616d0000b2732df0d98a423025032d0db1f7
+INFO 2025-04-23 15:55:09,991 utils 26272 7716 Embedding metadata in C:\Users\Dell\AppData\Local\Temp\tmpxrvya1j0\download-1745403909.mp3
+INFO 2025-04-23 15:55:09,991 utils 26272 7716 Title: Ride, Artist: Twenty One Pilots, Album: Blurryface, Genre: Unknown
+INFO 2025-04-23 15:55:10,002 utils 26272 7716 Loaded existing ID3 tags
+INFO 2025-04-23 15:55:10,083 utils 26272 7716 Downloading thumbnail from URL: https://i.scdn.co/image/ab67616d0000b2732df0d98a423025032d0db1f7
+INFO 2025-04-23 15:55:10,137 utils 26272 7716 Downloaded thumbnail: 75557 bytes
+INFO 2025-04-23 15:55:10,137 utils 26272 7716 Detected image type: jpeg
+INFO 2025-04-23 15:55:10,236 utils 26272 7716 Successfully converted image to JPEG: 63646 bytes
+INFO 2025-04-23 15:55:10,237 utils 26272 7716 Adding album art, MIME type: image/jpeg
+INFO 2025-04-23 15:55:10,237 utils 26272 7716 Successfully added album art to ID3 tags
+INFO 2025-04-23 15:55:10,245 utils 26272 7716 Successfully saved ID3 tags to C:\Users\Dell\AppData\Local\Temp\tmpxrvya1j0\download-1745403909.mp3 using ID3v2.3
+INFO 2025-04-23 15:55:10,257 utils 26272 7716 Verification: 10 tags were written, has_cover=True
+INFO 2025-04-23 15:55:10,577 utils 26272 7716 Attempting to set system thumbnail property directly (Windows only)
+INFO 2025-04-23 15:55:10,598 utils 26272 7716 Successfully deleted existing ID3 tags before rebuilding
+INFO 2025-04-23 15:55:10,607 utils 26272 7716 Successfully rebuilt ID3 tags with clean implementation
+INFO 2025-04-23 15:55:10,607 utils 26272 7716 Skipping shell thumbnail method due to known issues
+INFO 2025-04-23 15:55:10,617 download_helper 26272 7716 Successfully embedded metadata in downloaded file: C:\Users\Dell\AppData\Local\Temp\tmpxrvya1j0\download-1745403909.mp3
+INFO 2025-04-23 15:55:10,618 download_helper 26272 7716 Downloaded file to: C:\Users\Dell\AppData\Local\Temp\tmpxrvya1j0\download-1745403909.mp3
+INFO 2025-04-23 15:55:10,692 download_helper 26272 7716 Embedding Spotify metadata into MP3 file: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Ride - Twenty One Pilots.mp3
+INFO 2025-04-23 15:55:10,693 download_helper 26272 7716 Embedding metadata with params: title=Ride, artist=Twenty One Pilots, album=Blurryface, thumbnail_url=https://i.scdn.co/image/ab67616d0000b2732df0d98a423025032d0db1f7, year=2015, spotify_id=2Z8WuEywRWYTKe1NybPQEW
+INFO 2025-04-23 15:55:10,693 utils 26272 7716 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Ride - Twenty One Pilots.mp3
+INFO 2025-04-23 15:55:10,694 utils 26272 7716 Title: Ride, Artist: Twenty One Pilots, Album: Blurryface, Genre: Unknown
+INFO 2025-04-23 15:55:10,708 utils 26272 7716 Loaded existing ID3 tags
+INFO 2025-04-23 15:55:10,776 utils 26272 7716 Downloading thumbnail from URL: https://i.scdn.co/image/ab67616d0000b2732df0d98a423025032d0db1f7
+INFO 2025-04-23 15:55:10,817 utils 26272 7716 Downloaded thumbnail: 75557 bytes
+INFO 2025-04-23 15:55:10,817 utils 26272 7716 Detected image type: jpeg
+INFO 2025-04-23 15:55:10,854 utils 26272 7716 Successfully converted image to JPEG: 63646 bytes
+INFO 2025-04-23 15:55:10,855 utils 26272 7716 Adding album art, MIME type: image/jpeg
+INFO 2025-04-23 15:55:10,856 utils 26272 7716 Successfully added album art to ID3 tags
+INFO 2025-04-23 15:55:10,856 utils 26272 7716 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Ride - Twenty One Pilots.mp3 using ID3v2.3
+INFO 2025-04-23 15:55:10,867 utils 26272 7716 Verification: 8 tags were written, has_cover=True
+INFO 2025-04-23 15:55:10,867 utils 26272 7716 Attempting to set system thumbnail property directly (Windows only)
+INFO 2025-04-23 15:55:10,887 utils 26272 7716 Successfully deleted existing ID3 tags before rebuilding
+INFO 2025-04-23 15:55:10,901 utils 26272 7716 Successfully rebuilt ID3 tags with clean implementation
+INFO 2025-04-23 15:55:10,901 utils 26272 7716 Skipping shell thumbnail method due to known issues
+INFO 2025-04-23 15:55:10,917 download_helper 26272 7716 Tag verification: 7 tags were written, has_cover=True
+INFO 2025-04-23 15:55:10,917 download_helper 26272 7716 Tags in file: ['TIT2', 'TPE1', 'TALB', 'TDRC', 'TCON', 'TPE2', 'APIC:Cover']
+INFO 2025-04-23 15:55:11,657 download_helper 26272 7716 Added song to cache: https://open.spotify.com/track/2Z8WuEywRWYTKe1NybPQEW?si=ece6c450351c4ae9
+INFO 2025-04-23 15:55:20,827 basehttp 26272 7716 "POST /api/songs/songs/download/ HTTP/1.1" 200 3692956
+INFO 2025-04-23 16:00:52,853 autoreload 26272 7900 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-23 16:00:59,765 autoreload 6816 19304 Watching for file changes with StatReloader
+INFO 2025-04-23 16:29:51,431 autoreload 6816 19304 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-23 16:29:56,502 autoreload 21644 25620 Watching for file changes with StatReloader
+INFO 2025-04-23 16:34:24,257 autoreload 21644 25620 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-23 16:34:27,965 autoreload 24064 760 Watching for file changes with StatReloader
+INFO 2025-04-23 16:35:29,434 spotify_api 24064 18064 Extracting Spotify ID from URL: https://open.spotify.com/track/6i0V12jOa3mr6uu4WYhUBr?si=2b92be949c0a41b1
+INFO 2025-04-23 16:35:29,435 spotify_api 24064 18064 Extracted Spotify track ID: 6i0V12jOa3mr6uu4WYhUBr
+INFO 2025-04-23 16:35:29,582 spotify_api 24064 18064 Extracting Spotify ID from URL: https://open.spotify.com/track/6i0V12jOa3mr6uu4WYhUBr?si=2b92be949c0a41b1
+INFO 2025-04-23 16:35:29,583 spotify_api 24064 18064 Extracted Spotify track ID: 6i0V12jOa3mr6uu4WYhUBr
+INFO 2025-04-23 16:35:29,583 download_helper 24064 18064 Getting info for Spotify track ID: ('track', '6i0V12jOa3mr6uu4WYhUBr')
+INFO 2025-04-23 16:35:29,583 spotify_api 24064 18064 Extracting Spotify ID from URL: https://open.spotify.com/track/6i0V12jOa3mr6uu4WYhUBr?si=2b92be949c0a41b1
+INFO 2025-04-23 16:35:29,584 spotify_api 24064 18064 Extracted Spotify track ID: 6i0V12jOa3mr6uu4WYhUBr
+INFO 2025-04-23 16:35:29,584 spotify_api 24064 18064 Getting info for Spotify track ID: 6i0V12jOa3mr6uu4WYhUBr
+INFO 2025-04-23 16:35:29,585 spotify_api 24064 18064 Creating Spotify client with credentials from settings
+INFO 2025-04-23 16:35:29,795 spotify_api 24064 18064 Successfully tested Spotify client
+INFO 2025-04-23 16:35:30,094 spotify_api 24064 18064 Got track info: Heathens by Twenty One Pilots
+INFO 2025-04-23 16:35:30,096 download_helper 24064 18064 Spotify API returned thumbnail URL: https://i.scdn.co/image/ab67616d0000b2732ca3ba8f334ca5a5f0312efb
+INFO 2025-04-23 16:35:30,097 download_helper 24064 18064 Got track info: Heathens by Twenty One Pilots
+INFO 2025-04-23 16:35:30,099 download_helper 24064 18064 Downloading from Hugging Face Spaces: https://youtube.com/results?search_query=Heathens+Twenty+One+Pilots
+INFO 2025-04-23 16:37:20,343 download_helper 24064 18064 Successfully downloaded file to C:\Users\Dell\AppData\Local\Temp\tmpf4oiote_\download-1745406440.mp3
+INFO 2025-04-23 16:37:20,343 download_helper 24064 18064 Using Spotify thumbnail URL: https://i.scdn.co/image/ab67616d0000b2732ca3ba8f334ca5a5f0312efb
+INFO 2025-04-23 16:37:20,344 download_helper 24064 18064 Downloaded file to: C:\Users\Dell\AppData\Local\Temp\tmpf4oiote_\download-1745406440.mp3
+INFO 2025-04-23 16:37:20,351 download_helper 24064 18064 Copied downloaded MP3 to media path: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Heathens - Twenty One Pilots.mp3
+INFO 2025-04-23 16:37:20,417 download_helper 24064 18064 ==== EMBEDDING METADATA INTO MP3 FILE: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Heathens - Twenty One Pilots.mp3 ====
+INFO 2025-04-23 16:37:20,418 download_helper 24064 18064 File exists: True
+INFO 2025-04-23 16:37:20,418 download_helper 24064 18064 File size: 5303770 bytes
+INFO 2025-04-23 16:37:20,419 download_helper 24064 18064 Embedding metadata with params:
+INFO 2025-04-23 16:37:20,419 download_helper 24064 18064   - title: Heathens
+INFO 2025-04-23 16:37:20,420 download_helper 24064 18064   - artist: Twenty One Pilots
+INFO 2025-04-23 16:37:20,420 download_helper 24064 18064   - album: Heathens
+INFO 2025-04-23 16:37:20,420 download_helper 24064 18064   - thumbnail_url: https://i.scdn.co/image/ab67616d0000b2732ca3ba8f334ca5a5f0312efb
+INFO 2025-04-23 16:37:20,421 download_helper 24064 18064   - year: 2016
+INFO 2025-04-23 16:37:20,421 download_helper 24064 18064   - spotify_id: 6i0V12jOa3mr6uu4WYhUBr
+INFO 2025-04-23 16:37:20,421 download_helper 24064 18064 Metadata embedding attempt 1/3
+INFO 2025-04-23 16:37:20,472 utils 24064 18064 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Heathens - Twenty One Pilots.mp3
+INFO 2025-04-23 16:37:20,472 utils 24064 18064 Title: Heathens, Artist: Twenty One Pilots, Album: Heathens, Genre: Unknown
+INFO 2025-04-23 16:37:20,481 utils 24064 18064 Loaded existing ID3 tags
+INFO 2025-04-23 16:37:20,546 utils 24064 18064 Downloading thumbnail from URL: https://i.scdn.co/image/ab67616d0000b2732ca3ba8f334ca5a5f0312efb
+INFO 2025-04-23 16:37:20,627 utils 24064 18064 Downloaded thumbnail: 276447 bytes
+INFO 2025-04-23 16:37:20,627 utils 24064 18064 Detected image type: jpeg
+INFO 2025-04-23 16:37:20,687 utils 24064 18064 Successfully converted image to JPEG: 173602 bytes
+INFO 2025-04-23 16:37:20,688 utils 24064 18064 Adding album art, MIME type: image/jpeg
+INFO 2025-04-23 16:37:20,689 utils 24064 18064 Successfully added album art to ID3 tags
+INFO 2025-04-23 16:37:20,697 utils 24064 18064 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Heathens - Twenty One Pilots.mp3 using ID3v2.3
+INFO 2025-04-23 16:37:20,708 utils 24064 18064 Verification: 10 tags were written, has_cover=True
+INFO 2025-04-23 16:37:20,754 utils 24064 18064 Attempting to set system thumbnail property directly (Windows only)
+INFO 2025-04-23 16:37:20,769 utils 24064 18064 Successfully deleted existing ID3 tags before rebuilding
+INFO 2025-04-23 16:37:20,780 utils 24064 18064 Successfully rebuilt ID3 tags with clean implementation
+INFO 2025-04-23 16:37:20,780 utils 24064 18064 Skipping shell thumbnail method due to known issues
+INFO 2025-04-23 16:37:20,782 download_helper 24064 18064 Successfully embedded metadata on attempt 1
+INFO 2025-04-23 16:37:20,791 download_helper 24064 18064 Tag verification: 7 tags found, has_cover=True
+INFO 2025-04-23 16:37:20,792 download_helper 24064 18064 Tags in file: ['TIT2', 'TPE1', 'TALB', 'TDRC', 'TCON', 'TPE2', 'APIC:Cover']
+INFO 2025-04-23 16:37:21,438 download_helper 24064 18064 Added song to cache: https://open.spotify.com/track/6i0V12jOa3mr6uu4WYhUBr?si=2b92be949c0a41b1
+INFO 2025-04-23 16:37:21,439 download_helper 24064 18064 Converting MP3 to requested format: aac
+INFO 2025-04-23 16:37:27,247 download_helper 24064 18064 Successfully converted to aac: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Heathens - Twenty One Pilots.aac
+INFO 2025-04-23 16:37:27,247 download_helper 24064 18064 Serving file: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Heathens - Twenty One Pilots.aac
+INFO 2025-04-23 16:37:27,346 basehttp 24064 18064 "POST /api/songs/songs/download/ HTTP/1.1" 200 3569683
+INFO 2025-04-23 16:38:05,233 spotify_api 24064 24328 Extracting Spotify ID from URL: https://open.spotify.com/track/6i0V12jOa3mr6uu4WYhUBr?si=2b92be949c0a41b1
+INFO 2025-04-23 16:38:05,234 spotify_api 24064 24328 Extracted Spotify track ID: 6i0V12jOa3mr6uu4WYhUBr
+INFO 2025-04-23 16:38:05,299 views 24064 24328 Found existing song with URL https://open.spotify.com/track/6i0V12jOa3mr6uu4WYhUBr?si=2b92be949c0a41b1, serving directly
+INFO 2025-04-23 16:38:05,430 download_helper 24064 24328 Using cached version for Spotify URL: https://open.spotify.com/track/6i0V12jOa3mr6uu4WYhUBr?si=2b92be949c0a41b1
+INFO 2025-04-23 16:38:05,431 models 24064 24328 [DEBUG] record_download called for user=testuser id=1 date=2025-04-23
+INFO 2025-04-23 16:38:05,576 models 24064 24328 [DEBUG] record_download updated analytics: user=testuser id=1 date=2025-04-23 songs_downloaded=6
+INFO 2025-04-23 16:38:05,693 basehttp 24064 24328 "POST /api/songs/songs/download/ HTTP/1.1" 200 5411377
+INFO 2025-04-23 16:39:06,699 spotify_api 24064 25292 Extracting Spotify ID from URL: https://open.spotify.com/track/1rqqCSm0Qe4I9rUvWncaom?si=d64b7397ae514a3f
+INFO 2025-04-23 16:39:06,699 spotify_api 24064 25292 Extracted Spotify track ID: 1rqqCSm0Qe4I9rUvWncaom
+INFO 2025-04-23 16:39:06,827 spotify_api 24064 25292 Extracting Spotify ID from URL: https://open.spotify.com/track/1rqqCSm0Qe4I9rUvWncaom?si=d64b7397ae514a3f
+INFO 2025-04-23 16:39:06,827 spotify_api 24064 25292 Extracted Spotify track ID: 1rqqCSm0Qe4I9rUvWncaom
+INFO 2025-04-23 16:39:06,827 download_helper 24064 25292 Getting info for Spotify track ID: ('track', '1rqqCSm0Qe4I9rUvWncaom')
+INFO 2025-04-23 16:39:06,828 spotify_api 24064 25292 Extracting Spotify ID from URL: https://open.spotify.com/track/1rqqCSm0Qe4I9rUvWncaom?si=d64b7397ae514a3f
+INFO 2025-04-23 16:39:06,828 spotify_api 24064 25292 Extracted Spotify track ID: 1rqqCSm0Qe4I9rUvWncaom
+INFO 2025-04-23 16:39:06,828 spotify_api 24064 25292 Getting info for Spotify track ID: 1rqqCSm0Qe4I9rUvWncaom
+INFO 2025-04-23 16:39:06,828 spotify_api 24064 25292 Creating Spotify client with credentials from settings
+INFO 2025-04-23 16:39:07,027 spotify_api 24064 25292 Successfully tested Spotify client
+INFO 2025-04-23 16:39:07,374 spotify_api 24064 25292 Got track info: High Hopes by Panic! At The Disco
+INFO 2025-04-23 16:39:07,375 download_helper 24064 25292 Spotify API returned thumbnail URL: https://i.scdn.co/image/ab67616d0000b273c5148520a59be191eea16989
+INFO 2025-04-23 16:39:07,375 download_helper 24064 25292 Got track info: High Hopes by Panic At The Disco
+INFO 2025-04-23 16:39:07,376 download_helper 24064 25292 Downloading from Hugging Face Spaces: https://youtube.com/results?search_query=High+Hopes+Panic+At+The+Disco
+INFO 2025-04-23 16:39:25,385 download_helper 24064 25292 Successfully downloaded file to C:\Users\Dell\AppData\Local\Temp\tmp570tjw2k\download-1745406565.mp3
+INFO 2025-04-23 16:39:25,388 download_helper 24064 25292 Using Spotify thumbnail URL: https://i.scdn.co/image/ab67616d0000b273c5148520a59be191eea16989
+INFO 2025-04-23 16:39:25,388 download_helper 24064 25292 Downloaded file to: C:\Users\Dell\AppData\Local\Temp\tmp570tjw2k\download-1745406565.mp3
+INFO 2025-04-23 16:39:25,388 download_helper 24064 25292 Copied downloaded MP3 to media path: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\High Hopes - Panic At The Disco.mp3
+INFO 2025-04-23 16:39:25,460 download_helper 24064 25292 ==== EMBEDDING METADATA INTO MP3 FILE: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\High Hopes - Panic At The Disco.mp3 ====
+INFO 2025-04-23 16:39:25,460 download_helper 24064 25292 File exists: True
+INFO 2025-04-23 16:39:25,460 download_helper 24064 25292 File size: 4723361 bytes
+INFO 2025-04-23 16:39:25,460 download_helper 24064 25292 Embedding metadata with params:
+INFO 2025-04-23 16:39:25,460 download_helper 24064 25292   - title: High Hopes
+INFO 2025-04-23 16:39:25,460 download_helper 24064 25292   - artist: Panic At The Disco
+INFO 2025-04-23 16:39:25,460 download_helper 24064 25292   - album: Pray for the Wicked
+INFO 2025-04-23 16:39:25,460 download_helper 24064 25292   - thumbnail_url: https://i.scdn.co/image/ab67616d0000b273c5148520a59be191eea16989
+INFO 2025-04-23 16:39:25,460 download_helper 24064 25292   - year: 2018
+INFO 2025-04-23 16:39:25,460 download_helper 24064 25292   - spotify_id: 1rqqCSm0Qe4I9rUvWncaom
+INFO 2025-04-23 16:39:25,460 download_helper 24064 25292 Metadata embedding attempt 1/3
+INFO 2025-04-23 16:39:25,460 utils 24064 25292 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\High Hopes - Panic At The Disco.mp3
+INFO 2025-04-23 16:39:25,460 utils 24064 25292 Title: High Hopes, Artist: Panic At The Disco, Album: Pray for the Wicked, Genre: emo
+INFO 2025-04-23 16:39:25,475 utils 24064 25292 Loaded existing ID3 tags
+INFO 2025-04-23 16:39:25,532 utils 24064 25292 Downloading thumbnail from URL: https://i.scdn.co/image/ab67616d0000b273c5148520a59be191eea16989
+INFO 2025-04-23 16:39:25,597 utils 24064 25292 Downloaded thumbnail: 145716 bytes
+INFO 2025-04-23 16:39:25,597 utils 24064 25292 Detected image type: jpeg
+INFO 2025-04-23 16:39:25,652 utils 24064 25292 Successfully converted image to JPEG: 111116 bytes
+INFO 2025-04-23 16:39:25,652 utils 24064 25292 Adding album art, MIME type: image/jpeg
+INFO 2025-04-23 16:39:25,652 utils 24064 25292 Successfully added album art to ID3 tags
+INFO 2025-04-23 16:39:25,663 utils 24064 25292 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\High Hopes - Panic At The Disco.mp3 using ID3v2.3
+INFO 2025-04-23 16:39:25,680 utils 24064 25292 Verification: 9 tags were written, has_cover=True
+INFO 2025-04-23 16:39:25,681 utils 24064 25292 Attempting to set system thumbnail property directly (Windows only)
+INFO 2025-04-23 16:39:25,702 utils 24064 25292 Successfully deleted existing ID3 tags before rebuilding
+INFO 2025-04-23 16:39:25,718 utils 24064 25292 Successfully rebuilt ID3 tags with clean implementation
+INFO 2025-04-23 16:39:25,718 utils 24064 25292 Skipping shell thumbnail method due to known issues
+INFO 2025-04-23 16:39:25,718 download_helper 24064 25292 Successfully embedded metadata on attempt 1
+INFO 2025-04-23 16:39:25,734 download_helper 24064 25292 Tag verification: 7 tags found, has_cover=True
+INFO 2025-04-23 16:39:25,734 download_helper 24064 25292 Tags in file: ['TIT2', 'TPE1', 'TALB', 'TDRC', 'TCON', 'TPE2', 'APIC:Cover']
+INFO 2025-04-23 16:39:26,372 download_helper 24064 25292 Added song to cache: https://open.spotify.com/track/1rqqCSm0Qe4I9rUvWncaom?si=d64b7397ae514a3f
+INFO 2025-04-23 16:39:26,372 download_helper 24064 25292 No format conversion needed, keeping as MP3: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\High Hopes - Panic At The Disco.mp3
+INFO 2025-04-23 16:39:26,372 download_helper 24064 25292 Serving file: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\High Hopes - Panic At The Disco.mp3
+INFO 2025-04-23 16:39:26,449 basehttp 24064 25292 "POST /api/songs/songs/download/ HTTP/1.1" 200 4834607
+INFO 2025-04-23 16:40:04,422 spotify_api 24064 25292 Extracting Spotify ID from URL: https://open.spotify.com/track/1rqqCSm0Qe4I9rUvWncaom?si=d64b7397ae514a3f
+INFO 2025-04-23 16:40:04,423 spotify_api 24064 25292 Extracted Spotify track ID: 1rqqCSm0Qe4I9rUvWncaom
+INFO 2025-04-23 16:40:04,489 views 24064 25292 Found existing song with URL https://open.spotify.com/track/1rqqCSm0Qe4I9rUvWncaom?si=d64b7397ae514a3f, serving directly
+INFO 2025-04-23 16:40:04,622 download_helper 24064 25292 Using cached version for Spotify URL: https://open.spotify.com/track/1rqqCSm0Qe4I9rUvWncaom?si=d64b7397ae514a3f
+INFO 2025-04-23 16:40:04,627 models 24064 25292 [DEBUG] record_download called for user=testuser id=1 date=2025-04-23
+INFO 2025-04-23 16:40:04,757 models 24064 25292 [DEBUG] record_download updated analytics: user=testuser id=1 date=2025-04-23 songs_downloaded=7
+INFO 2025-04-23 16:40:04,758 download_helper 24064 25292 Converting cached Spotify song from mp3 to aac
+INFO 2025-04-23 16:40:09,384 basehttp 24064 25292 "POST /api/songs/songs/download/ HTTP/1.1" 200 3251758
+INFO 2025-04-23 16:40:27,608 autoreload 24064 760 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-23 16:40:31,556 autoreload 18692 16352 Watching for file changes with StatReloader
+INFO 2025-04-23 16:40:52,857 spotify_api 18692 3928 Extracting Spotify ID from URL: https://open.spotify.com/track/2DgdHcjWmO3qd50RzuBLgZ?si=5cc1808f860c46e9
+INFO 2025-04-23 16:40:52,857 spotify_api 18692 3928 Extracted Spotify track ID: 2DgdHcjWmO3qd50RzuBLgZ
+INFO 2025-04-23 16:40:52,988 spotify_api 18692 3928 Extracting Spotify ID from URL: https://open.spotify.com/track/2DgdHcjWmO3qd50RzuBLgZ?si=5cc1808f860c46e9
+INFO 2025-04-23 16:40:52,988 spotify_api 18692 3928 Extracted Spotify track ID: 2DgdHcjWmO3qd50RzuBLgZ
+INFO 2025-04-23 16:40:52,988 download_helper 18692 3928 Getting info for Spotify track ID: ('track', '2DgdHcjWmO3qd50RzuBLgZ')
+INFO 2025-04-23 16:40:52,989 spotify_api 18692 3928 Extracting Spotify ID from URL: https://open.spotify.com/track/2DgdHcjWmO3qd50RzuBLgZ?si=5cc1808f860c46e9
+INFO 2025-04-23 16:40:52,989 spotify_api 18692 3928 Extracted Spotify track ID: 2DgdHcjWmO3qd50RzuBLgZ
+INFO 2025-04-23 16:40:52,989 spotify_api 18692 3928 Getting info for Spotify track ID: 2DgdHcjWmO3qd50RzuBLgZ
+INFO 2025-04-23 16:40:52,989 spotify_api 18692 3928 Creating Spotify client with credentials from settings
+INFO 2025-04-23 16:40:53,189 spotify_api 18692 3928 Successfully tested Spotify client
+INFO 2025-04-23 16:40:53,553 spotify_api 18692 3928 Got track info: House of Memories by Panic! At The Disco
+INFO 2025-04-23 16:40:53,554 download_helper 18692 3928 Spotify API returned thumbnail URL: https://i.scdn.co/image/ab67616d0000b27323152d9337d6c57b116ed13a
+INFO 2025-04-23 16:40:53,554 download_helper 18692 3928 Got track info: House of Memories by Panic At The Disco
+INFO 2025-04-23 16:40:53,556 download_helper 18692 3928 Downloading from Hugging Face Spaces: https://youtube.com/results?search_query=House+of+Memories+Panic+At+The+Disco
+INFO 2025-04-23 16:41:14,571 download_helper 18692 3928 Successfully downloaded file to C:\Users\Dell\AppData\Local\Temp\tmpf5i2jt5u\download-1745406674.mp3
+INFO 2025-04-23 16:41:14,571 download_helper 18692 3928 Using Spotify thumbnail URL: https://i.scdn.co/image/ab67616d0000b27323152d9337d6c57b116ed13a
+INFO 2025-04-23 16:41:14,571 download_helper 18692 3928 Downloaded file to: C:\Users\Dell\AppData\Local\Temp\tmpf5i2jt5u\download-1745406674.mp3
+INFO 2025-04-23 16:41:14,643 download_helper 18692 3928 Embedding Spotify metadata into MP3 file: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\House of Memories - Panic At The Disco.mp3
+INFO 2025-04-23 16:41:14,655 utils 18692 3928 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\House of Memories - Panic At The Disco.mp3
+INFO 2025-04-23 16:41:14,655 utils 18692 3928 Title: House of Memories, Artist: Panic At The Disco, Album: Death of a Bachelor, Genre: emo
+INFO 2025-04-23 16:41:14,669 utils 18692 3928 Loaded existing ID3 tags
+INFO 2025-04-23 16:41:14,736 utils 18692 3928 Downloading thumbnail from URL: https://i.scdn.co/image/ab67616d0000b27323152d9337d6c57b116ed13a
+INFO 2025-04-23 16:41:14,802 utils 18692 3928 Downloaded thumbnail: 196447 bytes
+INFO 2025-04-23 16:41:14,802 utils 18692 3928 Detected image type: jpeg
+INFO 2025-04-23 16:41:14,853 utils 18692 3928 Successfully converted image to JPEG: 136093 bytes
+INFO 2025-04-23 16:41:14,853 utils 18692 3928 Adding album art, MIME type: image/jpeg
+INFO 2025-04-23 16:41:14,853 utils 18692 3928 Successfully added album art to ID3 tags
+INFO 2025-04-23 16:41:14,869 utils 18692 3928 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\House of Memories - Panic At The Disco.mp3 using ID3v2.3
+INFO 2025-04-23 16:41:14,880 utils 18692 3928 Verification: 10 tags were written, has_cover=True
+INFO 2025-04-23 16:41:14,901 utils 18692 3928 Attempting to set system thumbnail property directly (Windows only)
+INFO 2025-04-23 16:41:14,907 utils 18692 3928 Successfully deleted existing ID3 tags before rebuilding
+INFO 2025-04-23 16:41:14,925 utils 18692 3928 Successfully rebuilt ID3 tags with clean implementation
+INFO 2025-04-23 16:41:14,925 utils 18692 3928 Skipping shell thumbnail method due to known issues
+INFO 2025-04-23 16:41:15,187 models 18692 3928 [DEBUG] record_download called for user=testuser id=1 date=2025-04-23
+INFO 2025-04-23 16:41:15,319 models 18692 3928 [DEBUG] record_download updated analytics: user=testuser id=1 date=2025-04-23 songs_downloaded=8
+INFO 2025-04-23 16:41:15,719 download_helper 18692 3928 Added song to cache: https://open.spotify.com/track/2DgdHcjWmO3qd50RzuBLgZ?si=5cc1808f860c46e9
+INFO 2025-04-23 16:41:15,886 basehttp 18692 3928 "POST /api/songs/songs/download/ HTTP/1.1" 200 5161724
+INFO 2025-04-23 16:45:05,338 autoreload 18692 16352 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\utils.py changed, reloading.
+INFO 2025-04-23 16:45:08,539 autoreload 6776 21132 Watching for file changes with StatReloader
+INFO 2025-04-23 16:45:41,024 spotify_api 6776 5628 Extracting Spotify ID from URL: https://open.spotify.com/track/04aAxqtGp5pv12UXAg4pkq?si=4f8296b881c04d72
+INFO 2025-04-23 16:45:41,025 spotify_api 6776 5628 Extracted Spotify track ID: 04aAxqtGp5pv12UXAg4pkq
+INFO 2025-04-23 16:45:41,158 spotify_api 6776 5628 Extracting Spotify ID from URL: https://open.spotify.com/track/04aAxqtGp5pv12UXAg4pkq?si=4f8296b881c04d72
+INFO 2025-04-23 16:45:41,159 spotify_api 6776 5628 Extracted Spotify track ID: 04aAxqtGp5pv12UXAg4pkq
+INFO 2025-04-23 16:45:41,159 download_helper 6776 5628 Getting info for Spotify track ID: ('track', '04aAxqtGp5pv12UXAg4pkq')
+INFO 2025-04-23 16:45:41,159 spotify_api 6776 5628 Extracting Spotify ID from URL: https://open.spotify.com/track/04aAxqtGp5pv12UXAg4pkq?si=4f8296b881c04d72
+INFO 2025-04-23 16:45:41,160 spotify_api 6776 5628 Extracted Spotify track ID: 04aAxqtGp5pv12UXAg4pkq
+INFO 2025-04-23 16:45:41,160 spotify_api 6776 5628 Getting info for Spotify track ID: 04aAxqtGp5pv12UXAg4pkq
+INFO 2025-04-23 16:45:41,161 spotify_api 6776 5628 Creating Spotify client with credentials from settings
+INFO 2025-04-23 16:45:41,346 spotify_api 6776 5628 Successfully tested Spotify client
+INFO 2025-04-23 16:45:41,656 spotify_api 6776 5628 Got track info: Centuries by Fall Out Boy
+INFO 2025-04-23 16:45:41,657 download_helper 6776 5628 Spotify API returned thumbnail URL: https://i.scdn.co/image/ab67616d0000b2733cf1c1dbcfa3f1ab7282719b
+INFO 2025-04-23 16:45:41,658 download_helper 6776 5628 Got track info: Centuries by Fall Out Boy
+INFO 2025-04-23 16:45:41,660 download_helper 6776 5628 Downloading from Hugging Face Spaces: https://youtube.com/results?search_query=Centuries+Fall+Out+Boy
+INFO 2025-04-23 16:46:02,647 download_helper 6776 5628 Successfully downloaded file to C:\Users\Dell\AppData\Local\Temp\tmp5nzkix4m\download-1745406962.mp3
+INFO 2025-04-23 16:46:02,647 download_helper 6776 5628 Using Spotify thumbnail URL: https://i.scdn.co/image/ab67616d0000b2733cf1c1dbcfa3f1ab7282719b
+INFO 2025-04-23 16:46:02,650 download_helper 6776 5628 Downloaded file to: C:\Users\Dell\AppData\Local\Temp\tmp5nzkix4m\download-1745406962.mp3
+INFO 2025-04-23 16:46:02,723 download_helper 6776 5628 Embedding Spotify metadata into MP3 file: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Centuries - Fall Out Boy.mp3
+INFO 2025-04-23 16:46:02,751 utils 6776 5628 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Centuries - Fall Out Boy.mp3
+INFO 2025-04-23 16:46:02,752 utils 6776 5628 Title: Centuries, Artist: Fall Out Boy, Album: American Beauty/American Psycho, Genre: emo
+INFO 2025-04-23 16:46:02,762 utils 6776 5628 Loaded existing ID3 tags
+INFO 2025-04-23 16:46:02,829 utils 6776 5628 Downloading thumbnail from URL: https://i.scdn.co/image/ab67616d0000b2733cf1c1dbcfa3f1ab7282719b
+INFO 2025-04-23 16:46:02,914 utils 6776 5628 Downloaded thumbnail: 122857 bytes
+INFO 2025-04-23 16:46:02,915 utils 6776 5628 Detected image type: jpeg
+INFO 2025-04-23 16:46:02,967 utils 6776 5628 Successfully converted image to JPEG: 88205 bytes
+INFO 2025-04-23 16:46:02,969 utils 6776 5628 Adding album art, MIME type: image/jpeg
+INFO 2025-04-23 16:46:02,969 utils 6776 5628 Successfully added album art to ID3 tags
+INFO 2025-04-23 16:46:02,979 utils 6776 5628 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Centuries - Fall Out Boy.mp3 using ID3v2.3
+INFO 2025-04-23 16:46:02,988 utils 6776 5628 Verification: 9 tags were written, has_cover=True
+INFO 2025-04-23 16:46:03,018 utils 6776 5628 Attempting to set system thumbnail property directly (Windows only)
+INFO 2025-04-23 16:46:03,044 utils 6776 5628 Successfully deleted existing ID3 tags before rebuilding
+INFO 2025-04-23 16:46:03,057 utils 6776 5628 Successfully rebuilt ID3 tags with clean implementation
+INFO 2025-04-23 16:46:03,059 utils 6776 5628 Skipping shell thumbnail method due to known issues
+INFO 2025-04-23 16:46:03,319 models 6776 5628 [DEBUG] record_download called for user=testuser id=1 date=2025-04-23
+INFO 2025-04-23 16:46:03,450 models 6776 5628 [DEBUG] record_download updated analytics: user=testuser id=1 date=2025-04-23 songs_downloaded=9
+INFO 2025-04-23 16:46:03,841 download_helper 6776 5628 Added song to cache: https://open.spotify.com/track/04aAxqtGp5pv12UXAg4pkq?si=4f8296b881c04d72
+INFO 2025-04-23 16:46:09,251 basehttp 6776 5628 "POST /api/songs/songs/download/ HTTP/1.1" 200 4355992
+INFO 2025-04-23 16:54:24,205 autoreload 6776 21132 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\utils.py changed, reloading.
+INFO 2025-04-23 16:54:27,350 autoreload 9888 7712 Watching for file changes with StatReloader
+INFO 2025-04-23 16:55:07,866 spotify_api 9888 7716 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-23 16:55:07,867 spotify_api 9888 7716 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-23 16:55:07,867 views 9888 7716 Redirecting Spotify playlist URL to playlist download endpoint: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-23 16:55:07,868 spotify_api 9888 7716 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-23 16:55:07,868 spotify_api 9888 7716 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-23 16:55:07,869 spotify_api 9888 7716 Getting Spotify playlist info for ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-23 16:55:07,869 spotify_api 9888 7716 Creating Spotify client with credentials from settings
+INFO 2025-04-23 16:55:08,260 spotify_api 9888 7716 Successfully tested Spotify client
+INFO 2025-04-23 16:55:08,678 spotify_api 9888 7716 Extracted 2 track URLs from playlist
+INFO 2025-04-23 16:55:08,679 download_helper 9888 7716 Playlist info retrieved: title=tunevault testing, tracks=2, image_url=https://i.scdn.co/image/ab67616d00001e02efa7fe6f9ecee8ba9c877b60
+INFO 2025-04-23 16:55:09,169 download_helper 9888 7716 Added existing song to playlist: https://open.spotify.com/track/7uDUb37h7Xdhza1eWMkoJv
+INFO 2025-04-23 16:55:09,303 spotify_api 9888 7716 Extracting Spotify ID from URL: https://open.spotify.com/track/7zwn1eykZtZ5LODrf7c0tS
+INFO 2025-04-23 16:55:09,304 spotify_api 9888 7716 Extracted Spotify track ID: 7zwn1eykZtZ5LODrf7c0tS
+INFO 2025-04-23 16:55:09,304 spotify_api 9888 7716 Getting info for Spotify track ID: 7zwn1eykZtZ5LODrf7c0tS
+INFO 2025-04-23 16:55:09,305 spotify_api 9888 7716 Creating Spotify client with credentials from settings
+INFO 2025-04-23 16:55:09,498 spotify_api 9888 7716 Successfully tested Spotify client
+INFO 2025-04-23 16:55:09,805 spotify_api 9888 7716 Got track info: You Get Me So High by The Neighbourhood
+INFO 2025-04-23 16:55:09,809 download_helper 9888 7716 Downloading from Hugging Face Spaces: https://youtube.com/results?search_query=You+Get+Me+So+High+The+Neighbourhood
+INFO 2025-04-23 16:56:44,722 download_helper 9888 7716 Successfully downloaded file to C:\Users\Dell\AppData\Local\Temp\tmpw39w045e\download-1745407604.mp3
+INFO 2025-04-23 16:56:44,722 download_helper 9888 7716 Using Spotify thumbnail URL: https://i.scdn.co/image/ab67616d0000b2739b6ac98a52f62d5cb473da40
+INFO 2025-04-23 16:56:44,817 utils 9888 7716 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\You Get Me So High - The Neighbourhood.mp3
+INFO 2025-04-23 16:56:44,818 utils 9888 7716 Title: You Get Me So High, Artist: The Neighbourhood, Album: Hard To Imagine The Neighbourhood Ever Changing, Genre: Unknown
+INFO 2025-04-23 16:56:44,821 utils 9888 7716 Loaded existing ID3 tags
+INFO 2025-04-23 16:56:44,912 utils 9888 7716 Downloading thumbnail from URL: https://i.scdn.co/image/ab67616d0000b2739b6ac98a52f62d5cb473da40
+INFO 2025-04-23 16:56:45,009 utils 9888 7716 Downloaded thumbnail: 177009 bytes
+INFO 2025-04-23 16:56:45,009 utils 9888 7716 Detected image type: jpeg
+INFO 2025-04-23 16:56:45,043 utils 9888 7716 Successfully converted image to JPEG: 128918 bytes
+INFO 2025-04-23 16:56:45,043 utils 9888 7716 Adding album art, MIME type: image/jpeg
+INFO 2025-04-23 16:56:45,043 utils 9888 7716 Successfully added album art to ID3 tags
+INFO 2025-04-23 16:56:45,043 utils 9888 7716 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\You Get Me So High - The Neighbourhood.mp3 using ID3v2.3
+INFO 2025-04-23 16:56:45,060 utils 9888 7716 Verification: 10 tags were written, has_cover=True
+INFO 2025-04-23 16:56:45,077 utils 9888 7716 Attempting to set system thumbnail property directly (Windows only)
+INFO 2025-04-23 16:56:45,096 utils 9888 7716 Successfully deleted existing ID3 tags before rebuilding
+INFO 2025-04-23 16:56:45,110 utils 9888 7716 Successfully rebuilt ID3 tags with clean implementation
+INFO 2025-04-23 16:56:45,110 utils 9888 7716 Skipping shell thumbnail method due to known issues
+INFO 2025-04-23 16:56:45,549 download_helper 9888 7716 Added Spotify song to cache from playlist: https://open.spotify.com/track/7zwn1eykZtZ5LODrf7c0tS
+INFO 2025-04-23 16:56:45,943 models 9888 7716 [DEBUG] record_download called for user=testuser id=1 date=2025-04-23
+INFO 2025-04-23 16:56:46,070 models 9888 7716 [DEBUG] record_download updated analytics: user=testuser id=1 date=2025-04-23 songs_downloaded=10
+INFO 2025-04-23 16:56:46,070 models 9888 7716 [DEBUG] record_download called for user=testuser id=1 date=2025-04-23
+INFO 2025-04-23 16:56:46,206 models 9888 7716 [DEBUG] record_download updated analytics: user=testuser id=1 date=2025-04-23 songs_downloaded=11
+INFO 2025-04-23 16:56:46,206 basehttp 9888 7716 "POST /api/songs/songs/download/ HTTP/1.1" 200 122
+INFO 2025-04-23 16:57:20,631 basehttp 9888 22900 "GET /api/songs/playlists/90/download-all/ HTTP/1.1" 200 22
+INFO 2025-04-23 16:57:32,519 basehttp 9888 22900 "GET /api/songs/playlists/90/download-all/ HTTP/1.1" 200 22
+INFO 2025-04-23 16:57:35,020 basehttp 9888 22900 "GET /api/songs/playlists/90/download-all/ HTTP/1.1" 200 22
+WARNING 2025-04-23 16:58:40,502 log 9888 16024 Not Found: /api/songs/playlists/91/download-all/
+WARNING 2025-04-23 16:58:40,503 basehttp 9888 16024 "GET /api/songs/playlists/91/download-all/ HTTP/1.1" 404 49
+WARNING 2025-04-23 16:58:45,367 log 9888 16024 Not Found: /api/songs/playlists/89/download-all/
+WARNING 2025-04-23 16:58:45,368 basehttp 9888 16024 "GET /api/songs/playlists/89/download-all/ HTTP/1.1" 404 49
+WARNING 2025-04-23 16:58:49,377 log 9888 16024 Not Found: /api/songs/playlists/8/download-all90
+WARNING 2025-04-23 16:58:49,378 basehttp 9888 16024 "GET /api/songs/playlists/8/download-all90 HTTP/1.1" 404 17130
+INFO 2025-04-23 16:58:52,954 basehttp 9888 16024 "GET /api/songs/playlists/8/download-all HTTP/1.1" 301 0
+WARNING 2025-04-23 16:58:53,566 log 9888 14196 Not Found: /api/songs/playlists/8/download-all/
+WARNING 2025-04-23 16:58:53,567 basehttp 9888 14196 "GET /api/songs/playlists/8/download-all/ HTTP/1.1" 404 49
+INFO 2025-04-23 16:58:57,337 basehttp 9888 14196 "GET /api/songs/playlists/90/download-all HTTP/1.1" 301 0
+INFO 2025-04-23 16:58:58,093 basehttp 9888 19756 "GET /api/songs/playlists/90/download-all/ HTTP/1.1" 200 22
+INFO 2025-04-23 16:59:00,994 basehttp 9888 19756 "GET /api/songs/playlists/90/download-all/ HTTP/1.1" 200 22
+INFO 2025-04-23 17:01:21,718 autoreload 9888 7712 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-23 17:01:25,180 autoreload 23056 16892 Watching for file changes with StatReloader
+INFO 2025-04-23 17:01:32,240 views 23056 15092 Creating ZIP file for playlist 'tunevault testing' with 2 songs at C:\Users\Dell\AppData\Local\Temp\tmpvxl55duf\tunevault testing_1745407892.zip
+WARNING 2025-04-23 17:01:32,308 views 23056 15092 File not found for song 319 'You Get Me So High': C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songsYou Get Me So High - The Neighbourhood.mp3
+WARNING 2025-04-23 17:01:32,309 views 23056 15092 File not found for song 292 'Friends': C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songsChase Atlantic - FRIENDS Official Lyric Video.mp3
+ERROR 2025-04-23 17:01:32,309 views 23056 15092 No files were added to the ZIP for playlist 90 'tunevault testing'. Missing files: 2
+WARNING 2025-04-23 17:01:33,440 log 23056 15092 Not Found: /api/songs/playlists/90/download-all/
+WARNING 2025-04-23 17:01:33,441 basehttp 23056 15092 "GET /api/songs/playlists/90/download-all/ HTTP/1.1" 404 44
+INFO 2025-04-23 17:06:54,322 autoreload 23056 16892 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-23 17:06:57,766 autoreload 15348 17364 Watching for file changes with StatReloader
+INFO 2025-04-23 17:07:04,042 views 15348 11884 Creating ZIP file for playlist 'tunevault testing' with 2 songs at C:\Users\Dell\AppData\Local\Temp\tmpd23njnhi\tunevault testing_1745408223.zip
+DEBUG 2025-04-23 17:07:04,109 views 15348 11884 Checking file path: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songsYou Get Me So High - The Neighbourhood.mp3
+DEBUG 2025-04-23 17:07:04,110 views 15348 11884 Trying alternative path: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\You Get Me So High - The Neighbourhood.mp3
+INFO 2025-04-23 17:07:04,110 views 15348 11884 Adding file via alternative path: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\You Get Me So High - The Neighbourhood.mp3 as You Get Me So High - The Neighbourhood.mp3
+DEBUG 2025-04-23 17:07:04,140 views 15348 11884 Checking file path: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songsChase Atlantic - FRIENDS Official Lyric Video.mp3
+DEBUG 2025-04-23 17:07:04,140 views 15348 11884 Trying alternative path: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Chase Atlantic - FRIENDS Official Lyric Video.mp3
+WARNING 2025-04-23 17:07:04,140 views 15348 11884 File not found for song 292 'Friends': C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songsChase Atlantic - FRIENDS Official Lyric Video.mp3
+INFO 2025-04-23 17:07:04,141 views 15348 11884 ZIP file created successfully. Size: 3905928 bytes, Files added: 1, Missing files: 1
+INFO 2025-04-23 17:07:04,164 basehttp 15348 11884 "GET /api/songs/playlists/90/download-all/ HTTP/1.1" 200 3905928
+INFO 2025-04-23 17:10:21,467 autoreload 15348 17364 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-23 17:10:24,659 autoreload 6244 7252 Watching for file changes with StatReloader
+INFO 2025-04-23 17:23:42,740 autoreload 6244 7252 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-23 17:23:46,280 autoreload 1236 26116 Watching for file changes with StatReloader
+INFO 2025-04-23 17:23:52,668 views 1236 5664 Creating ZIP file for playlist 'tunevault testing' with 2 songs at C:\Users\Dell\AppData\Local\Temp\tmpod27wxsb\tunevault testing_1745409232.zip
+DEBUG 2025-04-23 17:23:52,745 views 1236 5664 Checking file path: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songsYou Get Me So High - The Neighbourhood.mp3
+DEBUG 2025-04-23 17:23:52,746 views 1236 5664 Trying alternative path: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\You Get Me So High - The Neighbourhood.mp3
+INFO 2025-04-23 17:23:52,746 views 1236 5664 Adding file via alternative path: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\You Get Me So High - The Neighbourhood.mp3 as You Get Me So High - The Neighbourhood.mp3
+INFO 2025-04-23 17:23:52,766 views 1236 5664 Adding known song file to ZIP: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Friends - Chase Atlantic.mp3 as Friends - Chase Atlantic.mp3
+INFO 2025-04-23 17:23:52,803 views 1236 5664 ZIP file created successfully. Size: 9539058 bytes, Files added: 2, Missing files: 0
+INFO 2025-04-23 17:23:52,837 basehttp 1236 5664 "GET /api/songs/playlists/90/download-all/ HTTP/1.1" 200 9539058
+INFO 2025-04-23 17:26:57,965 autoreload 1236 26116 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-23 17:27:01,138 autoreload 19316 18864 Watching for file changes with StatReloader
+INFO 2025-04-23 17:27:24,731 views 19316 14188 Creating ZIP file for playlist 'tunevault testing' with 2 songs at C:\Users\Dell\AppData\Local\Temp\tmpsh0q3cxc\tunevault testing_1745409444.zip
+DEBUG 2025-04-23 17:27:24,797 views 19316 14188 Looking for song 319 'You Get Me So High' in 5 potential locations
+INFO 2025-04-23 17:27:24,798 views 19316 14188 Found and adding file to ZIP: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\You Get Me So High - The Neighbourhood.mp3 as You Get Me So High - The Neighbourhood.mp3
+DEBUG 2025-04-23 17:27:24,819 views 19316 14188 Looking for song 292 'Friends' in 6 potential locations
+INFO 2025-04-23 17:27:24,819 views 19316 14188 Found and adding file to ZIP: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Friends - Chase Atlantic.mp3 as Friends - Chase Atlantic.mp3
+INFO 2025-04-23 17:27:24,847 views 19316 14188 ZIP file created successfully. Size: 9539058 bytes, Files added: 2, Missing files: 0
+INFO 2025-04-23 17:27:24,883 basehttp 19316 14188 "GET /api/songs/playlists/90/download-all/ HTTP/1.1" 200 9539058
+INFO 2025-04-23 17:28:03,389 spotify_api 19316 14188 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-23 17:28:03,389 spotify_api 19316 14188 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-23 17:28:03,389 views 19316 14188 Redirecting Spotify playlist URL to playlist download endpoint: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-23 17:28:03,390 spotify_api 19316 14188 Extracting Spotify ID from URL: https://open.spotify.com/playlist/21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-23 17:28:03,390 spotify_api 19316 14188 Extracted Spotify playlist ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-23 17:28:03,390 spotify_api 19316 14188 Getting Spotify playlist info for ID: 21y0yK08j1UzYu4ro06wfL
+INFO 2025-04-23 17:28:03,391 spotify_api 19316 14188 Creating Spotify client with credentials from settings
+INFO 2025-04-23 17:28:03,576 spotify_api 19316 14188 Successfully tested Spotify client
+INFO 2025-04-23 17:28:03,931 spotify_api 19316 14188 Extracted 2 track URLs from playlist
+INFO 2025-04-23 17:28:03,932 download_helper 19316 14188 Playlist info retrieved: title=tunevault testing, tracks=2, image_url=https://i.scdn.co/image/ab67616d00001e02efa7fe6f9ecee8ba9c877b60
+INFO 2025-04-23 17:28:04,248 spotify_api 19316 14188 Extracting Spotify ID from URL: https://open.spotify.com/track/2LtCEKs68u3RpNh4wybCF8
+INFO 2025-04-23 17:28:04,249 spotify_api 19316 14188 Extracted Spotify track ID: 2LtCEKs68u3RpNh4wybCF8
+INFO 2025-04-23 17:28:04,249 spotify_api 19316 14188 Getting info for Spotify track ID: 2LtCEKs68u3RpNh4wybCF8
+INFO 2025-04-23 17:28:04,249 spotify_api 19316 14188 Creating Spotify client with credentials from settings
+INFO 2025-04-23 17:28:04,434 spotify_api 19316 14188 Successfully tested Spotify client
+INFO 2025-04-23 17:28:04,762 spotify_api 19316 14188 Got track info: Hotel by Montell Fish
+INFO 2025-04-23 17:28:04,763 download_helper 19316 14188 Downloading from Hugging Face Spaces: https://youtube.com/results?search_query=Hotel+Montell+Fish
+INFO 2025-04-23 17:28:23,080 download_helper 19316 14188 Successfully downloaded file to C:\Users\Dell\AppData\Local\Temp\tmp2jjuqu8s\download-1745409503.mp3
+INFO 2025-04-23 17:28:23,080 download_helper 19316 14188 Using Spotify thumbnail URL: https://i.scdn.co/image/ab67616d0000b273f46e995aa84c6eb1080100a4
+INFO 2025-04-23 17:28:23,165 utils 19316 14188 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Hotel - Montell Fish.mp3
+INFO 2025-04-23 17:28:23,166 utils 19316 14188 Title: Hotel, Artist: Montell Fish, Album: Her Love Still Haunts Me Like a Ghost, Genre: Unknown
+INFO 2025-04-23 17:28:23,173 utils 19316 14188 Loaded existing ID3 tags
+INFO 2025-04-23 17:28:23,241 utils 19316 14188 Downloading thumbnail from URL: https://i.scdn.co/image/ab67616d0000b273f46e995aa84c6eb1080100a4
+INFO 2025-04-23 17:28:23,313 utils 19316 14188 Downloaded thumbnail: 100230 bytes
+INFO 2025-04-23 17:28:23,313 utils 19316 14188 Detected image type: jpeg
+INFO 2025-04-23 17:28:23,349 utils 19316 14188 Successfully converted image to JPEG: 71737 bytes
+INFO 2025-04-23 17:28:23,350 utils 19316 14188 Adding album art, MIME type: image/jpeg
+INFO 2025-04-23 17:28:23,351 utils 19316 14188 Successfully added album art to ID3 tags
+INFO 2025-04-23 17:28:23,356 utils 19316 14188 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Hotel - Montell Fish.mp3 using ID3v2.3
+INFO 2025-04-23 17:28:23,366 utils 19316 14188 Verification: 9 tags were written, has_cover=True
+INFO 2025-04-23 17:28:23,388 utils 19316 14188 Attempting to set system thumbnail property directly (Windows only)
+INFO 2025-04-23 17:28:23,405 utils 19316 14188 Successfully deleted existing ID3 tags before rebuilding
+INFO 2025-04-23 17:28:23,417 utils 19316 14188 Successfully rebuilt ID3 tags with clean implementation
+INFO 2025-04-23 17:28:23,418 utils 19316 14188 Skipping shell thumbnail method due to known issues
+INFO 2025-04-23 17:28:23,866 download_helper 19316 14188 Added Spotify song to cache from playlist: https://open.spotify.com/track/2LtCEKs68u3RpNh4wybCF8
+INFO 2025-04-23 17:28:24,273 spotify_api 19316 14188 Extracting Spotify ID from URL: https://open.spotify.com/track/5Q6fh8OEhBYepJaORz9lxe
+INFO 2025-04-23 17:28:24,273 spotify_api 19316 14188 Extracted Spotify track ID: 5Q6fh8OEhBYepJaORz9lxe
+INFO 2025-04-23 17:28:24,274 spotify_api 19316 14188 Getting info for Spotify track ID: 5Q6fh8OEhBYepJaORz9lxe
+INFO 2025-04-23 17:28:24,274 spotify_api 19316 14188 Creating Spotify client with credentials from settings
+INFO 2025-04-23 17:28:24,463 spotify_api 19316 14188 Successfully tested Spotify client
+INFO 2025-04-23 17:28:24,810 spotify_api 19316 14188 Got track info: Daddy Issues (Remix) feat. Syd by The Neighbourhood
+INFO 2025-04-23 17:28:24,811 download_helper 19316 14188 Downloading from Hugging Face Spaces: https://youtube.com/results?search_query=Daddy+Issues+(Remix)+feat.+Syd+The+Neighbourhood
+INFO 2025-04-23 17:28:42,567 download_helper 19316 14188 Successfully downloaded file to C:\Users\Dell\AppData\Local\Temp\tmpoocgadyt\download-1745409522.mp3
+INFO 2025-04-23 17:28:42,567 download_helper 19316 14188 Using Spotify thumbnail URL: https://i.scdn.co/image/ab67616d0000b2738b6204ac018967b6388c703d
+INFO 2025-04-23 17:28:42,633 utils 19316 14188 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Daddy Issues Remix feat. Syd - The Neighbourhood.mp3
+INFO 2025-04-23 17:28:42,634 utils 19316 14188 Title: Daddy Issues (Remix) feat. Syd, Artist: The Neighbourhood, Album: Daddy Issues (Remix) feat. Syd, Genre: Unknown
+INFO 2025-04-23 17:28:42,641 utils 19316 14188 Loaded existing ID3 tags
+INFO 2025-04-23 17:28:42,704 utils 19316 14188 Downloading thumbnail from URL: https://i.scdn.co/image/ab67616d0000b2738b6204ac018967b6388c703d
+INFO 2025-04-23 17:28:42,757 utils 19316 14188 Downloaded thumbnail: 19051 bytes
+INFO 2025-04-23 17:28:42,758 utils 19316 14188 Detected image type: jpeg
+INFO 2025-04-23 17:28:42,783 utils 19316 14188 Successfully converted image to JPEG: 19739 bytes
+INFO 2025-04-23 17:28:42,784 utils 19316 14188 Adding album art, MIME type: image/jpeg
+INFO 2025-04-23 17:28:42,785 utils 19316 14188 Successfully added album art to ID3 tags
+INFO 2025-04-23 17:28:42,789 utils 19316 14188 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Daddy Issues Remix feat. Syd - The Neighbourhood.mp3 using ID3v2.3
+INFO 2025-04-23 17:28:42,799 utils 19316 14188 Verification: 10 tags were written, has_cover=True
+INFO 2025-04-23 17:28:42,799 utils 19316 14188 Attempting to set system thumbnail property directly (Windows only)
+INFO 2025-04-23 17:28:42,814 utils 19316 14188 Successfully deleted existing ID3 tags before rebuilding
+INFO 2025-04-23 17:28:42,823 utils 19316 14188 Successfully rebuilt ID3 tags with clean implementation
+INFO 2025-04-23 17:28:42,825 utils 19316 14188 Skipping shell thumbnail method due to known issues
+INFO 2025-04-23 17:28:43,283 download_helper 19316 14188 Added Spotify song to cache from playlist: https://open.spotify.com/track/5Q6fh8OEhBYepJaORz9lxe
+INFO 2025-04-23 17:28:43,688 models 19316 14188 [DEBUG] record_download called for user=testuser id=1 date=2025-04-23
+INFO 2025-04-23 17:28:43,820 models 19316 14188 [DEBUG] record_download updated analytics: user=testuser id=1 date=2025-04-23 songs_downloaded=12
+INFO 2025-04-23 17:28:43,821 models 19316 14188 [DEBUG] record_download called for user=testuser id=1 date=2025-04-23
+INFO 2025-04-23 17:28:43,948 models 19316 14188 [DEBUG] record_download updated analytics: user=testuser id=1 date=2025-04-23 songs_downloaded=13
+INFO 2025-04-23 17:28:43,949 basehttp 19316 14188 "POST /api/songs/songs/download/ HTTP/1.1" 200 122
+INFO 2025-04-23 17:29:18,642 views 19316 5548 Creating ZIP file for playlist 'tunevault testing' with 2 songs at C:\Users\Dell\AppData\Local\Temp\tmpekkxp098\tunevault testing_1745409558.zip
+DEBUG 2025-04-23 17:29:18,708 views 19316 5548 Looking for song 321 'Daddy Issues Remix feat. Syd' in 5 potential locations
+INFO 2025-04-23 17:29:18,708 views 19316 5548 Found and adding file to ZIP: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Daddy Issues Remix feat. Syd - The Neighbourhood.mp3 as Daddy Issues Remix feat. Syd - The Neighbourhood.mp3
+DEBUG 2025-04-23 17:29:18,728 views 19316 5548 Looking for song 320 'Hotel' in 5 potential locations
+INFO 2025-04-23 17:29:18,728 views 19316 5548 Found and adding file to ZIP: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Hotel - Montell Fish.mp3 as Hotel - Montell Fish.mp3
+INFO 2025-04-23 17:29:18,749 views 19316 5548 ZIP file created successfully. Size: 9239616 bytes, Files added: 2, Missing files: 0
+INFO 2025-04-23 17:29:18,772 basehttp 19316 5548 "GET /api/songs/playlists/91/download-all/ HTTP/1.1" 200 9239616
+INFO 2025-04-23 17:29:40,416 autoreload 19316 18864 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-23 17:29:46,199 autoreload 15960 15144 Watching for file changes with StatReloader
+INFO 2025-04-23 17:30:34,706 utils 15960 12116 Found exact match for artist 'Twenty One Pilots': Twenty One Pilots
+INFO 2025-04-23 17:30:35,217 utils 15960 12116 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-23 17:30:35,850 utils 15960 12116 Found partial match for artist 'Panic At The Disco': The Killers
+INFO 2025-04-23 17:30:36,459 utils 15960 12116 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-23 17:30:37,056 utils 15960 12116 Found exact match for artist 'Dylan Gossett': Dylan Gossett
+INFO 2025-04-23 17:30:37,061 basehttp 15960 12116 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 974
+INFO 2025-04-23 17:31:13,953 views 15960 12116 User has 25 songs
+INFO 2025-04-23 17:31:14,019 views 15960 12116 User has 18 songs with Spotify IDs
+INFO 2025-04-23 17:31:14,150 views 15960 12116 Sample user songs: [{'spotify_id': '5Q6fh8OEhBYepJaORz9lxe', 'title': 'Daddy Issues Remix feat. Syd', 'artist': 'The Neighbourhood'}, {'spotify_id': '2LtCEKs68u3RpNh4wybCF8', 'title': 'Hotel', 'artist': 'Montell Fish'}, {'spotify_id': '7zwn1eykZtZ5LODrf7c0tS', 'title': 'You Get Me So High', 'artist': 'The Neighbourhood'}, {'spotify_id': '04aAxqtGp5pv12UXAg4pkq', 'title': 'Centuries', 'artist': 'Fall Out Boy'}, {'spotify_id': '2DgdHcjWmO3qd50RzuBLgZ', 'title': 'House of Memories', 'artist': 'Panic At The Disco'}]
+INFO 2025-04-23 17:31:14,151 views 15960 12116 Getting recommendations for user: 1 with limit: 10
+INFO 2025-04-23 17:31:14,151 recommendation 15960 12116 Skipping Music.csv due to invalid format, using data.csv directly
+INFO 2025-04-23 17:31:17,220 recommendation 15960 12116 Loaded data.csv dataset
+INFO 2025-04-23 17:31:17,294 recommendation 15960 12116 Available columns in dataset: ['valence', 'year', 'acousticness', 'artists', 'danceability', 'duration_ms', 'energy', 'explicit', 'id', 'instrumentalness', 'key', 'liveness', 'loudness', 'mode', 'name', 'popularity', 'release_date', 'speechiness', 'tempo']
+INFO 2025-04-23 17:31:17,418 recommendation 15960 12116 Using features: ['acousticness', 'danceability', 'energy', 'instrumentalness', 'liveness', 'loudness', 'speechiness', 'tempo', 'valence']
+INFO 2025-04-23 17:31:17,483 recommendation 15960 12116 Prepared data with 170653 songs and 9 features
+INFO 2025-04-23 17:31:18,547 recommendation 15960 12116 Built song clusters successfully
+INFO 2025-04-23 17:31:18,547 recommendation 15960 12116 Music Recommender initialized successfully
+WARNING 2025-04-23 17:31:18,814 recommendation 15960 12116 Song '5Q6fh8OEhBYepJaORz9lxe' not found or clustering unavailable, using popular songs
+WARNING 2025-04-23 17:31:18,938 recommendation 15960 12116 Song '2LtCEKs68u3RpNh4wybCF8' not found or clustering unavailable, using popular songs
+INFO 2025-04-23 17:31:19,088 views 15960 12116 Got 10 recommendations
+INFO 2025-04-23 17:31:19,224 basehttp 15960 12116 "GET /api/songs/recommendations/ HTTP/1.1" 200 3026

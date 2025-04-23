@@ -3,6 +3,8 @@ import logging
 import time
 import tempfile
 import shutil
+import requests
+import json
 import yt_dlp
 from django.conf import settings
 from django.http import FileResponse
@@ -20,6 +22,7 @@ from .utils import (
 from .spotify_api import extract_spotify_id, get_track_info, get_playlist_info, get_playlist_tracks
 
 logger = logging.getLogger(__name__)
+
 def sanitize_for_db(text, max_length=95):
     """
     Sanitize text for database storage, ensuring it doesn't exceed max_length
@@ -64,7 +67,7 @@ def download_youtube(request, url, output_format=None):
             
         # Check if the song is in cache
         cached_song = SongCache.get_cached_song(url)
-        if (cached_song):
+        if cached_song:
             logger.info(f"Using cached version for URL: {url}")
             # Record download in analytics for cached song
             try:
@@ -157,33 +160,12 @@ def download_youtube(request, url, output_format=None):
         # If not in cache, proceed with downloading
         # Create temp directory for download
         temp_dir = tempfile.mkdtemp()
-        # Generate a temporary filename
-        temp_filename = os.path.join(temp_dir, sanitize_filename(f'download-{int(time.time())}'))
-        # Add this near the start of download_spotify_track function
-        cookie_file = os.path.join(settings.BASE_DIR, 'cookies.txt')
-        logger.info(f"Using cookies file at: {cookie_file}")
-        logger.info(f"Cookie file exists: {os.path.exists(cookie_file)}")
-        # Define download options
-        ydl_opts = {
-            'format': 'bestaudio/best',
-            'postprocessors': [{
-                'key': 'FFmpegExtractAudio',
-                'preferredcodec': 'mp3',
-                'preferredquality': '192',
-            }],
-            'outtmpl': temp_filename,
-            'writethumbnail': True,
-            'noplaylist': True,  # Only download the single video, not the playlist
-            'cookiefile': os.path.join(settings.BASE_DIR, 'cookies.txt'),  # Use cookies to avoid bot detection
-            'nocheckcertificate': True,  # Sometimes helps with HTTPS issues
-            'ignoreerrors': False,  # Don't ignore errors for better debugging
-        }
-
-        # Download the file using our retry-enabled function
-        info = download_from_youtube(url, temp_filename, **ydl_opts)
         
-        # The actual file has .mp3 extension added by the postprocessor
-        temp_mp3_filename = temp_filename + '.mp3'
+        # CHANGED: Use Hugging Face Spaces API instead of direct yt-dlp download
+        info = download_from_huggingface(url, temp_dir)
+        
+        # The downloaded file should already be an mp3
+        temp_mp3_filename = info['filepath']
         
         # Convert to requested format if different from mp3
         if output_format and output_format != 'mp3':
@@ -191,16 +173,11 @@ def download_youtube(request, url, output_format=None):
         else:
             final_filename = temp_mp3_filename
         
-        # Get thumbnail path - first check for local files
-        thumbnail_path = None
-        for ext in ['jpg', 'png', 'webp']:
-            possible_path = f"{temp_filename}.{ext}"
-            if os.path.exists(possible_path):
-                thumbnail_path = possible_path
-                break
+        # Get thumbnail URL from info
+        thumbnail_url = info.get('thumbnail')
         
         # Create destination paths
-        formatted_filename = f"{info['title']} - {info.get('uploader', 'Unknown Artist')}.{output_format or 'mp3'}"
+        formatted_filename = f"{info['title']} - {info.get('artist', 'Unknown Artist')}.{output_format or 'mp3'}"
         formatted_filename = sanitize_filename(formatted_filename)
         
         # Copy to media directory
@@ -210,27 +187,6 @@ def download_youtube(request, url, output_format=None):
         
         shutil.copy2(final_filename, media_path)
         
-        # Copy thumbnail if it exists
-        thumbnail_url = None
-        if (thumbnail_path):
-            thumb_filename = f"{info['title']} - {info.get('uploader', 'Unknown Artist')}.{os.path.splitext(thumbnail_path)[1][1:]}"
-            thumb_filename = sanitize_filename(thumb_filename)
-            thumb_media_path = os.path.join(media_dir, thumb_filename)
-            shutil.copy2(thumbnail_path, thumb_media_path)
-            thumbnail_url = f"/media/songs/{thumb_filename}"
-        
-        # If no local thumbnail, try to get from info
-        if not thumbnail_url:
-            for key in ['thumbnail', 'thumbnails']:
-                if key in info and info[key]:
-                    if isinstance(info[key], list) and len(info[key]) > 0:
-                        # Get highest quality thumbnail
-                        best_thumb = max(info[key], key=lambda x: x.get('height', 0) if isinstance(x, dict) else 0)
-                        thumbnail_url = best_thumb.get('url') if isinstance(best_thumb, dict) else best_thumb
-                    else:
-                        thumbnail_url = info[key]
-                    break
-        
         # Create the song record
         rel_path = os.path.join('songs', formatted_filename)
         rel_path = sanitize_filename(rel_path, max_length=95)
@@ -239,18 +195,18 @@ def download_youtube(request, url, output_format=None):
         embed_metadata(
             mp3_path=media_path,
             title=info['title'],
-            artist=info.get('uploader', 'Unknown Artist'),
+            artist=info.get('artist', 'Unknown Artist'),
             album=info.get('album', 'Unknown'),
             thumbnail_url=thumbnail_url,
             year=info.get('upload_date', '')[:4] if info.get('upload_date') else None,
-            album_artist=info.get('channel', info.get('uploader', 'Unknown Artist')),
+            album_artist=info.get('artist', 'Unknown Artist'),
             youtube_id=info.get('id')
         )
         
         song = Song.objects.create(
             user=request.user,
             title=sanitize_for_db(info['title']),
-            artist=sanitize_for_db(info.get('uploader', 'Unknown Artist')),
+            artist=sanitize_for_db(info.get('artist', 'Unknown Artist')),
             album=sanitize_for_db(info.get('album', 'Unknown')),
             file=rel_path,
             source='youtube',
@@ -286,10 +242,11 @@ def download_youtube(request, url, output_format=None):
             # Prepare metadata
             metadata = {
                 'title': info['title'],
-                'artist': info.get('uploader', 'Unknown Artist'),
+                'artist': info.get('artist', 'Unknown Artist'),
                 'album': info.get('album', 'Unknown'),
                 'thumbnail_url': thumbnail_url,
                 'source': 'youtube',
+                'id': info.get('id')
             }
             
             # Create or update cache entry with metadata in the JSON field
@@ -317,7 +274,7 @@ def download_youtube(request, url, output_format=None):
         response['Content-Type'] = f'audio/{output_format or "mp3"}'
         # Add song metadata headers
         response['x-song-title'] = info['title']
-        response['x-song-artist'] = info.get('uploader', 'Unknown Artist')
+        response['x-song-artist'] = info.get('artist', 'Unknown Artist')
         response['Content-Disposition'] = f'attachment; filename="{formatted_filename}"'
         if info.get('album'):
             response['x-album-name'] = info.get('album')
@@ -349,6 +306,7 @@ def download_spotify_track(request, url, output_format=None):
         # Check if the song is in cache
         cached_song = SongCache.get_cached_song(url)
         if cached_song:
+            # Handle cached song (same as original code)
             logger.info(f"Using cached version for Spotify URL: {url}")
             # Record download in analytics for cached song
             try:
@@ -473,6 +431,7 @@ def download_spotify_track(request, url, output_format=None):
         
         # Make sure we have the thumbnail URL from Spotify API
         thumbnail_url = track_info.get('image_url')
+
         logger.info(f"Spotify API returned thumbnail URL: {thumbnail_url}")
         
         # Sanitize track info fields for the database
@@ -488,198 +447,161 @@ def download_spotify_track(request, url, output_format=None):
         
         # Create a temporary directory that we'll clean up manually
         temp_dir = tempfile.mkdtemp()
-        temp_filename = os.path.join(temp_dir, sanitize_filename(f'download-{int(time.time())}'))
-        cookie_file = os.path.join(settings.BASE_DIR, 'cookies.txt')
-        logger.info(f"Using cookies file at: {cookie_file}")
-        logger.info(f"Cookie file exists: {os.path.exists(cookie_file)}")
-        # Download from YouTube using yt-dlp
-        ydl_opts = {
-            'format': 'bestaudio/best',
-            'postprocessors': [{
-                'key': 'FFmpegExtractAudio',
-                'preferredcodec': 'mp3',
-                'preferredquality': '192',
-            }],
-            'outtmpl': temp_filename,
-            'writethumbnail': True,
-            'cookiefile': os.path.join(settings.BASE_DIR, 'cookies.txt'),  # Use cookies to avoid bot detection
-            'nocheckcertificate': True,  # Sometimes helps with HTTPS issues
-            'ignoreerrors': False,
-        }
+        
+        # Create a YouTube search URL that the API can use
+        search_url = f"https://youtube.com/results?search_query={query.replace(' ', '+')}"
+        
+        # Download using Hugging Face Spaces API
+        info = download_from_huggingface(search_url, temp_dir, spotify_metadata=track_info)
+        mp3_filename = info['filepath']
+        
+        logger.info(f"Downloaded file to: {mp3_filename}")
+        
+        # Create a proper formatted filename for the final file
+        formatted_filename = f"{track_info['title']} - {track_info['artist']}.mp3"
+        formatted_filename = sanitize_filename(formatted_filename)
+        
+        # Copy to media directory to avoid temp directory issues
+        media_dir = os.path.join(settings.MEDIA_ROOT, 'songs')
+        os.makedirs(media_dir, exist_ok=True)
+        media_path = os.path.join(media_dir, formatted_filename)
+        
+        shutil.copy2(mp3_filename, media_path)
 
-        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-            logger.info(f"Downloading using YouTube search: ytsearch:{query}")
-            info = ydl.extract_info(f"ytsearch:{query}", download=True)['entries'][0]
-            filename = ydl.prepare_filename(info)
-            base_filename = os.path.splitext(filename)[0]
-            mp3_filename = base_filename + '.mp3'
+        # Check if this song already exists for this user before creating a new one
+        existing_song = Song.objects.filter(
+            user=request.user, 
+            song_url=url
+        ).first()
+        
+        # IMPORTANT: Always embed Spotify metadata into the file, overwriting any existing tags
+        # This step ensures we use the correct info from Spotify API rather than potential incorrect YouTube data
+        logger.info(f"Embedding Spotify metadata into MP3 file: {media_path}")
+        embed_metadata(
+            mp3_path=media_path,
+            title=track_info['title'],
+            artist=track_info['artist'],
+            album=track_info.get('album', 'Unknown'),
+            thumbnail_url=thumbnail_url,
+            year=track_info.get('year'),
+            genre=track_info.get('genre', 'Unknown'),
+            album_artist=track_info.get('album_artist', track_info['artist']),
+            spotify_id=track_info.get('spotify_id')
+        )
+        
+        if existing_song:
+            song = existing_song
+            # Update the thumbnail URL if it was missing before
+            if thumbnail_url and not existing_song.thumbnail_url:
+                existing_song.thumbnail_url = sanitize_for_db(thumbnail_url, max_length=190)
+                existing_song.save()
+        else:
+            rel_path = os.path.join('songs', formatted_filename)
+            # Sanitize the file path to ensure it doesn't exceed DB limits
+            rel_path = sanitize_filename(rel_path, max_length=95)
             
-            logger.info(f"Downloaded file to: {mp3_filename}")
-            
-            # Always prioritize Spotify thumbnail if available
-            if not thumbnail_url:
-                logger.warning("No Spotify thumbnail URL available, will use YouTube thumbnail")
-                # If no Spotify thumbnail, check for local files
-                for ext in ['jpg', 'png', 'webp']:
-                    possible_path = f"{base_filename}.{ext}"
-                    if os.path.exists(possible_path):
-                        thumbnail_path = possible_path
-                        # Copy this to media and create a URL
-                        thumb_filename = f"{sanitize_filename(track_info['title'])} - {sanitize_filename(track_info['artist'])}.{ext}"
-                        media_thumb_path = os.path.join(settings.MEDIA_ROOT, 'songs', thumb_filename)
-                        os.makedirs(os.path.dirname(media_thumb_path), exist_ok=True)
-                        shutil.copy2(possible_path, media_thumb_path)
-                        thumbnail_url = f"/media/songs/{thumb_filename}"
-                        logger.info(f"Using local thumbnail: {thumbnail_url}")
-                        break
-            
-            # If still no thumbnail, try to get from YouTube info
-            if not thumbnail_url:
-                for key in ['thumbnail', 'thumbnails']:
-                    if key in info and info[key]:
-                        if isinstance(info[key], list) and len(info[key]) > 0:
-                            # Get highest quality thumbnail
-                            best_thumb = max(info[key], key=lambda x: x.get('height', 0) if isinstance(x, dict) else 0)
-                            thumbnail_url = best_thumb.get('url') if isinstance(best_thumb, dict) else best_thumb
-                            logger.info(f"Using YouTube thumbnail: {thumbnail_url}")
-                        else:
-                            thumbnail_url = info[key]
-                        break
-            
-            # Create a proper formatted filename for the final file
-            formatted_filename = f"{track_info['title']} - {track_info['artist']}.mp3"
-            formatted_filename = sanitize_filename(formatted_filename)
-            
-            # Copy to media directory to avoid temp directory issues
-            media_dir = os.path.join(settings.MEDIA_ROOT, 'songs')
-            os.makedirs(media_dir, exist_ok=True)
-            media_path = os.path.join(media_dir, formatted_filename)
-            
-            shutil.copy2(mp3_filename, media_path)
-
-            # Check if this song already exists for this user before creating a new one
-            existing_song = Song.objects.filter(
-                user=request.user, 
+            song = Song.objects.create(
+                user=request.user,
+                title=sanitize_for_db(track_info['title']),
+                artist=sanitize_for_db(track_info['artist']),
+                album=sanitize_for_db(track_info.get('album', 'Unknown')),
+                file=rel_path,
+                source='spotify',
+                spotify_id=track_info.get('spotify_id'),
+                thumbnail_url=sanitize_for_db(thumbnail_url, max_length=190) if thumbnail_url else None,
                 song_url=url
-            ).first()
-            
-            if existing_song:
-                song = existing_song
-                # Update the thumbnail URL if it was missing before
-                if thumbnail_url and not existing_song.thumbnail_url:
-                    existing_song.thumbnail_url = sanitize_for_db(thumbnail_url, max_length=190)
-                    existing_song.save()
-            else:
-                rel_path = os.path.join('songs', formatted_filename)
-                # Sanitize the file path to ensure it doesn't exceed DB limits
-                rel_path = sanitize_filename(rel_path, max_length=95)
-                
-                # Embed metadata including thumbnail into the MP3 file
-                embed_metadata(
-                    mp3_path=media_path,
-                    title=track_info['title'],
-                    artist=track_info['artist'],
-                    album=track_info.get('album', 'Unknown'),
-                    thumbnail_url=thumbnail_url,
-                    year=track_info.get('year'),
-                    genre=track_info.get('genre', 'Unknown'),
-                    album_artist=track_info.get('album_artist', track_info['artist']),
-                    spotify_id=track_info.get('spotify_id')
-                )
-                
-                song = Song.objects.create(
-                    user=request.user,
-                    title=sanitize_for_db(track_info['title']),
-                    artist=sanitize_for_db(track_info['artist']),
-                    album=sanitize_for_db(track_info.get('album', 'Unknown')),
-                    file=rel_path,
-                    source='spotify',
-                    spotify_id=track_info.get('spotify_id'),
-                    thumbnail_url=sanitize_for_db(thumbnail_url, max_length=190) if thumbnail_url else None,
-                    song_url=url
-                )
-            
-            # Update user's music profile
-            try:
-                profile, created = UserMusicProfile.objects.get_or_create(user=request.user)
-                profile.update_profile(song)
-            except Exception as profile_error:
-                logger.warning(f"Error updating user profile: {profile_error}")
-            
-            # Increment download count
-            request.user.increment_download_count()
-            
-            # Record download in analytics
-            try:
-                UserAnalytics.record_download(request.user)
-            except Exception as analytics_error:
-                logger.warning(f"Error recording download in analytics: {analytics_error}")
-            
-            # Add to cache for future use (with properly formatted filename)
-            try:
-                # Create properly named file in cache directory
-                cache_path = os.path.join('cache', formatted_filename)
-                cache_full_path = os.path.join(settings.MEDIA_ROOT, cache_path)
-                
-                # Make sure the cache directory exists
-                os.makedirs(os.path.dirname(cache_full_path), exist_ok=True)
-                
-                # Copy the file to the cache directory with the proper name
-                shutil.copy2(mp3_filename, cache_full_path)
-                
-                # Calculate file size
-                file_size = os.path.getsize(mp3_filename)
-                
-                # Ensure thumbnail URL is valid for database
-                if thumbnail_url and len(thumbnail_url) > 190:
-                    # Truncate long URLs or set to empty if invalid
-                    logger.warning(f"Thumbnail URL too long, truncating: {thumbnail_url[:50]}...")
-                    thumbnail_url = sanitize_for_db(thumbnail_url, max_length=190)
-                
-                # Prepare metadata
-                metadata = {
-                    'title': song.title,
-                    'artist': song.artist,
-                    'album': song.album,
-                    'thumbnail_url': thumbnail_url,
-                    'source': 'spotify',
-                    'spotify_id': song.spotify_id
-                }
-                
-                # Create or update cache entry with metadata in the JSON field
-                SongCache.objects.update_or_create(
-                    song_url=url,
-                    defaults={
-                        'file_path': cache_path,
-                        'file_size': file_size,
-                        'expires_at': timezone.now() + timedelta(days=7),
-                        'metadata': metadata
-                    }
-                )
-                logger.info(f"Added song to cache: {url}")
-            except Exception as e:
-                logger.warning(f"Error adding song to cache: {str(e)}")
-            
-            # Serve the file from the permanent media location
-            response = FileResponse(
-                open(media_path, 'rb'),
-                as_attachment=True,
-                filename=formatted_filename
             )
-            response['Content-Type'] = 'audio/mpeg'
+        
+        # Update user's music profile
+        try:
+            profile, created = UserMusicProfile.objects.get_or_create(user=request.user)
+            profile.update_profile(song)
+        except Exception as profile_error:
+            logger.warning(f"Error updating user profile: {profile_error}")
+        
+        # Increment download count
+        request.user.increment_download_count()
+        
+        # Record download in analytics
+        try:
+            UserAnalytics.record_download(request.user)
+        except Exception as analytics_error:
+            logger.warning(f"Error recording download in analytics: {analytics_error}")
+        
+        # Add to cache for future use (with properly formatted filename)
+        try:
+            # Create properly named file in cache directory
+            cache_path = os.path.join('cache', formatted_filename)
+            cache_full_path = os.path.join(settings.MEDIA_ROOT, cache_path)
             
-            # Explicitly set Content-Disposition header with filename
-            response['Content-Disposition'] = f'attachment; filename="{formatted_filename}"'
+            # Make sure the cache directory exists
+            os.makedirs(os.path.dirname(cache_full_path), exist_ok=True)
             
-            # Add song metadata headers
-            response['x-song-title'] = track_info['title']
-            response['x-song-artist'] = track_info['artist']
-            if 'album' in track_info:
-                response['x-album-name'] = track_info['album']
-            if thumbnail_url:
-                response['x-cover-url'] = thumbnail_url
-                
-            return response
+            # Copy the file to the cache directory with the proper name
+            if not os.path.exists(cache_full_path):
+                shutil.copy2(media_path, cache_full_path)  # Copy file with Spotify metadata already embedded
+            
+            # Calculate file size
+            file_size = os.path.getsize(media_path)
+            
+            # Ensure thumbnail URL is valid for database
+            if thumbnail_url and len(thumbnail_url) > 190:
+                # Truncate long URLs or set to empty if invalid
+                logger.warning(f"Thumbnail URL too long, truncating: {thumbnail_url[:50]}...")
+                thumbnail_url = sanitize_for_db(thumbnail_url, max_length=190)
+            
+            # Prepare metadata
+            metadata = {
+                'title': song.title,
+                'artist': song.artist,
+                'album': song.album,
+                'thumbnail_url': thumbnail_url,
+                'source': 'spotify',
+                'spotify_id': song.spotify_id
+            }
+            
+            # Create or update cache entry with metadata in the JSON field
+            SongCache.objects.update_or_create(
+                song_url=url,
+                defaults={
+                    'file_path': cache_path,
+                    'file_size': file_size,
+                    'expires_at': timezone.now() + timedelta(days=7),
+                    'metadata': metadata
+                }
+            )
+            logger.info(f"Added song to cache: {url}")
+        except Exception as e:
+            logger.warning(f"Error adding song to cache: {str(e)}")
+        
+        # Check if format conversion is needed
+        if output_format and output_format != 'mp3':
+            final_filename = convert_audio_format(media_path, output_format)
+            formatted_filename = f"{track_info['title']} - {track_info['artist']}.{output_format}"
+            formatted_filename = sanitize_filename(formatted_filename)
+        else:
+            final_filename = media_path
+        
+        # Serve the file from the permanent media location
+        response = FileResponse(
+            open(final_filename, 'rb'),
+            as_attachment=True,
+            filename=formatted_filename
+        )
+        response['Content-Type'] = f'audio/{output_format or "mp3"}'
+        
+        # Explicitly set Content-Disposition header with filename
+        response['Content-Disposition'] = f'attachment; filename="{formatted_filename}"'
+        
+        # Add song metadata headers
+        response['x-song-title'] = track_info['title']
+        response['x-song-artist'] = track_info['artist']
+        if 'album' in track_info:
+            response['x-album-name'] = track_info['album']
+        if thumbnail_url:
+            response['x-cover-url'] = thumbnail_url
+            
+        return response
 
     except Exception as e:
         logger.error(f"Spotify track download error: {e}", exc_info=True)
@@ -853,91 +775,115 @@ def download_playlist(request):
                 # Download the song using the appropriate method based on URL
                 if 'youtube.com' in track_url or 'youtu.be' in track_url:
                     try:
-                        info_dict = download_youtube_util(track_url, output_path=settings.MEDIA_ROOT)
-                        file_path = info_dict.get('filepath')
-                        
-                        if file_path:
-                            # Check if this song already exists for this user before creating a new one
-                            existing_song = Song.objects.filter(
-                                user=request.user, 
-                                song_url=track_url
-                            ).first()
+                        # CHANGED: Use Hugging Face Spaces API instead of direct download
+                        temp_dir = tempfile.mkdtemp()
+                        try:
+                            # Download using Hugging Face API
+                            info_dict = download_from_huggingface(track_url, temp_dir)
+                            file_path = info_dict.get('filepath')
                             
-                            if existing_song:
-                                song = existing_song
-                                # Update the thumbnail if it was missing
-                                if not existing_song.thumbnail_url and info_dict.get('thumbnail'):
-                                    existing_song.thumbnail_url = sanitize_for_db(info_dict.get('thumbnail', ''), max_length=190)
-                                    existing_song.save()
-                            else:
-                                song = Song.objects.create(
-                                    user=request.user,
-                                    title=sanitize_for_db(info_dict.get('title', 'Unknown Title')),
-                                    artist=sanitize_for_db(info_dict.get('artist', 'Unknown')),
-                                    album=sanitize_for_db(info_dict.get('album', 'Unknown')),
-                                    file=os.path.relpath(file_path, settings.MEDIA_ROOT),
-                                    thumbnail_url=sanitize_for_db(info_dict.get('thumbnail', ''), max_length=190),
-                                    source='youtube',
+                            if file_path:
+                                # Check if this song already exists for this user before creating a new one
+                                existing_song = Song.objects.filter(
+                                    user=request.user, 
                                     song_url=track_url
-                                )
-                            
-                            # Add to cache
-                            try:
-                                formatted_filename = f"{song.title} - {song.artist}.mp3"
-                                formatted_filename = sanitize_filename(formatted_filename)
-                                cache_path = os.path.join('cache', formatted_filename)
-                                cache_full_path = os.path.join(settings.MEDIA_ROOT, cache_path)
+                                ).first()
                                 
-                                # Make sure the cache directory exists
-                                os.makedirs(os.path.dirname(cache_full_path), exist_ok=True)
-                                
-                                # Copy the file to the cache directory
-                                if not os.path.exists(cache_full_path):
-                                    shutil.copy2(file_path, cache_full_path)
-                                
-                                # Calculate file size
-                                file_size = os.path.getsize(file_path)
-                                
-                                # Embed metadata including thumbnail
-                                if song.thumbnail_url:
-                                    embed_metadata(
-                                        mp3_path=file_path,
-                                        title=song.title,
-                                        artist=song.artist,
-                                        album=song.album,
-                                        thumbnail_url=song.thumbnail_url,
-                                        youtube_id=track_url.split('v=')[-1].split('&')[0] if 'v=' in track_url else None
+                                if existing_song:
+                                    song = existing_song
+                                    # Update the thumbnail if it was missing
+                                    if not existing_song.thumbnail_url and info_dict.get('thumbnail'):
+                                        existing_song.thumbnail_url = sanitize_for_db(info_dict.get('thumbnail', ''), max_length=190)
+                                        existing_song.save()
+                                else:
+                                    # Create a properly formatted filename
+                                    formatted_filename = f"{info_dict.get('title', 'Unknown Title')} - {info_dict.get('artist', 'Unknown Artist')}.mp3"
+                                    formatted_filename = sanitize_filename(formatted_filename)
+                                    
+                                    # Copy to media directory to avoid temp directory issues
+                                    media_dir = os.path.join(settings.MEDIA_ROOT, 'songs')
+                                    os.makedirs(media_dir, exist_ok=True)
+                                    media_path = os.path.join(media_dir, formatted_filename)
+                                    
+                                    shutil.copy2(file_path, media_path)
+                                    
+                                    # Create the song record with relative path
+                                    rel_path = os.path.join('songs', formatted_filename)
+                                    rel_path = sanitize_filename(rel_path, max_length=95)
+                                    
+                                    # Embed metadata including thumbnail
+                                    thumbnail_url = info_dict.get('thumbnail')
+                                    if thumbnail_url:
+                                        embed_metadata(
+                                            mp3_path=media_path,
+                                            title=info_dict.get('title', 'Unknown Title'),
+                                            artist=info_dict.get('artist', 'Unknown Artist'),
+                                            album=info_dict.get('album', 'Unknown'),
+                                            thumbnail_url=thumbnail_url,
+                                            youtube_id=info_dict.get('id')
+                                        )
+                                    
+                                    song = Song.objects.create(
+                                        user=request.user,
+                                        title=sanitize_for_db(info_dict.get('title', 'Unknown Title')),
+                                        artist=sanitize_for_db(info_dict.get('artist', 'Unknown Artist')),
+                                        album=sanitize_for_db(info_dict.get('album', 'Unknown')),
+                                        file=rel_path,
+                                        thumbnail_url=sanitize_for_db(thumbnail_url, max_length=190) if thumbnail_url else None,
+                                        source='youtube',
+                                        song_url=track_url
                                     )
-                                
-                                # Prepare metadata
-                                metadata = {
-                                    'title': song.title,
-                                    'artist': song.artist,
-                                    'album': song.album,
-                                    'thumbnail_url': song.thumbnail_url,
-                                    'source': 'youtube'
-                                }
-                                
-                                # Create or update cache entry with metadata in the JSON field
-                                SongCache.objects.update_or_create(
-                                    song_url=track_url,
-                                    defaults={
-                                        'file_path': cache_path,
-                                        'file_size': file_size,
-                                        'expires_at': timezone.now() + timedelta(days=7),  # Cache for 7 days
-                                        'metadata': metadata,
-                                        'title': song.title,     # Store these for backward compatibility
-                                        'artist': song.artist
+                                    
+                                # Add to cache
+                                try:
+                                    # Use the song file path for the cache path
+                                    cache_path = os.path.join('cache', os.path.basename(song.file.name))
+                                    cache_full_path = os.path.join(settings.MEDIA_ROOT, cache_path)
+                                    
+                                    # Make sure the cache directory exists
+                                    os.makedirs(os.path.dirname(cache_full_path), exist_ok=True)
+                                    
+                                    # Copy the file to the cache directory
+                                    if not os.path.exists(cache_full_path):
+                                        shutil.copy2(media_path if existing_song is None else file_path, cache_full_path)
+                                    
+                                    # Calculate file size
+                                    file_size = os.path.getsize(cache_full_path)
+                                    
+                                    # Prepare metadata
+                                    metadata = {
+                                        'title': song.title,
+                                        'artist': song.artist,
+                                        'album': song.album,
+                                        'thumbnail_url': song.thumbnail_url,
+                                        'source': 'youtube',
+                                        'id': track_url.split('v=')[-1].split('&')[0] if 'v=' in track_url else None
                                     }
-                                )
-                                logger.info(f"Added YouTube song to cache from playlist: {track_url}")
-                            except Exception as cache_error:
-                                logger.warning(f"Error adding YouTube song to cache from playlist: {cache_error}")
-                            
-                            # Add song to playlist
-                            playlist.songs.add(song)
-                        else:
-                            logger.warning(f"No file path returned for {track_url}")
+                                    
+                                    # Create or update cache entry with metadata in the JSON field
+                                    SongCache.objects.update_or_create(
+                                        song_url=track_url,
+                                        defaults={
+                                            'file_path': cache_path,
+                                            'file_size': file_size,
+                                            'expires_at': timezone.now() + timedelta(days=7),  # Cache for 7 days
+                                            'metadata': metadata,
+                                            'title': song.title,     # Store these for backward compatibility
+                                            'artist': song.artist
+                                        }
+                                    )
+                                    logger.info(f"Added YouTube song to cache from playlist: {track_url}")
+                                except Exception as cache_error:
+                                    logger.warning(f"Error adding YouTube song to cache from playlist: {cache_error}")
+                                
+                                # Add song to playlist
+                                playlist.songs.add(song)
+                            else:
+                                logger.warning(f"No file path returned for {track_url}")
+                        finally:
+                            # Clean up temp directory
+                            if temp_dir and os.path.exists(temp_dir):
+                                shutil.rmtree(temp_dir, ignore_errors=True)
                     except Exception as yt_error:
                         logger.error(f"Error downloading YouTube track {track_url}: {str(yt_error)}")
                         continue
@@ -947,59 +893,33 @@ def download_playlist(request):
                         track_info = get_track_info(track_url)
                         query = f"{track_info['title']} {track_info['artist']}"
                         
-                        # Get the Spotify thumbnail URL from the track info
-                        thumbnail_url = track_info.get('image_url')
-                        logger.info(f"Spotify track info: {track_info['title']} - {track_info['artist']}, thumbnail: {thumbnail_url}")
-                        cookie_file = os.path.join(settings.BASE_DIR, 'cookies.txt')
-                        logger.info(f"Using cookies file at: {cookie_file}")
-                        logger.info(f"Cookie file exists: {os.path.exists(cookie_file)}")
-                        ydl_opts = {
-                            'format': 'bestaudio/best',
-                            'postprocessors': [{
-                                'key': 'FFmpegExtractAudio',
-                                'preferredcodec': 'mp3',
-                                'preferredquality': '192',
-                            }],
-                            'outtmpl': os.path.join(settings.MEDIA_ROOT, 'songs', '%(title)s.%(ext)s'),
-                            'writethumbnail': True,
-                            'cookiefile': os.path.join(settings.BASE_DIR, 'cookies.txt'),  # Use cookies to avoid bot detection
-                            'nocheckcertificate': True,  # Sometimes helps with HTTPS issues
-                            'ignoreerrors': False,
-                            'user_agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36',
-                        }
-                        
-                        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-                            info = ydl.extract_info(f"ytsearch:{query}", download=True)['entries'][0]
-                            filename = ydl.prepare_filename(info)
-                            base_filename = os.path.splitext(filename)[0]
-                            mp3_filename = base_filename + '.mp3'
+                        # CHANGED: Use Hugging Face Spaces API instead of direct download
+                        temp_dir = tempfile.mkdtemp()
+                        try:
+                            # Create a search query for YouTube
+                            search_url = f"https://youtube.com/results?search_query={query.replace(' ', '+')}"
                             
-                            # If no Spotify thumbnail, check for local files
-                            if not thumbnail_url:
-                                for ext in ['jpg', 'png', 'webp']:
-                                    possible_path = f"{base_filename}.{ext}"
-                                    if os.path.exists(possible_path):
-                                        # Copy thumbnail to media directory
-                                        thumb_basename = f"{sanitize_filename(track_info['title'])} - {sanitize_filename(track_info['artist'])}.{ext}"
-                                        thumb_path = os.path.join(settings.MEDIA_ROOT, 'songs', thumb_basename)
-                                        os.makedirs(os.path.dirname(thumb_path), exist_ok=True)
-                                        shutil.copy2(possible_path, thumb_path)
-                                        thumbnail_url = f"/media/songs/{thumb_basename}"
-                                        logger.info(f"Using local thumbnail for Spotify track: {thumbnail_url}")
-                                        break
+                            # Download using Hugging Face API
+                            info = download_from_huggingface(search_url, temp_dir, spotify_metadata=track_info)
+                            mp3_filename = info['filepath']
                             
-                            # If still no thumbnail, try to get from YouTube info
+                            # Get the Spotify thumbnail URL from the track info
+                            thumbnail_url = track_info.get('image_url')
+                            
+                            # If no Spotify thumbnail, use the one from the download
                             if not thumbnail_url:
-                                for key in ['thumbnail', 'thumbnails']:
-                                    if key in info and info[key]:
-                                        if isinstance(info[key], list) and len(info[key]) > 0:
-                                            # Get highest quality thumbnail
-                                            best_thumb = max(info[key], key=lambda x: x.get('height', 0) if isinstance(x, dict) else 0)
-                                            thumbnail_url = best_thumb.get('url') if isinstance(best_thumb, dict) else best_thumb
-                                            logger.info(f"Using YouTube thumbnail for Spotify track: {thumbnail_url}")
-                                        else:
-                                            thumbnail_url = info[key]
-                                        break
+                                thumbnail_url = info.get('thumbnail')
+                                
+                            # Create a proper formatted filename for the final file
+                            formatted_filename = f"{track_info['title']} - {track_info['artist']}.mp3"
+                            formatted_filename = sanitize_filename(formatted_filename)
+                            
+                            # Copy to media directory to avoid temp directory issues
+                            media_dir = os.path.join(settings.MEDIA_ROOT, 'songs')
+                            os.makedirs(media_dir, exist_ok=True)
+                            media_path = os.path.join(media_dir, formatted_filename)
+                            
+                            shutil.copy2(mp3_filename, media_path)
                             
                             # Check if this song already exists for this user before creating a new one
                             existing_song = Song.objects.filter(
@@ -1014,13 +934,13 @@ def download_playlist(request):
                                     existing_song.thumbnail_url = sanitize_for_db(thumbnail_url, max_length=190)
                                     existing_song.save()
                             else:
-                                # Sanitize file path for database
-                                rel_path = os.path.relpath(mp3_filename, settings.MEDIA_ROOT)
+                                rel_path = os.path.join('songs', formatted_filename)
+                                # Sanitize the file path to ensure it doesn't exceed DB limits
                                 rel_path = sanitize_filename(rel_path, max_length=95)
                                 
                                 # Embed metadata including thumbnail into the MP3 file
                                 embed_metadata(
-                                    mp3_path=mp3_filename,
+                                    mp3_path=media_path,
                                     title=track_info['title'],
                                     artist=track_info['artist'],
                                     album=track_info.get('album', 'Unknown'),
@@ -1045,8 +965,6 @@ def download_playlist(request):
                             
                             # Add to cache
                             try:
-                                formatted_filename = f"{track_info['title']} - {track_info['artist']}.mp3"
-                                formatted_filename = sanitize_filename(formatted_filename)
                                 cache_path = os.path.join('cache', formatted_filename)
                                 cache_full_path = os.path.join(settings.MEDIA_ROOT, cache_path)
                                 
@@ -1055,10 +973,10 @@ def download_playlist(request):
                                 
                                 # Copy the file to the cache directory
                                 if not os.path.exists(cache_full_path):
-                                    shutil.copy2(mp3_filename, cache_full_path)
+                                    shutil.copy2(media_path, cache_full_path)
                                 
                                 # Calculate file size
-                                file_size = os.path.getsize(mp3_filename)
+                                file_size = os.path.getsize(media_path)
                                 
                                 # Ensure thumbnail URL is valid for database
                                 if thumbnail_url and len(thumbnail_url) > 190:
@@ -1094,6 +1012,10 @@ def download_playlist(request):
                             
                             # Add song to playlist
                             playlist.songs.add(song)
+                        finally:
+                            # Clean up temp directory
+                            if temp_dir and os.path.exists(temp_dir):
+                                shutil.rmtree(temp_dir, ignore_errors=True)
                     except Exception as spotify_error:
                         logger.error(f"Error downloading Spotify track {track_url}: {str(spotify_error)}")
                         continue
@@ -1196,3 +1118,73 @@ def download_by_task(request):
             {'error': f'Download failed: {str(e)}'}, 
             status=status.HTTP_500_INTERNAL_SERVER_ERROR
         )
+
+def download_from_huggingface(url, output_path, spotify_metadata=None):
+    """
+    Download a YouTube video using Hugging Face Spaces API
+    Returns info dictionary with download info
+    
+    Args:
+        url: YouTube URL or search query
+        output_path: Directory to save the file
+        spotify_metadata: Optional dict containing Spotify metadata to override YouTube metadata
+    """
+    logger.info(f"Downloading from Hugging Face Spaces: {url}")
+    
+    try:
+        # Prepare the API request
+        api_url = "https://monilm-songporter.hf.space/download-youtube/"
+        payload = {"url": url}
+        headers = {"Content-Type": "application/json"}
+        
+        # Make the request
+        response = requests.post(api_url, data=json.dumps(payload), headers=headers)
+        
+        if response.status_code != 200:
+            logger.error(f"Hugging Face API error: {response.status_code} - {response.text}")
+            raise Exception(f"Hugging Face API returned status code {response.status_code}")
+        
+        # Generate a filename for the downloaded content
+        timestamp = int(time.time())
+        filename = os.path.join(output_path, f"download-{timestamp}.mp3")
+        
+        # Ensure directory exists
+        os.makedirs(os.path.dirname(filename), exist_ok=True)
+        
+        # Write the content to a file
+        with open(filename, 'wb') as f:
+            f.write(response.content)
+        
+        logger.info(f"Successfully downloaded file to {filename}")
+        
+        # Extract metadata from response headers if available
+        title = response.headers.get('x-song-title', 'Unknown Title')
+        artist = response.headers.get('x-song-artist', 'Unknown Artist')
+        album = response.headers.get('x-album-name', 'Unknown Album')
+        thumbnail_url = response.headers.get('x-cover-url')
+        
+        # If Spotify metadata is provided, it takes precedence over the YouTube metadata
+        if spotify_metadata:
+            title = spotify_metadata.get('title', title)
+            artist = spotify_metadata.get('artist', artist)
+            album = spotify_metadata.get('album', album)
+            # Always use the Spotify thumbnail if available
+            if 'image_url' in spotify_metadata and spotify_metadata['image_url']:
+                thumbnail_url = spotify_metadata['image_url']
+                logger.info(f"Using Spotify thumbnail URL: {thumbnail_url}")
+        
+        # Return info dictionary similar to what yt-dlp would return
+        info = {
+            'filepath': filename,
+            'title': title,
+            'artist': artist,
+            'album': album,
+            'thumbnail': thumbnail_url,
+            'id': url.split('v=')[-1].split('&')[0] if 'v=' in url else None
+        }
+        
+        return info
+        
+    except Exception as e:
+        logger.error(f"Error downloading from Hugging Face: {e}", exc_info=True)
+        raise
