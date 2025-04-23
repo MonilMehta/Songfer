@@ -595,7 +595,7 @@ _recommender = None
 def get_recommender():
     """Get or create the global recommender instance"""
     global _recommender
-    if _recommender is None:
+    if (_recommender is None):
         try:
             _recommender = MusicRecommender()
         except Exception as e:
@@ -621,12 +621,58 @@ def get_recommender():
     
     return _recommender
 
-def get_hybrid_recommendations(user, limit=10):
+def get_hybrid_recommendations(user, limit=10, background_refresh=False):
     """
     Get recommendations based on user's downloaded songs using a hybrid approach.
-    Primarily uses Hugging Face API with local recommendations as fallback.
+    Uses cached recommendations if they exist, even if they're stale.
+    If recommendations are stale and background_refresh=True, refresh them.
+    If no cached recommendations, generate new ones.
+    
+    Args:
+        user: User object
+        limit: Number of recommendations to return
+        background_refresh: If True, update stale recommendations in background for next request
     """
     try:
+        # Check if we have cached recommendations
+        needs_refresh = False
+        if hasattr(user, 'music_profile') and user.music_profile.cached_recommendations:
+            last_generated = user.music_profile.last_recommendation_generated
+            cached_recommendations = user.music_profile.cached_recommendations
+            
+            # Check if recommendations are stale (more than a day old)
+            if last_generated and (timezone.now() - last_generated).days >= 1:
+                logger.info(f"Found stale recommendations for user {user.id} from {last_generated}")
+                needs_refresh = True
+                
+                # If this is a background refresh request, update the recommendations
+                if background_refresh:
+                    logger.info(f"Background refreshing recommendations for user {user.id}")
+                    # The rest of this function will generate new recommendations
+                else:
+                    # Not a background request, so serve the stale recommendations
+                    # and trigger a background refresh
+                    from .tasks import update_user_recommendations_async
+                    logger.info(f"Serving stale recommendations and triggering refresh for user {user.id}")
+                    
+                    # Trigger async refresh of recommendations
+                    try:
+                        update_user_recommendations_async.delay(user.id)
+                    except Exception as e:
+                        logger.error(f"Failed to schedule background recommendation refresh: {e}")
+                    
+                    # Return the stale recommendations immediately
+                    return cached_recommendations[:limit]
+            else:
+                # Recommendations are fresh, just return them
+                logger.info(f"Using fresh cached recommendations for user {user.id} from {last_generated}")
+                return cached_recommendations[:limit]
+        
+        # If we're here, either:
+        # 1. There are no cached recommendations
+        # 2. Recommendations are stale and this is a background refresh task
+        # 3. background_refresh is always False for the first request
+        
         # Check if user has any songs
         if not hasattr(user, 'songs') or not user.songs.exists():
             logger.warning(f"User {user.id} has no songs - using popular songs")
@@ -653,6 +699,14 @@ def get_hybrid_recommendations(user, limit=10):
         
         if hf_recommendations and len(hf_recommendations) >= 3:  # Ensure we have a reasonable number of recommendations
             logger.info(f"Successfully got {len(hf_recommendations)} recommendations from Hugging Face API")
+            
+            # Cache these recommendations
+            if hasattr(user, 'music_profile'):
+                user.music_profile.cached_recommendations = hf_recommendations
+                user.music_profile.last_recommendation_generated = timezone.now()
+                user.music_profile.save(update_fields=['cached_recommendations', 'last_recommendation_generated'])
+                logger.info(f"Cached {len(hf_recommendations)} recommendations for user {user.id}")
+            
             return hf_recommendations
         else:
             logger.info("Hugging Face recommendations unavailable or insufficient, falling back to local system")
@@ -706,6 +760,13 @@ def get_hybrid_recommendations(user, limit=10):
         for rec in final_recommendations:
             if 'count' in rec:
                 del rec['count']
+        
+        # Cache these recommendations
+        if hasattr(user, 'music_profile'):
+            user.music_profile.cached_recommendations = final_recommendations
+            user.music_profile.last_recommendation_generated = timezone.now()
+            user.music_profile.save(update_fields=['cached_recommendations', 'last_recommendation_generated'])
+            logger.info(f"Cached {len(final_recommendations)} recommendations for user {user.id}")
                 
         return final_recommendations[:limit]
     except Exception as e:

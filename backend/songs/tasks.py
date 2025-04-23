@@ -752,3 +752,24 @@ def cleanup_cache():
     call_command('cleanup_cache', '--days=2', '--unused')
     
     logger.info("Cache cleanup task completed")
+
+@shared_task
+def update_user_recommendations_async(user_id):
+    """
+    Background task to update a user's recommendations.
+    Called when stale recommendations are served to avoid making the user wait.
+    """
+    logger.info(f"Running background update for user recommendations (user_id: {user_id})")
+    try:
+        User = get_user_model()
+        user = User.objects.get(id=user_id)
+        
+        # Call get_hybrid_recommendations with background_refresh=True
+        # This signals that we're OK with doing the full refresh
+        recommendations = get_hybrid_recommendations(user, background_refresh=True)
+        
+        logger.info(f"Successfully updated recommendations for user {user_id} in background")
+        return True
+    except Exception as e:
+        logger.error(f"Failed to update recommendations for user {user_id} in background: {e}")
+        return False

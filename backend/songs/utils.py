@@ -1180,9 +1180,9 @@ def get_artist_info(artist_name):
         logger.error(f"Error reading artist CSV: {e}")
         return None
 
-def get_artist_info_from_hf(artist_name):
+def get_artist_info_from_db(artist_name):
     """
-    Get artist information from Hugging Face Space API
+    Get artist information from local SQLite database
     
     Args:
         artist_name (str): The name of the artist to search for
@@ -1193,42 +1193,53 @@ def get_artist_info_from_hf(artist_name):
     if not artist_name:
         return None
     
-    import requests
+    import sqlite3
+    import os
     import logging
+    from django.conf import settings
     logger = logging.getLogger(__name__)
     
     try:
-        # Make a request to the Hugging Face Space API
-        hf_api_url = "https://monilm-songporter.hf.space/artist-info/"
-        response = requests.post(
-            hf_api_url,
-            json={"artist_name": artist_name},
-            headers={"Content-Type": "application/json"},
-            timeout=5  # 5 seconds timeout
-        )
+        # Path to the local SQLite database
+        db_path = os.path.join(settings.BASE_DIR, 'songs', 'datasets', 'artists.db')
         
-        if response.status_code == 200:
-            data = response.json()
-            # The API returns values in nested objects, extract the actual values
+        if not os.path.exists(db_path):
+            logger.warning(f"Artists database not found at: {db_path}")
+            return None
+        
+        # Connect to the database
+        conn = sqlite3.connect(db_path)
+        conn.row_factory = sqlite3.Row  # This enables column access by name
+        cursor = conn.cursor()
+        
+        # Search for the artist with case-insensitive LIKE
+        cursor.execute(
+            "SELECT * FROM artists WHERE artist_name LIKE ? LIMIT 1", 
+            (f"%{artist_name}%",)
+        )
+        row = cursor.fetchone()
+        
+        if row:
+            # Convert row to dictionary
             result = {
-                'artist': data.get('artist', {}).get('name', 'Unknown'),
-                'artist_img': data.get('artist_img', {}).get('url', 'https://media.istockphoto.com/id/1298261537/vector/blank-man-profile-head-icon-placeholder.jpg?s=612x612&w=0&k=20&c=CeT1RVWZzQDay4t54ookMaFsdi7ZHVFg2Y5v7hxigCA='),
-                'country': data.get('country', {}).get('name', 'Unknown'),
-                'artist_genre': data.get('artist_genre', {}).get('name', 'Unknown')
+                'artist': row['artist_name'],
+                'artist_img': row.get('artist_img', 'https://media.istockphoto.com/id/1298261537/vector/blank-man-profile-head-icon-placeholder.jpg?s=612x612&w=0&k=20&c=CeT1RVWZzQDay4t54ookMaFsdi7ZHVFg2Y5v7hxigCA='),
+                'country': row.get('country', 'Unknown'),
+                'artist_genre': row.get('artist_genre', 'Unknown')
             }
-            logger.info(f"Successfully retrieved artist info from Hugging Face for {artist_name}")
+            logger.info(f"Successfully retrieved artist info from local DB for {artist_name}")
             return result
         else:
-            logger.warning(f"Failed to get artist info from Hugging Face API: {response.status_code} {response.text}")
+            logger.warning(f"Artist '{artist_name}' not found in local database")
             return None
     except Exception as e:
-        logger.error(f"Error fetching artist info from Hugging Face API: {e}")
+        logger.error(f"Error fetching artist info from local database: {e}")
         return None
 
 
-def get_bulk_artist_info_from_hf(artist_names):
+def get_bulk_artist_info_from_db(artist_names):
     """
-    Get information for multiple artists from Hugging Face Space API
+    Get information for multiple artists from local SQLite database
     
     Args:
         artist_names (list): List of artist names to look up
@@ -1239,38 +1250,80 @@ def get_bulk_artist_info_from_hf(artist_names):
     if not artist_names:
         return {}
     
-    import requests
+    import sqlite3
+    import os
     import logging
+    from django.conf import settings
     logger = logging.getLogger(__name__)
     
     try:
-        # Make a request to the Hugging Face Space API for multiple artists
-        hf_api_url = "https://monilm-songporter.hf.space/artists/"
-        response = requests.post(
-            hf_api_url,
-            json=artist_names,
-            headers={"Content-Type": "application/json"},
-            timeout=10  # 10 seconds timeout for multiple artists
-        )
+        # Path to the local SQLite database
+        db_path = os.path.join(settings.BASE_DIR, 'songs', 'datasets', 'artists.db')
         
-        if response.status_code == 200:
-            data = response.json()
-            
-            # Process the response - extract values from nested objects
-            result = {}
-            for artist_name, artist_data in data.items():
-                result[artist_name] = {
-                    'artist': artist_data.get('artist', {}).get('name', 'Unknown'),
-                    'artist_img': artist_data.get('artist_img', {}).get('url', 'https://media.istockphoto.com/id/1298261537/vector/blank-man-profile-head-icon-placeholder.jpg?s=612x612&w=0&k=20&c=CeT1RVWZzQDay4t54ookMaFsdi7ZHVFg2Y5v7hxigCA='),
-                    'country': artist_data.get('country', {}).get('name', 'Unknown'),
-                    'artist_genre': artist_data.get('artist_genre', {}).get('name', 'Unknown')
-                }
-            
-            logger.info(f"Successfully retrieved info for {len(result)} artists from Hugging Face")
-            return result
-        else:
-            logger.warning(f"Failed to get bulk artist info from Hugging Face API: {response.status_code} {response.text}")
+        if not os.path.exists(db_path):
+            logger.warning(f"Artists database not found at: {db_path}")
             return {}
+        
+        # Connect to the database
+        conn = sqlite3.connect(db_path)
+        conn.row_factory = sqlite3.Row  # This enables column access by name
+        cursor = conn.cursor()
+        
+        result = {}
+        for artist_name in artist_names:
+            if not artist_name:
+                continue
+                
+            # Search for the artist with case-insensitive LIKE
+            cursor.execute(
+                "SELECT * FROM artists WHERE artist_name LIKE ? LIMIT 1", 
+                (f"%{artist_name}%",)
+            )
+            row = cursor.fetchone()
+            
+            if row:
+                # Convert row to dictionary
+                result[artist_name] = {
+                    'artist': row['artist_name'],
+                    'artist_img': row.get('artist_img', 'https://media.istockphoto.com/id/1298261537/vector/blank-man-profile-head-icon-placeholder.jpg?s=612x612&w=0&k=20&c=CeT1RVWZzQDay4t54ookMaFsdi7ZHVFg2Y5v7hxigCA='),
+                    'country': row.get('country', 'Unknown'),
+                    'artist_genre': row.get('artist_genre', 'Unknown')
+                }
+        
+        logger.info(f"Successfully retrieved info for {len(result)} artists from local database")
+        conn.close()
+        return result
     except Exception as e:
-        logger.error(f"Error fetching bulk artist info from Hugging Face API: {e}")
+        logger.error(f"Error fetching bulk artist info from local database: {e}")
         return {}
+
+
+# Keep the original functions for backward compatibility,
+# but have them use the new database functions
+
+def get_artist_info_from_hf(artist_name):
+    """
+    Get artist information from Hugging Face Space API
+    Now redirects to the local database function
+    
+    Args:
+        artist_name (str): The name of the artist to search for
+    
+    Returns:
+        dict: Dictionary with artist data or None if not found
+    """
+    return get_artist_info_from_db(artist_name)
+
+
+def get_bulk_artist_info_from_hf(artist_names):
+    """
+    Get information for multiple artists from Hugging Face Space API
+    Now redirects to the local database function
+    
+    Args:
+        artist_names (list): List of artist names to look up
+    
+    Returns:
+        dict: Dictionary with artist names as keys and their info as values
+    """
+    return get_bulk_artist_info_from_db(artist_names)

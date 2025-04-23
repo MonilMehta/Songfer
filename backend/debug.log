@@ -3208,3 +3208,93 @@ WARNING 2025-04-23 17:31:18,814 recommendation 15960 12116 Song '5Q6fh8OEhBYepJa
 WARNING 2025-04-23 17:31:18,938 recommendation 15960 12116 Song '2LtCEKs68u3RpNh4wybCF8' not found or clustering unavailable, using popular songs
 INFO 2025-04-23 17:31:19,088 views 15960 12116 Got 10 recommendations
 INFO 2025-04-23 17:31:19,224 basehttp 15960 12116 "GET /api/songs/recommendations/ HTTP/1.1" 200 3026
+INFO 2025-04-23 17:36:29,915 autoreload 5892 16696 Watching for file changes with StatReloader
+INFO 2025-04-23 17:50:04,899 autoreload 5892 16696 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\utils.py changed, reloading.
+INFO 2025-04-23 17:50:09,387 autoreload 13680 26372 Watching for file changes with StatReloader
+ERROR 2025-04-23 17:51:11,777 utils 13680 15412 Error fetching bulk artist info from local database: 'sqlite3.Row' object has no attribute 'get'
+ERROR 2025-04-23 17:51:12,094 utils 13680 15412 Error fetching artist info from local database: 'sqlite3.Row' object has no attribute 'get'
+INFO 2025-04-23 17:51:12,657 utils 13680 15412 Found exact match for artist 'Twenty One Pilots': Twenty One Pilots
+ERROR 2025-04-23 17:51:12,664 utils 13680 15412 Error fetching artist info from local database: 'sqlite3.Row' object has no attribute 'get'
+INFO 2025-04-23 17:51:13,305 utils 13680 15412 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+WARNING 2025-04-23 17:51:13,352 utils 13680 15412 Artist 'Panic At The Disco' not found in local database
+INFO 2025-04-23 17:51:13,964 utils 13680 15412 Found partial match for artist 'Panic At The Disco': The Killers
+ERROR 2025-04-23 17:51:13,967 utils 13680 15412 Error fetching artist info from local database: 'sqlite3.Row' object has no attribute 'get'
+INFO 2025-04-23 17:51:14,571 utils 13680 15412 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+ERROR 2025-04-23 17:51:14,586 utils 13680 15412 Error fetching artist info from local database: 'sqlite3.Row' object has no attribute 'get'
+INFO 2025-04-23 17:51:15,181 utils 13680 15412 Found exact match for artist 'Dylan Gossett': Dylan Gossett
+INFO 2025-04-23 17:51:15,184 basehttp 13680 15412 "GET /api/songs/user/top-artists/ HTTP/1.1" 200 974
+INFO 2025-04-23 17:51:34,806 autoreload 13680 26372 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\utils.py changed, reloading.
+INFO 2025-04-23 17:51:38,143 autoreload 20176 22428 Watching for file changes with StatReloader
+INFO 2025-04-23 17:56:50,101 autoreload 20176 22428 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\models.py changed, reloading.
+INFO 2025-04-23 17:56:54,044 autoreload 11820 1976 Watching for file changes with StatReloader
+INFO 2025-04-23 17:58:09,897 autoreload 11820 1976 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\recommendation.py changed, reloading.
+INFO 2025-04-23 17:58:13,466 autoreload 21064 23992 Watching for file changes with StatReloader
+INFO 2025-04-23 17:59:09,112 autoreload 21064 23992 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\recommendation.py changed, reloading.
+INFO 2025-04-23 17:59:12,280 autoreload 9508 16976 Watching for file changes with StatReloader
+INFO 2025-04-23 18:02:42,766 autoreload 9508 16976 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\recommendation.py changed, reloading.
+INFO 2025-04-23 18:02:46,041 autoreload 19000 6928 Watching for file changes with StatReloader
+INFO 2025-04-23 18:05:40,982 autoreload 19000 6928 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\recommendation.py changed, reloading.
+INFO 2025-04-23 18:05:44,413 autoreload 14448 16420 Watching for file changes with StatReloader
+INFO 2025-04-23 18:06:11,646 autoreload 14448 16420 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\tasks.py changed, reloading.
+INFO 2025-04-23 18:06:15,021 autoreload 26284 23504 Watching for file changes with StatReloader
+INFO 2025-04-23 18:09:38,105 autoreload 21120 16624 Watching for file changes with StatReloader
+INFO 2025-04-23 18:09:52,636 views 21120 26308 User has 25 songs
+INFO 2025-04-23 18:09:52,696 views 21120 26308 User has 18 songs with Spotify IDs
+INFO 2025-04-23 18:09:52,835 views 21120 26308 Sample user songs: [{'spotify_id': '5Q6fh8OEhBYepJaORz9lxe', 'title': 'Daddy Issues Remix feat. Syd', 'artist': 'The Neighbourhood'}, {'spotify_id': '2LtCEKs68u3RpNh4wybCF8', 'title': 'Hotel', 'artist': 'Montell Fish'}, {'spotify_id': '7zwn1eykZtZ5LODrf7c0tS', 'title': 'You Get Me So High', 'artist': 'The Neighbourhood'}, {'spotify_id': '04aAxqtGp5pv12UXAg4pkq', 'title': 'Centuries', 'artist': 'Fall Out Boy'}, {'spotify_id': '2DgdHcjWmO3qd50RzuBLgZ', 'title': 'House of Memories', 'artist': 'Panic At The Disco'}]
+INFO 2025-04-23 18:09:52,835 views 21120 26308 Getting recommendations for user: 1 with limit: 10
+INFO 2025-04-23 18:09:57,182 recommendation 21120 26308 Successfully retrieved 10 recommendations from Hugging Face API
+INFO 2025-04-23 18:09:57,182 recommendation 21120 26308 Successfully got 10 recommendations from Hugging Face API
+INFO 2025-04-23 18:09:57,259 recommendation 21120 26308 Cached 10 recommendations for user 1
+INFO 2025-04-23 18:09:57,260 views 21120 26308 Got 10 recommendations
+INFO 2025-04-23 18:09:57,385 basehttp 21120 26308 "GET /api/songs/recommendations/ HTTP/1.1" 200 2904
+INFO 2025-04-23 18:10:06,515 basehttp 21120 19044 "GET /admin/ HTTP/1.1" 302 0
+INFO 2025-04-23 18:10:07,319 basehttp 21120 19044 "GET /admin/login/?next=/admin/ HTTP/1.1" 200 4160
+INFO 2025-04-23 18:10:07,428 basehttp 21120 12748 "GET /static/admin/js/theme.js HTTP/1.1" 304 0
+INFO 2025-04-23 18:10:07,432 basehttp 21120 12748 "GET /static/admin/js/nav_sidebar.js HTTP/1.1" 304 0
+INFO 2025-04-23 18:10:07,718 basehttp 21120 12992 "GET /static/admin/css/nav_sidebar.css HTTP/1.1" 200 2810
+INFO 2025-04-23 18:10:07,727 basehttp 21120 23716 "GET /static/admin/css/dark_mode.css HTTP/1.1" 200 2804
+INFO 2025-04-23 18:10:07,733 basehttp 21120 19044 "GET /static/admin/css/base.css HTTP/1.1" 200 22092
+INFO 2025-04-23 18:10:07,739 basehttp 21120 25560 "GET /static/admin/css/login.css HTTP/1.1" 200 951
+INFO 2025-04-23 18:10:07,746 basehttp 21120 7052 "GET /static/admin/css/responsive.css HTTP/1.1" 200 17972
+INFO 2025-04-23 18:10:14,237 basehttp 21120 19044 "POST /admin/login/?next=/admin/ HTTP/1.1" 302 0
+INFO 2025-04-23 18:10:14,945 basehttp 21120 19044 "GET /admin/ HTTP/1.1" 200 19612
+INFO 2025-04-23 18:10:14,993 basehttp 21120 19044 "GET /static/admin/css/dashboard.css HTTP/1.1" 200 441
+INFO 2025-04-23 18:10:15,018 basehttp 21120 7052 "GET /static/admin/img/icon-changelink.svg HTTP/1.1" 200 380
+INFO 2025-04-23 18:10:15,018 basehttp 21120 12992 "GET /static/admin/img/icon-deletelink.svg HTTP/1.1" 200 392
+INFO 2025-04-23 18:10:15,018 basehttp 21120 19044 "GET /static/admin/img/icon-addlink.svg HTTP/1.1" 200 331
+INFO 2025-04-23 18:10:19,727 basehttp 21120 19044 "GET /admin/songs/usermusicprofile/ HTTP/1.1" 200 16834
+INFO 2025-04-23 18:10:19,776 basehttp 21120 12748 "GET /static/admin/js/core.js HTTP/1.1" 304 0
+INFO 2025-04-23 18:10:19,779 basehttp 21120 12992 "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 304 0
+INFO 2025-04-23 18:10:19,780 basehttp 21120 23716 "GET /static/admin/js/jquery.init.js HTTP/1.1" 304 0
+INFO 2025-04-23 18:10:19,785 basehttp 21120 12748 "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 304 0
+INFO 2025-04-23 18:10:19,786 basehttp 21120 19044 "GET /static/admin/css/changelists.css HTTP/1.1" 200 6878
+INFO 2025-04-23 18:10:19,789 basehttp 21120 23716 "GET /static/admin/js/urlify.js HTTP/1.1" 304 0
+INFO 2025-04-23 18:10:19,789 basehttp 21120 12992 "GET /static/admin/js/actions.js HTTP/1.1" 304 0
+INFO 2025-04-23 18:10:19,792 basehttp 21120 12748 "GET /static/admin/js/prepopulate.js HTTP/1.1" 304 0
+INFO 2025-04-23 18:10:19,792 basehttp 21120 19044 "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 304 0
+INFO 2025-04-23 18:10:19,801 basehttp 21120 25560 "GET /static/admin/js/filters.js HTTP/1.1" 200 978
+INFO 2025-04-23 18:10:20,369 basehttp 21120 7052 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-04-23 18:10:20,399 basehttp 21120 19044 "GET /static/admin/img/tooltag-add.svg HTTP/1.1" 200 331
+INFO 2025-04-23 18:10:23,859 basehttp 21120 19044 "GET /admin/songs/usermusicprofile/6/change/ HTTP/1.1" 200 20808
+INFO 2025-04-23 18:10:23,921 basehttp 21120 23716 "GET /static/admin/js/calendar.js HTTP/1.1" 304 0
+INFO 2025-04-23 18:10:23,921 basehttp 21120 12748 "GET /static/admin/js/admin/DateTimeShortcuts.js HTTP/1.1" 304 0
+INFO 2025-04-23 18:10:23,924 basehttp 21120 19044 "GET /static/admin/css/forms.css HTTP/1.1" 200 8794
+INFO 2025-04-23 18:10:23,933 basehttp 21120 12992 "GET /static/admin/js/change_form.js HTTP/1.1" 200 606
+INFO 2025-04-23 18:10:23,943 basehttp 21120 25560 "GET /static/admin/js/prepopulate_init.js HTTP/1.1" 200 586
+INFO 2025-04-23 18:10:23,952 basehttp 21120 19044 "GET /static/admin/css/widgets.css HTTP/1.1" 200 11564
+INFO 2025-04-23 18:10:24,499 basehttp 21120 7052 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-04-23 18:10:24,510 basehttp 21120 19044 "GET /static/admin/img/icon-viewlink.svg HTTP/1.1" 200 581
+INFO 2025-04-23 18:10:24,583 basehttp 21120 7052 "GET /static/admin/img/icon-clock.svg HTTP/1.1" 200 677
+INFO 2025-04-23 18:10:24,583 basehttp 21120 19044 "GET /static/admin/img/icon-calendar.svg HTTP/1.1" 200 1086
+WARNING 2025-04-23 18:10:24,595 log 21120 19044 Not Found: /favicon.ico
+INFO 2025-04-23 18:10:24,597 basehttp 21120 19044 - Broken pipe from ('127.0.0.1', 64047)
+INFO 2025-04-23 18:10:27,049 basehttp 21120 7052 "GET /admin/songs/usermusicprofile/ HTTP/1.1" 200 16834
+INFO 2025-04-23 18:10:29,985 basehttp 21120 7052 "GET /admin/songs/usermusicprofile/5/change/ HTTP/1.1" 200 23551
+INFO 2025-04-23 18:10:30,607 basehttp 21120 7052 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-04-23 18:10:40,605 views 21120 26308 User has 25 songs
+INFO 2025-04-23 18:10:40,676 views 21120 26308 User has 18 songs with Spotify IDs
+INFO 2025-04-23 18:10:40,799 views 21120 26308 Sample user songs: [{'spotify_id': '5Q6fh8OEhBYepJaORz9lxe', 'title': 'Daddy Issues Remix feat. Syd', 'artist': 'The Neighbourhood'}, {'spotify_id': '2LtCEKs68u3RpNh4wybCF8', 'title': 'Hotel', 'artist': 'Montell Fish'}, {'spotify_id': '7zwn1eykZtZ5LODrf7c0tS', 'title': 'You Get Me So High', 'artist': 'The Neighbourhood'}, {'spotify_id': '04aAxqtGp5pv12UXAg4pkq', 'title': 'Centuries', 'artist': 'Fall Out Boy'}, {'spotify_id': '2DgdHcjWmO3qd50RzuBLgZ', 'title': 'House of Memories', 'artist': 'Panic At The Disco'}]
+INFO 2025-04-23 18:10:40,799 views 21120 26308 Getting recommendations for user: 1 with limit: 10
+INFO 2025-04-23 18:10:40,860 recommendation 21120 26308 Using fresh cached recommendations for user 1 from 2025-04-23 12:39:57.182156+00:00
+INFO 2025-04-23 18:10:40,860 views 21120 26308 Got 10 recommendations
+INFO 2025-04-23 18:10:40,983 basehttp 21120 26308 "GET /api/songs/recommendations/ HTTP/1.1" 200 2904

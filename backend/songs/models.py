@@ -180,6 +180,7 @@ class UserMusicProfile(models.Model):
     favorite_genres = models.ManyToManyField(Genre, blank=True)
     total_songs_downloaded = models.PositiveIntegerField(default=0)
     last_recommendation_generated = models.DateTimeField(null=True, blank=True)
+    cached_recommendations = models.JSONField(blank=True, null=True)
     
     def update_profile(self, song):
         """
