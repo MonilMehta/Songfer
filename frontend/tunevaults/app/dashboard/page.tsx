@@ -98,6 +98,7 @@ export default function Dashboard() {
     listeningTime: 2460, // in minutes
     lastDownloadDate: "2025-04-10T14:32:11Z"
   })
+  const [initialFetchAttempted, setInitialFetchAttempted] = useState(false); // <-- Add this state
   const router = useRouter()
   const { data: session, status: authStatus } = useSession()
   const { toast } = useToast()
@@ -105,6 +106,13 @@ export default function Dashboard() {
   // Check authentication status when component mounts
   useEffect(() => {
     const checkAuth = async () => {
+      // Return early if still loading or if fetch has already been attempted
+      if (authStatus === 'loading' || initialFetchAttempted) {
+        return;
+      }
+
+      setInitialFetchAttempted(true); // Mark fetch as attempted
+
       const token = localStorage.getItem('token')
       
       // If no token and not authenticated with NextAuth, redirect to login
@@ -143,13 +151,14 @@ export default function Dashboard() {
           console.error('Error authenticating with Google credentials:', error)
           router.push('/login')
         }
-      } else {
+      } else if (token) { // Check if token exists before fetching
         fetchUserData() // We have a token, fetch user data
       }
     }
     
     checkAuth()
-  }, [authStatus, session, router])
+    // Keep dependencies, but the flag prevents re-runs of the core logic
+  }, [authStatus, session, router, initialFetchAttempted]); // <-- Add initialFetchAttempted
 
   // Fetch user's downloaded songs, recommendations and stats
   const fetchUserData = async () => {
@@ -219,6 +228,7 @@ export default function Dashboard() {
         // The RecommendationGrid component will handle the data transformation
         if (recommendationsData.recommendations && recommendationsData.recommendations.length > 0) {
           setRecommendations(recommendationsData.recommendations);
+          console.log("Recommendations Data:", recommendationsData.recommendations);
         }
       }
     } catch (error) {
@@ -235,7 +245,7 @@ export default function Dashboard() {
       
       if (topArtistsResponse.ok) {
         const topArtistsData = await topArtistsResponse.json();
-        
+        console.log("Top Artists Data:", topArtistsData);
         // The ArtistGrid component will handle the transformation
         // Just pass the data directly as received from the API
         setTopArtists(topArtistsData);
@@ -406,12 +416,13 @@ export default function Dashboard() {
         console.warn("Cannot fetch songs without auth token or provided headers.");
         return;
       }
-      const songsResponse = await fetch('https://songporter.onrender.com/api/songs/', {
+      const songsResponse = await fetch('https://songporter.onrender.com/api/songs/songs/', {
         headers: authHeaders
       });
       if (!songsResponse.ok) throw new Error('Failed to fetch songs for count update');
       const songsData = await songsResponse.json();
       setSongs(songsData);
+      console.log(songsData);
       setUserStats(prev => ({ ...prev, totalDownloads: songsData.length }));
     } catch (error) {
       console.error("Error fetching songs:", error);

@@ -41,7 +41,8 @@ class Song(models.Model):
     album = models.CharField(max_length=255, blank=True, null=True)  # Increase from 100 if it was 100 before
     genre = models.CharField(max_length=100, blank=True, null=True)
     year = models.IntegerField(blank=True, null=True)
-    file = models.FileField(upload_to='songs/', blank=True, null=True)
+    # Increase max_length for the file path
+    file = models.FileField(upload_to='songs/', max_length=500, blank=True, null=True) 
     waveform = models.JSONField(blank=True, null=True)
     duration = models.FloatField(blank=True, null=True)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='processing')
@@ -117,18 +118,18 @@ class Song(models.Model):
 
     def save(self, *args, **kwargs):
         """Truncate fields if necessary before saving"""
-        # Truncate text fields to their max lengths
-        if self.title and len(self.title) > 250:
-            self.title = Truncator(self.title).chars(250)
+        # Truncate text fields to their max lengths (using 95-98 to be safe)
+        if self.title and len(self.title) > 98:
+            self.title = Truncator(self.title).chars(98)
             
-        if self.artist and len(self.artist) > 250:
-            self.artist = Truncator(self.artist).chars(250)
+        if self.artist and len(self.artist) > 98:
+            self.artist = Truncator(self.artist).chars(98)
             
-        if self.album and len(self.album) > 250:
-            self.album = Truncator(self.album).chars(250)
+        if self.album and len(self.album) > 98:
+            self.album = Truncator(self.album).chars(98)
             
-        if self.genre and len(self.genre) > 95:
-            self.genre = Truncator(self.genre).chars(95)
+        if self.genre and len(self.genre) > 98:
+            self.genre = Truncator(self.genre).chars(98)
             
         if self.source and len(self.source) > 18:
             self.source = Truncator(self.source).chars(18)

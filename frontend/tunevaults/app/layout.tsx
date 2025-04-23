@@ -8,6 +8,7 @@ import Navbar from "@/components/custom/Navbar";
 import { PlayerProvider } from '@/context/PlayerContext'
 import { UserProfileProvider } from '@/context/UserProfileContext'
 import { AuthProvider } from "@/components/auth-provider";
+import { FloatingPlayerBar } from '@/components/player/FloatingPlayerBar'; // Import the player bar
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -56,6 +57,7 @@ export default function RootLayout({
                   {children}
                   <Footer />
                 </main>
+                <FloatingPlayerBar /> {/* Render the player bar here */}
               </UserProfileProvider>
             </PlayerProvider>
           </AuthProvider>

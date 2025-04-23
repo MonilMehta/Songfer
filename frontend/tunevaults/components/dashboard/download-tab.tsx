@@ -64,14 +64,15 @@ export function DownloadTab({
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8"> 
           <div className="flex items-center gap-3 mb-4 sm:mb-0">
             <div>
-              {/* Funky Title */} 
-              <h2 className="text-3xl font-black flex items-center"> 
-                <Headphones className="w-7 h-7 text-primary mr-3 inline-block transform -rotate-6" />
-                <span className="inline-block transform rotate-1 text-primary mr-2">START</span>
-                <span className="inline-block transform -rotate-2 mr-2">YOUR</span>
+              {/* Funky Title with responsive size */}
+              <h2 className="text-2xl sm:text-3xl font-black flex items-center"> 
+                <Headphones className="w-6 h-6 sm:w-7 sm:h-7 text-primary mr-2 sm:mr-3 inline-block transform -rotate-6" />
+                <span className="inline-block transform rotate-1 text-primary mr-1 sm:mr-2">START</span>
+                <span className="inline-block transform -rotate-2 mr-1 sm:mr-2">YOUR</span>
                 <span className="inline-block transform rotate-1">DOWNLOAD</span>
               </h2>
-              <p className="text-sm text-muted-foreground mt-2 ml-10">Paste a YouTube or Spotify link below.</p>
+              {/* Adjust margin for subtitle */}
+              <p className="text-sm text-muted-foreground mt-2 ml-8 sm:ml-10">Paste a YouTube or Spotify link below.</p>
             </div>
           </div>
           {isPremium && (

@@ -3455,3 +3455,707 @@ INFO 2025-04-23 18:28:21,911 basehttp 17748 12344 "GET //api/songs/user/top-arti
 INFO 2025-04-23 18:28:22,493 basehttp 17748 12344 "GET //api/users/download-activity/?period=week HTTP/1.1" 200 559
 INFO 2025-04-23 18:28:23,132 basehttp 17748 12344 "GET //api/songs/user/favorite-genres/ HTTP/1.1" 200 40
 INFO 2025-04-23 18:28:23,710 basehttp 17748 12344 "GET //api/songs/user/top-countries/ HTTP/1.1" 200 42
+INFO 2025-04-23 22:57:54,765 autoreload 18504 24828 Watching for file changes with StatReloader
+INFO 2025-04-23 23:00:41,001 basehttp 18504 13168 "GET /api/songs/songs/ HTTP/1.1" 200 13194
+INFO 2025-04-23 23:00:58,288 autoreload 18504 24828 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\serializers.py changed, reloading.
+INFO 2025-04-23 23:01:02,031 autoreload 22924 9940 Watching for file changes with StatReloader
+INFO 2025-04-23 23:05:21,203 autoreload 22924 9940 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-23 23:05:26,534 autoreload 7032 20248 Watching for file changes with StatReloader
+INFO 2025-04-23 23:05:56,837 autoreload 7032 20248 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-23 23:06:00,922 autoreload 2636 1980 Watching for file changes with StatReloader
+WARNING 2025-04-23 23:06:21,510 log 2636 19072 Too Many Requests: /api/songs/songs/download/
+WARNING 2025-04-23 23:06:21,513 basehttp 2636 19072 "POST /api/songs/songs/download/ HTTP/1.1" 429 97
+INFO 2025-04-23 23:06:40,788 basehttp 2636 2104 "GET /admin/songs/usermusicprofile/ HTTP/1.1" 200 16834
+INFO 2025-04-23 23:06:41,061 basehttp 2636 20600 - Broken pipe from ('127.0.0.1', 65492)
+INFO 2025-04-23 23:06:41,061 basehttp 2636 2104 - Broken pipe from ('127.0.0.1', 65489)
+INFO 2025-04-23 23:06:41,471 basehttp 2636 16740 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+WARNING 2025-04-23 23:06:41,566 log 2636 16740 Not Found: /favicon.ico
+INFO 2025-04-23 23:06:41,566 basehttp 2636 16740 - Broken pipe from ('127.0.0.1', 65493)
+INFO 2025-04-23 23:06:51,215 basehttp 2636 13700 "GET /admin/users/customuser/ HTTP/1.1" 200 17118
+INFO 2025-04-23 23:06:51,878 basehttp 2636 13700 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+WARNING 2025-04-23 23:06:52,020 log 2636 13700 Not Found: /favicon.ico
+INFO 2025-04-23 23:06:52,020 basehttp 2636 13700 - Broken pipe from ('127.0.0.1', 65503)
+INFO 2025-04-23 23:07:02,287 basehttp 2636 11836 "GET /admin/users/customuser/1/change/ HTTP/1.1" 200 40804
+INFO 2025-04-23 23:07:02,399 basehttp 2636 10996 - Broken pipe from ('127.0.0.1', 65524)
+INFO 2025-04-23 23:07:02,407 basehttp 2636 23688 - Broken pipe from ('127.0.0.1', 65525)
+INFO 2025-04-23 23:07:02,416 basehttp 2636 3176 - Broken pipe from ('127.0.0.1', 65526)
+INFO 2025-04-23 23:07:02,967 basehttp 2636 11836 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+WARNING 2025-04-23 23:07:03,082 log 2636 11836 Not Found: /favicon.ico
+INFO 2025-04-23 23:07:03,082 basehttp 2636 11836 - Broken pipe from ('127.0.0.1', 65510)
+INFO 2025-04-23 23:07:12,936 basehttp 2636 18648 "POST /admin/users/customuser/1/change/ HTTP/1.1" 302 0
+INFO 2025-04-23 23:07:13,749 basehttp 2636 18648 "GET /admin/users/customuser/ HTTP/1.1" 200 17321
+INFO 2025-04-23 23:07:14,364 basehttp 2636 18648 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-04-23 23:07:14,421 basehttp 2636 18648 "GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+WARNING 2025-04-23 23:07:14,443 log 2636 18648 Not Found: /favicon.ico
+INFO 2025-04-23 23:07:14,445 basehttp 2636 18648 - Broken pipe from ('127.0.0.1', 49154)
+INFO 2025-04-23 23:07:18,331 views 2636 19072 Redirecting YouTube playlist URL to playlist download endpoint: https://www.youtube.com/playlist?list=PLWC-kegaLOQEGzWKfteCMWyM_MLAS6N6m
+INFO 2025-04-23 23:07:18,332 utils 2636 19072 Getting YouTube playlist info for URL: https://www.youtube.com/playlist?list=PLWC-kegaLOQEGzWKfteCMWyM_MLAS6N6m
+INFO 2025-04-23 23:07:18,333 utils 2636 19072 Extracted YouTube playlist ID: PLWC-kegaLOQEGzWKfteCMWyM_MLAS6N6m
+INFO 2025-04-23 23:07:18,541 utils 2636 19072 Extracting playlist info from: https://www.youtube.com/playlist?list=PLWC-kegaLOQEGzWKfteCMWyM_MLAS6N6m
+INFO 2025-04-23 23:07:20,139 utils 2636 19072 Successfully extracted info for playlist: Downloads with 3 tracks
+INFO 2025-04-23 23:07:20,145 download_helper 2636 19072 Playlist info retrieved: title=Downloads, tracks=3, image_url=None
+INFO 2025-04-23 23:07:20,898 download_helper 2636 19008 [Parallel] Downloading track: https://www.youtube.com/watch?v=-yyTutHFUlg
+INFO 2025-04-23 23:07:20,900 download_helper 2636 19008 Downloading from Hugging Face Spaces: https://www.youtube.com/watch?v=-yyTutHFUlg
+INFO 2025-04-23 23:07:20,901 download_helper 2636 13168 [Parallel] Downloading track: https://www.youtube.com/watch?v=P3Uk-a8z3YY
+INFO 2025-04-23 23:07:20,903 download_helper 2636 13168 Downloading from Hugging Face Spaces: https://www.youtube.com/watch?v=P3Uk-a8z3YY
+WARNING 2025-04-23 23:07:20,926 download_helper 2636 16096 [Parallel] Cached file not found for https://www.youtube.com/watch?v=SDTZ7iX4vTQ, will download.
+INFO 2025-04-23 23:07:20,927 download_helper 2636 16096 [Parallel] Downloading track: https://www.youtube.com/watch?v=SDTZ7iX4vTQ
+INFO 2025-04-23 23:07:20,928 download_helper 2636 16096 Downloading from Hugging Face Spaces: https://www.youtube.com/watch?v=SDTZ7iX4vTQ
+INFO 2025-04-23 23:08:04,946 download_helper 2636 13168 Successfully downloaded file to C:\Users\Dell\AppData\Local\Temp\tmpcc2pg4pb\download-1745429884.mp3
+INFO 2025-04-23 23:08:04,948 download_helper 2636 13168 Embedding metadata into: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\home - deyaz - Deyaz.mp3
+INFO 2025-04-23 23:08:05,154 utils 2636 13168 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\home - deyaz - Deyaz.mp3
+INFO 2025-04-23 23:08:05,155 utils 2636 13168 Title: home - deyaz, Artist: Deyaz, Album: Unknown Album, Genre: Unknown
+INFO 2025-04-23 23:08:05,163 utils 2636 13168 Loaded existing ID3 tags
+INFO 2025-04-23 23:08:05,163 utils 2636 13168 Trying to get thumbnail directly from YouTube: https://img.youtube.com/vi/P3Uk-a8z3YY/maxresdefault.jpg
+INFO 2025-04-23 23:08:05,655 utils 2636 13168 Successfully downloaded YouTube thumbnail: 75161 bytes
+INFO 2025-04-23 23:08:05,857 utils 2636 13168 Successfully processed YouTube thumbnail: 137144 bytes
+INFO 2025-04-23 23:08:05,857 utils 2636 13168 Successfully added YouTube thumbnail to ID3 tags
+INFO 2025-04-23 23:08:05,877 utils 2636 13168 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\home - deyaz - Deyaz.mp3 using ID3v2.3
+INFO 2025-04-23 23:08:05,889 utils 2636 13168 Verification: 9 tags were written, has_cover=True
+INFO 2025-04-23 23:08:06,218 utils 2636 13168 Attempting to set system thumbnail property directly (Windows only)
+INFO 2025-04-23 23:08:06,238 utils 2636 13168 Successfully deleted existing ID3 tags before rebuilding
+INFO 2025-04-23 23:08:06,255 utils 2636 13168 Successfully rebuilt ID3 tags with clean implementation
+INFO 2025-04-23 23:08:06,256 utils 2636 13168 Skipping shell thumbnail method due to known issues
+INFO 2025-04-23 23:08:06,446 download_helper 2636 19008 Successfully downloaded file to C:\Users\Dell\AppData\Local\Temp\tmpfgdnejgl\download-1745429886.mp3
+INFO 2025-04-23 23:08:06,448 download_helper 2636 19008 Embedding metadata into: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Dylan Gossett - Coal Lyric Video - Dylan Gossett.mp3
+INFO 2025-04-23 23:08:06,449 utils 2636 19008 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Dylan Gossett - Coal Lyric Video - Dylan Gossett.mp3
+INFO 2025-04-23 23:08:06,450 utils 2636 19008 Title: Dylan Gossett - Coal Lyric Video, Artist: Dylan Gossett, Album: Unknown Album, Genre: Unknown
+INFO 2025-04-23 23:08:06,458 utils 2636 19008 Loaded existing ID3 tags
+INFO 2025-04-23 23:08:06,458 utils 2636 19008 Trying to get thumbnail directly from YouTube: https://img.youtube.com/vi/-yyTutHFUlg/maxresdefault.jpg
+WARNING 2025-04-23 23:08:06,461 download_helper 2636 13168 Error adding song to cache for https://www.youtube.com/watch?v=P3Uk-a8z3YY: [WinError 2] The system cannot find the file specified
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py", line 958, in _add_to_cache
+    shutil.copy2(media_full_path, cache_full_path)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\shutil.py", line 460, in copy2
+    _winapi.CopyFile2(src_, dst_, flags)
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+INFO 2025-04-23 23:08:06,463 download_helper 2636 13168 [Parallel] Successfully processed track: home - deyaz
+INFO 2025-04-23 23:08:06,850 utils 2636 19008 Successfully downloaded YouTube thumbnail: 78353 bytes
+INFO 2025-04-23 23:08:06,867 utils 2636 19008 Successfully processed YouTube thumbnail: 138654 bytes
+INFO 2025-04-23 23:08:06,869 utils 2636 19008 Successfully added YouTube thumbnail to ID3 tags
+INFO 2025-04-23 23:08:06,876 utils 2636 19008 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Dylan Gossett - Coal Lyric Video - Dylan Gossett.mp3 using ID3v2.3
+INFO 2025-04-23 23:08:06,888 utils 2636 19008 Verification: 9 tags were written, has_cover=True
+INFO 2025-04-23 23:08:06,888 utils 2636 19008 Attempting to set system thumbnail property directly (Windows only)
+INFO 2025-04-23 23:08:06,909 utils 2636 19008 Successfully deleted existing ID3 tags before rebuilding
+INFO 2025-04-23 23:08:06,921 utils 2636 19008 Successfully rebuilt ID3 tags with clean implementation
+INFO 2025-04-23 23:08:06,923 utils 2636 19008 Skipping shell thumbnail method due to known issues
+WARNING 2025-04-23 23:08:07,110 download_helper 2636 19008 Error adding song to cache for https://www.youtube.com/watch?v=-yyTutHFUlg: [WinError 2] The system cannot find the file specified
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py", line 958, in _add_to_cache
+    shutil.copy2(media_full_path, cache_full_path)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\shutil.py", line 460, in copy2
+    _winapi.CopyFile2(src_, dst_, flags)
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+INFO 2025-04-23 23:08:07,111 download_helper 2636 19008 [Parallel] Successfully processed track: Dylan Gossett - Coal Lyric Video
+INFO 2025-04-23 23:11:12,707 download_helper 2636 16096 Successfully downloaded file to C:\Users\Dell\AppData\Local\Temp\tmp6rkfv8ob\download-1745430072.mp3
+INFO 2025-04-23 23:11:12,714 download_helper 2636 16096 Embedding metadata into: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Foster The People - Pumped Up Kicks Official Video - FosterThePeople.mp3
+INFO 2025-04-23 23:11:12,718 utils 2636 16096 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Foster The People - Pumped Up Kicks Official Video - FosterThePeople.mp3
+INFO 2025-04-23 23:11:12,719 utils 2636 16096 Title: Foster The People - Pumped Up Kicks Official Video, Artist: FosterThePeople, Album: Unknown Album, Genre: Unknown
+INFO 2025-04-23 23:11:12,731 utils 2636 16096 Loaded existing ID3 tags
+INFO 2025-04-23 23:11:12,733 utils 2636 16096 Trying to get thumbnail directly from YouTube: https://img.youtube.com/vi/SDTZ7iX4vTQ/maxresdefault.jpg
+INFO 2025-04-23 23:11:12,880 utils 2636 16096 Successfully downloaded YouTube thumbnail: 83444 bytes
+INFO 2025-04-23 23:11:12,910 utils 2636 16096 Successfully processed YouTube thumbnail: 148824 bytes
+INFO 2025-04-23 23:11:12,911 utils 2636 16096 Successfully added YouTube thumbnail to ID3 tags
+INFO 2025-04-23 23:11:12,922 utils 2636 16096 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Foster The People - Pumped Up Kicks Official Video - FosterThePeople.mp3 using ID3v2.3
+INFO 2025-04-23 23:11:12,941 utils 2636 16096 Verification: 9 tags were written, has_cover=True
+INFO 2025-04-23 23:11:12,941 utils 2636 16096 Attempting to set system thumbnail property directly (Windows only)
+INFO 2025-04-23 23:11:12,974 utils 2636 16096 Successfully deleted existing ID3 tags before rebuilding
+INFO 2025-04-23 23:11:13,001 utils 2636 16096 Successfully rebuilt ID3 tags with clean implementation
+INFO 2025-04-23 23:11:13,047 utils 2636 16096 Skipping shell thumbnail method due to known issues
+WARNING 2025-04-23 23:11:13,237 download_helper 2636 16096 Error adding song to cache for https://www.youtube.com/watch?v=SDTZ7iX4vTQ: [WinError 2] The system cannot find the file specified
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py", line 958, in _add_to_cache
+    shutil.copy2(media_full_path, cache_full_path)
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.12_3.12.2800.0_x64__qbz5n2kfra8p0\Lib\shutil.py", line 460, in copy2
+    _winapi.CopyFile2(src_, dst_, flags)
+FileNotFoundError: [WinError 2] The system cannot find the file specified
+INFO 2025-04-23 23:11:13,239 download_helper 2636 16096 [Parallel] Successfully processed track: Foster The People - Pumped Up Kicks Official Video
+INFO 2025-04-23 23:11:13,546 download_helper 2636 19072 Added 3 songs to playlist 98
+INFO 2025-04-23 23:11:13,617 models 2636 19072 [DEBUG] record_download called for user=testuser id=1 date=2025-04-23
+INFO 2025-04-23 23:11:13,762 models 2636 19072 [DEBUG] record_download updated analytics: user=testuser id=1 date=2025-04-23 songs_downloaded=15
+INFO 2025-04-23 23:11:13,763 models 2636 19072 [DEBUG] record_download called for user=testuser id=1 date=2025-04-23
+INFO 2025-04-23 23:11:13,896 models 2636 19072 [DEBUG] record_download updated analytics: user=testuser id=1 date=2025-04-23 songs_downloaded=16
+INFO 2025-04-23 23:11:13,897 models 2636 19072 [DEBUG] record_download called for user=testuser id=1 date=2025-04-23
+INFO 2025-04-23 23:11:14,033 models 2636 19072 [DEBUG] record_download updated analytics: user=testuser id=1 date=2025-04-23 songs_downloaded=17
+INFO 2025-04-23 23:11:14,035 basehttp 2636 19072 "POST /api/songs/songs/download/ HTTP/1.1" 200 129
+INFO 2025-04-23 23:14:09,040 autoreload 2636 1980 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-23 23:14:13,275 autoreload 364 20488 Watching for file changes with StatReloader
+INFO 2025-04-23 23:17:03,373 views 364 17508 Redirecting YouTube playlist URL to playlist download endpoint: https://www.youtube.com/playlist?list=PLWC-kegaLOQEGzWKfteCMWyM_MLAS6N6m
+INFO 2025-04-23 23:17:03,373 utils 364 17508 Getting YouTube playlist info for URL: https://www.youtube.com/playlist?list=PLWC-kegaLOQEGzWKfteCMWyM_MLAS6N6m
+INFO 2025-04-23 23:17:03,375 utils 364 17508 Extracted YouTube playlist ID: PLWC-kegaLOQEGzWKfteCMWyM_MLAS6N6m
+INFO 2025-04-23 23:17:03,560 utils 364 17508 Extracting playlist info from: https://www.youtube.com/playlist?list=PLWC-kegaLOQEGzWKfteCMWyM_MLAS6N6m
+INFO 2025-04-23 23:17:04,758 utils 364 17508 Successfully extracted info for playlist: Downloads with 3 tracks
+INFO 2025-04-23 23:17:04,758 download_helper 364 17508 Playlist info retrieved: title=Downloads, tracks=3, image_url=None
+INFO 2025-04-23 23:17:05,459 download_helper 364 23444 [Parallel] Found existing song for user: https://www.youtube.com/watch?v=-yyTutHFUlg
+INFO 2025-04-23 23:17:05,461 download_helper 364 14088 [Parallel] Found existing song for user: https://www.youtube.com/watch?v=P3Uk-a8z3YY
+INFO 2025-04-23 23:17:05,471 download_helper 364 10824 [Parallel] Found existing song for user: https://www.youtube.com/watch?v=SDTZ7iX4vTQ
+INFO 2025-04-23 23:17:05,849 download_helper 364 17508 Added 3 songs to playlist 99
+INFO 2025-04-23 23:17:05,914 models 364 17508 [DEBUG] record_download called for user=testuser id=1 date=2025-04-23
+INFO 2025-04-23 23:17:06,044 models 364 17508 [DEBUG] record_download updated analytics: user=testuser id=1 date=2025-04-23 songs_downloaded=18
+INFO 2025-04-23 23:17:06,044 models 364 17508 [DEBUG] record_download called for user=testuser id=1 date=2025-04-23
+INFO 2025-04-23 23:17:06,170 models 364 17508 [DEBUG] record_download updated analytics: user=testuser id=1 date=2025-04-23 songs_downloaded=19
+INFO 2025-04-23 23:17:06,171 models 364 17508 [DEBUG] record_download called for user=testuser id=1 date=2025-04-23
+INFO 2025-04-23 23:17:06,302 models 364 17508 [DEBUG] record_download updated analytics: user=testuser id=1 date=2025-04-23 songs_downloaded=20
+INFO 2025-04-23 23:17:06,306 basehttp 364 17508 "POST /api/songs/songs/download/ HTTP/1.1" 200 129
+INFO 2025-04-23 23:17:38,256 views 364 17508 Redirecting YouTube playlist URL to playlist download endpoint: https://www.youtube.com/playlist?list=PLWC-kegaLOQEGzWKfteCMWyM_MLAS6N6m
+INFO 2025-04-23 23:17:38,257 utils 364 17508 Getting YouTube playlist info for URL: https://www.youtube.com/playlist?list=PLWC-kegaLOQEGzWKfteCMWyM_MLAS6N6m
+INFO 2025-04-23 23:17:38,258 utils 364 17508 Extracted YouTube playlist ID: PLWC-kegaLOQEGzWKfteCMWyM_MLAS6N6m
+INFO 2025-04-23 23:17:38,302 utils 364 17508 Extracting playlist info from: https://www.youtube.com/playlist?list=PLWC-kegaLOQEGzWKfteCMWyM_MLAS6N6m
+INFO 2025-04-23 23:17:38,939 utils 364 17508 Successfully extracted info for playlist: Downloads with 3 tracks
+INFO 2025-04-23 23:17:38,942 download_helper 364 17508 Playlist info retrieved: title=Downloads, tracks=3, image_url=None
+INFO 2025-04-23 23:17:39,650 download_helper 364 17612 [Parallel] Downloading track: https://www.youtube.com/watch?v=8UVNT4wvIGY
+INFO 2025-04-23 23:17:39,652 download_helper 364 17612 Downloading from Hugging Face Spaces: https://www.youtube.com/watch?v=8UVNT4wvIGY
+INFO 2025-04-23 23:17:39,658 download_helper 364 2244 [Parallel] Downloading track: https://www.youtube.com/watch?v=VjHMDlAPMUw
+INFO 2025-04-23 23:17:39,659 download_helper 364 2244 Downloading from Hugging Face Spaces: https://www.youtube.com/watch?v=VjHMDlAPMUw
+INFO 2025-04-23 23:17:39,668 download_helper 364 10480 [Parallel] Downloading track: https://www.youtube.com/watch?v=PqZWV3C_feU
+INFO 2025-04-23 23:17:39,669 download_helper 364 10480 Downloading from Hugging Face Spaces: https://www.youtube.com/watch?v=PqZWV3C_feU
+INFO 2025-04-23 23:18:28,646 download_helper 364 2244 Successfully downloaded file to C:\Users\Dell\AppData\Local\Temp\tmpjnszhm0y\download-1745430508.mp3
+INFO 2025-04-23 23:18:28,650 download_helper 364 2244 Moving downloaded file from C:\Users\Dell\AppData\Local\Temp\tmpjnszhm0y\download-1745430508.mp3 to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Lost Frequencies - Are You With Me Official Music Video - Armada Music TV.mp3
+INFO 2025-04-23 23:18:28,655 download_helper 364 2244 Embedding metadata into: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Lost Frequencies - Are You With Me Official Music Video - Armada Music TV.mp3
+INFO 2025-04-23 23:18:28,704 utils 364 2244 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Lost Frequencies - Are You With Me Official Music Video - Armada Music TV.mp3
+INFO 2025-04-23 23:18:28,704 utils 364 2244 Title: Lost Frequencies - Are You With Me Official Music Video, Artist: Armada Music TV, Album: Unknown Album, Genre: Unknown
+INFO 2025-04-23 23:18:28,712 utils 364 2244 Loaded existing ID3 tags
+INFO 2025-04-23 23:18:28,712 utils 364 2244 Trying to get thumbnail directly from YouTube: https://img.youtube.com/vi/VjHMDlAPMUw/maxresdefault.jpg
+INFO 2025-04-23 23:18:28,930 utils 364 2244 Successfully downloaded YouTube thumbnail: 51058 bytes
+INFO 2025-04-23 23:18:28,988 utils 364 2244 Successfully processed YouTube thumbnail: 94798 bytes
+INFO 2025-04-23 23:18:28,990 utils 364 2244 Successfully added YouTube thumbnail to ID3 tags
+INFO 2025-04-23 23:18:28,998 utils 364 2244 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Lost Frequencies - Are You With Me Official Music Video - Armada Music TV.mp3 using ID3v2.3
+INFO 2025-04-23 23:18:29,010 utils 364 2244 Verification: 9 tags were written, has_cover=True
+INFO 2025-04-23 23:18:29,066 utils 364 2244 Attempting to set system thumbnail property directly (Windows only)
+INFO 2025-04-23 23:18:29,088 utils 364 2244 Successfully deleted existing ID3 tags before rebuilding
+INFO 2025-04-23 23:18:29,103 utils 364 2244 Successfully rebuilt ID3 tags with clean implementation
+INFO 2025-04-23 23:18:29,104 utils 364 2244 Skipping shell thumbnail method due to known issues
+INFO 2025-04-23 23:18:29,321 download_helper 364 2244 _save_and_record_song successful. Returning rel_path: songs\Lost Frequencies - Are You With Me Official Music Video - Armada Music TV.mp3 for https://www.youtube.com/watch?v=VjHMDlAPMUw
+WARNING 2025-04-23 23:18:29,327 download_helper 364 2244 Error adding song to cache for https://www.youtube.com/watch?v=VjHMDlAPMUw: 'Settings' object has no attribute 'SONG_CACHE_EXPIRY_DAYS'
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py", line 1019, in _add_to_cache
+    'expires_at': timezone.now() + timedelta(days=settings.SONG_CACHE_EXPIRY_DAYS), # Use setting
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\conf\__init__.py", line 83, in __getattr__
+    val = getattr(_wrapped, name)
+          ^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Settings' object has no attribute 'SONG_CACHE_EXPIRY_DAYS'
+INFO 2025-04-23 23:18:29,368 download_helper 364 2244 [Parallel] Successfully processed track: Lost Frequencies - Are You With Me Official Music Video
+INFO 2025-04-23 23:18:37,000 download_helper 364 17612 Successfully downloaded file to C:\Users\Dell\AppData\Local\Temp\tmp2expf_cz\download-1745430516.mp3
+INFO 2025-04-23 23:18:37,001 download_helper 364 17612 Moving downloaded file from C:\Users\Dell\AppData\Local\Temp\tmp2expf_cz\download-1745430516.mp3 to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Gotye - Somebody That I Used To Know feat. Kimbra Official Music Video - gotyemusic.mp3
+INFO 2025-04-23 23:18:37,006 download_helper 364 17612 Embedding metadata into: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Gotye - Somebody That I Used To Know feat. Kimbra Official Music Video - gotyemusic.mp3
+INFO 2025-04-23 23:18:37,008 utils 364 17612 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Gotye - Somebody That I Used To Know feat. Kimbra Official Music Video - gotyemusic.mp3
+INFO 2025-04-23 23:18:37,008 utils 364 17612 Title: Gotye - Somebody That I Used To Know feat. Kimbra Official Music Video, Artist: gotyemusic, Album: Unknown Album, Genre: Unknown
+INFO 2025-04-23 23:18:37,025 utils 364 17612 Loaded existing ID3 tags
+INFO 2025-04-23 23:18:37,026 utils 364 17612 Trying to get thumbnail directly from YouTube: https://img.youtube.com/vi/8UVNT4wvIGY/maxresdefault.jpg
+INFO 2025-04-23 23:18:37,137 utils 364 17612 Successfully downloaded YouTube thumbnail: 54328 bytes
+INFO 2025-04-23 23:18:37,172 utils 364 17612 Successfully processed YouTube thumbnail: 106564 bytes
+INFO 2025-04-23 23:18:37,174 utils 364 17612 Successfully added YouTube thumbnail to ID3 tags
+INFO 2025-04-23 23:18:37,186 utils 364 17612 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Gotye - Somebody That I Used To Know feat. Kimbra Official Music Video - gotyemusic.mp3 using ID3v2.3
+INFO 2025-04-23 23:18:37,200 utils 364 17612 Verification: 10 tags were written, has_cover=True
+INFO 2025-04-23 23:18:37,200 utils 364 17612 Attempting to set system thumbnail property directly (Windows only)
+INFO 2025-04-23 23:18:37,235 utils 364 17612 Successfully deleted existing ID3 tags before rebuilding
+INFO 2025-04-23 23:18:37,257 utils 364 17612 Successfully rebuilt ID3 tags with clean implementation
+INFO 2025-04-23 23:18:37,258 utils 364 17612 Skipping shell thumbnail method due to known issues
+INFO 2025-04-23 23:18:37,462 download_helper 364 17612 _save_and_record_song successful. Returning rel_path: songs\Gotye - Somebody That I Used To Know feat. Kimbra Official Music Video - gotyemusic.mp3 for https://www.youtube.com/watch?v=8UVNT4wvIGY
+WARNING 2025-04-23 23:18:37,472 download_helper 364 17612 Error adding song to cache for https://www.youtube.com/watch?v=8UVNT4wvIGY: 'Settings' object has no attribute 'SONG_CACHE_EXPIRY_DAYS'
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py", line 1019, in _add_to_cache
+    'expires_at': timezone.now() + timedelta(days=settings.SONG_CACHE_EXPIRY_DAYS), # Use setting
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\conf\__init__.py", line 83, in __getattr__
+    val = getattr(_wrapped, name)
+          ^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Settings' object has no attribute 'SONG_CACHE_EXPIRY_DAYS'
+INFO 2025-04-23 23:18:37,510 download_helper 364 17612 [Parallel] Successfully processed track: Gotye - Somebody That I Used To Know feat. Kimbra Official Music Video
+INFO 2025-04-23 23:18:39,476 download_helper 364 10480 Successfully downloaded file to C:\Users\Dell\AppData\Local\Temp\tmpti8f99e1\download-1745430519.mp3
+INFO 2025-04-23 23:18:39,478 download_helper 364 10480 Moving downloaded file from C:\Users\Dell\AppData\Local\Temp\tmpti8f99e1\download-1745430519.mp3 to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Noah Rinker - Save My Soul Official Lyric Video - Noah Rinker.mp3
+INFO 2025-04-23 23:18:39,480 download_helper 364 10480 Embedding metadata into: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Noah Rinker - Save My Soul Official Lyric Video - Noah Rinker.mp3
+INFO 2025-04-23 23:18:39,481 utils 364 10480 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Noah Rinker - Save My Soul Official Lyric Video - Noah Rinker.mp3
+INFO 2025-04-23 23:18:39,482 utils 364 10480 Title: Noah Rinker - Save My Soul Official Lyric Video, Artist: Noah Rinker, Album: Unknown Album, Genre: Unknown
+INFO 2025-04-23 23:18:39,494 utils 364 10480 Loaded existing ID3 tags
+INFO 2025-04-23 23:18:39,495 utils 364 10480 Trying to get thumbnail directly from YouTube: https://img.youtube.com/vi/PqZWV3C_feU/maxresdefault.jpg
+INFO 2025-04-23 23:18:39,661 utils 364 10480 Successfully downloaded YouTube thumbnail: 38988 bytes
+INFO 2025-04-23 23:18:39,681 utils 364 10480 Successfully processed YouTube thumbnail: 71993 bytes
+INFO 2025-04-23 23:18:39,683 utils 364 10480 Successfully added YouTube thumbnail to ID3 tags
+INFO 2025-04-23 23:18:39,693 utils 364 10480 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Noah Rinker - Save My Soul Official Lyric Video - Noah Rinker.mp3 using ID3v2.3
+INFO 2025-04-23 23:18:39,706 utils 364 10480 Verification: 9 tags were written, has_cover=True
+INFO 2025-04-23 23:18:39,706 utils 364 10480 Attempting to set system thumbnail property directly (Windows only)
+INFO 2025-04-23 23:18:39,737 utils 364 10480 Successfully deleted existing ID3 tags before rebuilding
+INFO 2025-04-23 23:18:39,754 utils 364 10480 Successfully rebuilt ID3 tags with clean implementation
+INFO 2025-04-23 23:18:39,755 utils 364 10480 Skipping shell thumbnail method due to known issues
+INFO 2025-04-23 23:18:39,959 download_helper 364 10480 _save_and_record_song successful. Returning rel_path: songs\Noah Rinker - Save My Soul Official Lyric Video - Noah Rinker.mp3 for https://www.youtube.com/watch?v=PqZWV3C_feU
+WARNING 2025-04-23 23:18:39,968 download_helper 364 10480 Error adding song to cache for https://www.youtube.com/watch?v=PqZWV3C_feU: 'Settings' object has no attribute 'SONG_CACHE_EXPIRY_DAYS'
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py", line 1019, in _add_to_cache
+    'expires_at': timezone.now() + timedelta(days=settings.SONG_CACHE_EXPIRY_DAYS), # Use setting
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\conf\__init__.py", line 83, in __getattr__
+    val = getattr(_wrapped, name)
+          ^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Settings' object has no attribute 'SONG_CACHE_EXPIRY_DAYS'
+INFO 2025-04-23 23:18:39,991 download_helper 364 10480 [Parallel] Successfully processed track: Noah Rinker - Save My Soul Official Lyric Video
+INFO 2025-04-23 23:18:40,248 download_helper 364 17508 Added 3 songs to playlist 100
+INFO 2025-04-23 23:18:40,313 models 364 17508 [DEBUG] record_download called for user=testuser id=1 date=2025-04-23
+INFO 2025-04-23 23:18:40,447 models 364 17508 [DEBUG] record_download updated analytics: user=testuser id=1 date=2025-04-23 songs_downloaded=21
+INFO 2025-04-23 23:18:40,452 models 364 17508 [DEBUG] record_download called for user=testuser id=1 date=2025-04-23
+INFO 2025-04-23 23:18:40,579 models 364 17508 [DEBUG] record_download updated analytics: user=testuser id=1 date=2025-04-23 songs_downloaded=22
+INFO 2025-04-23 23:18:40,580 models 364 17508 [DEBUG] record_download called for user=testuser id=1 date=2025-04-23
+INFO 2025-04-23 23:18:40,707 models 364 17508 [DEBUG] record_download updated analytics: user=testuser id=1 date=2025-04-23 songs_downloaded=23
+INFO 2025-04-23 23:18:40,710 basehttp 364 17508 "POST /api/songs/songs/download/ HTTP/1.1" 200 130
+INFO 2025-04-23 23:19:27,677 views 364 8000 Creating ZIP file for playlist 'Downloads' with 3 songs at C:\Users\Dell\AppData\Local\Temp\tmp5rgvx074\Downloads_1745430567.zip
+DEBUG 2025-04-23 23:19:27,746 views 364 8000 Looking for song 334 'Noah Rinker - Save My Soul Official Lyric Video' in 4 potential locations
+INFO 2025-04-23 23:19:27,747 views 364 8000 Found and adding file to ZIP: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Noah Rinker - Save My Soul Official Lyric Video - Noah Rinker.mp3 as Noah Rinker - Save My Soul Official Lyric Video - Noah Rinker.mp3
+DEBUG 2025-04-23 23:19:27,822 views 364 8000 Looking for song 333 'Gotye - Somebody That I Used To Know feat. Kimbra Official Music Video' in 3 potential locations
+INFO 2025-04-23 23:19:27,822 views 364 8000 Found and adding file to ZIP: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Gotye - Somebody That I Used To Know feat. Kimbra Official Music Video - gotyemusic.mp3 as Gotye - Somebody That I Used To Know feat. Kimbra Official Music Video - gotyemusic.mp3
+DEBUG 2025-04-23 23:19:27,872 views 364 8000 Looking for song 332 'Lost Frequencies - Are You With Me Official Music Video' in 4 potential locations
+INFO 2025-04-23 23:19:27,872 views 364 8000 Found and adding file to ZIP: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Lost Frequencies - Are You With Me Official Music Video - Armada Music TV.mp3 as Lost Frequencies - Are You With Me Official Music Video - Armada Music TV.mp3
+INFO 2025-04-23 23:19:27,907 views 364 8000 ZIP file created successfully. Size: 17149317 bytes, Files added: 3, Missing files: 0
+INFO 2025-04-23 23:19:27,970 basehttp 364 8000 "GET /api/songs/playlists/100/download-all/ HTTP/1.1" 200 17149317
+INFO 2025-04-23 23:21:02,205 autoreload 364 20488 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\tunevault\settings.py changed, reloading.
+INFO 2025-04-23 23:21:07,826 autoreload 11100 10996 Watching for file changes with StatReloader
+INFO 2025-04-23 23:23:07,788 autoreload 11100 10996 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-23 23:23:12,602 autoreload 140 5584 Watching for file changes with StatReloader
+INFO 2025-04-23 23:26:15,406 views 140 25296 Creating ZIP file for playlist 'Downloads' with 3 songs at C:\Users\Dell\AppData\Local\Temp\tmp_rmstp9g\Downloads_1745430975.zip
+DEBUG 2025-04-23 23:26:15,472 views 140 25296 Looking for song 334 'Noah Rinker - Save My Soul Official Lyric Video' in 4 potential locations
+INFO 2025-04-23 23:26:15,472 views 140 25296 Found and adding file to ZIP: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Noah Rinker - Save My Soul Official Lyric Video - Noah Rinker.mp3 as Noah Rinker - Save My Soul Official Lyric Video - Noah Rinker.mp3
+DEBUG 2025-04-23 23:26:15,535 views 140 25296 Looking for song 333 'Gotye - Somebody That I Used To Know feat. Kimbra Official Music Video' in 3 potential locations
+INFO 2025-04-23 23:26:15,535 views 140 25296 Found and adding file to ZIP: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Gotye - Somebody That I Used To Know feat. Kimbra Official Music Video - gotyemusic.mp3 as Gotye - Somebody That I Used To Know feat. Kimbra Official Music Video - gotyemusic.mp3
+DEBUG 2025-04-23 23:26:15,576 views 140 25296 Looking for song 332 'Lost Frequencies - Are You With Me Official Music Video' in 4 potential locations
+INFO 2025-04-23 23:26:15,576 views 140 25296 Found and adding file to ZIP: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Lost Frequencies - Are You With Me Official Music Video - Armada Music TV.mp3 as Lost Frequencies - Are You With Me Official Music Video - Armada Music TV.mp3
+INFO 2025-04-23 23:26:15,603 views 140 25296 ZIP file created successfully. Size: 17149317 bytes, Files added: 3, Missing files: 0
+INFO 2025-04-23 23:26:15,648 basehttp 140 25296 "GET /api/songs/playlists/100/download-all/ HTTP/1.1" 200 17149317
+INFO 2025-04-23 23:26:21,411 views 140 25296 Redirecting YouTube playlist URL to playlist download endpoint: https://www.youtube.com/playlist?list=PLWC-kegaLOQEGzWKfteCMWyM_MLAS6N6m
+INFO 2025-04-23 23:26:21,412 utils 140 25296 Getting YouTube playlist info for URL: https://www.youtube.com/playlist?list=PLWC-kegaLOQEGzWKfteCMWyM_MLAS6N6m
+INFO 2025-04-23 23:26:21,412 utils 140 25296 Extracted YouTube playlist ID: PLWC-kegaLOQEGzWKfteCMWyM_MLAS6N6m
+INFO 2025-04-23 23:26:21,688 utils 140 25296 Extracting playlist info from: https://www.youtube.com/playlist?list=PLWC-kegaLOQEGzWKfteCMWyM_MLAS6N6m
+INFO 2025-04-23 23:26:23,337 utils 140 25296 Successfully extracted info for playlist: Downloads with 4 tracks
+INFO 2025-04-23 23:26:23,340 download_helper 140 25296 Playlist info retrieved: title=Downloads, tracks=4, image_url=None
+INFO 2025-04-23 23:26:25,179 download_helper 140 8332 [Parallel] Downloading track: https://www.youtube.com/watch?v=Sv6dMFF_yts
+INFO 2025-04-23 23:26:25,179 download_helper 140 8332 Downloading from Hugging Face Spaces: https://www.youtube.com/watch?v=Sv6dMFF_yts
+INFO 2025-04-23 23:26:25,336 download_helper 140 10920 [Parallel] Found existing song for user: https://www.youtube.com/watch?v=VjHMDlAPMUw
+INFO 2025-04-23 23:26:25,846 download_helper 140 10920 [Parallel] Downloading track: https://www.youtube.com/watch?v=LkAvm9-2jGQ
+INFO 2025-04-23 23:26:25,848 download_helper 140 10920 Downloading from Hugging Face Spaces: https://www.youtube.com/watch?v=LkAvm9-2jGQ
+INFO 2025-04-23 23:26:25,848 download_helper 140 17152 [Parallel] Downloading track: https://www.youtube.com/watch?v=7ouWEQKDpM8
+INFO 2025-04-23 23:26:25,850 download_helper 140 17152 Downloading from Hugging Face Spaces: https://www.youtube.com/watch?v=7ouWEQKDpM8
+INFO 2025-04-23 23:27:11,353 download_helper 140 10920 Successfully downloaded file to C:\Users\Dell\AppData\Local\Temp\tmp2ljunkyo\download-1745431031.mp3
+INFO 2025-04-23 23:27:11,356 download_helper 140 10920 Moving downloaded file from C:\Users\Dell\AppData\Local\Temp\tmp2ljunkyo\download-1745431031.mp3 to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Jonah Kagen - God Needs The Devil Official Video - Jonah Kagen.mp3
+INFO 2025-04-23 23:27:11,361 download_helper 140 10920 Embedding metadata into: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Jonah Kagen - God Needs The Devil Official Video - Jonah Kagen.mp3
+INFO 2025-04-23 23:27:11,408 utils 140 10920 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Jonah Kagen - God Needs The Devil Official Video - Jonah Kagen.mp3
+INFO 2025-04-23 23:27:11,409 utils 140 10920 Title: Jonah Kagen - God Needs The Devil Official Video, Artist: Jonah Kagen, Album: Unknown Album, Genre: Unknown
+INFO 2025-04-23 23:27:11,420 utils 140 10920 Loaded existing ID3 tags
+INFO 2025-04-23 23:27:11,422 utils 140 10920 Trying to get thumbnail directly from YouTube: https://img.youtube.com/vi/LkAvm9-2jGQ/maxresdefault.jpg
+INFO 2025-04-23 23:27:11,686 utils 140 10920 Successfully downloaded YouTube thumbnail: 67350 bytes
+INFO 2025-04-23 23:27:11,743 utils 140 10920 Successfully processed YouTube thumbnail: 121821 bytes
+INFO 2025-04-23 23:27:11,744 utils 140 10920 Successfully added YouTube thumbnail to ID3 tags
+INFO 2025-04-23 23:27:11,754 utils 140 10920 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Jonah Kagen - God Needs The Devil Official Video - Jonah Kagen.mp3 using ID3v2.3
+INFO 2025-04-23 23:27:11,767 utils 140 10920 Verification: 10 tags were written, has_cover=True
+INFO 2025-04-23 23:27:11,809 utils 140 10920 Attempting to set system thumbnail property directly (Windows only)
+INFO 2025-04-23 23:27:11,848 utils 140 10920 Successfully deleted existing ID3 tags before rebuilding
+INFO 2025-04-23 23:27:11,876 utils 140 10920 Successfully rebuilt ID3 tags with clean implementation
+INFO 2025-04-23 23:27:11,878 utils 140 10920 Skipping shell thumbnail method due to known issues
+INFO 2025-04-23 23:27:12,123 download_helper 140 10920 _save_and_record_song successful. Returning rel_path: songs\Jonah Kagen - God Needs The Devil Official Video - Jonah Kagen.mp3 for https://www.youtube.com/watch?v=LkAvm9-2jGQ
+INFO 2025-04-23 23:27:12,614 download_helper 140 10920 Added/Updated song cache for: https://www.youtube.com/watch?v=LkAvm9-2jGQ
+INFO 2025-04-23 23:27:12,615 download_helper 140 10920 [Parallel] Successfully processed track: Jonah Kagen - God Needs The Devil Official Video
+INFO 2025-04-23 23:27:15,667 download_helper 140 17152 Successfully downloaded file to C:\Users\Dell\AppData\Local\Temp\tmpo7ambdlu\download-1745431035.mp3
+INFO 2025-04-23 23:27:15,670 download_helper 140 17152 Moving downloaded file from C:\Users\Dell\AppData\Local\Temp\tmpo7ambdlu\download-1745431035.mp3 to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Zach Bryan ft. Kacey Musgraves - I Remember Everything Live Sightread on Bass - Gojima Ghost.mp3
+INFO 2025-04-23 23:27:15,674 download_helper 140 17152 Embedding metadata into: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Zach Bryan ft. Kacey Musgraves - I Remember Everything Live Sightread on Bass - Gojima Ghost.mp3
+INFO 2025-04-23 23:27:15,676 utils 140 17152 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Zach Bryan ft. Kacey Musgraves - I Remember Everything Live Sightread on Bass - Gojima Ghost.mp3
+INFO 2025-04-23 23:27:15,677 utils 140 17152 Title: Zach Bryan ft.  Kacey Musgraves - I Remember Everything  Live Sightread on Bass, Artist: Gojima Ghost, Album: Unknown Album, Genre: Unknown
+INFO 2025-04-23 23:27:15,694 utils 140 17152 Loaded existing ID3 tags
+INFO 2025-04-23 23:27:15,698 utils 140 17152 Trying to get thumbnail directly from YouTube: https://img.youtube.com/vi/7ouWEQKDpM8/maxresdefault.jpg
+INFO 2025-04-23 23:27:15,887 download_helper 140 8332 Successfully downloaded file to C:\Users\Dell\AppData\Local\Temp\tmp67nrt34a\download-1745431035.mp3
+INFO 2025-04-23 23:27:15,892 download_helper 140 8332 Moving downloaded file from C:\Users\Dell\AppData\Local\Temp\tmp67nrt34a\download-1745431035.mp3 to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Fun. We Are Young ft. Janelle Mone OFFICIAL VIDEO - Fueled By Ramen.mp3
+INFO 2025-04-23 23:27:15,895 download_helper 140 8332 Embedding metadata into: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Fun. We Are Young ft. Janelle Mone OFFICIAL VIDEO - Fueled By Ramen.mp3
+INFO 2025-04-23 23:27:15,895 utils 140 8332 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Fun. We Are Young ft. Janelle Mone OFFICIAL VIDEO - Fueled By Ramen.mp3
+INFO 2025-04-23 23:27:15,895 utils 140 8332 Title: Fun.: We Are Young ft. Janelle Monáe OFFICIAL VIDEO, Artist: Fueled By Ramen, Album: Unknown Album, Genre: Unknown
+INFO 2025-04-23 23:27:15,924 utils 140 8332 Loaded existing ID3 tags
+INFO 2025-04-23 23:27:15,957 utils 140 8332 Trying to get thumbnail directly from YouTube: https://img.youtube.com/vi/Sv6dMFF_yts/maxresdefault.jpg
+INFO 2025-04-23 23:27:16,114 utils 140 8332 Successfully downloaded YouTube thumbnail: 65326 bytes
+INFO 2025-04-23 23:27:16,150 utils 140 8332 Successfully processed YouTube thumbnail: 116221 bytes
+INFO 2025-04-23 23:27:16,151 utils 140 8332 Successfully added YouTube thumbnail to ID3 tags
+INFO 2025-04-23 23:27:16,161 utils 140 8332 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Fun. We Are Young ft. Janelle Mone OFFICIAL VIDEO - Fueled By Ramen.mp3 using ID3v2.3
+INFO 2025-04-23 23:27:16,174 utils 140 8332 Verification: 10 tags were written, has_cover=True
+INFO 2025-04-23 23:27:16,175 utils 140 8332 Attempting to set system thumbnail property directly (Windows only)
+INFO 2025-04-23 23:27:16,204 utils 140 8332 Successfully deleted existing ID3 tags before rebuilding
+INFO 2025-04-23 23:27:16,212 utils 140 17152 Successfully downloaded YouTube thumbnail: 203118 bytes
+INFO 2025-04-23 23:27:16,227 utils 140 8332 Successfully rebuilt ID3 tags with clean implementation
+INFO 2025-04-23 23:27:16,227 utils 140 8332 Skipping shell thumbnail method due to known issues
+INFO 2025-04-23 23:27:16,240 utils 140 17152 Successfully processed YouTube thumbnail: 322923 bytes
+INFO 2025-04-23 23:27:16,241 utils 140 17152 Successfully added YouTube thumbnail to ID3 tags
+INFO 2025-04-23 23:27:16,252 utils 140 17152 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Zach Bryan ft. Kacey Musgraves - I Remember Everything Live Sightread on Bass - Gojima Ghost.mp3 using ID3v2.3
+INFO 2025-04-23 23:27:16,272 utils 140 17152 Verification: 10 tags were written, has_cover=True
+INFO 2025-04-23 23:27:16,273 utils 140 17152 Attempting to set system thumbnail property directly (Windows only)
+INFO 2025-04-23 23:27:16,309 utils 140 17152 Successfully deleted existing ID3 tags before rebuilding
+INFO 2025-04-23 23:27:16,325 utils 140 17152 Successfully rebuilt ID3 tags with clean implementation
+INFO 2025-04-23 23:27:16,326 utils 140 17152 Skipping shell thumbnail method due to known issues
+WARNING 2025-04-23 23:27:16,328 download_helper 140 17152 Relative path length (102) might exceed database limits: songs\Zach Bryan ft. Kacey Musgraves - I Remember Everything Live Sightread on Bass - Gojima Ghost.mp3
+ERROR 2025-04-23 23:27:16,393 download_helper 140 17152 Error in _save_and_record_song for https://www.youtube.com/watch?v=7ouWEQKDpM8: value too long for type character varying(100)
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.StringDataRightTruncation: value too long for type character varying(100)
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py", line 937, in _save_and_record_song
+    song = Song.objects.create(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 679, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\models.py", line 150, in save
+    super(Song, self).save(*args, **kwargs)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\base.py", line 892, in save
+    self.save_base(
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\base.py", line 998, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\base.py", line 1161, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\base.py", line 1202, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 1847, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1836, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\utils.py", line 1783, in runner
+    return sentry_patched_function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\__init__.py", line 651, in execute
+    result = real_execute(self, sql, params)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.DataError: value too long for type character varying(100)
+
+INFO 2025-04-23 23:27:16,423 download_helper 140 8332 _save_and_record_song successful. Returning rel_path: songs\Fun. We Are Young ft. Janelle Mone OFFICIAL VIDEO - Fueled By Ramen.mp3 for https://www.youtube.com/watch?v=Sv6dMFF_yts
+INFO 2025-04-23 23:27:16,965 download_helper 140 8332 Added/Updated song cache for: https://www.youtube.com/watch?v=Sv6dMFF_yts
+INFO 2025-04-23 23:27:16,965 download_helper 140 8332 [Parallel] Successfully processed track: Fun.: We Are Young ft. Janelle Monáe OFFICIAL VIDEO
+WARNING 2025-04-23 23:27:18,456 download_helper 140 17152 File C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Zach Bryan ft. Kacey Musgraves - I Remember Everything Live Sightread on Bass - Gojima Ghost.mp3 was moved but DB record creation failed.
+ERROR 2025-04-23 23:27:18,456 download_helper 140 17152 [Parallel] Failed to process downloaded track: https://www.youtube.com/watch?v=7ouWEQKDpM8
+INFO 2025-04-23 23:27:18,656 download_helper 140 25296 Added 3 songs to playlist 101
+INFO 2025-04-23 23:27:18,720 models 140 25296 [DEBUG] record_download called for user=testuser id=1 date=2025-04-23
+INFO 2025-04-23 23:27:18,849 models 140 25296 [DEBUG] record_download updated analytics: user=testuser id=1 date=2025-04-23 songs_downloaded=24
+INFO 2025-04-23 23:27:18,851 models 140 25296 [DEBUG] record_download called for user=testuser id=1 date=2025-04-23
+INFO 2025-04-23 23:27:18,973 models 140 25296 [DEBUG] record_download updated analytics: user=testuser id=1 date=2025-04-23 songs_downloaded=25
+INFO 2025-04-23 23:27:18,973 models 140 25296 [DEBUG] record_download called for user=testuser id=1 date=2025-04-23
+INFO 2025-04-23 23:27:19,109 models 140 25296 [DEBUG] record_download updated analytics: user=testuser id=1 date=2025-04-23 songs_downloaded=26
+INFO 2025-04-23 23:27:19,113 basehttp 140 25296 "POST /api/songs/songs/download/ HTTP/1.1" 200 130
+INFO 2025-04-23 23:27:42,154 views 140 14392 Creating ZIP file for playlist 'Downloads' with 3 songs at C:\Users\Dell\AppData\Local\Temp\tmpj1nkx9kb\Downloads_1745431062.zip
+DEBUG 2025-04-23 23:27:42,222 views 140 14392 Looking for song 336 'Fun.: We Are Young ft. Janelle Monáe OFFICIAL VIDEO' in 4 potential locations
+INFO 2025-04-23 23:27:42,222 views 140 14392 Found and adding file to ZIP: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Fun. We Are Young ft. Janelle Mone OFFICIAL VIDEO - Fueled By Ramen.mp3 as Fun. We Are Young ft. Janelle Mone OFFICIAL VIDEO - Fueled By Ramen.mp3
+DEBUG 2025-04-23 23:27:42,264 views 140 14392 Looking for song 335 'Jonah Kagen - God Needs The Devil Official Video' in 4 potential locations
+INFO 2025-04-23 23:27:42,264 views 140 14392 Found and adding file to ZIP: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Jonah Kagen - God Needs The Devil Official Video - Jonah Kagen.mp3 as Jonah Kagen - God Needs The Devil Official Video - Jonah Kagen.mp3
+DEBUG 2025-04-23 23:27:42,290 views 140 14392 Looking for song 332 'Lost Frequencies - Are You With Me Official Music Video' in 4 potential locations
+INFO 2025-04-23 23:27:42,290 views 140 14392 Found and adding file to ZIP: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Lost Frequencies - Are You With Me Official Music Video - Armada Music TV.mp3 as Lost Frequencies - Are You With Me Official Music Video - Armada Music TV.mp3
+INFO 2025-04-23 23:27:42,302 views 140 14392 ZIP file created successfully. Size: 14461946 bytes, Files added: 3, Missing files: 0
+INFO 2025-04-23 23:27:42,361 basehttp 140 14392 "GET /api/songs/playlists/101/download-all/ HTTP/1.1" 200 14461946
+INFO 2025-04-23 23:30:06,489 autoreload 140 5584 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\tunevault\settings.py changed, reloading.
+INFO 2025-04-23 23:30:10,772 autoreload 25672 16704 Watching for file changes with StatReloader
+INFO 2025-04-23 23:31:00,882 autoreload 25672 16704 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\models.py changed, reloading.
+INFO 2025-04-23 23:31:05,254 autoreload 20236 7448 Watching for file changes with StatReloader
+INFO 2025-04-23 23:31:20,969 views 20236 24228 Creating ZIP file for playlist 'Downloads' with 3 songs at C:\Users\Dell\AppData\Local\Temp\tmphwvfufbm\Downloads_1745431280.zip
+DEBUG 2025-04-23 23:31:21,061 views 20236 24228 Looking for song 336 'Fun.: We Are Young ft. Janelle Monáe OFFICIAL VIDEO' in 4 potential locations
+INFO 2025-04-23 23:31:21,063 views 20236 24228 Found and adding file to ZIP: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Fun. We Are Young ft. Janelle Mone OFFICIAL VIDEO - Fueled By Ramen.mp3 as Fun. We Are Young ft. Janelle Mone OFFICIAL VIDEO - Fueled By Ramen.mp3
+DEBUG 2025-04-23 23:31:21,118 views 20236 24228 Looking for song 335 'Jonah Kagen - God Needs The Devil Official Video' in 4 potential locations
+INFO 2025-04-23 23:31:21,118 views 20236 24228 Found and adding file to ZIP: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Jonah Kagen - God Needs The Devil Official Video - Jonah Kagen.mp3 as Jonah Kagen - God Needs The Devil Official Video - Jonah Kagen.mp3
+DEBUG 2025-04-23 23:31:21,195 views 20236 24228 Looking for song 332 'Lost Frequencies - Are You With Me Official Music Video' in 4 potential locations
+INFO 2025-04-23 23:31:21,195 views 20236 24228 Found and adding file to ZIP: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Lost Frequencies - Are You With Me Official Music Video - Armada Music TV.mp3 as Lost Frequencies - Are You With Me Official Music Video - Armada Music TV.mp3
+INFO 2025-04-23 23:31:21,214 views 20236 24228 ZIP file created successfully. Size: 14461946 bytes, Files added: 3, Missing files: 0
+INFO 2025-04-23 23:31:21,262 basehttp 20236 24228 "GET /api/songs/playlists/101/download-all/ HTTP/1.1" 200 14461946
+INFO 2025-04-23 23:31:25,612 views 20236 24228 Redirecting YouTube playlist URL to playlist download endpoint: https://www.youtube.com/playlist?list=PLWC-kegaLOQEGzWKfteCMWyM_MLAS6N6m
+INFO 2025-04-23 23:31:25,613 utils 20236 24228 Getting YouTube playlist info for URL: https://www.youtube.com/playlist?list=PLWC-kegaLOQEGzWKfteCMWyM_MLAS6N6m
+INFO 2025-04-23 23:31:25,613 utils 20236 24228 Extracted YouTube playlist ID: PLWC-kegaLOQEGzWKfteCMWyM_MLAS6N6m
+INFO 2025-04-23 23:31:25,784 utils 20236 24228 Extracting playlist info from: https://www.youtube.com/playlist?list=PLWC-kegaLOQEGzWKfteCMWyM_MLAS6N6m
+INFO 2025-04-23 23:31:27,331 utils 20236 24228 Successfully extracted info for playlist: Downloads with 4 tracks
+INFO 2025-04-23 23:31:27,336 download_helper 20236 24228 Playlist info retrieved: title=Downloads, tracks=4, image_url=None
+INFO 2025-04-23 23:31:28,044 download_helper 20236 19504 [Parallel] Found existing song for user: https://www.youtube.com/watch?v=Sv6dMFF_yts
+INFO 2025-04-23 23:31:28,089 download_helper 20236 724 [Parallel] Downloading track: https://www.youtube.com/watch?v=7ouWEQKDpM8
+INFO 2025-04-23 23:31:28,090 download_helper 20236 724 Downloading from Hugging Face Spaces: https://www.youtube.com/watch?v=7ouWEQKDpM8
+INFO 2025-04-23 23:31:28,102 download_helper 20236 24692 [Parallel] Found existing song for user: https://www.youtube.com/watch?v=VjHMDlAPMUw
+INFO 2025-04-23 23:31:28,186 download_helper 20236 19504 [Parallel] Found existing song for user: https://www.youtube.com/watch?v=LkAvm9-2jGQ
+INFO 2025-04-23 23:31:50,193 download_helper 20236 724 Successfully downloaded file to C:\Users\Dell\AppData\Local\Temp\tmppfah5w59\download-1745431310.mp3
+INFO 2025-04-23 23:31:50,193 download_helper 20236 724 Moving downloaded file from C:\Users\Dell\AppData\Local\Temp\tmppfah5w59\download-1745431310.mp3 to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Zach Bryan ft. Kacey Musgraves - I Remember Everything Live Sightread on Bass - Gojima Ghost.mp3
+INFO 2025-04-23 23:31:50,210 download_helper 20236 724 Embedding metadata into: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Zach Bryan ft. Kacey Musgraves - I Remember Everything Live Sightread on Bass - Gojima Ghost.mp3
+INFO 2025-04-23 23:31:50,237 utils 20236 724 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Zach Bryan ft. Kacey Musgraves - I Remember Everything Live Sightread on Bass - Gojima Ghost.mp3
+INFO 2025-04-23 23:31:50,238 utils 20236 724 Title: Zach Bryan ft.  Kacey Musgraves - I Remember Everything  Live Sightread on Bass, Artist: Gojima Ghost, Album: Unknown Album, Genre: Unknown
+INFO 2025-04-23 23:31:50,254 utils 20236 724 Loaded existing ID3 tags
+INFO 2025-04-23 23:31:50,254 utils 20236 724 Trying to get thumbnail directly from YouTube: https://img.youtube.com/vi/7ouWEQKDpM8/maxresdefault.jpg
+INFO 2025-04-23 23:31:50,625 utils 20236 724 Successfully downloaded YouTube thumbnail: 203118 bytes
+INFO 2025-04-23 23:31:50,663 utils 20236 724 Successfully processed YouTube thumbnail: 322923 bytes
+INFO 2025-04-23 23:31:50,669 utils 20236 724 Successfully added YouTube thumbnail to ID3 tags
+INFO 2025-04-23 23:31:50,680 utils 20236 724 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Zach Bryan ft. Kacey Musgraves - I Remember Everything Live Sightread on Bass - Gojima Ghost.mp3 using ID3v2.3
+INFO 2025-04-23 23:31:50,695 utils 20236 724 Verification: 10 tags were written, has_cover=True
+INFO 2025-04-23 23:31:50,731 utils 20236 724 Attempting to set system thumbnail property directly (Windows only)
+INFO 2025-04-23 23:31:50,757 utils 20236 724 Successfully deleted existing ID3 tags before rebuilding
+INFO 2025-04-23 23:31:50,776 utils 20236 724 Successfully rebuilt ID3 tags with clean implementation
+INFO 2025-04-23 23:31:50,777 utils 20236 724 Skipping shell thumbnail method due to known issues
+WARNING 2025-04-23 23:31:50,780 download_helper 20236 724 Relative path length (102) might exceed database limits: songs\Zach Bryan ft. Kacey Musgraves - I Remember Everything Live Sightread on Bass - Gojima Ghost.mp3
+ERROR 2025-04-23 23:31:50,855 download_helper 20236 724 Error in _save_and_record_song for https://www.youtube.com/watch?v=7ouWEQKDpM8: value too long for type character varying(100)
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.StringDataRightTruncation: value too long for type character varying(100)
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py", line 937, in _save_and_record_song
+    song = Song.objects.create(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 679, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\models.py", line 150, in save
+    super(Song, self).save(*args, **kwargs)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\base.py", line 892, in save
+    self.save_base(
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\base.py", line 998, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\base.py", line 1161, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\base.py", line 1202, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 1847, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1836, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\utils.py", line 1783, in runner
+    return sentry_patched_function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\__init__.py", line 651, in execute
+    result = real_execute(self, sql, params)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.DataError: value too long for type character varying(100)
+
+WARNING 2025-04-23 23:31:51,072 download_helper 20236 724 File C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Zach Bryan ft. Kacey Musgraves - I Remember Everything Live Sightread on Bass - Gojima Ghost.mp3 was moved but DB record creation failed.
+ERROR 2025-04-23 23:31:51,073 download_helper 20236 724 [Parallel] Failed to process downloaded track: https://www.youtube.com/watch?v=7ouWEQKDpM8
+INFO 2025-04-23 23:31:51,263 download_helper 20236 24228 Added 3 songs to playlist 102
+INFO 2025-04-23 23:31:51,330 models 20236 24228 [DEBUG] record_download called for user=testuser id=1 date=2025-04-23
+INFO 2025-04-23 23:31:51,457 models 20236 24228 [DEBUG] record_download updated analytics: user=testuser id=1 date=2025-04-23 songs_downloaded=27
+INFO 2025-04-23 23:31:51,457 models 20236 24228 [DEBUG] record_download called for user=testuser id=1 date=2025-04-23
+INFO 2025-04-23 23:31:51,593 models 20236 24228 [DEBUG] record_download updated analytics: user=testuser id=1 date=2025-04-23 songs_downloaded=28
+INFO 2025-04-23 23:31:51,593 models 20236 24228 [DEBUG] record_download called for user=testuser id=1 date=2025-04-23
+INFO 2025-04-23 23:31:51,723 models 20236 24228 [DEBUG] record_download updated analytics: user=testuser id=1 date=2025-04-23 songs_downloaded=29
+INFO 2025-04-23 23:31:51,726 basehttp 20236 24228 "POST /api/songs/songs/download/ HTTP/1.1" 200 130
+INFO 2025-04-23 23:35:59,691 autoreload 20752 22924 Watching for file changes with StatReloader
+ERROR 2025-04-23 23:36:06,546 log 20752 17012 Internal Server Error: /api/songs/songs/download/
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 279, in ensure_connection
+    self.connect()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\utils.py", line 1783, in runner
+    return sentry_patched_function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\__init__.py", line 690, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\postgresql\base.py", line 332, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\psycopg2\__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.OperationalError: could not translate host name "ep-patient-resonance-a19rwm71.ap-southeast-1.aws.neon.tech" to address: No such host is known. 
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\views.py", line 94, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 503, in dispatch
+    self.initial(request, *args, **kwargs)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\__init__.py", line 331, in sentry_patched_drf_initial
+    return old_drf_initial(self, request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 420, in initial
+    self.perform_authentication(request)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 330, in perform_authentication
+    request.user
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\request.py", line 232, in user
+    self._authenticate()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\request.py", line 385, in _authenticate
+    user_auth_tuple = authenticator.authenticate(self)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\authentication.py", line 196, in authenticate
+    return self.authenticate_credentials(token)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\authentication.py", line 201, in authenticate_credentials
+    token = model.objects.select_related('user').get(key=key)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 645, in get
+    num = len(clone)
+          ^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 382, in __len__
+    self._fetch_all()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 1928, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 91, in __iter__
+    results = compiler.execute_sql(
+              ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\sql\compiler.py", line 1572, in execute_sql
+    cursor = self.connection.cursor()
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 320, in cursor
+    return self._cursor()
+           ^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 296, in _cursor
+    self.ensure_connection()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 278, in ensure_connection
+    with self.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 279, in ensure_connection
+    self.connect()
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\utils.py", line 1783, in runner
+    return sentry_patched_function(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\__init__.py", line 690, in connect
+    return real_connect(self)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\base\base.py", line 256, in connect
+    self.connection = self.get_new_connection(conn_params)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\utils\asyncio.py", line 26, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\backends\postgresql\base.py", line 332, in get_new_connection
+    connection = self.Database.connect(**conn_params)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\psycopg2\__init__.py", line 122, in connect
+    conn = _connect(dsn, connection_factory=connection_factory, **kwasync)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.OperationalError: could not translate host name "ep-patient-resonance-a19rwm71.ap-southeast-1.aws.neon.tech" to address: No such host is known. 
+
+ERROR 2025-04-23 23:36:06,563 basehttp 20752 17012 "POST /api/songs/songs/download/ HTTP/1.1" 500 259692
+INFO 2025-04-23 23:36:15,043 views 20752 17012 Redirecting YouTube playlist URL to playlist download endpoint: https://www.youtube.com/playlist?list=PLWC-kegaLOQEGzWKfteCMWyM_MLAS6N6m
+INFO 2025-04-23 23:36:15,044 utils 20752 17012 Getting YouTube playlist info for URL: https://www.youtube.com/playlist?list=PLWC-kegaLOQEGzWKfteCMWyM_MLAS6N6m
+INFO 2025-04-23 23:36:15,045 utils 20752 17012 Extracted YouTube playlist ID: PLWC-kegaLOQEGzWKfteCMWyM_MLAS6N6m
+INFO 2025-04-23 23:36:15,215 utils 20752 17012 Extracting playlist info from: https://www.youtube.com/playlist?list=PLWC-kegaLOQEGzWKfteCMWyM_MLAS6N6m
+INFO 2025-04-23 23:36:16,710 utils 20752 17012 Successfully extracted info for playlist: Downloads with 4 tracks
+INFO 2025-04-23 23:36:16,712 download_helper 20752 17012 Playlist info retrieved: title=Downloads, tracks=4, image_url=None
+INFO 2025-04-23 23:36:17,385 download_helper 20752 17568 [Parallel] Found existing song for user: https://www.youtube.com/watch?v=Sv6dMFF_yts
+INFO 2025-04-23 23:36:17,393 download_helper 20752 2364 [Parallel] Found existing song for user: https://www.youtube.com/watch?v=VjHMDlAPMUw
+INFO 2025-04-23 23:36:17,460 download_helper 20752 18240 [Parallel] Downloading track: https://www.youtube.com/watch?v=7ouWEQKDpM8
+INFO 2025-04-23 23:36:17,462 download_helper 20752 18240 Downloading from Hugging Face Spaces: https://www.youtube.com/watch?v=7ouWEQKDpM8
+INFO 2025-04-23 23:36:17,515 download_helper 20752 17568 [Parallel] Found existing song for user: https://www.youtube.com/watch?v=LkAvm9-2jGQ
+INFO 2025-04-23 23:36:33,516 download_helper 20752 18240 Successfully downloaded file to C:\Users\Dell\AppData\Local\Temp\tmphynr03dw\download-1745431593.mp3
+INFO 2025-04-23 23:36:33,520 download_helper 20752 18240 Moving downloaded file from C:\Users\Dell\AppData\Local\Temp\tmphynr03dw\download-1745431593.mp3 to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Zach Bryan ft. Kacey Musgraves - I Remember Everything Live Sightread on Bass - Gojima Ghost.mp3
+INFO 2025-04-23 23:36:33,536 download_helper 20752 18240 Embedding metadata into: C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Zach Bryan ft. Kacey Musgraves - I Remember Everything Live Sightread on Bass - Gojima Ghost.mp3
+INFO 2025-04-23 23:36:33,586 utils 20752 18240 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Zach Bryan ft. Kacey Musgraves - I Remember Everything Live Sightread on Bass - Gojima Ghost.mp3
+INFO 2025-04-23 23:36:33,587 utils 20752 18240 Title: Zach Bryan ft.  Kacey Musgraves - I Remember Everything  Live Sightread on Bass, Artist: Gojima Ghost, Album: Unknown Album, Genre: Unknown
+INFO 2025-04-23 23:36:33,607 utils 20752 18240 Loaded existing ID3 tags
+INFO 2025-04-23 23:36:33,608 utils 20752 18240 Trying to get thumbnail directly from YouTube: https://img.youtube.com/vi/7ouWEQKDpM8/maxresdefault.jpg
+INFO 2025-04-23 23:36:33,917 utils 20752 18240 Successfully downloaded YouTube thumbnail: 203118 bytes
+INFO 2025-04-23 23:36:33,984 utils 20752 18240 Successfully processed YouTube thumbnail: 322923 bytes
+INFO 2025-04-23 23:36:33,986 utils 20752 18240 Successfully added YouTube thumbnail to ID3 tags
+INFO 2025-04-23 23:36:34,000 utils 20752 18240 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Zach Bryan ft. Kacey Musgraves - I Remember Everything Live Sightread on Bass - Gojima Ghost.mp3 using ID3v2.3
+INFO 2025-04-23 23:36:34,015 utils 20752 18240 Verification: 10 tags were written, has_cover=True
+INFO 2025-04-23 23:36:34,071 utils 20752 18240 Attempting to set system thumbnail property directly (Windows only)
+INFO 2025-04-23 23:36:34,114 utils 20752 18240 Successfully deleted existing ID3 tags before rebuilding
+INFO 2025-04-23 23:36:34,148 utils 20752 18240 Successfully rebuilt ID3 tags with clean implementation
+INFO 2025-04-23 23:36:34,149 utils 20752 18240 Skipping shell thumbnail method due to known issues
+WARNING 2025-04-23 23:36:34,153 download_helper 20752 18240 Relative path length (102) might exceed database limits: songs\Zach Bryan ft. Kacey Musgraves - I Remember Everything Live Sightread on Bass - Gojima Ghost.mp3
+INFO 2025-04-23 23:36:34,393 download_helper 20752 18240 _save_and_record_song successful. Returning rel_path: songs\Zach Bryan ft. Kacey Musgraves - I Remember Everything Live Sightread on Bass - Gojima Ghost.mp3 for https://www.youtube.com/watch?v=7ouWEQKDpM8
+INFO 2025-04-23 23:36:34,759 download_helper 20752 18240 Added/Updated song cache for: https://www.youtube.com/watch?v=7ouWEQKDpM8
+INFO 2025-04-23 23:36:34,760 download_helper 20752 18240 [Parallel] Successfully processed track: Zach Bryan ft.  Kacey Musgraves - I Remember Everything  Live Sightread on Bass
+INFO 2025-04-23 23:36:35,014 download_helper 20752 17012 Added 4 songs to playlist 103
+INFO 2025-04-23 23:36:35,098 models 20752 17012 [DEBUG] record_download called for user=testuser id=1 date=2025-04-23
+INFO 2025-04-23 23:36:35,235 models 20752 17012 [DEBUG] record_download updated analytics: user=testuser id=1 date=2025-04-23 songs_downloaded=30
+INFO 2025-04-23 23:36:35,236 models 20752 17012 [DEBUG] record_download called for user=testuser id=1 date=2025-04-23
+INFO 2025-04-23 23:36:35,365 models 20752 17012 [DEBUG] record_download updated analytics: user=testuser id=1 date=2025-04-23 songs_downloaded=31
+INFO 2025-04-23 23:36:35,365 models 20752 17012 [DEBUG] record_download called for user=testuser id=1 date=2025-04-23
+INFO 2025-04-23 23:36:35,494 models 20752 17012 [DEBUG] record_download updated analytics: user=testuser id=1 date=2025-04-23 songs_downloaded=32
+INFO 2025-04-23 23:36:35,494 models 20752 17012 [DEBUG] record_download called for user=testuser id=1 date=2025-04-23
+INFO 2025-04-23 23:36:35,624 models 20752 17012 [DEBUG] record_download updated analytics: user=testuser id=1 date=2025-04-23 songs_downloaded=33
+INFO 2025-04-23 23:36:35,626 basehttp 20752 17012 "POST /api/songs/songs/download/ HTTP/1.1" 200 130

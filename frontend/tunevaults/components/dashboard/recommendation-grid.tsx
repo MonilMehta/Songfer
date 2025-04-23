@@ -9,13 +9,13 @@ import { useState, useMemo } from 'react'
 interface Recommendation {
   id: string
   title: string
-  artist: string
-  artists?: string
+  artist: string // Can be a stringified list like "['Artist1', 'Artist2']"
+  artists?: string // Keep for potential fallback, though API seems to use 'artist'
   album?: string
   popularity: number
   spotify_id?: string
-  thumbnail_url?: string
-  image_url?: string
+  thumbnail_url?: string // API now provides this directly
+  image_url?: string // Keep as fallback? Unlikely needed now.
   genre?: string
 }
 
@@ -24,6 +24,33 @@ interface RecommendationGridProps {
   isLoading?: boolean
   onRefresh?: () => void
 }
+
+// Helper function to parse the artist string
+const parseArtistString = (artistStr: string | string[] | undefined): string => {
+  if (!artistStr) return 'Unknown Artist';
+  if (Array.isArray(artistStr)) return artistStr.join(', '); // If it's already an array
+
+  // Check if it looks like a stringified list (e.g., "['Artist1', 'Artist2']")
+  if (typeof artistStr === 'string' && artistStr.startsWith('[') && artistStr.endsWith(']')) {
+    try {
+      // Replace single quotes with double quotes for valid JSON and parse
+      const jsonString = artistStr.replace(/'/g, '"');
+      const artists = JSON.parse(jsonString);
+      if (Array.isArray(artists)) {
+        return artists.join(', ');
+      }
+    } catch (e) {
+      // Fallback: remove brackets and quotes if JSON parsing fails
+      console.warn("Failed to parse artist string as JSON, using fallback:", artistStr, e);
+      const cleanedString = artistStr.replace(/[\[\]']/g, '');
+      // Check if the cleaned string is empty after removing brackets/quotes
+      return cleanedString.trim() || 'Unknown Artist';
+    }
+  }
+  // If it's just a plain string, return it
+  return artistStr;
+};
+
 
 export function RecommendationGrid({ 
   recommendations = [], 
@@ -52,10 +79,12 @@ export function RecommendationGrid({
     return recommendations.map(rec => ({
       id: rec.id || rec.spotify_id || `rec-${Math.random().toString(36).substring(2, 9)}`,
       title: rec.title || 'Unknown Track',
-      artist: rec.artist || rec.artists || 'Unknown Artist',
+      // Use the helper function to parse the artist field
+      artist: parseArtistString(rec.artist),
       album: rec.album || 'Unknown Album',
-      image: rec.thumbnail_url || rec.image_url ,
-      spotify_id: rec.spotify_id, // Make sure to pass the spotify_id
+      // Prioritize thumbnail_url from the API
+      image: rec.thumbnail_url, // Removed fallback to image_url as thumbnail_url is now provided
+      spotify_id: rec.spotify_id,
       genre: rec.genre || 'Unknown Genre',
       popularity: rec.popularity || Math.floor(Math.random() * 100)
     }));
@@ -123,6 +152,7 @@ export function RecommendationGrid({
             ) : (
               <>
                 <Sparkles className="h-4 w-4 mr-2" />
+                {/* Display count from processedRecommendations */}
                 <span>{processedRecommendations.length} tracks based on your taste</span>
               </>
             )}
@@ -130,6 +160,7 @@ export function RecommendationGrid({
         </div>
         
         <div className="flex items-center mt-4 md:mt-0">
+          {/* Use processedRecommendations.length for conditional rendering */}
           {!isLoading && processedRecommendations.length > 5 && (
             <Button 
               variant="ghost" 
@@ -145,6 +176,7 @@ export function RecommendationGrid({
               ) : (
                 <>
                   <ChevronDown className="h-4 w-4 mr-2" />
+                  {/* Display count from processedRecommendations */}
                   Show All ({processedRecommendations.length})
                 </>
               )}
@@ -177,6 +209,7 @@ export function RecommendationGrid({
           // Show actual recommendation cards when loaded
           displayedRecommendations.map((recommendation) => (
             <div key={recommendation.id} className="h-full">
+              {/* Pass the processed recommendation object */}
               <RecommendationCard recommendation={recommendation} />
             </div>
           ))

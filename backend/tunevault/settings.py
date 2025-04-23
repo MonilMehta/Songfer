@@ -259,6 +259,8 @@ CACHES = {
     }
 }
 
+# Cache settings
+SONG_CACHE_EXPIRY_DAYS = 7 # Default expiry for cached songs in days
 
 # Logging
 LOGGING = {

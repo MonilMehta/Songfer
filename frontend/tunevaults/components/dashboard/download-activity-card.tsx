@@ -27,24 +27,27 @@ export function DownloadActivityCard({
   const [totalDownloads, setTotalDownloads] = useState(0)
 
   useEffect(() => {
-    if (downloadActivity.length > 0) {
-      // We have actual API data, use it
-      const downloads = downloadActivity.map(item => item.downloads)
-      const labels = downloadActivity.map(item => item.day_name.substring(0, 3))
-      const total = downloadActivity.reduce((sum, item) => sum + item.downloads, 0)
-      
-      setBarData(downloads)
-      setDayLabels(labels)
-      setTotalDownloads(total)
+    if (!isLoading) {
+      if (downloadActivity.length > 0) {
+        const downloads = downloadActivity.map(item => item.downloads)
+        const labels = downloadActivity.map(item => item.day_name.substring(0, 3))
+        const total = downloadActivity.reduce((sum, item) => sum + item.downloads, 0)
+        
+        setBarData(downloads)
+        setDayLabels(labels)
+        setTotalDownloads(total)
+      } else {
+        setBarData(activityData)
+        setDayLabels(['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'])
+        setTotalDownloads(activityData.reduce((sum, count) => sum + count, 0))
+      }
     } else {
-      // Fallback to the provided activity data
-      setBarData(activityData)
-      setDayLabels(['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'])
-      setTotalDownloads(activityData.reduce((sum, count) => sum + count, 0))
+        setBarData([]);
+        setDayLabels(['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']);
+        setTotalDownloads(0);
     }
-  }, [downloadActivity, activityData])
+  }, [downloadActivity, activityData, isLoading])
   
-  // Get max value for scaling bars (minimum 1 to avoid division by zero)
   const maxActivity = Math.max(...barData, 1) 
 
   return (
@@ -54,17 +57,32 @@ export function DownloadActivityCard({
       </CardHeader>
       <CardContent className="flex-grow flex flex-col justify-between">
         {isLoading ? (
-          <div className="flex flex-col flex-grow justify-center items-center">
-            <div className="flex items-end h-20 gap-1 mb-2 w-full px-4 animate-pulse">
+          <div className="flex flex-col flex-grow justify-between animate-pulse">
+            <div className="flex items-end h-20 gap-1 mb-2 w-full px-1">
               {[...Array(7)].map((_, index) => (
                 <div 
                   key={index} 
-                  className="bg-primary/20 rounded-sm w-full"
-                  style={{ height: `${(Math.random() * 60) + 20}%` }}
+                  className="bg-muted rounded-t-sm w-full"
+                  style={{ height: `${Math.floor(Math.random() * 50) + 20}%` }}
                 />
               ))}
             </div>
-            <span className="text-xs text-muted-foreground">Loading activity...</span>
+            
+            <div className="flex justify-between text-[10px] text-muted-foreground px-1">
+              {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].map((day, index) => (
+                <span key={index} className="text-center flex-1">{day}</span>
+              ))}
+            </div>
+            
+            <div className="mt-4 pt-3 border-t">
+              <div className="flex justify-between items-center">
+                <div className="flex items-center gap-2 text-sm">
+                  <div className="bg-muted h-7 w-7 rounded-full"></div>
+                  <div className="bg-muted h-4 w-16 rounded"></div>
+                </div>
+                <div className="bg-muted h-6 w-12 rounded"></div>
+              </div>
+            </div>
           </div>
         ) : (
           <>
@@ -115,4 +133,4 @@ export function DownloadActivityCard({
       </CardContent>
     </Card>
   )
-} 
+}

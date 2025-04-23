@@ -3,7 +3,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { useTheme } from "next-themes";
 
 const VinylPlayer = () => {
@@ -11,17 +11,54 @@ const VinylPlayer = () => {
     const isDark = theme === "dark";
     const [isPlaying, setIsPlaying] = useState(false);
     const audioRef = useRef(null);
+    const [showRipple, setShowRipple] = useState(false);
   
     const togglePlay = () => {
       setIsPlaying(!isPlaying);
+      setShowRipple(true);
+      setTimeout(() => setShowRipple(false), 700);
     };
+
+    useEffect(() => {
+      if (audioRef.current) {
+        if (isPlaying) {
+          audioRef.current.play().catch(error => {
+            console.error("Audio playback error:", error);
+            setIsPlaying(false);
+          });
+        } else {
+          audioRef.current.pause();
+        }
+      }
+    }, [isPlaying]);
+    
+    // Add automatic ripple effect every 30-40 seconds
+    useEffect(() => {
+      // Generate a random time between 30 and 40 seconds
+      const getRandomTime = () => Math.floor(Math.random() * 10000) + 30000;
+      let timerId;
+      
+      const triggerRipple = () => {
+        setShowRipple(true);
+        setTimeout(() => setShowRipple(false), 700);
+        // Schedule next ripple
+        timerId = setTimeout(triggerRipple, getRandomTime());
+      };
+      
+      // Start the first automatic ripple after a random time
+      timerId = setTimeout(triggerRipple, getRandomTime());
+      
+      // Clean up timer when component unmounts
+      return () => clearTimeout(timerId);
+    }, []);
   
     return (
-      <div className="relative w-12 h-12 cursor-pointer" onClick={togglePlay}>
+      <div className="relative w-12 h-12 cursor-pointer group" onClick={togglePlay}>
         {/* Player base/platter */}
         <div className={cn(
-          "absolute w-full h-full rounded-full shadow-md",
-          isDark ? "bg-gray-800" : "bg-gray-200"
+          "absolute w-full h-full rounded-full shadow-md transition-all duration-300",
+          isDark ? "bg-gray-800" : "bg-gray-200",
+          "group-hover:shadow-lg"
         )} />
         
         {/* Vinyl disc */}
@@ -77,6 +114,19 @@ const VinylPlayer = () => {
           onEnded={() => setIsPlaying(false)}
           style={{ display: "none" }} 
         />
+
+        {/* Ripple effect */}
+        <AnimatePresence>
+          {showRipple && (
+            <motion.div
+              className="absolute inset-0 rounded-full bg-purple-400 dark:bg-purple-600 opacity-30"
+              initial={{ scale: 0.5, opacity: 0.7 }}
+              animate={{ scale: 1.5, opacity: 0 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.7 }}
+            />
+          )}
+        </AnimatePresence>
       </div>
     );
   };

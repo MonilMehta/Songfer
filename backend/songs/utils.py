@@ -1327,3 +1327,31 @@ def get_bulk_artist_info_from_hf(artist_names):
         dict: Dictionary with artist names as keys and their info as values
     """
     return get_bulk_artist_info_from_db(artist_names)
+
+def extract_youtube_video_id(url):
+    """
+    Extracts the YouTube video ID from a URL.
+    Handles various YouTube URL formats.
+    """
+    if not url:
+        return None
+    # Regular expression to find the video ID in various YouTube URL formats
+    # Covers:
+    # - youtube.com/watch?v=VIDEO_ID
+    # - youtu.be/VIDEO_ID
+    # - youtube.com/embed/VIDEO_ID
+    # - youtube.com/v/VIDEO_ID
+    # - youtube.com/shorts/VIDEO_ID
+    # - Handles extra query parameters
+    patterns = [
+        r'(?:https?:\/\/)?(?:www\.)?youtube\.com\/watch\?v=([a-zA-Z0-9_-]{11})',
+        r'(?:https?:\/\/)?(?:www\.)?youtu\.be\/([a-zA-Z0-9_-]{11})',
+        r'(?:https?:\/\/)?(?:www\.)?youtube\.com\/embed\/([a-zA-Z0-9_-]{11})',
+        r'(?:https?:\/\/)?(?:www\.)?youtube\.com\/v\/([a-zA-Z0-9_-]{11})',
+        r'(?:https?:\/\/)?(?:www\.)?youtube\.com\/shorts\/([a-zA-Z0-9_-]{11})'
+    ]
+    for pattern in patterns:
+        match = re.search(pattern, url)
+        if match:
+            return match.group(1)
+    return None
