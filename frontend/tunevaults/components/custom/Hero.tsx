@@ -183,7 +183,7 @@ const Hero: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           className="text-4xl sm:text-5xl md:text-7xl font-bold mb-4 sm:mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/60"
         >
-          Song Porter
+          Songfer
         </motion.h1>
         <motion.p 
           initial={{ opacity: 0, y: 20 }}

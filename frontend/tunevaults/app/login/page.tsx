@@ -129,7 +129,7 @@ export default function Login() {
         <div className="w-8 h-8 mr-4 mb-2">
           <VinylPlayer />
         </div>
-        <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/60">Song Porter</h1>
+        <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/60">Songfer</h1>
       </div>
       
       <Card className="w-full max-w-md">

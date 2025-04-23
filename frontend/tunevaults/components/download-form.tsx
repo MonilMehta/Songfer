@@ -302,7 +302,7 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
         }
       }
 
-      const response = await fetch('http://127.0.0.1:8000//api/songs/songs/download/', {
+      const response = await fetch('https://songporter.onrender.com/api/songs/songs/download/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -357,7 +357,7 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
             const platform = preview.platform
             const zipEndpoint = platform === 'spotify'
               ? getPlaylistDownloadEndpoint(playlistId)
-              : `http://127.0.0.1:8000//api/songs/playlists/${playlistId}/download-all/`
+              : `https://songporter.onrender.com/api/songs/playlists/${playlistId}/download-all/`
             
             console.log(`Fetching playlist ZIP from: ${zipEndpoint}`)
             
@@ -556,7 +556,7 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
     try {
       console.log(`Initiating ${platform} playlist download...`);
       // Step 1: Initiate the playlist download process via the standard endpoint
-      const playlistInitResponse = await fetch('http://127.0.0.1:8000//api/songs/songs/download/', {
+      const playlistInitResponse = await fetch('https://songporter.onrender.com/api/songs/songs/download/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -621,7 +621,7 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
             });
             
             // Build YouTube playlist ZIP endpoint using the internal ID
-            const zipEndpoint = `http://127.0.0.1:8000//api/songs/playlists/${internalPlaylistId}/download-all/`;
+            const zipEndpoint = `https://songporter.onrender.com/api/songs/playlists/${internalPlaylistId}/download-all/`;
             console.log(`Fetching YouTube ZIP from: ${zipEndpoint}`);
             
             try {
@@ -771,7 +771,7 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
       // Convert playlistId to string to avoid type issues
       const zipEndpoint = platform === 'spotify'
         ? getPlaylistDownloadEndpoint(playlistId) // getPlaylistDownloadEndpoint accepts string | number
-        : `http://127.0.0.1:8000//api/songs/playlists/${String(playlistId)}/download-all/`; // Ensure string for URL
+        : `https://songporter.onrender.com/api/songs/playlists/${String(playlistId)}/download-all/`; // Ensure string for URL
 
       console.log(`Fetching ZIP file from: ${zipEndpoint}`);
       const zipResponse = await fetch(zipEndpoint, {

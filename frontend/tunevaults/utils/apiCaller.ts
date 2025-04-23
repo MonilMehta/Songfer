@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const apiBaseUrl = 'http://127.0.0.1:8000//api/';
+const apiBaseUrl = 'https://songporter.onrender.com/api/';
 
 interface ApiCallerOptions {
   responseType?: 'json' | 'blob' | 'arraybuffer';

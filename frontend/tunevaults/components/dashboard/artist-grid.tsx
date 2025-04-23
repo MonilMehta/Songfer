@@ -2,7 +2,7 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
-import { Headphones, PlusCircle, ChevronDown, ChevronUp } from 'lucide-react'
+import { Headphones, PlusCircle, ChevronDown, ChevronUp, Sparkles } from 'lucide-react'
 import { ArtistCard } from './artist-card'
 import { useEffect, useState, useMemo } from 'react'
 
@@ -35,6 +35,17 @@ interface ArtistGridProps {
 
 export function ArtistGrid({ artists, isLoading = false }: ArtistGridProps) {
   const [showAll, setShowAll] = useState(false);
+  
+  // Funky loading messages for rotation
+  const loadingMessages = [
+    "Discovering your music taste...",
+    "Finding your rhythm heroes...",
+    "Tuning into your vibe...",
+    "Calculating your sonic preferences...",
+    "Analyzing your musical DNA..."
+  ];
+
+  const randomLoadingMessage = loadingMessages[Math.floor(Math.random() * loadingMessages.length)];
 
   // Helper function to get artist image (can remain outside useMemo)
   const getArtistImage = (artistName: string) => {
@@ -69,17 +80,23 @@ export function ArtistGrid({ artists, isLoading = false }: ArtistGridProps) {
   // Determine which artists to display based on showAll state
   const displayArtists = showAll ? processedArtists : processedArtists.slice(0, 4);
 
-  if (isLoading) {
-    return (
-      <div className="flex items-center justify-center h-40">
-        <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-primary"></div>
+  // Skeleton loader component for artist card
+  const ArtistCardSkeleton = () => (
+    <div className="relative overflow-hidden rounded-xl border border-border/30 bg-card/50 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:shadow-primary/5">
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-30"></div>
+      <div className="animate-pulse">
+        <div className="aspect-square w-full bg-muted/40 rounded-t-lg"></div>
+        <div className="p-4">
+          <div className="h-5 bg-muted/60 rounded-md w-2/3 mb-2"></div>
+          <div className="h-4 bg-muted/40 rounded-md w-1/3"></div>
+          <div className="flex justify-between items-center mt-3">
+            <div className="h-8 bg-muted/50 rounded-full w-16"></div>
+            <div className="h-8 bg-muted/30 rounded-full w-8"></div>
+          </div>
+        </div>
       </div>
-    );
-  }
-
-  if (!processedArtists.length) {
-    return null;
-  }
+    </div>
+  );
 
   return (
     <div className="py-8 relative">
@@ -96,8 +113,20 @@ export function ArtistGrid({ artists, isLoading = false }: ArtistGridProps) {
             <span className="inline-block transform -rotate-1">ARTISTS</span>
           </h2>
           <div className="flex items-center mt-2 text-muted-foreground">
-            <Headphones className="h-4 w-4 mr-2" />
-            <span>{processedArtists.length} artists on rotation</span>
+            {isLoading ? (
+              <>
+                <Sparkles className="h-4 w-4 mr-2 animate-pulse text-primary" />
+                <span className="inline-flex items-center">
+                  {randomLoadingMessage}
+                  <span className="ml-1 animate-pulse">•••</span>
+                </span>
+              </>
+            ) : (
+              <>
+                <Headphones className="h-4 w-4 mr-2" />
+                <span>{processedArtists.length} artists on rotation</span>
+              </>
+            )}
           </div>
         </div>
         
@@ -105,13 +134,14 @@ export function ArtistGrid({ artists, isLoading = false }: ArtistGridProps) {
           variant="outline" 
           size="sm"
           className="group mt-4 md:mt-0 rounded-full border-dashed border-primary/30"
+          disabled={isLoading}
         >
           <PlusCircle className="h-4 w-4 mr-2 group-hover:text-primary" />
           <span>EXPLORE ARTISTS</span>
         </Button>
 
         {/* Conditionally render the "Show All" / "Show Less" button if more than 4 artists */} 
-        {processedArtists.length > 4 && (
+        {!isLoading && processedArtists.length > 4 && (
           <Button 
             variant="ghost" 
             size="sm"
@@ -133,13 +163,23 @@ export function ArtistGrid({ artists, isLoading = false }: ArtistGridProps) {
         )}
       </div>
       
-      {/* Artist Grid - uses displayArtists now */}
+      {/* Artist Grid - with loading state or actual content */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {displayArtists.map((artist, idx) => (
-          <div key={idx} className="h-full">
-            <ArtistCard artist={artist} />
-          </div>
-        ))}
+        {isLoading ? (
+          // Show skeleton loaders while loading
+          Array(4).fill(0).map((_, idx) => (
+            <div key={idx} className="h-full">
+              <ArtistCardSkeleton />
+            </div>
+          ))
+        ) : (
+          // Show actual artist cards when loaded
+          displayArtists.map((artist, idx) => (
+            <div key={idx} className="h-full">
+              <ArtistCard artist={artist} />
+            </div>
+          ))
+        )}
       </div>
     </div>
   );

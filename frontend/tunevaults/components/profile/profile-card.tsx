@@ -99,7 +99,7 @@ export function ProfileCard({ profile, onLogout, genres = [] }: ProfileCardProps
           {/* Replace logo with VinylPlayer */}
           <Link href="/dashboard" className="flex items-center space-x-2 group">
             <VinylPlayer />
-            <span className="font-bold text-xl tracking-tight ml-2">Song Porter</span>
+            <span className="font-bold text-xl tracking-tight ml-2">Songfer</span>
           </Link>
 
           <div className="flex items-center space-x-2 sm:space-x-4">

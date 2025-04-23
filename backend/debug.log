@@ -3298,3 +3298,160 @@ INFO 2025-04-23 18:10:40,799 views 21120 26308 Getting recommendations for user:
 INFO 2025-04-23 18:10:40,860 recommendation 21120 26308 Using fresh cached recommendations for user 1 from 2025-04-23 12:39:57.182156+00:00
 INFO 2025-04-23 18:10:40,860 views 21120 26308 Got 10 recommendations
 INFO 2025-04-23 18:10:40,983 basehttp 21120 26308 "GET /api/songs/recommendations/ HTTP/1.1" 200 2904
+INFO 2025-04-23 18:12:24,885 basehttp 21120 7052 "GET /admin/songs/usermusicprofile/ HTTP/1.1" 200 16834
+INFO 2025-04-23 18:12:29,035 basehttp 21120 7052 "GET /admin/django_celery_results/groupresult/ HTTP/1.1" 200 16417
+INFO 2025-04-23 18:12:29,735 basehttp 21120 7052 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-04-23 18:12:29,745 basehttp 21120 7052 "GET /static/admin/img/search.svg HTTP/1.1" 200 458
+INFO 2025-04-23 18:12:32,012 basehttp 21120 7052 "GET /admin/django_celery_results/taskresult/ HTTP/1.1" 200 17592
+INFO 2025-04-23 18:12:32,659 basehttp 21120 7052 "GET /admin/jsi18n/ HTTP/1.1" 200 3342
+INFO 2025-04-23 18:13:20,405 autoreload 21120 16624 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\recommendation.py changed, reloading.
+INFO 2025-04-23 18:13:23,527 autoreload 17748 24796 Watching for file changes with StatReloader
+INFO 2025-04-23 18:15:13,291 basehttp 17748 14588 "POST /api/users/login/ HTTP/1.1" 200 95
+INFO 2025-04-23 18:27:07,938 basehttp 17748 13680 "OPTIONS //api/songs/user/profile HTTP/1.1" 200 0
+INFO 2025-04-23 18:27:08,007 basehttp 17748 13680 "GET //api/songs/user/profile HTTP/1.1" 301 0
+INFO 2025-04-23 18:27:08,040 basehttp 17748 5108 "OPTIONS /api/songs/user/profile/ HTTP/1.1" 200 0
+INFO 2025-04-23 18:27:13,025 basehttp 17748 5108 "GET /api/songs/user/profile/ HTTP/1.1" 200 6273
+INFO 2025-04-23 18:27:14,498 basehttp 17748 5108 "GET //api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-23 18:27:15,068 basehttp 17748 5108 "GET //api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-23 18:27:15,228 views 17748 23284 User has 26 songs
+INFO 2025-04-23 18:27:15,291 views 17748 23284 User has 18 songs with Spotify IDs
+INFO 2025-04-23 18:27:15,434 views 17748 23284 Sample user songs: [{'spotify_id': '5Q6fh8OEhBYepJaORz9lxe', 'title': 'Daddy Issues Remix feat. Syd', 'artist': 'The Neighbourhood'}, {'spotify_id': '2LtCEKs68u3RpNh4wybCF8', 'title': 'Hotel', 'artist': 'Montell Fish'}, {'spotify_id': '7zwn1eykZtZ5LODrf7c0tS', 'title': 'You Get Me So High', 'artist': 'The Neighbourhood'}, {'spotify_id': '04aAxqtGp5pv12UXAg4pkq', 'title': 'Centuries', 'artist': 'Fall Out Boy'}, {'spotify_id': '2DgdHcjWmO3qd50RzuBLgZ', 'title': 'House of Memories', 'artist': 'Panic At The Disco'}]
+INFO 2025-04-23 18:27:15,434 views 17748 23284 Getting recommendations for user: 1 with limit: 10
+INFO 2025-04-23 18:27:15,498 recommendation 17748 23284 Using fresh cached recommendations for user 1 from 2025-04-23 12:39:57.182156+00:00
+INFO 2025-04-23 18:27:15,498 views 17748 23284 Got 10 recommendations
+INFO 2025-04-23 18:27:15,625 basehttp 17748 23284 "GET //api/songs/recommendations/ HTTP/1.1" 200 2904
+INFO 2025-04-23 18:27:16,273 views 17748 5108 User has 26 songs
+ERROR 2025-04-23 18:27:16,273 utils 17748 23284 Error fetching bulk artist info from local database: 'sqlite3.Row' object has no attribute 'get'
+INFO 2025-04-23 18:27:16,337 views 17748 5108 User has 18 songs with Spotify IDs
+INFO 2025-04-23 18:27:16,463 views 17748 5108 Sample user songs: [{'spotify_id': '5Q6fh8OEhBYepJaORz9lxe', 'title': 'Daddy Issues Remix feat. Syd', 'artist': 'The Neighbourhood'}, {'spotify_id': '2LtCEKs68u3RpNh4wybCF8', 'title': 'Hotel', 'artist': 'Montell Fish'}, {'spotify_id': '7zwn1eykZtZ5LODrf7c0tS', 'title': 'You Get Me So High', 'artist': 'The Neighbourhood'}, {'spotify_id': '04aAxqtGp5pv12UXAg4pkq', 'title': 'Centuries', 'artist': 'Fall Out Boy'}, {'spotify_id': '2DgdHcjWmO3qd50RzuBLgZ', 'title': 'House of Memories', 'artist': 'Panic At The Disco'}]
+INFO 2025-04-23 18:27:16,489 views 17748 5108 Getting recommendations for user: 1 with limit: 10
+INFO 2025-04-23 18:27:16,558 recommendation 17748 5108 Using fresh cached recommendations for user 1 from 2025-04-23 12:39:57.182156+00:00
+INFO 2025-04-23 18:27:16,558 views 17748 5108 Got 10 recommendations
+INFO 2025-04-23 18:27:16,702 basehttp 17748 5108 "GET //api/songs/recommendations/ HTTP/1.1" 200 2904
+ERROR 2025-04-23 18:27:16,795 utils 17748 23284 Error fetching artist info from local database: 'sqlite3.Row' object has no attribute 'get'
+INFO 2025-04-23 18:27:17,454 utils 17748 23284 Found exact match for artist 'Twenty One Pilots': Twenty One Pilots
+ERROR 2025-04-23 18:27:17,464 utils 17748 23284 Error fetching artist info from local database: 'sqlite3.Row' object has no attribute 'get'
+INFO 2025-04-23 18:27:18,054 utils 17748 23284 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+ERROR 2025-04-23 18:27:18,066 utils 17748 23284 Error fetching artist info from local database: 'sqlite3.Row' object has no attribute 'get'
+INFO 2025-04-23 18:27:18,702 utils 17748 23284 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+WARNING 2025-04-23 18:27:18,781 utils 17748 23284 Artist 'Panic At The Disco' not found in local database
+INFO 2025-04-23 18:27:19,393 utils 17748 23284 Found partial match for artist 'Panic At The Disco': The Killers
+WARNING 2025-04-23 18:27:19,440 utils 17748 23284 Artist 'Beach Weather' not found in local database
+INFO 2025-04-23 18:27:20,183 utils 17748 23284 Found partial match for artist 'Beach Weather': The Beach Boys
+INFO 2025-04-23 18:27:20,183 basehttp 17748 23284 "GET //api/songs/user/top-artists/ HTTP/1.1" 200 1069
+INFO 2025-04-23 18:27:20,783 basehttp 17748 23284 "GET //api/users/download-activity/?period=week HTTP/1.1" 200 562
+ERROR 2025-04-23 18:27:20,830 utils 17748 5108 Error fetching bulk artist info from local database: 'sqlite3.Row' object has no attribute 'get'
+ERROR 2025-04-23 18:27:20,830 utils 17748 5108 Error fetching artist info from local database: 'sqlite3.Row' object has no attribute 'get'
+INFO 2025-04-23 18:27:21,679 utils 17748 5108 Found exact match for artist 'Twenty One Pilots': Twenty One Pilots
+ERROR 2025-04-23 18:27:21,711 utils 17748 5108 Error fetching artist info from local database: 'sqlite3.Row' object has no attribute 'get'
+INFO 2025-04-23 18:27:23,159 utils 17748 5108 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+ERROR 2025-04-23 18:27:23,175 utils 17748 5108 Error fetching artist info from local database: 'sqlite3.Row' object has no attribute 'get'
+INFO 2025-04-23 18:27:23,342 utils 17748 23284 Found partial match for artist 'Auguste Marshal': King Wasiu Ayinde Marshal I
+INFO 2025-04-23 18:27:24,800 utils 17748 23284 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-23 18:27:24,879 utils 17748 5108 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+WARNING 2025-04-23 18:27:24,942 utils 17748 5108 Artist 'Panic At The Disco' not found in local database
+INFO 2025-04-23 18:27:25,980 utils 17748 5108 Found partial match for artist 'Panic At The Disco': The Killers
+WARNING 2025-04-23 18:27:26,016 utils 17748 5108 Artist 'Beach Weather' not found in local database
+INFO 2025-04-23 18:27:26,046 utils 17748 23284 Found exact match for artist 'Montell Fish': Montell Fish
+INFO 2025-04-23 18:27:27,244 utils 17748 5108 Found partial match for artist 'Beach Weather': The Beach Boys
+INFO 2025-04-23 18:27:27,253 basehttp 17748 5108 "GET //api/songs/user/top-artists/ HTTP/1.1" 200 1069
+INFO 2025-04-23 18:27:27,308 utils 17748 23284 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-23 18:27:27,891 basehttp 17748 5108 "GET //api/users/download-activity/?period=week HTTP/1.1" 200 562
+INFO 2025-04-23 18:27:27,970 utils 17748 23284 Found exact match for artist 'Fall Out Boy': Fall Out Boy
+INFO 2025-04-23 18:27:28,678 utils 17748 23284 Found partial match for artist 'Panic At The Disco': The Killers
+INFO 2025-04-23 18:27:29,262 utils 17748 23284 Found partial match for artist 'Panic At The Disco': The Killers
+INFO 2025-04-23 18:27:29,983 utils 17748 23284 Found exact match for artist 'Twenty One Pilots': Twenty One Pilots
+INFO 2025-04-23 18:27:30,717 utils 17748 23284 Found exact match for artist 'Twenty One Pilots': Twenty One Pilots
+INFO 2025-04-23 18:27:31,687 utils 17748 23284 Found exact match for artist 'Twenty One Pilots': Twenty One Pilots
+INFO 2025-04-23 18:27:32,688 utils 17748 5108 Found partial match for artist 'Auguste Marshal': King Wasiu Ayinde Marshal I
+INFO 2025-04-23 18:27:33,091 utils 17748 23284 Found exact match for artist 'Twenty One Pilots': Twenty One Pilots
+INFO 2025-04-23 18:27:34,142 utils 17748 5108 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-23 18:27:34,435 utils 17748 23284 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-23 18:27:35,412 utils 17748 5108 Found exact match for artist 'Montell Fish': Montell Fish
+INFO 2025-04-23 18:27:35,669 utils 17748 23284 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-23 18:27:36,610 utils 17748 5108 Found exact match for artist 'The Neighbourhood': The Neighbourhood
+INFO 2025-04-23 18:27:36,755 utils 17748 23284 Found exact match for artist 'Old Man Canyon': Old Man Canyon
+INFO 2025-04-23 18:27:38,024 utils 17748 23284 Found exact match for artist '21 Savage': 21 Savage
+INFO 2025-04-23 18:27:38,094 utils 17748 5108 Found exact match for artist 'Fall Out Boy': Fall Out Boy
+INFO 2025-04-23 18:27:39,388 utils 17748 5108 Found partial match for artist 'Panic At The Disco': The Killers
+INFO 2025-04-23 18:27:39,503 utils 17748 23284 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-23 18:27:40,476 utils 17748 5108 Found partial match for artist 'Panic At The Disco': The Killers
+INFO 2025-04-23 18:27:40,684 utils 17748 23284 Found exact match for artist 'Justin Timberlake': Justin Timberlake
+INFO 2025-04-23 18:27:41,792 utils 17748 5108 Found exact match for artist 'Twenty One Pilots': Twenty One Pilots
+INFO 2025-04-23 18:27:41,794 utils 17748 23284 Found exact match for artist 'Drake': Drake
+INFO 2025-04-23 18:27:43,191 utils 17748 5108 Found exact match for artist 'Twenty One Pilots': Twenty One Pilots
+INFO 2025-04-23 18:27:43,200 utils 17748 23284 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-23 18:27:43,571 basehttp 17748 8204 "OPTIONS //api/users/google-auth/ HTTP/1.1" 200 0
+INFO 2025-04-23 18:27:44,270 basehttp 17748 8204 "POST //api/users/google-auth/ HTTP/1.1" 200 93
+INFO 2025-04-23 18:27:44,598 utils 17748 23284 Found exact match for artist 'Dylan Gossett': Dylan Gossett
+INFO 2025-04-23 18:27:44,634 utils 17748 5108 Found exact match for artist 'Twenty One Pilots': Twenty One Pilots
+INFO 2025-04-23 18:27:45,199 basehttp 17748 8204 "GET //api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-23 18:27:45,835 views 17748 12344 User has 0 songs
+INFO 2025-04-23 18:27:45,870 basehttp 17748 8204 "GET //api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-23 18:27:45,924 utils 17748 23284 Found partial match for artist 'VG CREATION': The Creation
+INFO 2025-04-23 18:27:45,927 views 17748 12344 User has 0 songs with Spotify IDs
+INFO 2025-04-23 18:27:46,004 views 17748 12344 Getting recommendations for user: 5 with limit: 10
+INFO 2025-04-23 18:27:46,020 utils 17748 5108 Found exact match for artist 'Twenty One Pilots': Twenty One Pilots
+WARNING 2025-04-23 18:27:46,132 recommendation 17748 12344 User 5 has no songs - using popular songs
+INFO 2025-04-23 18:27:46,136 views 17748 12344 Got 5 recommendations
+INFO 2025-04-23 18:27:46,286 basehttp 17748 12344 "GET //api/songs/recommendations/ HTTP/1.1" 200 2131
+INFO 2025-04-23 18:27:46,987 views 17748 12344 User has 0 songs
+INFO 2025-04-23 18:27:47,021 basehttp 17748 8204 "GET //api/songs/user/top-artists/ HTTP/1.1" 200 2
+INFO 2025-04-23 18:27:47,076 views 17748 12344 User has 0 songs with Spotify IDs
+INFO 2025-04-23 18:27:47,162 views 17748 12344 Getting recommendations for user: 5 with limit: 10
+WARNING 2025-04-23 18:27:47,301 recommendation 17748 12344 User 5 has no songs - using popular songs
+INFO 2025-04-23 18:27:47,301 utils 17748 23284 Found exact match for artist 'Eagles': Eagles
+INFO 2025-04-23 18:27:47,302 views 17748 12344 Got 5 recommendations
+INFO 2025-04-23 18:27:47,453 basehttp 17748 12344 "GET //api/songs/recommendations/ HTTP/1.1" 200 2131
+INFO 2025-04-23 18:27:47,541 utils 17748 5108 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-23 18:27:47,853 basehttp 17748 8204 "GET //api/users/download-activity/?period=week HTTP/1.1" 200 559
+INFO 2025-04-23 18:27:47,876 basehttp 17748 8204 "OPTIONS //api/songs/user/favorite-genres/ HTTP/1.1" 200 0
+INFO 2025-04-23 18:27:48,225 basehttp 17748 12344 "GET //api/songs/user/top-artists/ HTTP/1.1" 200 2
+INFO 2025-04-23 18:27:48,623 basehttp 17748 8204 "GET //api/songs/user/favorite-genres/ HTTP/1.1" 200 40
+INFO 2025-04-23 18:27:48,637 basehttp 17748 8204 "OPTIONS //api/songs/user/top-countries/ HTTP/1.1" 200 0
+INFO 2025-04-23 18:27:48,919 basehttp 17748 12344 "GET //api/users/download-activity/?period=week HTTP/1.1" 200 559
+INFO 2025-04-23 18:27:48,933 utils 17748 5108 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-23 18:27:48,952 utils 17748 23284 Found exact match for artist 'Future': Future
+INFO 2025-04-23 18:27:49,317 basehttp 17748 8204 "GET //api/songs/user/top-countries/ HTTP/1.1" 200 42
+INFO 2025-04-23 18:27:49,702 basehttp 17748 12344 "GET //api/songs/user/favorite-genres/ HTTP/1.1" 200 40
+INFO 2025-04-23 18:27:50,204 utils 17748 23284 Found exact match for artist 'Wiz Khalifa': Wiz Khalifa
+INFO 2025-04-23 18:27:50,206 utils 17748 5108 Found exact match for artist 'Old Man Canyon': Old Man Canyon
+INFO 2025-04-23 18:27:50,469 basehttp 17748 12344 "GET //api/songs/user/top-countries/ HTTP/1.1" 200 42
+INFO 2025-04-23 18:27:51,538 utils 17748 5108 Found exact match for artist '21 Savage': 21 Savage
+INFO 2025-04-23 18:27:51,554 utils 17748 23284 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-23 18:27:52,769 utils 17748 23284 Found partial match for artist 'Beach Weather': The Beach Boys
+INFO 2025-04-23 18:27:52,791 basehttp 17748 23284 - Broken pipe from ('127.0.0.1', 65533)
+INFO 2025-04-23 18:27:52,930 utils 17748 5108 Found exact match for artist 'The Weeknd': The Weeknd
+INFO 2025-04-23 18:27:53,637 utils 17748 5108 Found exact match for artist 'Justin Timberlake': Justin Timberlake
+INFO 2025-04-23 18:27:54,274 utils 17748 5108 Found exact match for artist 'Drake': Drake
+INFO 2025-04-23 18:27:55,068 utils 17748 5108 Found exact match for artist 'Kendrick Lamar': Kendrick Lamar
+INFO 2025-04-23 18:27:55,768 utils 17748 5108 Found exact match for artist 'Dylan Gossett': Dylan Gossett
+INFO 2025-04-23 18:27:56,317 utils 17748 5108 Found partial match for artist 'VG CREATION': The Creation
+INFO 2025-04-23 18:27:57,032 utils 17748 5108 Found exact match for artist 'Eagles': Eagles
+INFO 2025-04-23 18:27:57,721 utils 17748 5108 Found exact match for artist 'Future': Future
+INFO 2025-04-23 18:27:58,392 utils 17748 5108 Found exact match for artist 'Wiz Khalifa': Wiz Khalifa
+INFO 2025-04-23 18:27:59,012 utils 17748 5108 Found exact match for artist 'Chase Atlantic': Chase Atlantic
+INFO 2025-04-23 18:27:59,684 utils 17748 5108 Found partial match for artist 'Beach Weather': The Beach Boys
+INFO 2025-04-23 18:27:59,686 basehttp 17748 5108 - Broken pipe from ('127.0.0.1', 65516)
+INFO 2025-04-23 18:28:14,913 basehttp 17748 12344 "GET //api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-23 18:28:15,521 views 17748 12344 User has 0 songs
+INFO 2025-04-23 18:28:15,586 views 17748 12344 User has 0 songs with Spotify IDs
+INFO 2025-04-23 18:28:15,644 views 17748 12344 Getting recommendations for user: 5 with limit: 10
+WARNING 2025-04-23 18:28:15,770 recommendation 17748 12344 User 5 has no songs - using popular songs
+INFO 2025-04-23 18:28:15,770 views 17748 12344 Got 5 recommendations
+INFO 2025-04-23 18:28:15,892 basehttp 17748 12344 "GET //api/songs/recommendations/ HTTP/1.1" 200 2131
+INFO 2025-04-23 18:28:16,517 basehttp 17748 12344 "GET //api/songs/user/top-artists/ HTTP/1.1" 200 2
+INFO 2025-04-23 18:28:17,141 basehttp 17748 12344 "GET //api/users/download-activity/?period=week HTTP/1.1" 200 559
+INFO 2025-04-23 18:28:17,799 basehttp 17748 12344 "GET //api/songs/user/favorite-genres/ HTTP/1.1" 200 40
+INFO 2025-04-23 18:28:18,430 basehttp 17748 12344 "GET //api/songs/user/top-countries/ HTTP/1.1" 200 42
+INFO 2025-04-23 18:28:20,173 basehttp 17748 12344 "GET //api/songs/ HTTP/1.1" 200 107
+INFO 2025-04-23 18:28:20,886 views 17748 12344 User has 0 songs
+INFO 2025-04-23 18:28:20,955 views 17748 12344 User has 0 songs with Spotify IDs
+INFO 2025-04-23 18:28:21,020 views 17748 12344 Getting recommendations for user: 5 with limit: 10
+WARNING 2025-04-23 18:28:21,148 recommendation 17748 12344 User 5 has no songs - using popular songs
+INFO 2025-04-23 18:28:21,148 views 17748 12344 Got 5 recommendations
+INFO 2025-04-23 18:28:21,285 basehttp 17748 12344 "GET //api/songs/recommendations/ HTTP/1.1" 200 2131
+INFO 2025-04-23 18:28:21,911 basehttp 17748 12344 "GET //api/songs/user/top-artists/ HTTP/1.1" 200 2
+INFO 2025-04-23 18:28:22,493 basehttp 17748 12344 "GET //api/users/download-activity/?period=week HTTP/1.1" 200 559
+INFO 2025-04-23 18:28:23,132 basehttp 17748 12344 "GET //api/songs/user/favorite-genres/ HTTP/1.1" 200 40
+INFO 2025-04-23 18:28:23,710 basehttp 17748 12344 "GET //api/songs/user/top-countries/ HTTP/1.1" 200 42

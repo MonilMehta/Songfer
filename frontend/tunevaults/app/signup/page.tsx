@@ -190,14 +190,14 @@ export default function SignUp() {
         <div className="w-8 h-8 mr-4 mb-2">
           <VinylPlayer />
         </div>
-        <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/60">Song Porter</h1>
+        <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/60">Songfer</h1>
       </div>
       
       <Card className="w-full max-w-md">
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl text-center">Create an account</CardTitle>
           <CardDescription className="text-center">
-            Sign up to get started with Song Porter
+            Sign up to get started with Songfer
           </CardDescription>
         </CardHeader>
         <CardContent>

@@ -10,23 +10,22 @@ import { usePlayer } from '@/context/PlayerContext'
 import { useToast } from "@/hooks/use-toast"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
 
-
-interface RecommendationCardProps {
-  song: {
-    id: string
-    title: string
-    artist: string | string[]
-    artists?: string
-    album?: string
-    popularity: number
-    spotify_id?: string
-    thumbnail_url?: string | null
-    image_url?: string | null
-    genre?: string
-  }
+interface RecommendationProps {
+  id: string
+  title: string
+  artist: string
+  album?: string
+  image?: string
+  genre?: string
+  popularity: number
+  spotify_id?: string
 }
 
-export function RecommendationCard({ song }: RecommendationCardProps) {
+interface RecommendationCardProps {
+  recommendation: RecommendationProps
+}
+
+export function RecommendationCard({ recommendation }: RecommendationCardProps) {
   const { theme } = useTheme()
   const { toast } = useToast()
   const { currentSong, isPlaying, togglePlay } = usePlayer()
@@ -35,59 +34,57 @@ export function RecommendationCard({ song }: RecommendationCardProps) {
   const [isDownloading, setIsDownloading] = useState(false)
   
   // Check if this card is the one that's currently playing
-  const isThisPlaying = isPlaying && currentSong?.id === song.id
+  const isThisPlaying = isPlaying && currentSong?.id === recommendation.id
   
   // Get card background gradient based on popularity
   const getCardBackground = () => {
-    if (song.popularity > 90) return 'bg-gradient-to-br from-blue-500/10 via-indigo-500/5 to-blue-500/10 dark:from-blue-900/20 dark:via-indigo-800/15 dark:to-blue-800/20';
-    if (song.popularity > 80) return 'bg-gradient-to-br from-cyan-500/10 via-sky-500/5 to-blue-500/10 dark:from-cyan-900/20 dark:via-sky-800/15 dark:to-blue-800/20';
-    if (song.popularity > 70) return 'bg-gradient-to-br from-yellow-500/10 via-amber-500/5 to-orange-500/10 dark:from-yellow-900/20 dark:via-amber-800/15 dark:to-orange-800/20';
+    if (recommendation.popularity > 90) return 'bg-gradient-to-br from-blue-500/10 via-indigo-500/5 to-blue-500/10 dark:from-blue-900/20 dark:via-indigo-800/15 dark:to-blue-800/20';
+    if (recommendation.popularity > 80) return 'bg-gradient-to-br from-cyan-500/10 via-sky-500/5 to-blue-500/10 dark:from-cyan-900/20 dark:via-sky-800/15 dark:to-blue-800/20';
+    if (recommendation.popularity > 70) return 'bg-gradient-to-br from-yellow-500/10 via-amber-500/5 to-orange-500/10 dark:from-yellow-900/20 dark:via-amber-800/15 dark:to-orange-800/20';
     return 'bg-gradient-to-br from-emerald-500/10 via-teal-500/5 to-cyan-500/10 dark:from-emerald-900/20 dark:via-teal-800/15 dark:to-cyan-800/20';
   };
   
   // Get popularity level class
   const getPopularityClass = () => {
-    if (song.popularity > 90) return 'bg-blue-500';
-    if (song.popularity > 80) return 'bg-cyan-500';
-    if (song.popularity > 70) return 'bg-amber-500';
+    if (recommendation.popularity > 90) return 'bg-blue-500';
+    if (recommendation.popularity > 80) return 'bg-cyan-500';
+    if (recommendation.popularity > 70) return 'bg-amber-500';
     return 'bg-teal-500';
   };
 
   // Format artist name for display
   const formatArtistName = () => {
-    if (typeof song.artist === 'string') {
-      return song.artist.replace(/^\['|'\]$|"|'/g, '').replace(/','|", "/g, ', ');
-    } else if (Array.isArray(song.artist)) {
-      return song.artist.join(', ');
+    if (typeof recommendation.artist === 'string') {
+      return recommendation.artist.replace(/^\['|'\]$|"|'/g, '').replace(/','|", "/g, ', ');
     }
     return '';
   };
   
   // Get Spotify preview URL
   const getSpotifyPreviewUrl = () => {
-    return `https://open.spotify.com/track/${song.spotify_id}`;
+    return `https://open.spotify.com/track/${recommendation.spotify_id}`;
   };
 
   // Handle play/pause toggle
   const handlePlayToggle = () => {
-    togglePlay(song);
+    togglePlay(recommendation);
   };
   
   // Handle download
   const handleDownload = async () => {
-    if (!song.spotify_id) return;
+    if (!recommendation.spotify_id) return;
     
     setIsDownloading(true);
     const { dismiss } = toast({
       title: "Starting download...",
-      description: `Preparing to download ${song.title}.`,
+      description: `Preparing to download ${recommendation.title}.`,
     });
     
     try {
       const spotifyUrl = getSpotifyPreviewUrl(); // Get the spotify URL
       
       // Update fetch call for the new API endpoint and method
-      const response = await fetch(`http://127.0.0.1:8000//api/songs/songs/download/`, { 
+      const response = await fetch(`https://songporter.onrender.com/api/songs/songs/download/`, { 
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -116,7 +113,7 @@ export function RecommendationCard({ song }: RecommendationCardProps) {
       const a = document.createElement('a');
       a.style.display = 'none';
       a.href = url;
-      a.download = `${song.title} - ${formatArtistName()}.mp3`;
+      a.download = `${recommendation.title} - ${formatArtistName()}.mp3`;
       document.body.appendChild(a);
       a.click();
       window.URL.revokeObjectURL(url);
@@ -126,7 +123,7 @@ export function RecommendationCard({ song }: RecommendationCardProps) {
       dismiss();
       toast({
         title: "Download Complete!",
-        description: `${song.title} has been downloaded.`,
+        description: `${recommendation.title} has been downloaded.`,
       });
 
     } catch (error: unknown) {
@@ -145,7 +142,7 @@ export function RecommendationCard({ song }: RecommendationCardProps) {
   
   // Open in Spotify
   const openInSpotify = () => {
-    if (!song.spotify_id) return;
+    if (!recommendation.spotify_id) return;
     window.open(getSpotifyPreviewUrl(), '_blank');
   };
   
@@ -153,14 +150,22 @@ export function RecommendationCard({ song }: RecommendationCardProps) {
   useEffect(() => {
     const fetchAlbumArt = async () => {
       setIsLoading(true);
+      
+      // If there's already an image URL provided, use it
+      if (recommendation.image) {
+        setThumbnailUrl(recommendation.image);
+        setIsLoading(false);
+        return;
+      }
+      
       setThumbnailUrl(null); // Reset thumbnail on new song
       
       try {
         // First try to get the artwork from Spotify
-        if (song.spotify_id) {
+        if (recommendation.spotify_id) {
           try {
             // Try direct URL format first (doesn't require auth)
-            const spotifyImageUrl = `https://i.scdn.co/image/${song.spotify_id}`;
+            const spotifyImageUrl = `https://i.scdn.co/image/${recommendation.spotify_id}`;
             const response = await fetch(spotifyImageUrl, { method: 'HEAD' });
             
             if (response.ok) {
@@ -174,7 +179,7 @@ export function RecommendationCard({ song }: RecommendationCardProps) {
         }
         
         // Fallback to iTunes search API
-        const searchQuery = encodeURIComponent(`${song.title} ${formatArtistName()}`);
+        const searchQuery = encodeURIComponent(`${recommendation.title} ${formatArtistName()}`);
         const itunesResponse = await fetch(`https://itunes.apple.com/search?term=${searchQuery}&media=music&entity=song&limit=1`);
         const itunesData = await itunesResponse.json();
         
@@ -194,7 +199,7 @@ export function RecommendationCard({ song }: RecommendationCardProps) {
     };
     
     fetchAlbumArt();
-  }, [song]);
+  }, [recommendation]);
 
   return (
     <Card className={`overflow-hidden h-full border-0 shadow-lg hover:shadow-xl transition-all duration-300 backdrop-blur-sm ${getCardBackground()} ${isThisPlaying ? 'ring-2 ring-blue-500 ring-offset-2 ring-offset-transparent static-glow' : ''} dark:border dark:border-border/20 dark:shadow-blue-500/5`}>
@@ -211,7 +216,7 @@ export function RecommendationCard({ song }: RecommendationCardProps) {
           ) : thumbnailUrl ? (
             <Image
               src={thumbnailUrl}
-              alt={song.title}
+              alt={recommendation.title}
               fill
               className="object-cover opacity-90"
               onError={() => setThumbnailUrl('/assets/MusicPlaceholder.png')} // Fallback on image load error
@@ -230,7 +235,7 @@ export function RecommendationCard({ song }: RecommendationCardProps) {
               <div className="absolute top-2 right-2 flex items-center cursor-default">
                 <div className={`h-1.5 w-1.5 rounded-full ${getPopularityClass()} mr-1.5 ${isThisPlaying ? 'animate-pulse' : ''}`}></div>
                 <span className="text-xs font-medium text-white bg-black/50 backdrop-blur-sm rounded-full px-2 py-0.5">
-                  {song.popularity}/100
+                  {recommendation.popularity}/100
                 </span>
               </div>
             </TooltipTrigger>
@@ -241,13 +246,12 @@ export function RecommendationCard({ song }: RecommendationCardProps) {
         </TooltipProvider>
         
         {/* Spotify link */}
-        {song.spotify_id && (
+        {recommendation.spotify_id && (
           <div className="absolute top-2 left-2">
             <Button 
               variant="ghost" 
               className="h-10 text-xs gap-2 text-slate-700 dark:text-white hover:bg-slate-100 dark:hover:bg-blue-900/20 rounded-none border-r border-slate-100 dark:border-white/5"
               onClick={openInSpotify}
-              disabled={!song.spotify_id}
             >
               <ExternalLink className="w-4 h-4" />
               Open in Spotify
@@ -271,7 +275,7 @@ export function RecommendationCard({ song }: RecommendationCardProps) {
       </div>
       
       <div className="p-4 text-slate-800 dark:text-white">
-        <h3 className="font-bold text-sm truncate">{song.title}</h3>
+        <h3 className="font-bold text-sm truncate">{recommendation.title}</h3>
         <p className="text-xs text-slate-600 dark:text-white/70 truncate mt-1">{formatArtistName()}</p>
         
         {/* Popularity bar */}
@@ -279,7 +283,7 @@ export function RecommendationCard({ song }: RecommendationCardProps) {
           <div className="flex-1 h-1 bg-slate-200 dark:bg-white/10 rounded-full overflow-hidden">
             <div
               className={`h-full ${getPopularityClass()}`}
-              style={{ width: `${song.popularity}%` }}
+              style={{ width: `${recommendation.popularity}%` }}
             ></div>
           </div>
         </div>
@@ -291,7 +295,7 @@ export function RecommendationCard({ song }: RecommendationCardProps) {
           variant="ghost" 
           className="h-10 text-xs gap-2 text-slate-700 dark:text-white hover:bg-slate-100 dark:hover:bg-blue-900/20 rounded-none border-r border-slate-100 dark:border-white/5"
           onClick={openInSpotify}
-          disabled={!song.spotify_id}
+          disabled={!recommendation.spotify_id}
         >
           <ExternalLink className="w-4 h-4" />
           Open in Spotify
@@ -301,7 +305,7 @@ export function RecommendationCard({ song }: RecommendationCardProps) {
           variant="ghost" 
           className="h-10 text-xs gap-2 text-slate-700 dark:text-white hover:bg-slate-100 dark:hover:bg-blue-900/20 rounded-none"
           onClick={handleDownload}
-          disabled={isDownloading || !song.spotify_id}
+          disabled={isDownloading || !recommendation.spotify_id}
         >
           {isDownloading ? (
             <div className="animate-spin h-4 w-4 border-2 border-slate-500 dark:border-white border-t-transparent dark:border-t-transparent rounded-full"></div>

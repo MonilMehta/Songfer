@@ -52,7 +52,7 @@ export default function DashboardNavbar() {
           <Link href="/dashboard" className="flex items-center space-x-2">
             <VinylPlayer />
             <span className="font-bold sm:inline-block">
-              Song Porter
+              Songfer
             </span>
           </Link>
         </div>
@@ -83,7 +83,7 @@ export default function DashboardNavbar() {
             </Button>
             
             <Button variant="ghost" size="icon" asChild className="h-8 w-8">
-              <Link href="https://github.com/yourusername/Song Porter" target="_blank">
+              <Link href="https://github.com/yourusername/Songfer" target="_blank">
                 <Github className="h-4 w-4" />
                 <span className="sr-only">GitHub</span>
               </Link>

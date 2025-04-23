@@ -51,12 +51,12 @@ function MagneticSocialLink({
 const SOCIAL_LINKS: SocialLink[] = [
   {
     label: 'Github',
-    link: 'https://github.com/yourusername/Song Porter',
+    link: 'https://github.com/yourusername/Songfer',
     icon: <Github className="w-4 h-4" />
   },
   {
     label: 'Twitter',
-    link: 'https://twitter.com/Song Porter',
+    link: 'https://twitter.com/Songfer',
     icon: <Twitter className="w-4 h-4" />
   },
   {
@@ -73,7 +73,7 @@ export default function Footer() {
         <div className="flex flex-col items-center justify-center space-y-8">
           <div className="flex items-center gap-2">
             <Music className="w-6 h-6 text-primary" />
-            <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/60">Song Porter</h2>
+            <h2 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/60">Songfer</h2>
           </div>
           
           <p className="text-center text-muted-foreground max-w-md">
@@ -98,7 +98,7 @@ export default function Footer() {
           
           <div className="text-center text-sm text-muted-foreground">
             <p>Made with <Heart className="inline-block w-4 h-4 text-red-500" /> by a solo developer</p>
-            <p className="mt-1">&copy; {new Date().getFullYear()} Song Porter. All rights reserved.</p>
+            <p className="mt-1">&copy; {new Date().getFullYear()} Songfer. All rights reserved.</p>
           </div>
         </div>
       </div>
