@@ -5,6 +5,8 @@ from django.conf.urls.static import static
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+from django.http import HttpResponse
+
 
 # Create Swagger/OpenAPI schema
 api_info = openapi.Info(
@@ -23,6 +25,7 @@ schema_view = get_schema_view(
 )
 
 urlpatterns = [
+    path('', lambda request: HttpResponse("OK")),
     path('admin/', admin.site.urls),
     path('api/songs/', include('songs.urls')),
     path('api/users/', include('users.urls')),

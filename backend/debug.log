@@ -4162,3 +4162,5 @@ INFO 2025-04-23 23:36:35,626 basehttp 20752 17012 "POST /api/songs/songs/downloa
 INFO 2025-04-24 01:21:31,035 autoreload 17636 9616 Watching for file changes with StatReloader
 INFO 2025-04-24 01:47:32,202 autoreload 17636 9616 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
 INFO 2025-04-24 01:47:36,817 autoreload 15900 17916 Watching for file changes with StatReloader
+INFO 2025-04-24 02:10:49,359 autoreload 15900 17916 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py changed, reloading.
+INFO 2025-04-24 02:10:54,182 autoreload 27504 18348 Watching for file changes with StatReloader
