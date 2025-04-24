@@ -7,10 +7,12 @@ import DottedMap from "dotted-map";
 import Image from "next/image";
 import { useTheme } from "next-themes";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
-import { Globe, Music } from 'lucide-react'
+import { Globe, Music, MapPin } from 'lucide-react' // Changed Globe to MapPin for consistency
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { Badge } from "@/components/ui/badge";
+import { Skeleton } from "@/components/ui/skeleton"; // Import Skeleton
 
+// ... (Keep existing interfaces and COUNTRY_COORDINATES)
 interface CountryDistributionItem {
   country: string
   count: number
@@ -18,13 +20,14 @@ interface CountryDistributionItem {
 
 interface CountryMapProps {
   data: CountryDistributionItem[]
+  loading?: boolean // Add loading prop
 }
 
 // Mapping of country names to coordinates (Corrected Australia, Added More)
 const COUNTRY_COORDINATES: Record<string, { lat: number; lng: number }> = {
   "United States": { lat: 37.0902, lng: -95.7129 },
   "United Kingdom": { lat: 55.3781, lng: -3.4360 },
-  "Australia": { lat: -25.2744, lng: 133.7751 }, // Corrected longitude
+  "Australia": { lat: -25.2744, lng: 133.7751 },
   "Canada": { lat: 56.1304, lng: -106.3468 },
   "Germany": { lat: 51.1657, lng: 10.4515 },
   "France": { lat: 46.2276, lng: 2.2137 },
@@ -51,26 +54,47 @@ const COUNTRY_COORDINATES: Record<string, { lat: number; lng: number }> = {
   "Indonesia": { lat: -0.7893, lng: 113.9213 },
   "Turkey": { lat: 38.9637, lng: 35.2433 },
   "Egypt": { lat: 26.8206, lng: 30.8025 },
-  // Add more countries as needed
+
+  // Additional famous music countries
+  "Jamaica": { lat: 18.1096, lng: -77.2975 },
+  "Cuba": { lat: 21.5218, lng: -77.7812 },
+  "Greece": { lat: 39.0742, lng: 21.8243 },
+  "Austria": { lat: 47.5162, lng: 14.5501 },
+  "Thailand": { lat: 15.8700, lng: 100.9925 },
+  "Pakistan": { lat: 30.3753, lng: 69.3451 },
+  "Venezuela": { lat: 6.4238, lng: -66.5897 },
+  "Puerto Rico": { lat: 18.2208, lng: -66.5901 },
+  "Morocco": { lat: 31.7917, lng: -7.0926 },
+  "Iceland": { lat: 64.9631, lng: -19.0208 },
+  "Finland": { lat: 61.9241, lng: 25.7482 },
+  "Peru": { lat: -9.1900, lng: -75.0152 }
 };
+
 
 // Define a base point (optional, e.g., user's location if known, or a central point)
 const BASE_LOCATION = { lat: 51.5074, lng: -0.1278 }; // Example: London
 
-export function CountryMap({ data }: CountryMapProps) {
+// Import the skeleton component
+import { CountryMapSkeleton } from './country-map-skeleton';
+
+export function CountryMap({ data, loading = false }: CountryMapProps) {
   const svgRef = useRef<SVGSVGElement>(null);
   const { theme } = useTheme();
-  const map = new DottedMap({ height: 100, grid: "diagonal" });
-
-  const svgMap = map.getSVG({
-    radius: 0.22,
-    color: theme === "dark" ? "#FFFFFF40" : "#00000040",
-    shape: "circle",
-    backgroundColor: "transparent", // Make background transparent
-  });
+  
+  // Memoize the DottedMap instance and SVG generation
+  const svgMap = useMemo(() => {
+    const map = new DottedMap({ height: 100, grid: "diagonal" });
+    return map.getSVG({
+      radius: 0.22,
+      color: theme === "dark" ? "#FFFFFF40" : "#00000040",
+      shape: "circle",
+      backgroundColor: "transparent",
+    });
+  }, [theme]); // Dependency is only the theme
 
   // Prepare dots data for the map based on input data
   const dots = useMemo(() => {
+    if (!data) return [];
     return data
       .filter(item => COUNTRY_COORDINATES[item.country])
       .sort((a, b) => b.count - a.count)
@@ -81,6 +105,7 @@ export function CountryMap({ data }: CountryMapProps) {
       }));
   }, [data]);
 
+  // ... (Keep projectPoint and createCurvedPath functions)
   const projectPoint = (lat: number, lng: number) => {
     // Adjust projection logic if needed based on DottedMap's coordinate system
     // Assuming a standard Mercator-like projection for viewBox 0 0 800 400
@@ -104,27 +129,36 @@ export function CountryMap({ data }: CountryMapProps) {
 
   const lineColor = "hsl(var(--primary))"; // Use theme primary color
 
-  if (!data || data.length === 0) {
+  // Return skeleton if loading
+  if (loading) {
+    return <CountryMapSkeleton />;
+  }
+
+  // Show empty state only if not loading and data is empty
+  if (!loading && (!dots || dots.length === 0)) {
     return (
       <Card className="h-full flex flex-col items-center justify-center bg-muted/30 border border-dashed min-h-[350px]">
         <CardHeader className="text-center">
-          <Globe className="h-10 w-10 text-muted-foreground mx-auto mb-3" />
-          <CardTitle>Global Music Origins</CardTitle>
-          <CardDescription>No country data available yet.</CardDescription>
+          <MapPin className="h-10 w-10 text-muted-foreground mx-auto mb-3" />
+          <CardTitle>Your Music Origins</CardTitle>
+          <CardDescription>Not enough data to visualize music origins yet.</CardDescription>
         </CardHeader>
       </Card>
     );
   }
 
+  // Render the actual map if not loading and data exists
   return (
+    // Apply consistent styling from GenreChart
     <Card className="h-full shadow-md border-border/10 bg-card/90 backdrop-blur-sm overflow-hidden min-h-[350px]">
       <CardHeader>
         <CardTitle className="flex items-center text-lg">
-          <Globe className="mr-2 h-5 w-5 text-primary" /> Global Music Origins
+          <MapPin className="mr-2 h-5 w-5 text-primary" /> Your Music Origins
         </CardTitle>
-        <CardDescription>Where your music comes from.</CardDescription>
+        <CardDescription>Countries based on your downloaded music.</CardDescription>
       </CardHeader>
-      <CardContent className="p-0 relative aspect-[2/1]">
+      {/* Adjust CardContent padding and remove aspect ratio if needed */}
+      <CardContent className="p-0 relative h-[250px]"> 
         <TooltipProvider delayDuration={100}>
           <div className="w-full h-full relative">
             {/* Base map image */}
