@@ -47,13 +47,19 @@ const GenreChartSkeleton = () => (
       <CardDescription>Genres based on your downloaded music.</CardDescription>
     </CardHeader>
     <CardContent className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 p-6">
-      {Array(10).fill(0).map((_, i) => (
-        <Skeleton 
-          key={i} 
-          className="h-6 w-24 rounded-md"
-          style={{ width: `${Math.max(60, Math.random() * 120)}px` }} 
-        />
-      ))}
+      {/* Use deterministic widths based on index to avoid hydration mismatch */}
+      {Array(10).fill(0).map((_, i) => {
+        const baseWidth = 80; // Base width in px
+        const variation = (i % 5) * 10; // Vary width based on index (e.g., 80, 90, 100, 110, 120, 80, ...)
+        const width = baseWidth + variation;
+        return (
+          <Skeleton 
+            key={i} 
+            className="h-6 rounded-md"
+            style={{ width: `${width}px` }} 
+          />
+        );
+      })}
     </CardContent>
   </Card>
 );
