@@ -17,14 +17,14 @@ export const extractVideoId = (url: string): { id: string, platform: 'youtube' |
   try {
       // Check if it's a simple search query without URL format
       if (!url.includes('://') && !url.includes('www.') && url.trim().length > 0) {
-          return { 
+          return {
               id: encodeURIComponent(url.trim()),
               platform: 'youtube',
-              isPlaylist: false, 
+              isPlaylist: false,
               isSearchQuery: true
           };
       }
-      
+
       const cleanedUrl = new URL(url);
       const pathSegments = cleanedUrl.pathname.split('/').filter(Boolean);
 
@@ -32,7 +32,7 @@ export const extractVideoId = (url: string): { id: string, platform: 'youtube' |
       if (cleanedUrl.hostname.includes('youtube.com') && cleanedUrl.pathname.includes('/results') && cleanedUrl.searchParams.has('search_query')) {
           const searchQuery = cleanedUrl.searchParams.get('search_query');
           if (searchQuery) {
-              return { 
+              return {
                   id: searchQuery,
                   platform: 'youtube',
                   isPlaylist: false,
@@ -88,38 +88,114 @@ export const extractVideoId = (url: string): { id: string, platform: 'youtube' |
   return null;
 }
 
+// Ensure cleanYouTubeTitle helper function is defined or imported in this file
+// (Adding a basic version here if it wasn't already present)
+const cleanYouTubeTitle = (title: string | undefined, artist: string | undefined): string => {
+  if (!title) return 'Untitled Track';
+  let cleanedTitle = title;
+  // Basic cleaning, assuming the more complex logic exists elsewhere or is added here
+  cleanedTitle = cleanedTitle
+    .replace(/\(Official Music Video\)/gi, '')
+    .replace(/\(Official Video\)/gi, '')
+    .replace(/\(Lyrics\)/gi, '')
+    .replace(/\(Lyric Video\)/gi, '')
+    .replace(/\(Audio\)/gi, '')
+    .replace(/\(Official Audio\)/gi, '')
+    .replace(/\[\s*HD\s*\]/gi, '')
+    .replace(/\s{2,}/g, ' ')
+    .trim();
+
+  if (artist) {
+      // Remove duplicate artist pattern like "Artist - Artist - Title"
+      // Escape special regex characters in artist name
+      const escapedArtist = artist.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+      const doubleArtistPattern = new RegExp(`^${escapedArtist}\\s*-\\s*${escapedArtist}\\s*-`, 'i');
+      if (doubleArtistPattern.test(cleanedTitle)) {
+        cleanedTitle = cleanedTitle.replace(doubleArtistPattern, `${artist} -`);
+      }
+      // Simpler check for "Any Name - Same Name - Title"
+      const duplicateArtistPatternSimple = /^([^-]+)\s*-\s*\1\s*-/i;
+      const match = cleanedTitle.match(duplicateArtistPatternSimple);
+      if (match) {
+        const repeatedPart = match[1].trim();
+        // Only replace if the repeated part is reasonably long to avoid accidental replacements
+        if (repeatedPart.length > 2) {
+           cleanedTitle = cleanedTitle.replace(duplicateArtistPatternSimple, `${repeatedPart} -`);
+        }
+      }
+  }
+  return cleanedTitle;
+};
+
+
 // Fetch YouTube data (video or playlist)
 export const fetchYouTubeData = async (videoId: string, isPlaylist: boolean, playlistId?: string, fullUrl?: string): Promise<MediaPreviewData> => {
+  // IMPORTANT: Access API key from environment variables
+  const YOUTUBE_API_KEY = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
+
   try {
-    // Handle search queries
-    if (fullUrl && fullUrl.includes('isSearchQuery=true')) {
-      try {
-        // For search queries, we need to fetch the first result from YouTube search
-        const searchQuery = decodeURIComponent(videoId);
-        console.log(`Processing YouTube search query: "${searchQuery}"`);
-        
-        // Create a properly formatted YouTube search URL
-        const searchUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(searchQuery)}`;
-        
-        // For search queries, return placeholder data first, then backend will handle the actual search
-        return {
-          title: `Search: ${searchQuery}`,
-          artist: 'YouTube Search Result',
-          thumbnail: '/default-song-cover.jpg', // Use a default thumbnail for search queries
-          platform: 'youtube',
-          isPlaylist: false,
-          url: searchUrl, // Send the search URL to the backend
-          id: videoId, // Keep the encoded search query as ID
-          isSearchQuery: true
-        };
-      } catch (searchError) {
-        console.error('Error processing YouTube search query:', searchError);
-        throw searchError;
+    // Check if it's identified as a search query from the URL flag
+    const urlParams = new URLSearchParams(fullUrl?.split('?')[1]);
+    const isSearchQuery = urlParams.get('isSearchQuery') === 'true';
+
+    if (isSearchQuery) {
+      if (!YOUTUBE_API_KEY) {
+        console.error("YouTube API Key is missing. Please set NEXT_PUBLIC_YOUTUBE_API_KEY environment variable.");
+        throw new Error("YouTube API Key is missing.");
       }
+      const searchQuery = decodeURIComponent(videoId); // videoId contains the search query here
+      console.log(`Performing YouTube API search for: "${searchQuery}"`);
+
+      const searchApiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(searchQuery)}&type=video&maxResults=1&key=${YOUTUBE_API_KEY}`;
+
+      const searchResponse = await fetch(searchApiUrl);
+      if (!searchResponse.ok) {
+        const errorData = await searchResponse.json();
+        console.error('YouTube API search error:', errorData);
+        throw new Error(`YouTube API search failed: ${errorData.error?.message || searchResponse.statusText}`);
+      }
+      const searchData = await searchResponse.json();
+
+      if (!searchData.items || searchData.items.length === 0) {
+        throw new Error(`No YouTube video results found for "${searchQuery}"`);
+      }
+
+      const firstResult = searchData.items[0];
+      const resultVideoId = firstResult.id.videoId;
+      const resultSnippet = firstResult.snippet;
+
+      // Clean title and artist similar to how it's done for direct URLs
+      let artistName = resultSnippet.channelTitle || 'Unknown Artist';
+      artistName = artistName.replace(/VEVO$/i, '').replace(/Official$/i, '').replace(/Topic$/i, '').replace(/\s{2,}/g, ' ').trim();
+
+      let videoTitle = resultSnippet.title || 'YouTube Video';
+      // Apply the title cleaning logic (assuming cleanYouTubeTitle is available)
+      videoTitle = cleanYouTubeTitle(videoTitle, artistName);
+
+      let thumbnailUrl = resultSnippet.thumbnails?.high?.url || resultSnippet.thumbnails?.medium?.url || resultSnippet.thumbnails?.default?.url || '/default-song-cover.jpg';
+
+      console.log(`YouTube API search found video: ID=${resultVideoId}, Title=${videoTitle}, Artist=${artistName}`);
+
+      // Return data for the *found video*, not the search query itself
+      return {
+        title: videoTitle,
+        artist: artistName,
+        thumbnail: thumbnailUrl,
+        platform: 'youtube',
+        isPlaylist: false,
+        // Use the actual video URL for the preview and download
+        url: `https://www.youtube.com/watch?v=${resultVideoId}`,
+        id: resultVideoId, // Use the actual video ID now
+        // No longer need isSearchQuery flag here, as we resolved it to a video
+      };
     }
-    
+
+    // --- Existing logic for Playlists and direct Video URLs ---
     if (isPlaylist && playlistId) {
-      let firstVideoId = videoId;
+      // ...existing playlist logic...
+      let firstVideoId = videoId; // This might be the playlist ID itself if 'v' wasn't present
+      let playlistSongCount: number | undefined = undefined; // Initialize song count
+
       try {
         const playlistItemsResponse = await fetch(`https://noembed.com/embed?url=https://www.youtube.com/playlist?list=${playlistId}`);
         if (playlistItemsResponse.ok) {
@@ -128,50 +204,66 @@ export const fetchYouTubeData = async (videoId: string, isPlaylist: boolean, pla
            if (thumbnailUrl && typeof thumbnailUrl === 'string') {
              const videoIdMatch = thumbnailUrl.match(/vi\/([a-zA-Z0-9_-]{11})\//);
              if (videoIdMatch && videoIdMatch[1]) {
-               firstVideoId = videoIdMatch[1];
+               firstVideoId = videoIdMatch[1]; // Use first video's ID for thumbnail
              }
+           }
+           // Attempt to get song count from noembed data if available
+           if (playlistData.videos && typeof playlistData.videos === 'number') {
+               playlistSongCount = playlistData.videos;
            }
         }
       } catch (itemError) {
           console.warn("Could not fetch first video details for playlist thumbnail, using fallback.", itemError);
+          // If fetching first video fails, try using the playlist ID itself for thumbnail (might work)
+          firstVideoId = playlistId;
       }
 
       const playlistResponse = await fetch(`https://noembed.com/embed?url=https://www.youtube.com/playlist?list=${playlistId}`).catch(() => null);
 
       if (playlistResponse?.ok) {
         const data = await playlistResponse.json();
+        // Update song count if not already found and available in this response
+        if (playlistSongCount === undefined && data.videos && typeof data.videos === 'number') {
+            playlistSongCount = data.videos;
+        }
         return {
           title: data.title || 'YouTube Playlist',
           artist: data.author_name || 'Various Artists',
+          // Use firstVideoId (either from thumbnail URL or playlist ID as fallback)
           thumbnail: `https://img.youtube.com/vi/${firstVideoId}/maxresdefault.jpg`,
           platform: 'youtube',
           isPlaylist: true,
-          songCount: data.videos || 'Multiple',
+          songCount: playlistSongCount, // Use the determined song count (number or undefined)
           url: fullUrl || `https://www.youtube.com/playlist?list=${playlistId}`,
           id: playlistId
         };
       }
-      
+
+      // Fallback if noembed fails for playlist
       return {
         title: 'YouTube Playlist',
         artist: 'Various Artists',
-        thumbnail: `https://img.youtube.com/vi/${firstVideoId}/maxresdefault.jpg`,
+        thumbnail: `https://img.youtube.com/vi/${firstVideoId}/maxresdefault.jpg`, // Use best guess for thumbnail
         platform: 'youtube',
         isPlaylist: true,
-        songCount: 'Multiple',
+        songCount: undefined, // Set to undefined in fallback
         url: fullUrl || `https://www.youtube.com/playlist?list=${playlistId}`,
         id: playlistId
       };
     } else {
+      // --- Existing Direct Video URL Logic (using noembed) ---
       const response = await fetch(`https://noembed.com/embed?url=https://www.youtube.com/watch?v=${videoId}`);
 
       if (!response.ok) {
-        throw new Error('Failed to fetch video data');
+        // If noembed fails for a direct video ID, it's likely invalid
+        console.warn(`noembed fetch failed for video ID: ${videoId}.`);
+        throw new Error(`Could not fetch data for YouTube video ID: ${videoId}`);
       }
 
+      // If noembed succeeds, process as video
       const data = await response.json();
-      
-      // Clean up artist name - remove VEVO, Official, Topic, etc.
+
+      // ... existing video data cleaning ...
       let artistName = data.author_name || 'Unknown Artist';
       artistName = artistName
         .replace(/VEVO$/i, '')
@@ -179,26 +271,10 @@ export const fetchYouTubeData = async (videoId: string, isPlaylist: boolean, pla
         .replace(/Topic$/i, '')
         .replace(/\s{2,}/g, ' ')
         .trim();
-      
-      // Just clean up the title - removing common decorators
-      let videoTitle = data.title || 'YouTube Video';
-      videoTitle = videoTitle
-        .replace(/\(Official Music Video\)/gi, '')
-        .replace(/\(Official Video\)/gi, '')
-        .replace(/\(Lyrics\)/gi, '')
-        .replace(/\(Lyric Video\)/gi, '')
-        .replace(/\(Audio\)/gi, '')
-        .replace(/\(Official Audio\)/gi, '')
-        .replace(/\[\s*HD\s*\]/gi, '')
-        .replace(/\s{2,}/g, ' ')
-        .trim();
 
-      // Simple fix for titles with duplicates: keep only content after first dash
-      // This handles cases like "Artist - Artist - Song Name" by keeping only "Artist - Song Name"
-      const dashIndex = videoTitle.indexOf('-');
-      if (dashIndex > 0) {
-        videoTitle = videoTitle.substring(dashIndex + 1).trim();
-      }
+      let videoTitle = data.title || 'YouTube Video';
+      // Apply cleaning
+      videoTitle = cleanYouTubeTitle(videoTitle, artistName);
 
       let thumbnailUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
       try {
@@ -222,293 +298,103 @@ export const fetchYouTubeData = async (videoId: string, isPlaylist: boolean, pla
     }
   } catch (error) {
     console.error('Error fetching YouTube data:', error);
-    throw error;
+    // Provide a more specific error based on the context
+    const urlParams = new URLSearchParams(fullUrl?.split('?')[1]);
+    const isSearchQueryFlag = urlParams.get('isSearchQuery') === 'true';
+    const originalInput = isSearchQueryFlag ? decodeURIComponent(videoId) : videoId;
+
+    // Rethrow a user-friendly error
+    throw new Error(`Failed to get YouTube data for "${originalInput}": ${error instanceof Error ? error.message : String(error)}`);
   }
 }
 
-// Fetch Spotify data (track or playlist)
-export const fetchSpotifyData = async (id: string, isPlaylist: boolean, url: string, authToken?: string): Promise<MediaPreviewData> => {
+
+// Fetch Spotify data (track or playlist) - Relies only on oEmbed
+export const fetchSpotifyData = async (id: string, isPlaylist: boolean, url: string): Promise<MediaPreviewData> => {
   try {
-    // First try the Spotify oEmbed API directly - this works without authentication
-    try {
-      const embedResponse = await fetch(`https://open.spotify.com/oembed?url=${encodeURIComponent(url)}`);
-      
-      if (embedResponse.ok) {
-        const embedData = await embedResponse.json();
-        console.log('Spotify embed data:', embedData);
-        
-        // The title is usually in format "Artist - Title" 
-        if (embedData.title) {
+    // Use the Spotify oEmbed API directly - this works without authentication
+    const embedResponse = await fetch(`https://open.spotify.com/oembed?url=${encodeURIComponent(url)}`);
+
+    if (embedResponse.ok) {
+      const embedData = await embedResponse.json();
+      console.log('Spotify embed data:', embedData);
+
+      let title = 'Unknown Title';
+      let artist = 'Unknown Artist';
+      const thumbnail = embedData.thumbnail_url || '/default-song-cover.jpg';
+      let songCount: number | undefined = undefined; // Initialize songCount
+
+      if (embedData.title) {
+        if (isPlaylist) {
+          // For playlists, the title is usually just the playlist name
+          title = embedData.title;
+          // Artist might not be directly available, use provider name or fallback
+          artist = embedData.provider_name || 'Various Artists'; // Or potentially parse from description if needed
+          // Song count isn't available from oEmbed for playlists
+          songCount = undefined; // Explicitly set as undefined for playlists from oEmbed
+        } else {
+          // For tracks, the title is usually in format "Artist - Title"
           const parts = embedData.title.split(' - ');
           if (parts.length >= 2) {
-            const artist = parts[0].trim();
-            const title = parts.slice(1).join(' - ').trim();
-            
-            console.log(`Successfully extracted Spotify metadata from embed: Artist="${artist}", Title="${title}"`);
-            
-            return {
-              title: title,
-              artist: artist,
-              thumbnail: embedData.thumbnail_url || '/default-song-cover.jpg',
-              platform: 'spotify',
-              isPlaylist,
-              songCount: isPlaylist ? undefined : undefined,
-              url,
-              id
-            };
+            artist = parts[0].trim();
+            title = parts.slice(1).join(' - ').trim();
+          } else {
+            // Fallback if title format is unexpected
+            title = embedData.title;
           }
         }
+        console.log(`Successfully extracted Spotify metadata from embed: Artist="${artist}", Title="${title}"`);
+      } else {
+         // Fallback if embedData.title is missing
+         title = isPlaylist ? 'Spotify Playlist' : 'Spotify Track';
       }
-    } catch (embedError) {
-      console.warn('Error fetching Spotify embed data:', embedError);
-      // Continue with regular API calls
-    }
-    
-    // If embed API didn't work, fall back to the regular API calls
-    const token = authToken;
-    if (!token) {
-      console.warn("Authentication token missing for Spotify data fetch");
-      // Extract track title from the embedded iframe when possible
-      try {
-        // Create a temporary iframe to get the metadata
-        const iframe = document.createElement('iframe');
-        iframe.style.display = 'none';
-        iframe.src = `https://open.spotify.com/embed/track/${id}`;
-        document.body.appendChild(iframe);
-        
-        // Wait for iframe to load
-        await new Promise(resolve => {
-          iframe.onload = resolve;
-          // Safety timeout
-          setTimeout(resolve, 2000);
-        });
-        
-        // Try to extract title from iframe document
-        let extractedTitle = '';
-        let extractedArtist = '';
-        
-        try {
-          if (iframe.contentDocument) {
-            const titleElement = iframe.contentDocument.querySelector('[data-testid="track-title"]');
-            const artistElement = iframe.contentDocument.querySelector('[data-testid="track-artist"]');
-            
-            if (titleElement) extractedTitle = titleElement.textContent || '';
-            if (artistElement) extractedArtist = artistElement.textContent || '';
-            
-            console.log('Extracted from iframe:', { extractedTitle, extractedArtist });
-          }
-        } catch (iframeError) {
-          console.warn('Error accessing iframe content:', iframeError);
-        }
-        
-        // Clean up
-        document.body.removeChild(iframe);
-        
-        if (extractedTitle || extractedArtist) {
-          return {
-            title: extractedTitle || 'Track',
-            artist: extractedArtist || 'Unknown Artist',
-            thumbnail: '/default-song-cover.jpg',
-            platform: 'spotify',
-            isPlaylist,
-            songCount: undefined,
-            url,
-            id
-          };
-        }
-      } catch (iframeError) {
-        console.warn('Error with iframe extraction:', iframeError);
-      }
-      
+
+
       return {
-        title: 'Track',
+        title: title,
+        artist: artist,
+        thumbnail: thumbnail,
+        platform: 'spotify',
+        isPlaylist,
+        songCount: songCount, // Use the determined songCount
+        url,
+        id
+      };
+    } else {
+      // oEmbed fetch failed
+      console.warn(`Spotify oEmbed fetch failed for URL: ${url}. Status: ${embedResponse.status}`);
+      // Return fallback data if oEmbed fails
+      return {
+        title: isPlaylist ? 'Spotify Playlist' : 'Spotify Track',
         artist: 'Unknown Artist',
         thumbnail: '/default-song-cover.jpg',
         platform: 'spotify',
         isPlaylist,
-        songCount: isPlaylist ? undefined : undefined,
+        songCount: undefined,
         url,
         id
       };
     }
-
-    const endpoint = isPlaylist ? 'playlists' : 'tracks';
-    
-    const fetchUrl = `https://songporter.onrender.com/api/songs/spotify/${endpoint}/${id}/`;
-    
-    console.log(`Fetching Spotify data from: ${fetchUrl}`);
-
-    const response = await fetch(fetchUrl, {
-         headers: {
-            'Authorization': `Token ${token}`,
-         }
-    }).catch(error => {
-      console.error("Network error fetching Spotify data:", error);
-      return null; // Return null on network error to handle below
-    });
-
-    if (!response || !response.ok) {
-        console.log(`First Spotify URL failed, trying alternate URL format...`);
-        
-        const altUrl = `https://songporter.onrender.com/api/songs/spotify-${isPlaylist ? 'playlist' : 'track'}/${id}/`;
-        
-        console.log(`Trying alternate URL: ${altUrl}`);
-        const altResponse = await fetch(altUrl, {
-          headers: {
-              'Authorization': `Token ${token}`,
-          }
-        }).catch(error => {
-          console.error("Network error fetching Spotify data (alt URL):", error);
-          return null;
-        });
-        
-        if (!altResponse || !altResponse.ok) {
-            const thirdUrl = `https://songporter.onrender.com/api/spotify/${endpoint}/${id}/`;
-            console.log(`Trying third URL format: ${thirdUrl}`);
-            
-            const thirdResponse = await fetch(thirdUrl, {
-              headers: {
-                'Authorization': `Token ${token}`,
-              }
-            }).catch(error => {
-              console.error("Network error fetching Spotify data (third URL):", error);
-              return null;
-            });
-            
-            if (!thirdResponse || !thirdResponse.ok) {
-              // If all three attempts fail, return a placeholder
-              console.warn("All Spotify API endpoints failed, using fallback data");
-              return {
-                title: 'Track',
-                artist: 'Unknown Artist',
-                thumbnail: '/default-song-cover.jpg',
-                platform: 'spotify',
-                isPlaylist,
-                songCount: isPlaylist ? undefined : undefined,
-                url,
-                id
-              };
-            }
-            
-            const data = await thirdResponse.json();
-            return processSpotifyData(data, isPlaylist, id, url);
-        }
-        
-        const data = await altResponse.json();
-        return processSpotifyData(data, isPlaylist, id, url);
-    }
-
-    const data = await response.json();
-    return processSpotifyData(data, isPlaylist, id, url);
   } catch (error) {
-    console.error('Error in fetchSpotifyData:', error);
-    
+    console.error('Error fetching or processing Spotify oEmbed data:', error);
+    // Return fallback data on any other error
     return {
-      title: 'Track',
+      title: isPlaylist ? 'Spotify Playlist' : 'Spotify Track',
       artist: 'Unknown Artist',
       thumbnail: '/default-song-cover.jpg',
       platform: 'spotify',
       isPlaylist,
-      songCount: isPlaylist ? undefined : undefined,
+      songCount: undefined,
       url,
       id
     };
   }
 }
 
-// Process Spotify API response data
-export const processSpotifyData = (data: any, isPlaylist: boolean, id: string, url: string): MediaPreviewData => {
-    // Log the full data structure to debug what's available
-    console.log('Raw Spotify data received:', JSON.stringify(data, null, 2));
-    
-    // For tracks, look for specific track properties based on Spotify API response
-    if (!isPlaylist && data) {
-      // Get proper song title
-      let title = data.name;
-      
-      // Get all artists if available
-      let artist = '';
-      if (data.artists && Array.isArray(data.artists) && data.artists.length > 0) {
-        artist = data.artists.map((a: any) => a.name).join(', ');
-      } else if (data.artist && data.artist.name) {
-        // Some endpoints return artist in a different format
-        artist = data.artist.name;
-      }
-      
-      // Get album info if available
-      let albumName = '';
-      if (data.album && data.album.name) {
-        albumName = data.album.name;
-      }
-      
-      // For song titles that are just generic names like "Track" or numbers, 
-      // enhance with album name if available
-      if (title && (title.length < 3 || /^track\s*\d*$/i.test(title)) && albumName) {
-        title = `${title} (${albumName})`;
-      }
-      
-      console.log('Processed Spotify track data:', { title, artist, albumName, id });
-      
-      // If we still don't have a good title, try to extract it from the URL
-      if (!title || title === 'Spotify Track' || title === 'Track') {
-        // Try to parse the URL to get more info
-        try {
-          const urlObj = new URL(url);
-          const pathParts = urlObj.pathname.split('/');
-          if (pathParts.length > 2 && pathParts[1] === 'track') {
-            // Make a more informative title using the track ID
-            title = 'Untitled Track';
-          }
-        } catch (e) {
-          console.error('Error parsing Spotify URL:', e);
-        }
-      }
-      
-      return {
-        title: title || 'Untitled Track',
-        artist: artist || 'Unknown Artist',
-        thumbnail: data.album?.images?.[0]?.url || '/default-song-cover.jpg',
-        platform: 'spotify',
-        isPlaylist,
-        songCount: undefined,
-        url,
-        id: data.id || id
-      };
-    }
-    
-    // Handle playlists
-    if (isPlaylist && data) {
-      return {
-        title: data.name || 'Spotify Playlist',
-        artist: data.owner?.display_name || 'Various Artists',
-        thumbnail: data.images?.[0]?.url || '/default-song-cover.jpg',
-        platform: 'spotify',
-        isPlaylist,
-        songCount: data.tracks?.total,
-        url,
-        id: data.id || id
-      };
-    }
-    
-    // Fallback for invalid or incomplete data
-    return {
-      title: data?.name || (isPlaylist ? 'Playlist' : 'Track'),
-      artist: isPlaylist ? (data?.owner?.display_name || 'Various Artists') : 
-                        (data?.artists?.map((a: { name: string }) => a.name).join(', ') || 'Unknown Artist'),
-      thumbnail: isPlaylist ? (data?.images?.[0]?.url || '/default-song-cover.jpg') : 
-                           (data?.album?.images?.[0]?.url || '/default-song-cover.jpg'),
-      platform: 'spotify',
-      isPlaylist,
-      songCount: isPlaylist ? data?.tracks?.total : undefined,
-      url,
-      id: data?.id || id
-    };
-}
-
 // Format filenames consistently
 export const generateFilename = (preview: MediaPreviewData, format: string): string => {
   const extension = preview.isPlaylist ? 'zip' : format;
-  
+
   // Start with the title, clean it up first
   let title = preview.title
     .replace(/\(Official Music Video\)/gi, '')
@@ -520,26 +406,26 @@ export const generateFilename = (preview: MediaPreviewData, format: string): str
     .replace(/\[\s*HD\s*\]/gi, '')
     .replace(/\s{2,}/g, ' ')
     .trim();
-  
+
   // For Spotify with missing title, use just "Track" without platform name
-  if (preview.platform === 'spotify' && 
+  if (preview.platform === 'spotify' &&
      (title === 'Spotify Track' || title === 'Spotify Playlist')) {
     title = preview.isPlaylist ? 'Playlist' : 'Track';
   }
-  
+
   // Add artist if available (except for playlists)
   let filename = title;
   if (preview.artist && preview.artist !== '💿' && !preview.isPlaylist) {
     filename = `${preview.artist} - ${title}`;
   }
-  
+
   // Clean up any invalid characters
   filename = filename.replace(/[/\\?%*:|"<>]/g, '-');
-  
+
   return `${filename}.${extension}`;
 }
 
-// Clean up filename for better readability
+// Clean up filename for better readability (This seems redundant with generateFilename, consider merging)
 export const cleanupFilename = (filename: string, preview: MediaPreviewData): string => {
   // If it's a YouTube video, remove common unnecessary text patterns
   if (preview.platform === 'youtube' && !preview.isPlaylist) {
@@ -554,7 +440,7 @@ export const cleanupFilename = (filename: string, preview: MediaPreviewData): st
       .replace(/\s{2,}/g, ' ') // Remove extra spaces
       .trim();
   }
-  
+
   return filename;
 }
 
@@ -572,10 +458,10 @@ export const getPlaylistDownloadEndpoint = (playlistId: number | string): string
 };
 
 // Extracts metadata from response headers
-export const extractMetadataFromHeaders = (headers: Headers): { 
-  title?: string; 
-  artist?: string; 
-  album?: string; 
+export const extractMetadataFromHeaders = (headers: Headers): {
+  title?: string;
+  artist?: string;
+  album?: string;
   duration?: string;
 } => {
   // Get metadata from headers and log all headers
@@ -584,19 +470,19 @@ export const extractMetadataFromHeaders = (headers: Headers): {
     allHeaders[key] = value;
   });
   console.log('All response headers:', allHeaders);
-  
+
   const songTitle = headers.get('x-song-title');
   const songArtist = headers.get('x-song-artist');
   const songAlbum = headers.get('x-album-name');
   const songDuration = headers.get('x-duration');
-  
-  console.log('Extracted metadata from headers:', { 
-    songTitle, 
-    songArtist, 
-    songAlbum, 
-    songDuration 
+
+  console.log('Extracted metadata from headers:', {
+    songTitle,
+    songArtist,
+    songAlbum,
+    songDuration
   });
-  
+
   return {
     title: songTitle || undefined,
     artist: songArtist || undefined,

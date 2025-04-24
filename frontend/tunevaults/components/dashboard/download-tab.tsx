@@ -61,14 +61,14 @@ export function DownloadTab({
       
       <div className="relative z-10">
         {/* Header */}
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8"> 
-          <div className="flex items-center gap-3 mb-4 sm:mb-0">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 gap-4"> 
+          <div className="flex items-center gap-3">
             <div>
               {/* Funky Title with responsive size */}
               <h2 className="text-2xl sm:text-3xl font-black flex items-center"> 
-                <Headphones className="w-6 h-6 sm:w-7 sm:h-7 text-primary mr-2 sm:mr-3 inline-block transform -rotate-6" />
+                <Headphones className="w-6 h-6 sm:w-7 sm:h-7 text-primary mr-2 sm:mr-3 inline-block transform -rotate-3" />
                 <span className="inline-block transform rotate-1 text-primary mr-1 sm:mr-2">START</span>
-                <span className="inline-block transform -rotate-2 mr-1 sm:mr-2">YOUR</span>
+                <span className="inline-block transform -rotate-1 mr-1 sm:mr-2">YOUR</span>
                 <span className="inline-block transform rotate-1">DOWNLOAD</span>
               </h2>
               {/* Adjust margin for subtitle */}
@@ -76,7 +76,7 @@ export function DownloadTab({
             </div>
           </div>
           {isPremium && (
-            <Badge variant="outline" className="bg-primary/10 border-primary/20 text-primary font-medium py-1 px-3">
+            <Badge variant="outline" className="bg-primary/10 border-primary/20 text-primary font-medium py-1 px-3 rounded-full flex-shrink-0">
               <Shield className="w-3.5 h-3.5 mr-1.5" />
               Premium Active
             </Badge>
@@ -84,7 +84,7 @@ export function DownloadTab({
         </div>
         
         {/* Form */}
-        <div className="mb-6 bg-background/50 backdrop-blur-sm p-5 rounded-xl border border-border/10 shadow-inner">
+        <div className="mb-8 bg-background/50 backdrop-blur-sm p-5 rounded-xl border border-border/10 shadow-inner">
           <DownloadForm 
             onDownload={handleDownloadWithErrorHandling}
             isLoading={isLoading || isDownloading}
@@ -97,7 +97,7 @@ export function DownloadTab({
           <motion.div 
             initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mb-6 p-4 bg-destructive/10 text-destructive text-sm rounded-lg border border-destructive/20 flex items-start gap-3"
+            className="mb-8 p-4 bg-destructive/10 text-destructive text-sm rounded-lg border border-destructive/20 flex items-start gap-3"
           >
             <Info className="w-5 h-5 mt-0.5 flex-shrink-0" />
             <span>{errorState}</span>
@@ -116,9 +116,9 @@ export function DownloadTab({
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.1 * index }}
-              className="flex items-start space-x-3 p-4 rounded-lg bg-accent/50 border border-border/5 hover:bg-accent/70 transition-colors"
+              className="flex items-start space-x-3 p-4 rounded-lg bg-accent/50 border border-border/5 hover:bg-accent/70 hover:border-border/10 transition-colors group"
             >
-              <div className="bg-primary/10 p-2 rounded-full mt-1">
+              <div className="bg-primary/10 p-2 rounded-full mt-1 group-hover:bg-primary/20 transition-colors">
                 <feature.icon className="w-5 h-5 text-primary" />
               </div>
               <div>

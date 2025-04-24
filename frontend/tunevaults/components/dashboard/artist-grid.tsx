@@ -80,17 +80,16 @@ export function ArtistGrid({ artists, isLoading = false }: ArtistGridProps) {
   // Determine which artists to display based on showAll state
   const displayArtists = showAll ? processedArtists : processedArtists.slice(0, 4);
 
-  // Skeleton loader component for artist card
+  // Skeleton loader component for artist card - Refined appearance
   const ArtistCardSkeleton = () => (
-    <div className="relative overflow-hidden rounded-xl border border-border/30 bg-card/50 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:shadow-primary/5">
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-30"></div>
+    <div className="relative overflow-hidden rounded-xl border border-border/20 bg-card/40 backdrop-blur-sm h-full">
       <div className="animate-pulse">
-        <div className="aspect-square w-full bg-muted/40 rounded-t-lg"></div>
-        <div className="p-4">
-          <div className="h-5 bg-muted/60 rounded-md w-2/3 mb-2"></div>
-          <div className="h-4 bg-muted/40 rounded-md w-1/3"></div>
-          <div className="flex justify-between items-center mt-3">
-            <div className="h-8 bg-muted/50 rounded-full w-16"></div>
+        <div className="aspect-square w-full bg-muted/30 rounded-t-lg"></div>
+        <div className="p-4 space-y-3">
+          <div className="h-5 bg-muted/50 rounded-md w-3/4"></div>
+          <div className="h-4 bg-muted/40 rounded-md w-1/2"></div>
+          <div className="flex justify-between items-center pt-2">
+            <div className="h-8 bg-muted/40 rounded-full w-16"></div>
             <div className="h-8 bg-muted/30 rounded-full w-8"></div>
           </div>
         </div>
@@ -104,11 +103,12 @@ export function ArtistGrid({ artists, isLoading = false }: ArtistGridProps) {
       <div className="absolute -z-10 -left-16 top-20 w-32 h-32 rounded-full bg-primary/5 blur-xl" />
       <div className="absolute -z-10 right-10 bottom-10 w-40 h-40 rounded-full bg-secondary/5 blur-xl" />
       
-      {/* Header Section with Funky Typography */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10">
+      {/* Header Section with Refined Typography & Spacing */}
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
         <div>
           <h2 className="flex items-center text-3xl font-black">
-            <span className="inline-block transform -rotate-2 text-primary mr-2">YOUR</span>
+            {/* Slightly adjusted transforms */}
+            <span className="inline-block transform -rotate-1 text-primary mr-2">YOUR</span>
             <span className="inline-block transform rotate-1 mr-2">TOP</span>
             <span className="inline-block transform -rotate-1">ARTISTS</span>
           </h2>
@@ -130,37 +130,39 @@ export function ArtistGrid({ artists, isLoading = false }: ArtistGridProps) {
           </div>
         </div>
         
-        <Button 
-          variant="outline" 
-          size="sm"
-          className="group mt-4 md:mt-0 rounded-full border-dashed border-primary/30"
-          disabled={isLoading}
-        >
-          <PlusCircle className="h-4 w-4 mr-2 group-hover:text-primary" />
-          <span>EXPLORE ARTISTS</span>
-        </Button>
-
-        {/* Conditionally render the "Show All" / "Show Less" button if more than 4 artists */} 
-        {!isLoading && processedArtists.length > 4 && (
+        <div className="flex items-center gap-2 flex-wrap"> {/* Wrapper for buttons */}
           <Button 
-            variant="ghost" 
+            variant="outline" 
             size="sm"
-            className="ml-auto mt-4 md:mt-0 text-primary hover:bg-primary/10"
-            onClick={() => setShowAll(!showAll)}
+            className="group rounded-full border-dashed border-primary/30 hover:border-primary/50 transition-colors"
+            disabled={isLoading}
           >
-            {showAll ? (
-              <>
-                <ChevronUp className="h-4 w-4 mr-2" />
-                Show Less
-              </>
-            ) : (
-              <>
-                <ChevronDown className="h-4 w-4 mr-2" />
-                Show All ({processedArtists.length})
-              </>
-            )}
+            <PlusCircle className="h-4 w-4 mr-2 group-hover:text-primary transition-colors" />
+            <span>EXPLORE ARTISTS</span>
           </Button>
-        )}
+
+          {/* Conditionally render the "Show All" / "Show Less" button if more than 4 artists */} 
+          {!isLoading && processedArtists.length > 4 && (
+            <Button 
+              variant="ghost" 
+              size="sm"
+              className="text-primary hover:bg-primary/10 rounded-full" // Added rounded-full
+              onClick={() => setShowAll(!showAll)}
+            >
+              {showAll ? (
+                <>
+                  <ChevronUp className="h-4 w-4 mr-1" /> {/* Reduced margin */}
+                  Show Less
+                </>
+              ) : (
+                <>
+                  <ChevronDown className="h-4 w-4 mr-1" /> {/* Reduced margin */}
+                  Show All ({processedArtists.length})
+                </>
+              )}
+            </Button>
+          )}
+        </div>
       </div>
       
       {/* Artist Grid - with loading state or actual content */}
@@ -168,14 +170,15 @@ export function ArtistGrid({ artists, isLoading = false }: ArtistGridProps) {
         {isLoading ? (
           // Show skeleton loaders while loading
           Array(4).fill(0).map((_, idx) => (
-            <div key={idx} className="h-full">
+            <div key={idx} className="h-full"> {/* Ensure skeleton takes full height */}
               <ArtistCardSkeleton />
             </div>
           ))
         ) : (
           // Show actual artist cards when loaded
           displayArtists.map((artist, idx) => (
-            <div key={idx} className="h-full">
+            // Added group and hover effect to the wrapper
+            <div key={idx} className="h-full group transition-all duration-300 ease-out hover:scale-[1.02]"> 
               <ArtistCard artist={artist} />
             </div>
           ))

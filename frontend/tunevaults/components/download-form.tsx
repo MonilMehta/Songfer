@@ -96,20 +96,6 @@ const cleanYouTubeTitle = (title: string | undefined, artist: string | undefined
     /\s*\[Official\s*(?:HD\s*)?(?:Audio|Lyric)\s*\]/gi, // [Official Audio], [Official HD Audio]
     /\s*\((?:Full\s*)?HD(?:\s*Quality)?\)/gi, // (HD), (Full HD), (HD Quality)
     /\s*\[(?:Full\s*)?HD(?:\s*Quality)?\]/gi, // [HD], [Full HD], [HD Quality]
-    /\s*\((?:Official\s*)?(?:Audio|Lyrics?)\s*(?:Video)?\)/gi, // (Audio), (Lyrics), (Official Lyrics)
-    /\s*\[(?:Official\s*)?(?:Audio|Lyrics?)\s*(?:Video)?\]/gi, // [Audio], [Lyrics], [Official Lyrics]
-    /\s*\(\d{4}\)/g, // (2024), (1990), etc.
-    /\s*\[\d{4}\]/g, // [2024], [1990], etc.
-    /\s*\(Remastered(?:\s*\d{4})?\)/gi, // (Remastered), (Remastered 2023)
-    /\s*\[Remastered(?:\s*\d{4})?\]/gi, // [Remastered], [Remastered 2023]
-    /\s*\(\d+\s*(?:K|M|B)?\s*Views?\)/gi, // (10M Views), (1K Views)
-    /\s*\[\d+\s*(?:K|M|B)?\s*Views?\]/gi, // [10M Views], [1K Views]
-    /\s*\(Visualizer\)/gi, // (Visualizer)
-    /\s*\[Visualizer\]/gi, // [Visualizer]
-    /\s*\([Cc]lean\s*(?:[Vv]ersion)?\)/g, // (Clean), (Clean Version)
-    /\s*\[[Cc]lean\s*(?:[Vv]ersion)?\]/g, // [Clean], [Clean Version]
-    /\s*\([Ee]xplicit\s*(?:[Vv]ersion)?\)/g, // (Explicit), (Explicit Version)
-    /\s*\[[Ee]xplicit\s*(?:[Vv]ersion)?\]/g, // [Explicit], [Explicit Version]
     /\s*\((?:Official)?\s*[Ll]yric\s*[Vv]ideo\)/g, // (Lyric Video), (Official Lyric Video)
     /\s*\[(?:Official)?\s*[Ll]yric\s*[Vv]ideo\]/g  // [Lyric Video], [Official Lyric Video]
   ];
@@ -196,50 +182,49 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
       const videoInfo = extractVideoId(url)
       if (!videoInfo) {
         toast({
-          title: "Invalid URL",
-          description: "Please enter a valid YouTube or Spotify URL or search query.",
+          title: "Invalid Input", // Changed title
+          description: "Please enter a valid YouTube/Spotify URL or a search term.", // Updated description
           variant: "destructive"
         })
         return
       }
 
       let data: MediaPreviewData
+      // Pass the original URL/search term along with the flag if it's a search query
+      const fullInputUrl = videoInfo.isSearchQuery 
+        ? `${url}?isSearchQuery=true` // Append flag for fetchYouTubeData
+        : url
+
       if (videoInfo.platform === 'youtube') {
-        // For YouTube search queries, we need to attach a special flag
-        const fullSearchUrl = videoInfo.isSearchQuery 
-          ? `${url}?isSearchQuery=true` 
-          : url
-        data = await fetchYouTubeData(videoInfo.id, videoInfo.isPlaylist, videoInfo.playlistId, fullSearchUrl)
+        data = await fetchYouTubeData(videoInfo.id, videoInfo.isPlaylist, videoInfo.playlistId, fullInputUrl)
       } else { 
         data = await fetchSpotifyData(videoInfo.id, videoInfo.isPlaylist, url, getAuthToken())
       }
 
       if (!data) {
+        // fetchYouTubeData/fetchSpotifyData should throw errors now, but handle just in case
         throw new Error("Failed to fetch preview data")
       }
 
-      const songCount = typeof data.songCount === 'number' ? data.songCount : 
-                        (typeof data.songCount === 'string' && data.songCount !== 'Multiple' ? 
-                         parseInt(data.songCount, 10) : undefined)
-      
+      // No need to manually set isSearchQuery on previewData, fetchYouTubeData handles it
       const previewData: MediaPreviewData = {
         ...data,
-        songCount: songCount && !isNaN(songCount) ? songCount : undefined,
-        isSearchQuery: videoInfo.isSearchQuery // Make sure this is passed along
+        // Ensure songCount is handled correctly if needed
+        songCount: typeof data.songCount === 'number' ? data.songCount : 
+                   (typeof data.songCount === 'string' && data.songCount !== 'Multiple' ? 
+                    parseInt(data.songCount, 10) : undefined)
       }
       
       setPreview(previewData)
       toast({
         title: "Preview Loaded",
-        description: videoInfo.isSearchQuery 
-          ? "Enter your search query and click Search & Download." 
-          : "Check the details and choose a format.",
+        description: "Check the details and choose a format.", // Simplified description
       })
     } catch (error) {
       console.error('Error loading preview:', error)
       toast({
         title: "Preview Failed",
-        description: error instanceof Error ? error.message : "Could not load preview for this URL.",
+        description: error instanceof Error ? error.message : "Could not load preview for this input.", // Updated description
         variant: "destructive"
       })
     } finally {
@@ -299,15 +284,19 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
       }
 
       // --- Single Track Handling --- 
+      // IMPORTANT: Use preview.url which now contains the *actual* video URL 
+      // if it was resolved from a search query by fetchYouTubeData.
       const requestData = {
-        url: preview.url, 
+        url: preview.url, // Use the URL from the preview data
         format,
-        // Include metadata for better ID3 tagging on the backend
         metadata: {
-          artist: preview.artist,
-          title: preview.title
+          // Send the potentially updated artist/title from the preview
+          artist: preview.artist, 
+          title: preview.title    
         }
       }
+      
+      console.log('Sending download request with data:', requestData); // Log the data being sent
 
       const response = await fetch('https://songporter.onrender.com/api/songs/songs/download/', {
         method: 'POST',
@@ -439,48 +428,39 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
           setId3Metadata(extractedID3)
         }
 
-        let finalArtist = 'Unknown Artist';
-        let finalTitle = 'Untitled Track';
-        let source = 'fallback';
+        // --- Filename Generation Logic (Simplified) ---
+        // Now relies more heavily on the preview data which should be accurate
+        // after the YouTube API call for searches.
+        let finalArtist = preview.artist || 'Unknown Artist';
+        let finalTitle = preview.title || 'Untitled Track';
+        let source = 'preview'; // Assume preview is the primary source now
 
-        // Determine best artist/title based on platform and available data
-        if (preview.platform === 'spotify') {
-          // Spotify: Prioritize ID3 tags
-          if (extractedID3.title && extractedID3.artist) {
-            finalArtist = extractedID3.artist;
-            finalTitle = extractedID3.title;
-            source = 'id3';
-          } else if (preview.title && preview.artist && preview.title !== 'Track' && preview.artist !== 'Unknown Artist') {
-            finalArtist = preview.artist;
-            finalTitle = preview.title;
-            source = 'preview';
-          } 
-        } else if (preview.platform === 'youtube') {
-          // YouTube: Prioritize Preview data first for consistency with what user sees
-           if (preview.title && preview.artist && preview.artist !== 'Unknown Artist') {
-            finalArtist = preview.artist;
-            finalTitle = preview.title;
-            source = 'preview';
-          } else if (extractedID3.title && extractedID3.artist) { // ID3 as fallback for YouTube
-            finalArtist = extractedID3.artist;
-            finalTitle = extractedID3.title;
-            source = 'id3';
-          } 
-          // Apply YouTube specific cleaning to the chosen title
-          finalTitle = cleanYouTubeTitle(finalTitle, finalArtist);
+        // Use ID3 as a potential override if preview seems generic
+        if (extractedID3.title && extractedID3.artist && 
+            (finalTitle === 'YouTube Video' || finalTitle === 'Untitled Track' || finalArtist === 'Unknown Artist')) {
+           finalArtist = extractedID3.artist;
+           finalTitle = extractedID3.title;
+           source = 'id3_override';
+        }
+        
+        // Apply YouTube cleaning if applicable (already done in fetchYouTubeData, but maybe do again?)
+        if (preview.platform === 'youtube') {
+           finalTitle = cleanYouTubeTitle(finalTitle, finalArtist);
         }
 
-        // Construct filename using the determined artist/title
         let outputFilename = `${finalArtist} - ${finalTitle}.${format}`;
-        console.log(`Metadata source used: ${source}`);
+        console.log(`Metadata source used for filename: ${source}`);
 
-        // Final fallback check
-        if (outputFilename.startsWith('Unknown Artist - Untitled Track') || outputFilename.startsWith('Unknown Artist - YouTube Video')) {
+        // Final fallback check (using content disposition)
+        if (outputFilename.startsWith('Unknown Artist - Untitled Track') || 
+            outputFilename.startsWith('Unknown Artist - YouTube Video') ||
+            outputFilename.includes('Preview Error for:')) { // Check for error titles too
             const contentDisposition = response.headers.get('content-disposition');
             const filenameMatch = contentDisposition?.match(/filename\*?=['"]?([^'";]+)['"]?/);
             if (filenameMatch && filenameMatch[1]) {
                 console.log('Using content disposition filename as final fallback');
                 try { outputFilename = decodeURIComponent(filenameMatch[1]); } catch (e) { outputFilename = filenameMatch[1]; }
+                // Ensure correct extension
                 if (!outputFilename.toLowerCase().endsWith(`.${format}`)) {
                    outputFilename = `${outputFilename.replace(/\.[^/.]+$/, "")}.${format}`;
                 }
@@ -1207,7 +1187,7 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
       <div className="flex gap-2 items-center">
         <LinkIcon className="h-5 w-5 text-muted-foreground" />
         <Input
-          placeholder="Paste YouTube or Spotify URL here..."
+          placeholder="Paste YouTube/Spotify URL or search term..." // Updated placeholder
           value={url}
           onChange={(e) => setUrl(e.target.value)}
           disabled={isPreviewLoading || isDownloading}
@@ -1241,29 +1221,29 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
 
       {preview && (
         <div className="mt-6 animate-fade-in">
-              <SongPreview
-                title={preview.title}
-                artist={preview.artist}
-                thumbnail={preview.thumbnail}
-                platform={preview.platform}
-                isPlaylist={preview.isPlaylist}
-                songCount={preview.songCount}
-                onDownload={handleActionButtonClick}
-                isLoading={isDownloading}
-                downloadProgress={downloadProgress}
-                downloadComplete={downloadComplete}
-                canPlay={downloadComplete && !!downloadedFile && !preview.isPlaylist}
-                onPlay={playAudio}
-                url={preview.url}
-                embedPlayer={preview.platform === 'youtube'
-                    ? renderYouTubeEmbed(preview.id, preview.isPlaylist)
-                    : renderSpotifyEmbed(preview.id, preview.isPlaylist)}
-                formatSelector={formatSelectorElement}
-                downloadedFile={downloadedFile} 
-                disabled={hasReachedDownloadLimit}
-              />
-              
-          
+          <SongPreview
+            title={preview.title}
+            artist={preview.artist}
+            thumbnail={preview.thumbnail}
+            platform={preview.platform}
+            isPlaylist={preview.isPlaylist}
+            songCount={preview.songCount}
+            onDownload={handleActionButtonClick}
+            isLoading={isDownloading}
+            downloadProgress={downloadProgress}
+            downloadComplete={downloadComplete}
+            canPlay={downloadComplete && !!downloadedFile && !preview.isPlaylist}
+            onPlay={playAudio}
+            url={preview.url}
+            embedPlayer={ 
+              preview.platform === 'youtube'
+                ? renderYouTubeEmbed(preview.id, preview.isPlaylist)
+                : renderSpotifyEmbed(preview.id, preview.isPlaylist)
+            }
+            formatSelector={formatSelectorElement}
+            downloadedFile={downloadedFile} 
+            disabled={hasReachedDownloadLimit}
+          />
         </div>
       )}
 

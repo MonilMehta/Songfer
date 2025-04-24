@@ -103,21 +103,21 @@ export function RecommendationGrid({
     }
   };
   
-  // Skeleton loader component for recommendation card
+  // Skeleton loader component for recommendation card - Refined appearance
   const RecommendationCardSkeleton = () => (
-    <div className="bg-card/50 border border-border/30 rounded-xl overflow-hidden backdrop-blur-sm">
+    <div className="bg-card/40 border border-border/20 rounded-xl overflow-hidden backdrop-blur-sm h-full">
       <div className="animate-pulse">
-        <div className="flex items-center p-3">
-          <div className="w-12 h-12 bg-muted/40 rounded-md mr-3"></div>
-          <div className="flex-1">
-            <div className="h-4 bg-muted/60 rounded-md w-3/4 mb-2"></div>
+        <div className="flex items-center p-3 space-x-3">
+          <div className="w-12 h-12 bg-muted/30 rounded-md flex-shrink-0"></div>
+          <div className="flex-1 space-y-2">
+            <div className="h-4 bg-muted/50 rounded-md w-3/4"></div>
             <div className="h-3 bg-muted/40 rounded-md w-1/2"></div>
           </div>
           <div className="h-8 w-8 bg-muted/30 rounded-full"></div>
         </div>
-        <div className="px-3 pb-3">
-          <div className="h-2 bg-muted/20 rounded-full w-full mt-2"></div>
-          <div className="flex justify-between items-center mt-2">
+        <div className="px-3 pb-3 space-y-2">
+          <div className="h-2 bg-muted/20 rounded-full w-full"></div>
+          <div className="flex justify-between items-center pt-1">
             <div className="h-4 bg-muted/30 rounded-md w-16"></div>
             <div className="h-4 bg-muted/20 rounded-full w-8"></div>
           </div>
@@ -132,10 +132,11 @@ export function RecommendationGrid({
       <div className="absolute -z-10 -right-20 top-10 w-48 h-48 rounded-full bg-primary/5 blur-3xl" />
       <div className="absolute -z-10 left-20 bottom-20 w-32 h-32 rounded-full bg-secondary/5 blur-2xl" />
       
-      {/* Header Section with Stylized Typography */}
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+      {/* Header Section with Refined Typography & Spacing */}
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
         <div>
           <h2 className="flex items-center text-3xl font-black">
+            {/* Slightly adjusted transforms */}
             <span className="inline-block transform rotate-1 text-primary mr-2">FRESH</span>
             <span className="inline-block transform -rotate-1 mr-2">PICKS</span>
             <span className="inline-block transform rotate-1">FOR YOU</span>
@@ -159,24 +160,23 @@ export function RecommendationGrid({
           </div>
         </div>
         
-        <div className="flex items-center mt-4 md:mt-0">
+        <div className="flex items-center gap-2 flex-wrap"> {/* Wrapper for buttons */}
           {/* Use processedRecommendations.length for conditional rendering */}
           {!isLoading && processedRecommendations.length > 5 && (
             <Button 
               variant="ghost" 
               size="sm"
-              className="mr-2 text-primary hover:bg-primary/10"
+              className="text-primary hover:bg-primary/10 rounded-full" // Added rounded-full
               onClick={() => setShowAll(!showAll)}
             >
               {showAll ? (
                 <>
-                  <ChevronUp className="h-4 w-4 mr-2" />
+                  <ChevronUp className="h-4 w-4 mr-1" /> {/* Reduced margin */}
                   Show Less
                 </>
               ) : (
                 <>
-                  <ChevronDown className="h-4 w-4 mr-2" />
-                  {/* Display count from processedRecommendations */}
+                  <ChevronDown className="h-4 w-4 mr-1" /> {/* Reduced margin */}
                   Show All ({processedRecommendations.length})
                 </>
               )}
@@ -186,11 +186,11 @@ export function RecommendationGrid({
           <Button 
             variant="outline" 
             size="sm"
-            className={`group rounded-full border-dashed border-primary/30 ${(isLoading || isRefreshing) ? 'opacity-50' : ''}`}
+            className={`group rounded-full border-dashed border-primary/30 hover:border-primary/50 transition-colors ${(isLoading || isRefreshing) ? 'opacity-50 cursor-not-allowed' : ''}`} // Added hover and cursor styles
             onClick={handleRefresh}
             disabled={isLoading || isRefreshing}
           >
-            <RefreshCw className={`h-4 w-4 mr-2 group-hover:text-primary ${(isLoading || isRefreshing) ? 'animate-spin' : ''}`} />
+            <RefreshCw className={`h-4 w-4 mr-2 group-hover:text-primary transition-colors ${(isLoading || isRefreshing) ? 'animate-spin' : ''}`} />
             <span>REFRESH</span>
           </Button>
         </div>
@@ -201,15 +201,15 @@ export function RecommendationGrid({
         {isLoading || isRefreshing ? (
           // Show skeleton loaders while loading
           Array(5).fill(0).map((_, idx) => (
-            <div key={idx} className="h-full">
+            <div key={idx} className="h-full"> {/* Ensure skeleton takes full height */}
               <RecommendationCardSkeleton />
             </div>
           ))
         ) : processedRecommendations.length > 0 ? (
           // Show actual recommendation cards when loaded
           displayedRecommendations.map((recommendation) => (
-            <div key={recommendation.id} className="h-full">
-              {/* Pass the processed recommendation object */}
+            // Added group and hover effect to the wrapper
+            <div key={recommendation.id} className="h-full group transition-all duration-300 ease-out hover:scale-[1.03]"> 
               <RecommendationCard recommendation={recommendation} />
             </div>
           ))
