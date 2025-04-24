@@ -197,7 +197,7 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
       if (!videoInfo) {
         toast({
           title: "Invalid URL",
-          description: "Please enter a valid YouTube or Spotify URL.",
+          description: "Please enter a valid YouTube or Spotify URL or search query.",
           variant: "destructive"
         })
         return
@@ -205,7 +205,11 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
 
       let data: MediaPreviewData
       if (videoInfo.platform === 'youtube') {
-        data = await fetchYouTubeData(videoInfo.id, videoInfo.isPlaylist, videoInfo.playlistId, url)
+        // For YouTube search queries, we need to attach a special flag
+        const fullSearchUrl = videoInfo.isSearchQuery 
+          ? `${url}?isSearchQuery=true` 
+          : url
+        data = await fetchYouTubeData(videoInfo.id, videoInfo.isPlaylist, videoInfo.playlistId, fullSearchUrl)
       } else { 
         data = await fetchSpotifyData(videoInfo.id, videoInfo.isPlaylist, url, getAuthToken())
       }
@@ -220,13 +224,16 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
       
       const previewData: MediaPreviewData = {
         ...data,
-        songCount: songCount && !isNaN(songCount) ? songCount : undefined
+        songCount: songCount && !isNaN(songCount) ? songCount : undefined,
+        isSearchQuery: videoInfo.isSearchQuery // Make sure this is passed along
       }
       
       setPreview(previewData)
       toast({
         title: "Preview Loaded",
-        description: "Check the details and choose a format.",
+        description: videoInfo.isSearchQuery 
+          ? "Enter your search query and click Search & Download." 
+          : "Check the details and choose a format.",
       })
     } catch (error) {
       console.error('Error loading preview:', error)
@@ -1034,7 +1041,6 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
           <div className="p-4 bg-card border-b">
             <div className="flex items-start gap-4">
               <div className="flex-shrink-0 w-24 h-24 bg-muted rounded-md overflow-hidden">
-                {/* Render ACTUAL thumbnail or placeholder, NOT recursive call */}
                 {playlistDetails?.thumbnail ? (
                   <img 
                     src={playlistDetails.thumbnail} 

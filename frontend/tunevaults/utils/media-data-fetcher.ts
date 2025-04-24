@@ -9,13 +9,37 @@ export interface MediaPreviewData {
   songCount?: number
   url: string
   id: string
+  isSearchQuery?: boolean // Added to identify search queries
 }
 
 // Extracts video/track ID from URLs
-export const extractVideoId = (url: string): { id: string, platform: 'youtube' | 'spotify', isPlaylist: boolean, playlistId?: string } | null => {
+export const extractVideoId = (url: string): { id: string, platform: 'youtube' | 'spotify', isPlaylist: boolean, playlistId?: string, isSearchQuery?: boolean } | null => {
   try {
+      // Check if it's a simple search query without URL format
+      if (!url.includes('://') && !url.includes('www.') && url.trim().length > 0) {
+          return { 
+              id: encodeURIComponent(url.trim()),
+              platform: 'youtube',
+              isPlaylist: false, 
+              isSearchQuery: true
+          };
+      }
+      
       const cleanedUrl = new URL(url);
       const pathSegments = cleanedUrl.pathname.split('/').filter(Boolean);
+
+      // Handle YouTube search results URL
+      if (cleanedUrl.hostname.includes('youtube.com') && cleanedUrl.pathname.includes('/results') && cleanedUrl.searchParams.has('search_query')) {
+          const searchQuery = cleanedUrl.searchParams.get('search_query');
+          if (searchQuery) {
+              return { 
+                  id: searchQuery,
+                  platform: 'youtube',
+                  isPlaylist: false,
+                  isSearchQuery: true
+              };
+          }
+      }
 
       if ((cleanedUrl.hostname.includes('youtube.com') && cleanedUrl.searchParams.has('v')) || cleanedUrl.hostname.includes('youtu.be')) {
           const videoId = cleanedUrl.hostname.includes('youtu.be') ? pathSegments[0] : cleanedUrl.searchParams.get('v');
@@ -67,6 +91,33 @@ export const extractVideoId = (url: string): { id: string, platform: 'youtube' |
 // Fetch YouTube data (video or playlist)
 export const fetchYouTubeData = async (videoId: string, isPlaylist: boolean, playlistId?: string, fullUrl?: string): Promise<MediaPreviewData> => {
   try {
+    // Handle search queries
+    if (fullUrl && fullUrl.includes('isSearchQuery=true')) {
+      try {
+        // For search queries, we need to fetch the first result from YouTube search
+        const searchQuery = decodeURIComponent(videoId);
+        console.log(`Processing YouTube search query: "${searchQuery}"`);
+        
+        // Create a properly formatted YouTube search URL
+        const searchUrl = `https://www.youtube.com/results?search_query=${encodeURIComponent(searchQuery)}`;
+        
+        // For search queries, return placeholder data first, then backend will handle the actual search
+        return {
+          title: `Search: ${searchQuery}`,
+          artist: 'YouTube Search Result',
+          thumbnail: '/default-song-cover.jpg', // Use a default thumbnail for search queries
+          platform: 'youtube',
+          isPlaylist: false,
+          url: searchUrl, // Send the search URL to the backend
+          id: videoId, // Keep the encoded search query as ID
+          isSearchQuery: true
+        };
+      } catch (searchError) {
+        console.error('Error processing YouTube search query:', searchError);
+        throw searchError;
+      }
+    }
+    
     if (isPlaylist && playlistId) {
       let firstVideoId = videoId;
       try {
@@ -552,4 +603,4 @@ export const extractMetadataFromHeaders = (headers: Headers): {
     album: songAlbum || undefined,
     duration: songDuration || undefined
   };
-}; 
+};
