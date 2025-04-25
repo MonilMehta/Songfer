@@ -22,11 +22,12 @@ export default function NotFoundPage() {
 
             <div className="mt-[-20px]">
               <h3 className="text-2xl sm:text-3xl font-semibold mb-3">
-                Oops! Page Not Found
+                It seems we have crashed💥.
               </h3>
-              <p className="mb-6 text-muted-foreground sm:mb-8 max-w-md mx-auto">
-              Looks like this record can&apos;t find its groove. The page you&apos;re looking for doesn&apos;t exist. Let&apos;s spin you back to the homepage!
-              </p>
+                <p className="text-lg text-muted-foreground mb-8 max-w-xl">
+                    Sorry, our servers are currently handling a lot of requests. Please try again in a few minutes.<br />
+                    If the problem persists, contact support.
+                </p>
 
               <Button
                 variant="default"
