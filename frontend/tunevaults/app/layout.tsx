@@ -9,7 +9,7 @@ import { PlayerProvider } from '@/context/PlayerContext'
 import { UserProfileProvider } from '@/context/UserProfileContext'
 import { AuthProvider } from "@/components/auth-provider";
 import { FloatingPlayerBar } from '@/components/player/FloatingPlayerBar'; // Import the player bar
-
+import { Analytics } from "@vercel/analytics/react"
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {

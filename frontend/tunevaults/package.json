@@ -27,6 +27,7 @@
     "@tsparticles/slim": "^3.8.1",
     "@types/js-cookie": "^3.0.6",
     "@types/react-simple-maps": "^3.0.6",
+    "@vercel/analytics": "^1.5.0",
     "axios": "^1.7.9",
     "canvas-confetti": "^1.9.3",
     "class-variance-authority": "^0.7.1",
