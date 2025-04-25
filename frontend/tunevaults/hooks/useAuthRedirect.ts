@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import apiCaller from '@/utils/apiCaller';
@@ -9,8 +9,16 @@ export function useAuthRedirect() {
   // Separate loading/error states: one for the hook's background tasks, one potentially for form submissions
   const [isAuthLoading, setIsAuthLoading] = useState(false);
   const [authError, setAuthError] = useState('');
+  // Add a ref to track if authentication has been attempted
+  const authAttemptedRef = useRef(false);
 
   const authenticateWithBackend = useCallback(async (email: string | null | undefined, name: string | null | undefined, accessToken: string | undefined) => {
+    // Prevent multiple authentication attempts
+    if (authAttemptedRef.current) {
+      console.log('Authentication already attempted, skipping duplicate request');
+      return false;
+    }
+    
     if (!email) {
       setAuthError('Email not provided by Google authentication');
       return false;
@@ -26,6 +34,9 @@ export function useAuthRedirect() {
     setAuthError(''); // Clear previous errors
     try {
       console.log('Attempting backend authentication with Google credentials...');
+      // Mark that authentication has been attempted
+      authAttemptedRef.current = true;
+      
       const response = await apiCaller('users/google-auth/', 'POST', {
         email,
         name: name || email.split('@')[0], // Use part of email if name is null
@@ -65,7 +76,9 @@ export function useAuthRedirect() {
   useEffect(() => {
     const handleSessionChange = async () => {
       // Only proceed if authenticated via next-auth AND no backend token exists yet
-      if (status === 'authenticated' && session?.user?.email && !localStorage.getItem('token')) {
+      // AND we haven't already attempted authentication
+      if (status === 'authenticated' && session?.user?.email && 
+          !localStorage.getItem('token') && !authAttemptedRef.current) {
         console.log('Google session detected, attempting backend authentication.');
         // Assuming accessToken is correctly populated in the session object by next-auth callbacks
         // You might need to adjust your [..nextauth].ts file (jwt and session callbacks)
