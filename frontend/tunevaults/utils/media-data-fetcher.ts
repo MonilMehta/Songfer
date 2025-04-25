@@ -131,7 +131,7 @@ const cleanYouTubeTitle = (title: string | undefined, artist: string | undefined
 // Fetch YouTube data (video or playlist)
 export const fetchYouTubeData = async (videoId: string, isPlaylist: boolean, playlistId?: string, fullUrl?: string): Promise<MediaPreviewData> => {
   // IMPORTANT: Access API key from environment variables
-  const YOUTUBE_API_KEY = process.env.NEXT_PUBLIC_YOUTUBE_API_KEY;
+  const YOUTUBE_API_KEY = process.env.NEXT_PUBLIC_YOUTUBE;
 
   try {
     // Check if it's identified as a search query from the URL flag
@@ -140,7 +140,7 @@ export const fetchYouTubeData = async (videoId: string, isPlaylist: boolean, pla
 
     if (isSearchQuery) {
       if (!YOUTUBE_API_KEY) {
-        console.error("YouTube API Key is missing. Please set NEXT_PUBLIC_YOUTUBE_API_KEY environment variable.");
+        console.error("YouTube API Key is missing. Please set NEXT_PUBLIC_YOUTUBE environment variable.");
         throw new Error("YouTube API Key is missing.");
       }
       const searchQuery = decodeURIComponent(videoId); // videoId contains the search query here

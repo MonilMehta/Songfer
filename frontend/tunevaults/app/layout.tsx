@@ -13,6 +13,7 @@ import { FloatingPlayerBar } from '@/components/player/FloatingPlayerBar'; // Im
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'https://songfer.vercel.app'),
   title: "Songfer - Download Music from YouTube and Spotify",
   description: "Download your favorite music from YouTube and Spotify in high quality MP3 and AAC formats.",
   // Define icons here, Next.js will generate the appropriate link tags
