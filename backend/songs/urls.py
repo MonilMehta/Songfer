@@ -23,5 +23,5 @@ urlpatterns = [
     # Add explicit download_all URL pattern
     path('playlists/<int:pk>/download-all/', views.PlaylistViewSet.as_view({'get': 'download_all'}), name='playlist-download-all'),
     # Public download endpoint for unauthorized users
-    path('public-download/', views.SongViewSet.as_view({'post': 'public_download_by_url'}), name='public-download-by-url'),
+    # path('public-download/', views.SongViewSet.as_view({'post': 'public_download_by_url'}), name='public-download-by-url'),
 ]

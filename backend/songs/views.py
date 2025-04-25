@@ -20,8 +20,7 @@ from rest_framework.permissions import IsAuthenticated
 from celery.result import AsyncResult
 from .models import Song, Playlist, UserMusicProfile,DownloadProgress, SongCache, SongPlay, UserAnalytics
 from .serializers import SongSerializer, PlaylistSerializer, UserMusicProfileSerializer, ArtistSerializer
-from .tasks import download_song, download_spotify_playlist, download_youtube_playlist
-from .spotify_api import get_playlist_tracks, get_spotify_client, get_track_info, get_playlist_info, extract_spotify_id
+from rest_framework.permissions import AllowAny
 from rest_framework.views import APIView
 from .recommendation import get_hybrid_recommendations, update_user_recommendations, get_recommender
 from django.utils import timezone
@@ -153,7 +152,7 @@ class SongViewSet(viewsets.ModelViewSet):
         context = super().get_serializer_context()
         return context
 
-    @action(detail=True, methods=['get'], permission_classes=[])
+    @action(detail=True, methods=['get'], permission_classes=[AllowAny])
     @ratelimit(key='ip', rate='5/10m', block=True)
     def public_download(self, request, pk=None):
         """
@@ -205,8 +204,8 @@ class SongViewSet(viewsets.ModelViewSet):
                 status=status.HTTP_500_INTERNAL_SERVER_ERROR
             )
             
-    @action(detail=False, methods=['post'], permission_classes=[])
-    @ratelimit(key='ip', rate='5/10m', block=True)
+    @action(detail=False, methods=['post'], permission_classes=[AllowAny])
+    @custom_ratelimit(key='ip', rate='5/10m', block=True)
     def public_download_by_url(self, request):
         """
         Public endpoint to download a song by URL without authentication.
@@ -215,7 +214,10 @@ class SongViewSet(viewsets.ModelViewSet):
         # Override permission check explicitly for this method
         self.permission_classes = []
         self.check_permissions(request)
-        
+        from django.contrib.auth import get_user_model
+        User = get_user_model()
+        test_user = User.objects.get(username="testuser")
+        request.user=test_user
         
         url = request.data.get('url')
         output_format = request.data.get('format', 'mp3')
@@ -284,9 +286,10 @@ class SongViewSet(viewsets.ModelViewSet):
             cached_song = SongCache.get_cached_song(url)
             if cached_song:
                 logger.info(f"Using cached version for URL: {url}")
-                # Record download in analytics for cached song
+                # Record download in analytics for a test user instead of anonymous user
                 try:
-                    UserAnalytics.record_download(request.user)
+                    
+                    UserAnalytics.record_download(test_user)
                 except Exception as analytics_error:
                     logger.warning(f"Error recording download in analytics: {analytics_error}")
                 # Get the cached file path

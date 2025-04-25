@@ -4173,3 +4173,180 @@ INFO 2025-04-25 16:33:53,920 autoreload 25352 24076 Watching for file changes wi
 INFO 2025-04-25 16:37:16,965 autoreload 25352 24076 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songfer\settings.py changed, reloading.
 INFO 2025-04-25 16:37:21,593 autoreload 22196 12732 Watching for file changes with StatReloader
 INFO 2025-04-25 16:38:12,646 autoreload 16192 16352 Watching for file changes with StatReloader
+INFO 2025-04-25 17:46:04,128 autoreload 6208 25024 Watching for file changes with StatReloader
+INFO 2025-04-25 17:47:34,548 autoreload 6208 25024 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-25 17:47:38,303 autoreload 24504 26356 Watching for file changes with StatReloader
+WARNING 2025-04-25 17:48:25,627 log 24504 3684 Not Found: /api/songs/public_download_by_url/
+WARNING 2025-04-25 17:48:25,629 basehttp 24504 3684 "POST /api/songs/public_download_by_url/ HTTP/1.1" 404 17263
+WARNING 2025-04-25 17:49:15,155 log 24504 3684 Unauthorized: /api/songs/public-download/
+WARNING 2025-04-25 17:49:15,156 basehttp 24504 3684 "POST /api/songs/public-download/ HTTP/1.1" 401 58
+WARNING 2025-04-25 17:49:27,594 log 24504 3684 Not Found: /api/songs/public-download-by-url/
+WARNING 2025-04-25 17:49:27,594 basehttp 24504 3684 "POST /api/songs/public-download-by-url/ HTTP/1.1" 404 17263
+WARNING 2025-04-25 17:50:22,033 log 24504 3684 Not Found: /api/songs/public_download_by_url/
+WARNING 2025-04-25 17:50:22,034 basehttp 24504 3684 "POST /api/songs/public_download_by_url/ HTTP/1.1" 404 17263
+WARNING 2025-04-25 17:50:44,515 log 24504 3684 Unauthorized: /api/songs/public-download/
+WARNING 2025-04-25 17:50:44,516 basehttp 24504 3684 "POST /api/songs/public-download/ HTTP/1.1" 401 58
+INFO 2025-04-25 17:51:48,976 autoreload 24504 26356 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\urls.py changed, reloading.
+INFO 2025-04-25 17:51:52,458 autoreload 2368 27476 Watching for file changes with StatReloader
+WARNING 2025-04-25 17:52:11,138 log 2368 10832 Not Found: /api/songs/public_download_by_url/
+WARNING 2025-04-25 17:52:11,138 basehttp 2368 10832 "POST /api/songs/public_download_by_url/ HTTP/1.1" 404 16973
+ERROR 2025-04-25 17:52:22,559 log 2368 10832 Internal Server Error: /api/songs/songs/public_download_by_url/
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\core\handlers\base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\sentry_sdk\integrations\django\views.py", line 94, in sentry_wrapped_callback
+    return callback(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\views\decorators\csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\viewsets.py", line 125, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 515, in dispatch
+    response = self.handle_exception(exc)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 475, in handle_exception
+    self.raise_uncaught_exception(exc)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 486, in raise_uncaught_exception
+    raise exc
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\rest_framework\views.py", line 512, in dispatch
+    response = handler(request, *args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django_ratelimit\decorators.py", line 19, in _wrapped
+    ratelimited = is_ratelimited(request=request, group=group, fn=fn,
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django_ratelimit\core.py", line 153, in is_ratelimited
+    usage = get_usage(request, group, fn, key, rate, method, increment)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django_ratelimit\core.py", line 209, in get_usage
+    value = _SIMPLE_KEYS[key](request)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django_ratelimit\core.py", line 70, in <lambda>
+    'ip': lambda r: _get_ip(r),
+                    ^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django_ratelimit\core.py", line 33, in _get_ip
+    ip = request.META['REMOTE_ADDR']
+         ^^^^^^^^^^^^
+AttributeError: 'SongViewSet' object has no attribute 'META'
+ERROR 2025-04-25 17:52:22,567 basehttp 2368 10832 "POST /api/songs/songs/public_download_by_url/ HTTP/1.1" 500 130616
+INFO 2025-04-25 17:53:46,475 autoreload 2368 27476 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-25 17:53:49,962 autoreload 19524 12124 Watching for file changes with StatReloader
+INFO 2025-04-25 17:53:53,698 views 19524 10556 Public download by URL requested for https://www.youtube.com/watch?v=f0nFTdKlKLw from IP 127.0.0.1
+INFO 2025-04-25 17:53:54,619 download_helper 19524 10556 Downloading from Hugging Face Spaces: https://www.youtube.com/watch?v=f0nFTdKlKLw
+INFO 2025-04-25 17:54:36,238 download_helper 19524 10556 Successfully downloaded file to C:\Users\Dell\AppData\Local\Temp\tmpz6fh9gdu\download-1745583876.mp3
+INFO 2025-04-25 17:54:36,476 utils 19524 10556 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Outlandish - Aicha Video - Outlandish.mp3
+INFO 2025-04-25 17:54:36,476 utils 19524 10556 Title: Outlandish - Aicha (Video), Artist: Outlandish, Album: Unknown Album, Genre: Unknown
+INFO 2025-04-25 17:54:36,476 utils 19524 10556 Loaded existing ID3 tags
+INFO 2025-04-25 17:54:36,476 utils 19524 10556 Trying to get thumbnail directly from YouTube: https://img.youtube.com/vi/f0nFTdKlKLw/maxresdefault.jpg
+INFO 2025-04-25 17:54:37,366 utils 19524 10556 Successfully downloaded YouTube thumbnail: 57933 bytes
+INFO 2025-04-25 17:54:37,564 utils 19524 10556 Successfully processed YouTube thumbnail: 99349 bytes
+INFO 2025-04-25 17:54:37,564 utils 19524 10556 Successfully added YouTube thumbnail to ID3 tags
+INFO 2025-04-25 17:54:37,585 utils 19524 10556 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Outlandish - Aicha Video - Outlandish.mp3 using ID3v2.3
+INFO 2025-04-25 17:54:37,593 utils 19524 10556 Verification: 9 tags were written, has_cover=True
+INFO 2025-04-25 17:54:37,792 utils 19524 10556 Attempting to set system thumbnail property directly (Windows only)
+INFO 2025-04-25 17:54:37,814 utils 19524 10556 Successfully deleted existing ID3 tags before rebuilding
+INFO 2025-04-25 17:54:37,822 utils 19524 10556 Successfully rebuilt ID3 tags with clean implementation
+INFO 2025-04-25 17:54:37,822 utils 19524 10556 Skipping shell thumbnail method due to known issues
+ERROR 2025-04-25 17:54:37,831 download_helper 19524 10556 YouTube download error: Cannot assign "<django.contrib.auth.models.AnonymousUser object at 0x000001F5CA43A180>": "Song.user" must be a "CustomUser" instance.
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py", line 208, in download_youtube
+    song = Song.objects.create(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 677, in create
+    obj = self.model(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\base.py", line 543, in __init__
+    _setattr(self, field.name, rel_obj)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\fields\related_descriptors.py", line 287, in __set__
+    raise ValueError(
+ValueError: Cannot assign "<django.contrib.auth.models.AnonymousUser object at 0x000001F5CA43A180>": "Song.user" must be a "CustomUser" instance.
+ERROR 2025-04-25 17:54:38,243 log 19524 10556 Internal Server Error: /api/songs/songs/public_download_by_url/
+ERROR 2025-04-25 17:54:38,243 basehttp 19524 10556 "POST /api/songs/songs/public_download_by_url/ HTTP/1.1" 500 168
+INFO 2025-04-25 18:01:02,360 autoreload 19524 12124 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-25 18:01:05,573 autoreload 3364 14724 Watching for file changes with StatReloader
+INFO 2025-04-25 18:01:23,557 views 3364 11964 Public download by URL requested for https://www.youtube.com/watch?v=f0nFTdKlKLw from IP 127.0.0.1
+INFO 2025-04-25 18:01:24,581 download_helper 3364 11964 Downloading from Hugging Face Spaces: https://www.youtube.com/watch?v=f0nFTdKlKLw
+INFO 2025-04-25 18:01:37,848 download_helper 3364 11964 Successfully downloaded file to C:\Users\Dell\AppData\Local\Temp\tmpk79bkpln\download-1745584297.mp3
+INFO 2025-04-25 18:01:37,883 utils 3364 11964 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Outlandish - Aicha Video - Outlandish.mp3
+INFO 2025-04-25 18:01:37,883 utils 3364 11964 Title: Outlandish - Aicha (Video), Artist: Outlandish, Album: Unknown Album, Genre: Unknown
+INFO 2025-04-25 18:01:37,883 utils 3364 11964 Loaded existing ID3 tags
+INFO 2025-04-25 18:01:37,883 utils 3364 11964 Trying to get thumbnail directly from YouTube: https://img.youtube.com/vi/f0nFTdKlKLw/maxresdefault.jpg
+INFO 2025-04-25 18:01:38,446 utils 3364 11964 Successfully downloaded YouTube thumbnail: 57933 bytes
+INFO 2025-04-25 18:01:38,471 utils 3364 11964 Successfully processed YouTube thumbnail: 99349 bytes
+INFO 2025-04-25 18:01:38,471 utils 3364 11964 Successfully added YouTube thumbnail to ID3 tags
+INFO 2025-04-25 18:01:38,483 utils 3364 11964 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Outlandish - Aicha Video - Outlandish.mp3 using ID3v2.3
+INFO 2025-04-25 18:01:38,492 utils 3364 11964 Verification: 9 tags were written, has_cover=True
+INFO 2025-04-25 18:01:38,500 utils 3364 11964 Attempting to set system thumbnail property directly (Windows only)
+INFO 2025-04-25 18:01:38,516 utils 3364 11964 Successfully deleted existing ID3 tags before rebuilding
+INFO 2025-04-25 18:01:38,536 utils 3364 11964 Successfully rebuilt ID3 tags with clean implementation
+INFO 2025-04-25 18:01:38,536 utils 3364 11964 Skipping shell thumbnail method due to known issues
+ERROR 2025-04-25 18:01:38,543 download_helper 3364 11964 YouTube download error: Cannot assign "<django.contrib.auth.models.AnonymousUser object at 0x0000014AAB2CF4D0>": "Song.user" must be a "CustomUser" instance.
+Traceback (most recent call last):
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\download_helper.py", line 208, in download_youtube
+    song = Song.objects.create(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\query.py", line 677, in create
+    obj = self.model(**kwargs)
+          ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\base.py", line 543, in __init__
+    _setattr(self, field.name, rel_obj)
+  File "C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\venv\Lib\site-packages\django\db\models\fields\related_descriptors.py", line 287, in __set__
+    raise ValueError(
+ValueError: Cannot assign "<django.contrib.auth.models.AnonymousUser object at 0x0000014AAB2CF4D0>": "Song.user" must be a "CustomUser" instance.
+ERROR 2025-04-25 18:01:38,891 log 3364 11964 Internal Server Error: /api/songs/songs/public_download_by_url/
+ERROR 2025-04-25 18:01:38,891 basehttp 3364 11964 "POST /api/songs/songs/public_download_by_url/ HTTP/1.1" 500 168
+INFO 2025-04-25 18:12:20,491 autoreload 3364 14724 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-25 18:12:24,176 autoreload 24368 22484 Watching for file changes with StatReloader
+INFO 2025-04-25 18:13:58,778 autoreload 24368 22484 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-25 18:14:03,062 autoreload 316 15944 Watching for file changes with StatReloader
+INFO 2025-04-25 18:18:10,055 autoreload 316 15944 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-25 18:18:13,646 autoreload 8804 9564 Watching for file changes with StatReloader
+INFO 2025-04-25 18:18:40,152 autoreload 13196 26872 Watching for file changes with StatReloader
+INFO 2025-04-25 18:19:34,810 autoreload 13196 26872 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-25 18:19:38,531 autoreload 10348 6068 Watching for file changes with StatReloader
+INFO 2025-04-25 18:21:14,875 autoreload 10348 6068 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-25 18:21:18,575 autoreload 26888 25012 Watching for file changes with StatReloader
+INFO 2025-04-25 18:21:38,701 autoreload 15328 26364 Watching for file changes with StatReloader
+INFO 2025-04-25 18:22:13,043 autoreload 15328 26364 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-25 18:22:17,438 autoreload 17312 12096 Watching for file changes with StatReloader
+INFO 2025-04-25 18:22:21,180 autoreload 17312 12096 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-25 18:22:25,281 autoreload 10492 12796 Watching for file changes with StatReloader
+INFO 2025-04-25 18:22:29,021 autoreload 10492 12796 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-25 18:22:33,531 autoreload 20716 24556 Watching for file changes with StatReloader
+INFO 2025-04-25 18:22:38,557 autoreload 20716 24556 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-25 18:22:44,224 autoreload 13300 5412 Watching for file changes with StatReloader
+INFO 2025-04-25 18:22:48,573 autoreload 13300 5412 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-25 18:22:52,718 autoreload 18728 17808 Watching for file changes with StatReloader
+INFO 2025-04-25 18:23:10,013 autoreload 18728 17808 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-25 18:23:13,642 autoreload 24136 10820 Watching for file changes with StatReloader
+INFO 2025-04-25 18:28:13,433 autoreload 24136 10820 C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\songs\views.py changed, reloading.
+INFO 2025-04-25 18:28:17,442 autoreload 11796 9408 Watching for file changes with StatReloader
+INFO 2025-04-25 18:28:29,481 views 11796 22624 Public download by URL requested for https://www.youtube.com/watch?v=f0nFTdKlKLw from IP 127.0.0.1
+INFO 2025-04-25 18:28:29,875 download_helper 11796 22624 Downloading from Hugging Face Spaces: https://www.youtube.com/watch?v=f0nFTdKlKLw
+INFO 2025-04-25 18:29:36,361 download_helper 11796 22624 Successfully downloaded file to C:\Users\Dell\AppData\Local\Temp\tmp7pb40xoy\download-1745585976.mp3
+INFO 2025-04-25 18:29:36,394 utils 11796 22624 Embedding metadata in C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Outlandish - Aicha Video - Outlandish.mp3
+INFO 2025-04-25 18:29:36,394 utils 11796 22624 Title: Outlandish - Aicha (Video), Artist: Outlandish, Album: Unknown Album, Genre: Unknown
+INFO 2025-04-25 18:29:36,406 utils 11796 22624 Loaded existing ID3 tags
+INFO 2025-04-25 18:29:36,406 utils 11796 22624 Trying to get thumbnail directly from YouTube: https://img.youtube.com/vi/f0nFTdKlKLw/maxresdefault.jpg
+INFO 2025-04-25 18:29:36,708 utils 11796 22624 Successfully downloaded YouTube thumbnail: 57933 bytes
+INFO 2025-04-25 18:29:36,753 utils 11796 22624 Successfully processed YouTube thumbnail: 99349 bytes
+INFO 2025-04-25 18:29:36,753 utils 11796 22624 Successfully added YouTube thumbnail to ID3 tags
+INFO 2025-04-25 18:29:36,762 utils 11796 22624 Successfully saved ID3 tags to C:\Users\Dell\Monil\Apps\code\Projects\TuneVault\backend\media\songs\Outlandish - Aicha Video - Outlandish.mp3 using ID3v2.3
+INFO 2025-04-25 18:29:36,787 utils 11796 22624 Verification: 9 tags were written, has_cover=True
+INFO 2025-04-25 18:29:36,828 utils 11796 22624 Attempting to set system thumbnail property directly (Windows only)
+INFO 2025-04-25 18:29:36,908 utils 11796 22624 Successfully deleted existing ID3 tags before rebuilding
+INFO 2025-04-25 18:29:36,932 utils 11796 22624 Successfully rebuilt ID3 tags with clean implementation
+INFO 2025-04-25 18:29:36,932 utils 11796 22624 Skipping shell thumbnail method due to known issues
+INFO 2025-04-25 18:29:37,829 download_helper 11796 22624 Added song to cache: https://www.youtube.com/watch?v=f0nFTdKlKLw
+INFO 2025-04-25 18:29:38,089 basehttp 11796 22624 "POST /api/songs/songs/public_download_by_url/ HTTP/1.1" 200 6055510

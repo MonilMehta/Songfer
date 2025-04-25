@@ -80,7 +80,7 @@ export default function Home() {
     }, 200);
 
     try {
-      const response = await fetch('https://songporter.onrender.com/api/songs/songs/public-download/', {
+      const response = await fetch('https://songporter.onrender.com/api/songs/songs/public_download_by_url/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
