@@ -3,19 +3,60 @@ import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import apiCaller from '@/utils/apiCaller';
 
+const AUTH_ATTEMPT_KEY = 'auth_attempt_timestamp';
+const AUTH_COOLDOWN_MS = 10000; // 10 seconds cooldown between auth attempts
+
 export function useAuthRedirect() {
   const router = useRouter();
   const { data: session, status } = useSession();
-  // Separate loading/error states: one for the hook's background tasks, one potentially for form submissions
   const [isAuthLoading, setIsAuthLoading] = useState(false);
   const [authError, setAuthError] = useState('');
-  // Add a ref to track if authentication has been attempted
+  // Use ref to track auth attempts in current session
   const authAttemptedRef = useRef(false);
+  // Use ref for request in progress tracking
+  const requestInProgressRef = useRef(false);
+
+  // Check if we've recently attempted authentication (within cooldown period)
+  const isRecentAttempt = useCallback(() => {
+    try {
+      const lastAttempt = sessionStorage.getItem(AUTH_ATTEMPT_KEY);
+      if (!lastAttempt) return false;
+      
+      const lastAttemptTime = parseInt(lastAttempt, 10);
+      const currentTime = Date.now();
+      
+      return currentTime - lastAttemptTime < AUTH_COOLDOWN_MS;
+    } catch (err) {
+      console.error('Error checking auth attempt timestamp:', err);
+      return false;
+    }
+  }, []);
+
+  // Mark that authentication has been attempted
+  const markAuthAttempt = useCallback(() => {
+    try {
+      // Save in both ref (for current session) and sessionStorage (for page reloads)
+      authAttemptedRef.current = true;
+      sessionStorage.setItem(AUTH_ATTEMPT_KEY, Date.now().toString());
+    } catch (err) {
+      console.error('Error storing auth attempt timestamp:', err);
+    }
+  }, []);
 
   const authenticateWithBackend = useCallback(async (email: string | null | undefined, name: string | null | undefined, accessToken: string | undefined) => {
-    // Prevent multiple authentication attempts
+    // Multi-level protection against duplicate requests
     if (authAttemptedRef.current) {
-      console.log('Authentication already attempted, skipping duplicate request');
+      console.log('Authentication already attempted in this session, skipping');
+      return false;
+    }
+
+    if (requestInProgressRef.current) {
+      console.log('Authentication request already in progress, skipping');
+      return false;
+    }
+
+    if (isRecentAttempt()) {
+      console.log('Authentication was recently attempted, skipping due to cooldown');
       return false;
     }
     
@@ -23,23 +64,27 @@ export function useAuthRedirect() {
       setAuthError('Email not provided by Google authentication');
       return false;
     }
-    // Ensure accessToken is available - this depends on your next-auth config
+    
     if (!accessToken) {
-        setAuthError('Access token not available from Google session. Check NextAuth configuration.');
-        console.warn('Access token missing in session object. Ensure it is added in the JWT/session callbacks.');
-        return false;
+      setAuthError('Access token not available from Google session. Check NextAuth configuration.');
+      console.warn('Access token missing in session object. Ensure it is added in the JWT/session callbacks.');
+      return false;
     }
 
     setIsAuthLoading(true);
-    setAuthError(''); // Clear previous errors
+    setAuthError('');
+    
+    // Mark request as in progress to prevent parallel attempts
+    requestInProgressRef.current = true;
+    
     try {
       console.log('Attempting backend authentication with Google credentials...');
-      // Mark that authentication has been attempted
-      authAttemptedRef.current = true;
+      // Mark auth as attempted at the beginning
+      markAuthAttempt();
       
       const response = await apiCaller('users/google-auth/', 'POST', {
         email,
-        name: name || email.split('@')[0], // Use part of email if name is null
+        name: name || email.split('@')[0],
         google_token: accessToken,
       });
 
@@ -57,32 +102,35 @@ export function useAuthRedirect() {
       setAuthError(err?.response?.data?.detail || 'Failed to communicate with the backend authentication service.');
       return false;
     } finally {
+      requestInProgressRef.current = false;
       setIsAuthLoading(false);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []); // router is stable, apiCaller is stable
+  }, [markAuthAttempt, isRecentAttempt]); // Add new dependencies
 
   // Effect 1: Check for existing backend token on mount and redirect if found
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
-      // Optional: Add token verification step here if needed
       console.log('Existing backend token found, redirecting to dashboard.');
       router.push('/dashboard');
     }
-  }, [router]); // Run only once on mount
+  }, [router]);
 
   // Effect 2: Handle Google Sign-in session changes from next-auth
   useEffect(() => {
+    // Don't process session changes if we've already attempted auth
+    if (authAttemptedRef.current || isRecentAttempt()) {
+      console.log('Skipping session change handling due to recent auth attempt');
+      return;
+    }
+
     const handleSessionChange = async () => {
-      // Only proceed if authenticated via next-auth AND no backend token exists yet
-      // AND we haven't already attempted authentication
       if (status === 'authenticated' && session?.user?.email && 
-          !localStorage.getItem('token') && !authAttemptedRef.current) {
+          !localStorage.getItem('token') && 
+          !authAttemptedRef.current && 
+          !requestInProgressRef.current) {
+        
         console.log('Google session detected, attempting backend authentication.');
-        // Assuming accessToken is correctly populated in the session object by next-auth callbacks
-        // You might need to adjust your [..nextauth].ts file (jwt and session callbacks)
-        // to include the accessToken.
         // @ts-ignore Property 'accessToken' does not exist on type 'Session & { user?: User | AdapterUser | undefined; }'.
         const accessToken = session.accessToken as string | undefined;
 
@@ -96,22 +144,18 @@ export function useAuthRedirect() {
           console.log('Backend authentication successful, redirecting to dashboard.');
           router.push('/dashboard');
         } else {
-            // Error state is set within authenticateWithBackend
-            console.error('Backend authentication failed after Google sign-in.');
+          console.error('Backend authentication failed after Google sign-in.');
         }
       } else if (status === 'loading') {
-          console.log('NextAuth session status: loading...');
-          setIsAuthLoading(true); // Indicate loading while session is checked
+        console.log('NextAuth session status: loading...');
+        setIsAuthLoading(true);
       } else if (status === 'unauthenticated' && isAuthLoading) {
-          // If session becomes unauthenticated while we were loading, stop loading.
-          setIsAuthLoading(false);
+        setIsAuthLoading(false);
       }
     };
 
     handleSessionChange();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [session, status, authenticateWithBackend, router]); // Rerun when session/status changes
+  }, [session, status, authenticateWithBackend, router, isAuthLoading, isRecentAttempt]);
 
-  // Return loading state and error state/setter for the component to use
   return { isAuthLoading, authError, setAuthError };
 }
