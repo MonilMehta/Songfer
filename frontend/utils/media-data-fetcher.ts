@@ -10,6 +10,7 @@ export interface MediaPreviewData {
   url: string
   id: string
   isSearchQuery?: boolean // Added to identify search queries
+  searchResults?: MediaPreviewData[] // Added to store multiple search results
 }
 
 // Extracts video/track ID from URLs
@@ -146,7 +147,7 @@ export const fetchYouTubeData = async (videoId: string, isPlaylist: boolean, pla
       const searchQuery = decodeURIComponent(videoId); // videoId contains the search query here
       console.log(`Performing YouTube API search for: "${searchQuery}"`);
 
-      const searchApiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(searchQuery)}&type=video&maxResults=1&key=${YOUTUBE_API_KEY}`;
+      const searchApiUrl = `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${encodeURIComponent(searchQuery)}&type=video&maxResults=5&key=${YOUTUBE_API_KEY}`;
 
       const searchResponse = await fetch(searchApiUrl);
       if (!searchResponse.ok) {
@@ -155,7 +156,7 @@ export const fetchYouTubeData = async (videoId: string, isPlaylist: boolean, pla
         throw new Error(`YouTube API search failed: ${errorData.error?.message || searchResponse.statusText}`);
       }
       const searchData = await searchResponse.json();
-
+      console.log('YouTube API search results:', searchData);
       if (!searchData.items || searchData.items.length === 0) {
         throw new Error(`No YouTube video results found for "${searchQuery}"`);
       }
@@ -176,7 +177,34 @@ export const fetchYouTubeData = async (videoId: string, isPlaylist: boolean, pla
 
       console.log(`YouTube API search found video: ID=${resultVideoId}, Title=${videoTitle}, Artist=${artistName}`);
 
-      // Return data for the *found video*, not the search query itself
+      // Process all search results
+      const allSearchResults: MediaPreviewData[] = searchData.items.map((item: any) => {
+        const itemVideoId = item.id.videoId;
+        const itemSnippet = item.snippet;
+        
+        let itemArtistName = itemSnippet.channelTitle || 'Unknown Artist';
+        itemArtistName = itemArtistName.replace(/VEVO$/i, '').replace(/Official$/i, '').replace(/Topic$/i, '').replace(/\s{2,}/g, ' ').trim();
+        
+        let itemVideoTitle = itemSnippet.title || 'YouTube Video';
+        itemVideoTitle = cleanYouTubeTitle(itemVideoTitle, itemArtistName);
+        
+        let itemThumbnailUrl = itemSnippet.thumbnails?.high?.url || 
+                          itemSnippet.thumbnails?.medium?.url || 
+                          itemSnippet.thumbnails?.default?.url || 
+                          '/default-song-cover.jpg';
+        
+        return {
+          title: itemVideoTitle,
+          artist: itemArtistName,
+          thumbnail: itemThumbnailUrl,
+          platform: 'youtube',
+          isPlaylist: false,
+          url: `https://www.youtube.com/watch?v=${itemVideoId}`,
+          id: itemVideoId
+        };
+      });
+
+      // Return data for the *found video*, not the search query itself, but include all results
       return {
         title: videoTitle,
         artist: artistName,
@@ -187,6 +215,7 @@ export const fetchYouTubeData = async (videoId: string, isPlaylist: boolean, pla
         url: `https://www.youtube.com/watch?v=${resultVideoId}`,
         id: resultVideoId, // Use the actual video ID now
         // No longer need isSearchQuery flag here, as we resolved it to a video
+        searchResults: allSearchResults // Include all search results
       };
     }
 

@@ -116,6 +116,8 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
   const [filename, setFilename] = useState('')
   const [id3Metadata, setId3Metadata] = useState<ID3Metadata | null>(null)
   const [playlistDetails, setPlaylistDetails] = useState<YouTubePlaylistDetails | null>(null)
+  const [currentSearchResultIndex, setCurrentSearchResultIndex] = useState(0) // Track current search result
+  const [searchResults, setSearchResults] = useState<MediaPreviewData[]>([]) // Store search results
   const audioRef = useRef<HTMLAudioElement>(null)
   const { toast } = useToast()
   const hasSavedRef = useRef(false)
@@ -143,6 +145,8 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
     setFilename('')
     setId3Metadata(null)
     setPlaylistDetails(null)
+    setCurrentSearchResultIndex(0) // Reset search result index
+    setSearchResults([]) // Clear search results
     hasSavedRef.current = false
     clearAudioSource()
   }
@@ -159,6 +163,43 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
       audioRef.current.src = ''
       audioRef.current.removeAttribute('src')
     }
+  }
+
+  // Handle navigation to previous search result
+  const handlePreviousResult = () => {
+    if (!searchResults.length) return
+    
+    const newIndex = currentSearchResultIndex === 0 
+      ? searchResults.length - 1 
+      : currentSearchResultIndex - 1
+      
+    setCurrentSearchResultIndex(newIndex)
+    setPreview(searchResults[newIndex])
+    
+    // Reset download state when changing preview
+    setDownloadProgress(0)
+    setIsDownloading(false)
+    setDownloadComplete(false)
+    setDownloadedFile(null)
+    hasSavedRef.current = false
+    clearAudioSource()
+  }
+
+  // Handle navigation to next search result
+  const handleNextResult = () => {
+    if (!searchResults.length) return
+    
+    const newIndex = (currentSearchResultIndex + 1) % searchResults.length
+    setCurrentSearchResultIndex(newIndex)
+    setPreview(searchResults[newIndex])
+    
+    // Reset download state when changing preview
+    setDownloadProgress(0)
+    setIsDownloading(false)
+    setDownloadComplete(false)
+    setDownloadedFile(null)
+    hasSavedRef.current = false
+    clearAudioSource()
   }
 
   const handlePreview = async () => {
@@ -193,6 +234,25 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
       if (!data) {
         // fetchYouTubeData/fetchSpotifyData should throw errors now, but handle just in case
         throw new Error("Failed to fetch preview data")
+      }
+
+      // Store search results if available
+      if (data.searchResults && data.searchResults.length > 0) {
+        setSearchResults(data.searchResults)
+        setCurrentSearchResultIndex(0) // Start with the first result
+        
+        // Check if there are multiple results
+        const resultCount = data.searchResults.length
+        if (resultCount > 1) {
+          toast({
+            title: "Search Results",
+            description: `Found ${resultCount} results. Use the navigation buttons to browse through them.`,
+            duration: 5000
+          })
+        }
+      } else {
+        // No search results, just single preview
+        setSearchResults([]) 
       }
 
       // No need to manually set isSearchQuery on previewData, fetchYouTubeData handles it
@@ -1232,6 +1292,12 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
             formatSelector={formatSelectorElement}
             downloadedFile={downloadedFile} 
             disabled={hasReachedDownloadLimit}
+            // Add new props for search results navigation
+            hasMultipleResults={searchResults.length > 1}
+            onPrevious={handlePreviousResult}
+            onNext={handleNextResult}
+            resultsCount={searchResults.length}
+            currentResultIndex={currentSearchResultIndex}
           />
         </div>
       )}

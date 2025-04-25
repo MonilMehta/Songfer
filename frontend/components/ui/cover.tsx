@@ -39,7 +39,8 @@ export const Cover = ({
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       ref={ref}
-      className={`relative group/cover inline-block px-2 py-2 transition duration-200 rounded-sm ${hovered ? 'bg-white' : 'dark:bg-neutral-900 bg-neutral-100'}`}
+      // Apply dark mode hover background
+      className={`relative group/cover inline-block px-2 py-2 transition duration-200 rounded-sm ${hovered ? 'bg-white dark:bg-neutral-800' : 'dark:bg-neutral-900 bg-neutral-100'}`}
     >
       <AnimatePresence>
         {hovered && (

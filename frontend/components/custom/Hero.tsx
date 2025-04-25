@@ -108,7 +108,8 @@ const Hero: React.FC = () => {
     <div className="relative h-screen overflow-hidden bg-gradient-to-b from-background to-background/80" ref={scope}>
       {/* Parallax Album Covers - Using randomized displayedCovers */}
       <Floating sensitivity={-1} className="overflow-hidden">
-        <FloatingElement depth={0.5} className="top-[4%] left-[11%]">
+        {/* Hidden on mobile */}
+        <FloatingElement depth={0.5} className="top-[4%] left-[11%] hidden md:block">
           <motion.img
             initial={{ opacity: 0 }}
             src={displayedCovers[0].url}
@@ -116,7 +117,8 @@ const Hero: React.FC = () => {
             className="w-24 h-24 md:w-48 md:h-48 object-cover rounded-lg shadow-xl hover:scale-105 duration-200 cursor-pointer transition-transform"
           />
         </FloatingElement>
-        <FloatingElement depth={1} className="top-[10%] left-[32%]">
+        {/* Hidden on mobile */}
+        <FloatingElement depth={1} className="top-[10%] left-[32%] hidden md:block">
           <motion.img
             initial={{ opacity: 0 }}
             src={displayedCovers[1].url}
@@ -124,15 +126,17 @@ const Hero: React.FC = () => {
             className="w-32 h-32 md:w-40 md:h-40 object-cover rounded-lg shadow-xl hover:scale-105 duration-200 cursor-pointer transition-transform"
           />
         </FloatingElement>
-        <FloatingElement depth={2} className="top-[2%] left-[53%]">
+        {/* Visible on mobile, adjusted position/size */}
+        <FloatingElement depth={2} className="top-[5%] left-[15%] md:top-[2%] md:left-[53%]">
           <motion.img
             initial={{ opacity: 0 }}
             src={displayedCovers[2].url}
             alt={displayedCovers[2].title}
-            className="w-40 h-44 md:w-52 md:h-52 object-cover rounded-lg shadow-xl hover:scale-105 duration-200 cursor-pointer transition-transform"
+            className="w-28 h-28 md:w-40 md:h-44 lg:w-52 lg:h-52 object-cover rounded-lg shadow-xl hover:scale-105 duration-200 cursor-pointer transition-transform"
           />
         </FloatingElement>
-        <FloatingElement depth={1} className="top-[4%] left-[83%]">
+         {/* Hidden on mobile */}
+        <FloatingElement depth={1} className="top-[4%] left-[83%] hidden lg:block">
           <motion.img
             initial={{ opacity: 0 }}
             src={displayedCovers[3].url}
@@ -141,15 +145,17 @@ const Hero: React.FC = () => {
           />
         </FloatingElement>
 
-        <FloatingElement depth={1} className="top-[40%] left-[6%]">
+        {/* Visible on mobile, adjusted position/size */}
+        <FloatingElement depth={1} className="top-[20%] left-[70%] md:top-[40%] md:left-[6%]">
           <motion.img
             initial={{ opacity: 0 }}
             src={displayedCovers[4].url}
             alt={displayedCovers[4].title}
-            className="w-40 h-40 md:w-52 md:h-52 object-cover rounded-lg shadow-xl hover:scale-105 duration-200 cursor-pointer transition-transform"
+            className="w-32 h-32 md:w-40 md:h-40 lg:w-52 lg:h-52 object-cover rounded-lg shadow-xl hover:scale-105 duration-200 cursor-pointer transition-transform"
           />
         </FloatingElement>
-        <FloatingElement depth={2} className="top-[70%] left-[80%]">
+        {/* Hidden on mobile */}
+        <FloatingElement depth={2} className="top-[70%] left-[70%] ">
           <motion.img
             initial={{ opacity: 0 }}
             src={displayedCovers[5].url}
@@ -158,15 +164,17 @@ const Hero: React.FC = () => {
           />
         </FloatingElement>
 
-        <FloatingElement depth={4} className="top-[70%] left-[30%]">
+        {/* Visible on mobile, adjusted position/size */}
+        <FloatingElement depth={4} className="top-[80%] left-[15%] md:top-[70%] md:left-[30%]">
           <motion.img
             initial={{ opacity: 0 }}
             src={displayedCovers[6].url}
             alt={displayedCovers[6].title}
-            className="w-60 md:w-52 h-full object-cover rounded-lg shadow-xl hover:scale-105 duration-200 cursor-pointer transition-transform"
+            className="w-36 h-36 md:w-60 lg:w-60 md:h-60 object-cover rounded-lg shadow-xl hover:scale-105 duration-200 cursor-pointer transition-transform"
           />
         </FloatingElement>
-        <FloatingElement depth={1} className="top-[72%] left-[50%]">
+        {/* Hidden on mobile */}
+        <FloatingElement depth={1} className="top-[72%] left-[50%] hidden lg:block">
           <motion.img
             initial={{ opacity: 0 }}
             src={displayedCovers[7].url}
@@ -189,7 +197,7 @@ const Hero: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 text-muted-foreground max-w-2xl"
+          className="text-lg sm:text-xl md:text-2xl mb-6 sm:mb-8 text-muted-foreground max-w-xs sm:max-w-md md:max-w-2xl"
         >
           Your personal music treasure trove. Download, organize, and enjoy your favorite tracks.
         </motion.p>

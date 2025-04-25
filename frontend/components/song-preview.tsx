@@ -1,7 +1,7 @@
 /* eslint-disable */
 import { Card} from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Download, Play, Save } from 'lucide-react' // Removed SearchIcon import
+import { Download, Play, Save, ChevronLeft, ChevronRight } from 'lucide-react'
 
 import React from 'react'
 
@@ -19,11 +19,15 @@ interface SongPreviewProps {
   downloadComplete?: boolean
   canPlay?: boolean
   url: string
-  embedPlayer: React.ReactNode // No longer optional, always expect it
+  embedPlayer: React.ReactNode
   formatSelector: React.ReactNode
   downloadedFile: Blob | null
   disabled?: boolean
-  // Removed isSearchQuery prop
+  hasMultipleResults?: boolean  // Added to indicate if navigation should be shown
+  onPrevious?: () => void       // Added for navigation
+  onNext?: () => void           // Added for navigation
+  resultsCount?: number         // Added to show total results count
+  currentResultIndex?: number   // Added to show current position
 }
 
 export function SongPreview({
@@ -44,10 +48,12 @@ export function SongPreview({
   formatSelector,
   downloadedFile,
   disabled = false,
-  // Removed isSearchQuery from destructuring
+  hasMultipleResults = false,
+  onPrevious,
+  onNext,
+  resultsCount = 0,
+  currentResultIndex = 0,
 }: SongPreviewProps) {
-  // Removed debug logs
-
   const imageSrc = thumbnail || '/default-song-cover.jpg'
   
   const getProgressMessage = (progress: number) => {
@@ -61,9 +67,38 @@ export function SongPreview({
   
   return (
     <Card className="w-full max-w-xl mx-auto overflow-hidden shadow-lg border border-border">
+      {hasMultipleResults && (
+        <div className="flex items-center justify-between bg-muted/30 p-2 border-b">
+          <Button 
+            variant="ghost" 
+            size="sm" 
+            onClick={onPrevious}
+            disabled={isLoading || !onPrevious}
+            className="h-8 px-2"
+          >
+            <ChevronLeft className="h-4 w-4 mr-1" />
+            Previous
+          </Button>
+          
+          <span className="text-xs text-muted-foreground">
+            Result {currentResultIndex + 1} of {resultsCount}
+          </span>
+          
+          <Button 
+            variant="ghost" 
+            size="sm" 
+            onClick={onNext}
+            disabled={isLoading || !onNext}
+            className="h-8 px-2"
+          >
+            Next
+            <ChevronRight className="h-4 w-4 ml-1" />
+          </Button>
+        </div>
+      )}
+      
       <div className="p-4 flex flex-col flex-grow">
         <div className="mb-3">
-          {/* Removed conditional rendering for title based on isSearchQuery */}
           <h3 className="text-lg font-semibold line-clamp-2" title={title}>{title}</h3>
           <p className="text-sm text-muted-foreground line-clamp-1" title={artist}>{artist}</p>
           {isPlaylist && songCount && (
@@ -74,8 +109,6 @@ export function SongPreview({
         </div>
           
         <div className="mb-4">
-          {/* Removed conditional rendering, always show embedPlayer */}
-          {/* Removed debug log */}
           {embedPlayer}
         </div>
 
@@ -120,7 +153,6 @@ export function SongPreview({
             ) : (
               <>
                 <Download className="w-4 h-4 mr-2" />
-                {/* Button text always shows "Download" */}
                 Download
               </>
             )}
