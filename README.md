@@ -25,6 +25,10 @@
   - Get recommendations tailored to your taste.
 - **📊 Personal Dashboard:**
   - Visualize your listening stats and favorites.
+- **⚡ Optimized Performance:**
+  - Redis-powered caching and queue management for fast, reliable downloads.
+- **🚄 Parallel Processing:**
+  - Albums download multiple tracks simultaneously for maximum speed.
 - **🌈 Modern, Responsive UI:**
   - Built with Next.js, Tailwind CSS, and Django REST API.
 - **🌍 Cross-Platform:**
@@ -75,6 +79,12 @@ Created by [Monil Mehta](mailto:monilmehta5@gmail.com) after realizing there was
    - Tracks are tagged, zipped (if playlist), and delivered with cover art.
 4. **Explore Your Dashboard**
    - See your stats, get recommendations, and manage your music.
+
+**Technical Magic:**
+- **Redis Caching:** Lightning-fast response times by caching frequent queries and results
+- **Task Queue Management:** Background processing of downloads using Redis and Celery
+- **Parallel Processing:** Downloads album tracks simultaneously for much faster delivery
+- **Smart Resource Management:** Efficient handling of large playlists without overloading the server
 
 ---
 
@@ -129,6 +139,7 @@ Created by [Monil Mehta](mailto:monilmehta5@gmail.com) after realizing there was
 - `SPOTIFY_CLIENT_ID` – Your Spotify API client ID
 - `SPOTIFY_CLIENT_SECRET` – Your Spotify API client secret
 - `YOUTUBE_API_KEY` – (Optional) YouTube Data API key for enhanced metadata
+- `REDIS_URL` – Redis connection string for caching and task queuing
 
 ### Frontend (`frontend/tunevaults/.env.local`)
 - `NEXT_PUBLIC_YOUTUBE` – YouTube Data API key (for playlist/track previews)

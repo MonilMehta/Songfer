@@ -63,6 +63,7 @@ export default function RootLayout({
         <meta name="theme-color" content="#000000" /> 
         {/* Verification is handled by metadata, but keeping it here won't hurt if preferred */}
         {/* <meta name="google-site-verification" content="your-google-site-verification-code" /> */}
+        <meta name="google-site-verification" content="1_m8HFrcva-hhyZtlxH69QlTufF57fTV_kzS1GnP7lo" />
       </head>
       <body className={inter.className}>
         <ThemeProvider
