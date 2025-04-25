@@ -15,6 +15,7 @@ export function useAuthRedirect() {
   const authAttemptedRef = useRef(false);
   // Use ref for request in progress tracking
   const requestInProgressRef = useRef(false);
+  const hasRedirectedRef = useRef(false);
 
   // Check if we've recently attempted authentication (within cooldown period)
   const isRecentAttempt = useCallback(() => {
@@ -110,8 +111,14 @@ export function useAuthRedirect() {
   // Effect 1: Check for existing backend token on mount and redirect if found
   useEffect(() => {
     const token = localStorage.getItem('token');
-    if (token) {
-      console.log('Existing backend token found, redirecting to dashboard.');
+    // Only redirect if not already on /dashboard and not already redirected
+    if (
+      token &&
+      typeof window !== 'undefined' &&
+      window.location.pathname !== '/dashboard' &&
+      !hasRedirectedRef.current
+    ) {
+      hasRedirectedRef.current = true;
       router.push('/dashboard');
     }
   }, [router]);
