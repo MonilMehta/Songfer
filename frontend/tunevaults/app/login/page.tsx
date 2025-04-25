@@ -34,13 +34,7 @@ export default function Login() {
   // Combine error states
   const displayError = formError || authError
 
-  // Redirect if already authenticated via NextAuth session
-  useEffect(() => {
-    if (status === 'authenticated') {
-      console.log("NextAuth session active, redirecting to dashboard.");
-      router.push('/dashboard');
-    }
-  }, [status, router]);
+  
 
   // Clear form-specific errors when inputs change
   useEffect(() => {
@@ -102,10 +96,7 @@ export default function Login() {
     return <div className="flex justify-center items-center min-h-screen">Loading session...</div>; // Or a proper loading spinner
   }
 
-  // Don't render the form if already authenticated (redirecting)
-  if (status === 'authenticated') {
-    return <div className="flex justify-center items-center min-h-screen">Redirecting...</div>; 
-  }
+
 
   return (
     // ... existing JSX structure ...
