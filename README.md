@@ -61,7 +61,7 @@
 **songfer** was born from a simple idea:  
 > _"Music should be accessible, beautiful, and yours to keep—without hassle or compromise."_
 
-Created by [Monil Mehta](mailto:monilmehta5@gmail.com) at DJ Sanghvi College Of Engineering, Mumbai, songfer is a celebration of open-source, music, and community.
+Created by [Monil Mehta](mailto:monilmehta5@gmail.com) after realizing there was no simple solution to download entire playlists from YouTube, songfer is a celebration of open-source, music, and community.
 
 ---
 
