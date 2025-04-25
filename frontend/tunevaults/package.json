@@ -37,6 +37,7 @@
     "embla-carousel-react": "^8.6.0",
     "framer-motion": "^11.18.2",
     "js-cookie": "^3.0.5",
+    "lottie-react": "^2.4.1",
     "lucide-react": "^0.471.2",
     "motion": "^12.6.3",
     "music-metadata-browser": "^2.5.11",

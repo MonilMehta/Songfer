@@ -81,7 +81,7 @@ const Floating = ({
       data.currentPosition.x += dx * easingFactor
       data.currentPosition.y += dy * easingFactor
 
-      data.element.style.transform = `translate3d(${data.currentPosition.x}px, ${data.currentPosition.y}px, 0)`
+      data.element.style['transform'] = `translate3d(${data.currentPosition.x}px, ${data.currentPosition.y}px, 0)`
     })
   })
 
