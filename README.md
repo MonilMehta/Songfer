@@ -20,7 +20,7 @@
 - **🖼️ Gorgeous Metadata & Album Art:**
   - Every track comes with ID3 tags and high-res covers.
 - **🔒 Account System:**
-  - Free users: 10 downloads/day. Subscribers: unlimited.
+  - Free users: 15 downloads/day. Subscribers: 50. Free Server Limitations :)
 - **🤖 Smart Music Discovery:**
   - Get recommendations tailored to your taste.
 - **📊 Personal Dashboard:**
