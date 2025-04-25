@@ -71,6 +71,7 @@ DEBUG = True
 ALLOWED_HOSTS = [
     'songporter.onrender.com',
     'songfer.vercel.app',
+    'songporter.vercel.app',
     'localhost',
     '127.0.0.1'
 ]
@@ -307,6 +308,7 @@ LOGGING = {
 CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOWED_ORIGINS = [
     "https://songporter.vercel.app",
+    "https://songfer.vercel.app",
     "https://songporter.onrender.com",
     "http://localhost:3000",
     "http://127.0.0.1:3000",
