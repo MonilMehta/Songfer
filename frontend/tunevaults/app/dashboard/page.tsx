@@ -197,6 +197,7 @@ export default function Dashboard() {
       setUserStats(prev => ({
         ...prev,
         totalDownloads: songs.length || 1,
+        dailyDownloadLimit: prev.isPremium ? 50 : 15,
       }));
     } catch (error) {
       console.error("Error fetching data:", error);

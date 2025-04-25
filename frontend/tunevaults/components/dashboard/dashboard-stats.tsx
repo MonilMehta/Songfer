@@ -74,7 +74,6 @@ export function DashboardStats({
         <div className="transition-transform duration-300 ease-out hover:scale-[1.02]">
           <AccountStatusCard 
             isPremium={userStats.isPremium}
-            downloadsRemaining={userStats.downloadsRemaining}
             dailyDownloadLimit={userStats.dailyDownloadLimit}
             dailyDownloads={userStats.dailyDownloads}
           />
@@ -109,7 +108,6 @@ export function DashboardStats({
             <CarouselItem className="pl-4"> {/* Add padding for spacing */}
               <AccountStatusCard 
                 isPremium={userStats.isPremium}
-                downloadsRemaining={userStats.downloadsRemaining}
                 dailyDownloadLimit={userStats.dailyDownloadLimit}
                 dailyDownloads={userStats.dailyDownloads}
               />

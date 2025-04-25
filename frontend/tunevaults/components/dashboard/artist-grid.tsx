@@ -166,24 +166,32 @@ export function ArtistGrid({ artists, isLoading = false }: ArtistGridProps) {
       </div>
       
       {/* Artist Grid - with loading state or actual content */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {isLoading ? (
-          // Show skeleton loaders while loading
-          Array(4).fill(0).map((_, idx) => (
-            <div key={idx} className="h-full"> {/* Ensure skeleton takes full height */}
-              <ArtistCardSkeleton />
-            </div>
-          ))
-        ) : (
-          // Show actual artist cards when loaded
-          displayArtists.map((artist, idx) => (
-            // Added group and hover effect to the wrapper
-            <div key={idx} className="h-full group transition-all duration-300 ease-out hover:scale-[1.02]"> 
-              <ArtistCard artist={artist} />
-            </div>
-          ))
-        )}
-      </div>
+      {(!isLoading && processedArtists.length === 0) ? (
+        <div className="flex flex-col items-center justify-center py-16 text-center text-muted-foreground">
+          <span className="text-5xl mb-4">🎧</span>
+          <h3 className="text-xl font-semibold mb-2">No top artists yet!</h3>
+          <p className="max-w-md">Start listening to your favorite tracks and watch your top artists appear here. Your musical adventure awaits! 🎵</p>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {isLoading ? (
+            // Show skeleton loaders while loading
+            Array(4).fill(0).map((_, idx) => (
+              <div key={idx} className="h-full"> {/* Ensure skeleton takes full height */}
+                <ArtistCardSkeleton />
+              </div>
+            ))
+          ) : (
+            // Show actual artist cards when loaded
+            displayArtists.map((artist, idx) => (
+              // Added group and hover effect to the wrapper
+              <div key={idx} className="h-full group transition-all duration-300 ease-out hover:scale-[1.02]"> 
+                <ArtistCard artist={artist} />
+              </div>
+            ))
+          )}
+        </div>
+      )}
     </div>
   );
 }
