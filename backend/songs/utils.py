@@ -381,7 +381,7 @@ def embed_metadata(mp3_path, title, artist, album='Unknown', genre='Unknown', th
                     import csv
                     
                     # Path to the new Music.csv file
-                    music_csv_path = os.path.join(settings.BASE_DIR, 'tunevault', 'songs', 'datasets', 'Music.csv')
+                    music_csv_path = os.path.join(settings.BASE_DIR, 'Songfer', 'songs', 'datasets', 'Music.csv')
                     
                     if os.path.exists(music_csv_path):
                         logger.info(f"Checking Music.csv file for thumbnail: {music_csv_path}")

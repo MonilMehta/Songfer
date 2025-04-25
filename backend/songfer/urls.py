@@ -10,11 +10,11 @@ from django.http import HttpResponse
 
 # Create Swagger/OpenAPI schema
 api_info = openapi.Info(
-    title="TuneVault API",
+    title="Songfer API",
     default_version='v1',
-    description="API for TuneVault music download and recommendation system",
-    terms_of_service="https://www.tunevault.com/terms/",
-    contact=openapi.Contact(email="contact@tunevault.com"),
+    description="API for Songfer music download and recommendation system",
+    terms_of_service="https://www.Songfer.com/terms/",
+    contact=openapi.Contact(email="contact@Songfer.com"),
     license=openapi.License(name="MIT License"),
 )
 

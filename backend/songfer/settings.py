@@ -115,7 +115,7 @@ MIDDLEWARE = [
     'allauth.account.middleware.AccountMiddleware',  # Add this line
 ]
 
-ROOT_URLCONF = 'tunevault.urls'
+ROOT_URLCONF = 'songfer.urls'
 
 TEMPLATES = [
     {
@@ -133,7 +133,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'tunevault.wsgi.application'
+WSGI_APPLICATION = 'songfer.wsgi.application'
 
 AUTH_USER_MODEL = 'users.CustomUser'
 
@@ -345,7 +345,7 @@ SWAGGER_SETTINGS = {
         }
     },
     'USE_SESSION_AUTH': True,
-    'DEFAULT_INFO': 'tunevault.urls.api_info',
+    'DEFAULT_INFO': 'songfer.urls.api_info',
     'OPERATIONS_SORTER': 'alpha',
     'TAGS_SORTER': 'alpha',
     'VALIDATOR_URL': None,
