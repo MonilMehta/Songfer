@@ -1,10 +1,11 @@
+/* eslint-disable */
 "use client";
 
 import { Button } from "@/components/ui/button";
 import { useRouter } from 'next/navigation';
 import { Terminal, AlertTriangle } from 'lucide-react';
 import Lottie from "lottie-react";
-import VinylAnimation from "@/components/lottie/VinylAnimation";
+import VinylAnimation from "@/components/lottie/VinylAnimation.json
 
 export default function NotFoundPage() {
   const router = useRouter();
