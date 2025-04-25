@@ -84,7 +84,7 @@ export function DownloadTab({
         </div>
         
         {/* Form */}
-        <div className="mb-8 bg-background/50 backdrop-blur-sm p-5 rounded-xl border border-border/10 shadow-inner">
+        <div className="mb-6 bg-background/50 backdrop-blur-sm p-5 rounded-xl border border-border/10 shadow-inner">
           <DownloadForm 
             onDownload={handleDownloadWithErrorHandling}
             isLoading={isLoading || isDownloading}
@@ -92,20 +92,8 @@ export function DownloadTab({
           />
         </div>
         
-        {/* Error Message */}
-        {errorState && (
-          <motion.div 
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="mb-8 p-4 bg-destructive/10 text-destructive text-sm rounded-lg border border-destructive/20 flex items-start gap-3"
-          >
-            <Info className="w-5 h-5 mt-0.5 flex-shrink-0" />
-            <span>{errorState}</span>
-          </motion.div>
-        )}
-        
-        {/* Features Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        {/* Features Grid - Moved up by adjusting margins */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
           {[ 
             { icon: Music, title: "Studio Quality", desc: "Up to 320kbps MP3, FLAC & WAV" },
             { icon: Zap, title: "Lightning Fast", desc: "Downloads under 30 seconds" },
@@ -128,6 +116,18 @@ export function DownloadTab({
             </motion.div>
           ))}
         </div>
+        
+        {/* Error Message */}
+        {errorState && (
+          <motion.div 
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="p-4 bg-destructive/10 text-destructive text-sm rounded-lg border border-destructive/20 flex items-start gap-3"
+          >
+            <Info className="w-5 h-5 mt-0.5 flex-shrink-0" />
+            <span>{errorState}</span>
+          </motion.div>
+        )}
       </div>
     </motion.div>
   )

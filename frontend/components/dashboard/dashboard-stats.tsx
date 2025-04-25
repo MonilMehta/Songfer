@@ -128,9 +128,9 @@ export function DashboardStats({
               />
             </CarouselItem>
           </CarouselContent>
-          {/* Adjusted positioning for carousel controls */}
-          <CarouselPrevious className="absolute left-[-12px] top-1/2 -translate-y-1/2 z-10" />
-          <CarouselNext className="absolute right-[-12px] top-1/2 -translate-y-1/2 z-10" />
+          {/* Adjusted positioning for carousel controls - moved up */}
+          <CarouselPrevious className="absolute left-[-12px] top-[40%] -translate-y-1/2 z-10" />
+          <CarouselNext className="absolute right-[-12px] top-[40%] -translate-y-1/2 z-10" />
         </Carousel>
       </div>
     </div>

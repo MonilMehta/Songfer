@@ -1233,28 +1233,37 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
 
   return (
     <div className="space-y-6">
-      <div className="flex gap-2 items-center">
-        <LinkIcon className="h-5 w-5 text-muted-foreground" />
-        <Input
-          placeholder="Paste YouTube/Spotify URL or search term..." // Updated placeholder
-          value={url}
-          onChange={(e) => setUrl(e.target.value)}
-          disabled={isPreviewLoading || isDownloading}
-          className="flex-1"
-        />
+      <div className="flex flex-col sm:flex-row gap-2 items-center w-full">
+        <div className="flex items-center w-full">
+          <LinkIcon className="h-5 w-5 text-muted-foreground mr-2 flex-shrink-0" />
+          <Input
+            placeholder="Paste YouTube/Spotify URL or search term..."
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+            disabled={isPreviewLoading || isDownloading}
+            className="flex-1"
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' && url.trim() && !isPreviewLoading && !isDownloading) {
+                e.preventDefault();
+                handlePreview();
+              }
+            }}
+          />
+        </div>
         <Button
           onClick={handlePreview}
           disabled={isPreviewLoading || isDownloading || !url}
           aria-label="Load Preview"
+          className="w-full sm:w-auto"
         >
           {isPreviewLoading ? (
-             <>
+            <>
               <span className="animate-spin mr-2">⏳</span> Loading...
-             </>
+            </>
           ) : (
-             <>
-               <Search className="h-4 w-4 mr-2" /> Preview
-             </>
+            <>
+              <Search className="h-4 w-4 mr-2" /> Preview
+            </>
           )}
         </Button>
       </div>
