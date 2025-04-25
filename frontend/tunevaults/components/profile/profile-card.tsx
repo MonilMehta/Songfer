@@ -25,6 +25,7 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSepara
 import { Separator } from '@/components/ui/separator'
 import { formatDistanceToNow, parseISO, format } from 'date-fns'
 import VinylPlayer from '../custom/VinylPlayer'
+import { Skeleton } from '../ui/skeleton' // Import Skeleton
 
 // Type definitions
 interface ListeningStats {
@@ -165,6 +166,14 @@ export function ProfileCard({ profile, onLogout, genres = [] }: ProfileCardProps
         <CardContent className="p-0">
           {/* Background Header */}
           <div className="relative h-32 bg-gradient-to-r from-primary/30 via-primary/20 to-secondary/30">
+            {/* Subtle Pattern Overlay */}
+            <div 
+              className="absolute inset-0 opacity-[0.03]"
+              style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+                backgroundRepeat: 'repeat'
+              }}
+            ></div>
             {/* Premium Accents */}
             {profile.is_premium && (
               <>
@@ -240,14 +249,14 @@ export function ProfileCard({ profile, onLogout, genres = [] }: ProfileCardProps
             {/* Stats Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
               {/* Downloads Left Card */}
-              <div className="bg-background/60 rounded-lg p-4 border border-border/30 shadow-sm hover:shadow-md transition-all hover:border-primary/30">
+              <div className="bg-background/60 rounded-lg p-4 border border-border/30 shadow-sm hover:shadow-md transition-all hover:border-primary/30 hover:scale-[1.02] hover:bg-background/70">
                 <div className="flex items-center gap-3">
                   <div className="p-2.5 bg-primary/15 rounded-full">
                     <Download className="h-5 w-5 text-primary" />
                   </div>
                   <div>
                     <p className="text-muted-foreground text-xs font-medium">Downloads Left</p>
-                    <p className="text-xl font-semibold mt-0.5">{profile.is_premium ? '∞' : profile.downloads_remaining}</p>
+                    <p className="text-2xl font-semibold mt-0.5">{profile.is_premium ? '∞' : profile.downloads_remaining}</p>
                   </div>
                 </div>
                 {!profile.is_premium && profile.downloads_remaining < 5 && (
@@ -256,27 +265,27 @@ export function ProfileCard({ profile, onLogout, genres = [] }: ProfileCardProps
               </div>
 
               {/* Songs Downloaded Card */}
-              <div className="bg-background/60 rounded-lg p-4 border border-border/30 shadow-sm hover:shadow-md transition-all hover:border-primary/30">
+              <div className="bg-background/60 rounded-lg p-4 border border-border/30 shadow-sm hover:shadow-md transition-all hover:border-primary/30 hover:scale-[1.02] hover:bg-background/70">
                 <div className="flex items-center gap-3">
                   <div className="p-2.5 bg-primary/15 rounded-full">
                     <Music className="h-5 w-5 text-primary" />
                   </div>
                   <div>
                     <p className="text-muted-foreground text-xs font-medium">Songs Downloaded</p>
-                    <p className="text-xl font-semibold mt-0.5">{profile.total_songs_downloaded}</p>
+                    <p className="text-2xl font-semibold mt-0.5">{profile.total_songs_downloaded}</p>
                   </div>
                 </div>
               </div>
 
               {/* Library Size Card */}
-              <div className="bg-background/60 rounded-lg p-4 border border-border/30 shadow-sm hover:shadow-md transition-all hover:border-primary/30">
+              <div className="bg-background/60 rounded-lg p-4 border border-border/30 shadow-sm hover:shadow-md transition-all hover:border-primary/30 hover:scale-[1.02] hover:bg-background/70">
                 <div className="flex items-center gap-3">
                   <div className="p-2.5 bg-primary/15 rounded-full">
                     <ListMusic className="h-5 w-5 text-primary" />
                   </div>
                   <div>
                     <p className="text-muted-foreground text-xs font-medium">Library Size</p>
-                    <p className="text-xl font-semibold mt-0.5">{profile.total_songs}</p>
+                    <p className="text-2xl font-semibold mt-0.5">{profile.total_songs}</p>
                   </div>
                 </div>
               </div>
@@ -340,22 +349,31 @@ export function ProfileCard({ profile, onLogout, genres = [] }: ProfileCardProps
                     </div>
                   )}
 
-                  {/* Top Artist */}
-                  {topArtist && (
-                    <div className="rounded-lg border border-border/30 p-4 bg-background/60 shadow-sm hover:shadow-md transition-all hover:border-primary/30">
-                      <h3 className="font-semibold text-base mb-3 flex items-center gap-2">
-                        <Star className="h-4 w-4 text-primary" /> 
-                        Top Artist
-                      </h3>
+                  {/* Top Artist or Placeholder */}
+                  <div className="rounded-lg border border-border/30 p-4 bg-background/60 shadow-sm hover:shadow-md transition-all hover:border-primary/30">
+                    <h3 className="font-semibold text-base mb-3 flex items-center gap-2">
+                      <Star className="h-4 w-4 text-primary" /> 
+                      Top Artist
+                    </h3>
+                    {topArtist ? (
                       <div className="flex flex-col items-center justify-center p-2">
                         <div className="h-16 w-16 rounded-full bg-primary/20 flex items-center justify-center mb-3">
+                          {/* Placeholder for artist image or icon */}
                           <Music className="h-8 w-8 text-primary/60" />
                         </div>
-                        <h4 className="font-medium text-lg">{topArtist.artist}</h4>
+                        <h4 className="font-medium text-lg text-center">{topArtist.artist}</h4>
                         <p className="text-sm text-muted-foreground">{topArtist.count} plays</p>
                       </div>
-                    </div>
-                  )}
+                    ) : (
+                      // Placeholder when no top artist
+                      <div className="flex flex-col items-center justify-center p-2 text-center h-full min-h-[150px]">
+                        <Skeleton className="h-16 w-16 rounded-full mb-3" />
+                        <Skeleton className="h-5 w-32 mb-1" />
+                        <Skeleton className="h-4 w-20" />
+                        <p className="text-xs text-muted-foreground mt-3">No top artist data yet.</p>
+                      </div>
+                    )}
+                  </div>
                 </div>
               </>
             )}

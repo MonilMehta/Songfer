@@ -67,51 +67,40 @@ interface YouTubePlaylistDetails {
  * @return {string} - Cleaned title
  */
 const cleanYouTubeTitle = (title: string | undefined, artist: string | undefined): string => {
-  if (!title) return 'Untitled Track'; // Return a default if title is missing
-  if (!artist) return title; // Return original title if artist is missing
-  
+  if (!title) return 'Untitled Track';
+
   let cleanedTitle = title;
-  
-  // Step 1: Remove duplicate artist pattern at the beginning
-  // Check if the title starts with the artist name followed by " - " + artist name again
-  const doubleArtistPattern = new RegExp(`^${artist}\\s*-\\s*${artist}\\s*-`);
-  if (doubleArtistPattern.test(cleanedTitle)) {
-    // Replace the duplicate pattern with just the artist name once
-    cleanedTitle = cleanedTitle.replace(doubleArtistPattern, `${artist} -`);
+
+  // Step 1: If the title contains two or more dashes, remove everything before the first dash
+  const dashCount = (cleanedTitle.match(/-/g) || []).length;
+  if (dashCount >= 2) {
+    const firstDashIndex = cleanedTitle.indexOf('-');
+    cleanedTitle = cleanedTitle.substring(firstDashIndex + 1).trim();
   }
-  
-  // Handle case where title is just "Artist - Artist - Title"
-  const duplicateArtistPattern = /^([^-]+)\s*-\s*\1\s*-/;
-  const match = cleanedTitle.match(duplicateArtistPattern);
-  if (match) {
-    const repeatedPart = match[1].trim();
-    cleanedTitle = cleanedTitle.replace(duplicateArtistPattern, `${repeatedPart} -`);
-  }
-  
-  // Step 2: Remove common promotional suffixes in parentheses and brackets
+
+  // Step 2: Remove common promotional suffixes
   const suffixPatterns = [
-    /\s*\(Official\s*(?:Music\s*)?Video\s*\)/gi, // (Official Video), (Official Music Video)
-    /\s*\[Official\s*(?:Music\s*)?Video\s*\]/gi, // [Official Video], [Official Music Video]
-    /\s*\(Official\s*(?:HD\s*)?(?:Audio|Lyric)\s*\)/gi, // (Official Audio), (Official HD Audio)
-    /\s*\[Official\s*(?:HD\s*)?(?:Audio|Lyric)\s*\]/gi, // [Official Audio], [Official HD Audio]
-    /\s*\((?:Full\s*)?HD(?:\s*Quality)?\)/gi, // (HD), (Full HD), (HD Quality)
-    /\s*\[(?:Full\s*)?HD(?:\s*Quality)?\]/gi, // [HD], [Full HD], [HD Quality]
-    /\s*\((?:Official)?\s*[Ll]yric\s*[Vv]ideo\)/g, // (Lyric Video), (Official Lyric Video)
-    /\s*\[(?:Official)?\s*[Ll]yric\s*[Vv]ideo\]/g  // [Lyric Video], [Official Lyric Video]
+    /\s*\(Official\s*(?:Music\s*)?Video(?: HD)?\s*\)/gi,
+    /\s*\[Official\s*(?:Music\s*)?Video\s*\]/gi,
+    /\s*\(Official\s*(?:HD\s*)?(?:Audio|Lyric)\s*\)/gi,
+    /\s*\[Official\s*(?:HD\s*)?(?:Audio|Lyric)\s*\]/gi,
+    /\s*\((?:Full\s*)?HD(?:\s*Quality)?\)/gi,
+    /\s*\[(?:Full\s*)?HD(?:\s*Quality)?\]/gi,
+    /\s*\((?:Official)?\s*[Ll]yric\s*[Vv]ideo\)/gi,
+    /\s*\[(?:Official)?\s*[Ll]yric\s*[Vv]ideo\]/gi
   ];
-  
+
   suffixPatterns.forEach(pattern => {
     cleanedTitle = cleanedTitle.replace(pattern, '');
   });
-  
-  // Step 3: Handle any remaining parentheses or brackets at the end of the title
-  // This is a bit aggressive, so we'll only do it for obvious promotional content
-  cleanedTitle = cleanedTitle.replace(/\s*\([^)]*(?:video|audio|hd|official|4k|quality)[^)]*\)$/gi, '');
-  cleanedTitle = cleanedTitle.replace(/\s*\[[^\]]*(?:video|audio|hd|official|4k|quality)[^\]]*\]$/gi, '');
-  
-  // Step 4: Clean up any double spaces and trim
-  cleanedTitle = cleanedTitle.replace(/\s{2,}/g, ' ').trim();
-  
+
+  // Step 3: Remove residual (video/audio/etc) in parentheses/brackets
+  cleanedTitle = cleanedTitle.replace(/\s*\([^)]*(video|audio|hd|official|4k|quality)[^)]*\)$/gi, '');
+  cleanedTitle = cleanedTitle.replace(/\s*\[[^\]]*(video|audio|hd|official|4k|quality)[^\]]*\]$/gi, '');
+
+  // Step 4: Clean up extra spaces and trailing hyphens
+  cleanedTitle = cleanedTitle.replace(/\s{2,}/g, ' ').replace(/\s*-\s*$/, '').trim();
+
   return cleanedTitle;
 };
 
@@ -448,7 +437,7 @@ export function DownloadForm({ onDownload, isLoading, isPremium = false }: Downl
            finalTitle = cleanYouTubeTitle(finalTitle, finalArtist);
         }
 
-        let outputFilename = `${finalArtist} - ${finalTitle}.${format}`;
+        let outputFilename = `${finalTitle}.${format}`;
         console.log(`Metadata source used for filename: ${source}`);
 
         // Final fallback check (using content disposition)

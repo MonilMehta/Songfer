@@ -1,130 +1,116 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { useRouter } from 'next/navigation'
 import apiCaller from '@/utils/apiCaller'
 import Link from 'next/link'
-import { Eye, EyeOff } from 'lucide-react'
+import { Eye, EyeOff, AlertCircle } from 'lucide-react'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import VinylPlayer from '@/components/custom/VinylPlayer'
-import { signIn, useSession } from 'next-auth/react'
+import { signIn, useSession } from 'next-auth/react' // Import useSession
+import { useAuthRedirect } from '@/hooks/useAuthRedirect'
+import { Alert, AlertDescription } from '@/components/ui/alert'
 
 export default function Login() {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
-  const [isLoading, setIsLoading] = useState(false)
-  const [error, setError] = useState('')
+  const [formLoading, setFormLoading] = useState(false)
+  const [formError, setFormError] = useState('')
   const router = useRouter()
-  const { data: session, status } = useSession()
-  
-  // Function to handle backend authentication with Google credentials
-  const authenticateWithBackend = useCallback(async (email: string | null | undefined, name: string | null | undefined, accessToken: string | undefined) => {
-    if (!email) {
-      setError('Email not provided by Google authentication')
-      return false
-    }
-    
-    try {
-      // Make a request to your backend to authenticate or register the Google user
-      const response = await apiCaller('users/google-auth/', 'POST', { 
-        email, 
-        name: name || email.split('@')[0],
-        google_token: accessToken 
-      })
-      
-      if (response && response.status === 200) {
-        // Store the token from your backend
-        localStorage.setItem('token', response.data.token)
-        return true
-      } else {
-        setError('Backend authentication failed after Google sign-in')
-        return false
-      }
-    } catch (error: any) {
-      console.error('Backend authentication error:', error)
-      setError(error?.response?.data?.detail || 'Failed to authenticate with the backend')
-      return false
-    }
-  }, [])
-  
-  // Check session and handle backend authentication when session changes
+  const { data: session, status } = useSession() // Use useSession hook
+
+  // useAuthRedirect handles post-Google-auth flow and localStorage token check
+  const { isAuthLoading, authError, setAuthError } = useAuthRedirect()
+
+  // Combine loading states
+  const isLoading = formLoading || isAuthLoading || status === 'loading';
+
+  // Combine error states
+  const displayError = formError || authError
+
+  // Redirect if already authenticated via NextAuth session
   useEffect(() => {
-    const handleSessionChange = async () => {
-      if (status === 'authenticated' && session?.user?.email) {
-        setIsLoading(true)
-        try {
-          // Authenticate with backend using Google credentials
-          const success = await authenticateWithBackend(
-            session.user.email,
-            session.user.name,
-            session.accessToken
-          )
-          
-          if (success) {
-            router.push('/dashboard')
-          }
-        } finally {
-          setIsLoading(false)
-        }
-      }
+    if (status === 'authenticated') {
+      console.log("NextAuth session active, redirecting to dashboard.");
+      router.push('/dashboard');
     }
-    
-    handleSessionChange()
-  }, [session, status, router, authenticateWithBackend])
-  
-  // Check if user is already authenticated with a token
+  }, [status, router]);
+
+  // Clear form-specific errors when inputs change
   useEffect(() => {
-    const token = localStorage.getItem('token')
-    if (token) {
-      router.push('/dashboard')
+    if (username || password) {
+      setFormError('');
+      // Keep authError managed by useAuthRedirect
     }
-  }, [router])
+  }, [username, password]);
 
   const handleSubmit = async (e: React.FormEvent) => {
+    // ... existing handleSubmit logic ...
+    // This handles username/password login via your backend API
+    // It sets localStorage token upon success
     e.preventDefault()
-    setIsLoading(true)
-    setError('')
-    
+    if (!username || !password) {
+      setFormError('Please enter both username and password.')
+      return
+    }
+    setFormLoading(true)
+    setFormError('')
+    setAuthError('') // Clear potential errors from Google flow
+
     try {
       const response = await apiCaller('users/login/', 'POST', { username, password })
 
-      if (response && response.status === 200) {
-        const data = response.data
-        localStorage.setItem('token', data.token)
-        router.push('/dashboard')
+      if (response && response.status === 200 && response.data.token) {
+        localStorage.setItem('token', response.data.token)
+        // Redirect immediately after successful username/password login
+        router.push('/dashboard') 
       } else {
-        setError('Invalid username or password')
+        setFormError(response?.data?.detail || 'Invalid username or password.')
       }
     } catch (error: any) {
-      console.error('Error:', error)
-      if (error.response && error.response.data) {
-        setError(error.response.data.detail || 'Login failed')
-      } else {
-        setError('Login failed. Please check your credentials and try again.')
-      }
+      console.error('Login Error:', error)
+      setFormError(error.response?.data?.detail || 'Login failed. Please check credentials or network.')
     } finally {
-      setIsLoading(false)
+      setFormLoading(false)
     }
   }
 
   const handleGoogleSignIn = async () => {
-    setIsLoading(true)
+    setFormLoading(true) // Use formLoading for the button state
+    setFormError('')
+    setAuthError('')
     try {
-      await signIn('google', { callbackUrl: '/login' }) // Redirect back to login to process in useEffect
+      // Callback URL is /login because useAuthRedirect handles the logic *after* returning here
+      await signIn('google', { callbackUrl: '/login' }) 
+      // Don't setFormLoading(false) here, as the page might navigate away
+      // or useAuthRedirect will take over the loading state (isAuthLoading)
     } catch (error) {
-      console.error('Google sign-in error:', error)
-      setError('Failed to sign in with Google')
-      setIsLoading(false)
+      console.error('Google sign-in initiation error:', error)
+      setAuthError('Failed to start Google sign-in process.')
+      setFormLoading(false) // Set loading false only on error
     }
   }
 
+  // Render loading state or the form
+  if (status === 'loading') {
+    return <div className="flex justify-center items-center min-h-screen">Loading session...</div>; // Or a proper loading spinner
+  }
+
+  // Don't render the form if already authenticated (redirecting)
+  if (status === 'authenticated') {
+    return <div className="flex justify-center items-center min-h-screen">Redirecting...</div>; 
+  }
+
   return (
+    // ... existing JSX structure ...
+    // Make sure buttons use the combined 'isLoading' state
     <div className="container mx-auto px-4 py-12 flex flex-col items-center justify-center min-h-[80vh]">
+      {/* ... existing header ... */}
       <div className="flex items-center gap-2 mb-8 ">
         <div className="w-8 h-8 mr-4 mb-2">
           <VinylPlayer />
@@ -140,13 +126,15 @@ export default function Login() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          {error && (
-            <div className="bg-destructive/15 p-3 rounded-md mb-4 text-sm text-destructive">
-              {error}
-            </div>
+          {displayError && (
+             <Alert variant="destructive" className="mb-4">
+               <AlertCircle className="h-4 w-4" />
+               <AlertDescription>{displayError}</AlertDescription>
+             </Alert>
           )}
         
           <form onSubmit={handleSubmit} className="space-y-4">
+            {/* ... existing username input ... */}
             <div className="space-y-2">
               <Label htmlFor="username">Username</Label>
               <Input
@@ -156,9 +144,10 @@ export default function Login() {
                 onChange={(e) => setUsername(e.target.value)}
                 required
                 placeholder="Enter your username"
-                disabled={isLoading}
+                disabled={isLoading} // Use combined loading state
               />
             </div>
+            {/* ... existing password input ... */}
             <div className="space-y-2">
               <Label htmlFor="password">Password</Label>
               <div className="relative">
@@ -169,23 +158,25 @@ export default function Login() {
                   onChange={(e) => setPassword(e.target.value)}
                   required
                   placeholder="Enter your password"
-                  disabled={isLoading}
+                  disabled={isLoading} // Use combined loading state
                 />
                 <button
                   type="button"
                   className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
                   onClick={() => setShowPassword(!showPassword)}
-                  disabled={isLoading}
+                  disabled={isLoading} // Use combined loading state
+                  aria-label={showPassword ? "Hide password" : "Show password"}
                 >
                   {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                 </button>
               </div>
             </div>
-            <Button type="submit" className="w-full" disabled={isLoading}>
-              {isLoading ? 'Signing in...' : 'Sign In'}
+            <Button type="submit" className="w-full" disabled={isLoading}> 
+              {formLoading ? 'Signing in...' : isAuthLoading ? 'Processing...' : 'Sign In'}
             </Button>
           </form>
           
+          {/* ... existing separator ... */}
           <div className="relative my-6">
             <div className="absolute inset-0 flex items-center">
               <Separator />
@@ -197,11 +188,12 @@ export default function Login() {
           
           <Button 
             variant="outline" 
-            className="w-full" 
+            className="w-full mt-6" // Added mt-6 for spacing after separator
             onClick={handleGoogleSignIn}
-            disabled={isLoading}
+            disabled={isLoading} // Use combined loading state
           >
-            <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24">
+            {/* ... existing Google SVG ... */}
+            <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24" aria-hidden="true">
               <path
                 d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
                 fill="#4285F4"
@@ -219,7 +211,7 @@ export default function Login() {
                 fill="#EA4335"
               />
             </svg>
-            Sign in with Google
+            {isAuthLoading ? 'Processing Google Sign-In...' : 'Sign in with Google'}
           </Button>
         </CardContent>
         <CardFooter className="flex justify-center">

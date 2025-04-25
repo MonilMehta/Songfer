@@ -14,7 +14,8 @@ import { CountryMap } from '@/components/profile/country-map'
 import { MusicShelf } from '@/components/profile/music-shelf'
 import { ProfileCardSkeleton } from '@/components/profile/profile-card-skeleton' // Import skeleton
 import { CountryMapSkeleton } from '@/components/profile/country-map-skeleton' // Import skeleton
-import { MusicShelfSkeleton } from '@/components/profile/music-shelf-skeleton' // Import skeleton
+import { MusicShelfSkeleton } from '@/components/profile/music-shelf-skeleton' 
+import { FeedbackCard } from '@/components/profile/feedback-card'; // Import FeedbackCard
 
 // Types
 interface Song {
@@ -327,6 +328,9 @@ export default function ProfilePage() {
           </Tabs>
         )}
       </div>
+
+      {/* Add Feedback Card Here */}
+      <FeedbackCard />
     </div>
   )
 }

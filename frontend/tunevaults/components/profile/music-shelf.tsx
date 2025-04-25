@@ -1,9 +1,9 @@
 /* eslint-disable */
 'use client'
 
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
-import { Music, ListMusic, Play, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Music, ListMusic, ChevronLeft, ChevronRight } from 'lucide-react' // Removed Play
 import { Button } from '@/components/ui/button'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { Badge } from '@/components/ui/badge'
@@ -34,22 +34,38 @@ interface Playlist {
 interface MusicShelfProps {
   items: Song[] | Playlist[]
   type: 'songs' | 'playlists'
+  nowPlayingId?: number;
 }
 
-// Simplified Vinyl SVG Placeholder
-const VinylPlaceholder = ({ className }: { className?: string }) => (
-  <svg viewBox="0 0 100 100" className={`w-full h-full ${className}`}>
-    <circle cx="50" cy="50" r="48" fill="#1a1a1a" />
-    <circle cx="50" cy="50" r="15" fill="hsl(var(--muted))" />
-    <circle cx="50" cy="50" r="13" fill="hsl(var(--background))" />
-    {/* Subtle grooves */}
-    {Array.from({ length: 8 }).map((_, i) => (
-      <circle key={i} cx="50" cy="50" r={18 + i * 3.5} fill="none" stroke="#333" strokeWidth="0.5" />
-    ))}
+// Vinyl Disc SVG (More detailed)
+const VinylDisc = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 100 100" className={`w-full h-full ${className} absolute top-0 left-0 z-0 translate-x-1 -translate-y-1 group-hover:translate-x-2 group-hover:-translate-y-2 transition-transform duration-300 ease-out`}>
+    <defs>
+      <radialGradient id="vinylShine" cx="0.3" cy="0.3" r="0.7">
+        <stop offset="0%" stopColor="#444" stopOpacity="0.8" />
+        <stop offset="40%" stopColor="#222" stopOpacity="0.9" />
+        <stop offset="100%" stopColor="#111" stopOpacity="1" />
+      </radialGradient>
+      <filter id="vinylGrooves">
+        <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" result="noise"/>
+        <feDiffuseLighting in="noise" lightingColor="#555" surfaceScale="0.5" result="light">
+          <feDistantLight azimuth="45" elevation="60" />
+        </feDiffuseLighting>
+        <feComposite operator="in" in2="SourceGraphic" result="grooves"/>
+        <feBlend in="SourceGraphic" in2="grooves" mode="multiply" />
+      </filter>
+    </defs>
+    <circle cx="50" cy="50" r="48" fill="url(#vinylShine)" filter="url(#vinylGrooves)" />
+    {/* Center Label */}
+    <circle cx="50" cy="50" r="16" fill="hsl(var(--primary))" />
+    <circle cx="50" cy="50" r="14.5" fill="hsl(var(--primary-foreground))" />
+    <circle cx="50" cy="50" r="13" fill="hsl(var(--primary))" />
+    {/* Spindle Hole */}
+    <circle cx="50" cy="50" r="3" fill="#111" />
   </svg>
 );
 
-// New RecordSleeve Component
+// Updated RecordSleeve to show vinyl disc
 const RecordSleeve = ({ item, type }: { item: Song | Playlist; type: 'songs' | 'playlists' }) => {
   const isSong = 'artist' in item;
   const title = isSong ? (item as Song).title : (item as Playlist).name;
@@ -67,15 +83,17 @@ const RecordSleeve = ({ item, type }: { item: Song | Playlist; type: 'songs' | '
     <TooltipProvider delayDuration={150}>
       <Tooltip>
         <TooltipTrigger asChild>
-          <motion.div
-            className="relative aspect-square w-full cursor-pointer group"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
-            whileHover={{ y: -5, scale: 1.03, zIndex: 10, transition: { duration: 0.2 } }} // Lift effect on hover
-          >
-            {/* Sleeve Background */}
-            <div className="absolute inset-0 bg-gradient-to-br from-card to-muted/50 rounded-md shadow-lg overflow-hidden border border-border/10 group-hover:border-primary/30 transition-colors group-hover:shadow-primary/10">
+          {/* Outer container for positioning vinyl and sleeve */}
+          <div className="relative aspect-square w-full group">
+            {/* Vinyl Disc - positioned behind the sleeve */}
+            {isSong && <VinylDisc className="w-[95%] h-[95%] opacity-90" />} 
+            {/* Sleeve - positioned above the vinyl */}
+            <motion.div
+              className="relative aspect-square w-full cursor-pointer z-10 bg-gradient-to-br from-card to-muted/60 rounded-md shadow-lg overflow-hidden border border-border/20 group-hover:border-primary/40 transition-colors group-hover:shadow-xl"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3 }}
+            >
               {imageUrl && !imgError ? (
                 <Image
                   src={imageUrl}
@@ -86,26 +104,30 @@ const RecordSleeve = ({ item, type }: { item: Song | Playlist; type: 'songs' | '
                   onError={() => setImgError(true)}
                 />
               ) : (
-                // Placeholder when no image or image error
-                <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-muted/60 to-muted/80">
-                  <VinylPlaceholder className="w-3/4 h-3/4 opacity-50" />
+                // Placeholder for sleeve art
+                <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-muted/70 to-muted/90 p-4">
+                   {/* Simple placeholder icon if no image */}
+                   {isSong ? 
+                     <Music className="w-1/2 h-1/2 text-muted-foreground/50" /> : 
+                     <ListMusic className="w-1/2 h-1/2 text-muted-foreground/50" />
+                   }
                 </div>
               )}
               {/* Subtle overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-black/10 opacity-70 group-hover:opacity-50 transition-opacity"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/10 opacity-80 group-hover:opacity-60 transition-opacity"></div>
 
               {/* Content inside sleeve */}
-              <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80 to-transparent z-10">
+              <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/85 to-transparent z-20">
                 <h3 className="font-semibold text-sm text-primary-foreground truncate mb-0.5">{title}</h3>
                 <p className="text-xs text-muted-foreground truncate group-hover:text-primary-foreground/80 transition-colors">{subtitle}</p>
               </div>
               
               {/* Source Badge */}
-              <Badge variant="secondary" className="absolute top-2 right-2 text-xs bg-background/70 backdrop-blur-sm z-10">
+              <Badge variant="secondary" className="absolute top-2 right-2 text-xs bg-background/70 backdrop-blur-sm z-20">
                 {item.source}
               </Badge>
-            </div>
-          </motion.div>
+            </motion.div>
+          </div>
         </TooltipTrigger>
         <TooltipContent side="bottom" className="max-w-xs text-center">
           <p className="font-medium">{title}</p>
@@ -117,19 +139,26 @@ const RecordSleeve = ({ item, type }: { item: Song | Playlist; type: 'songs' | '
   );
 };
 
-export function MusicShelf({ items, type, nowPlayingId }: MusicShelfProps & { nowPlayingId?: number }) {
+export function MusicShelf({ items, type, nowPlayingId }: MusicShelfProps) {
   const [page, setPage] = useState(0);
-  const itemsPerPage = 8; // Increase items per page for a denser look
+  const itemsPerPage = 8;
   const maxPages = Math.ceil(items.length / itemsPerPage);
   const shelfRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [rotations, setRotations] = useState<number[]>([]);
+  const [skews, setSkews] = useState<number[]>([]);
 
-  // Removed the random rotation/skew for straight shelves
+  // Re-introduce random rotations/skews for shelf items
+  useEffect(() => {
+    if (items.length > 0) {
+      setRotations(items.map(() => Math.random() * 4 - 2)); // -2 to +2 degrees
+      setSkews(items.map(() => Math.random() * 3 - 1.5)); // -1.5 to +1.5 degrees skew
+    }
+  }, [items]);
 
   const handlePrevPage = () => setPage(p => Math.max(0, p - 1));
   const handleNextPage = () => setPage(p => Math.min(maxPages - 1, p + 1));
 
   if (!items || items.length === 0) {
-    // Keep the empty state as is, it's clear
     return (
       <div className="min-h-[300px] flex flex-col items-center justify-center p-8 text-center border border-dashed rounded-lg bg-muted/30">
         <div className="w-16 h-16 mb-4 rounded-full bg-muted flex items-center justify-center">
@@ -149,7 +178,6 @@ export function MusicShelf({ items, type, nowPlayingId }: MusicShelfProps & { no
     )
   }
 
-  // Group items into rows of 4 for larger screens, 2 for mobile
   const currentItems = items.slice(page * itemsPerPage, (page + 1) * itemsPerPage);
   const rows: (typeof currentItems)[] = [];
   for (let i = 0; i < currentItems.length; i += 4) {
@@ -193,21 +221,35 @@ export function MusicShelf({ items, type, nowPlayingId }: MusicShelfProps & { no
       <div className="relative px-2 pb-8">
         {rows.map((row, rowIdx) => (
           <div key={rowIdx} className="relative flex flex-wrap justify-center sm:justify-between items-end mb-12 w-full" style={{ minHeight: 180 }}>
-            {/* Shelf plank (wood/glass) */}
-            <div className="absolute left-0 right-0 bottom-0 h-6 z-0 rounded-b-2xl bg-gradient-to-t from-yellow-900/80 via-yellow-700/60 to-yellow-200/30 shadow-2xl border-b-4 border-yellow-900/60" style={{ filter: 'blur(0.5px)' }} />
+            {/* Restore original Shelf plank style */}
+            <div className="absolute left-0 right-0 bottom-0 h-4 z-0 rounded-b-md bg-gradient-to-t from-yellow-900/80 via-yellow-800/70 to-yellow-900/60 border-b-4 border-yellow-950/90 shadow-[0_2px_10px_rgba(0,0,0,0.4)]" />
             {/* Records on shelf */}
             {row.map((item, idx) => {
-              const globalIdx = rowIdx * 4 + idx;
+              const globalIdx = page * itemsPerPage + rowIdx * 4 + idx;
+              const rotation = rotations[globalIdx] || 0;
+              const skew = skews[globalIdx] || 0;
               const isNowPlaying = nowPlayingId && item.id === nowPlayingId;
               return (
                 <div
                   key={item.id}
                   ref={el => {
+                    // Ensure ref array is large enough
+                    if (shelfRefs.current.length <= globalIdx) {
+                      shelfRefs.current.length = globalIdx + 1;
+                    }
                     shelfRefs.current[globalIdx] = el;
                   }}
-                  className={`relative z-10 mx-2 mb-4 sm:mb-0 w-[45%] sm:w-[22%] min-w-[120px] max-w-[180px] group transition-transform duration-300 hover:-translate-y-3 hover:scale-105 ${isNowPlaying ? 'ring-4 ring-pink-400/70 shadow-lg animate-pulse-slow' : ''}`}
+                  className={`relative z-10 mx-2 mb-4 sm:mb-0 w-[45%] sm:w-[22%] min-w-[120px] max-w-[180px] group transition-transform duration-300 ${isNowPlaying ? 'ring-4 ring-pink-400/70 shadow-lg animate-pulse-slow' : ''}`}
+                  style={{
+                    transform: `rotate(${rotation}deg) skewY(${skew}deg) translateY(0px)`,
+                  }}
+                  onMouseEnter={(e) => { e.currentTarget.style.transform = `rotate(${rotation}deg) skewY(${skew}deg) translateY(-10px) scale(1.03)`; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.transform = `rotate(${rotation}deg) skewY(${skew}deg) translateY(0px)`; }}
                 >
-                  <RecordSleeve item={item} type={type} />
+                  <RecordSleeve
+                    item={item}
+                    type={type}
+                  />
                   {/* Now Playing Glow */}
                   {isNowPlaying && (
                     <div className="absolute inset-0 rounded-lg pointer-events-none animate-glow-music" style={{ boxShadow: '0 0 32px 8px #ec4899, 0 0 0 2px #fff' }} />

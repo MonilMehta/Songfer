@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -12,175 +12,114 @@ import { Separator } from '@/components/ui/separator'
 import apiCaller from '@/utils/apiCaller'
 import VinylPlayer from '@/components/custom/VinylPlayer'
 import { Alert, AlertDescription } from '@/components/ui/alert'
-import { signIn, useSession } from 'next-auth/react'
+import { signIn } from 'next-auth/react'
+import { useAuthRedirect } from '@/hooks/useAuthRedirect'
 
 export default function SignUp() {
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
-  const [error, setError] = useState('')
-  const [isLoading, setIsLoading] = useState(false)
+  const [formError, setFormError] = useState('') // Error state for form validation/submission
+  const [formLoading, setFormLoading] = useState(false) // Loading state for form submission
   const router = useRouter()
-  const { data: session, status } = useSession()
 
-  // Function to handle backend authentication with Google credentials
-  const authenticateWithBackend = useCallback(async (email: string | null | undefined, name: string | null | undefined, accessToken: string | undefined) => {
-    if (!email) {
-      setError('Email not provided by Google authentication')
-      return false
-    }
-    
-    try {
-      // Make a request to your backend to authenticate or register the Google user
-      const response = await apiCaller('users/google-auth/', 'POST', { 
-        email, 
-        name: name || email.split('@')[0],
-        google_token: accessToken 
-      })
-      
-      if (response && response.status === 200) {
-        // Store the token from your backend
-        localStorage.setItem('token', response.data.token)
-        return true
-      } else {
-        setError('Backend authentication failed after Google sign-in')
-        return false
-      }
-    } catch (error: any) {
-      console.error('Backend authentication error:', error)
-      setError(error?.response?.data?.detail || 'Failed to authenticate with the backend')
-      return false
-    }
-  }, [])
-  
-  // Check session and handle backend authentication when session changes
+  // Use the custom hook for auth redirection and Google sign-in handling
+  const { isAuthLoading, authError, setAuthError } = useAuthRedirect()
+
+  // Combine loading states
+  const isLoading = formLoading || isAuthLoading
+
+  // Combine error states (prioritize form error if both exist)
+  const displayError = formError || authError
+
+  // Clear errors when input changes
   useEffect(() => {
-    const handleSessionChange = async () => {
-      if (status === 'authenticated' && session?.user?.email) {
-        setIsLoading(true)
-        try {
-          // Authenticate with backend using Google credentials
-          const success = await authenticateWithBackend(
-            session.user.email,
-            session.user.name,
-            session.accessToken
-          )
-          
-          if (success) {
-            router.push('/dashboard')
-          }
-        } finally {
-          setIsLoading(false)
-        }
-      }
+    if (username || email || password) {
+      setFormError('');
+      setAuthError(''); // Also clear auth errors potentially shown from Google flow
     }
-    
-    handleSessionChange()
-  }, [session, status, router, authenticateWithBackend])
-  
-  // Check if user is already authenticated with a token
-  useEffect(() => {
-    const token = localStorage.getItem('token')
-    if (token) {
-      router.push('/dashboard')
-    }
-  }, [router])
+  }, [username, email, password, setAuthError]);
 
   const validateForm = () => {
-    // Reset error
-    setError('')
-    
-    // Check if all fields are filled
+    setFormError('') // Reset error
+
     if (!username || !email || !password) {
-      setError('All fields are required')
+      setFormError('All fields are required')
       return false
     }
-    
-    // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
     if (!emailRegex.test(email)) {
-      setError('Please enter a valid email address')
+      setFormError('Please enter a valid email address')
       return false
     }
-    
-    // Validate password strength
     if (password.length < 8) {
-      setError('Password must be at least 8 characters long')
+      setFormError('Password must be at least 8 characters long')
       return false
     }
-    
-    // Check for password complexity
     const hasUpperCase = /[A-Z]/.test(password)
     const hasLowerCase = /[a-z]/.test(password)
     const hasNumbers = /\d/.test(password)
     const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password)
-    
     if (!(hasUpperCase && hasLowerCase && hasNumbers && hasSpecialChar)) {
-      setError('Password must contain uppercase, lowercase, numbers, and special characters')
+      setFormError('Password must contain uppercase, lowercase, numbers, and special characters')
       return false
     }
-    
     return true
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    
-    // Validate form
     if (!validateForm()) {
       return
     }
-    
-    setIsLoading(true)
-    
+    setFormLoading(true)
+    setAuthError('') // Clear any previous auth errors
+
     try {
-      const response = await apiCaller('users/register/', 'POST', { 
-        username, 
-        email, 
-        password 
+      const response = await apiCaller('users/register/', 'POST', {
+        username,
+        email,
+        password
       })
-      
+
       if (response && response.status === 201) {
         // Redirect to login page after successful sign-up
-        router.push('/login')
+        // Optionally show a success message first
+        router.push('/login?signup=success') // Add query param to potentially show message on login
       } else {
-        setError('Failed to sign up. Please try again.')
+         // Use detail from response if available, otherwise generic message
+        setFormError(response?.data?.detail || 'Failed to sign up. Please try again.')
       }
     } catch (error: any) {
-      console.error('Error:', error)
-      
-      // Handle specific error messages from the API
-      if (error.response) {
+      console.error('Sign Up Error:', error)
+      if (error.response?.data) {
         const data = error.response.data
-        
-        if (data.username) {
-          setError(`Username error: ${data.username.join(', ')}`)
-        } else if (data.email) {
-          setError(`Email error: ${data.email.join(', ')}`)
-        } else if (data.password) {
-          setError(`Password error: ${data.password.join(', ')}`)
-        } else if (data.detail) {
-          setError(data.detail)
-        } else {
-          setError('An error occurred during sign up. Please try again.')
-        }
+        if (data.username) setFormError(`Username error: ${data.username.join(', ')}`)
+        else if (data.email) setFormError(`Email error: ${data.email.join(', ')}`)
+        else if (data.password) setFormError(`Password error: ${data.password.join(', ')}`)
+        else if (data.detail) setFormError(data.detail)
+        else setFormError('An error occurred during sign up.')
       } else {
-        setError('Network error. Please check your connection and try again.')
+        setFormError('Network error. Please check connection.')
       }
     } finally {
-      setIsLoading(false)
+      setFormLoading(false)
     }
   }
 
   const handleGoogleSignIn = async () => {
-    setIsLoading(true)
+    setFormLoading(true) // Use formLoading to indicate user action initiated loading
+    setFormError('')
+    setAuthError('')
     try {
-      await signIn('google', { callbackUrl: '/signup' }) // Redirect back to signup to process in useEffect
+       // Redirect back to signup page; the useAuthRedirect hook will handle the session change
+      await signIn('google', { callbackUrl: '/signup' })
+       // Loading state will be managed by useAuthRedirect after redirect
     } catch (error) {
-      console.error('Google sign-in error:', error)
-      setError('Failed to sign in with Google')
-      setIsLoading(false)
+      console.error('Google sign-in initiation error:', error)
+      setAuthError('Failed to start Google sign-in process.')
+      setFormLoading(false) // Stop loading if signIn itself fails immediately
     }
   }
 
@@ -201,10 +140,10 @@ export default function SignUp() {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          {error && (
+          {displayError && (
             <Alert variant="destructive" className="mb-4">
               <AlertCircle className="h-4 w-4" />
-              <AlertDescription>{error}</AlertDescription>
+              <AlertDescription>{displayError}</AlertDescription>
             </Alert>
           )}
           
@@ -219,6 +158,7 @@ export default function SignUp() {
                 required
                 placeholder="Choose a username"
                 disabled={isLoading}
+                aria-describedby={formError && formError.toLowerCase().includes('username') ? 'error-message' : undefined}
               />
             </div>
             <div className="space-y-2">
@@ -231,6 +171,7 @@ export default function SignUp() {
                 required
                 placeholder="Enter your email"
                 disabled={isLoading}
+                aria-describedby={formError && formError.toLowerCase().includes('email') ? 'error-message' : undefined}
               />
             </div>
             <div className="space-y-2">
@@ -244,22 +185,25 @@ export default function SignUp() {
                   required
                   placeholder="Create a password"
                   disabled={isLoading}
+                  aria-describedby={formError && formError.toLowerCase().includes('password') ? 'error-message' : 'password-hint'}
                 />
                 <button
                   type="button"
                   className="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5"
                   onClick={() => setShowPassword(!showPassword)}
                   disabled={isLoading}
+                  aria-label={showPassword ? "Hide password" : "Show password"}
                 >
                   {showPassword ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                 </button>
               </div>
-              <p className="text-xs text-muted-foreground mt-1">
-                Password must be at least 8 characters and include uppercase, lowercase, numbers, and special characters.
+              <p id="password-hint" className="text-xs text-muted-foreground mt-1">
+                Must be 8+ characters with uppercase, lowercase, numbers, & special characters.
               </p>
             </div>
+            {displayError && <p id="error-message" className="sr-only">{displayError}</p>}
             <Button type="submit" className="w-full" disabled={isLoading}>
-              {isLoading ? 'Signing up...' : 'Sign Up'}
+              {formLoading ? 'Signing up...' : isAuthLoading ? 'Processing...' : 'Sign Up'}
             </Button>
           </form>
           
@@ -278,7 +222,7 @@ export default function SignUp() {
             onClick={handleGoogleSignIn}
             disabled={isLoading}
           >
-            <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24">
+            <svg className="mr-2 h-4 w-4" viewBox="0 0 24 24" aria-hidden="true">
               <path
                 d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
                 fill="#4285F4"
@@ -296,7 +240,7 @@ export default function SignUp() {
                 fill="#EA4335"
               />
             </svg>
-            Sign up with Google
+            {isAuthLoading ? 'Processing Google Sign-Up...' : 'Sign up with Google'}
           </Button>
         </CardContent>
         <CardFooter className="flex justify-center">

@@ -51,17 +51,17 @@ function MagneticSocialLink({
 const SOCIAL_LINKS: SocialLink[] = [
   {
     label: 'Github',
-    link: 'https://github.com/yourusername/Songfer',
+    link: 'https://github.com/MonilMehta/SongPorter',
     icon: <Github className="w-4 h-4" />
   },
   {
     label: 'Twitter',
-    link: 'https://twitter.com/Songfer',
+    link: 'https://x.com/MonilMehta20',
     icon: <Twitter className="w-4 h-4" />
   },
   {
     label: 'LinkedIn',
-    link: 'https://linkedin.com/in/yourusername',
+    link: 'https://www.linkedin.com/in/monilmeh/',
     icon: <Linkedin className="w-4 h-4" />
   },
 ];

@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { useRouter } from 'next/navigation'
-// import DashboardNavbar from '@/components/custom/DashboardNavbar'
+import { FeedbackCard } from '@/components/profile/feedback-card'; // Import FeedbackCard
 
 export default function DashboardLayout({
   children,
@@ -35,6 +35,7 @@ export default function DashboardLayout({
       <main className="flex-1">
         {children}
       </main>
+      <FeedbackCard />
     </div>
   )
-} 
+}

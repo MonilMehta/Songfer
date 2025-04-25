@@ -15,7 +15,10 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuSeparator, // Import Separator
 } from "@/components/ui/dropdown-menu";
+import { useSession, signOut } from "next-auth/react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"; // Import Avatar components
 
 export default function Navbar() {
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -24,10 +27,24 @@ export default function Navbar() {
   const mobileMenuRef = useRef<HTMLDivElement>(null);
   const menuButtonRef = useRef<HTMLButtonElement>(null);
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
-  const [isloggedin, setisloggedin] = useState<string | undefined>(undefined);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [hasLocalToken, setHasLocalToken] = useState<boolean | undefined>(undefined); // State for local token check
   const { theme, setTheme } = useTheme();
   const router = useRouter();
+  const { data: session, status: nextAuthStatus } = useSession(); // Renamed status for clarity
+  const isNextAuthAuthenticated = nextAuthStatus === "authenticated";
+
+  // Check for local token on mount and when session status changes
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    setHasLocalToken(!!token);
+  }, [nextAuthStatus]); // Re-check if session status changes
+
+  // Determine overall authentication status
+  // Consider authenticated if NextAuth says so OR if local token exists
+  // Wait until local token check is done (not undefined) and nextAuth status is not loading
+  const isLoadingAuth = nextAuthStatus === 'loading' || hasLocalToken === undefined;
+  const isAuthenticated = !isLoadingAuth && (isNextAuthAuthenticated || hasLocalToken === true);
 
   // Add window width tracking
   useEffect(() => {
@@ -79,36 +96,30 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [windowWidth]);
 
-  // Check if user is logged in
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    setisloggedin(token ? 'true' : undefined);
-  }, []);
-  
   const handleLogout = () => {
-    // Clear localStorage items
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
-    
-    // Clear any Next Auth session data
-    // This handles removing cookies and session data from Next Auth
-    fetch('/api/auth/signout', { 
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      credentials: 'include'
-    }).finally(() => {
-      // Clear any cookies that might be related to authentication
-      document.cookie.split(';').forEach(cookie => {
-        const [name] = cookie.trim().split('=');
-        document.cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
-      });
-      
-      // Redirect to login page
-      window.location.href = '/login';
-    });
+    localStorage.removeItem('token'); // Clear local token
+    setHasLocalToken(false); // Update local state immediately
+    setIsMenuOpen(false); // Close mobile menu if open
+    signOut({ callbackUrl: '/login' }); // Sign out from next-auth
   };
+
+  // Helper to get initials from name or email
+  const getInitials = (name?: string | null, email?: string | null): string => {
+    if (name) {
+      const names = name.split(' ');
+      if (names.length > 1) {
+        return `${names[0][0]}${names[names.length - 1][0]}`.toUpperCase();
+      }
+      return name.substring(0, 2).toUpperCase();
+    }
+    if (email) {
+      return email[0].toUpperCase();
+    }
+    return 'U'; // Default fallback
+  };
+
+  // Function to close mobile menu
+  const closeMobileMenu = () => setIsMenuOpen(false);
 
   return (
     <motion.nav 
@@ -130,7 +141,7 @@ export default function Navbar() {
           <Link href="/" className="flex items-center space-x-2">
             
             <span className="font-bold text-lg bg-gradient-to-r from-purple-600 to-blue-500 bg-clip-text text-transparent sm:inline-block">
-              Songfer
+              Songfer {/* Updated Brand Name */}
             </span>
           </Link>
         </div>
@@ -138,7 +149,8 @@ export default function Navbar() {
         {/* Right side - navigation and buttons */}
         <div className="flex flex-1 items-center justify-end">
           {/* Desktop navigation for non-logged in users */}
-          {!isloggedin && (
+          {/* Show only when loading is finished and user is not authenticated */}
+          {!isLoadingAuth && !isAuthenticated && (
             <div className="hidden md:flex items-center space-x-6 mr-6 text-sm font-medium">
               <Link
                 href="/features"
@@ -162,7 +174,8 @@ export default function Navbar() {
           )}
           
           {/* Desktop navigation for logged in users */}
-          {isloggedin && (
+          {/* Show only when loading is finished and user is authenticated */}
+          {!isLoadingAuth && isAuthenticated && (
             <div className="hidden md:flex items-center space-x-6 mr-6 text-sm font-medium">
               <Link
                 href="/dashboard"
@@ -170,13 +183,6 @@ export default function Navbar() {
               >
                 <Home className="mr-1 h-4 w-4" />
                 Home
-              </Link>
-              <Link
-                href="/profile"
-                className="transition-colors hover:text-foreground/80 text-foreground flex items-center"
-              >
-                <UserCircle className="mr-1 h-4 w-4" />
-                Profile
               </Link>
             </div>
           )}
@@ -195,45 +201,58 @@ export default function Navbar() {
             </Button>
             
             <Button variant="ghost" size="icon" asChild className="h-8 w-8">
-              <Link href="https://github.com/MonilMehta/Songfer" target="_blank">
+              <Link href="https://github.com/MonilMehta/SongPorter" target="_blank"> {/* Updated GitHub Link */}
                 <Github className="h-4 w-4" />
                 <span className="sr-only">GitHub</span>
               </Link>
             </Button>
           </div>
           
-          {/* Login/Signup - visible on desktop only when not logged in */}
-          {!isloggedin && (
-            <div className="hidden md:flex items-center space-x-2 ml-4">
-              <Link
-                href="/login"
-                className="text-sm font-medium transition-colors hover:text-foreground/80 text-foreground"
-              >
-                Login
-              </Link>
-              <Button asChild size="sm" className="h-8">
-                <Link href="/signup">Sign Up</Link>
-              </Button>
-            </div>
-          )}
-          
-          {/* Profile dropdown for logged in users */}
-          {isloggedin && (
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="h-8 w-8 ml-2">
-                  <User className="h-4 w-4" />
-                  <span className="sr-only">Profile</span>
+          {/* Login/Signup OR User Dropdown - visible on desktop */}
+          <div className="hidden md:flex items-center space-x-2 ml-4">
+            {/* Show Login/Signup only when loading is finished and user is not authenticated */}
+            {!isLoadingAuth && !isAuthenticated && (
+              <>
+                <Link
+                  href="/login"
+                  className="text-sm font-medium transition-colors hover:text-foreground/80 text-foreground"
+                >
+                  Login
+                </Link>
+                <Button asChild size="sm" className="h-8">
+                  <Link href="/signup">Sign Up</Link>
                 </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem onClick={handleLogout}>
-                  <LogOut className="mr-2 h-4 w-4" />
-                  <span>Logout</span>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          )}
+              </>
+            )}
+
+            {/* Show User Dropdown only when loading is finished and user is authenticated */}
+            {!isLoadingAuth && isAuthenticated && (
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="ghost" className="relative h-8 w-8 rounded-full">
+                    <Avatar className="h-8 w-8">
+                      {/* Prioritize session data, fallback if only local token exists (basic initials) */}
+                      <AvatarImage src={session?.user?.image ?? undefined} alt={session?.user?.name ?? session?.user?.email ?? 'User'} />
+                      <AvatarFallback>{getInitials(session?.user?.name, session?.user?.email)}</AvatarFallback>
+                    </Avatar>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-56" align="end" forceMount>
+                  <DropdownMenuItem asChild>
+                     <Link href="/profile" className="flex items-center cursor-pointer">
+                       <UserCircle className="mr-2 h-4 w-4" />
+                       <span>Profile</span>
+                     </Link>
+                  </DropdownMenuItem>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={handleLogout} className="cursor-pointer">
+                    <LogOut className="mr-2 h-4 w-4" />
+                    <span>Log out</span>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            )}
+          </div>
           
           {/* Mobile menu button */}
           <Button
@@ -252,10 +271,12 @@ export default function Navbar() {
       {isMenuOpen && (
         <div className="md:hidden" ref={mobileMenuRef}>
           <div className="space-y-1 px-2 pb-3 pt-2">
-            {isloggedin ? (
+            {/* Show based on combined isAuthenticated, hide while loading */}
+            {!isLoadingAuth && isAuthenticated ? (
               <>
                 <Link
                   href="/dashboard"
+                  onClick={closeMobileMenu} // Close menu on click
                   className="flex items-center rounded-md px-3 py-2 text-base font-medium hover:bg-accent hover:text-accent-foreground"
                 >
                   <Home className="mr-2 h-4 w-4" />
@@ -263,6 +284,7 @@ export default function Navbar() {
                 </Link>
                 <Link
                   href="/profile"
+                  onClick={closeMobileMenu} // Close menu on click
                   className="flex items-center rounded-md px-3 py-2 text-base font-medium hover:bg-accent hover:text-accent-foreground"
                 >
                   <UserCircle className="mr-2 h-4 w-4" />
@@ -270,29 +292,32 @@ export default function Navbar() {
                 </Link>
                 <Button
                   variant="ghost"
-                  onClick={handleLogout}
+                  onClick={handleLogout} // Logout also closes menu
                   className="w-full justify-start rounded-md px-3 py-2 text-base font-medium hover:bg-accent hover:text-accent-foreground flex items-center"
                 >
                   <LogOut className="mr-2 h-4 w-4" />
                   Logout
                 </Button>
               </>
-            ) : (
+            ) : !isLoadingAuth && !isAuthenticated ? (
               <>
                 <Link
                   href="/features"
+                  onClick={closeMobileMenu} // Close menu on click
                   className="block rounded-md px-3 py-2 text-base font-medium hover:bg-accent hover:text-accent-foreground"
                 >
                   Features
                 </Link>
                 <Link
                   href="/pricing"
+                  onClick={closeMobileMenu} // Close menu on click
                   className="block rounded-md px-3 py-2 text-base font-medium hover:bg-accent hover:text-accent-foreground"
                 >
                   Pricing
                 </Link>
                 <Link
                   href="/about"
+                  onClick={closeMobileMenu} // Close menu on click
                   className="block rounded-md px-3 py-2 text-base font-medium hover:bg-accent hover:text-accent-foreground"
                 >
                   About
@@ -300,18 +325,20 @@ export default function Navbar() {
                 <div className="border-t border-border my-2"></div>
                 <Link
                   href="/login"
+                  onClick={closeMobileMenu} // Close menu on click
                   className="block rounded-md px-3 py-2 text-base font-medium hover:bg-accent hover:text-accent-foreground"
                 >
                   Login
                 </Link>
                 <Link
                   href="/signup"
+                  onClick={closeMobileMenu} // Close menu on click
                   className="block rounded-md px-3 py-2 text-base font-medium hover:bg-accent hover:text-accent-foreground"
                 >
                   Sign Up
                 </Link>
               </>
-            )}
+            ) : null /* Optionally show a loading indicator here */}
           </div>
         </div>
       )}

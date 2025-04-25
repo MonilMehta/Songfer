@@ -7,12 +7,13 @@ import DottedMap from "dotted-map";
 import Image from "next/image";
 import { useTheme } from "next-themes";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
-import { Globe, Music, MapPin } from 'lucide-react' // Changed Globe to MapPin for consistency
+import { MapPin } from 'lucide-react'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import { Badge } from "@/components/ui/badge";
-import { Skeleton } from "@/components/ui/skeleton"; // Import Skeleton
+import { Skeleton } from "@/components/ui/skeleton";
+import { CountryMapSkeleton } from './country-map-skeleton';
 
-// ... (Keep existing interfaces and COUNTRY_COORDINATES)
+// ... (Keep existing interfaces)
 interface CountryDistributionItem {
   country: string
   count: number
@@ -20,14 +21,14 @@ interface CountryDistributionItem {
 
 interface CountryMapProps {
   data: CountryDistributionItem[]
-  loading?: boolean // Add loading prop
+  loading?: boolean
 }
 
-// Mapping of country names to coordinates (Corrected Australia, Added More)
+// ... (Keep COUNTRY_COORDINATES and BASE_LOCATION)
 const COUNTRY_COORDINATES: Record<string, { lat: number; lng: number }> = {
   "United States": { lat: 37.0902, lng: -95.7129 },
   "United Kingdom": { lat: 55.3781, lng: -3.4360 },
-  "Australia": { lat: -25.2744, lng: 133.7751 },
+  "Australia": { lat: -25.2744, lng: 133.7751 }, 
   "Canada": { lat: 56.1304, lng: -106.3468 },
   "Germany": { lat: 51.1657, lng: 10.4515 },
   "France": { lat: 46.2276, lng: 2.2137 },
@@ -54,34 +55,16 @@ const COUNTRY_COORDINATES: Record<string, { lat: number; lng: number }> = {
   "Indonesia": { lat: -0.7893, lng: 113.9213 },
   "Turkey": { lat: 38.9637, lng: 35.2433 },
   "Egypt": { lat: 26.8206, lng: 30.8025 },
-
-  // Additional famous music countries
-  "Jamaica": { lat: 18.1096, lng: -77.2975 },
-  "Cuba": { lat: 21.5218, lng: -77.7812 },
-  "Greece": { lat: 39.0742, lng: 21.8243 },
-  "Austria": { lat: 47.5162, lng: 14.5501 },
-  "Thailand": { lat: 15.8700, lng: 100.9925 },
-  "Pakistan": { lat: 30.3753, lng: 69.3451 },
-  "Venezuela": { lat: 6.4238, lng: -66.5897 },
-  "Puerto Rico": { lat: 18.2208, lng: -66.5901 },
-  "Morocco": { lat: 31.7917, lng: -7.0926 },
-  "Iceland": { lat: 64.9631, lng: -19.0208 },
-  "Finland": { lat: 61.9241, lng: 25.7482 },
-  "Peru": { lat: -9.1900, lng: -75.0152 }
+  "Morocco": { lat: 31.7917, lng: -7.0926 }, // Added Morocco
+  "Iceland": { lat: 64.9631, lng: -19.0208 }, // Added Iceland
+  "Jamaica": { lat: 18.1096, lng: -77.2975 }, // Added Jamaica
 };
-
-
-// Define a base point (optional, e.g., user's location if known, or a central point)
-const BASE_LOCATION = { lat: 51.5074, lng: -0.1278 }; // Example: London
-
-// Import the skeleton component
-import { CountryMapSkeleton } from './country-map-skeleton';
+const BASE_LOCATION = { lat: 20.5937, lng: 78.9629 }; // Changed to India
 
 export function CountryMap({ data, loading = false }: CountryMapProps) {
   const svgRef = useRef<SVGSVGElement>(null);
   const { theme } = useTheme();
   
-  // Memoize the DottedMap instance and SVG generation
   const svgMap = useMemo(() => {
     const map = new DottedMap({ height: 100, grid: "diagonal" });
     return map.getSVG({
@@ -90,25 +73,39 @@ export function CountryMap({ data, loading = false }: CountryMapProps) {
       shape: "circle",
       backgroundColor: "transparent",
     });
-  }, [theme]); // Dependency is only the theme
+  }, [theme]);
 
-  // Prepare dots data for the map based on input data
   const dots = useMemo(() => {
-    if (!data) return [];
-    return data
+    if (!data || data.length === 0) return [];
+    
+    const sortedData = data
       .filter(item => COUNTRY_COORDINATES[item.country])
-      .sort((a, b) => b.count - a.count)
-      .slice(0, 15) // Show slightly more points if available
-      .map(item => ({
-        start: BASE_LOCATION, // Use a fixed start point or make it dynamic
-        end: { ...COUNTRY_COORDINATES[item.country], label: item.country, count: item.count },
-      }));
+      .sort((a, b) => b.count - a.count);
+      
+    const maxCount = Math.max(...sortedData.map(item => item.count), 1);
+    const minCount = Math.min(...sortedData.map(item => item.count), 1);
+
+    return sortedData
+      .slice(0, 15) 
+      .map(item => {
+        // Calculate a scale factor (e.g., 0.5 to 1.5) based on count
+        let scale = 1;
+        if (maxCount > minCount) {
+          // Normalize count to 0-1 range, then scale (e.g., 0.5 to 1.5)
+          scale = 0.5 + ((item.count - minCount) / (maxCount - minCount)); 
+        }
+        
+        return {
+          start: BASE_LOCATION, 
+          end: { ...COUNTRY_COORDINATES[item.country], label: item.country, count: item.count },
+          // Clamp scale between 0.5 and 1.5 for reasonable visual range
+          scale: Math.max(0.5, Math.min(1.5, scale)) 
+        };
+      });
   }, [data]);
 
   // ... (Keep projectPoint and createCurvedPath functions)
   const projectPoint = (lat: number, lng: number) => {
-    // Adjust projection logic if needed based on DottedMap's coordinate system
-    // Assuming a standard Mercator-like projection for viewBox 0 0 800 400
     const x = (lng + 180) * (800 / 360);
     const y = (90 - lat) * (400 / 180);
     return { x, y };
@@ -122,19 +119,16 @@ export function CountryMap({ data, loading = false }: CountryMapProps) {
     const dy = end.y - start.y;
     const midX = start.x + dx * 0.5;
     const midY = start.y + dy * 0.5;
-    // Control point calculation for curve height
     const controlY = Math.min(start.y, end.y) - Math.abs(dx) * 0.2;
     return `M ${start.x} ${start.y} Q ${midX} ${controlY} ${end.x} ${end.y}`;
   };
 
-  const lineColor = "hsl(var(--primary))"; // Use theme primary color
+  const lineColor = "hsl(var(--primary))"; 
 
-  // Return skeleton if loading
   if (loading) {
     return <CountryMapSkeleton />;
   }
 
-  // Show empty state only if not loading and data is empty
   if (!loading && (!dots || dots.length === 0)) {
     return (
       <Card className="h-full flex flex-col items-center justify-center bg-muted/30 border border-dashed min-h-[350px]">
@@ -147,9 +141,7 @@ export function CountryMap({ data, loading = false }: CountryMapProps) {
     );
   }
 
-  // Render the actual map if not loading and data exists
   return (
-    // Apply consistent styling from GenreChart
     <Card className="h-full shadow-md border-border/10 bg-card/90 backdrop-blur-sm overflow-hidden min-h-[350px]">
       <CardHeader>
         <CardTitle className="flex items-center text-lg">
@@ -157,11 +149,9 @@ export function CountryMap({ data, loading = false }: CountryMapProps) {
         </CardTitle>
         <CardDescription>Countries based on your downloaded music.</CardDescription>
       </CardHeader>
-      {/* Adjust CardContent padding and remove aspect ratio if needed */}
       <CardContent className="p-0 relative h-[250px]"> 
         <TooltipProvider delayDuration={100}>
           <div className="w-full h-full relative">
-            {/* Base map image */}
             <Image
               src={`data:image/svg+xml;utf8,${encodeURIComponent(svgMap)}`}
               className="h-full w-full object-cover pointer-events-none select-none"
@@ -169,10 +159,9 @@ export function CountryMap({ data, loading = false }: CountryMapProps) {
               fill
               draggable={false}
             />
-            {/* SVG overlay for paths and points */}
             <svg
               ref={svgRef}
-              viewBox="0 0 800 400" // Ensure this matches projection logic
+              viewBox="0 0 800 400"
               className="w-full h-full absolute inset-0 pointer-events-none select-none"
             >
               <defs>
@@ -188,13 +177,15 @@ export function CountryMap({ data, loading = false }: CountryMapProps) {
               {dots.map((dot, i) => {
                 const startPoint = projectPoint(dot.start.lat, dot.start.lng);
                 const endPoint = projectPoint(dot.end.lat, dot.end.lng);
+                const baseStrokeWidth = 2.5;
                 return (
                   <motion.path
                     key={`path-${i}`}
                     d={createCurvedPath(startPoint, endPoint)}
                     fill="none"
                     stroke="url(#path-gradient)"
-                    strokeWidth="1.5"
+                    // Vary stroke width based on scale
+                    strokeWidth={baseStrokeWidth * dot.scale} 
                     initial={{ pathLength: 0 }}
                     animate={{ pathLength: 1 }}
                     transition={{
@@ -209,46 +200,40 @@ export function CountryMap({ data, loading = false }: CountryMapProps) {
               {/* Draw end points with tooltips and animation */}
               {dots.map((dot, i) => {
                 const point = projectPoint(dot.end.lat, dot.end.lng);
-                const markerBaseRadius = 4; // Increase base radius for the marker
-                const pulseMaxRadius = markerBaseRadius * 2.5; // Make pulse larger
-                const iconSize = 14; // Increase icon size
+                const baseMarkerRadius = 10; // Base radius for the marker
+                const markerRadius = baseMarkerRadius * dot.scale; // Scale marker radius
+                const pulseMaxRadius = markerRadius * 2.5; 
 
                 return (
                   <Tooltip key={`tooltip-${i}`}>
                     <TooltipTrigger asChild>
-                      {/* Make the <g> element the trigger and interactive */}
                       <g
                         transform={`translate(${point.x}, ${point.y})`}
-                        className="pointer-events-auto cursor-pointer" // Ensure group is interactive
+                        className="pointer-events-auto cursor-pointer"
                       >
                         {/* Animated pulse */}
                         <motion.circle
-                          r={markerBaseRadius} // Start radius
+                          r={markerRadius} // Use scaled radius
                           fill={lineColor}
-                          opacity="0.5" // Start opacity
+                          opacity="0.5"
                           initial={{ scale: 1, opacity: 0.5 }}
                           animate={{
-                            // Animate scale and opacity
-                            scale: [1, pulseMaxRadius / markerBaseRadius, 1],
+                            scale: [1, pulseMaxRadius / markerRadius, 1],
                             opacity: [0.5, 0, 0.5],
                           }}
                           transition={{
-                            duration: 2.0, // Slightly slower pulse
+                            duration: 2.0,
                             repeat: Infinity,
-                            delay: 0.3 * i + 0.5, // Stagger animation start
+                            delay: 0.3 * i + 0.5,
                             ease: "easeInOut",
                           }}
                         />
-                        {/* Static center circle - slightly larger */}
-                        <circle r={markerBaseRadius} fill={lineColor} />
-                        {/* Music Icon inside the circle - larger and centered */}
-                       
+                        {/* Static center circle - use scaled radius */}
+                        <circle r={markerRadius} fill={lineColor} />
                       </g>
                     </TooltipTrigger>
-                    {/* Ensure TooltipContent is correctly associated */}
                     <TooltipContent side="top" className="bg-background/90 backdrop-blur-sm border-border/50 shadow-lg rounded-md px-3 py-1.5">
                       <div className="flex items-center gap-2">
-                        {/* Ensure text color is visible */}
                         <span className="font-semibold text-sm text-foreground">{dot.end.label}</span> 
                         <Badge variant="secondary" className="text-xs px-1.5 py-0.5">{dot.end.count}</Badge>
                       </div>
