@@ -22,7 +22,10 @@ export const metadata: Metadata = {
   description: "Download up to 50 songs daily from YouTube & Spotify in premium MP3 or AAC formats. High audio quality. Easy, fast, and free. Start downloading music today with Songfer!",
   // Updated Icons (assuming logo.svg and logo.ico are in /public)
   icons: {
-    icon: "/logo.ico", // Path to .ico in /public
+    icon: [
+      { url: "/favicon.ico", sizes: "32x32" },
+      { url: "/logo.ico", sizes: "256x256" }
+    ],
     apple: "/logo.svg", // Path to .svg in /public (can also be a dedicated apple-touch-icon.png)
   },
   keywords: ["music", "download", "youtube", "spotify", "mp3", "aac", "high quality", "songfer", "free music downloader", "youtube downloader", "spotify downloader"],
