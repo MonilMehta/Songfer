@@ -13,39 +13,53 @@ import { FloatingPlayerBar } from '@/components/player/FloatingPlayerBar'; // Im
 import { Analytics } from "@vercel/analytics/react"
 const inter = Inter({ subsets: ["latin"] });
 
+// Updated Metadata
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL || 'https://songfer.vercel.app'),
-  title: "Songfer - Download Music from YouTube and Spotify",
-  description: "Download your favorite music from YouTube and Spotify in high quality MP3 and AAC formats.",
-  // Define icons here, Next.js will generate the appropriate link tags
+  // New Title
+  title: "Download YouTube & Spotify Songs Free",
+  // New Description
+  description: "Download up to 50 songs daily from YouTube & Spotify in premium MP3 or AAC formats. High audio quality. Easy, fast, and free. Start downloading music today with Songfer!",
+  // Updated Icons (assuming logo.svg and logo.ico are in /public)
   icons: {
-    icon: "/Logo.svg", // Standard favicon
-    apple: "/Logo.svg", // Apple touch icon
+    icon: "/logo.ico", // Path to .ico in /public
+    apple: "/logo.svg", // Path to .svg in /public (can also be a dedicated apple-touch-icon.png)
   },
-  // Add other metadata here if needed
-  keywords: ["music", "download", "youtube", "spotify", "mp3", "aac", "high quality", "songfer"],
+  keywords: ["music", "download", "youtube", "spotify", "mp3", "aac", "high quality", "songfer", "free music downloader", "youtube downloader", "spotify downloader"],
   authors: [{ name: "Songfer" }],
   robots: { index: true, follow: true },
+  // Updated Google Verification Code
   verification: {
-    google: "your-google-site-verification-code", // Add your verification code here
+    google: "1_m8HFrcva-hhyZtlxH69QlTufF57fTV_kzS1GnP7lo",
   },
   openGraph: {
-    title: "Songfer - Download Music from YouTube and Spotify",
-    description: "Download your favorite music from YouTube and Spotify in high quality MP3 and AAC formats.",
-    url: "https://www.songporter.vercel.app", // Make sure this is your actual production URL
+    // Updated OG Title
+    title: "Download YouTube & Spotify Songs Free",
+    // Updated OG Description
+    description: "Download up to 50 songs daily from YouTube & Spotify in premium MP3 or AAC formats. High audio quality. Easy, fast, and free.",
+    // Corrected URL
+    url: "https://songfer.vercel.app",
     images: [
       {
-        url: "/Logo.svg", // Provide absolute URL in production if possible
-        width: 800, // Optional: Specify image dimensions
-        height: 600,
+        // Path to logo in /public
+        url: "/logo.svg", // Use relative path for public assets
+        width: 512, // Specify dimensions if known
+        height: 512,
         alt: 'Songfer Logo',
       },
     ],
     locale: 'en_US',
     type: 'website',
   },
-  // Add theme-color if desired via metadata
-  // themeColor: '#000000',
+  // Added theme-color via metadata
+  themeColor: '#000000',
+  // Added Twitter card metadata
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Download YouTube & Spotify Songs Free',
+    description: 'Download up to 50 songs daily from YouTube & Spotify in premium MP3 or AAC formats.',
+    images: ['/logo.svg'], // Use relative path for public assets
+  },
 };
 
 export default function RootLayout({
@@ -55,15 +69,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      {/* Remove manual head tags that are handled by the metadata object */}
+      {/* Remove manual head tags handled by metadata object */}
       <head>
-        {/* Keep essential tags not directly controlled by standard metadata fields if necessary */}
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        {/* theme-color can also be set via metadata */}
-        <meta name="theme-color" content="#000000" /> 
-        {/* Verification is handled by metadata, but keeping it here won't hurt if preferred */}
-        {/* <meta name="google-site-verification" content="your-google-site-verification-code" /> */}
-        <meta name="google-site-verification" content="1_m8HFrcva-hhyZtlxH69QlTufF57fTV_kzS1GnP7lo" />
+         {/* Keep essential tags not directly controlled by standard metadata fields if necessary */}
+         {/* Viewport is automatically handled by Next.js unless you need specific overrides */}
+         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+         {/* theme-color is now handled by metadata */}
+         {/* google-site-verification is now handled by metadata */}
       </head>
       <body className={inter.className}>
         <ThemeProvider
@@ -85,6 +97,7 @@ export default function RootLayout({
             </PlayerProvider>
           </AuthProvider>
           <Toaster />
+          <Analytics /> {/* Ensure Vercel Analytics is included */}
         </ThemeProvider>
       </body>
     </html>
