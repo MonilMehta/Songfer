@@ -227,8 +227,8 @@ REST_FRAMEWORK = {
 }
 
 # Celery Configuration
-CELERY_BROKER_URL = 'redis://default:tjGxM9tFwG0GOkJ6Ltui628LVd0yYj9U@redis-15247.c264.ap-south-1-1.ec2.redns.redis-cloud.com:15247'
-CELERY_RESULT_BACKEND = 'redis://default:tjGxM9tFwG0GOkJ6Ltui628LVd0yYj9U@redis-15247.c264.ap-south-1-1.ec2.redns.redis-cloud.com:15247'
+CELERY_BROKER_URL = 'redis://default:ZcvDgazWGoUBhQhtrUOvnaq1boTbSJRU@redis-11278.c264.ap-south-1-1.ec2.redns.redis-cloud.com:11278'
+CELERY_RESULT_BACKEND = 'redis://default:ZcvDgazWGoUBhQhtrUOvnaq1boTbSJRU@redis-11278.c264.ap-south-1-1.ec2.redns.redis-cloud.com:11278'
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
